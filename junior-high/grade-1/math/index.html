@@ -3,23 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>中学1年数学 学習一覧（全129回）</title>
+  <title>中学1年数学 学習一覧（全129回） | Classroom</title>
+  <link rel="stylesheet" href="../../../assets/style.css">
   <style>
     :root {
-      --bg: #f8fafc;
-      --surface: #ffffff;
-      --surface-subtle: #f1f5f9;
-      --border: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --text: #0f172a;
-      --text-muted: #475569;
-      --text-light: #64748b;
-      --link: #1d4ed8;
-      --link-hover: #1e40af;
-      --link-unpublished: #475569;
-      --accent-bar: #2563eb;
-      --toast-bg: #1e293b;
-      --toast-text: #f8fafc;
+      color-scheme: dark;
+      --bg: #151515;
+      --surface: #231c19;
+      --surface-subtle: #885D4B;
+      --border: #614639;
+      --border-strong: #B38A72;
+      --text: #fff;
+      --text-muted: #fff;
+      --text-light: #fff;
+      --link: #fff;
+      --link-hover: #fff;
+      --link-unpublished: #fff;
+      --accent-bar: #B38A72;
+      --toast-bg: #885D4B;
+      --toast-text: #fff;
     }
 
     *, *::before, *::after {
@@ -36,20 +38,21 @@
     }
 
     .container {
-      max-width: 920px;
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
       margin: 0 auto;
-      padding: 24px 16px 64px;
+      padding: clamp(30px, 8vw, 72px) 0;
     }
 
     .page-header {
-      margin-bottom: 20px;
+      margin-bottom: 36px;
       padding-bottom: 16px;
-      border-bottom: 1px solid var(--border-strong);
+      border-bottom: 1px solid var(--border);
     }
 
     .page-title {
       margin: 0 0 6px;
-      font-size: 1.5rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: 700;
       letter-spacing: -0.01em;
       color: var(--text);
@@ -104,8 +107,8 @@
     /* Chapter */
     details.chapter {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      border: 2px solid var(--border-strong);
+      border-radius: 14px;
       overflow: hidden;
     }
 
@@ -116,8 +119,9 @@
       gap: 12px;
       padding: 13px 16px;
       background: var(--surface-subtle);
-      border-left: 4px solid var(--accent-bar);
+      border-left: 0;
       cursor: pointer;
+      flex-wrap: wrap;
       list-style: none;
       user-select: none;
     }
@@ -132,6 +136,35 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      flex: 1 1 245px;
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid #fff;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: #6c4738;
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: #946A54;
+      color: #fff;
+      text-decoration: underline;
     }
 
     .chapter-name::before {
@@ -231,7 +264,7 @@
       align-items: baseline;
       column-gap: 10px;
       padding: 6px 4px;
-      border-top: 1px solid #f1f5f9;
+      border-top: 1px solid var(--border);
     }
 
     .lesson-item:first-child {
@@ -307,7 +340,7 @@
       border-radius: 6px;
       font-size: 0.85rem;
       max-width: calc(100vw - 32px);
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.22);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.18s ease, transform 0.18s ease;
@@ -321,11 +354,12 @@
 
     @media (max-width: 600px) {
       .container {
-        padding: 16px 10px 56px;
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
       }
 
       .page-title {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
       }
 
       summary.chapter-summary {
@@ -356,6 +390,7 @@
 </head>
 <body>
   <div class="container">
+    <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">中学校</a><span aria-hidden="true"> / </span><a href="../">1年生</a><span aria-hidden="true"> / </span><span aria-current="page">数学</span></nav>
     <header class="page-header">
       <h1 class="page-title">中学1年数学 学習一覧</h1>
       <div class="page-meta">
@@ -371,7 +406,10 @@
       <details class="chapter" open data-chapter-index="0">
         <summary class="chapter-summary">
           <span class="chapter-name">0章 算数から数学へ</span>
-          <span class="count-meta">4回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-0/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-0/questions.html" data-published="true">問題</a>
+            <span class="count-meta">4回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s001">
@@ -422,7 +460,10 @@
       <details class="chapter" open data-chapter-index="1">
         <summary class="chapter-summary">
           <span class="chapter-name">1章 数の世界をひろげよう［正負の数］</span>
-          <span class="count-meta">25回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-1/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-1/questions.html" data-published="true">問題</a>
+            <span class="count-meta">25回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s002">
@@ -674,7 +715,10 @@
       <details class="chapter" open data-chapter-index="2">
         <summary class="chapter-summary">
           <span class="chapter-name">2章 数学のことばを身につけよう［文字と式］</span>
-          <span class="count-meta">18回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-2/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-2/questions.html" data-published="true">問題</a>
+            <span class="count-meta">18回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s006">
@@ -859,7 +903,10 @@
       <details class="chapter" open data-chapter-index="3">
         <summary class="chapter-summary">
           <span class="chapter-name">3章 未知の数の求め方を考えよう［方程式］</span>
-          <span class="count-meta">14回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-3/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-3/questions.html" data-published="true">問題</a>
+            <span class="count-meta">14回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s009">
@@ -1001,7 +1048,10 @@
       <details class="chapter" open data-chapter-index="4">
         <summary class="chapter-summary">
           <span class="chapter-name">4章 数量の関係を調べて問題を解決しよう［比例と反比例］</span>
-          <span class="count-meta">22回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-4/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-4/questions.html" data-published="true">問題</a>
+            <span class="count-meta">22回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s011">
@@ -1229,7 +1279,10 @@
       <details class="chapter" open data-chapter-index="5">
         <summary class="chapter-summary">
           <span class="chapter-name">5章 平面図形の見方をひろげよう［平面図形］</span>
-          <span class="count-meta">17回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-5/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-5/questions.html" data-published="true">問題</a>
+            <span class="count-meta">17回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s015">
@@ -1406,7 +1459,10 @@
       <details class="chapter" open data-chapter-index="6">
         <summary class="chapter-summary">
           <span class="chapter-name">6章 立体の見方をひろげよう［空間図形］</span>
-          <span class="count-meta">18回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-6/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-6/questions.html" data-published="true">問題</a>
+            <span class="count-meta">18回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s018">
@@ -1591,7 +1647,10 @@
       <details class="chapter" open data-chapter-index="7">
         <summary class="chapter-summary">
           <span class="chapter-name">7章 データを活用して判断しよう［データの分析と活用］</span>
-          <span class="count-meta">11回</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link" href="chapters/chapter-7/questions.html" data-kind="chapter-questions" data-target="chapters/chapter-7/questions.html" data-published="true">問題</a>
+            <span class="count-meta">11回</span>
+          </span>
         </summary>
         <div class="chapter-body">
         <details class="section" open data-section-id="m1-s021">
