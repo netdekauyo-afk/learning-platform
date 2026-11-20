@@ -1,22 +1,27 @@
+/* ダーク青系パレット
+   背景 #0D1622 / 見出し #EAF2FA / 本文 #C9D6E4 / 補足 #8CA2B8
+   カード #1A2A3D / 枠線 #33506E / ホバー #22374F・#4A7298
+   アクセント #5E97C8 / 完了・進捗用（未使用の予約色） #3E9C87 */
 :root {
   color-scheme: dark;
   font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-  background: #151515;
-  color: #fff;
+  background: #0D1622;
+  color: #C9D6E4;
 }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; }
 .site-shell { width: min(100% - 32px, 760px); margin: 0 auto; padding: clamp(30px, 8vw, 72px) 0; }
 .site-header { margin-bottom: 40px; }
-.site-name { margin: 0; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 750; letter-spacing: -.04em; }
-.site-subtitle { margin: 10px 0 0; font-size: 1.125rem; }
-h1 { margin: 0 0 24px; font-size: clamp(1.5rem, 4vw, 2rem); }
-.hint { margin: -10px 0 24px; }
+.site-name { margin: 0; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 750; letter-spacing: -.04em; color: #EAF2FA; }
+.site-subtitle { margin: 10px 0 0; font-size: 1.125rem; color: #8CA2B8; }
+h1 { margin: 0 0 24px; font-size: clamp(1.5rem, 4vw, 2rem); color: #EAF2FA; }
+.hint { margin: -10px 0 24px; color: #8CA2B8; }
 .choices { display: grid; gap: 14px; }
-.choice-card { min-height: 80px; padding: 20px 24px; border: 2px solid #B38A72; border-radius: 14px; background: #885D4B; color: #fff; font-size: 1.3rem; font-weight: 650; text-decoration: none; display: flex; align-items: center; justify-content: space-between; transition: background 120ms ease, border-color 120ms ease; }
-.choice-card:hover, .choice-card:focus-visible { background: #946A54; border-color: #C7A38F; }
-.choice-card span { font-size: 1.6rem; }
-a:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.choice-card { min-height: 80px; padding: 20px 24px; border: 2px solid #33506E; border-radius: 14px; background: #1A2A3D; color: #EAF2FA; font-size: 1.3rem; font-weight: 650; text-decoration: none; display: flex; align-items: center; justify-content: space-between; transition: background 120ms ease, border-color 120ms ease; }
+.choice-card:hover, .choice-card:focus-visible { background: #22374F; border-color: #4A7298; }
+.choice-card span { font-size: 1.6rem; color: #5E97C8; }
+a:focus-visible { outline: 3px solid #5E97C8; outline-offset: 4px; }
 .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 48px; }
-.breadcrumb a, .breadcrumb span { color: #fff; }
+.breadcrumb a { color: #5E97C8; }
+.breadcrumb span { color: #8CA2B8; }
 .breadcrumb a:hover { text-decoration-thickness: 2px; }
