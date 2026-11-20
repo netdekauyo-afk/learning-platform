@@ -36,3 +36,43 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 .breadcrumb a { color: var(--color-accent); }
 .breadcrumb span { color: var(--color-muted); }
 .breadcrumb a:hover { text-decoration-thickness: 2px; }
+
+
+/* Numbas exercise pages: independent answer viewing and local attempt history. */
+.practice-panel {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+.practice-reveal-button {
+  justify-self: start;
+  min-height: 44px;
+  padding: 9px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface);
+  color: var(--color-heading);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+.practice-reveal-button:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-hover);
+}
+.practice-answer {
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  color: var(--color-heading);
+}
+.practice-answer[hidden],
+.practice-save-warning[hidden] { display: none; }
+.practice-answer h2 { margin: 0 0 10px; font-size: 1.1rem; }
+.practice-answer p { margin: 0; font-size: 1.2rem; font-weight: 650; }
+.practice-history { color: var(--color-muted); font-size: .91rem; }
+.practice-history summary { cursor: pointer; }
+.practice-history-list { margin: 8px 0 0; padding-left: 1.4rem; }
+.practice-history-list li { margin: 5px 0; }
+.practice-save-warning { margin: 0; color: var(--color-heading); }
