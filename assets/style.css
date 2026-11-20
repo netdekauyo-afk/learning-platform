@@ -76,3 +76,27 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 .practice-history-list { margin: 8px 0 0; padding-left: 1.4rem; }
 .practice-history-list li { margin: 5px 0; }
 .practice-save-warning { margin: 0; color: var(--color-heading); }
+
+
+/* Compact exercise navigation, keeping the existing dark-blue color tokens. */
+.problem-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  gap: 10px 20px;
+  margin: 0 0 20px;
+}
+.problem-toolbar a {
+  color: var(--color-accent);
+  font-weight: 650;
+  text-underline-offset: .2em;
+}
+.problem-toolbar .problem-next,
+.problem-toolbar .problem-next-pending { margin-left: auto; }
+.problem-toolbar .problem-next-pending {
+  color: var(--color-muted);
+  font-size: .9rem;
+}
+#numbas-host numbas-exam { display: block; min-width: 0; }

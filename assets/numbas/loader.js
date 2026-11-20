@@ -1,22 +1,11 @@
+import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
 const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
 
-const translations = {
-  "question.submit part": "答え合わせ",
-  "question.answer saved": "確認済み",
-  "part.input title": "{{name}}の答え",
-  "part.feedback": "採点の詳細",
-  "part.correct answer": "正しい答え",
-  "part.correct answer title": "{{name}}の正しい答え",
-  "question.score feedback.score total actual": "{{score,niceNumber}} / {{marks,niceNumber}} 点",
-  "question.nav.label": "問題の操作",
-  "control.style options": "表示設定",
-  "modal.confirm": "確認",
-  "modal.ok": "確認",
-};
+
 
 /* A non-locking answer view and a local practice history. The original .exam files
    and the Numbas score calculation are deliberately left unchanged. */
@@ -185,6 +174,63 @@ async function installPracticeReview(examElement) {
   const style = document.createElement("style");
   style.textContent = ".revealBtn { display: none !important; }";
   examElement.shadowRoot.append(style);
+  return examData;
+}
+
+
+/* Adapt the working Sites answer, hint and keypad controls to a static page.
+   Numbas stays responsible for scoring; the existing practice handler records it. */
+async function installWorksheetControls(examElement, examData) {
+  const question = examElement.exam?.questionList?.[0];
+  const definedParts = examData?.question_groups?.[0]?.questions?.[0]?.parts;
+  if (!question?.parts?.length || question.parts.length !== definedParts?.length) return;
+
+  // Sites waits until Numbas has attached the part HTML before decorating it.
+  await new Promise((resolve) => setTimeout(resolve, 0));
+  const controls = [];
+  let submit;
+  try {
+    for (const [index, part] of question.parts.entries()) {
+      const steps = definedParts[index].steps || [];
+      const hintMarkup = steps.filter((step) => step.type === "information")
+        .map((step) => step.prompt || "").filter(Boolean).join("");
+      controls.push(await prepareAnswerControl(part, index, hintMarkup));
+    }
+
+    const form = controls[0]?.form;
+    if (!form) throw new Error("Numbasの入力フォームが見つかりません。");
+    submit = document.createElement("button");
+    submit.type = "submit";
+    submit.className = "check-answers";
+    submit.textContent = controls.length > 1 ? "まとめて答え合わせ" : "答え合わせ";
+    form.append(submit);
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!controls.every((control) => control.validate())) return;
+      form.classList.add("turn-on-check");
+      submit.disabled = true;
+      try {
+        if (!question.parts.every(hasCheckedAnswer)) question.submit();
+        controls.forEach((control) => control.showResult());
+        status.textContent = "";
+      } catch (error) {
+        console.error(error);
+        status.textContent = "答え合わせに失敗しました。";
+      } finally {
+        submit.disabled = false;
+      }
+    });
+
+    // The original step display is hidden only after the new hint control exists.
+    examElement.shadowRoot.querySelector("exam-container")?.classList.add("sites-worksheet-ready");
+  } catch (error) {
+    submit?.remove();
+    // A failed enhancement must not break the existing Numbas input mechanism.
+    for (const button of examElement.shadowRoot.querySelectorAll("button.submitPart")) {
+      button.hidden = false;
+    }
+    throw error;
+  }
 }
 
 async function boot() {
@@ -202,9 +248,7 @@ async function boot() {
   await customElements.whenDefined("numbas-exam");
   await window.Numbas.init_promise;
   window.Numbas.display.control_focus = false;
-  window.Numbas.locale.set_preferred_locale("ja-JP");
-  window.i18next.addResourceBundle("ja-jp", "translation", translations, true, true);
-  await window.i18next.changeLanguage("ja-jp");
+  await setExerciseLanguage();
 
   const exam = document.createElement("numbas-exam");
   exam.setAttribute("noload", "");
@@ -213,9 +257,11 @@ async function boot() {
   exam.addEventListener("numbas:loaded", () => {
     status.textContent = "";
     // Keep Numbas marking unchanged. Only replace the irreversible reveal action.
-    void installPracticeReview(exam).catch((error) => {
-      console.error("解答表示の準備に失敗しました。", error);
-    });
+    void installPracticeReview(exam)
+      .then((examData) => installWorksheetControls(exam, examData))
+      .catch((error) => {
+        console.error("問題画面の準備に失敗しました。", error);
+      });
   }, { once: true });
   host.replaceChildren(exam);
 

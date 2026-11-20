@@ -1,6 +1,16 @@
 /* The Numbas runtime is a single shared dependency. Classroom colors come from ../style.css. */
 .numbas-container {
   --exam-height: auto;
+  --sheet: var(--color-surface);
+  --edge: var(--color-border);
+  --card-front: var(--color-surface);
+  --card-back: var(--color-surface-hover);
+  --card-line: color-mix(in srgb, var(--color-heading) 52%, transparent);
+  --card-edge: color-mix(in srgb, var(--color-heading) 38%, transparent);
+  --action: var(--color-accent);
+  --action-ink: var(--color-bg);
+  --focus: var(--color-accent);
+  --result-mark: var(--color-accent);
   --dark-background-color: var(--color-bg);
   --dark-text-color: var(--color-heading);
   --dark-main-color: var(--color-surface);
@@ -27,3 +37,431 @@
   overflow: visible;
 }
 #everything, .main-content.question, #questionContainer > .contentArea { padding: 0; }
+
+
+/* Sites worksheet layout, adapted to Classroom's shared dark-blue palette. */
+#everything, .mainDisplay, #questionContainer, #questionDisplay, .question,
+#questionContainer > .contentArea, #questionDisplay > .question-wrapper {
+  height: auto;
+  max-height: none;
+  min-width: 0;
+  overflow: visible;
+}
+#everything, .main-content.question, #questionContainer > .contentArea { padding: 0; }
+.parts {
+  display: grid;
+  gap: clamp(0.9rem, 2.5vw, 1.3rem);
+  margin: 0;
+  padding: 0 0 0.25rem;
+}
+.part-wrapper { min-width: 0; }
+.part:is(.type-numberentry, .type-1_n_2) {
+  --binding: clamp(1.65rem, 9%, 3.55rem);
+  --inset: clamp(0.65rem, 4%, 1.65rem);
+  --line-x: var(--binding);
+  --hole-x: calc(var(--binding) / 2);
+  --stock: var(--card-front);
+  position: relative;
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr) minmax(3.5rem, 28%);
+  align-items: center;
+  align-content: center;
+  column-gap: clamp(0.46rem, 2vw, 1.15rem);
+  min-width: 0;
+  width: 100%;
+  min-height: clamp(9.3rem, 30vw, 12.9rem);
+  margin: 0;
+  padding: calc(clamp(0.8rem, 2.6vw, 1.2rem) * var(--spacing-scale, 1)) var(--inset);
+  padding-inline-start: calc(var(--binding) + var(--inset));
+  color: var(--text-color);
+  background-color: var(--stock);
+  background-image: linear-gradient(112deg, color-mix(in srgb, var(--color-heading) 3%, transparent), transparent 48%, color-mix(in srgb, var(--color-bg) 5%, transparent));
+  border: 1px solid var(--card-edge);
+  border-radius: clamp(0.85rem, 2.5vw, 1.35rem);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-heading) 10%, transparent), 0 2px 0 var(--card-edge),
+    0 4px 0 color-mix(in srgb, var(--stock) 80%, var(--color-bg)), 0 7px 14px color-mix(in srgb, var(--color-bg) 27%, transparent);
+}
+.part:is(.type-numberentry, .type-1_n_2):not(.checked-answer) {
+  --text-color: var(--color-heading);
+  --card-line: color-mix(in srgb, var(--color-heading) 52%, transparent);
+  --card-edge: color-mix(in srgb, var(--color-heading) 38%, transparent);
+  --field-tint: color-mix(in srgb, var(--color-bg) 20%, transparent);
+}
+/* The binding line and punched hole switch edges on the back of each card. */
+.part:is(.type-numberentry, .type-1_n_2)::before, .part:is(.type-numberentry, .type-1_n_2)::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+}
+.part:is(.type-numberentry, .type-1_n_2)::before {
+  inset-block: 0;
+  left: var(--line-x);
+  width: 2px;
+  background: var(--card-line);
+}
+.part:is(.type-numberentry, .type-1_n_2)::after {
+  left: var(--hole-x);
+  top: 50%;
+  width: clamp(0.68rem, 2.4vw, 1.35rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--background-color);
+  box-shadow: inset 0 1.5px 3px color-mix(in srgb, var(--color-bg) 67%, transparent), 0 1px 1px var(--card-line);
+}
+.part:is(.type-numberentry, .type-1_n_2).checked-answer {
+  --stock: var(--card-back);
+  --line-x: calc(100% - var(--binding));
+  --hole-x: calc(100% - var(--binding) / 2);
+  padding-inline: var(--inset) calc(var(--binding) + var(--inset));
+}
+:is(.type-numberentry, .type-1_n_2) > .partheader {
+  grid-area: 1 / 1;
+  margin: 0;
+  font-size: calc(clamp(1.04rem, 2.5vw, 1.45rem) * var(--text-size, 1));
+  font-weight: var(--font-weight-bold, 700);
+  line-height: 1.35;
+}
+.answer-label {
+  grid-area: 1 / 3;
+  justify-self: center;
+  align-self: end;
+  margin: 0 0 0.25rem;
+  font-size: 0.95em;
+  font-weight: var(--font-weight-bold, 700);
+}
+.checked-answer > .answer-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+:is(.type-numberentry, .type-1_n_2) > .prompt {
+  grid-area: 2 / 1 / 3 / 3;
+  min-width: 0;
+  margin: 0;
+  text-align: end;
+}
+:is(.type-numberentry, .type-1_n_2) .prompt p, .answer-row input.numberentry {
+  font-family: var(--main-font, system-ui), sans-serif;
+  font-size: calc(clamp(1.36rem, 5.2vw, 2.5rem) * var(--text-size, 1));
+  font-size-adjust: none;
+  font-weight: var(--font-weight-bold, 700);
+  font-variant-numeric: lining-nums tabular-nums;
+  line-height: 1.25;
+}
+:is(.type-numberentry, .type-1_n_2) .prompt p { margin: 0; overflow-wrap: anywhere; }
+.student.answer.answer-row {
+  grid-area: 2 / 3;
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+.answer-row input.numberentry {
+  box-sizing: border-box;
+  width: 100% !important; /* Numbas also assigns an inline autosized width. */
+  min-width: 0;
+  max-width: 100%;
+  min-height: 2.8rem;
+  margin: 0;
+  padding: 0.1em 0.2em;
+  border: 2px solid var(--text-color);
+  border-radius: 0.43rem;
+  background: var(--field-tint, color-mix(in srgb, var(--background-color) 19%, transparent));
+  color: var(--text-color);
+  text-align: center;
+}
+.answer-row input[aria-invalid="true"] { border-color: var(--result-mark); }
+.answer-note {
+  grid-area: 3 / 1 / 4 / -1;
+  margin: 0.35em 0 0;
+  color: var(--text-color);
+  font-weight: var(--font-weight-bold, 700);
+}
+.checked-answer > .answer-note {
+  grid-area: 1 / 2 / 2 / -1;
+  align-self: center;
+  justify-self: start;
+  margin: 0;
+  font-size: 1.1em;
+}
+.answer-note .mark { color: var(--result-mark); font-size: 1.45em; line-height: 1; }
+.hint-toggle {
+  grid-area: 4 / 1 / 5 / -1;
+  display: inline-flex;
+  gap: 0.6em;
+  align-items: center;
+  justify-self: start;
+  min-height: 2.75rem;
+  margin: 0.28em 0 0;
+  padding: 0.22em;
+  border: none;
+  border-radius: 0.3rem;
+  background: transparent;
+  color: var(--text-color);
+  font: inherit;
+  font-weight: var(--font-weight-bold, 700);
+  cursor: pointer;
+}
+.hint-toggle::before {
+  content: "";
+  width: 0.52em;
+  height: 0.52em;
+  border-inline-end: 2px solid;
+  border-block-end: 2px solid;
+  transform: translateY(-0.12em) rotate(45deg);
+}
+.hint-toggle[aria-expanded="true"]::before { transform: translateY(0.12em) rotate(225deg); }
+.hint-toggle:hover { text-decoration: underline; text-underline-offset: 0.2em; }
+.hint-content {
+  grid-area: 5 / 1 / 6 / -1;
+  margin: 0;
+  padding-inline-start: 1.35em;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.hint-content[hidden], .prompt .hint-content, .answer-note:empty,
+.check-answers[hidden], 
+.answer-row .feedback-icon, .answer-row .feedback-icon + .sr-only,
+:is(.type-numberentry, .type-1_n_2) .partFeedback, :is(.type-numberentry, .type-1_n_2):not(.checked-answer) > .submit-and-feedback,
+:is(.type-numberentry, .type-1_n_2):not(.has-feedback-messages) > .submit-and-feedback,
+#questionContainer:not(.review) .question-nav > .marks { display: none; }
+:is(.type-numberentry, .type-1_n_2) > .correct.answer, :is(.type-numberentry, .type-1_n_2) > .submit-and-feedback {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+:is(.type-numberentry, .type-1_n_2) > .correct.answer { grid-row: 6; }
+:is(.type-numberentry, .type-1_n_2) > .submit-and-feedback { grid-row: 7; }
+:is(.type-numberentry, .type-1_n_2) .feedbackMessages { margin: 0.5em 0 0; }
+.question-nav.navbar {
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  justify-content: flex-start;
+  background: transparent;
+}
+.check-answers {
+  display: block;
+  width: min(25rem, 100%);
+  min-height: 3rem;
+  margin: clamp(1.15rem, 3vw, 1.75rem) auto 0;
+  padding: 0.65em 1em;
+  border: 1px solid transparent;
+  border-radius: 0.65rem;
+  background: var(--action);
+  color: var(--action-ink);
+  font: inherit;
+  font-weight: var(--font-weight-bold, 700);
+  cursor: pointer;
+}
+.check-answers:hover:not(:disabled) { box-shadow: inset 0 0 0 2px var(--action-ink); }
+.check-answers:disabled { cursor: wait; }
+.answer-row input:focus-visible, .check-answers:focus-visible,
+.hint-toggle:focus-visible, #display-settings summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+/* One live input per part. Turn the same DOM surface edge-on, then show the reverse upright. */
+@media (prefers-reduced-motion: no-preference) {
+  .turn-on-check .part.checked-answer {
+    animation: turn-card 480ms ease-in-out;
+  }
+  .turn-on-check .checked-answer > .answer-note, .turn-on-check .checked-answer > .hint-content {
+    animation: reveal-ink 480ms step-end;
+  }
+}
+@keyframes turn-card {
+  0%, 49.99% {
+    --stock: var(--card-front);
+    --line-x: var(--binding);
+    --hole-x: calc(var(--binding) / 2);
+    padding-inline: calc(var(--binding) + var(--inset)) var(--inset);
+  }
+  0%, 100% { transform: perspective(65rem) rotateY(0); }
+  49.99% { transform: perspective(65rem) rotateY(89.9deg); }
+  50% { transform: perspective(65rem) rotateY(-89.9deg); }
+  50%, 100% {
+    --stock: var(--card-back);
+    --line-x: calc(100% - var(--binding));
+    --hole-x: calc(100% - var(--binding) / 2);
+    padding-inline: var(--inset) calc(var(--binding) + var(--inset));
+  }
+}
+@keyframes reveal-ink { 0% { opacity: 0; } 50%, 100% { opacity: 1; } }
+@media (forced-colors: active) {
+  .part:is(.type-numberentry, .type-1_n_2), .check-answers { border-color: CanvasText; }
+  .part:is(.type-numberentry, .type-1_n_2)::before { border-inline-start: 1px solid CanvasText; }
+  .part:is(.type-numberentry, .type-1_n_2)::after { border: 1px solid CanvasText; }
+}
+#questionContainer footer > .copyright-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.3rem 0.65rem;
+  margin: 1.65rem 0 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px solid var(--edge);
+  font-size: 0.875rem;
+}
+.copyright-footer .logo { width: 1.7rem; margin: 0; }
+.numbas-container:not([data-prefers-color-scheme]) .copyright-footer .logo {
+  filter: brightness(0) invert(1);
+}
+.copyright-footer p { margin: 0; }
+#display-settings {
+  margin-block: 0.5rem;
+  color: var(--text-color);
+  font-family: var(--main-font);
+  font-size: 1rem;
+}
+#display-settings > summary {
+  width: fit-content;
+  padding: 0.6rem 0.25rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+.settings-content {
+  padding: 1rem;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: var(--sheet);
+}
+.settings-content fieldset {
+  display: grid;
+  grid-template-columns: minmax(7rem, 1fr) minmax(5.5rem, 2fr) 3.25em;
+  gap: 0.6rem;
+  align-items: center;
+  min-width: 0;
+  margin: 0;
+  padding: 0.45rem 0;
+  border: 0;
+}
+.settings-content :is(input[type=range], select) { width: 100%; min-width: 0; }
+.settings-content .card-palette { display: block; }
+.card-palette legend { margin: 0 0 0.5rem; border: 0; }
+.card-color-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+.card-color-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  margin: 0;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--color-heading) 38%, transparent);
+  border-radius: 0.45rem;
+  color: var(--color-heading);
+  cursor: pointer;
+}
+.card-color-options input[type=radio] { margin: 0; flex-shrink: 0; accent-color: var(--color-bg); }
+.card-color-options label:has(:checked) { box-shadow: inset 0 0 0 2px var(--color-heading); }
+.card-color-options label:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+.settings-content output { text-align: end; font-variant-numeric: tabular-nums; }
+.settings-content > a { display: block; width: fit-content; margin-top: 0.8rem; }
+@media (max-width: 600px) {
+  .settings-content fieldset { grid-template-columns: minmax(0, 1fr) auto; }
+  .settings-content fieldset > label { grid-column: 1 / -1; }
+  .card-color-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Keep a short calculation on one line. Longer prompts and figures use the card width. */
+.part.written-question {
+  grid-template-columns: minmax(0, 1fr) auto;
+  row-gap: .35rem;
+}
+.written-question > .partheader { grid-area: 1 / 1; }
+.part.written-question > .prompt { grid-area: 2 / 1 / 3 / -1; text-align: start; }
+.part.written-question .prompt p {
+  font-size: calc(1.17rem * var(--text-size, 1));
+  line-height: 1.55;
+  font-weight: var(--font-weight-bold, 650);
+}
+.written-question .question-figure {
+  display: block; box-sizing: border-box; width: min(100%, 19rem); height: auto;
+  margin: .75rem 0 .4rem; padding: .6rem;
+  border-radius: .35rem; background: white;
+}
+.written-question .values {
+  border-collapse: collapse; margin: .7rem 0 .3rem; width: min(100%, 18rem);
+  color: inherit; text-align: center; font-variant-numeric: tabular-nums;
+}
+.written-question .values :is(td, th) {
+  padding: .3rem .45rem; border: 1px solid currentColor; background: transparent; color: inherit;
+  text-align: center;
+}
+.written-question > .answer-label { grid-area: 3 / 1 / 4 / -1; justify-self: start; margin: .25rem 0 0; }
+.part.written-question > .student.answer.answer-row { grid-area: 4 / 1 / 5 / -1; }
+.written-question.type-numberentry > .answer-row { width: min(12rem, 100%); }
+.answer-row.with-unit:has(> input.numberentry),
+.answer-row.with-unit :has(> input.numberentry) { display: flex; align-items: center; gap: .45rem; }
+.answer-row.with-unit input.numberentry { flex: 1; min-width: 0; }
+.answer-unit { white-space: nowrap; font-size: 1.1em; font-weight: 650; }
+.answer-row input.numberentry[readonly] { opacity: 1; }
+.answer-row input.numberentry::placeholder { color: var(--text-color); font-size: .65em; opacity: 1; }
+.written-question > .answer-note { grid-area: 5 / 1 / 6 / -1; }
+.written-question.checked-answer > .answer-note { grid-area: 1 / 2; }
+.number-pad, .number-pad-panel { grid-area: 4 / 1 / 5 / -1; }
+.number-pad-panel > summary {
+  width: fit-content; min-height: 2.75rem; padding: .55rem .75rem;
+  color: var(--text-color); font: inherit; cursor: pointer;
+}
+.number-pad-panel > summary:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+.number-pad {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .32rem; width: min(100%, 20rem); min-width: 0;
+  padding: 0; margin: .6rem auto .25rem; border: 0;
+}
+.written-question > :is(.number-pad, .number-pad-panel) { grid-row: 6; margin-inline: 0; }
+.number-pad-panel[hidden], .number-pad:disabled { display: none; }
+.number-pad button, .student.answer .radiogroup label {
+  box-sizing: border-box; margin: 0; border: 1px solid var(--card-line); border-radius: .42rem;
+  background: color-mix(in srgb, var(--stock) 86%, var(--color-bg)); color: var(--text-color);
+  font: inherit; cursor: pointer;
+}
+.number-pad button {
+  min-height: 2.75rem; padding: .2rem; font-weight: 650; line-height: 1.15;
+}
+.number-pad .pad-delete { grid-area: 1 / 4 / 3 / 5; }
+.number-pad .pad-sign { grid-area: 3 / 4 / 5 / 5; }
+.number-pad .pad-zero { grid-column: span 2; }
+.number-pad button:hover, .student.answer .radiogroup label:hover {
+  box-shadow: inset 0 0 0 1px currentColor;
+}
+.number-pad button:active { transform: translateY(1px); }
+.number-pad button:focus-visible, .student.answer .radiogroup label:focus-within {
+  outline: 3px solid var(--focus); outline-offset: 2px;
+}
+.part > .hint-toggle { grid-row: 7; }
+.part > .hint-content { grid-row: 8; }
+.part > .correct.answer { grid-row: 9; }
+.part > .submit-and-feedback { grid-row: 10; }
+.type-1_n_2 .student.answer :is(fieldset, menu) { padding: 0; margin: 0; border: 0; min-width: 0; }
+.type-1_n_2 .student.answer menu.radiogroup {
+  display: grid !important; grid-template-columns: minmax(0, 1fr) !important;
+  width: 100%; gap: .4rem; list-style: none;
+}
+.type-1_n_2 .student.answer .radiogroup li { margin: 0; padding: 0; border: 0; background: transparent; }
+.type-1_n_2 .student.answer .radiogroup label {
+  display: flex; align-items: center; width: 100%; min-height: 2.85rem;
+  gap: .6rem; padding: .5rem .65rem; text-align: start; line-height: 1.4;
+}
+.student.answer .radiogroup label:has(:checked) { box-shadow: inset 0 0 0 2px currentColor; }
+.student.answer input[type=radio].choice { position: static; opacity: 1; flex: none; margin: 0; accent-color: var(--color-accent); }
+.student.answer .choice-letter { margin-inline-end: .4em; font-weight: 750; }
+.student.answer fieldset:disabled label { cursor: default; }
+@media (forced-colors: active) {
+  .student.answer .radiogroup label:has(:checked) { outline: 2px solid Highlight; }
+}
+
+/* The native Numbas step control remains available only if the Sites hint fails. */
+.numbas-container.sites-worksheet-ready .stepsBtn,
+.numbas-container.sites-worksheet-ready .steps.well { display: none !important; }
+.stepsBtn .penaltyMessage { display: none !important; }
