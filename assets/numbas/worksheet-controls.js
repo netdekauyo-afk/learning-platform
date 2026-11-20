@@ -101,7 +101,6 @@ function prepareHint(section, prompt, inputId, headingId) {
   button.className = "hint-toggle";
   content.id = inputId + "-hint";
   button.setAttribute("aria-controls", content.id);
-  button.setAttribute("aria-describedby", headingId);
   function setOpen(open) {
     content.hidden = !open;
     button.setAttribute("aria-expanded", String(open));
@@ -114,8 +113,8 @@ function prepareHint(section, prompt, inputId, headingId) {
   const hintPanel = document.createElement("div");
   hintPanel.className = "worksheet-hint";
   hintPanel.append(button, content);
-  section.after(hintPanel);
-  return () => setOpen(true);
+  // The host mounts this outside the Numbas shadow DOM.
+  return { panel: hintPanel, open: () => setOpen(true) };
 }
 
 function numericControl(part, section, answer, index) {
@@ -270,7 +269,7 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
     content.innerHTML = stepHintHTML;
     prompt.appendChild(content);
   }
-  const openHint = prepareHint(section, prompt, base, heading.id);
+  const hint = prepareHint(section, prompt, base, heading.id);
   const label = document.createElement(choice ? "span" : "label");
   label.className = "answer-label";
   label.textContent = choice ? "答えを1つ選ぶ" : "答え";
@@ -323,6 +322,7 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
     form: input.form,
     lock: control.lock,
     solution: control.solution,
+    hintPanel: hint?.panel ?? null,
     validate() {
       guidance = control.guidance();
       refresh();
@@ -333,7 +333,7 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
       showResult = true;
       display.feedbackShown(false);
       refresh();
-      if (["wrong", "partial"].includes(display.scoreFeedback.state())) openHint?.();
+      if (["wrong", "partial"].includes(display.scoreFeedback.state())) hint?.open();
     },
   };
 }

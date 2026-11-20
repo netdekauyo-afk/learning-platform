@@ -221,7 +221,18 @@ async function installWorksheetControls(examElement, examData) {
       }
     });
 
-    // The original step display is hidden only after the new hint control exists.
+    // Keep the hint outside <numbas-exam>, whose shadow DOM contains the card.
+    const panels = controls.map((control) => control.hintPanel).filter(Boolean);
+    if (panels.length) {
+      const external = document.createElement("section");
+      external.className = "worksheet-hints";
+      external.setAttribute("aria-label", "問題のヒント");
+      external.append(...panels);
+      examElement.after(external);
+      const hideNativeSteps = document.createElement("style");
+      hideNativeSteps.textContent = ".stepsBtn, .steps.well { display: none !important; }";
+      examElement.shadowRoot.append(hideNativeSteps);
+    }
     examElement.shadowRoot.querySelector("exam-container")?.classList.add("sites-worksheet-ready");
   } catch (error) {
     submit?.remove();
