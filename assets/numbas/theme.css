@@ -467,3 +467,55 @@
 .stepsBtn .penaltyMessage { display: none !important; }
 
 
+
+
+/* Choice cards: always read from top to bottom.
+   The Numbas template puts native steps before the answer. Explicit grid
+   slots prevent that default order from pushing the prompt below the choices,
+   even if the Sites-style helper cannot initialise. */
+.part.type-1_n_2 {
+  grid-template-columns: minmax(0, 1fr);
+  grid-auto-flow: row;
+  align-content: start;
+  row-gap: 0.7rem;
+}
+.part.type-1_n_2 > .partheader {
+  grid-area: 1 / 1 / 2 / -1;
+}
+.part.type-1_n_2 > .prompt {
+  grid-area: 2 / 1 / 3 / -1;
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  text-align: start;
+}
+.part.type-1_n_2 > .answer-label {
+  grid-area: 3 / 1 / 4 / -1;
+  justify-self: start;
+  align-self: start;
+  margin: 0;
+}
+.part.type-1_n_2 > .student.answer.answer-row {
+  grid-area: 4 / 1 / 5 / -1;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+.part.type-1_n_2 > .answer-note {
+  grid-area: 5 / 1 / 6 / -1;
+  justify-self: start;
+  align-self: start;
+}
+.part.type-1_n_2 > .stepsBtn {
+  grid-area: 6 / 1 / 7 / -1;
+  justify-self: start;
+}
+.part.type-1_n_2 > .steps.well {
+  grid-area: 7 / 1 / 8 / -1;
+}
+.part.type-1_n_2 > .correct.answer {
+  grid-area: 8 / 1 / 9 / -1;
+}
+.part.type-1_n_2 > .submit-and-feedback {
+  grid-area: 9 / 1 / 10 / -1;
+}

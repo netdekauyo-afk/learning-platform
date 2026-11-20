@@ -288,6 +288,21 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
   answer.classList.add("answer-row");
   answer.before(label);
   answer.after(note);
+
+  if (choice) {
+    // Numbas places the native steps before the options in its source HTML.
+    // Move them after the answer so keyboard and visual order both follow
+    // question -> options -> hint, including when the Sites UI is unavailable.
+    const stepsControl = section.querySelector(":scope > .stepsBtn");
+    const stepsBody = section.querySelector(":scope > .steps.well");
+    if (stepsControl) {
+      note.after(stepsControl);
+      if (stepsBody) stepsControl.after(stepsBody);
+    } else if (stepsBody) {
+      note.after(stepsBody);
+    }
+  }
+
   const partButton = section.querySelector("button.submitPart");
   partButton.type = "button";
   partButton.hidden = true;
