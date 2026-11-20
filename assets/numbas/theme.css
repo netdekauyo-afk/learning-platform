@@ -1,0 +1,29 @@
+/* The Numbas runtime is a single shared dependency. Classroom colors come from ../style.css. */
+.numbas-container {
+  --exam-height: auto;
+  --dark-background-color: var(--color-bg);
+  --dark-text-color: var(--color-heading);
+  --dark-main-color: var(--color-surface);
+  --dark-main-text-color: var(--color-heading);
+  --dark-primary-color: var(--color-accent);
+  --dark-primary-text-color: var(--color-bg);
+  --dark-link-color: var(--color-accent);
+  --dark-link-text-color: var(--color-bg);
+  --background-color: var(--color-bg);
+  --body-background-color: var(--color-bg);
+  --text-color: var(--color-heading);
+  --main-color: var(--color-surface);
+  --primary-color: var(--color-accent);
+  --link-color: var(--color-accent);
+  --medium-line-color: var(--color-border);
+  --main-font: system-ui, "Noto Sans JP", sans-serif;
+  color-scheme: dark;
+}
+#everything, .mainDisplay, #questionContainer, #questionDisplay, .question,
+#questionContainer > .contentArea, #questionDisplay > .question-wrapper {
+  height: auto;
+  max-height: none;
+  min-width: 0;
+  overflow: visible;
+}
+#everything, .main-content.question, #questionContainer > .contentArea { padding: 0; }
