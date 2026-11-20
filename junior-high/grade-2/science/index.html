@@ -1,19 +1,1727 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#151515">
-  <title>中学2年生・理科 | Classroom</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中学2年理科 学習一覧（全123回） | Classroom</title>
   <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    /* Colors are defined only in the shared :root palette. */
 
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(30px, 8vw, 72px) 0;
+    }
+
+    .page-header {
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-title {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-heading);
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .control-link {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .control-link:hover,
+    .control-link:focus-visible {
+      color: var(--color-heading);
+    }
+
+    .control-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .curriculum-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Chapter */
+    details.chapter {
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    summary.chapter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: var(--color-surface);
+      border-left: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.chapter-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chapter-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 245px;
+      color: var(--color-heading);
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--color-surface-hover);
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
+      text-decoration: underline;
+    }
+
+    .chapter-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.85em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.chapter[open] > summary.chapter-summary .chapter-name::before {
+      transform: rotate(90deg);
+    }
+
+    details.chapter[open] > summary.chapter-summary {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-body {
+      padding: 8px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Section */
+    details.section {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    details.section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    summary.section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-hover);
+      border-left: 3px solid var(--color-border-hover);
+      border-radius: 9px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.section-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--color-heading);
+    }
+
+    .section-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.8em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.section[open] > summary.section-summary .section-name::before {
+      transform: rotate(90deg);
+    }
+
+    .count-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Lesson list */
+    .lesson-list {
+      list-style: none;
+      margin: 2px 0 6px;
+      padding: 0 0 0 18px;
+    }
+
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr auto;
+      align-items: baseline;
+      column-gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-item:first-child {
+      border-top: none;
+    }
+
+    .lesson-num {
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-heading);
+      text-align: right;
+    }
+
+    /* Text links (explicitly non-button UI) */
+    .text-link {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .text-link:hover {
+      color: var(--color-heading);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .text-link.is-unpublished {
+      color: var(--color-muted);
+      text-decoration-style: dotted;
+    }
+
+    .text-link.is-unpublished:hover {
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
+    }
+
+    .lesson-title-link {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .lesson-links {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .section-link {
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    /* Toast notification for unpublished links */
+    .status-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      max-width: calc(100vw - 32px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 100;
+    }
+
+    .status-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      summary.chapter-summary {
+        padding: 11px 12px;
+      }
+
+      .chapter-body {
+        padding: 6px 10px 10px;
+      }
+
+      .lesson-list {
+        padding-left: 6px;
+      }
+
+      .lesson-item {
+        grid-template-columns: 2.1rem 1fr;
+        row-gap: 4px;
+        padding: 8px 2px;
+      }
+
+      .lesson-links {
+        grid-column: 2;
+        gap: 18px;
+        padding-top: 2px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="site-shell">
+  <div class="container">
     <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">中学校</a><span aria-hidden="true"> / </span><a href="../">2年生</a><span aria-hidden="true"> / </span><span aria-current="page">理科</span></nav>
-    <main>
-      <h1>理科</h1>
+    <header class="page-header">
+      <h1 class="page-title">中学2年理科 学習一覧</h1>
+      <div class="page-meta">
+        <span>全4単元・19章・123回（啓林館 学習指導計画準拠）</span>
+        <div class="controls">
+          <button type="button" class="control-link" id="open-all">すべて開く</button>
+          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="curriculum-list" id="curriculum-list">
+      <details class="chapter" open data-chapter-index="0" data-unit-id="s2-u001">
+        <summary class="chapter-summary">
+          <span class="chapter-name">生物の体のつくりとはたらき</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/s2-u001/questions.html" data-published="false">問題</a>
+            <span class="count-meta">34回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+        <details class="section" open data-chapter-id="s2-c001">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">生物の体のつくりとはたらき</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c001" data-kind="chapter-questions" data-target="chapters/s2-c001/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l001" data-seq="1" data-source-topic="-">
+              <span class="lesson-num">1</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l001" data-kind="summary" data-target="lessons/s2-l001/summary.html" data-published="false">植物と動物の体のつくりの違いと生命活動</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l001" data-kind="lesson" data-target="lessons/s2-l001/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l001" data-kind="questions" data-target="lessons/s2-l001/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c002">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１章生物の体をつくるもの</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c002" data-kind="chapter-questions" data-target="chapters/s2-c002/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l002" data-seq="2" data-source-topic="１生物の体の成り立ち">
+              <span class="lesson-num">2</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l002" data-kind="summary" data-target="lessons/s2-l002/summary.html" data-published="false">顕微鏡による生物の細胞の観察</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l002" data-kind="lesson" data-target="lessons/s2-l002/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l002" data-kind="questions" data-target="lessons/s2-l002/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l003" data-seq="3" data-source-topic="１生物の体の成り立ち">
+              <span class="lesson-num">3</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l003" data-kind="summary" data-target="lessons/s2-l003/summary.html" data-published="false">単細胞生物と多細胞生物の体の成り立ち</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l003" data-kind="lesson" data-target="lessons/s2-l003/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l003" data-kind="questions" data-target="lessons/s2-l003/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l004" data-seq="4" data-source-topic="２細胞のつくり">
+              <span class="lesson-num">4</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l004" data-kind="summary" data-target="lessons/s2-l004/summary.html" data-published="false">植物の細胞と動物の細胞の観察とスケッチ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l004" data-kind="lesson" data-target="lessons/s2-l004/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l004" data-kind="questions" data-target="lessons/s2-l004/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l005" data-seq="5" data-source-topic="２細胞のつくり">
+              <span class="lesson-num">5</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l005" data-kind="summary" data-target="lessons/s2-l005/summary.html" data-published="false">植物細胞と動物細胞の共通点・相違点と各部の働き</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l005" data-kind="lesson" data-target="lessons/s2-l005/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l005" data-kind="questions" data-target="lessons/s2-l005/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l006" data-seq="6" data-source-topic="３細胞のはたらき">
+              <span class="lesson-num">6</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l006" data-kind="summary" data-target="lessons/s2-l006/summary.html" data-published="false">細胞呼吸のしくみとエネルギーの取り出し方</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l006" data-kind="lesson" data-target="lessons/s2-l006/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l006" data-kind="questions" data-target="lessons/s2-l006/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c003">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２章植物の体のつくりとはたらき</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c003" data-kind="chapter-questions" data-target="chapters/s2-c003/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">9回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l007" data-seq="7" data-source-topic="１栄養分をつくる">
+              <span class="lesson-num">7</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l007" data-kind="summary" data-target="lessons/s2-l007/summary.html" data-published="false">日光の当たり方と葉のつき方の関係</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l007" data-kind="lesson" data-target="lessons/s2-l007/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l007" data-kind="questions" data-target="lessons/s2-l007/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l008" data-seq="8" data-source-topic="１栄養分をつくる">
+              <span class="lesson-num">8</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l008" data-kind="summary" data-target="lessons/s2-l008/summary.html" data-published="false">光合成が行われる場所（葉緑体とヨウ素デンプン反応）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l008" data-kind="lesson" data-target="lessons/s2-l008/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l008" data-kind="questions" data-target="lessons/s2-l008/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l009" data-seq="9" data-source-topic="１栄養分をつくる">
+              <span class="lesson-num">9</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l009" data-kind="summary" data-target="lessons/s2-l009/summary.html" data-published="false">光合成と二酸化炭素の出入りを調べる対照実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l009" data-kind="lesson" data-target="lessons/s2-l009/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l009" data-kind="questions" data-target="lessons/s2-l009/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l010" data-seq="10" data-source-topic="１栄養分をつくる">
+              <span class="lesson-num">10</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l010" data-kind="summary" data-target="lessons/s2-l010/summary.html" data-published="false">光合成のしくみと必要な物質・できる物質のまとめ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l010" data-kind="lesson" data-target="lessons/s2-l010/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l010" data-kind="questions" data-target="lessons/s2-l010/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l011" data-seq="11" data-source-topic="２植物の呼吸">
+              <span class="lesson-num">11</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l011" data-kind="summary" data-target="lessons/s2-l011/summary.html" data-published="false">植物の呼吸と昼夜の気体の出入り</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l011" data-kind="lesson" data-target="lessons/s2-l011/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l011" data-kind="questions" data-target="lessons/s2-l011/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l012" data-seq="12" data-source-topic="３水や栄養分を運ぶ">
+              <span class="lesson-num">12</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l012" data-kind="summary" data-target="lessons/s2-l012/summary.html" data-published="false">根毛のつくりと根・茎の切片の観察</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l012" data-kind="lesson" data-target="lessons/s2-l012/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l012" data-kind="questions" data-target="lessons/s2-l012/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l013" data-seq="13" data-source-topic="３水や栄養分を運ぶ">
+              <span class="lesson-num">13</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l013" data-kind="summary" data-target="lessons/s2-l013/summary.html" data-published="false">葉の表皮と断面の観察（葉脈と気孔）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l013" data-kind="lesson" data-target="lessons/s2-l013/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l013" data-kind="questions" data-target="lessons/s2-l013/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l014" data-seq="14" data-source-topic="３水や栄養分を運ぶ">
+              <span class="lesson-num">14</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l014" data-kind="summary" data-target="lessons/s2-l014/summary.html" data-published="false">道管・師管・維管束の並び方と気孔のはたらき</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l014" data-kind="lesson" data-target="lessons/s2-l014/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l014" data-kind="questions" data-target="lessons/s2-l014/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l015" data-seq="15" data-source-topic="３水や栄養分を運ぶ">
+              <span class="lesson-num">15</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l015" data-kind="summary" data-target="lessons/s2-l015/summary.html" data-published="false">蒸散のはたらきと葉の裏側に多い気孔</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l015" data-kind="lesson" data-target="lessons/s2-l015/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l015" data-kind="questions" data-target="lessons/s2-l015/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c004">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">３章動物の体のつくりとはたらき</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c004" data-kind="chapter-questions" data-target="chapters/s2-c004/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">12回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l016" data-seq="16" data-source-topic="１栄養分をとり入れる">
+              <span class="lesson-num">16</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l016" data-kind="summary" data-target="lessons/s2-l016/summary.html" data-published="false">動物に必要な栄養分と消化の意義</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l016" data-kind="lesson" data-target="lessons/s2-l016/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l016" data-kind="questions" data-target="lessons/s2-l016/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l017" data-seq="17" data-source-topic="１栄養分をとり入れる">
+              <span class="lesson-num">17</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l017" data-kind="summary" data-target="lessons/s2-l017/summary.html" data-published="false">唾液によるデンプンの分解（実験計画と仮説）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l017" data-kind="lesson" data-target="lessons/s2-l017/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l017" data-kind="questions" data-target="lessons/s2-l017/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l018" data-seq="18" data-source-topic="１栄養分をとり入れる">
+              <span class="lesson-num">18</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l018" data-kind="summary" data-target="lessons/s2-l018/summary.html" data-published="false">唾液のはたらきを調べる実験の実施と考察</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l018" data-kind="lesson" data-target="lessons/s2-l018/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l018" data-kind="questions" data-target="lessons/s2-l018/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l019" data-seq="19" data-source-topic="１栄養分をとり入れる">
+              <span class="lesson-num">19</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l019" data-kind="summary" data-target="lessons/s2-l019/summary.html" data-published="false">唾液の実験結果の発表とデンプン分解の結論</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l019" data-kind="lesson" data-target="lessons/s2-l019/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l019" data-kind="questions" data-target="lessons/s2-l019/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l020" data-seq="20" data-source-topic="１栄養分をとり入れる">
+              <span class="lesson-num">20</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l020" data-kind="summary" data-target="lessons/s2-l020/summary.html" data-published="false">主な消化器官と消化酵素の種類・はたらき</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l020" data-kind="lesson" data-target="lessons/s2-l020/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l020" data-kind="questions" data-target="lessons/s2-l020/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l021" data-seq="21" data-source-topic="１栄養分をとり入れる">
+              <span class="lesson-num">21</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l021" data-kind="summary" data-target="lessons/s2-l021/summary.html" data-published="false">小腸の柔毛のつくりと栄養分の吸収経路</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l021" data-kind="lesson" data-target="lessons/s2-l021/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l021" data-kind="questions" data-target="lessons/s2-l021/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l022" data-seq="22" data-source-topic="２動物の呼吸">
+              <span class="lesson-num">22</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l022" data-kind="summary" data-target="lessons/s2-l022/summary.html" data-published="false">肺胞のつくりと肺による呼吸のしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l022" data-kind="lesson" data-target="lessons/s2-l022/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l022" data-kind="questions" data-target="lessons/s2-l022/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l023" data-seq="23" data-source-topic="３不要な物質のゆくえ">
+              <span class="lesson-num">23</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l023" data-kind="summary" data-target="lessons/s2-l023/summary.html" data-published="false">不要な物質（アンモニア・尿素）の処理と腎臓の働き</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l023" data-kind="lesson" data-target="lessons/s2-l023/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l023" data-kind="questions" data-target="lessons/s2-l023/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l024" data-seq="24" data-source-topic="４物質を運ぶ">
+              <span class="lesson-num">24</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l024" data-kind="summary" data-target="lessons/s2-l024/summary.html" data-published="false">ヒメダカの血流観察と血液循環の疑問</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l024" data-kind="lesson" data-target="lessons/s2-l024/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l024" data-kind="questions" data-target="lessons/s2-l024/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l025" data-seq="25" data-source-topic="４物質を運ぶ">
+              <span class="lesson-num">25</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l025" data-kind="summary" data-target="lessons/s2-l025/summary.html" data-published="false">血液の成分（赤血球・白血球・血小板・血しょう）と組織液</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l025" data-kind="lesson" data-target="lessons/s2-l025/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l025" data-kind="questions" data-target="lessons/s2-l025/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l026" data-seq="26" data-source-topic="４物質を運ぶ">
+              <span class="lesson-num">26</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l026" data-kind="summary" data-target="lessons/s2-l026/summary.html" data-published="false">心臓のつくりと動脈・静脈・毛細血管の特徴</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l026" data-kind="lesson" data-target="lessons/s2-l026/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l026" data-kind="questions" data-target="lessons/s2-l026/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l027" data-seq="27" data-source-topic="４物質を運ぶ">
+              <span class="lesson-num">27</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l027" data-kind="summary" data-target="lessons/s2-l027/summary.html" data-published="false">動脈血・静脈血と肺循環・体循環の道すじ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l027" data-kind="lesson" data-target="lessons/s2-l027/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l027" data-kind="questions" data-target="lessons/s2-l027/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c005">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">４章動物の行動のしくみ</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c005" data-kind="chapter-questions" data-target="chapters/s2-c005/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">7回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l028" data-seq="28" data-source-topic="１感じとるしくみ">
+              <span class="lesson-num">28</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l028" data-kind="summary" data-target="lessons/s2-l028/summary.html" data-published="false">動物の感覚器官と受け取る刺激の種類</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l028" data-kind="lesson" data-target="lessons/s2-l028/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l028" data-kind="questions" data-target="lessons/s2-l028/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l029" data-seq="29" data-source-topic="１感じとるしくみ">
+              <span class="lesson-num">29</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l029" data-kind="summary" data-target="lessons/s2-l029/summary.html" data-published="false">ヒトの五感（目・鼻・舌・耳・皮膚）のつくりと働き</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l029" data-kind="lesson" data-target="lessons/s2-l029/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l029" data-kind="questions" data-target="lessons/s2-l029/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l030" data-seq="30" data-source-topic="２刺激を伝えたり反応したりするしくみ">
+              <span class="lesson-num">30</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l030" data-kind="summary" data-target="lessons/s2-l030/summary.html" data-published="false">中枢神経（脳・脊髄）と末梢神経のしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l030" data-kind="lesson" data-target="lessons/s2-l030/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l030" data-kind="questions" data-target="lessons/s2-l030/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l031" data-seq="31" data-source-topic="２刺激を伝えたり反応したりするしくみ">
+              <span class="lesson-num">31</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l031" data-kind="summary" data-target="lessons/s2-l031/summary.html" data-published="false">刺激を受け取ってから反応するまでの時間の測定実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l031" data-kind="lesson" data-target="lessons/s2-l031/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l031" data-kind="questions" data-target="lessons/s2-l031/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l032" data-seq="32" data-source-topic="２刺激を伝えたり反応したりするしくみ">
+              <span class="lesson-num">32</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l032" data-kind="summary" data-target="lessons/s2-l032/summary.html" data-published="false">意識して起こす反応と反射のしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l032" data-kind="lesson" data-target="lessons/s2-l032/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l032" data-kind="questions" data-target="lessons/s2-l032/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l033" data-seq="33" data-source-topic="３運動のしくみ">
+              <span class="lesson-num">33</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l033" data-kind="summary" data-target="lessons/s2-l033/summary.html" data-published="false">骨格と筋肉による動物の運動のしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l033" data-kind="lesson" data-target="lessons/s2-l033/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l033" data-kind="questions" data-target="lessons/s2-l033/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l034" data-seq="34" data-source-topic="力だめし">
+              <span class="lesson-num">34</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l034" data-kind="summary" data-target="lessons/s2-l034/summary.html" data-published="false">「生物の体のつくりとはたらき」のまとめ演習（力だめし）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l034" data-kind="lesson" data-target="lessons/s2-l034/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l034" data-kind="questions" data-target="lessons/s2-l034/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="1" data-unit-id="s2-u002">
+        <summary class="chapter-summary">
+          <span class="chapter-name">地球の大気と天気の変化</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/s2-u002/questions.html" data-published="false">問題</a>
+            <span class="count-meta">26回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+        <details class="section" open data-chapter-id="s2-c006">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">地球の大気と天気の変化</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c006" data-kind="chapter-questions" data-target="chapters/s2-c006/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l035" data-seq="35" data-source-topic="-">
+              <span class="lesson-num">35</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l035" data-kind="summary" data-target="lessons/s2-l035/summary.html" data-published="false">身近な雲や霧の発生と気象現象への関心</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l035" data-kind="lesson" data-target="lessons/s2-l035/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l035" data-kind="questions" data-target="lessons/s2-l035/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c007">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１章地球をとり巻く大気のようす</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c007" data-kind="chapter-questions" data-target="chapters/s2-c007/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">4回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l036" data-seq="36" data-source-topic="１大気の中ではたらく力">
+              <span class="lesson-num">36</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l036" data-kind="summary" data-target="lessons/s2-l036/summary.html" data-published="false">大気の重さと大気圧（気圧）の存在</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l036" data-kind="lesson" data-target="lessons/s2-l036/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l036" data-kind="questions" data-target="lessons/s2-l036/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l037" data-seq="37" data-source-topic="１大気の中ではたらく力">
+              <span class="lesson-num">37</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l037" data-kind="summary" data-target="lessons/s2-l037/summary.html" data-published="false">圧力の意味と計算（力と面積の関係）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l037" data-kind="lesson" data-target="lessons/s2-l037/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l037" data-kind="questions" data-target="lessons/s2-l037/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l038" data-seq="38" data-source-topic="２大気のようすを観測する">
+              <span class="lesson-num">38</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l038" data-kind="summary" data-target="lessons/s2-l038/summary.html" data-published="false">気象観測の方法と気温・湿度・気圧・風向の測定</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l038" data-kind="lesson" data-target="lessons/s2-l038/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l038" data-kind="questions" data-target="lessons/s2-l038/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l039" data-seq="39" data-source-topic="２大気のようすを観測する">
+              <span class="lesson-num">39</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l039" data-kind="summary" data-target="lessons/s2-l039/summary.html" data-published="false">気象観測データのグラフ整理と天気・気圧の関係</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l039" data-kind="lesson" data-target="lessons/s2-l039/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l039" data-kind="questions" data-target="lessons/s2-l039/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c008">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２章空気中の水の変化</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c008" data-kind="chapter-questions" data-target="chapters/s2-c008/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">6回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l040" data-seq="40" data-source-topic="１霧のでき方">
+              <span class="lesson-num">40</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l040" data-kind="summary" data-target="lessons/s2-l040/summary.html" data-published="false">結露や霧が発生する条件としくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l040" data-kind="lesson" data-target="lessons/s2-l040/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l040" data-kind="questions" data-target="lessons/s2-l040/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l041" data-seq="41" data-source-topic="２雲のでき方">
+              <span class="lesson-num">41</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l041" data-kind="summary" data-target="lessons/s2-l041/summary.html" data-published="false">上昇気流と断熱膨張による雲の発生実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l041" data-kind="lesson" data-target="lessons/s2-l041/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l041" data-kind="questions" data-target="lessons/s2-l041/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l042" data-seq="42" data-source-topic="２雲のでき方">
+              <span class="lesson-num">42</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l042" data-kind="summary" data-target="lessons/s2-l042/summary.html" data-published="false">自然界での雲のでき方と雨・雪の降るしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l042" data-kind="lesson" data-target="lessons/s2-l042/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l042" data-kind="questions" data-target="lessons/s2-l042/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l043" data-seq="43" data-source-topic="３空気中にふくまれる水蒸気の量">
+              <span class="lesson-num">43</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l043" data-kind="summary" data-target="lessons/s2-l043/summary.html" data-published="false">飽和水蒸気量と水蒸気が水滴に変わるしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l043" data-kind="lesson" data-target="lessons/s2-l043/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l043" data-kind="questions" data-target="lessons/s2-l043/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l044" data-seq="44" data-source-topic="３空気中にふくまれる水蒸気の量">
+              <span class="lesson-num">44</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l044" data-kind="summary" data-target="lessons/s2-l044/summary.html" data-published="false">露点の測定と空気中の水蒸気量の推定実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l044" data-kind="lesson" data-target="lessons/s2-l044/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l044" data-kind="questions" data-target="lessons/s2-l044/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l045" data-seq="45" data-source-topic="３空気中にふくまれる水蒸気の量">
+              <span class="lesson-num">45</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l045" data-kind="summary" data-target="lessons/s2-l045/summary.html" data-published="false">湿度の意味と計算・霧の発生との関係</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l045" data-kind="lesson" data-target="lessons/s2-l045/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l045" data-kind="questions" data-target="lessons/s2-l045/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c009">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">３章天気の変化と大気の動き</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c009" data-kind="chapter-questions" data-target="chapters/s2-c009/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l046" data-seq="46" data-source-topic="１風がふくしくみ">
+              <span class="lesson-num">46</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l046" data-kind="summary" data-target="lessons/s2-l046/summary.html" data-published="false">等圧線・高気圧・低気圧と風がふくしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l046" data-kind="lesson" data-target="lessons/s2-l046/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l046" data-kind="questions" data-target="lessons/s2-l046/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l047" data-seq="47" data-source-topic="２大気の動きによる天気の変化">
+              <span class="lesson-num">47</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l047" data-kind="summary" data-target="lessons/s2-l047/summary.html" data-published="false">高気圧・低気圧の移動と雲画像・天気図の変化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l047" data-kind="lesson" data-target="lessons/s2-l047/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l047" data-kind="questions" data-target="lessons/s2-l047/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l048" data-seq="48" data-source-topic="２大気の動きによる天気の変化">
+              <span class="lesson-num">48</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l048" data-kind="summary" data-target="lessons/s2-l048/summary.html" data-published="false">気団と前線のしくみ（暖気と寒気のモデル実験）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l048" data-kind="lesson" data-target="lessons/s2-l048/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l048" data-kind="questions" data-target="lessons/s2-l048/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l049" data-seq="49" data-source-topic="２大気の動きによる天気の変化">
+              <span class="lesson-num">49</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l049" data-kind="summary" data-target="lessons/s2-l049/summary.html" data-published="false">温暖前線・寒冷前線の通過と天気の変化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l049" data-kind="lesson" data-target="lessons/s2-l049/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l049" data-kind="questions" data-target="lessons/s2-l049/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l050" data-seq="50" data-source-topic="３地球規模での大気の動き">
+              <span class="lesson-num">50</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l050" data-kind="summary" data-target="lessons/s2-l050/summary.html" data-published="false">偏西風など地球規模での大気の動き</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l050" data-kind="lesson" data-target="lessons/s2-l050/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l050" data-kind="questions" data-target="lessons/s2-l050/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c010">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">４章大気の動きと日本の四季</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c010" data-kind="chapter-questions" data-target="chapters/s2-c010/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">10回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l051" data-seq="51" data-source-topic="１日本の季節による天気の特徴をもたらすもの">
+              <span class="lesson-num">51</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l051" data-kind="summary" data-target="lessons/s2-l051/summary.html" data-published="false">日本の四季の天気と季節風の役割（課題設定）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l051" data-kind="lesson" data-target="lessons/s2-l051/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l051" data-kind="questions" data-target="lessons/s2-l051/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l052" data-seq="52" data-source-topic="１日本の季節による天気の特徴をもたらすもの">
+              <span class="lesson-num">52</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l052" data-kind="summary" data-target="lessons/s2-l052/summary.html" data-published="false">アメダスデータ・天気図で調べる冬と夏の季節風</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l052" data-kind="lesson" data-target="lessons/s2-l052/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l052" data-kind="questions" data-target="lessons/s2-l052/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l053" data-seq="53" data-source-topic="１日本の季節による天気の特徴をもたらすもの">
+              <span class="lesson-num">53</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l053" data-kind="summary" data-target="lessons/s2-l053/summary.html" data-published="false">陸と海のあたたまりやすさの違いと季節風のしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l053" data-kind="lesson" data-target="lessons/s2-l053/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l053" data-kind="questions" data-target="lessons/s2-l053/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l054" data-seq="54" data-source-topic="２日本の四季の天気">
+              <span class="lesson-num">54</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l054" data-kind="summary" data-target="lessons/s2-l054/summary.html" data-published="false">日本周辺に発達する気団と冬の気圧配置（西高東低）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l054" data-kind="lesson" data-target="lessons/s2-l054/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l054" data-kind="questions" data-target="lessons/s2-l054/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l055" data-seq="55" data-source-topic="２日本の四季の天気">
+              <span class="lesson-num">55</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l055" data-kind="summary" data-target="lessons/s2-l055/summary.html" data-published="false">シベリア気団の変質と日本海側の大雪・太平洋側の晴天</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l055" data-kind="lesson" data-target="lessons/s2-l055/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l055" data-kind="questions" data-target="lessons/s2-l055/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l056" data-seq="56" data-source-topic="２日本の四季の天気">
+              <span class="lesson-num">56</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l056" data-kind="summary" data-target="lessons/s2-l056/summary.html" data-published="false">オホーツク海高気圧と梅雨・夏の気圧配置（南高北低）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l056" data-kind="lesson" data-target="lessons/s2-l056/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l056" data-kind="questions" data-target="lessons/s2-l056/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l057" data-seq="57" data-source-topic="２日本の四季の天気">
+              <span class="lesson-num">57</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l057" data-kind="summary" data-target="lessons/s2-l057/summary.html" data-published="false">秋の天気（移動性高気圧）と台風の構造・進路</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l057" data-kind="lesson" data-target="lessons/s2-l057/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l057" data-kind="questions" data-target="lessons/s2-l057/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l058" data-seq="58" data-source-topic="３天気の変化がもたらす恵みと災害">
+              <span class="lesson-num">58</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l058" data-kind="summary" data-target="lessons/s2-l058/summary.html" data-published="false">台風など天気の変化がもたらす恵みと災害</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l058" data-kind="lesson" data-target="lessons/s2-l058/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l058" data-kind="questions" data-target="lessons/s2-l058/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l059" data-seq="59" data-source-topic="３天気の変化がもたらす恵みと災害">
+              <span class="lesson-num">59</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l059" data-kind="summary" data-target="lessons/s2-l059/summary.html" data-published="false">気象災害への備えと防災・減災の取り組み</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l059" data-kind="lesson" data-target="lessons/s2-l059/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l059" data-kind="questions" data-target="lessons/s2-l059/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l060" data-seq="60" data-source-topic="力だめし">
+              <span class="lesson-num">60</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l060" data-kind="summary" data-target="lessons/s2-l060/summary.html" data-published="false">「地球の大気と天気の変化」のまとめ演習（力だめし）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l060" data-kind="lesson" data-target="lessons/s2-l060/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l060" data-kind="questions" data-target="lessons/s2-l060/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="2" data-unit-id="s2-u003">
+        <summary class="chapter-summary">
+          <span class="chapter-name">化学変化と原子・分子</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/s2-u003/questions.html" data-published="false">問題</a>
+            <span class="count-meta">30回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+        <details class="section" open data-chapter-id="s2-c011">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">化学変化を利用した手筒花火</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c011" data-kind="chapter-questions" data-target="chapters/s2-c011/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l061" data-seq="61" data-source-topic="-">
+              <span class="lesson-num">61</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l061" data-kind="summary" data-target="lessons/s2-l061/summary.html" data-published="false">手筒花火など身近な現象から探る化学変化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l061" data-kind="lesson" data-target="lessons/s2-l061/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l061" data-kind="questions" data-target="lessons/s2-l061/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c012">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１章物質の成り立ち</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c012" data-kind="chapter-questions" data-target="chapters/s2-c012/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">9回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l062" data-seq="62" data-source-topic="１物質を加熱したときの変化">
+              <span class="lesson-num">62</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l062" data-kind="summary" data-target="lessons/s2-l062/summary.html" data-published="false">炭酸水素ナトリウムの加熱変化（実験計画の立案）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l062" data-kind="lesson" data-target="lessons/s2-l062/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l062" data-kind="questions" data-target="lessons/s2-l062/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l063" data-seq="63" data-source-topic="１物質を加熱したときの変化">
+              <span class="lesson-num">63</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l063" data-kind="summary" data-target="lessons/s2-l063/summary.html" data-published="false">炭酸水素ナトリウムの熱分解実験の実施と生成物の調査</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l063" data-kind="lesson" data-target="lessons/s2-l063/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l063" data-kind="questions" data-target="lessons/s2-l063/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l064" data-seq="64" data-source-topic="１物質を加熱したときの変化">
+              <span class="lesson-num">64</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l064" data-kind="summary" data-target="lessons/s2-l064/summary.html" data-published="false">熱分解のまとめ（炭酸水素ナトリウムと酸化銀の分解）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l064" data-kind="lesson" data-target="lessons/s2-l064/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l064" data-kind="questions" data-target="lessons/s2-l064/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l065" data-seq="65" data-source-topic="２水溶液に電流を流したときの変化">
+              <span class="lesson-num">65</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l065" data-kind="summary" data-target="lessons/s2-l065/summary.html" data-published="false">水の電気分解の見通しと実験準備</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l065" data-kind="lesson" data-target="lessons/s2-l065/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l065" data-kind="questions" data-target="lessons/s2-l065/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l066" data-seq="66" data-source-topic="２水溶液に電流を流したときの変化">
+              <span class="lesson-num">66</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l066" data-kind="summary" data-target="lessons/s2-l066/summary.html" data-published="false">水に電流を流す電気分解実験の実施と気体の確認</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l066" data-kind="lesson" data-target="lessons/s2-l066/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l066" data-kind="questions" data-target="lessons/s2-l066/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l067" data-seq="67" data-source-topic="２水溶液に電流を流したときの変化">
+              <span class="lesson-num">67</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l067" data-kind="summary" data-target="lessons/s2-l067/summary.html" data-published="false">電気分解のまとめ（水素と酸素の体積比）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l067" data-kind="lesson" data-target="lessons/s2-l067/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l067" data-kind="questions" data-target="lessons/s2-l067/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l068" data-seq="68" data-source-topic="３物質のもとになる粒子">
+              <span class="lesson-num">68</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l068" data-kind="summary" data-target="lessons/s2-l068/summary.html" data-published="false">物質をつくる最小の粒子（原子の性質）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l068" data-kind="lesson" data-target="lessons/s2-l068/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l068" data-kind="questions" data-target="lessons/s2-l068/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l069" data-seq="69" data-source-topic="４原子が結びついてできる粒子">
+              <span class="lesson-num">69</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l069" data-kind="summary" data-target="lessons/s2-l069/summary.html" data-published="false">原子が結びついてできる粒子（分子のしくみ）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l069" data-kind="lesson" data-target="lessons/s2-l069/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l069" data-kind="questions" data-target="lessons/s2-l069/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l070" data-seq="70" data-source-topic="４原子が結びついてできる粒子">
+              <span class="lesson-num">70</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l070" data-kind="summary" data-target="lessons/s2-l070/summary.html" data-published="false">分子のモデルづくりと単体・化合物の整理</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l070" data-kind="lesson" data-target="lessons/s2-l070/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l070" data-kind="questions" data-target="lessons/s2-l070/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c013">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２章物質の表し方</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c013" data-kind="chapter-questions" data-target="chapters/s2-c013/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">4回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l071" data-seq="71" data-source-topic="１物質を表す記号">
+              <span class="lesson-num">71</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l071" data-kind="summary" data-target="lessons/s2-l071/summary.html" data-published="false">原子を表す記号（元素記号のルールと覚え方）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l071" data-kind="lesson" data-target="lessons/s2-l071/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l071" data-kind="questions" data-target="lessons/s2-l071/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l072" data-seq="72" data-source-topic="２物質を表す式">
+              <span class="lesson-num">72</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l072" data-kind="summary" data-target="lessons/s2-l072/summary.html" data-published="false">物質を表す式（化学式の作り方と読み方）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l072" data-kind="lesson" data-target="lessons/s2-l072/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l072" data-kind="questions" data-target="lessons/s2-l072/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l073" data-seq="73" data-source-topic="３化学変化を表す式">
+              <span class="lesson-num">73</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l073" data-kind="summary" data-target="lessons/s2-l073/summary.html" data-published="false">化学変化を表す式（化学反応式の作り方）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l073" data-kind="lesson" data-target="lessons/s2-l073/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l073" data-kind="questions" data-target="lessons/s2-l073/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l074" data-seq="74" data-source-topic="３化学変化を表す式">
+              <span class="lesson-num">74</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l074" data-kind="summary" data-target="lessons/s2-l074/summary.html" data-published="false">酸化銀・炭酸水素ナトリウムの熱分解の化学反応式</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l074" data-kind="lesson" data-target="lessons/s2-l074/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l074" data-kind="questions" data-target="lessons/s2-l074/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c014">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">３章さまざまな化学変化</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c014" data-kind="chapter-questions" data-target="chapters/s2-c014/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">9回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l075" data-seq="75" data-source-topic="１物質どうしが結びつく変化">
+              <span class="lesson-num">75</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l075" data-kind="summary" data-target="lessons/s2-l075/summary.html" data-published="false">物質どうしが結びつく変化（鉄と硫黄の反応の予想）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l075" data-kind="lesson" data-target="lessons/s2-l075/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l075" data-kind="questions" data-target="lessons/s2-l075/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l076" data-seq="76" data-source-topic="１物質どうしが結びつく変化">
+              <span class="lesson-num">76</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l076" data-kind="summary" data-target="lessons/s2-l076/summary.html" data-published="false">鉄と硫黄の混合物を加熱する実験と生成物の性質</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l076" data-kind="lesson" data-target="lessons/s2-l076/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l076" data-kind="questions" data-target="lessons/s2-l076/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l077" data-seq="77" data-source-topic="１物質どうしが結びつく変化">
+              <span class="lesson-num">77</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l077" data-kind="summary" data-target="lessons/s2-l077/summary.html" data-published="false">化合と化合物のまとめ（硫化鉄・硫化銅の反応式）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l077" data-kind="lesson" data-target="lessons/s2-l077/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l077" data-kind="questions" data-target="lessons/s2-l077/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l078" data-seq="78" data-source-topic="２物質が酸素と結びつく変化">
+              <span class="lesson-num">78</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l078" data-kind="summary" data-target="lessons/s2-l078/summary.html" data-published="false">物質が酸素と結びつく変化（炭素と銅の酸化）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l078" data-kind="lesson" data-target="lessons/s2-l078/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l078" data-kind="questions" data-target="lessons/s2-l078/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l079" data-seq="79" data-source-topic="２物質が酸素と結びつく変化">
+              <span class="lesson-num">79</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l079" data-kind="summary" data-target="lessons/s2-l079/summary.html" data-published="false">鉄の燃焼（スチールウール）と酸化・燃焼の意味</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l079" data-kind="lesson" data-target="lessons/s2-l079/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l079" data-kind="questions" data-target="lessons/s2-l079/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l080" data-seq="80" data-source-topic="３酸化物から酸素をとり除く変化">
+              <span class="lesson-num">80</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l080" data-kind="summary" data-target="lessons/s2-l080/summary.html" data-published="false">酸化物から酸素を取り除く変化（銅板の炎による変化）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l080" data-kind="lesson" data-target="lessons/s2-l080/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l080" data-kind="questions" data-target="lessons/s2-l080/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l081" data-seq="81" data-source-topic="３酸化物から酸素をとり除く変化">
+              <span class="lesson-num">81</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l081" data-kind="summary" data-target="lessons/s2-l081/summary.html" data-published="false">酸化銅と炭素による還元実験と化学反応式</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l081" data-kind="lesson" data-target="lessons/s2-l081/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l081" data-kind="questions" data-target="lessons/s2-l081/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l082" data-seq="82" data-source-topic="４化学変化と熱の出入り">
+              <span class="lesson-num">82</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l082" data-kind="summary" data-target="lessons/s2-l082/summary.html" data-published="false">燃焼以外の化学変化と温度変化の実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l082" data-kind="lesson" data-target="lessons/s2-l082/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l082" data-kind="questions" data-target="lessons/s2-l082/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l083" data-seq="83" data-source-topic="４化学変化と熱の出入り">
+              <span class="lesson-num">83</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l083" data-kind="summary" data-target="lessons/s2-l083/summary.html" data-published="false">発熱反応と吸熱反応のまとめと生活への利用</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l083" data-kind="lesson" data-target="lessons/s2-l083/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l083" data-kind="questions" data-target="lessons/s2-l083/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c015">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">４章化学変化と物質の質量</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c015" data-kind="chapter-questions" data-target="chapters/s2-c015/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">7回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l084" data-seq="84" data-source-topic="１化学変化の前後での物質の質量">
+              <span class="lesson-num">84</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l084" data-kind="summary" data-target="lessons/s2-l084/summary.html" data-published="false">化学変化の前後での質量変化の予想と実験計画</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l084" data-kind="lesson" data-target="lessons/s2-l084/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l084" data-kind="questions" data-target="lessons/s2-l084/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l085" data-seq="85" data-source-topic="１化学変化の前後での物質の質量">
+              <span class="lesson-num">85</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l085" data-kind="summary" data-target="lessons/s2-l085/summary.html" data-published="false">化学変化の前後の物質全体の質量を調べる実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l085" data-kind="lesson" data-target="lessons/s2-l085/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l085" data-kind="questions" data-target="lessons/s2-l085/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l086" data-seq="86" data-source-topic="１化学変化の前後での物質の質量">
+              <span class="lesson-num">86</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l086" data-kind="summary" data-target="lessons/s2-l086/summary.html" data-published="false">質量保存の法則と原子の組み換えによる説明</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l086" data-kind="lesson" data-target="lessons/s2-l086/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l086" data-kind="questions" data-target="lessons/s2-l086/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l087" data-seq="87" data-source-topic="２反応する物質どうしの質量の割合">
+              <span class="lesson-num">87</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l087" data-kind="summary" data-target="lessons/s2-l087/summary.html" data-published="false">金属の加熱回数と質量変化の関係（定比例の予想）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l087" data-kind="lesson" data-target="lessons/s2-l087/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l087" data-kind="questions" data-target="lessons/s2-l087/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l088" data-seq="88" data-source-topic="２反応する物質どうしの質量の割合">
+              <span class="lesson-num">88</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l088" data-kind="summary" data-target="lessons/s2-l088/summary.html" data-published="false">金属の質量と結びつく酸素の質量の関係（実験）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l088" data-kind="lesson" data-target="lessons/s2-l088/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l088" data-kind="questions" data-target="lessons/s2-l088/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l089" data-seq="89" data-source-topic="２反応する物質どうしの質量の割合">
+              <span class="lesson-num">89</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l089" data-kind="summary" data-target="lessons/s2-l089/summary.html" data-published="false">定比例の法則（反応する物質の質量の割合とグラフ）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l089" data-kind="lesson" data-target="lessons/s2-l089/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l089" data-kind="questions" data-target="lessons/s2-l089/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l090" data-seq="90" data-source-topic="力だめし">
+              <span class="lesson-num">90</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l090" data-kind="summary" data-target="lessons/s2-l090/summary.html" data-published="false">「化学変化と原子・分子」のまとめ演習（力だめし）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l090" data-kind="lesson" data-target="lessons/s2-l090/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l090" data-kind="questions" data-target="lessons/s2-l090/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="3" data-unit-id="s2-u004">
+        <summary class="chapter-summary">
+          <span class="chapter-name">電流とその利用</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/s2-u004/questions.html" data-published="false">問題</a>
+            <span class="count-meta">33回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+        <details class="section" open data-chapter-id="s2-c016">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">電流とその利用</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c016" data-kind="chapter-questions" data-target="chapters/s2-c016/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l091" data-seq="91" data-source-topic="-">
+              <span class="lesson-num">91</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l091" data-kind="summary" data-target="lessons/s2-l091/summary.html" data-published="false">身のまわりの電気器具と電流による現象への関心</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l091" data-kind="lesson" data-target="lessons/s2-l091/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l091" data-kind="questions" data-target="lessons/s2-l091/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c017">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１章電流の性質</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c017" data-kind="chapter-questions" data-target="chapters/s2-c017/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">16回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l092" data-seq="92" data-source-topic="１電流が流れる道すじ">
+              <span class="lesson-num">92</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l092" data-kind="summary" data-target="lessons/s2-l092/summary.html" data-published="false">電流が流れる道すじとさまざまな素子の回路実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l092" data-kind="lesson" data-target="lessons/s2-l092/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l092" data-kind="questions" data-target="lessons/s2-l092/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l093" data-seq="93" data-source-topic="１電流が流れる道すじ">
+              <span class="lesson-num">93</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l093" data-kind="summary" data-target="lessons/s2-l093/summary.html" data-published="false">電気用図記号・回路図と直列回路・並列回路</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l093" data-kind="lesson" data-target="lessons/s2-l093/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l093" data-kind="questions" data-target="lessons/s2-l093/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l094" data-seq="94" data-source-topic="１電流が流れる道すじ">
+              <span class="lesson-num">94</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l094" data-kind="summary" data-target="lessons/s2-l094/summary.html" data-published="false">電流の単位（A・mA）と電流計の使い方</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l094" data-kind="lesson" data-target="lessons/s2-l094/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l094" data-kind="questions" data-target="lessons/s2-l094/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l095" data-seq="95" data-source-topic="２回路に流れる電流">
+              <span class="lesson-num">95</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l095" data-kind="summary" data-target="lessons/s2-l095/summary.html" data-published="false">直列回路・並列回路に流れる電流の予想と実験計画</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l095" data-kind="lesson" data-target="lessons/s2-l095/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l095" data-kind="questions" data-target="lessons/s2-l095/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l096" data-seq="96" data-source-topic="２回路に流れる電流">
+              <span class="lesson-num">96</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l096" data-kind="summary" data-target="lessons/s2-l096/summary.html" data-published="false">回路の各点に流れる電流を測定する実験の実施</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l096" data-kind="lesson" data-target="lessons/s2-l096/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l096" data-kind="questions" data-target="lessons/s2-l096/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l097" data-seq="97" data-source-topic="２回路に流れる電流">
+              <span class="lesson-num">97</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l097" data-kind="summary" data-target="lessons/s2-l097/summary.html" data-published="false">直列回路・並列回路における電流の規則性のまとめ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l097" data-kind="lesson" data-target="lessons/s2-l097/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l097" data-kind="questions" data-target="lessons/s2-l097/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l098" data-seq="98" data-source-topic="３回路に加わる電圧">
+              <span class="lesson-num">98</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l098" data-kind="summary" data-target="lessons/s2-l098/summary.html" data-published="false">電圧の意味・単位（V）と豆電球の明るさの関係</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l098" data-kind="lesson" data-target="lessons/s2-l098/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l098" data-kind="questions" data-target="lessons/s2-l098/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l099" data-seq="99" data-source-topic="３回路に加わる電圧">
+              <span class="lesson-num">99</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l099" data-kind="summary" data-target="lessons/s2-l099/summary.html" data-published="false">電圧計の使い方と回路の各区間の電圧測定実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l099" data-kind="lesson" data-target="lessons/s2-l099/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l099" data-kind="questions" data-target="lessons/s2-l099/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l100" data-seq="100" data-source-topic="３回路に加わる電圧">
+              <span class="lesson-num">100</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l100" data-kind="summary" data-target="lessons/s2-l100/summary.html" data-published="false">直列回路・並列回路における電圧の規則性のまとめ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l100" data-kind="lesson" data-target="lessons/s2-l100/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l100" data-kind="questions" data-target="lessons/s2-l100/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l101" data-seq="101" data-source-topic="４電圧と電流の関係">
+              <span class="lesson-num">101</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l101" data-kind="summary" data-target="lessons/s2-l101/summary.html" data-published="false">電圧の大きさと電流の大きさの関係を調べる実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l101" data-kind="lesson" data-target="lessons/s2-l101/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l101" data-kind="questions" data-target="lessons/s2-l101/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l102" data-seq="102" data-source-topic="４電圧と電流の関係">
+              <span class="lesson-num">102</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l102" data-kind="summary" data-target="lessons/s2-l102/summary.html" data-published="false">電圧と電流のグラフ化とオームの法則・電気抵抗</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l102" data-kind="lesson" data-target="lessons/s2-l102/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l102" data-kind="questions" data-target="lessons/s2-l102/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l103" data-seq="103" data-source-topic="５電流、電圧、電気抵抗の求め方">
+              <span class="lesson-num">103</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l103" data-kind="summary" data-target="lessons/s2-l103/summary.html" data-published="false">オームの法則を使った電流・電圧・抵抗の計算演習</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l103" data-kind="lesson" data-target="lessons/s2-l103/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l103" data-kind="questions" data-target="lessons/s2-l103/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l104" data-seq="104" data-source-topic="５電流、電圧、電気抵抗の求め方">
+              <span class="lesson-num">104</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l104" data-kind="summary" data-target="lessons/s2-l104/summary.html" data-published="false">直列つなぎ・並列つなぎにおける回路全体の合成抵抗</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l104" data-kind="lesson" data-target="lessons/s2-l104/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l104" data-kind="questions" data-target="lessons/s2-l104/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l105" data-seq="105" data-source-topic="６電流のはたらきを表す量">
+              <span class="lesson-num">105</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l105" data-kind="summary" data-target="lessons/s2-l105/summary.html" data-published="false">電流のはたらきと電力（W）・電力量（J・Wh）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l105" data-kind="lesson" data-target="lessons/s2-l105/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l105" data-kind="questions" data-target="lessons/s2-l105/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l106" data-seq="106" data-source-topic="６電流のはたらきを表す量">
+              <span class="lesson-num">106</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l106" data-kind="summary" data-target="lessons/s2-l106/summary.html" data-published="false">電熱線の発熱量と温度変化（熱量の実験計画）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l106" data-kind="lesson" data-target="lessons/s2-l106/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l106" data-kind="questions" data-target="lessons/s2-l106/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l107" data-seq="107" data-source-topic="６電流のはたらきを表す量">
+              <span class="lesson-num">107</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l107" data-kind="summary" data-target="lessons/s2-l107/summary.html" data-published="false">電力・時間と発熱量の関係（ジュールの法則）のまとめ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l107" data-kind="lesson" data-target="lessons/s2-l107/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l107" data-kind="questions" data-target="lessons/s2-l107/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c018">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２章電流の正体</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c018" data-kind="chapter-questions" data-target="chapters/s2-c018/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">7回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l108" data-seq="108" data-source-topic="１静電気">
+              <span class="lesson-num">108</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l108" data-kind="summary" data-target="lessons/s2-l108/summary.html" data-published="false">静電気（摩擦電気）の現象と2種類の電気の予想</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l108" data-kind="lesson" data-target="lessons/s2-l108/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l108" data-kind="questions" data-target="lessons/s2-l108/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l109" data-seq="109" data-source-topic="１静電気">
+              <span class="lesson-num">109</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l109" data-kind="summary" data-target="lessons/s2-l109/summary.html" data-published="false">静電気による力の規則性（＋の電気と－の電気）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l109" data-kind="lesson" data-target="lessons/s2-l109/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l109" data-kind="questions" data-target="lessons/s2-l109/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l110" data-seq="110" data-source-topic="２静電気と電流の関係">
+              <span class="lesson-num">110</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l110" data-kind="summary" data-target="lessons/s2-l110/summary.html" data-published="false">静電気と電流の関係（たまった電気の移動）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l110" data-kind="lesson" data-target="lessons/s2-l110/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l110" data-kind="questions" data-target="lessons/s2-l110/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l111" data-seq="111" data-source-topic="３電流の正体">
+              <span class="lesson-num">111</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l111" data-kind="summary" data-target="lessons/s2-l111/summary.html" data-published="false">誘導コイルと真空放電（クルックス管の放電現象）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l111" data-kind="lesson" data-target="lessons/s2-l111/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l111" data-kind="questions" data-target="lessons/s2-l111/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l112" data-seq="112" data-source-topic="３電流の正体">
+              <span class="lesson-num">112</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l112" data-kind="summary" data-target="lessons/s2-l112/summary.html" data-published="false">陰極線の発見と電流の正体（電子の流れと向き）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l112" data-kind="lesson" data-target="lessons/s2-l112/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l112" data-kind="questions" data-target="lessons/s2-l112/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l113" data-seq="113" data-source-topic="３電流の正体">
+              <span class="lesson-num">113</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l113" data-kind="summary" data-target="lessons/s2-l113/summary.html" data-published="false">金属中の自由電子と電流のモデル表現</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l113" data-kind="lesson" data-target="lessons/s2-l113/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l113" data-kind="questions" data-target="lessons/s2-l113/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l114" data-seq="114" data-source-topic="４放射線の発見とその利用">
+              <span class="lesson-num">114</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l114" data-kind="summary" data-target="lessons/s2-l114/summary.html" data-published="false">X線・放射線の種類と性質・利用および影響</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l114" data-kind="lesson" data-target="lessons/s2-l114/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l114" data-kind="questions" data-target="lessons/s2-l114/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-chapter-id="s2-c019">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">３章電流と磁界</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-chapter-id="s2-c019" data-kind="chapter-questions" data-target="chapters/s2-c019/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">9回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="s2-l115" data-seq="115" data-source-topic="１磁界">
+              <span class="lesson-num">115</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l115" data-kind="summary" data-target="lessons/s2-l115/summary.html" data-published="false">磁石のまわりの磁界と磁力線の表し方</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l115" data-kind="lesson" data-target="lessons/s2-l115/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l115" data-kind="questions" data-target="lessons/s2-l115/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l116" data-seq="116" data-source-topic="１磁界">
+              <span class="lesson-num">116</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l116" data-kind="summary" data-target="lessons/s2-l116/summary.html" data-published="false">直線導線やコイルに流れる電流がつくる磁界の実験</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l116" data-kind="lesson" data-target="lessons/s2-l116/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l116" data-kind="questions" data-target="lessons/s2-l116/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l117" data-seq="117" data-source-topic="１磁界">
+              <span class="lesson-num">117</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l117" data-kind="summary" data-target="lessons/s2-l117/summary.html" data-published="false">電流がつくる磁界の規則性（右ねじの法則・電磁石）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l117" data-kind="lesson" data-target="lessons/s2-l117/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l117" data-kind="questions" data-target="lessons/s2-l117/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l118" data-seq="118" data-source-topic="２モーターのしくみ">
+              <span class="lesson-num">118</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l118" data-kind="summary" data-target="lessons/s2-l118/summary.html" data-published="false">磁界の中で電流が受ける力を調べる実験（モーターの原理）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l118" data-kind="lesson" data-target="lessons/s2-l118/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l118" data-kind="questions" data-target="lessons/s2-l118/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l119" data-seq="119" data-source-topic="２モーターのしくみ">
+              <span class="lesson-num">119</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l119" data-kind="summary" data-target="lessons/s2-l119/summary.html" data-published="false">電流が磁界から受ける力の規則性とモーターのしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l119" data-kind="lesson" data-target="lessons/s2-l119/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l119" data-kind="questions" data-target="lessons/s2-l119/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l120" data-seq="120" data-source-topic="３発電機のしくみ">
+              <span class="lesson-num">120</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l120" data-kind="summary" data-target="lessons/s2-l120/summary.html" data-published="false">コイルと磁石で電流を起こす実験（発電機の原理）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l120" data-kind="lesson" data-target="lessons/s2-l120/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l120" data-kind="questions" data-target="lessons/s2-l120/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l121" data-seq="121" data-source-topic="３発電機のしくみ">
+              <span class="lesson-num">121</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l121" data-kind="summary" data-target="lessons/s2-l121/summary.html" data-published="false">電磁誘導・誘導電流の規則性と発電機のしくみ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l121" data-kind="lesson" data-target="lessons/s2-l121/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l121" data-kind="questions" data-target="lessons/s2-l121/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l122" data-seq="122" data-source-topic="３発電機のしくみ">
+              <span class="lesson-num">122</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l122" data-kind="summary" data-target="lessons/s2-l122/summary.html" data-published="false">直流と交流の違い（LEDによる確認実験）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l122" data-kind="lesson" data-target="lessons/s2-l122/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l122" data-kind="questions" data-target="lessons/s2-l122/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="s2-l123" data-seq="123" data-source-topic="力だめし">
+              <span class="lesson-num">123</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l123" data-kind="summary" data-target="lessons/s2-l123/summary.html" data-published="false">「電流とその利用」のまとめ演習（力だめし）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l123" data-kind="lesson" data-target="lessons/s2-l123/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="s2-l123" data-kind="questions" data-target="lessons/s2-l123/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
     </main>
   </div>
+
+  <div class="status-toast" id="status-toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      // 公開済み教材の相対パスをここに登録すると、自動的に有効な同タブリンクへ切り替わります。
+      // 例: "lessons/s2-l001/summary.html", "chapters/s2-c001/questions.html"
+      const PUBLISHED_PATHS = new Set([]);
+
+      const allDetails = Array.from(document.querySelectorAll("details.chapter, details.section"));
+      const openAllBtn = document.getElementById("open-all");
+      const closeAllBtn = document.getElementById("close-all");
+      const toast = document.getElementById("status-toast");
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("is-visible");
+        }, 2800);
+      }
+
+      function syncLinkState(link) {
+        const target = link.dataset.target || "";
+        const isPublished = link.dataset.published === "true" || PUBLISHED_PATHS.has(target);
+        if (isPublished && target) {
+          link.setAttribute("href", target);
+          link.dataset.published = "true";
+          link.classList.remove("is-unpublished");
+          link.removeAttribute("aria-disabled");
+        } else {
+          link.removeAttribute("href");
+          link.dataset.published = "false";
+          link.classList.add("is-unpublished");
+          link.setAttribute("aria-disabled", "true");
+        }
+      }
+
+      const allLinks = Array.from(document.querySelectorAll("a[data-target]"));
+      allLinks.forEach(function (link) {
+        syncLinkState(link);
+
+        function handleActivate(event) {
+          // summary内の「問題」リンク押下時に親detailsが開閉しないようにする
+          if (link.closest("summary")) {
+            event.stopPropagation();
+          }
+          if (link.dataset.published !== "true") {
+            event.preventDefault();
+            const target = link.dataset.target || "";
+            showToast("準備中のページです（予定パス: " + target + "）");
+          }
+        }
+
+        link.addEventListener("click", handleActivate);
+        link.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            if (link.dataset.published !== "true") {
+              handleActivate(event);
+            } else if (event.key === "Enter" && link.closest("summary")) {
+              event.stopPropagation();
+            }
+          }
+        });
+      });
+
+      if (openAllBtn) {
+        openAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = true;
+          });
+        });
+      }
+
+      if (closeAllBtn) {
+        closeAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = false;
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
