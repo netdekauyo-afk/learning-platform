@@ -109,7 +109,12 @@ function prepareHint(section, prompt, inputId, headingId) {
   }
   setOpen(false);
   button.addEventListener("click", () => setOpen(content.hidden));
-  section.append(button, content);
+  // Place the hint after its part card, not inside the card's grid.
+  // Numbas attaches each .part in a separate .part-wrapper.
+  const hintPanel = document.createElement("div");
+  hintPanel.className = "worksheet-hint";
+  hintPanel.append(button, content);
+  section.after(hintPanel);
   return () => setOpen(true);
 }
 
