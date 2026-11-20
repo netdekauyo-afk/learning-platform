@@ -1,0 +1,22 @@
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+  background: #151515;
+  color: #fff;
+}
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; }
+.site-shell { width: min(100% - 32px, 760px); margin: 0 auto; padding: clamp(30px, 8vw, 72px) 0; }
+.site-header { margin-bottom: 40px; }
+.site-name { margin: 0; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 750; letter-spacing: -.04em; }
+.site-subtitle { margin: 10px 0 0; font-size: 1.125rem; }
+h1 { margin: 0 0 24px; font-size: clamp(1.5rem, 4vw, 2rem); }
+.hint { margin: -10px 0 24px; }
+.choices { display: grid; gap: 14px; }
+.choice-card { min-height: 80px; padding: 20px 24px; border: 2px solid #986645; border-radius: 14px; background: #3a2b23; color: #fff; font-size: 1.3rem; font-weight: 650; text-decoration: none; display: flex; align-items: center; justify-content: space-between; transition: background 120ms ease, border-color 120ms ease; }
+.choice-card:hover, .choice-card:focus-visible { background: #513c30; border-color: #c88c60; }
+.choice-card span { font-size: 1.6rem; }
+a:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 48px; }
+.breadcrumb a, .breadcrumb span { color: #fff; }
+.breadcrumb a:hover { text-decoration-thickness: 2px; }
