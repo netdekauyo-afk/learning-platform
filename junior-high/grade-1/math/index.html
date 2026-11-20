@@ -6,23 +6,7 @@
   <title>中学1年数学 学習一覧（全129回） | Classroom</title>
   <link rel="stylesheet" href="../../../assets/style.css">
   <style>
-    :root {
-      color-scheme: dark;
-      --bg: #0D1622;
-      --surface: #1A2A3D;
-      --surface-subtle: #1A2A3D;
-      --border: #33506E;
-      --border-strong: #33506E;
-      --text: #C9D6E4;
-      --text-muted: #8CA2B8;
-      --text-light: #8CA2B8;
-      --link: #5E97C8;
-      --link-hover: #EAF2FA;
-      --link-unpublished: #8CA2B8;
-      --accent-bar: #5E97C8;
-      --toast-bg: #22374F;
-      --toast-text: #EAF2FA;
-    }
+    /* Colors are defined only in the shared :root palette. */
 
     *, *::before, *::after {
       box-sizing: border-box;
@@ -30,8 +14,8 @@
 
     body {
       margin: 0;
-      background-color: var(--bg);
-      color: var(--text);
+      background-color: var(--color-bg);
+      color: var(--color-text);
       font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
       line-height: 1.6;
       -webkit-text-size-adjust: 100%;
@@ -47,7 +31,7 @@
     .page-header {
       margin-bottom: 36px;
       padding-bottom: 16px;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--color-border);
     }
 
     .page-title {
@@ -55,7 +39,7 @@
       font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: 700;
       letter-spacing: -0.01em;
-      color: #EAF2FA;
+      color: var(--color-heading);
     }
 
     .page-meta {
@@ -65,7 +49,7 @@
       justify-content: space-between;
       gap: 12px;
       font-size: 0.9rem;
-      color: var(--text-muted);
+      color: var(--color-muted);
     }
 
     .controls {
@@ -81,7 +65,7 @@
       padding: 4px 0;
       font: inherit;
       font-size: 0.9rem;
-      color: var(--link);
+      color: var(--color-accent);
       text-decoration: underline;
       text-underline-offset: 3px;
       cursor: pointer;
@@ -89,11 +73,11 @@
 
     .control-link:hover,
     .control-link:focus-visible {
-      color: var(--link-hover);
+      color: var(--color-heading);
     }
 
     .control-link:focus-visible {
-      outline: 2px solid var(--link);
+      outline: 2px solid var(--color-accent);
       outline-offset: 2px;
       border-radius: 2px;
     }
@@ -106,8 +90,8 @@
 
     /* Chapter */
     details.chapter {
-      background: var(--surface);
-      border: 2px solid var(--border-strong);
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
       border-radius: 14px;
       overflow: hidden;
     }
@@ -118,7 +102,7 @@
       justify-content: space-between;
       gap: 12px;
       padding: 13px 16px;
-      background: var(--surface-subtle);
+      background: var(--color-surface);
       border-left: 0;
       cursor: pointer;
       flex-wrap: wrap;
@@ -137,7 +121,7 @@
       align-items: center;
       gap: 8px;
       flex: 1 1 245px;
-      color: #EAF2FA;
+      color: var(--color-heading);
     }
 
     .chapter-actions {
@@ -153,19 +137,19 @@
       align-items: center;
       min-height: 36px;
       padding: 6px 12px;
-      border: 1px solid #33506E;
+      border: 1px solid var(--color-border);
       border-radius: 8px;
-      color: #EAF2FA;
+      color: var(--color-heading);
       font-size: 0.88rem;
       font-weight: 600;
       text-decoration: none;
-      background: #22374F;
+      background: var(--color-surface-hover);
     }
     .chapter-question-link:hover,
     .chapter-question-link:focus-visible {
-      background: #4A7298;
-      border-color: #5E97C8;
-      color: #EAF2FA;
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
       text-decoration: underline;
     }
 
@@ -173,7 +157,7 @@
       content: "▸";
       display: inline-block;
       font-size: 0.85em;
-      color: var(--text-muted);
+      color: var(--color-muted);
       transition: transform 0.15s ease;
     }
 
@@ -182,7 +166,7 @@
     }
 
     details.chapter[open] > summary.chapter-summary {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--color-border);
     }
 
     .chapter-body {
@@ -194,7 +178,7 @@
 
     /* Section */
     details.section {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--color-border);
       padding-bottom: 6px;
     }
 
@@ -208,7 +192,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      padding: 8px 4px;
+      padding: 10px 12px;
+      background: var(--color-section-surface);
+      border-radius: 9px;
       cursor: pointer;
       list-style: none;
       user-select: none;
@@ -231,14 +217,14 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      color: #EAF2FA;
+      color: var(--color-heading);
     }
 
     .section-name::before {
       content: "▸";
       display: inline-block;
       font-size: 0.8em;
-      color: var(--text-light);
+      color: var(--color-muted);
       transition: transform 0.15s ease;
     }
 
@@ -248,7 +234,7 @@
 
     .count-meta {
       font-size: 0.82rem;
-      color: var(--text-light);
+      color: var(--color-muted);
       white-space: nowrap;
       flex-shrink: 0;
     }
@@ -266,7 +252,7 @@
       align-items: baseline;
       column-gap: 10px;
       padding: 6px 4px;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--color-border);
     }
 
     .lesson-item:first-child {
@@ -276,13 +262,13 @@
     .lesson-num {
       font-size: 0.85rem;
       font-variant-numeric: tabular-nums;
-      color: var(--text-light);
+      color: var(--color-heading);
       text-align: right;
     }
 
     /* Text links (explicitly non-button UI) */
     .text-link {
-      color: var(--link);
+      color: var(--color-accent);
       text-decoration: underline;
       text-underline-offset: 3px;
       text-decoration-thickness: 1px;
@@ -293,23 +279,29 @@
     }
 
     .text-link:hover {
-      color: var(--link-hover);
+      color: var(--color-heading);
       text-decoration-thickness: 1.5px;
     }
 
     .text-link:focus-visible {
-      outline: 2px solid var(--link);
+      outline: 2px solid var(--color-accent);
       outline-offset: 2px;
       border-radius: 2px;
     }
 
     .text-link.is-unpublished {
-      color: var(--link-unpublished);
+      color: var(--color-muted);
       text-decoration-style: dotted;
     }
 
     .text-link.is-unpublished:hover {
-      color: var(--text);
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
     }
 
     .lesson-title-link {
@@ -336,8 +328,8 @@
       left: 50%;
       bottom: 20px;
       transform: translateX(-50%) translateY(16px);
-      background: var(--toast-bg);
-      color: var(--toast-text);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
       padding: 10px 16px;
       border-radius: 6px;
       font-size: 0.85rem;

@@ -1,27 +1,39 @@
-/* ダーク青系パレット
-   背景 #0D1622 / 見出し #EAF2FA / 本文 #C9D6E4 / 補足 #8CA2B8
-   カード #1A2A3D / 枠線 #33506E / ホバー #22374F・#4A7298
-   アクセント #5E97C8 / 完了・進捗用（未使用の予約色） #3E9C87 */
+/* ダーク青系パレット（意味トークン方式）
+   色は :root の変数でだけ定義し、各ルールは変数を参照する。
+   色を変えたいときは、この変数の値だけを書き換える。
+   --color-success は完了・進捗表示用の予約色（まだ未使用）。
+   使うときは色だけでなく文言や記号と組にすること。 */
 :root {
   color-scheme: dark;
   font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
-  background: #0D1622;
-  color: #C9D6E4;
+  --color-bg: #0D1622;
+  --color-text: #C9D6E4;
+  --color-heading: #EAF2FA;
+  --color-muted: #8CA2B8;
+  --color-surface: #1A2A3D;
+  --color-border: #33506E;
+  --color-surface-hover: #22374F;
+  --color-border-hover: #4A7298;
+  --color-accent: #5E97C8;
+  --color-success: #3E9C87;
+  --color-section-surface: var(--color-surface-hover);
+  background: var(--color-bg);
+  color: var(--color-text);
 }
 * { box-sizing: border-box; }
 body { margin: 0; min-height: 100vh; }
 .site-shell { width: min(100% - 32px, 760px); margin: 0 auto; padding: clamp(30px, 8vw, 72px) 0; }
 .site-header { margin-bottom: 40px; }
-.site-name { margin: 0; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 750; letter-spacing: -.04em; color: #EAF2FA; }
-.site-subtitle { margin: 10px 0 0; font-size: 1.125rem; color: #8CA2B8; }
-h1 { margin: 0 0 24px; font-size: clamp(1.5rem, 4vw, 2rem); color: #EAF2FA; }
-.hint { margin: -10px 0 24px; color: #8CA2B8; }
+.site-name { margin: 0; font-size: clamp(2.5rem, 8vw, 4rem); font-weight: 750; letter-spacing: -.04em; color: var(--color-heading); }
+.site-subtitle { margin: 10px 0 0; font-size: 1.125rem; color: var(--color-muted); }
+h1 { margin: 0 0 24px; font-size: clamp(1.5rem, 4vw, 2rem); color: var(--color-heading); }
+.hint { margin: -10px 0 24px; color: var(--color-muted); }
 .choices { display: grid; gap: 14px; }
-.choice-card { min-height: 80px; padding: 20px 24px; border: 2px solid #33506E; border-radius: 14px; background: #1A2A3D; color: #EAF2FA; font-size: 1.3rem; font-weight: 650; text-decoration: none; display: flex; align-items: center; justify-content: space-between; transition: background 120ms ease, border-color 120ms ease; }
-.choice-card:hover, .choice-card:focus-visible { background: #22374F; border-color: #4A7298; }
-.choice-card span { font-size: 1.6rem; color: #5E97C8; }
-a:focus-visible { outline: 3px solid #5E97C8; outline-offset: 4px; }
+.choice-card { min-height: 80px; padding: 20px 24px; border: 2px solid var(--color-border); border-radius: 14px; background: var(--color-surface); color: var(--color-heading); font-size: 1.3rem; font-weight: 650; text-decoration: none; display: flex; align-items: center; justify-content: space-between; transition: background 120ms ease, border-color 120ms ease; }
+.choice-card:hover, .choice-card:focus-visible { background: var(--color-surface-hover); border-color: var(--color-border-hover); }
+.choice-card span { font-size: 1.6rem; color: var(--color-accent); }
+a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 .breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 48px; }
-.breadcrumb a { color: #5E97C8; }
-.breadcrumb span { color: #8CA2B8; }
+.breadcrumb a { color: var(--color-accent); }
+.breadcrumb span { color: var(--color-muted); }
 .breadcrumb a:hover { text-decoration-thickness: 2px; }
