@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第36時限 文字への代入と式の値｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第36時限「文字への代入と式の値」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>文字に数を代入することや式の値の意味を理解し、式の値を求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>式の中の文字を数でおきかえることを「代入する」といい、代入して計算した結果を「式の値」といいます。</li>
+<li>代入するときは、省略されていた × を元に戻してから数を入れます。たとえば、3a に a＝2 を代入すると 3×2 となります。</li>
+<li>負の数を代入するときは、数にかっこをつけて代入します。たとえば、a＝−2 のとき 3a＝3×(−2) です。</li>
+<li>代入した後は、第1章で学んだ正負の数の計算のきまりにしたがって計算します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>a＝3 のとき、式 4a−5 の値を求めましょう。</p>
+<p>考え方：4a は 4×a の意味です。a に 3 を代入すると、4×3−5＝12−5 となります。</p>
+<p class="answer">答え：7</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>3a に a＝−2 を代入して 3−2 としてしまうのは誤りです。×を元に戻し、負の数にはかっこをつけましょう。</li>
+<li>式の値は、代入する数によって変わります。どの数を代入するのかを、最初に確認しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

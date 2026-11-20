@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第114時限 角錐と円錐の体積の求め方｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第114時限「角錐と円錐の体積の求め方」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>角錐や円錐の体積の求め方を理解し、計算できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>角錐と円錐の体積は、底面積と高さが等しい角柱・円柱の体積のちょうど1/3です。</li>
+<li>公式は「（底面積）×（高さ）÷3」です。</li>
+<li>これは、水を入れる実験などで、錐の容器3杯分で柱の容器がいっぱいになることから確かめられます。</li>
+<li>高さは、頂点から底面に下ろした垂線の長さです。側面の辺（母線など）の長さではありません。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>底面の半径が3cm、高さが4cmの円錐の体積は何cm³ですか。円周率は3.14として計算しなさい。</p>
+<p>考え方：底面積は3.14×3×3＝28.26cm²です。円錐の体積は底面積×高さ÷3なので、28.26×4÷3＝37.68cm³です。</p>
+<p class="answer">答え：37.68cm³</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「÷3」を忘れるのが一番多いミスです。錐の体積では必ず3で割ります。</li>
+<li>円錐の高さと母線は別の長さです。体積には高さを使います。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

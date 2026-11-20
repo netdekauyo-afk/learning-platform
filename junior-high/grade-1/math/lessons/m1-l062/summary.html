@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第62時限 満水になるまでの時間と関数の考え｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第62時限「満水になるまでの時間と関数の考え」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>身のまわりの問題を、関数の考えを利用して解決できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>2つの数量の関係で、一方の値が決まると、もう一方の値がただ1つに決まるとき、その関係を関数の考えでとらえます。</li>
+<li>水そうに一定の割合で水を入れるとき、入れた時間の値が決まれば、そのとき水そうに入っている水の量が決まります。</li>
+<li>水そうが満水になるまでの時間を知るには、「水そうの容量」と「1分間に入る水の量」が分かれば予想できます。</li>
+<li>満水になるまでの時間は、（水そうの容量）÷（1分間に入る水の量）で求められます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>1分間に3Lずつ水が入る水そうがあります。36L入る水そうが、空の状態から満水になるまで何分かかりますか。</p>
+<p>考え方：満水になるまでの時間は、容量を1分間に入る水の量で割って求めます。36÷3＝12です。</p>
+<p class="answer">答え：12分</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>割り算の向きを逆にしないこと。（1分間に入る量）÷（容量）ではなく、（容量）÷（1分間に入る量）です。</li>
+<li>容量と1分間に入る量の単位（Lなど）がそろっているか確認しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

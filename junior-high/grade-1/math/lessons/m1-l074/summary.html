@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第74時限 負の数の範囲へひろげた反比例の性質｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第74時限「負の数の範囲へひろげた反比例の性質」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>xの変域や比例定数を負の数にひろげても、反比例の性質が成り立つことを理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>反比例の式y＝a/xや、xとyの積xyがいつもaに等しいという性質は、xの値や比例定数aが負の数でも、そのまま成り立ちます。</li>
+<li>y＝a/xの計算は、「a÷x」の計算です。式のxに値を代入して計算します。</li>
+<li>比例定数が負の数のとき、xが正の数ならyは負の数になり、xが負の数ならyは正の数になります。</li>
+<li>負の数で割るときの符号：（負）÷（負）＝（正）、（負）÷（正）＝（負）です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>yはxに反比例し、その式がy＝−20/xです。x＝−5のときのyの値を求めなさい。</p>
+<p>考え方：式のxに−5を代入します。y＝−20÷（−5）です。負の数どうしの割り算なので、答えは正の数になり、20÷5＝4です。</p>
+<p class="answer">答え：4</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>y＝a/xは「aをxで割る」計算です。xをaで割らないように注意しましょう。</li>
+<li>代入するときは負の数にかっこをつけ、符号を先に決めてから数の計算をしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

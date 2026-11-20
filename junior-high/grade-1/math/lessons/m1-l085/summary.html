@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第85時限 平行移動の意味と性質｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第85時限「平行移動の意味と性質」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>平行移動の意味とその性質を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>平行移動とは、図形を一定の方向に、一定の距離だけずらして移す移動です。</li>
+<li>平行移動では、図形のすべての点が、同じ方向に同じ距離だけ移ります。図形の形・大きさ・向きは変わりません。</li>
+<li>対応する点を結ぶ線分は、互いに平行（記号では // ）で、長さが等しくなります。</li>
+<li>座標の上では、x軸の方向の移動はx座標だけを、y軸の方向の移動はy座標だけを変えます。正の方向への移動は座標に足し、負の方向への移動は座標から引きます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>点B（1，5）を、x軸の正の方向に3、y軸の負の方向に2だけ平行移動させました。移動した点の座標を求めなさい。</p>
+<p>考え方：x座標は正の方向に3だけ移るので 1＋3＝4。y座標は負の方向に2だけ移るので 5－2＝3。よって、移動した点は（4，3）です。</p>
+<p class="answer">答え：（4，3）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「負の方向に移す」ときは、座標から引くのを忘れやすいです。方向と符号をセットで確認しましょう。</li>
+<li>x座標はx軸方向の移動でだけ、y座標はy軸方向の移動でだけ変わります。両方を混ぜて計算しないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

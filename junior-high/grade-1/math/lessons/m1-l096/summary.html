@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第96時限 基本の作図といろいろな作図の基本問題｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第96時限「基本の作図といろいろな作図の基本問題」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>この時間は、２「基本の作図」で学んだ内容の復習です。垂線、垂直二等分線、角の二等分線の作図と、点と直線の距離、平行な2直線の距離を確認します。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>点と直線の距離は、その点から直線に引いた垂線の長さです。</li>
+<li>平行な2直線の距離は、一方の直線上の点から、他方の直線に引いた垂線の長さで表されます。平行な2直線では、この長さは、どの点から垂線を引いても同じです。</li>
+<li>線分の垂直二等分線の上にある点は、その線分の両端から等しい距離にあります。</li>
+<li>角の二等分線の上にある点は、その角の2辺から等しい距離にあります。</li>
+<li>円の接線は、接点を通る半径に垂直です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>平行な2直線l、mがあります。直線l上の点Pから直線mに引いた垂線の長さが7cmでした。直線l上の別の点Qから直線mに引いた垂線の長さは何cmですか。</p>
+<p>考え方：平行な2直線の距離は、どこで測っても同じです。点Pから測っても点Qから測っても変わらないので、垂線の長さは同じ7cmです。</p>
+<p class="answer">答え：7cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>2直線の距離は、斜めに測った長さではなく、垂線の長さです。</li>
+<li>「距離」と「等しい距離にある点」の性質（垂直二等分線、角の二等分線）を混同しないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

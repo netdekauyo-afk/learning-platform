@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第109時限 角錐と円錐の展開図と特徴｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第109時限「角錐と円錐の展開図と特徴」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>角錐や円錐の展開図と、その特徴を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>角錐の展開図は、底面の多角形のまわりに、側面の三角形が底面の辺の数だけついた形になります。</li>
+<li>円錐の展開図は、側面のおうぎ形1つと、底面の円1つからなります。</li>
+<li>円錐の展開図で、側面のおうぎ形の弧の長さは、底面の円の周の長さとぴったり等しくなります。</li>
+<li>おうぎ形の半径は、円錐の母線の長さに等しくなります（円錐の高さではありません）。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>底面の半径が2cmの円錐の展開図で、側面になるおうぎ形の弧の長さは何cmですか。円周率は3.14として計算しなさい。</p>
+<p>考え方：おうぎ形の弧の長さは、底面の円の周の長さと等しいので、2×3.14×2＝12.56cmです。</p>
+<p class="answer">答え：12.56cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>おうぎ形の弧の長さと、底面の円の半径は別のものです。弧の長さは円周の計算で求めます。</li>
+<li>おうぎ形の半径にあたるのは母線の長さです。円錐の高さと取り違えないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

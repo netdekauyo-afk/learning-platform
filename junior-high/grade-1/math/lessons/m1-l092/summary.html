@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第92時限 垂線の作図と点と直線の距離｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第92時限「垂線の作図と点と直線の距離」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>垂線を作図する方法を理解し、作図できるようになることが目標です。また、点と直線との距離の意味も確認します。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>垂線の作図（直線lの外にある点Aから、lに垂線を引く）：点Aを中心として弧をかき、直線lと交わる2点を取ります。次に、その2点を中心として等しい半径の弧をかき、交点を作ります。その交点と点Aを結ぶ直線が、求める垂線です。</li>
+<li>この作図は、交わる2つの円の性質（交点を結ぶ直線の性質）をもとにしています。</li>
+<li>点と直線の距離とは、その点から直線に引いた垂線の長さのことです。点から直線までの長さの中で、垂線が一番短くなります。</li>
+<li>斜めに引いた線分の長さは、点と直線の距離ではありません。</li>
+<li>平行な2直線の距離は、一方の直線上の点から、他方の直線に引いた垂線の長さで表されます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>点Bから直線mに垂線を引き、交点をHとします。BH＝5cmで、直線m上の点CについてBC＝13cmであるとき、点Bと直線mの距離は何cmですか。</p>
+<p>考え方：点と直線の距離は、その点から直線に引いた垂線の長さで決まります。使うのは斜めの線分BCではなく、垂線BHの長さです。</p>
+<p class="answer">答え：5cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「距離」と聞かれたら、必ず垂線の長さを答えます。目についた別の線分の長さと取り違えないようにしましょう。</li>
+<li>垂線の作図では、2つの弧を「等しい半径」でかくことがポイントです。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

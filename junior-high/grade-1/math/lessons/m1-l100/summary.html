@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第100時限 5章「平面図形」の章末問題演習｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第100時限「5章「平面図形」の章末問題演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>この時間は、5章「平面図形」で学んだ内容の復習です。図形の移動、基本の作図、おうぎ形について、章の問題で確認します。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>図形の移動には、平行移動（ずらす）、回転移動（回す）、対称移動（裏返す）の3つがあります。どの移動でも、図形の形と大きさは変わりません。</li>
+<li>図形を回転移動させて、もとの図形にぴったり重なることがあります。正多角形では、360°を頂点の数で割った角度ごとに重なります。正三角形なら 360÷3＝120°ごと、正方形なら 360÷4＝90°ごとです。</li>
+<li>基本の作図は、線分の垂直二等分線、垂線、角の二等分線です。垂直二等分線上の点は線分の両端から等しい距離にあり、角の二等分線上の点は角の2辺から等しい距離にあります。</li>
+<li>点と直線の距離は垂線の長さ、平行な2直線の距離は一方から他方へ引いた垂線の長さです。</li>
+<li>おうぎ形の弧の長さと面積は、中心角に比例します（円周や円の面積に、中心角÷360 の割合をかけます）。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>正方形を、その中心を回転の中心として回転移動させます。360°回転させたときを除いて、もとの図形に初めて重なるのは、何度回転させたときですか。</p>
+<p>考え方：正方形は頂点が4つあり、回転させると各頂点がとなりの頂点のあった位置に移ったときに重なります。その角度は 360÷4＝90°です。</p>
+<p class="answer">答え：90°</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「初めて重なる角度」は、360°を頂点（辺）の数で割って求めます。360°回転したときは除くことを忘れないようにしましょう。</li>
+<li>章末問題では、移動・作図・おうぎ形が混ざって出ます。まず「どの内容の問題か」を見分けてから、それぞれの性質を使いましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

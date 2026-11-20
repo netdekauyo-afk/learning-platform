@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第48時限 りんごの個数と方程式の必要性｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第48時限「りんごの個数と方程式の必要性」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>数量を求める問題を、これまでに習った内容を活用して解決することを通して、方程式の必要性を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>求める数量が分からない問題でも、数量どうしの関係を式や図に表すと、答えを求める手がかりになります。</li>
+<li>たとえば箱詰めの問題では、「1箱分の個数×箱の数＋余った個数＝全体の個数」という関係が成り立ちます。</li>
+<li>関係が分かれば、全体から余った個数を引いて箱の数で割る、というように逆向きに考える（逆算）ことで答えを求められます。</li>
+<li>求める数量を文字 x で表して関係を式に書くと、複雑な問題でも同じやり方で考えることができます。このように文字を使って数量の関係を表す考え方が、この章で学ぶ方程式につながります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>みかんを同じ個数ずつ箱に詰めたところ、4箱と、箱に入りきらない7個があり、みかんは全部で39個ありました。1箱に入った個数を求めなさい。</p>
+<p>考え方：全体の39個から、箱に入らなかった7個を引くと、4箱分の個数になります。（39−7）÷4＝8。確かめると、4×8＋7＝39で、全体の個数と一致します。</p>
+<p class="answer">答え：8個</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>余った個数を全体から引くのを忘れないこと。引かずに箱の数で割ると、答えが合いません。</li>
+<li>答えが出たら、もとの問題の数量と合うか確かめる習慣をつけましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

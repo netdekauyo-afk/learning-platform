@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第69時限 座標の意味と点の表し方｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第69時限「座標の意味と点の表し方」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>座標の意味や点の位置の表し方を理解し、点の座標を求めたり、座標を平面上の点で表したりできるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>平面上に、横の数直線と縦の数直線を直角に交わるようにかいたものを座標平面といいます。横の数直線をx軸、縦の数直線をy軸といい、2つを合わせて座標軸といいます。</li>
+<li>座標軸の交点を原点といい、Oで表します。原点の座標は（0, 0）です。</li>
+<li>点の位置は、（x座標, y座標）の順に2つの数の組で表します。前の数がx座標（原点から左右にどれだけ進むか）、うしろの数がy座標（原点から上下にどれだけ進むか）です。</li>
+<li>x座標が正の数なら原点より右、負の数なら左です。y座標が正の数なら原点より上、負の数なら下です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>点B（−4, 3）のx座標とy座標を、それぞれ答えなさい。</p>
+<p>考え方：座標は（x座標, y座標）の順に書かれています。点Bでは、前の数−4がx座標、うしろの数3がy座標です。</p>
+<p class="answer">答え：x座標は−4、y座標は3</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>x座標とy座標の順番を取り違えないこと。必ず「前がx座標、うしろがy座標」です。</li>
+<li>点の位置を読むときは、原点から「右（左）へx座標、上（下）へy座標」の順にたどります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

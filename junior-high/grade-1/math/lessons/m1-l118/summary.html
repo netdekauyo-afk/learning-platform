@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第118時限 6章「空間図形」の章末問題演習｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第118時限「6章「空間図形」の章末問題演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>この時間は、6章「空間図形」の章末の復習です。立体の性質から体積・表面積まで、章全体の内容を確かめます。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>立体の見方では、平面が1つに決まる条件（同一直線上にない3点）、ねじれの位置などの位置関係、投影図（平面図と立面図）が基本です。</li>
+<li>展開図では、円柱の側面の長方形の横の長さは底面の円周に等しく、円錐のおうぎ形の弧の長さも底面の円周に等しくなります。</li>
+<li>体積は、柱が「底面積×高さ」、錐が「底面積×高さ÷3」、球が「4×3.14×半径×半径×半径÷3」です。</li>
+<li>表面積は、展開図のすべての面の面積の合計です。円錐の側面積は「弧の長さ×母線÷2」でも求められます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>底面の半径が3cm、高さが8cmの円柱の表面積は何cm²ですか。円周率は3.14として計算しなさい。</p>
+<p>考え方：底面積は3.14×3×3＝28.26cm²で、2つ分は56.52cm²です。側面積は、円の周の長さ2×3.14×3＝18.84cmに高さ8cmをかけて150.72cm²です。合計は56.52＋150.72＝207.24cm²です。</p>
+<p class="answer">答え：207.24cm²</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>公式がたくさん出てくる章なので、問題ごとに「どの立体の、何を求めるのか」を最初に確かめましょう。</li>
+<li>円の面積と円周の計算を取り違えないようにしましょう。面積では半径を2回、円周では半径を1回かけます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

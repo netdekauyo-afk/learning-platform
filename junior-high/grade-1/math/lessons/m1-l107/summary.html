@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第107時限 面の動きによる立体の見方と回転体｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第107時限「面の動きによる立体の見方と回転体」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>角柱や円柱、円錐、球などを、平面図形の移動や回転によってできた立体として見られるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>平面図形を、その面と垂直な方向にまっすぐ動かすと立体ができます。多角形を動かすと角柱、円を動かすと円柱ができます。</li>
+<li>平面図形を、ある直線を軸として1回転させてできる立体を回転体といいます。</li>
+<li>回転体の例として、長方形を1辺を軸に回転させると円柱、直角三角形を直角をはさむ辺を軸に回転させると円錐、半円を直径を軸に回転させると球ができます。</li>
+<li>回転して立体の側面（曲面）をえがく線を母線といいます。円錐では、頂点と底面の円周上の点を結ぶ線分が母線です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>縦6cm、横4cmの長方形を、縦の辺を軸として1回転させると、どんな立体ができますか。また、底面の半径は何cmですか。</p>
+<p>考え方：長方形を1辺を軸に回転させると円柱ができます。底面の半径は、軸から向かい合う辺までの距離、つまり横の長さ4cmに等しくなります。</p>
+<p class="answer">答え：円柱で、底面の半径は4cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>回転の軸をどこにとるかで、できる立体が変わります。軸にする辺を確かめてから考えましょう。</li>
+<li>円錐の母線は、円錐の高さとは違う長さです。混同しないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

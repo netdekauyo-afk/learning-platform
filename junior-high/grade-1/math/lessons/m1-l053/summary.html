@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第53時限 分数をふくむ方程式と1次方程式の解き方の手順｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第53時限「分数をふくむ方程式と1次方程式の解き方の手順」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>係数に分数をふくむ方程式を解くことができるようになること、また、1次方程式を解く手順を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>係数に分数をふくむ方程式は、両辺に分母の最小公倍数をかけて分母をはらうと、整数の係数の方程式に直せます。</li>
+<li>分母をはらうときも、両辺のすべての項にその数をかけます。</li>
+<li>x の1次式をふくむ方程式を、1次方程式といいます。</li>
+<li>1次方程式を解く手順：①かっこをはずす、分母をはらうなどで式を簡単にする。②x の項を左辺に、数の項を右辺に移項する。③ax＝b の形にして、両辺を a でわる。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>方程式 （3/4）x＋2＝8 を解きなさい。</p>
+<p>考え方：両辺に分母の4をかけると 3x＋8＝32。数の項を移項すると 3x＝32−8＝24。両辺を3でわると x＝8。確かめるために x＝8 を代入すると、（3/4）×8＋2＝6＋2＝8で、右辺と等しくなります。</p>
+<p class="answer">答え：x＝8</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>分母をはらうとき、分数ではない項にも同じ数をかけるのを忘れないこと。例題の「＋2」も4倍して8になります。</li>
+<li>分母が2つある場合は、その最小公倍数を両辺にかけます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

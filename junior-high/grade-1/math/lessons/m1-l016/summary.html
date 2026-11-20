@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第16時限 正負の数の加法と減法の基本問題｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第16時限「正負の数の加法と減法の基本問題」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>この時間は、2節「加法と減法」で学んだ内容の復習です。加法と減法の計算を、確実にできるようにしましょう。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>同符号の加法は絶対値の和に共通の符号、異符号の加法は絶対値の差に絶対値の大きいほうの符号をつけます。</li>
+<li>減法は、ひく数の符号を変えて加法になおして計算します。</li>
+<li>加法と減法の混じった式は、項の和とみて、正の項と負の項に分けて計算すると確実です。</li>
+<li>たすと0になる組を先に計算するなど、交換法則・結合法則のくふうも使えます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>次の計算をしましょう。（＋3）−（＋8）＋（−5）</p>
+<p>考え方：項の和とみると、（＋3）＋（−8）＋（−5）です。負の項の和は−13、正の項は＋3なので、3−13＝−10となります。</p>
+<p class="answer">答え：−10</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>復習では、計算の途中の式を省略せずに書くことが大切です。符号ミスの多くは、頭の中だけで計算したときに起こります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

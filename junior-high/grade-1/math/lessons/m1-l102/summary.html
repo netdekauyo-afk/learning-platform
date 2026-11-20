@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第102時限 多面体・角錐・円錐の意味と特徴｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第102時限「多面体・角錐・円錐の意味と特徴」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>多面体の意味が分かり、角錐や円錐の意味と特徴を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>平面だけで囲まれた立体を多面体といいます。</li>
+<li>角錐は、底面が多角形で1つ、側面がすべて三角形の立体です。底面の形によって、三角錐、四角錐、五角錐などと呼びます。</li>
+<li>角錐の側面の三角形の数は、底面の辺の数と等しくなります。面の数は全部で「底面の辺の数＋1」です。</li>
+<li>円錐は、底面が円で1つ、側面が曲面の立体で、てっぺんに頂点が1つあります。側面は曲面なので、円錐は多面体ではありません。</li>
+<li>角柱と角錐の違いは、底面の数（角柱は2つ、角錐は1つ）と、側面の形（角柱は長方形、角錐は三角形）です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>三角錐の面は、全部で何枚ありますか。</p>
+<p>考え方：三角錐の底面は三角形が1枚、側面は三角形が3枚です。全部で1＋3＝4枚です。</p>
+<p class="answer">答え：4枚</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>円錐は「錐」の仲間でも、曲面があるので多面体ではありません。</li>
+<li>角錐の面を数えるときは、底面の1枚を忘れないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

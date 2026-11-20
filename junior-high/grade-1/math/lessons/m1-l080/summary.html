@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第80時限 行列の待ち時間と比例とみなした問題解決｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第80時限「行列の待ち時間と比例とみなした問題解決」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>身のまわりの問題で、関数の関係にある数量を見いだし、その関係を比例とみなして解決できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>行列の待ち時間は、1人が買うのにかかる時間が分かれば予想できます。1人にかかる時間がほぼ一定なら、待ち時間は並んでいる人数に比例するとみなせます。</li>
+<li>「比例とみなす」とは、実際には多少のばらつきがあっても、1人あたりの時間を一定と仮定して計算する考え方です。</li>
+<li>待ち時間の求め方：（待ち時間）＝（1人にかかる時間）×（自分の前に並んでいる人数）です。</li>
+<li>答えの単位に合わせて換算します。秒で計算したら、60秒＝1分を使って分に直します。予想なので、答えは「約」で表します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>ある窓口では、1人あたり30秒かかります。自分の前に10人が並んでいるとき、待ち時間は約何分ですか。</p>
+<p>考え方：待ち時間は、1人にかかる時間×人数で求めます。30×10＝300秒です。300秒は300÷60＝5分です。</p>
+<p class="answer">答え：約5分</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>秒のまま答えにしないこと。「何分ですか」と聞かれたら、分に直してから答えましょう。</li>
+<li>かける人数は、自分の前に並んでいる人数です。自分を入れるかどうか、問題文をよく読んで確認しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

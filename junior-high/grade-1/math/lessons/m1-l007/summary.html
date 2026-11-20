@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第7時限 数直線と正負の数の大小｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第7時限「数直線と正負の数の大小」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>正負の数を数直線上に表し、数直線を使って数の大小を考え、不等号を使って表せるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>数直線を負の数の側にものばすと、すべての正負の数を表すことができます。0の位置を「原点」、右向きを「正の方向」、左向きを「負の方向」といいます。</li>
+<li>数直線上では、右にある数ほど大きく、左にある数ほど小さくなります。</li>
+<li>正の数は負の数よりいつも大きく、0は正の数より小さく、負の数より大きくなります。</li>
+<li>負の数どうしを比べるときは、数直線で右にあるほう、つまり0に近いほうが大きい数です。</li>
+<li>大小の関係は、不等号「＜」「＞」を使って表します（例：−3＜−1）。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>−7と−4では、どちらの数が大きいですか。不等号を使って表しましょう。</p>
+<p>考え方：数直線の上で、−4は−7より右にあります。右にある数ほど大きいので、−4のほうが大きい数です。</p>
+<p class="answer">答え：−7＜−4</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>負の数では、数字の大きいほうが小さい数になります。−7と−4では、−7のほうが小さい数です。算数の感覚のまま比べないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

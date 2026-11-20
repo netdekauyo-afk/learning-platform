@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第106時限 直線と平面の垂直・平面どうしの角と距離｜中学1年数学 要約</title>
+<style>
+  body { background:#0D1622; color:#FFFFFF; font-family:sans-serif; line-height:1.8; margin:0; padding:16px; }
+  main { max-width:720px; margin:0 auto; }
+  h1 { font-size:1.3rem; border-bottom:2px solid #466A8C; padding-bottom:8px; }
+  section { background:#1A2A3D; border:1px solid #466A8C; border-radius:10px; padding:12px 16px; margin:14px 0; }
+  h2 { font-size:1.05rem; color:#5E97C8; margin:0 0 6px; }
+  ul { margin:6px 0 6px 1.2em; padding:0; }
+  .example .answer { color:#FFFFFF; font-weight:bold; }
+  footer { color:#A9C0D8; font-size:0.9rem; }
+
+  .summary-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; margin:0 0 20px; }
+  .summary-nav a { color:#FFFFFF; text-underline-offset:3px; }
+  .summary-nav a:focus-visible { outline:2px solid #FFFFFF; outline-offset:3px; }
+</style>
+</head>
+<body>
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+</nav>
+<h1>第106時限「直線と平面の垂直・平面どうしの角と距離」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>直線と平面の垂直、平面どうしのつくる角、距離の意味を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>直線ℓが平面Pと交わっていて、交点を通るP上のすべての直線と垂直であるとき、ℓはPに垂直であるといいます。</li>
+<li>2つの平面が交わるとき、そのつくる角は、交線上の点から各平面の上に引いた、交線に垂直な2直線のなす角で測ります。</li>
+<li>点と平面との距離は、その点から平面に下ろした垂線の長さです。</li>
+<li>平行な2つの平面の距離は、どこで測っても一定で、一方の平面上の点から他方に下ろした垂線の長さです。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>平面Pの上にない点Aから、Pに垂線を下ろし、交点をHとします。AHの長さが6cmのとき、点Aと平面Pとの距離は何cmですか。</p>
+<p>考え方：点と平面との距離は、点から平面に下ろした垂線の長さです。斜めに引いた線分の長さではありません。</p>
+<p class="answer">答え：6cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>直線が平面上の1本の直線と垂直なだけでは、その直線が平面に垂直とはいえません。</li>
+<li>点と平面との距離は一番短い長さで、垂線の長さです。斜めの線分の長さと混同しないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>
