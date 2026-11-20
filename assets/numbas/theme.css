@@ -495,6 +495,9 @@
   align-self: start;
   margin: 0;
 }
+/* Numbas uses .student.answer before the Sites helper attaches .answer-row.
+   Cover both variants so the choice list cannot fall back to the right column. */
+.part.type-1_n_2 > .student.answer,
 .part.type-1_n_2 > .student.answer.answer-row {
   grid-area: 4 / 1 / 5 / -1;
   width: 100%;
