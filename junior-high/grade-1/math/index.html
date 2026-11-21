@@ -243,9 +243,9 @@
 
     .lesson-item {
       display: grid;
-      grid-template-columns: 2.6rem 1fr auto;
+      grid-template-columns: 2.6rem minmax(0, 1fr) auto auto;
       align-items: baseline;
-      column-gap: 10px;
+      column-gap: 8px;
       padding: 6px 4px;
       border-top: 1px solid var(--color-border);
     }
@@ -300,6 +300,11 @@
     }
 
     .lesson-title-link {
+      display: block;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       font-size: 0.95rem;
       word-break: break-word;
     }
@@ -311,6 +316,21 @@
       white-space: nowrap;
       font-size: 0.88rem;
     }
+
+    /* Keep three difficulty results between the title and existing links. */
+    .difficulty-progress {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 3px;
+      white-space: nowrap;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .difficulty-progress-mark { display: inline-block; width: 1em; text-align: center; }
+    .difficulty-progress-mark[data-level="basic"] { color: #FF5A62; }
+    .difficulty-progress-mark[data-level="standard"] { color: #FFD447; }
+    .difficulty-progress-mark[data-level="advanced"] { color: #FF79B0; }
 
     .section-link {
       font-size: 0.88rem;
@@ -364,15 +384,16 @@
       }
 
       .lesson-item {
-        grid-template-columns: 2.1rem 1fr;
-        row-gap: 4px;
+        grid-template-columns: 1.5rem minmax(0, 1fr) auto auto;
+        column-gap: 5px;
+        row-gap: 0;
         padding: 8px 2px;
       }
 
       .lesson-links {
-        grid-column: 2;
-        gap: 18px;
-        padding-top: 2px;
+        grid-column: auto;
+        gap: 9px;
+        padding-top: 0;
       }
     }
 
@@ -1800,6 +1821,63 @@
       const PUBLISHED_PATHS = new Set([]);
 
       const allDetails = Array.from(document.querySelectorAll("details.chapter, details.section"));
+
+      // Read existing lesson-level history; never write or replace answer records.
+      const progressHistoryPrefix = "classroom:practice-history:v1:";
+      const progressLevels = [
+        { id: "basic", label: "基礎" },
+        { id: "standard", label: "標準" },
+        { id: "advanced", label: "発展" }
+      ];
+      const progressRows = [];
+      document.querySelectorAll(".lesson-item[data-lesson-id]").forEach(function (row) {
+        const questionLink = row.querySelector('a[data-kind="questions"]');
+        const actions = row.querySelector(".lesson-links");
+        if (!actions || !questionLink || questionLink.dataset.published !== "true") return;
+        const pathname = new URL(questionLink.dataset.target, location.href).pathname;
+        const progress = document.createElement("span");
+        progress.className = "difficulty-progress";
+        progress.setAttribute("role", "img");
+        const marks = progressLevels.map(function (level) {
+          const mark = document.createElement("span");
+          mark.className = "difficulty-progress-mark";
+          mark.dataset.level = level.id;
+          mark.setAttribute("aria-hidden", "true");
+          progress.append(mark);
+          return { id: level.id, label: level.label, node: mark };
+        });
+        row.insertBefore(progress, actions);
+        progressRows.push({ progress, marks, pathname });
+      });
+
+      function refreshDifficultyProgress() {
+        progressRows.forEach(function (row) {
+          const labels = [];
+          row.marks.forEach(function (mark) {
+            const key = progressHistoryPrefix + row.pathname +
+              (mark.id === "basic" ? "" : ":" + mark.id);
+            let correct = false;
+            try {
+              const history = JSON.parse(localStorage.getItem(key) || "[]");
+              if (Array.isArray(history)) {
+                // "答えを確認" is not a mark; use the latest graded answer.
+                for (let i = history.length - 1; i >= 0; i--) {
+                  if (history[i]?.kind === "correct" || history[i]?.kind === "wrong") {
+                    correct = history[i].kind === "correct";
+                    break;
+                  }
+                }
+              }
+            } catch (error) { /* A missing or unreadable record leaves the slot blank. */ }
+            mark.node.textContent = correct ? "○" : "";
+            labels.push(mark.label + (correct ? "正解" : "未正解"));
+          });
+          row.progress.setAttribute("aria-label", labels.join("、"));
+        });
+      }
+      refreshDifficultyProgress();
+      window.addEventListener("pageshow", refreshDifficultyProgress);
+
 
       // 要約から戻ったとき、一覧の開閉と表示位置を復元する。
       const SUMMARY_RETURN_KEY = "classroom:math1:summary-return";
