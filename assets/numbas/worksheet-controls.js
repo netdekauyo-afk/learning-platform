@@ -249,9 +249,11 @@ function choiceControl(part, answer) {
 export async function prepareAnswerControl(part, index, stepHintHTML = '') {
   const display = part.display;
   const section = await display.html_promise;
-  const answer = section.querySelector(".student.answer");
-  const heading = section.querySelector(".partheader");
-  const prompt = section.querySelector(".prompt");
+  // Information steps contain their own nested part elements. Target the
+  // question's direct children so a hint cannot be mistaken for its answer.
+  const answer = section.querySelector(":scope > .student.answer");
+  const heading = section.querySelector(":scope > .partheader");
+  const prompt = section.querySelector(":scope > .prompt");
   const choice = part.type === "1_n_2";
   if (choice || prompt.querySelector(".worksheet-text") || prompt.textContent.trim().length > 20) section.classList.add("written-question");
   const control = choice ? choiceControl(part, answer) : numericControl(part, section, answer, index);
@@ -303,7 +305,7 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
     }
   }
 
-  const partButton = section.querySelector("button.submitPart");
+  const partButton = section.querySelector(":scope > .submit-and-feedback > button.submitPart");
   partButton.type = "button";
   partButton.hidden = true;
   let guidance = "";
