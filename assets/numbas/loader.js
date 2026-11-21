@@ -339,7 +339,7 @@ async function boot() {
   if (lessonLayout) {
     createDifficultyTabs(host, status, async (examHost, examStatus, level) => {
       try {
-        const response = await fetch(new URL(examHost.dataset.examSource, location.href), { method: "HEAD" });
+        const response = await fetch(new URL(examHost.dataset.examSource, location.href));
         if (response.status === 404) {
           examStatus.textContent = "問題はまだありません。";
           return;
