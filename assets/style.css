@@ -127,6 +127,20 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
   font-size: .9rem;
 }
 
+.problem-toolbar.lesson-navigation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 10px;
+}
+.lesson-navigation .problem-previous { grid-column: 1; justify-self: start; }
+.lesson-navigation .problem-list { grid-column: 2; justify-self: center; text-align: center; }
+.lesson-navigation .problem-next { grid-column: 3; justify-self: end; margin-left: 0; text-align: right; }
+.lesson-navigation .problem-previous-pending { color: var(--color-muted); font-size: .9rem; }
+
+@media (max-width: 420px) {
+  .problem-toolbar.lesson-navigation { gap: 8px; font-size: .875rem; }
+}
+
 #numbas-host numbas-exam { display: block; min-width: 0; }
 
 /* The hint is a sibling of <numbas-exam>, outside the question card. */

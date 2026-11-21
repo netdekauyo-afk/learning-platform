@@ -373,10 +373,31 @@ async function bootExam(examHost, examStatus, level, lessonLayout) {
   await exam.load_exam();
 }
 
+/* Add the previous lesson without changing the existing list and next links. */
+function prepareLessonNavigation(lessonNumber) {
+  const toolbar = document.querySelector('.problem-toolbar[aria-label="問題ページの移動"]');
+  const listLink = toolbar?.querySelector('a[href="../../"]');
+  if (!listLink || lessonNumber < 1 || lessonNumber > 129) return;
+
+  const previous = document.createElement(lessonNumber > 1 ? "a" : "span");
+  previous.className = "problem-previous";
+  previous.textContent = "前の問題へ";
+  if (lessonNumber > 1) {
+    previous.href = "../m1-l" + String(lessonNumber - 1).padStart(3, "0") + "/questions.html";
+  } else {
+    previous.classList.add("problem-previous-pending");
+    previous.setAttribute("aria-label", "前の問題はありません");
+  }
+  listLink.classList.add("problem-list");
+  toolbar.classList.add("lesson-navigation");
+  toolbar.prepend(previous);
+}
+
 async function boot() {
   if (!host || !host.dataset.examSource) throw new Error("問題の参照先が設定されていません。");
-  const lessonLayout = /\/junior-high\/grade-1\/math\/lessons\/m1-l\d{3}\/questions\.html$/.test(location.pathname)
-    || host.hasAttribute("data-difficulty-tabs");
+  const lessonMatch = location.pathname.match(/\/junior-high\/grade-1\/math\/lessons\/m1-l(\d{3})\/questions\.html$/);
+  const lessonLayout = Boolean(lessonMatch) || host.hasAttribute("data-difficulty-tabs");
+  if (lessonMatch) prepareLessonNavigation(Number(lessonMatch[1]));
   const runtime = prepareRuntime();
   const initialLoad = runtime.then(() => bootExam(host, status, "basic", lessonLayout));
 
