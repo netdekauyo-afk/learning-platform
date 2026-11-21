@@ -92,6 +92,15 @@ async function installPracticeReview(examElement) {
         maximum,
       }, notice);
     });
+
+    // Mark a single-choice answer as soon as Numbas has stored the selection.
+    if (part.type === "1_n_2") {
+      part.events.on("storeAnswer", () => {
+        const selected = Array.isArray(part.stagedAnswer) &&
+          part.stagedAnswer.some((row) => Array.isArray(row) && row[0] === true);
+        if (selected) part.submit();
+      });
+    }
   }
 
   // Unlike Numbas' own "Reveal answer", the separate view below never calls
