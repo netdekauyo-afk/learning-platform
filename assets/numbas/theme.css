@@ -268,10 +268,10 @@
 /* One live input per part. Turn the same DOM surface edge-on, then show the reverse upright. */
 @media (prefers-reduced-motion: no-preference) {
   .turn-on-check .part.checked-answer {
-    animation: turn-card 120ms ease-in-out;
+    animation: turn-card 480ms ease-in-out;
   }
   .turn-on-check .checked-answer > .answer-note, .turn-on-check .checked-answer > .hint-content {
-    animation: reveal-ink 120ms step-end;
+    animation: reveal-ink 480ms step-end;
   }
 }
 @keyframes turn-card {
