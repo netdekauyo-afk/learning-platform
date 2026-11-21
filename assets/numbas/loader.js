@@ -282,6 +282,44 @@ async function installLessonHints(examElement) {
   }));
 }
 
+/* Submit a valid numeric answer after typing stops, using the same Numbas
+   submission path as Enter. Existing blur and manual submissions remain active. */
+async function installNumericAutoSubmit(examElement) {
+  const parts = examElement.exam?.questionList?.[0]?.parts || [];
+  await Promise.all(parts.filter((part) => part.type === "numberentry").map(async (part) => {
+    const section = await part.display.html_promise;
+    const input = section.querySelector(":scope > .student.answer input.numberentry");
+    if (!input) return;
+
+    let timer;
+    let composing = false;
+    const cancel = () => {
+      clearTimeout(timer);
+      timer = undefined;
+    };
+    const schedule = () => {
+      cancel();
+      if (composing || input.disabled || input.readOnly || !input.value.trim()) return;
+      timer = setTimeout(() => {
+        timer = undefined;
+        if (composing || !input.isConnected || input.disabled || input.readOnly ||
+            examElement.closest('[role="tabpanel"]')?.hidden || part.locked ||
+            part.submitting || !part.isDirty || !part.display.cleanStudentAnswer()) return;
+        part.display.controls.submit();
+      }, 2000);
+    };
+
+    input.addEventListener("input", (event) => {
+      if (event.isComposing) cancel();
+      else schedule();
+    });
+    input.addEventListener("compositionstart", () => { composing = true; cancel(); });
+    input.addEventListener("compositionend", () => { composing = false; schedule(); });
+    input.addEventListener("blur", cancel);
+    part.events.on("post-submit", cancel);
+  }));
+}
+
 async function prepareRuntime() {
   const response = await fetch(resource("template.html"));
   if (!response.ok) throw new Error("Numbasの画面テンプレートを取得できませんでした。");
@@ -310,6 +348,7 @@ async function bootExam(examHost, examStatus, level, lessonLayout) {
     const review = installPracticeReview(exam, examHost, practiceHistoryKey(level), level);
     if (lessonLayout) {
       void installLessonHints(exam).catch((error) => console.error("ヒントの準備に失敗しました。", error));
+      void installNumericAutoSubmit(exam).catch((error) => console.error("数値入力の準備に失敗しました。", error));
     }
     void review
       .then((examData) => lessonLayout ? undefined : installWorksheetControls(exam, examData))
