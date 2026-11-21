@@ -1,20 +1,23 @@
-/* ダーク青系パレット（意味トークン方式）
+/* ダーク青系パレット（意味トークン方式・v3）
    色は :root の変数でだけ定義し、各ルールは変数を参照する。
-   色を変えたいときは、この変数の値だけを書き換える。
+   文字は純白。章は青い面、節は青緑の面で色相を分ける。
    --color-success は完了・進捗表示用の予約色（まだ未使用）。
-   使うときは色だけでなく文言や記号と組にすること。 */
+   使うときは色だけでなく文言や記号と組にすること。
+   2026-11-21 合体版：v3 のトークン値に、リポジトリ現行版の Numbas 練習・ヒント用ルールをそのまま付けたもの。
+   assets/style.css をこれで置き換えると、数学ページの色直しがサイトに反映される。 */
 :root {
   color-scheme: dark;
   font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
   --color-bg: #0D1622;
-  --color-text: #C9D6E4;
-  --color-heading: #EAF2FA;
-  --color-muted: #8CA2B8;
+  --color-text: #FFFFFF;
+  --color-heading: #FFFFFF;
+  --color-muted: #A9C0D8;
   --color-surface: #1A2A3D;
-  --color-border: #33506E;
+  --color-border: #466A8C;
   --color-surface-hover: #22374F;
   --color-border-hover: #4A7298;
   --color-accent: #5E97C8;
+  --color-section-surface: #122B25;
   --color-success: #3E9C87;
   background: var(--color-bg);
   color: var(--color-text);
@@ -37,13 +40,14 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 .breadcrumb span { color: var(--color-muted); }
 .breadcrumb a:hover { text-decoration-thickness: 2px; }
 
-
 /* Numbas exercise pages: independent answer viewing and local attempt history. */
+
 .practice-panel {
   display: grid;
   gap: 12px;
   margin-top: 22px;
 }
+
 .practice-reveal-button {
   justify-self: start;
   min-height: 44px;
@@ -56,10 +60,12 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
   font-weight: 650;
   cursor: pointer;
 }
+
 .practice-reveal-button:hover {
   background: var(--color-surface-hover);
   border-color: var(--color-border-hover);
 }
+
 .practice-answer {
   padding: 16px;
   background: var(--color-surface);
@@ -67,18 +73,21 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
   border-radius: 12px;
   color: var(--color-heading);
 }
+
 .practice-answer[hidden],
 .practice-save-warning[hidden] { display: none; }
+
 .practice-answer h2 { margin: 0 0 10px; font-size: 1.1rem; }
 .practice-answer p { margin: 0; font-size: 1.2rem; font-weight: 650; }
+
 .practice-history { color: var(--color-muted); font-size: .91rem; }
 .practice-history summary { cursor: pointer; }
 .practice-history-list { margin: 8px 0 0; padding-left: 1.4rem; }
 .practice-history-list li { margin: 5px 0; }
 .practice-save-warning { margin: 0; color: var(--color-heading); }
 
-
 /* Compact exercise navigation, keeping the existing dark-blue color tokens. */
+
 .problem-toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -88,41 +97,51 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
   gap: 10px 20px;
   margin: 0 0 20px;
 }
+
 .problem-toolbar a {
   color: var(--color-accent);
   font-weight: 650;
   text-underline-offset: .2em;
 }
+
 .problem-toolbar .problem-next,
 .problem-toolbar .problem-next-pending { margin-left: auto; }
+
 .problem-toolbar .problem-next-pending {
   color: var(--color-muted);
   font-size: .9rem;
 }
+
 #numbas-host numbas-exam { display: block; min-width: 0; }
 
-
 /* The hint is a sibling of <numbas-exam>, outside the question card. */
+
 #numbas-host > .worksheet-hints { display: grid; gap: 10px; margin: 15px 0 22px; }
+
 #numbas-host > .worksheet-hints .worksheet-hint {
   padding: 10px 8px 12px;
   border-top: 1px solid var(--color-border);
   color: var(--color-text);
 }
+
 #numbas-host > .worksheet-hints .hint-toggle {
   display: inline-flex; align-items: center; gap: 9px;
   min-height: 44px; padding: 6px 0; border: none;
   background: transparent; color: var(--color-heading);
   font: inherit; font-weight: 650; cursor: pointer;
 }
+
 #numbas-host > .worksheet-hints .hint-toggle::before {
   content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg);
 }
+
 #numbas-host > .worksheet-hints .hint-toggle[aria-expanded="true"]::before {
   transform: translateY(2px) rotate(225deg);
 }
+
 #numbas-host > .worksheet-hints .hint-content {
   margin: 5px 0 0; padding-left: 18px; color: var(--color-text); line-height: 1.6;
 }
+
 #numbas-host > .worksheet-hints .hint-content[hidden] { display: none; }
