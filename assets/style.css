@@ -40,6 +40,19 @@ a:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 4px; }
 .breadcrumb span { color: var(--color-muted); }
 .breadcrumb a:hover { text-decoration-thickness: 2px; }
 
+/* Expand and collapse markers in the middle-school math curriculum. */
+.math-curriculum .chapter-name::before,
+.math-curriculum .section-name::before {
+  content: "▶";
+  color: var(--color-heading);
+  font-size: 1em;
+}
+
+.question-summary-link {
+  color: inherit;
+  text-underline-offset: .2em;
+}
+
 /* Lesson summaries: keep every text element white and distinguish headings by shape. */
 body.lesson-summary {
   margin: 0;
@@ -78,14 +91,21 @@ body.lesson-summary {
 .lesson-summary footer { color: var(--color-text); font-size: .9rem; }
 .lesson-summary a { color: var(--color-text); }
 .lesson-summary .summary-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px 10px;
   align-items: center;
   margin: 0 0 20px;
 }
 .lesson-summary .summary-nav a { color: var(--color-text); text-underline-offset: 3px; }
 .lesson-summary .summary-nav a:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+.lesson-summary .summary-previous { grid-column: 1; grid-row: 1; justify-self: start; }
+.lesson-summary #summary-back { grid-column: 2; grid-row: 1; justify-self: center; text-align: center; }
+.lesson-summary .summary-next { grid-column: 3; grid-row: 1; justify-self: end; text-align: right; }
+.lesson-summary .summary-question { grid-column: 2; grid-row: 2; justify-self: center; text-align: center; }
+@media (max-width: 420px) {
+  .lesson-summary .summary-nav { font-size: .875rem; gap: 8px; }
+}
 
 /* The same difficulty tabs are used on lesson pages and the design sample. */
 .difficulty-tabs { display: flex; border-bottom: 1px solid var(--color-border); margin: 0 0 25px; }
