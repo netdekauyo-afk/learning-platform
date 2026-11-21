@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第25時限 速さ・時間・道のりに関する連立方程式の利用｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l024/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l026/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第25時限「速さ・時間・道のりに関する連立方程式の利用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>速さ・時間・道のりに関する文章題を、単位をそろえて連立方程式に表し、解決できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>「道のり＝速さ×時間」「時間＝道のり÷速さ」「速さ＝道のり÷時間」の関係を使います。</li>
+<li>速さの単位（時速・分速・秒速）に合わせて、道のりと時間の単位を必ずそろえます（例：20分＝20/60時間＝1/3時間）。</li>
+<li>線分図をかいて、道のりの合計と時間の合計の2つの式を立てるのが基本です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>家から駅まで1200mの道のりを、はじめは分速60mで歩き、途中から分速150mで走ったところ、合わせて14分かかりました。歩いた道のりと走った道のりを求めましょう。</p>
+<p>考え方：歩いた道のりをx m、走った道のりをy mとすると、x＋y＝1200 …①、x/60＋y/150＝14 …②。②の両辺に300をかけると 5x＋2y＝4200 …②&#x27;。②&#x27;−①×2より 3x＝1800、x＝600、y＝600 です。</p>
+<p class="answer">答え：歩いた道のり 600m、走った道のり 600m</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>道のりをx、yとおくか、時間をx、yとおくかで式の形が変わります。何を文字にしたか明確にしましょう。</li>
+<li>「分速」なのに時間を「時間」のままにしたり、「km」と「m」が混ざったりしないよう単位を必ずそろえましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

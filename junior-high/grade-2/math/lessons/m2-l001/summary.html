@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第1時限 マジックシートの仕組みと文字の必要性｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l002/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第1時限「マジックシートの仕組みと文字の必要性」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>マジックシートの数の並びから仕組みを見つけ、どんな場合でも成り立つことを説明するために文字を使う必要性を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>マジックシートでは、選んだ数に対して決まった手順で計算すると、いつも特定の関係や結果が現れます。</li>
+<li>具体的な数で何回試しても「たまたま成り立っただけかもしれない」という疑問が残ります。</li>
+<li>文字（たとえば n や a）を使って数を表すと、すべての数についていつでも成り立つことをまとめて説明できます。</li>
+<li>中2数学では、1年で学んだ文字式をさらに発展させ、式の計算や説明に活用していきます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>ある数に3を足して2倍し、さらに6を引くと、もとの数の2倍になることを、もとの数をaとして文字式で表しましょう。</p>
+<p>考え方：もとの数をaとすると、3を足してa＋3、2倍して2(a＋3)＝2a＋6、さらに6を引くと(2a＋6)−6＝2aとなります。どんな数aでももとの数の2倍になります。</p>
+<p class="answer">答え：2(a＋3)−6＝2a となり、もとの数の2倍になる</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>具体的な数で1つ確かめただけでは「いつも成り立つ」説明にはなりません。</li>
+<li>「足してから2倍する」ときは、a＋3にかっこを付けて2(a＋3)と表すのを忘れないようにしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

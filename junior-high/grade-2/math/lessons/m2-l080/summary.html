@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第80時限 平行線の性質を利用した等積変形｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l079/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l081/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第80時限「平行線の性質を利用した等積変形」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>底辺を共有し平行線上に頂点をもつ三角形の面積が等しい理由を理解し、面積を変えずに図形を変形する「等積変形」ができるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>平行な2直線 l、m があるとき、m 上に底辺BCを共有し、l 上に頂点A、A&#x27;をもつ △ABC と △A&#x27;BC は、底辺が共通で高さも平行線間の距離で等しいため、面積が等しくなります（△ABC＝△A&#x27;BC）。</li>
+<li>この性質を使って、図形の面積を変えずに形だけを変えることを「等積変形」といいます。</li>
+<li>四角形ABCDを同じ面積の三角形に変えるには、対角線ACをひき、頂点Dを通りACに平行な直線と辺BCの延長との交点Eをとると、△ACD＝△ACE より 四角形ABCD＝△ABE となります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>台形ABCD（AD // BC）で対角線AC、BDの交点をOとするとき、面積が等しい三角形の組を答えましょう。</p>
+<p>考え方：AD // BC より、底辺BCを共有する △ABC＝△DBC、底辺ADを共有する △ABD＝△ACD です。さらに △ABC と △DBC から共通の △OBC を引くと △ABO＝△DCO も成り立ちます。</p>
+<p class="answer">答え：△ABCと△DBC、△ABDと△ACD、△ABOと△DCO</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>△ABO＝△DCO は「大きい同じ面積の三角形から共通部分を引いて残りが等しい」という定番の等積変形です。</li>
+<li>等積変形では「どの線とどの線が平行か」を必ず確認し、平行線に沿って頂点を動かします。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

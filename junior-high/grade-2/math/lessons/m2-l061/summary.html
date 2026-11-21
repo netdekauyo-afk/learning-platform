@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第61時限 4章「平行と合同」のまとめ演習｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l060/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l062/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第61時限「4章「平行と合同」のまとめ演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>4章「平行と合同」全体の学習内容（多角形の角、平行線と角、合同条件、証明の書き方）を総復習し、定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>n角形の内角の和は 180°×(n−2)、n角形の外角の和はいつも360°です。</li>
+<li>平行線では、同位角・錯角がそれぞれ等しくなります。折れ線の角は、折れ曲がった頂点を通る平行な補助線をひき、錯角の和や差で表します。</li>
+<li>三角形の合同条件：①3組の辺がそれぞれ等しい、②2組の辺とその間の角がそれぞれ等しい、③1組の辺とその両端の角がそれぞれ等しい。</li>
+<li>証明は「どの2つの三角形を比べるか宣言する→等しい辺・角を根拠とともに3つ挙げる→合同条件を書く→結論を導く」の型で書きます。仮定と結論を区別し、根拠（仮定、共通、対頂角、平行線の錯角など）を明記します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>△ABCと△DCBで、AB＝DC、∠ABC＝∠DCB のとき、AC＝DB であることを示す流れを整理しましょう。</p>
+<p>考え方：△ABCと△DCBにおいて、仮定より AB＝DC、∠ABC＝∠DCB、また共通な辺より BC＝CB です。2組の辺とその間の角がそれぞれ等しいので △ABC≡△DCB となり、対応する辺より AC＝DB です。</p>
+<p class="answer">答え：△ABC≡△DCB を示し、合同な図形の対応する辺は等しいことから AC＝DB を導く</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>重なり合った三角形（△ABCと△DCBなど）は、図の外に2つ描き出すと対応する辺や角が見やすくなります。</li>
+<li>4章の証明の型は、そのまま5章（二等辺三角形や平行四辺形の証明）の土台になります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

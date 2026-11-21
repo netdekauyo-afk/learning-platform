@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第34時限 グラフの傾きと切片から求める1次関数の式｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l033/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l035/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第34時限「グラフの傾きと切片から求める1次関数の式」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>与えられた1次関数のグラフから切片と傾きを読みとり、y＝ax＋b の式を求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>グラフから式を求める手順：①y軸との交点から切片 b を読みとる→②切片ともう1つの格子点から、右にいくつ・上下にいくつ進んだかを調べて傾き a を求める。</li>
+<li>傾き a は (yの増加量)／(xの増加量) で計算します。下に下がるときはyの増加量を負の数にします。</li>
+<li>求めた式に、グラフが通る別の点の座標を代入して成り立つか確認すると確実です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>y軸と点 (0, −2) で交わり、点 (3, 4) を通る直線の式を求めましょう。</p>
+<p>考え方：切片は b＝−2 です。点 (0, −2) から点 (3, 4) へは、xが3増加するとyが 4−(−2)＝6 増加するので、傾きは a＝6/3＝2 です。</p>
+<p class="answer">答え：y＝2x−2</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>傾きを (xの増加量)/(yの増加量) と分母・分子を逆にしてしまうミスに注意しましょう。</li>
+<li>切片が整数でないグラフの場合は、2つの格子点を読み取って連立方程式で求めます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第60時限 合同な図形と証明の基本演習｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l059/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l061/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第60時限「合同な図形と証明の基本演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>合同な図形の性質・三角形の合同条件・証明の進め方の基本問題に取り組み、証明の型を定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>まず結論を導くために「どの2つの三角形の合同を言えばよいか」を逆算して見つけます。</li>
+<li>図に仮定の印と隠れた条件（共通・対頂角・錯角）を書き込み、3つの合同条件のどれを使うか見通しを立ててから書き始めます。</li>
+<li>穴埋め形式だけでなく、自分の言葉で最初から最後まで証明を書けるように練習します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>AB // DC、AB＝DC のとき、△ABC≡△CDA を証明するのに使う3つの等しい要素と合同条件を答えましょう。</p>
+<p>考え方：仮定より AB＝CD、平行線の錯角より ∠BAC＝∠DCA、共通な辺より AC＝CA となります。2組の辺とその間の角がそれぞれ等しいので合同です。</p>
+<p class="answer">答え：AB＝CD、∠BAC＝∠DCA、AC＝CA ／ 2組の辺とその間の角がそれぞれ等しい</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>共通な辺を書くとき、△ABCと△CDAの対応順に合わせて AC＝CA と書くと丁寧です。</li>
+<li>平行線の錯角を使うときは、どの2直線が平行だから言えるのか（AB // DCより）を明記しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

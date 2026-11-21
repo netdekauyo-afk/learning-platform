@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第79時限 2つの正三角形の性質の証明と条件変更の考察｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l078/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l080/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第79時限「2つの正三角形の性質の証明と条件変更の考察」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>1点を共有する2つの正三角形の図形の性質を証明し、位置や回転などの条件を変えても成り立つことを統合的・発展的に考察できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>たとえば線分AB上の点Cについて、同じ側に正三角形ACDと正三角形CBEをつくるとき、△ACEと△DCBにおいて AC＝DC、CE＝CB、∠ACE＝∠DCB＝120° より △ACE≡△DCB となり、AE＝DB が証明できます。</li>
+<li>この図形で、正三角形CBEを点Cを中心に回転させてA、C、Bが一直線上にないようにしても、∠ACE＝60°＋∠DCE、∠DCB＝60°＋∠DCE でやはり ∠ACE＝∠DCB が成り立ちます。</li>
+<li>そのため、回転させても同じ合同証明が使えて AE＝DB がいつでも成り立ちます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>点Cを共有する2つの正三角形ACDとBCEがあります。∠ACE＝∠DCB であることを、間の角 ∠DCE を使って説明しましょう。</p>
+<p>考え方：正三角形の1つの角は60°なので、∠ACE＝∠ACD＋∠DCE＝60°＋∠DCE、∠DCB＝∠BCE＋∠DCE＝60°＋∠DCE となり、どちらも 60°＋∠DCE で等しくなります。</p>
+<p class="answer">答え：∠ACE＝60°＋∠DCE、∠DCB＝60°＋∠DCE より ∠ACE＝∠DCB</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「同じ角（∠DCE）を足す（または引く）ことで2つの角が等しいことを示す」手法は、図形の証明でよく使われます。</li>
+<li>正三角形が2つあるときは、それぞれの等しい辺（AC＝DC、CE＝CB）をペアにして合同な三角形を探すと見つかりやすいです。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第15時限 1章「式の計算」のまとめ演習｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l014/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l016/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第15時限「1章「式の計算」のまとめ演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>1章「式の計算」全体の学習内容（多項式・単項式の計算、文字式の利用、等式の変形）を総復習し、定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>次数：単項式の次数は、かけ合わされている文字の個数です。多項式の次数は、項の次数のうち最大のものです。</li>
+<li>同類項の整理：文字の部分が同じ項どうしは、係数を計算して1つにまとめられます（分配法則の逆の計算です）。</li>
+<li>分配法則：a(b＋c)＝ab＋ac。かっこを外すときは、符号の変化に注意します。</li>
+<li>単項式の乗除：係数は係数どうしで計算し、文字は指数の和（乗法）・差（除法）をとります。乗除が混じった計算は、1つの分数にまとめて約分します。</li>
+<li>式の値：まず式を簡単にしてから代入します。負の数や分数を代入するときは、かっこを付けて代入します。</li>
+<li>等式の変形：移項（符号を変えて項を移す）と、両辺への乗除を組み合わせて、指定された文字について解きます。</li>
+<li>文字式による説明：「①文字で表す→②計算して目的の形に変形する→③結論を言葉でまとめる」の3段階で書きます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>x＝−2、y＝5 のとき、3(x−2y)−(2x−5y) の値を求めましょう。</p>
+<p>考え方：まず式を簡単にすると、3x−6y−2x＋5y＝x−y となります。ここに x＝−2、y＝5 を代入すると −2−5＝−7 です。</p>
+<p class="answer">答え：−7</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>1章の計算力は、2章の連立方程式や3章の1次関数の土台になります。符号ミスや約分漏れをここでなくしておきましょう。</li>
+<li>等式の変形と多項式の計算（分母をはらえるか・通分するか）を混同しないように区別しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

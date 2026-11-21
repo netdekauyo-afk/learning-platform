@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第12時限 陸上トラックのレーン差と文字式の活用｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l011/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l013/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第12時限「陸上トラックのレーン差と文字式の活用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>陸上トラックのとなり合うレーンの1周の長さの差を文字式で表し、スタート位置をずらす理由を説明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>陸上トラックの1周は「直線部分2本」と「両端の半円を合わせた円1周分」でできています。</li>
+<li>直線部分の長さはどのレーンでも同じなので、1周の長さの差は円周部分の差だけで決まります。</li>
+<li>内側の半円の半径を r m、レーンの幅を a m とすると、1つ外側の円周は 2π(r＋a)、内側は 2πr なので、差は 2π(r＋a)−2πr＝2πa となります。</li>
+<li>差 2πa には半径 r がふくまれないため、どのレーンどうしでも、幅が同じなら1周の差はいつも同じ 2πa m になります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>半円の半径がr mのレーンと、その外側で幅が1 m広いレーンでは、1周の長さの差は何mになりますか。</p>
+<p>考え方：直線部分は同じなので円周部分だけ比べます。外側の半径は (r＋1) m なので、差は 2π(r＋1)−2πr＝2πr＋2π−2πr＝2π（m）です。</p>
+<p class="answer">答え：2π m</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>半円が両端に2つあるため、合わせてちょうど円1周分（2πr）になります。</li>
+<li>計算結果から文字 r が消えることで「半径によらず一定である」と説明できる点がポイントです。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

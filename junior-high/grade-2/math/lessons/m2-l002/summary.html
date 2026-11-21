@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第2時限 単項式・多項式と次数｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l001/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l003/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第2時限「単項式・多項式と次数」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>単項式と多項式の違い、および単項式や多項式の次数の意味を理解し、正しく答えられるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>数や文字についての乗法（かけ算）だけでできている式を「単項式」といいます（例：3x、−5ab、7）。</li>
+<li>単項式の和の形で表された式を「多項式」といい、その1つ1つの単項式を「項」といいます（例：2x−3y＋1の項は2x、−3y、1）。</li>
+<li>単項式でかけ合わされている文字の個数を、その単項式の「次数」といいます（例：4x²yはx×x×yなので次数3）。</li>
+<li>多項式の次数は、ふくまれる各項の次数のうち、もっとも大きいものを選びます。次数が1の式を1次式、2の式を2次式といいます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>多項式 3x²−5xy＋2x−7 の項と、この多項式の次数を答えましょう。</p>
+<p>考え方：＋の記号でつないだ形 3x²＋(−5xy)＋2x＋(−7) と見て項を挙げます。それぞれの次数は、3x²が2、−5xyが2、2xが1、−7が0なので、最大の2が多項式の次数です。</p>
+<p class="answer">答え：項は 3x²、−5xy、2x、−7 ／ 次数は 2（2次式）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>項を答えるとき、前のマイナス符号（−5xyや−7）を落としやすいので注意しましょう。</li>
+<li>多項式の次数は「各項の次数の合計」ではなく「もっとも大きい次数」です。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

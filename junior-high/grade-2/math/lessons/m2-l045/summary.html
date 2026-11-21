@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第45時限 図形の辺上を動く点と面積の1次関数｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l044/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l046/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第45時限「図形の辺上を動く点と面積の1次関数」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>図形の辺上を動く点によってできる三角形などの面積の変化を、辺ごとの変域に分けて1次関数の式とグラフで表せるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>点Pが長方形の辺上を動くとき、Pがどの辺の上にあるかによって、三角形の底辺や高さの表し方が変わります。</li>
+<li>そのため、動く距離 x の変域を辺ごとに区切って（例：辺AB上、辺BC上、辺CD上）、それぞれの区間で面積 y を x の式に表します。</li>
+<li>底辺が一定の辺で高さが一定になる区間（例：辺BC上）では、面積は一定（y＝定数）になり、グラフはx軸に平行な線分になります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>縦4cm、横6cmの長方形ABCDで、点PはAを出発して辺AB、BC上を毎秒1cmでCまで動きます。x秒後の△APDの面積y cm²を、Pが辺AB上（0≦x≦4）にあるときと辺BC上（4≦x≦10）にあるときに分けて表しましょう。</p>
+<p>考え方：底辺をAD＝6cmと見ます。辺AB上のとき高さはAP＝x cmなので y＝1/2×6×x＝3x。辺BC上のときはPがどこにあっても高さはAB＝4cmで一定なので y＝1/2×6×4＝12 です。</p>
+<p class="answer">答え：0≦x≦4 のとき y＝3x ／ 4≦x≦10 のとき y＝12</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>点Pが辺BCやCDに移ったとき、xは「出発点Aからの総移動距離」であることに注意しましょう（辺CD上の長さは全体の距離からxを引くなどして表します）。</li>
+<li>変域のつなぎ目（例題のx＝4）で、前後の式のyの値が一致するか確認するとミスに気づけます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

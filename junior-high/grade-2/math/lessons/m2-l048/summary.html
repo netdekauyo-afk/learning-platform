@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第48時限 n角形の内角の和の説明｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l047/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l049/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第48時限「n角形の内角の和の説明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>多角形を三角形に分ける方法をもとに、n角形の内角の和が 180°×(n−2) になることを根拠を明らかにして説明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>n角形の1つの頂点からひける対角線は (n−3) 本あり、それによってn角形は (n−2) 個の三角形に分けられます。</li>
+<li>三角形1つの内角の和は180°なので、n角形の内角の和は 180°×(n−2) と表せます。</li>
+<li>逆に、内角の和が与えられたときは 180°×(n−2)＝(与えられた角) の方程式を解いて何角形かを求められます。</li>
+<li>多角形の内部にある角を「内角」といいます。また、1つの辺を延長した線と、隣り合う辺とが作る外側の角を「外角」といいます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>内角の和が1440°である多角形は何角形ですか。</p>
+<p>考え方：n角形とすると 180(n−2)＝1440 です。両辺を180でわると n−2＝8 となり、n＝10 です。</p>
+<p class="answer">答え：十角形</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>n−2＝8 を求めたところで「八角形」と答えてしまうミスがとても多いので、最後に＋2をしてnを求めましょう。</li>
+<li>公式を丸暗記するだけでなく、「(n−2)個の三角形に分かれるから」と理由も言えるようにしておきましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

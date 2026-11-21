@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第86時限 組み合わせと2次元の表を使った確率｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l085/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l087/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第86時限「組み合わせと2次元の表を使った確率」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>順序を区別しない「組み合わせ」の考え方や、2つのさいころなどの「2次元の表」を使って、いろいろな確率を求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>2つのさいころ（大・小など）を同時に投げるときは、たて6マス×よこ6マスの「2次元の表」をかくと、全部で36通りを一目で漏れなく調べられます。</li>
+<li>袋から2個の玉を同時に取り出すなど、取り出す順番が関係ないときは「組み合わせ」として (A, B) と (B, A) を同じ1通りとみなす樹形図（または表の半分）で数えます。</li>
+<li>順番を区別して全部並べて数えても、分子と分母がどちらも2倍になるため確率の値は同じになります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>赤玉3個、白玉2個が入った袋から、玉を区別して（赤1、赤2、赤3、白1、白2）2個を同時に取り出すとき、2個とも赤玉である確率を求めましょう。</p>
+<p>考え方：順番を区別しない組み合わせで数えると、2個の取り出し方は全部で10通りです。そのうち赤玉どうしの組み合わせは (赤1,赤2)、(赤1,赤3)、(赤2,赤3) の3通りなので、確率は 3/10 です。</p>
+<p class="answer">答え：3/10</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「取り出した玉を戻してもう1回引く」ときは同じ玉を2回引く場合（(1,1)など）も含まれますが、「同時に2個取り出す（戻さない）」ときは同じ玉の組は含まれません。</li>
+<li>2つのさいころは6×6＝36通りの表をかく習慣をつけると圧倒的にミスが減ります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

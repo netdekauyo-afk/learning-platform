@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第93時限 四分位数・四分位範囲と箱ひげ図の意味｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l092/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l094/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第93時限「四分位数・四分位範囲と箱ひげ図の意味」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>四分位数（第1・第2・第3四分位数）、四分位範囲、および箱ひげ図の意味と特徴を理解し、データの区切り方を知るための土台をつくることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>データを小さい順に並べて4等分する位置の値を「四分位数」といいます。小さい方から順に、第1四分位数（Q1）、第2四分位数（Q2＝中央値）、第3四分位数（Q3）と呼びます。</li>
+<li>Q2（中央値）を境にデータを前半と後半に分け（データ数が奇数のときは真ん中の値を除いて分ける）、前半の中央値がQ1、後半の中央値がQ3です。</li>
+<li>「四分位範囲＝第3四分位数−第1四分位数」であり、データの中央付近の約50%がどのくらいの幅に散らばっているかを表します（極端な値の影響を受けにくい）。</li>
+<li>最小値・Q1・Q2・Q3・最大値の5つの値を用いて表した図を「箱ひげ図」といい、箱の左右がQ1とQ3、箱の中の線がQ2、両端のひげが最小値と最大値を示します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>次の9個のデータ：3、5、6、8、10、12、14、15、19 の第1・第2・第3四分位数と四分位範囲を求めましょう。</p>
+<p>考え方：小さい順に並んでいます。9個の中央（5番目）が Q2＝10 です。10を除いた前半「3、5、6、8」の中央値は (5＋6)÷2＝5.5（Q1）、後半「12、14、15、19」の中央値は (14＋15)÷2＝14.5（Q3）です。四分位範囲は 14.5−5.5＝9 となります。</p>
+<p class="answer">答え：Q1＝5.5、Q2＝10、Q3＝14.5 ／ 四分位範囲＝9</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>四分位数を求める前に、必ずデータを「小さい順」に並べ替えるのを忘れないようにしましょう。</li>
+<li>データ数が奇数のとき、中央の値（Q2）は前半にも後半にも入れずに残りのデータからQ1とQ3を求めます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

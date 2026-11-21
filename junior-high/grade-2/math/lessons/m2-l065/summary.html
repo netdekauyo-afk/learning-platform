@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第65時限 二等辺三角形になるための条件の証明と利用｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l064/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l066/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第65時限「二等辺三角形になるための条件の証明と利用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>「2つの角が等しい三角形は二等辺三角形である」ことを証明し、図形が二等辺三角形であることを示す問題に利用できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>二等辺三角形になるための条件（定理）：2つの角が等しい三角形は、二等辺三角形である。</li>
+<li>証明では、等しくない残りの角（頂角にあたる角）の二等分線をひき、三角形の内角の和を使って残りの角も等しいことを示し、「1組の辺とその両端の角がそれぞれ等しい」で合同を導きます。</li>
+<li>平行線の錯角や折り返しの図形などで2つの角が等しいことを示せれば、その三角形が二等辺三角形である（2辺が等しい）と結論づけられます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>長方形の紙を対角線や斜めの線で折り返したとき、重なった部分の三角形が二等辺三角形になる理由を説明しましょう。</p>
+<p>考え方：折り返した角は等しく、また長方形の向かい合う辺は平行なので錯角も等しくなります。すると重なった三角形の2つの角が等しくなるので、2つの角が等しい三角形は二等辺三角形であることから、二等辺三角形になります。</p>
+<p class="answer">答え：折り返しの角と平行線の錯角が等しいことから2つの角が等しくなり、二等辺三角形になる</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「2辺が等しいから2底角が等しい（性質）」と「2角が等しいから2辺が等しい（条件）」の向きを混同しないようにしましょう。</li>
+<li>折り返しの問題では「折る前と折った後で重なる角や辺は等しい」ことを根拠に使います。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

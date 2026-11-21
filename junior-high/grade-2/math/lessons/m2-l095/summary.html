@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第95時限 四分位範囲と箱ひげ図によるデータの比較と判断｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l094/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l096/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第95時限「四分位範囲と箱ひげ図によるデータの比較と判断」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>四分位範囲と箱ひげ図を用いて複数のデータ（牛乳の販売数など）の傾向を比較・読みとり、根拠を示して批判的に考察・判断できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>複数の箱ひげ図を並べて比べると、中央値（箱の中の線）の高さの違い、中央50%の散らばり（箱の長さ＝四分位範囲）、全体の範囲（ひげの端から端）を一目で比較できます。</li>
+<li>たとえば「A店の方が中央値も第1四分位数もB店の第3四分位数より高い」といった具体的な位置関係を使うと、説得力のある判断ができます。</li>
+<li>ただし、箱ひげ図だけでは個別の値や外れ値の個数まではわからないため、必要に応じて元のデータやヒストグラムも確認する批判的な姿勢が大切です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>2つのクラスA、Bのテスト結果の箱ひげ図で、A組は Q1＝55、Q2＝70、Q3＝80、B組は Q1＝60、Q2＝70、Q3＝75 でした。2つの組の散らばり具合を四分位範囲で比べましょう。</p>
+<p>考え方：A組の四分位範囲は 80−55＝25点、B組の四分位範囲は 75−60＝15点です。中央値はどちらも70点で同じですが、四分位範囲が小さいB組の方が中央付近のデータがまとまっており散らばりが小さいといえます。</p>
+<p class="answer">答え：A組の四分位範囲は25点、B組は15点なので、B組の方が中央付近の散らばりが小さい</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「範囲（最大値−最小値）」と「四分位範囲（Q3−Q1）」を取り違えないようにしましょう。</li>
+<li>「Aの方が大きい」と感覚で書くのではなく、中央値・四分位範囲・最大値などの数値を根拠に挙げて説明します。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

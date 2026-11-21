@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第82時限 5章「三角形と四角形」のまとめ演習｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l081/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l083/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第82時限「5章「三角形と四角形」のまとめ演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>5章「三角形と四角形」全体の学習内容（二等辺三角形・直角三角形・平行四辺形・特別な四角形・等積変形）を総復習し、定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>二等辺三角形：2つの底角は等しい（定理）。逆に、2つの角が等しい三角形は二等辺三角形になります（条件）。頂角の二等分線は、底辺を垂直に2等分します。</li>
+<li>直角三角形の合同条件：①斜辺と1つの鋭角がそれぞれ等しい、②斜辺と他の1辺がそれぞれ等しい。</li>
+<li>平行四辺形の性質：2組の対辺がそれぞれ等しく、2組の対角がそれぞれ等しく、対角線はそれぞれの中点で交わります。平行四辺形になるための条件は5つあります（2組の対辺がそれぞれ平行／等しい、2組の対角が等しい、対角線がそれぞれの中点で交わる、1組の対辺が平行でその長さが等しい）。</li>
+<li>特別な四角形の対角線：長方形は長さが等しく、ひし形は垂直に交わり、正方形はその両方を満たします。</li>
+<li>逆と反例：もとのことがらの仮定と結論を入れかえたものが「逆」です。逆は正しいとは限らず、成り立たない例（反例）を1つ挙げれば、そのことがらは正しくないと示せます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>平行四辺形ABCDの辺AB、CDの中点をそれぞれM、Nとするとき、四角形AMCNが平行四辺形であることを証明する流れを整理しましょう。</p>
+<p>考え方：平行四辺形の性質より AB // DC かつ AB＝DC です。M、Nは中点なので AM＝1/2 AB、NC＝1/2 DC となり、AM // NC かつ AM＝NC。よって1組の対辺が平行でその長さが等しいので、四角形AMCNは平行四辺形です。</p>
+<p class="answer">答え：AM // NC かつ AM＝NC を示し、「1組の対辺が平行でその長さが等しい」から平行四辺形と結論づける</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>中点が出てきたら「AM＝1/2 AB」のように半分の長さを式で表すと論理がつながりやすくなります。</li>
+<li>5章で身につけた証明の力は、中3の相似や円周角の証明でもそのまま活躍します。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

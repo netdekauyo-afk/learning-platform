@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第88時限 確率の求め方の基本演習｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l087/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l089/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第88時限「確率の求め方の基本演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>同様に確からしい確率・樹形図・2次元の表・起こらない確率の基本問題に取り組み、状況に応じた数え上げの方法を定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>さいころ2個は「36通りの表」、硬貨3枚やカード並べ・組み合わせは「樹形図」、同じ色の玉は「番号を付けて区別」が基本です。</li>
+<li>「少なくとも〜」「〜でない」を見たら「1−反対の確率」が使えないか検討します。</li>
+<li>最後に必ず約分できるかを確認して答えます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>赤玉2個、白玉3個が入った袋から同時に2個の玉を取り出すとき、2個とも白玉である確率を求めましょう。</p>
+<p>考え方：玉を赤1、赤2、白1、白2、白3の5個に区別します。2個を選ぶ組み合わせは全部で10通り。そのうち2個とも白玉になるのは (白1,白2)、(白1,白3)、(白2,白3) の3通りなので、確率は 3/10 です。</p>
+<p class="answer">答え：3/10</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>同じ色の玉を区別せずに「(赤,赤)、(赤,白)、(白,白)の3通りだから1/3」と誤らないようにしましょう。</li>
+<li>組み合わせを数えるときは、辞書順（1-2、1-3、…）に書くと重複や抜けを防げます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

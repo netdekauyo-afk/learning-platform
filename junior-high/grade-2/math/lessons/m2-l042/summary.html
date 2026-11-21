@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第42時限 実測データを1次関数とみなす問題解決｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l041/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l043/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第42時限「実測データを1次関数とみなす問題解決」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>飲み物の時間と温度などの実測データを1次関数とみなして変化を予想し、その方法や妥当性を説明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>現実の実験や観測データでは、点が完全な一直線上に並ばなくても、ほぼ直線状に並んでいることがあります。</li>
+<li>このようなとき、2つの数量の関係を「1次関数とみなす」ことで、式をつくり未来の値や間の値を予想できます。</li>
+<li>式をつくるには、データの傾向を代表する2点を選んで傾きと切片を求め、求めた予想が現実的かも振り返ります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>冷たい飲み物を部屋に置いたところ、0分後に6℃、10分後に11℃、20分後に16℃でした。1次関数とみなして30分後の温度を予想しましょう。</p>
+<p>考え方：10分ごとに5℃（1分あたり0.5℃）上がっているので、x分後の温度をy℃とすると y＝0.5x＋6 とみなせます。x＝30 を代入すると y＝0.5×30＋6＝21 です。</p>
+<p class="answer">答え：21℃</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>現実の温度変化は室温に近づくとゆるやかになるため、1次関数とみなせる範囲には限りがあることも意識しましょう。</li>
+<li>どの2点を選ぶかによって式が少し変わるため、全体の傾向に合う点を選ぶことが大切です。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

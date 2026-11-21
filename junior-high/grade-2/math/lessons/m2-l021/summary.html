@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第21時限 かっこ・小数・分数をふくむ連立方程式｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l020/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l022/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第21時限「かっこ・小数・分数をふくむ連立方程式」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>かっこ・小数・分数をふくむ連立方程式を、整数のすっきりした形に整理してから解けるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>かっこがある式は、まず分配法則でかっこを外し、ax＋by＝c の形に整理します。</li>
+<li>小数がある式は、両辺を10倍や100倍してすべて整数にします。</li>
+<li>分数がある式は、分母の最小公倍数を両辺のすべての項にかけて分母をはらいます。</li>
+<li>整理できたら、いつもの加減法や代入法で解きます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>連立方程式 { 0.2x＋0.3y＝1.3 …①、x/2＋y/3＝2 …② } を解きましょう。</p>
+<p>考え方：①の両辺を10倍すると 2x＋3y＝13 …①&#x27;、②の両辺を6倍すると 3x＋2y＝12 …②&#x27; となります。①&#x27;×3−②&#x27;×2 より 5y＝15、y＝3。①&#x27;に代入すると 2x＋9＝13 より x＝2 です。</p>
+<p class="answer">答え：x＝2、y＝3</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>小数や分数を直すとき、右辺の整数（例：2）にも同じ数をかけるのを忘れないようにしましょう。</li>
+<li>式を整理する段階でミスをすると最後までずれるため、整理後の式を一度見直してから解き始めましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

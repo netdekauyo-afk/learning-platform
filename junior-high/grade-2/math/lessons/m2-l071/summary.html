@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第71時限 平行四辺形の性質の証明｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l070/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l072/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第71時限「平行四辺形の性質の証明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>平行四辺形の3つの性質（対辺・対角・対角線）を、定義（2組の対辺が平行）と三角形の合同を用いて証明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>対角線ACを1本ひくと、AB // DC、AD // BC の錯角が等しく、ACが共通なので「1組の辺とその両端の角」より △ABC≡△CDA が証明できます。</li>
+<li>この合同から「AB＝CD、BC＝DA（2組の対辺が等しい）」と「∠B＝∠D（対角が等しい）」が導けます（∠A＝∠Cも錯角の和または別の対角線で示せます）。</li>
+<li>さらに対角線ACとBDの交点をOとすると、△AOB≡△COD（AB＝CDと平行線の錯角2組）より AO＝CO、BO＝DO（対角線はそれぞれの中点で交わる）が証明できます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>平行四辺形ABCDで対角線ACをひいたとき、△ABC≡△CDA を証明するための3つの等しい要素を挙げましょう。</p>
+<p>考え方：平行四辺形の定義より AB // DC なので錯角 ∠BAC＝∠DCA、AD // BC なので錯角 ∠BCA＝∠DAC、さらに共通な辺より AC＝CA です。</p>
+<p class="answer">答え：∠BAC＝∠DCA、∠BCA＝∠DAC、AC＝CA（1組の辺とその両端の角がそれぞれ等しい）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>性質を証明するときは、まだ証明していない性質（AB＝CDなど）を根拠に使わず、定義（平行）から出発する点に注意しましょう。</li>
+<li>対角線の性質を証明するときは、すでに証明した「対辺が等しい（AB＝CD）」を使って構いません。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

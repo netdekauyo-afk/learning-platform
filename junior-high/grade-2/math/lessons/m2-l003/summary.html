@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第3時限 同類項の整理と多項式の加減｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l002/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l004/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第3時限「同類項の整理と多項式の加減」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>同類項の意味を理解し、同類項をまとめて式を簡単にすることや、多項式の加法・減法の計算ができるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>多項式の中で、文字の部分がまったく同じ項を「同類項」といいます（例：3xと−5x、2a²とa²）。</li>
+<li>同類項は分配法則を使って係数を足し引きし、1つの項にまとめることができます（例：3x−5x＝(3−5)x＝−2x）。</li>
+<li>多項式の加法ではかっこをそのまま外し、減法では引く式の各項の符号をすべて変えてからかっこを外して同類項をまとめます。</li>
+<li>筆算で計算するときは、同類項をたてにそろえて並べると見落としが減ります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>(4x−3y)−(2x−5y) を計算しましょう。</p>
+<p>考え方：後ろのかっこは引き算なので、各項の符号を変えて −2x＋5y にします。4x−3y−2x＋5y として同類項をまとめると、(4−2)x＋(−3＋5)y となります。</p>
+<p class="answer">答え：2x＋2y</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>x²とxのように、文字が同じでも指数（次数）が違う項は同類項ではないのでまとめられません。</li>
+<li>減法でかっこを外すとき、後ろの項（例題の−5y）の符号を変え忘れるミスが多いので注意しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

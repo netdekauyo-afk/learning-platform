@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第76時限 平行四辺形になる条件を利用した証明と発展考察｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l075/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l077/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第76時限「平行四辺形になる条件を利用した証明と発展考察」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>平行四辺形になるための5つの条件の中から適切なものを選んで図形の性質を証明し、さらに条件を変えて発展的に考察できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>「四角形EBFDが平行四辺形であることを証明しなさい」という問題では、もとの図形（多くは平行四辺形ABCD）の性質から、5つの条件のどれか1つが成り立つことを示します。</li>
+<li>たとえば、平行四辺形ABCDの辺AD、BCの中点をE、Fとするとき、AD // BC かつ AD＝BC より ED // BF かつ ED＝BF となるので、「1組の対辺が平行でその長さが等しい」で一発で証明できます。</li>
+<li>中点ではなく「AE＝CF となる点E、F」に条件を広げても同じ証明が成り立つなど、統合的・発展的に考えることができます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>平行四辺形ABCDの対角線の交点をOとし、OA、OC上に OE＝OF となる点E、Fをとります。四角形EBFDが平行四辺形になることを、どの条件で証明できますか。</p>
+<p>考え方：もとの平行四辺形の性質より OB＝OD、仮定より OE＝OF なので、四角形EBFDの対角線EFとBDはそれぞれの中点Oで交わります。</p>
+<p class="answer">答え：対角線がそれぞれの中点で交わる</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>対角線の交点Oが出てくるときは「対角線がそれぞれの中点で交わる」、平行な辺上に点をとるときは「1組の対辺が平行でその長さが等しい」を使うと簡潔に証明できることが多いです。</li>
+<li>証明の最後に、使った「平行四辺形になるための条件」を一字一句正確に書きましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

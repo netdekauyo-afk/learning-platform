@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第96時限 7章「データの比較」のまとめ演習｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l095/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第96時限「7章「データの比較」のまとめ演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>7章「データの比較」全体の学習内容（四分位数・四分位範囲・箱ひげ図の作成とヒストグラムとの対応・データの比較判断）を総復習し、定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>データの個数が偶数のとき・奇数のときの両方について、Q1・Q2・Q3と四分位範囲を正確に計算できるようにします。</li>
+<li>箱ひげ図から「最小値・最大値・範囲・四分位範囲・約25%や約50%のデータがどこにあるか」を読み取れるようにします。</li>
+<li>ヒストグラムと箱ひげ図のそれぞれの長所と限界を理解し、目的に応じてデータを比較・判断できるようにします。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>次の8個のデータ：12、15、18、20、24、26、30、34 について、最小値、Q1、Q2、Q3、最大値、範囲、四分位範囲をすべて求めましょう。</p>
+<p>考え方：8個なので前半4個「12、15、18、20」と後半4個「24、26、30、34」に分かれます。Q2＝(20＋24)÷2＝22、Q1＝(15＋18)÷2＝16.5、Q3＝(26＋30)÷2＝28。範囲は 34−12＝22、四分位範囲は 28−16.5＝11.5 です。</p>
+<p class="answer">答え：最小値12、Q1＝16.5、Q2＝22、Q3＝28、最大値34 ／ 範囲22、四分位範囲11.5</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>データ数が偶数のときは、前半・後半にきれいに半分ずつ分かれるため、どの値も除かずにそのまま前半・後半の中央値をとります。</li>
+<li>これで中2数学の全96時限の学習が完了です。わからない単元はいつでも該当の要約に戻って復習しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

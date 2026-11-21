@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第66時限 ことがらの逆と反例の意味｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l065/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l067/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第66時限「ことがらの逆と反例の意味」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>二等辺三角形の性質と条件の比較を通して、ことがらの「逆」と、正しくないことを示す「反例」の意味を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>ことがら「PならばQである」の仮定と結論を入れかえた「QならばPである」を、もとのことがらの「逆」といいます。</li>
+<li>正しいことがらでも、その逆がいつも正しいとは限りません。</li>
+<li>あることがらが正しくない（成り立たない）ことを示すためには、仮定は満たすのに結論が成り立たない具体的な例を1つ挙げれば十分です。これを「反例」といいます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>ことがら「x＝2、y＝3 ならば x＋y＝5 である」の逆を言い、それが正しいかどうか判断しましょう。正しくない場合は反例を1つ挙げましょう。</p>
+<p>考え方：仮定と結論を入れかえると「x＋y＝5 ならば x＝2、y＝3 である」になります。x＝1、y＝4 のように足して5になる組はほかにもあるので、逆は正しくありません。</p>
+<p class="answer">答え：逆：x＋y＝5 ならば x＝2、y＝3 である ／ 正しくない（反例：x＝1、y＝4 など）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>反例は「仮定を満たしているけれど、結論を満たさない例」を選ぶ必要があります。仮定すら満たさない例は反例になりません。</li>
+<li>「2つの三角形が合同ならば面積が等しい」の逆も、面積が等しくても形の違う三角形があるため正しくありません。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

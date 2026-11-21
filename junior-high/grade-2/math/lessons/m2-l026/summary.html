@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第26時限 割合に関する連立方程式の利用｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l025/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l027/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第26時限「割合に関する連立方程式の利用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>割合（パーセントや増減）に関する文章題を、もとの量と増減の表し方を整理して連立方程式で解決できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>x の a% は (a/100)x と表します。a%増えた量は (1＋a/100)x、a%減った量は (1−a/100)x です。</li>
+<li>増減の問題では「増減後の合計の式」よりも「増えた分と減った分の合計＝全体の増減」の式を立てると計算がずっと楽になります。</li>
+<li>最後に問われているのが「昨年の人数」なのか「今年の人数」なのかを必ず確認します。</li>
+<li>食塩水の問題では、「食塩の量＝食塩水の重さ×濃度（割合）」が鍵になります。濃度 a% の食塩水 x g にふくまれる食塩は (a/100)x g です。</li>
+<li>食塩水を混ぜる問題では、「重さの合計」の式と、「食塩の量の合計（混ぜる前の合計＝混ぜた後の量）」の式の2つを立てます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>ある中学校の昨年の生徒数は男女合わせて300人でした。今年は昨年より男子が5%増え、女子が4%減ったので、全体で6人増えました。昨年の男子と女子の人数を求めましょう。</p>
+<p>考え方：昨年の男子をx人、女子をy人とすると、x＋y＝300 …①、5/100 x − 4/100 y＝6 …②。②×100より 5x−4y＝600 …②&#x27;。①×4＋②&#x27;より 9x＝1800、x＝200、y＝100 です。</p>
+<p class="answer">答え：昨年の男子 200人、昨年の女子 100人</p>
+<p>もう1つの代表的な題材である、食塩水の問題も見てみましょう。</p>
+<p>4%の食塩水と9%の食塩水を混ぜて、6%の食塩水を400g作ります。それぞれ何gずつ混ぜればよいですか。</p>
+<p>考え方：4%の食塩水を x g、9%の食塩水を y g とすると、重さについて x＋y＝400 …①。食塩の量については (4/100)x＋(9/100)y＝(6/100)×400＝24 …②。②×100より 4x＋9y＝2400 …②'。①×4を②'から引くと 5y＝800、y＝160、x＝240 です。</p>
+<p class="answer">答え：4%の食塩水 240g、9%の食塩水 160g</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「今年の人数」を聞かれている場合は、求めた昨年の人数に増減を計算し直すのを忘れないようにしましょう。</li>
+<li>「4%減った」を増減の式で書くときは、マイナス符号（−4/100 y）を付けます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

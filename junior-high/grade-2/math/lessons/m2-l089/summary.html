@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第89時限 スクラッチカードの出やすさの確率による説明｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l088/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l090/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第89時限「スクラッチカードの出やすさの確率による説明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>スクラッチカードの複数マスから2か所を削る場面で、特定の絵柄が出る組み合わせの起こりやすさを確率をもとに考え、説明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>直感では「どれを選んでも同じくらい出そう」に見えても、実際に樹形図や表で全通りを書き出して確率を比べると、起こりやすさに大きな差があることがあります。</li>
+<li>スクラッチカードのように複数マスから2か所を選ぶ問題では、各マスに番号を付けてすべての組み合わせを漏れなく数え上げます。</li>
+<li>確率の数値をもとに判断し、根拠を明らかにして説明することが大切です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>4つのマスA、B、C、Dのうち、AとBにあたりマーク、CとDにはずれマークが隠れたカードから2マスを削るとき、「両方あたり」と「1つあたり・1つはずれ」ではどちらが起こりやすいですか。</p>
+<p>考え方：2マスを選ぶ組み合わせは (A,B)、(A,C)、(A,D)、(B,C)、(B,D)、(C,D) の6通りです。両方あたりは (A,B) の1通り（確率1/6）、1つあたり・1つはずれは4通り（確率4/6＝2/3）なので、後者の方が4倍起こりやすいです。</p>
+<p class="answer">答え：「1つあたり・1つはずれ」の方が起こりやすい（確率 2/3 と 1/6）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>直感だけで決めつけず、必ずすべての組み合わせをリストアップして確率を比較しましょう。</li>
+<li>「AとBを選ぶ」と「BとAを選ぶ」は同じ削り方なので重複して数えないように注意します。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

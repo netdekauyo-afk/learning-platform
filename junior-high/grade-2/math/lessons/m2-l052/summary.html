@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第52時限 平行線の性質を使った三角形の内角・外角の証明｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l051/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l053/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第52時限「平行線の性質を使った三角形の内角・外角の証明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>平行線の性質を使って三角形の内角の和が180°であることを証明し、「証明」の意味と三角形の外角の性質を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>すでに正しいと認められたことがらを根拠にして、あることがらが成り立つことを筋道を立てて説明することを「証明」といいます。</li>
+<li>△ABCの頂点Cを通り辺ABに平行な直線をひくと、錯角と同位角が等しいことから、3つの内角が頂点Cに一直線に集まり、和が180°であることが証明できます。</li>
+<li>三角形の外角の性質：三角形の1つの外角は、そのとなりにない2つの内角の和に等しくなります。</li>
+<li>三角形は角の大きさによって、鋭角三角形・直角三角形・鈍角三角形の3つに分類されます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>△ABCで ∠A＝48°、∠B＝67° のとき、頂点Cにおける外角の大きさを求めましょう。</p>
+<p>考え方：三角形の1つの外角は、そのとなりにない2つの内角の和に等しいので、∠A＋∠B＝48°＋67°＝115° となります。</p>
+<p class="answer">答え：115°</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「となりにない2つの内角の和」を使うと、わざわざ∠Cを求めてから180°で引く手間が省け、計算ミスも減ります。</li>
+<li>鋭角は0°より大きく90°より小さい角、鈍角は90°より大きく180°より小さい角です。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

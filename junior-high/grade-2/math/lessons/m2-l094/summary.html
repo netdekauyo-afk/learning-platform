@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第94時限 箱ひげ図の作成とヒストグラムとの対応｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l093/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l095/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第94時限「箱ひげ図の作成とヒストグラムとの対応」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>データを整理して箱ひげ図を正確にかき、ヒストグラムと箱ひげ図を対応させて分布の傾向を読みとれるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>箱ひげ図の各区間（最小値〜Q1、Q1〜Q2、Q2〜Q3、Q3〜最大値）には、それぞれ全体の約25%のデータが入っています。</li>
+<li>区間（箱やひげ）が短いほど、そこにデータがぎゅっと密集している（ヒストグラムの山が高い）ことを意味し、長いほどデータがまばらに散らばっていることを意味します。</li>
+<li>箱ひげ図では全体の散らばり（範囲）や中央50%の散らばり（四分位範囲）はすぐわかりますが、ヒストグラムのような「山の数（二峰性など）」は読み取れません。</li>
+<li>四分位数の求め方：データを小さい順に並べ、中央値（第2四分位数 Q2）で前半と後半に分けます。前半の中央値が第1四分位数 Q1、後半の中央値が第3四分位数 Q3 です。データの個数が偶数のとき、中央値は真ん中の2つの値の平均です。</li>
+<li>四分位範囲は Q3−Q1 で求め、中央50%のデータの散らばりを表します。箱ひげ図は、最小値・Q1・Q2・Q3・最大値の5つの値を使って、箱（Q1からQ3）とひげ（最小値から最大値）で分布を表した図です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>あるデータの箱ひげ図で、最小値〜Q1のひげが短く、Q3〜最大値のひげがとても長いとき、ヒストグラムではどのあたりにデータが多く集まっていますか。</p>
+<p>考え方：どの区間にもデータの約25%が入るため、幅が狭い区間ほど密度が高くデータが多く集まっています。したがって小さい値の方にデータが多く集まり、大きい値の方にすそが長く伸びる形になります。</p>
+<p class="answer">答え：小さい値（最小値〜Q1）の付近にデータが多く集まっている</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「箱やひげが長い＝データの個数が多い」と誤解しやすいので注意しましょう。個数の割合はどの区間も約25%で同じです。</li>
+<li>箱ひげ図に平均値が「＋」印などで書き添えられることもあり、中央値とのずれから分布の偏りも読み取れます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

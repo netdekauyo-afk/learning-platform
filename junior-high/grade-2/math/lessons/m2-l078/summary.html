@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第78時限 長方形・ひし形の対角線の性質と逆の反例｜中学2年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m2-l077/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m2-l079/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第78時限「長方形・ひし形の対角線の性質と逆の反例」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>長方形やひし形の対角線の性質を証明し、さらにその逆が一般の四角形では成り立たないことを反例で示せるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>長方形の対角線の性質：「対角線の長さは等しい」（△ABC≡△DCB を2組の辺とその間の角で示して AC＝DB）。</li>
+<li>ひし形の対角線の性質：「対角線は垂直に交わる」（二等辺三角形の頂角の二等分線、または △ABO≡△ADO の3組の辺から ∠AOB＝90°）。</li>
+<li>正方形の対角線は、長方形とひし形の両方の性質をもつため「長さが等しく、垂直に交わり、それぞれの中点で交わる」となります。</li>
+<li>ただし、一般の四角形で「対角線が等しいから長方形」「対角線が垂直だからひし形」という逆は成り立ちません（等脚台形やたこ形などが反例になります）。</li>
+<li>直角三角形の斜辺の中点の性質：直角三角形では、斜辺の中点から3つの頂点までの距離がすべて等しくなります（その長さは斜辺の半分）。長方形を対角線で半分に切ると直角三角形になり、長方形の対角線が「長さが等しく、それぞれの中点で交わる」ことから導けます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>「対角線が垂直に交わる四角形はひし形である」が正しくないことを示す反例を挙げましょう。</p>
+<p>考え方：対角線が垂直に交わっていても、4つの辺の長さが等しくない四角形（例：たこ形や、対角線が中点で交わらない四角形）はひし形ではありません。</p>
+<p class="answer">答え：たこ形（隣り合う2組の辺は等しいが4辺が等しくない、対角線が垂直な四角形）など</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「平行四辺形で」という前提がついた上で「対角線が垂直ならひし形」「対角線が等しいなら長方形」なら正しく成り立ちます。</li>
+<li>前提が「四角形」なのか「平行四辺形」なのかを問題文でしっかり読み分けましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>
