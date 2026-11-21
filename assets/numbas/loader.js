@@ -262,6 +262,11 @@ async function installLessonHints(examElement) {
   const parts = examElement.exam?.questionList?.[0]?.parts || [];
   await Promise.all(parts.map(async (part) => {
     const section = await part.display.html_promise;
+    // Preserve the existing layout classification made by worksheet controls.
+    const prompt = section.querySelector(":scope > .prompt");
+    if (part.type === "1_n_2" || prompt?.querySelector(".worksheet-text") || prompt?.textContent.trim().length > 20) {
+      section.classList.add("written-question");
+    }
     const button = section.querySelector(":scope > .stepsBtn");
     const content = section.querySelector(":scope > .steps.well");
     if (!button || !content) return;
