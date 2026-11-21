@@ -1,4 +1,5 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js";
+import { createDifficultyTabs } from "./difficulty-tabs.js";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
@@ -11,24 +12,25 @@ const resource = (path) => new URL(path, engine).href;
    and the Numbas score calculation are deliberately left unchanged. */
 const practiceHistoryPrefix = "classroom:practice-history:v1:";
 
-function practiceHistoryKey() {
-  return practiceHistoryPrefix + location.pathname;
+function practiceHistoryKey(level = "basic") {
+  const base = practiceHistoryPrefix + location.pathname;
+  return level === "basic" ? base : base + ":" + level;
 }
 
-function readPracticeHistory() {
+function readPracticeHistory(key) {
   try {
-    const value = JSON.parse(localStorage.getItem(practiceHistoryKey()) || "[]");
+    const value = JSON.parse(localStorage.getItem(key) || "[]");
     return Array.isArray(value) ? value : [];
   } catch {
     return [];
   }
 }
 
-function appendPracticeHistory(entry) {
+function appendPracticeHistory(key, entry) {
   try {
-    const history = readPracticeHistory();
+    const history = readPracticeHistory(key);
     history.push({ ...entry, at: new Date().toISOString() });
-    localStorage.setItem(practiceHistoryKey(), JSON.stringify(history));
+    localStorage.setItem(key, JSON.stringify(history));
     return true;
   } catch {
     return false;
@@ -52,7 +54,7 @@ function readPracticeAnswers(examData) {
   return answers.every((answer) => typeof answer === "string" && answer.length) ? answers : null;
 }
 
-async function installPracticeReview(examElement) {
+async function installPracticeReview(examElement, examHost, historyKey, level) {
   const question = examElement.exam?.questionList?.[0];
   if (!question?.parts?.length) return;
 
@@ -62,7 +64,7 @@ async function installPracticeReview(examElement) {
   const updateViews = [];
   const refresh = () => updateViews.forEach((fn) => fn());
   const save = (entry, messageElement) => {
-    if (!appendPracticeHistory(entry)) {
+    if (!appendPracticeHistory(historyKey, entry)) {
       messageElement.textContent = "このブラウザでは学習履歴を保存できません。";
       messageElement.hidden = false;
     }
@@ -105,7 +107,7 @@ async function installPracticeReview(examElement) {
 
   // Unlike Numbas' own "Reveal answer", the separate view below never calls
   // revealAnswer(), so the existing input fields remain editable.
-  const response = await fetch(new URL(host.dataset.examSource, location.href));
+  const response = await fetch(new URL(examHost.dataset.examSource, location.href));
   if (!response.ok) return;
   const raw = await response.text();
   const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
@@ -120,12 +122,13 @@ async function installPracticeReview(examElement) {
   button.type = "button";
   button.className = "practice-reveal-button";
   button.textContent = "答えを見る";
-  button.setAttribute("aria-controls", "practice-answer");
+  const answerId = level === "basic" ? "practice-answer" : "practice-answer-" + level;
+  button.setAttribute("aria-controls", answerId);
   button.setAttribute("aria-expanded", "false");
 
   const answerBox = document.createElement("div");
   answerBox.className = "practice-answer";
-  answerBox.id = "practice-answer";
+  answerBox.id = answerId;
   answerBox.hidden = true;
   const heading = document.createElement("h2");
   heading.textContent = "正しい答え";
@@ -144,7 +147,7 @@ async function installPracticeReview(examElement) {
   details.append(summary, list);
 
   updateViews.push(() => {
-    const history = readPracticeHistory();
+    const history = readPracticeHistory(historyKey);
     const wrong = history.filter((item) => item.kind === "wrong").length;
     const reveals = history.filter((item) => item.kind === "reveal").length;
     summary.textContent = "学習履歴：誤答" + wrong + "回・解答確認" + reveals + "回";
@@ -176,7 +179,7 @@ async function installPracticeReview(examElement) {
     if (show) save({ kind: "reveal" }, notice);
   });
   section.append(button, answerBox, details, notice);
-  host.append(section);
+  examHost.append(section);
 
   // Hide Numbas' irreversible reveal button only when our safe replacement
   // is ready. If this setup fails, Numbas retains its original functionality.
@@ -253,8 +256,28 @@ async function installWorksheetControls(examElement, examData) {
   }
 }
 
-async function boot() {
-  if (!host || !host.dataset.examSource) throw new Error("問題の参照先が設定されていません。");
+/* Keep the existing Numbas controls and card, but put its own hint after the
+   card. Opening a hint after an incorrect answer does not re-submit the part. */
+async function installLessonHints(examElement) {
+  const parts = examElement.exam?.questionList?.[0]?.parts || [];
+  await Promise.all(parts.map(async (part) => {
+    const section = await part.display.html_promise;
+    const button = section.querySelector(":scope > .stepsBtn");
+    const content = section.querySelector(":scope > .steps.well");
+    if (!button || !content) return;
+    const hint = document.createElement("div");
+    hint.className = "lesson-hint";
+    hint.append(button, content);
+    section.after(hint);
+    part.events.on("post-submit", () => {
+      if (part.answered && Number(part.score) < Number(part.marks) && !part.stepsOpen) {
+        part.openSteps();
+      }
+    });
+  }));
+}
+
+async function prepareRuntime() {
   const response = await fetch(resource("template.html"));
   if (!response.ok) throw new Error("Numbasの画面テンプレートを取得できませんでした。");
   const templateHost = document.createElement("div");
@@ -269,21 +292,27 @@ async function boot() {
   await window.Numbas.init_promise;
   window.Numbas.display.control_focus = false;
   await setExerciseLanguage();
+}
 
+async function bootExam(examHost, examStatus, level, lessonLayout) {
   const exam = document.createElement("numbas-exam");
   exam.setAttribute("noload", "");
-  exam.setAttribute("source_url", host.dataset.examSource);
+  exam.setAttribute("source_url", examHost.dataset.examSource);
   exam.setAttribute("scorm", "false");
   exam.addEventListener("numbas:loaded", () => {
-    status.textContent = "";
+    examStatus.textContent = "";
     // Keep Numbas marking unchanged. Only replace the irreversible reveal action.
-    void installPracticeReview(exam)
-      .then((examData) => installWorksheetControls(exam, examData))
+    const review = installPracticeReview(exam, examHost, practiceHistoryKey(level), level);
+    if (lessonLayout) {
+      void installLessonHints(exam).catch((error) => console.error("ヒントの準備に失敗しました。", error));
+    }
+    void review
+      .then((examData) => lessonLayout ? undefined : installWorksheetControls(exam, examData))
       .catch((error) => {
         console.error("問題画面の準備に失敗しました。", error);
       });
   }, { once: true });
-  host.replaceChildren(exam);
+  examHost.replaceChildren(exam);
 
   const styles = [
     resource("numbas-runtime/numbas.css"),
@@ -298,6 +327,33 @@ async function boot() {
     exam.shadowRoot.appendChild(link);
   })));
   await exam.load_exam();
+}
+
+async function boot() {
+  if (!host || !host.dataset.examSource) throw new Error("問題の参照先が設定されていません。");
+  const lessonLayout = /\/junior-high\/grade-1\/math\/lessons\/m1-l\d{3}\/questions\.html$/.test(location.pathname)
+    || host.hasAttribute("data-difficulty-tabs");
+  const runtime = prepareRuntime();
+  const initialLoad = runtime.then(() => bootExam(host, status, "basic", lessonLayout));
+
+  if (lessonLayout) {
+    createDifficultyTabs(host, status, async (examHost, examStatus, level) => {
+      try {
+        const response = await fetch(new URL(examHost.dataset.examSource, location.href), { method: "HEAD" });
+        if (response.status === 404) {
+          examStatus.textContent = "問題はまだありません。";
+          return;
+        }
+        if (!response.ok) throw new Error("問題の情報を取得できませんでした。");
+        await initialLoad;
+        await bootExam(examHost, examStatus, level, true);
+      } catch (error) {
+        console.error(error);
+        examStatus.textContent = "問題を表示できませんでした。";
+      }
+    });
+  }
+  await initialLoad;
 }
 boot().catch((error) => {
   console.error(error);

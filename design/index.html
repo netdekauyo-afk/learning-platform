@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0D1622">
+  <title>問題画面のデザイン見本 | Classroom</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    @font-face {
+      font-family: "FontAwesome";
+      src: url("../assets/numbas/engine/numbas-runtime/resources/iconfont/fontawesome.woff") format("woff");
+      font-display: block;
+    }
+    #numbas-host, numbas-exam { display: block; min-width: 0; }
+    #numbas-status { min-height: 1.5em; color: var(--color-muted); }
+  </style>
+  <script src="../assets/numbas/math-config.js"></script>
+  <script defer src="../assets/numbas/engine/mathjax/tex-svg.js"></script>
+  <script defer src="../assets/numbas/engine/numbas-runtime/numbas.js"></script>
+  <script type="module" src="../assets/numbas/loader.js"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <nav class="breadcrumb" aria-label="現在の場所">
+      <a href="../">Classroom</a><span aria-hidden="true"> / </span>
+      <span aria-current="page">問題画面のデザイン見本</span>
+    </nav>
+    <nav class="problem-toolbar" aria-label="ページの移動">
+      <a href="../junior-high/grade-1/math/">中学1年生の数学へ</a>
+    </nav>
+    <main>
+      <h1>問題画面のデザイン見本</h1>
+      <p>第1時限の問題で、難易度別の画面を確認できます。</p>
+      <p id="numbas-status" role="status">問題を読み込んでいます。</p>
+      <div id="numbas-host" data-difficulty-tabs data-exam-source="../junior-high/grade-1/math/lessons/m1-l001/m1-l001.exam"></div>
+    </main>
+  </div>
+</body>
+</html>
