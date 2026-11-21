@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中学1年社会 学習一覧（全101回） | Classroom</title>
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    /* Colors are defined only in the shared :root palette. */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(30px, 8vw, 72px) 0;
+    }
+
+    .page-header {
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-title {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-heading);
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .control-link {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .control-link:hover,
+    .control-link:focus-visible {
+      color: var(--color-heading);
+    }
+
+    .control-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .curriculum-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Chapter */
+    details.chapter {
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    summary.chapter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: var(--color-surface);
+      border-left: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.chapter-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chapter-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 245px;
+      color: var(--color-heading);
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--color-surface-hover);
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
+      text-decoration: underline;
+    }
+
+    .chapter-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.85em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.chapter[open] > summary.chapter-summary .chapter-name::before {
+      transform: rotate(90deg);
+    }
+
+    details.chapter[open] > summary.chapter-summary {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-body {
+      padding: 8px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Section */
+    details.section {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    details.section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    summary.section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-hover);
+      border-left: 3px solid var(--color-border-hover);
+      border-radius: 9px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.section-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--color-heading);
+    }
+
+    .section-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.8em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.section[open] > summary.section-summary .section-name::before {
+      transform: rotate(90deg);
+    }
+
+    .count-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Lesson list */
+    .lesson-list {
+      list-style: none;
+      margin: 2px 0 6px;
+      padding: 0 0 0 18px;
+    }
+
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr auto;
+      align-items: baseline;
+      column-gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-item:first-child {
+      border-top: none;
+    }
+
+    .lesson-num {
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-heading);
+      text-align: right;
+    }
+
+    /* Text links (explicitly non-button UI) */
+    .text-link {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .text-link:hover {
+      color: var(--color-heading);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .text-link.is-unpublished {
+      color: var(--color-muted);
+      text-decoration-style: dotted;
+    }
+
+    .text-link.is-unpublished:hover {
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
+    }
+
+    .lesson-title-link {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .lesson-links {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .section-link {
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    /* Toast notification for unpublished links */
+    .status-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      max-width: calc(100vw - 32px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 100;
+    }
+
+    .status-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      summary.chapter-summary {
+        padding: 11px 12px;
+      }
+
+      .chapter-body {
+        padding: 6px 10px 10px;
+      }
+
+      .lesson-list {
+        padding-left: 6px;
+      }
+
+      .lesson-item {
+        grid-template-columns: 2.1rem 1fr;
+        row-gap: 4px;
+        padding: 8px 2px;
+      }
+
+      .lesson-links {
+        grid-column: 2;
+        gap: 18px;
+        padding-top: 2px;
+      }
+    }
+  
+    .stream-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0 0 36px;
+    }
+    .stream-nav a {
+      color: var(--color-heading);
+      font-weight: 700;
+      text-decoration: none;
+      padding: 12px 22px;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      background: var(--color-surface, transparent);
+    }
+    .stream-nav a:hover, .stream-nav a:focus-visible {
+      border-color: var(--color-accent, currentColor);
+      text-decoration: underline;
+    }
+    .stream-group {
+      scroll-margin-top: 20px;
+      margin-bottom: 36px;
+    }
+    .stream-group + .stream-group {
+      margin-top: 44px;
+      padding-top: 16px;
+      border-top: 1px solid var(--color-border);
+    }
+    .stream-heading {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin: 0 0 20px;
+      color: var(--color-heading);
+      font-size: 1.45rem;
+    }
+    .stream-count {
+      color: var(--color-heading);
+      font-size: 1rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">中学校</a><span aria-hidden="true"> / </span><a href="../">1年生</a><span aria-hidden="true"> / </span><span aria-current="page">社会</span></nav>
+    <header class="page-header">
+      <h1 class="page-title">中学1年社会 学習一覧</h1>
+      <div class="page-meta">
+        <span>地理53回・歴史48回（全101回）</span>
+        <div class="controls">
+          <button type="button" class="control-link" id="open-all">すべて開く</button>
+          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="curriculum-list" id="curriculum-list">
+      <nav class="stream-nav" aria-label="社会科の分野を選択">
+        <a href="#geography">地理（53回）</a>
+        <a href="#history">歴史（48回）</a>
+      </nav>
+      <section class="stream-group" id="geography" aria-labelledby="geography-heading">
+        <h2 class="stream-heading" id="geography-heading">地理<span class="stream-count">53回</span></h2>
+      <details class="chapter" open data-chapter-index="0" data-chapter-id="soc1-g-c001">
+        <summary class="chapter-summary">
+          <span class="chapter-name">地理学習の初めに</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-g-c001/questions.html" data-published="false">問題</a>
+            <span class="count-meta">1回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l001" data-seq="1" data-source-seq="1" data-source-topic="■世界の食事を見てみよう！／■持続可能な社会の実現に向けて" data-lesson-goal="世界各地の食文化から多様性に触れ、持続可能な社会に向けて地理を学ぶ意義を理解する" data-source-note="">
+              <span class="lesson-num">1</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l001" data-kind="summary" data-target="lessons/soc1-g-l001/summary.html" data-published="false">世界の多様な食文化と地理学習の出発点</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l001" data-kind="lesson" data-target="lessons/soc1-g-l001/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l001" data-kind="questions" data-target="lessons/soc1-g-l001/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="1" data-chapter-id="soc1-g-c002">
+        <summary class="chapter-summary">
+          <span class="chapter-name">第１編 世界と日本の地域構成／第１章 世界の姿</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-g-c002/questions.html" data-published="false">問題</a>
+            <span class="count-meta">7回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l002" data-seq="2" data-source-seq="2" data-source-topic="■編扉／■導入の活動クイズカードを作ろう" data-lesson-goal="クイズカードづくりを通して既習の知識を整理し、世界と日本の姿への探究課題を立てる" data-source-note="">
+              <span class="lesson-num">2</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l002" data-kind="summary" data-target="lessons/soc1-g-l002/summary.html" data-published="false">世界の国・日本の都道府県クイズと学習の見通し</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l002" data-kind="lesson" data-target="lessons/soc1-g-l002/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l002" data-kind="questions" data-target="lessons/soc1-g-l002/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l003" data-seq="3" data-source-seq="3" data-source-topic="１地球の姿を見てみよう" data-lesson-goal="衛星写真や地球儀・世界地図から、六大陸・三大洋・6州の名称と位置関係を捉える" data-source-note="">
+              <span class="lesson-num">3</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l003" data-kind="summary" data-target="lessons/soc1-g-l003/summary.html" data-published="false">地球の姿と六大陸・三大洋・6州</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l003" data-kind="lesson" data-target="lessons/soc1-g-l003/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l003" data-kind="questions" data-target="lessons/soc1-g-l003/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l004" data-seq="4" data-source-seq="4" data-source-topic="２世界のさまざまな国々" data-lesson-goal="世界地図や国旗から多様な国々の構成を捉え、直線的国境線などの違いの理由を考察する" data-source-note="">
+              <span class="lesson-num">4</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l004" data-kind="summary" data-target="lessons/soc1-g-l004/summary.html" data-published="false">世界のさまざまな国々と国境線の違い</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l004" data-kind="lesson" data-target="lessons/soc1-g-l004/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l004" data-kind="questions" data-target="lessons/soc1-g-l004/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l005" data-seq="5" data-source-seq="5" data-source-topic="２世界のさまざまな国々" data-lesson-goal="統計資料を活用して各国の面積・人口を比較し、世界60か国以上の名称と位置を捉える" data-source-note="">
+              <span class="lesson-num">5</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l005" data-kind="summary" data-target="lessons/soc1-g-l005/summary.html" data-published="false">世界の国々の面積・人口と主な国の位置</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l005" data-kind="lesson" data-target="lessons/soc1-g-l005/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l005" data-kind="questions" data-target="lessons/soc1-g-l005/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l006" data-seq="6" data-source-seq="6" data-source-topic="３地球上の位置を表そう" data-lesson-goal="緯度と経度のしくみを理解し、地球上の都市や国の位置を地図帳で調べる" data-source-note="">
+              <span class="lesson-num">6</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l006" data-kind="summary" data-target="lessons/soc1-g-l006/summary.html" data-published="false">緯度と経度を使った地球上の位置の表し方</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l006" data-kind="lesson" data-target="lessons/soc1-g-l006/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l006" data-kind="questions" data-target="lessons/soc1-g-l006/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l007" data-seq="7" data-source-seq="7" data-source-topic="４地球儀と世界地図を比べてみよう" data-lesson-goal="地球儀で距離や方位を調べ、図法ごとの世界地図の長所・短所を比較して理解する" data-source-note="">
+              <span class="lesson-num">7</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l007" data-kind="summary" data-target="lessons/soc1-g-l007/summary.html" data-published="false">地球儀とさまざまな世界地図の比較</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l007" data-kind="lesson" data-target="lessons/soc1-g-l007/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l007" data-kind="questions" data-target="lessons/soc1-g-l007/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l008" data-seq="8" data-source-seq="8" data-source-topic="■まとめの活動１編１章の学習をまとめよう" data-lesson-goal="世界の地域構成（大陸・海洋・緯度経度・主な国々）を振り返り、多面的にまとめる" data-source-note="">
+              <span class="lesson-num">8</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l008" data-kind="summary" data-target="lessons/soc1-g-l008/summary.html" data-published="false">1編1章「世界の姿」のまとめ活動</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l008" data-kind="lesson" data-target="lessons/soc1-g-l008/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l008" data-kind="questions" data-target="lessons/soc1-g-l008/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="2" data-chapter-id="soc1-g-c003">
+        <summary class="chapter-summary">
+          <span class="chapter-name">第１編 世界と日本の地域構成／第２章 日本の姿</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-g-c003/questions.html" data-published="false">問題</a>
+            <span class="count-meta">6回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l009" data-seq="9" data-source-seq="9" data-source-topic="１世界の中での日本の位置" data-lesson-goal="世界地図や正距方位図法から、他地域と比べた日本の位置の特色を考察する" data-source-note="">
+              <span class="lesson-num">9</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l009" data-kind="summary" data-target="lessons/soc1-g-l009/summary.html" data-published="false">世界の中での日本の位置（緯度・経度と正距方位図法）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l009" data-kind="lesson" data-target="lessons/soc1-g-l009/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l009" data-kind="questions" data-target="lessons/soc1-g-l009/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l010" data-seq="10" data-source-seq="10" data-source-topic="２時差から見た日本の位置" data-lesson-goal="標準時と時差の仕組みを理解し、世界各国と日本との時差を地図や計算で求める" data-source-note="">
+              <span class="lesson-num">10</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l010" data-kind="summary" data-target="lessons/soc1-g-l010/summary.html" data-published="false">標準時と時差の仕組み・計算</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l010" data-kind="lesson" data-target="lessons/soc1-g-l010/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l010" data-kind="questions" data-target="lessons/soc1-g-l010/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l011" data-seq="11" data-source-seq="11" data-source-topic="３日本の領域の特色" data-lesson-goal="日本の領域と排他的経済水域の範囲を捉え、広い海域をもつ理由と特色を考察する" data-source-note="">
+              <span class="lesson-num">11</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l011" data-kind="summary" data-target="lessons/soc1-g-l011/summary.html" data-published="false">日本の領土・領海と排他的経済水域（EEZ）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l011" data-kind="lesson" data-target="lessons/soc1-g-l011/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l011" data-kind="questions" data-target="lessons/soc1-g-l011/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l012" data-seq="12" data-source-seq="12" data-source-topic="４北方領土・竹島と尖閣諸島" data-lesson-goal="日本固有の領土である北方領土・竹島・尖閣諸島の位置・特色と国際的課題を理解する" data-source-note="">
+              <span class="lesson-num">12</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l012" data-kind="summary" data-target="lessons/soc1-g-l012/summary.html" data-published="false">北方領土・竹島・尖閣諸島の位置と課題</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l012" data-kind="lesson" data-target="lessons/soc1-g-l012/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l012" data-kind="questions" data-target="lessons/soc1-g-l012/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l013" data-seq="13" data-source-seq="13" data-source-topic="５日本の都道府県と県庁所在地" data-lesson-goal="都道府県・県庁所在地の位置や旧国名との関わり、日本の7地方区分を地図で捉える" data-source-note="">
+              <span class="lesson-num">13</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l013" data-kind="summary" data-target="lessons/soc1-g-l013/summary.html" data-published="false">日本の47都道府県・県庁所在地と7地方区分</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l013" data-kind="lesson" data-target="lessons/soc1-g-l013/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l013" data-kind="questions" data-target="lessons/soc1-g-l013/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l014" data-seq="14" data-source-seq="14" data-source-topic="■まとめの活動１編２章の学習をまとめよう" data-lesson-goal="日本の位置・時差・領域・都道府県など日本の地域構成を振り返りまとめる" data-source-note="">
+              <span class="lesson-num">14</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l014" data-kind="summary" data-target="lessons/soc1-g-l014/summary.html" data-published="false">1編2章「日本の姿」のまとめ活動</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l014" data-kind="lesson" data-target="lessons/soc1-g-l014/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l014" data-kind="questions" data-target="lessons/soc1-g-l014/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="3" data-chapter-id="soc1-g-c004">
+        <summary class="chapter-summary">
+          <span class="chapter-name">第２編 世界のさまざまな地域／第１章 人々の生活と環境</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-g-c004/questions.html" data-published="false">問題</a>
+            <span class="count-meta">10回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l015" data-seq="15" data-source-seq="15" data-source-topic="■章扉／■導入の活動人々の暮らしを写真から探ろう" data-lesson-goal="写真資料から世界各地の生活の工夫と自然環境のつながりを読み取りまとめる" data-source-note="">
+              <span class="lesson-num">15</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l015" data-kind="summary" data-target="lessons/soc1-g-l015/summary.html" data-published="false">写真から探る世界各地の暮らしと自然環境</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l015" data-kind="lesson" data-target="lessons/soc1-g-l015/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l015" data-kind="questions" data-target="lessons/soc1-g-l015/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l016" data-seq="16" data-source-seq="16" data-source-topic="１雪と氷の中で暮らす人々" data-lesson-goal="寒帯地域の自然環境と伝統的な暮らし、および現代における変化を考察する" data-source-note="">
+              <span class="lesson-num">16</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l016" data-kind="summary" data-target="lessons/soc1-g-l016/summary.html" data-published="false">寒帯（雪と氷の世界）に暮らす人々</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l016" data-kind="lesson" data-target="lessons/soc1-g-l016/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l016" data-kind="questions" data-target="lessons/soc1-g-l016/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l017" data-seq="17" data-source-seq="17" data-source-topic="２寒暖の差が激しい土地に暮らす人々" data-lesson-goal="亜寒帯（冷帯）の自然環境と暮らしの工夫を寒帯との違いに着目して考察する" data-source-note="">
+              <span class="lesson-num">17</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l017" data-kind="summary" data-target="lessons/soc1-g-l017/summary.html" data-published="false">亜寒帯（寒暖差の激しい土地）に暮らす人々</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l017" data-kind="lesson" data-target="lessons/soc1-g-l017/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l017" data-kind="questions" data-target="lessons/soc1-g-l017/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l018" data-seq="18" data-source-seq="18" data-source-topic="３温暖な土地に暮らす人々" data-lesson-goal="同じ温帯でも日本と異なる自然環境（地中海性気候等）と生活の特色を考察する" data-source-note="">
+              <span class="lesson-num">18</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l018" data-kind="summary" data-target="lessons/soc1-g-l018/summary.html" data-published="false">温帯（ヨーロッパなど温暖な土地）に暮らす人々</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l018" data-kind="lesson" data-target="lessons/soc1-g-l018/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l018" data-kind="questions" data-target="lessons/soc1-g-l018/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l019" data-seq="19" data-source-seq="19" data-source-topic="４乾燥した土地に暮らす人々" data-lesson-goal="乾燥帯の自然環境と、オアシス農業や遊牧など人々の生活の工夫を理解する" data-source-note="">
+              <span class="lesson-num">19</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l019" data-kind="summary" data-target="lessons/soc1-g-l019/summary.html" data-published="false">乾燥帯（砂漠・草原）に暮らす人々</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l019" data-kind="lesson" data-target="lessons/soc1-g-l019/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l019" data-kind="questions" data-target="lessons/soc1-g-l019/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l020" data-seq="20" data-source-seq="20" data-source-topic="５常夏の島で暮らす人々" data-lesson-goal="熱帯地域の自然環境と生活の特色、伝統的な暮らしの変化について考察する" data-source-note="">
+              <span class="lesson-num">20</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l020" data-kind="summary" data-target="lessons/soc1-g-l020/summary.html" data-published="false">熱帯（常夏の島・熱帯雨林）に暮らす人々</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l020" data-kind="lesson" data-target="lessons/soc1-g-l020/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l020" data-kind="questions" data-target="lessons/soc1-g-l020/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l021" data-seq="21" data-source-seq="21" data-source-topic="６標高の高い土地に暮らす人々" data-lesson-goal="アンデスなどの高山気候の自然環境と、標高に応じた衣食住の工夫を理解する" data-source-note="">
+              <span class="lesson-num">21</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l021" data-kind="summary" data-target="lessons/soc1-g-l021/summary.html" data-published="false">高山気候（標高の高い土地）に暮らす人々</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l021" data-kind="lesson" data-target="lessons/soc1-g-l021/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l021" data-kind="questions" data-target="lessons/soc1-g-l021/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l022" data-seq="22" data-source-seq="22" data-source-topic="７伝統的な生活文化とその変化" data-lesson-goal="世界各地の衣食住の特色を自然環境と関連づけ、現代の生活文化の変化を理解する" data-source-note="">
+              <span class="lesson-num">22</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l022" data-kind="summary" data-target="lessons/soc1-g-l022/summary.html" data-published="false">世界各地の伝統的な衣食住とその変化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l022" data-kind="lesson" data-target="lessons/soc1-g-l022/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l022" data-kind="questions" data-target="lessons/soc1-g-l022/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l023" data-seq="23" data-source-seq="23" data-source-topic="８人々の生活に根付く宗教" data-lesson-goal="キリスト教・イスラム教・仏教など世界の宗教と人々の生活・習慣の関わりを理解する" data-source-note="">
+              <span class="lesson-num">23</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l023" data-kind="summary" data-target="lessons/soc1-g-l023/summary.html" data-published="false">世界の三大宗教と人々の生活との関わり</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l023" data-kind="lesson" data-target="lessons/soc1-g-l023/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l023" data-kind="questions" data-target="lessons/soc1-g-l023/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l024" data-seq="24" data-source-seq="24" data-source-topic="■まとめの活動２編１章の学習をまとめよう" data-lesson-goal="自然・社会的条件と人々の暮らしの相互作用を振り返り多面的にまとめる" data-source-note="">
+              <span class="lesson-num">24</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l024" data-kind="summary" data-target="lessons/soc1-g-l024/summary.html" data-published="false">2編1章「人々の生活と環境」のまとめ活動</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l024" data-kind="lesson" data-target="lessons/soc1-g-l024/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l024" data-kind="questions" data-target="lessons/soc1-g-l024/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="4" data-chapter-id="soc1-g-c005">
+        <summary class="chapter-summary">
+          <span class="chapter-name">第２編 世界のさまざまな地域／第２章 世界の諸地域</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-g-c005/questions.html" data-published="false">問題</a>
+            <span class="count-meta">29回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+        <details class="section" open data-section-id="soc1-g-s001">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節 アジア州</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-g-s001" data-kind="section-questions" data-target="sections/soc1-g-s001/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">7回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l025" data-seq="25" data-source-seq="25" data-source-topic="１アジア州をながめて" data-lesson-goal="雨温図・分布図・写真からアジア州全体の自然・文化・人口・産業の特色を概観する" data-source-note="">
+              <span class="lesson-num">25</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l025" data-kind="summary" data-target="lessons/soc1-g-l025/summary.html" data-published="false">アジア州の自然・文化・人口・産業の概観</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l025" data-kind="lesson" data-target="lessons/soc1-g-l025/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l025" data-kind="questions" data-target="lessons/soc1-g-l025/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l026" data-seq="26" data-source-seq="26" data-source-topic="２巨大な人口が支える中国" data-lesson-goal="写真やグラフから中国経済の成長の背景と、格差や環境問題などの課題を考察する" data-source-note="">
+              <span class="lesson-num">26</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l026" data-kind="summary" data-target="lessons/soc1-g-l026/summary.html" data-published="false">巨大な人口が支える中国の経済発展と課題</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l026" data-kind="lesson" data-target="lessons/soc1-g-l026/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l026" data-kind="questions" data-target="lessons/soc1-g-l026/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l027" data-seq="27" data-source-seq="27" data-source-topic="３急速に変化する韓国" data-lesson-goal="韓国の先端産業や文化の特色・経済成長の背景と、ソウル一極集中などの課題を考察する" data-source-note="">
+              <span class="lesson-num">27</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l027" data-kind="summary" data-target="lessons/soc1-g-l027/summary.html" data-published="false">急速に変化する韓国の産業と一極集中</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l027" data-kind="lesson" data-target="lessons/soc1-g-l027/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l027" data-kind="questions" data-target="lessons/soc1-g-l027/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l028" data-seq="28" data-source-seq="28" data-source-topic="４都市化が進む東南アジア" data-lesson-goal="東南アジア諸国の輸出品の変化から工業化の進展とASEANの結びつきを理解する" data-source-note="">
+              <span class="lesson-num">28</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l028" data-kind="summary" data-target="lessons/soc1-g-l028/summary.html" data-published="false">工業化と都市化が進む東南アジア</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l028" data-kind="lesson" data-target="lessons/soc1-g-l028/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l028" data-kind="questions" data-target="lessons/soc1-g-l028/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l029" data-seq="29" data-source-seq="29" data-source-topic="５人口増加が続く南アジア" data-lesson-goal="インドの経済発展と都市の変化の実態、急速な成長の背景を資料から読み取る" data-source-note="">
+              <span class="lesson-num">29</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l029" data-kind="summary" data-target="lessons/soc1-g-l029/summary.html" data-published="false">人口増加とIT産業が発展する南アジア（インド）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l029" data-kind="lesson" data-target="lessons/soc1-g-l029/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l029" data-kind="questions" data-target="lessons/soc1-g-l029/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l030" data-seq="30" data-source-seq="30" data-source-topic="６資源が豊富な西アジア・中央アジア" data-lesson-goal="西アジア・中央アジアの乾燥環境やイスラム文化、資源に支えられた産業の特色を読み取る" data-source-note="">
+              <span class="lesson-num">30</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l030" data-kind="summary" data-target="lessons/soc1-g-l030/summary.html" data-published="false">石油・天然ガス資源が豊富な西アジア・中央アジア</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l030" data-kind="lesson" data-target="lessons/soc1-g-l030/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l030" data-kind="questions" data-target="lessons/soc1-g-l030/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l031" data-seq="31" data-source-seq="31" data-source-topic="■まとめの活動アジア州の学習をまとめよう" data-lesson-goal="アジア州の経済成長に伴う課題の要因や影響を州の広がりの中で振り返りまとめる" data-source-note="">
+              <span class="lesson-num">31</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l031" data-kind="summary" data-target="lessons/soc1-g-l031/summary.html" data-published="false">アジア州のまとめ活動と資料活用</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l031" data-kind="lesson" data-target="lessons/soc1-g-l031/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l031" data-kind="questions" data-target="lessons/soc1-g-l031/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-g-s002">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２節 ヨーロッパ州</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-g-s002" data-kind="section-questions" data-target="sections/soc1-g-s002/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l032" data-seq="32" data-source-seq="32" data-source-topic="１ヨーロッパ州をながめて" data-lesson-goal="西岸海洋性気候や民族・言語・産業などヨーロッパ州全体の特色を資料から概観する" data-source-note="">
+              <span class="lesson-num">32</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l032" data-kind="summary" data-target="lessons/soc1-g-l032/summary.html" data-published="false">ヨーロッパ州の自然・民族・産業の概観</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l032" data-kind="lesson" data-target="lessons/soc1-g-l032/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l032" data-kind="questions" data-target="lessons/soc1-g-l032/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l033" data-seq="33" data-source-seq="33" data-source-topic="２ヨーロッパ統合の動き" data-lesson-goal="EUによる通貨・人の移動などの統合の内容と、国々の結びつきを読み取る" data-source-note="">
+              <span class="lesson-num">33</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l033" data-kind="summary" data-target="lessons/soc1-g-l033/summary.html" data-published="false">ヨーロッパ統合（EU）の動きと域内の結びつき</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l033" data-kind="lesson" data-target="lessons/soc1-g-l033/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l033" data-kind="questions" data-target="lessons/soc1-g-l033/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l034" data-seq="34" data-source-seq="34" data-source-topic="３持続可能な社会に向けて" data-lesson-goal="再生可能エネルギーやリサイクルなど、ヨーロッパの環境配慮の取り組みを理解する" data-source-note="">
+              <span class="lesson-num">34</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l034" data-kind="summary" data-target="lessons/soc1-g-l034/summary.html" data-published="false">持続可能な社会に向けたヨーロッパの環境対策</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l034" data-kind="lesson" data-target="lessons/soc1-g-l034/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l034" data-kind="questions" data-target="lessons/soc1-g-l034/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l035" data-seq="35" data-source-seq="35" data-source-topic="４ヨーロッパ統合がかかえる課題" data-lesson-goal="EU加盟国間の経済格差や対立、産業構造の変化に伴う課題を資料から読み取る" data-source-note="">
+              <span class="lesson-num">35</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l035" data-kind="summary" data-target="lessons/soc1-g-l035/summary.html" data-published="false">ヨーロッパ統合（EU）が抱える格差と課題</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l035" data-kind="lesson" data-target="lessons/soc1-g-l035/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l035" data-kind="questions" data-target="lessons/soc1-g-l035/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l036" data-seq="36" data-source-seq="36" data-source-topic="■まとめの活動ヨーロッパ州の学習をまとめよう" data-lesson-goal="ヨーロッパ州の地域的特色と地球的課題への取り組みを振り返りまとめる" data-source-note="">
+              <span class="lesson-num">36</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l036" data-kind="summary" data-target="lessons/soc1-g-l036/summary.html" data-published="false">ヨーロッパ州のまとめ活動と資料活用</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l036" data-kind="lesson" data-target="lessons/soc1-g-l036/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l036" data-kind="questions" data-target="lessons/soc1-g-l036/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-g-s003">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">３節 アフリカ州</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-g-s003" data-kind="section-questions" data-target="sections/soc1-g-s003/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">4回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l037" data-seq="37" data-source-seq="37" data-source-topic="１アフリカ州をながめて" data-lesson-goal="アフリカ州の多様な気候・歴史・文化・資源などの基礎的特色を資料から概観する" data-source-note="">
+              <span class="lesson-num">37</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l037" data-kind="summary" data-target="lessons/soc1-g-l037/summary.html" data-published="false">アフリカ州の自然・歴史・文化・産業の概観</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l037" data-kind="lesson" data-target="lessons/soc1-g-l037/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l037" data-kind="questions" data-target="lessons/soc1-g-l037/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l038" data-seq="38" data-source-seq="38" data-source-topic="２アフリカの産業における課題" data-lesson-goal="プランテーション農業やモノカルチャー経済の実態と歴史的背景・課題を資料から読み取る" data-source-note="">
+              <span class="lesson-num">38</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l038" data-kind="summary" data-target="lessons/soc1-g-l038/summary.html" data-published="false">アフリカのモノカルチャー経済と産業の課題</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l038" data-kind="lesson" data-target="lessons/soc1-g-l038/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l038" data-kind="questions" data-target="lessons/soc1-g-l038/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l039" data-seq="39" data-source-seq="39" data-source-topic="３発展に向けた課題" data-lesson-goal="都市内の格差や高い乳児死亡率などの実態を捉え、アフリカの発展に向けた課題を考察する" data-source-note="">
+              <span class="lesson-num">39</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l039" data-kind="summary" data-target="lessons/soc1-g-l039/summary.html" data-published="false">アフリカの発展に向けた課題と国際支援</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l039" data-kind="lesson" data-target="lessons/soc1-g-l039/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l039" data-kind="questions" data-target="lessons/soc1-g-l039/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l040" data-seq="40" data-source-seq="40" data-source-topic="■まとめの活動アフリカ州の学習をまとめよう" data-lesson-goal="アフリカ州で国際支援が必要とされる背景と今後の展望を振り返りまとめる" data-source-note="">
+              <span class="lesson-num">40</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l040" data-kind="summary" data-target="lessons/soc1-g-l040/summary.html" data-published="false">アフリカ州のまとめ活動と資料活用</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l040" data-kind="lesson" data-target="lessons/soc1-g-l040/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l040" data-kind="questions" data-target="lessons/soc1-g-l040/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-g-s004">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">４節 北アメリカ州</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-g-s004" data-kind="section-questions" data-target="sections/soc1-g-s004/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l041" data-seq="41" data-source-seq="41" data-source-topic="１北アメリカ州をながめて" data-lesson-goal="北アメリカ州の地形・気候・多民族文化・産業の特色を資料から概観する" data-source-note="">
+              <span class="lesson-num">41</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l041" data-kind="summary" data-target="lessons/soc1-g-l041/summary.html" data-published="false">北アメリカ州の自然・文化・産業の概観</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l041" data-kind="lesson" data-target="lessons/soc1-g-l041/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l041" data-kind="questions" data-target="lessons/soc1-g-l041/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l042" data-seq="42" data-source-seq="42" data-source-topic="２巨大な農業生産力" data-lesson-goal="企業的農業・適地適作などアメリカ合衆国の大規模で合理的な農業の特色を読み取る" data-source-note="">
+              <span class="lesson-num">42</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l042" data-kind="summary" data-target="lessons/soc1-g-l042/summary.html" data-published="false">アメリカ合衆国の巨大な農業生産力（適地適作）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l042" data-kind="lesson" data-target="lessons/soc1-g-l042/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l042" data-kind="questions" data-target="lessons/soc1-g-l042/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l043" data-seq="43" data-source-seq="43" data-source-topic="３巨大な工業生産力" data-lesson-goal="重工業からシリコンバレー等の先端技術産業へ発展したアメリカの工業の特色を読み取る" data-source-note="">
+              <span class="lesson-num">43</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l043" data-kind="summary" data-target="lessons/soc1-g-l043/summary.html" data-published="false">アメリカ合衆国の工業と先端技術産業（サンベルト）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l043" data-kind="lesson" data-target="lessons/soc1-g-l043/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l043" data-kind="questions" data-target="lessons/soc1-g-l043/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l044" data-seq="44" data-source-seq="44" data-source-topic="４新しい産業と生活文化" data-lesson-goal="多国籍企業や生活文化の世界的影響、移民社会としての特色を資料から読み取る" data-source-note="">
+              <span class="lesson-num">44</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l044" data-kind="summary" data-target="lessons/soc1-g-l044/summary.html" data-published="false">アメリカの新しい産業と世界に広がる生活文化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l044" data-kind="lesson" data-target="lessons/soc1-g-l044/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l044" data-kind="questions" data-target="lessons/soc1-g-l044/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l045" data-seq="45" data-source-seq="45" data-source-topic="■まとめの活動北アメリカ州の学習をまとめよう" data-lesson-goal="北アメリカ州への移民の背景や地域的特色・課題を振り返りまとめる" data-source-note="">
+              <span class="lesson-num">45</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l045" data-kind="summary" data-target="lessons/soc1-g-l045/summary.html" data-published="false">北アメリカ州のまとめ活動と資料活用</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l045" data-kind="lesson" data-target="lessons/soc1-g-l045/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l045" data-kind="questions" data-target="lessons/soc1-g-l045/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-g-s005">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">５節 南アメリカ州</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-g-s005" data-kind="section-questions" data-target="sections/soc1-g-s005/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">4回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l046" data-seq="46" data-source-seq="46" data-source-topic="１南アメリカ州をながめて" data-lesson-goal="アンデス山脈・アマゾン川など南アメリカ州の自然・文化・産業の特色を概観する" data-source-note="">
+              <span class="lesson-num">46</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l046" data-kind="summary" data-target="lessons/soc1-g-l046/summary.html" data-published="false">南アメリカ州の自然・文化・産業の概観</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l046" data-kind="lesson" data-target="lessons/soc1-g-l046/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l046" data-kind="questions" data-target="lessons/soc1-g-l046/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l047" data-seq="47" data-source-seq="47" data-source-topic="２自然環境を生かした暮らしと産業" data-lesson-goal="多様な自然環境を生かした農業・鉱業・バイオ燃料などの産業と暮らしを読み取る" data-source-note="">
+              <span class="lesson-num">47</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l047" data-kind="summary" data-target="lessons/soc1-g-l047/summary.html" data-published="false">南アメリカ州の自然環境を生かした暮らしと産業</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l047" data-kind="lesson" data-target="lessons/soc1-g-l047/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l047" data-kind="questions" data-target="lessons/soc1-g-l047/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l048" data-seq="48" data-source-seq="48" data-source-topic="３開発の進行と影響" data-lesson-goal="アマゾン地域の大規模開発による熱帯林の減少と環境問題・課題を読み取る" data-source-note="">
+              <span class="lesson-num">48</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l048" data-kind="summary" data-target="lessons/soc1-g-l048/summary.html" data-published="false">アマゾン川流域の開発の進行と環境への影響</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l048" data-kind="lesson" data-target="lessons/soc1-g-l048/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l048" data-kind="questions" data-target="lessons/soc1-g-l048/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l049" data-seq="49" data-source-seq="49" data-source-topic="■まとめの活動南アメリカ州の学習をまとめよう" data-lesson-goal="南アメリカ州の森林減少の背景と持続可能な開発のあり方を振り返りまとめる" data-source-note="">
+              <span class="lesson-num">49</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l049" data-kind="summary" data-target="lessons/soc1-g-l049/summary.html" data-published="false">南アメリカ州のまとめ活動と資料活用</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l049" data-kind="lesson" data-target="lessons/soc1-g-l049/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l049" data-kind="questions" data-target="lessons/soc1-g-l049/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-g-s006">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">６節 オセアニア州</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-g-s006" data-kind="section-questions" data-target="sections/soc1-g-s006/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">4回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-g-l050" data-seq="50" data-source-seq="50" data-source-topic="１オセアニア州をながめて" data-lesson-goal="オーストラリア・ニュージーランド・太平洋諸島の自然環境と先住民文化を概観する" data-source-note="">
+              <span class="lesson-num">50</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l050" data-kind="summary" data-target="lessons/soc1-g-l050/summary.html" data-published="false">オセアニア州の自然・文化の概観</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l050" data-kind="lesson" data-target="lessons/soc1-g-l050/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l050" data-kind="questions" data-target="lessons/soc1-g-l050/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l051" data-seq="51" data-source-seq="51" data-source-topic="２貿易や経済による他地域との結び付き" data-lesson-goal="オーストラリア等の農牧業・鉱業の特色と、日本や中国などアジアとの貿易関係を読み取る" data-source-note="">
+              <span class="lesson-num">51</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l051" data-kind="summary" data-target="lessons/soc1-g-l051/summary.html" data-published="false">オセアニア州の農牧業・鉱業と貿易による結びつき</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l051" data-kind="lesson" data-target="lessons/soc1-g-l051/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l051" data-kind="questions" data-target="lessons/soc1-g-l051/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l052" data-seq="52" data-source-seq="52" data-source-topic="３人々による他地域との結び付き" data-lesson-goal="多文化主義や人々の交流の面から、オセアニア州とアジア州のつながりの深まりを理解する" data-source-note="">
+              <span class="lesson-num">52</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l052" data-kind="summary" data-target="lessons/soc1-g-l052/summary.html" data-published="false">移民・観光など人々の交流で深まるオセアニアとアジア</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l052" data-kind="lesson" data-target="lessons/soc1-g-l052/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l052" data-kind="questions" data-target="lessons/soc1-g-l052/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-g-l053" data-seq="53" data-source-seq="53" data-source-topic="■まとめの活動オセアニア州の学習をまとめよう" data-lesson-goal="オセアニア州とアジアの結びつきが強まった理由と地域的特色を振り返りまとめる" data-source-note="">
+              <span class="lesson-num">53</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l053" data-kind="summary" data-target="lessons/soc1-g-l053/summary.html" data-published="false">オセアニア州のまとめ活動と資料活用</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l053" data-kind="lesson" data-target="lessons/soc1-g-l053/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-g-l053" data-kind="questions" data-target="lessons/soc1-g-l053/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      </section>
+      <section class="stream-group" id="history" aria-labelledby="history-heading">
+        <h2 class="stream-heading" id="history-heading">歴史<span class="stream-count">48回</span></h2>
+      <details class="chapter" open data-chapter-index="5" data-chapter-id="soc1-h-c001">
+        <summary class="chapter-summary">
+          <span class="chapter-name">歴史学習の初めに</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-h-c001/questions.html" data-published="false">問題</a>
+            <span class="count-meta">1回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l001" data-seq="1" data-source-seq="1" data-source-topic="■持続可能な社会の実現に向けて" data-lesson-goal="歴史を学ぶ意味を考え、過去の経験を持続可能な社会の実現に生かす見通しをもつ" data-source-note="">
+              <span class="lesson-num">1</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l001" data-kind="summary" data-target="lessons/soc1-h-l001/summary.html" data-published="false">歴史を学ぶ意義と持続可能な社会への視点</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l001" data-kind="lesson" data-target="lessons/soc1-h-l001/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l001" data-kind="questions" data-target="lessons/soc1-h-l001/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="6" data-chapter-id="soc1-h-c002">
+        <summary class="chapter-summary">
+          <span class="chapter-name">第１章 歴史へのとびら</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-h-c002/questions.html" data-published="false">問題</a>
+            <span class="count-meta">6回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+        <details class="section" open data-section-id="soc1-h-s001">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節歴史をとらえる見方・考え方</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s001" data-kind="section-questions" data-target="sections/soc1-h-s001/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">4回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l002" data-seq="2" data-source-seq="2" data-source-topic="歴史の流れ" data-lesson-goal="年代の表し方や時代区分の意味・意義の基本を理解する" data-source-note="">
+              <span class="lesson-num">2</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l002" data-kind="summary" data-target="lessons/soc1-h-l002/summary.html" data-published="false">歴史の流れと時代区分の意味</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l002" data-kind="lesson" data-target="lessons/soc1-h-l002/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l002" data-kind="questions" data-target="lessons/soc1-h-l002/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l003" data-seq="3" data-source-seq="3" data-source-topic="１時期や年代の表し方" data-lesson-goal="西暦・世紀・元号などの年代の表し方を理解し、資料から歴史情報を読み取る" data-source-note="">
+              <span class="lesson-num">3</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l003" data-kind="summary" data-target="lessons/soc1-h-l003/summary.html" data-published="false">時期や年代の表し方（西暦・世紀・元号）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l003" data-kind="lesson" data-target="lessons/soc1-h-l003/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l003" data-kind="questions" data-target="lessons/soc1-h-l003/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l004" data-seq="4" data-source-seq="4" data-source-topic="２歴史の流れのとらえ方" data-lesson-goal="時期や年代・推移・現在とのつながりに着目して歴史上の出来事や人物を考察する" data-source-note="">
+              <span class="lesson-num">4</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l004" data-kind="summary" data-target="lessons/soc1-h-l004/summary.html" data-published="false">歴史の流れのとらえ方（推移と現在とのつながり）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l004" data-kind="lesson" data-target="lessons/soc1-h-l004/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l004" data-kind="questions" data-target="lessons/soc1-h-l004/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l005" data-seq="5" data-source-seq="5" data-source-topic="３時代の特色のとらえ方" data-lesson-goal="時代区分との関わりから各時代の特色を捉える歴史的な見方・考え方を学ぶ" data-source-note="">
+              <span class="lesson-num">5</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l005" data-kind="summary" data-target="lessons/soc1-h-l005/summary.html" data-published="false">時代の特色のとらえ方と歴史的な見方・考え方</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l005" data-kind="lesson" data-target="lessons/soc1-h-l005/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l005" data-kind="questions" data-target="lessons/soc1-h-l005/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s002">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２節身近な地域の歴史</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s002" data-kind="section-questions" data-target="sections/soc1-h-s002/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">2回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l006" data-seq="6" data-source-seq="6" data-source-topic="１テーマと問いを設定して調査・考察しよう" data-lesson-goal="地域の文化財や資料を活用して問いを立て、地域の歴史的特徴を調査・考察する" data-source-note="">
+              <span class="lesson-num">6</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l006" data-kind="summary" data-target="lessons/soc1-h-l006/summary.html" data-published="false">身近な地域の歴史のテーマ設定と調査・考察</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l006" data-kind="lesson" data-target="lessons/soc1-h-l006/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l006" data-kind="questions" data-target="lessons/soc1-h-l006/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l007" data-seq="7" data-source-seq="7" data-source-topic="２まとめと発表をしよう" data-lesson-goal="調査した地域の歴史を年表などに整理し、伝統や文化とつなげて発表する" data-source-note="">
+              <span class="lesson-num">7</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l007" data-kind="summary" data-target="lessons/soc1-h-l007/summary.html" data-published="false">身近な地域の歴史の年表まとめと発表</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l007" data-kind="lesson" data-target="lessons/soc1-h-l007/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l007" data-kind="questions" data-target="lessons/soc1-h-l007/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="7" data-chapter-id="soc1-h-c003">
+        <summary class="chapter-summary">
+          <span class="chapter-name">第２章 古代までの日本</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-h-c003/questions.html" data-published="false">問題</a>
+            <span class="count-meta">19回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l008" data-seq="8" data-source-seq="8" data-source-topic="■導入の活動平城京が造られるまでの歴史を大きくながめよう" data-lesson-goal="年表や文化財の写真から小学校の既習事項を振り返り、古代の時代の特色を予想する" data-source-note="">
+              <span class="lesson-num">8</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l008" data-kind="summary" data-target="lessons/soc1-h-l008/summary.html" data-published="false">平城京までの歴史の概観（古代への導入）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l008" data-kind="lesson" data-target="lessons/soc1-h-l008/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l008" data-kind="questions" data-target="lessons/soc1-h-l008/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        <details class="section" open data-section-id="soc1-h-s003">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節 世界の古代文明と宗教のおこり</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s003" data-kind="section-questions" data-target="sections/soc1-h-s003/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l009" data-seq="9" data-source-seq="9" data-source-topic="１人類の出現と進化" data-lesson-goal="人類の進化の過程と、打製石器・磨製石器・土器の発明による生活の変化を理解する" data-source-note="">
+              <span class="lesson-num">9</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l009" data-kind="summary" data-target="lessons/soc1-h-l009/summary.html" data-published="false">人類の出現と進化・石器と土器の発明</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l009" data-kind="lesson" data-target="lessons/soc1-h-l009/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l009" data-kind="questions" data-target="lessons/soc1-h-l009/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l010" data-seq="10" data-source-seq="10" data-source-topic="２古代文明のおこりと発展" data-lesson-goal="大河流域に成立した各古代文明の自然環境と文字・政治などの特徴を理解する" data-source-note="">
+              <span class="lesson-num">10</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l010" data-kind="summary" data-target="lessons/soc1-h-l010/summary.html" data-published="false">四大文明（メソポタミア・エジプト・インダス等）のおこりと発展</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l010" data-kind="lesson" data-target="lessons/soc1-h-l010/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l010" data-kind="questions" data-target="lessons/soc1-h-l010/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l011" data-seq="11" data-source-seq="11" data-source-topic="３中国文明の発展" data-lesson-goal="殷から漢に至る中国古代王朝の移り変わりと、漢字・儒教・シルクロードなどの特色を理解する" data-source-note="">
+              <span class="lesson-num">11</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l011" data-kind="summary" data-target="lessons/soc1-h-l011/summary.html" data-published="false">中国文明の発展（殷・周・秦・漢の王朝交代）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l011" data-kind="lesson" data-target="lessons/soc1-h-l011/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l011" data-kind="questions" data-target="lessons/soc1-h-l011/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l012" data-seq="12" data-source-seq="12" data-source-topic="４ギリシャ・ローマの文明" data-lesson-goal="ギリシャの民主政やローマ帝国の法・文化など、現代につながる政治と社会の特色を理解する" data-source-note="">
+              <span class="lesson-num">12</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l012" data-kind="summary" data-target="lessons/soc1-h-l012/summary.html" data-published="false">ギリシャ・ローマ文明と現代社会への影響</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l012" data-kind="lesson" data-target="lessons/soc1-h-l012/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l012" data-kind="questions" data-target="lessons/soc1-h-l012/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l013" data-seq="13" data-source-seq="13" data-source-topic="５宗教のおこりと三大宗教／■探究のステップ" data-lesson-goal="三大宗教の成立地域・開祖・特色と、世界各地へ広がった背景を理解する" data-source-note="">
+              <span class="lesson-num">13</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l013" data-kind="summary" data-target="lessons/soc1-h-l013/summary.html" data-published="false">世界三大宗教（仏教・キリスト教・イスラム教）のおこりと広がり</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l013" data-kind="lesson" data-target="lessons/soc1-h-l013/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l013" data-kind="questions" data-target="lessons/soc1-h-l013/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s004">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２節 日本列島の誕生と大陸との交流</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s004" data-kind="section-questions" data-target="sections/soc1-h-s004/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">3回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l014" data-seq="14" data-source-seq="14" data-source-topic="１旧石器時代と縄文時代の暮らし" data-lesson-goal="氷河期の旧石器時代と、定住・竪穴住居・縄文土器など縄文時代の暮らしを自然環境と関連づける" data-source-note="">
+              <span class="lesson-num">14</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l014" data-kind="summary" data-target="lessons/soc1-h-l014/summary.html" data-published="false">旧石器時代と縄文時代の暮らし</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l014" data-kind="lesson" data-target="lessons/soc1-h-l014/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l014" data-kind="questions" data-target="lessons/soc1-h-l014/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l015" data-seq="15" data-source-seq="15" data-source-topic="２弥生時代の暮らしと邪馬台国" data-lesson-goal="稲作の広がりによる身分差とクニの誕生、邪馬台国と卑弥呼など国家形成の過程を理解する" data-source-note="">
+              <span class="lesson-num">15</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l015" data-kind="summary" data-target="lessons/soc1-h-l015/summary.html" data-published="false">弥生時代の稲作とクニの成立・邪馬台国</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l015" data-kind="lesson" data-target="lessons/soc1-h-l015/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l015" data-kind="questions" data-target="lessons/soc1-h-l015/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l016" data-seq="16" data-source-seq="16" data-source-topic="３大王の時代／■探究のステップ" data-lesson-goal="古墳文化と大和政権の勢力拡大を、朝鮮半島や中国・渡来人との関わりから理解する" data-source-note="">
+              <span class="lesson-num">16</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l016" data-kind="summary" data-target="lessons/soc1-h-l016/summary.html" data-published="false">古墳の広がりと大王の時代（大和政権と東アジア）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l016" data-kind="lesson" data-target="lessons/soc1-h-l016/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l016" data-kind="questions" data-target="lessons/soc1-h-l016/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s005">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">３節 古代国家の歩みと東アジア世界</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s005" data-kind="section-questions" data-target="sections/soc1-h-s005/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">10回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l017" data-seq="17" data-source-seq="17" data-source-topic="１聖徳太子の政治改革" data-lesson-goal="聖徳太子と蘇我氏が目指した国づくり、遣隋使、日本初の仏教文化である飛鳥文化を理解する" data-source-note="">
+              <span class="lesson-num">17</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l017" data-kind="summary" data-target="lessons/soc1-h-l017/summary.html" data-published="false">聖徳太子の政治改革（冠位十二階・十七条の憲法）と飛鳥文化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l017" data-kind="lesson" data-target="lessons/soc1-h-l017/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l017" data-kind="questions" data-target="lessons/soc1-h-l017/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l018" data-seq="18" data-source-seq="18" data-source-topic="２東アジアの緊張と律令国家への歩み" data-lesson-goal="中大兄皇子らの改新、白村江の戦い、壬申の乱を経て律令国家が確立する過程を理解する" data-source-note="">
+              <span class="lesson-num">18</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l018" data-kind="summary" data-target="lessons/soc1-h-l018/summary.html" data-published="false">大化の改新から東アジアの緊張・律令国家への歩み</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l018" data-kind="lesson" data-target="lessons/soc1-h-l018/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l018" data-kind="questions" data-target="lessons/soc1-h-l018/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l019" data-seq="19" data-source-seq="19" data-source-topic="３律令国家の成立と平城京" data-lesson-goal="唐の制度を手本とした律令制度と平城京の仕組みから古代国家の体制を理解する" data-source-note="">
+              <span class="lesson-num">19</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l019" data-kind="summary" data-target="lessons/soc1-h-l019/summary.html" data-published="false">律令国家の成立（大宝律令）と平城京</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l019" data-kind="lesson" data-target="lessons/soc1-h-l019/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l019" data-kind="questions" data-target="lessons/soc1-h-l019/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l020" data-seq="20" data-source-seq="20" data-source-topic="４奈良時代の人々の暮らし" data-lesson-goal="口分田や租・庸・調などの税負担と、土地制度の変化による奈良時代の人々の暮らしを理解する" data-source-note="">
+              <span class="lesson-num">20</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l020" data-kind="summary" data-target="lessons/soc1-h-l020/summary.html" data-published="false">奈良時代の人々の暮らしと税制度（班田収授法・墾田永年私財法）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l020" data-kind="lesson" data-target="lessons/soc1-h-l020/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l020" data-kind="questions" data-target="lessons/soc1-h-l020/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l021" data-seq="21" data-source-seq="21" data-source-topic="５天平文化" data-lesson-goal="東大寺・正倉院・万葉集などの文化財と遣唐使の活動から天平文化の特色を理解する" data-source-note="">
+              <span class="lesson-num">21</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l021" data-kind="summary" data-target="lessons/soc1-h-l021/summary.html" data-published="false">遣唐使と国際色豊かな天平文化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l021" data-kind="lesson" data-target="lessons/soc1-h-l021/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l021" data-kind="questions" data-target="lessons/soc1-h-l021/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l022" data-seq="22" data-source-seq="22" data-source-topic="６平安京と律令国家の変化" data-lesson-goal="桓武天皇の平安遷都と東北経営、班田収授の衰退など平安時代初めの政治と社会の変化を理解する" data-source-note="">
+              <span class="lesson-num">22</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l022" data-kind="summary" data-target="lessons/soc1-h-l022/summary.html" data-published="false">平安京への遷都と律令国家の変化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l022" data-kind="lesson" data-target="lessons/soc1-h-l022/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l022" data-kind="questions" data-target="lessons/soc1-h-l022/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l023" data-seq="23" data-source-seq="23" data-source-topic="７摂関政治の時代" data-lesson-goal="藤原道長・頼通の摂関政治の仕組みと、荘園の拡大や地方の乱れなど平安中期の特色を理解する" data-source-note="">
+              <span class="lesson-num">23</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l023" data-kind="summary" data-target="lessons/soc1-h-l023/summary.html" data-published="false">藤原氏の摂関政治と地方政治の変化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l023" data-kind="lesson" data-target="lessons/soc1-h-l023/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l023" data-kind="questions" data-target="lessons/soc1-h-l023/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l024" data-seq="24" data-source-seq="24" data-source-topic="８国風文化／■探究のステップ" data-lesson-goal="かな文字の発明や源氏物語・寝殿造など、日本の風土に合った国風文化の特色を理解する" data-source-note="">
+              <span class="lesson-num">24</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l024" data-kind="summary" data-target="lessons/soc1-h-l024/summary.html" data-published="false">遣唐使の停止と国風文化の形成</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l024" data-kind="lesson" data-target="lessons/soc1-h-l024/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l024" data-kind="questions" data-target="lessons/soc1-h-l024/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l025" data-seq="25" data-source-seq="25" data-source-topic="■まとめの活動" data-lesson-goal="ステップチャートを用いて、旧石器から平安時代までの日本の国家形成の変化を整理する" data-source-note="">
+              <span class="lesson-num">25</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l025" data-kind="summary" data-target="lessons/soc1-h-l025/summary.html" data-published="false">2章「古代までの日本」のまとめ（国家形成の整理）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l025" data-kind="lesson" data-target="lessons/soc1-h-l025/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l025" data-kind="questions" data-target="lessons/soc1-h-l025/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l026" data-seq="26" data-source-seq="26" data-source-topic="■まとめの活動" data-lesson-goal="東アジアとの影響関係をふまえ、古代の日本の特色を多面的に考察・表現する" data-source-note="">
+              <span class="lesson-num">26</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l026" data-kind="summary" data-target="lessons/soc1-h-l026/summary.html" data-published="false">2章「古代までの日本」のまとめ（東アジアとの関わりと表現）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l026" data-kind="lesson" data-target="lessons/soc1-h-l026/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l026" data-kind="questions" data-target="lessons/soc1-h-l026/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="8" data-chapter-id="soc1-h-c004" data-locally-planned="true">
+        <summary class="chapter-summary">
+          <span class="chapter-name">地域の歴史を調べよう</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-h-c004/questions.html" data-published="false">問題</a>
+            <span class="count-meta">6回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+        <details class="section" open data-section-id="soc1-h-s006">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">課題の設定</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s006" data-kind="section-questions" data-target="sections/soc1-h-s006/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l027" data-seq="27" data-source-seq="" data-source-topic="【追加指導案】現在の地域の写真と昔の地図・写真を比較し、地名、神社・史跡、祭り、産業や交通の変化から疑問を出し、調査テーマを決める。" data-lesson-goal="地域の昔と今を比べて歴史に関わる疑問を見つけ、調べる課題を設定できる。" data-source-note="地域史6時間の追加指導案（ユーザー提示）。原典の分野別124回リストには含まれない独立配当。">
+              <span class="lesson-num">27</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l027" data-kind="summary" data-target="lessons/soc1-h-l027/summary.html" data-published="false">地域の昔と今を比べ、歴史の問いを立てる</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l027" data-kind="lesson" data-target="lessons/soc1-h-l027/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l027" data-kind="questions" data-target="lessons/soc1-h-l027/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s007">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">情報の収集①・調査計画</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s007" data-kind="section-questions" data-target="sections/soc1-h-s007/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l028" data-seq="28" data-source-seq="" data-source-topic="【追加指導案】図書館の文献、古地図、インターネット、郷土資料館、地域の人への聞き取りなどの調査方法を確認し、自分のテーマに合う方法を選んで計画を立てる。資料にある事実と推測を区別し、出典の記録方法を学ぶ。" data-lesson-goal="複数の歴史資料の特徴と調べ方を理解し、課題に合った調査方法と計画を選べる。" data-source-note="地域史6時間の追加指導案（ユーザー提示）。原典の分野別124回リストには含まれない独立配当。">
+              <span class="lesson-num">28</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l028" data-kind="summary" data-target="lessons/soc1-h-l028/summary.html" data-published="false">地域の歴史の調べ方を学び、調査計画を立てる</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l028" data-kind="lesson" data-target="lessons/soc1-h-l028/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l028" data-kind="questions" data-target="lessons/soc1-h-l028/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s008">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">情報の収集②・フィールドワーク</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s008" data-kind="section-questions" data-target="sections/soc1-h-s008/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l029" data-seq="29" data-source-seq="" data-source-topic="【追加指導案】市町村史、古地図、広報誌、郷土資料館・博物館の資料などから情報を集める。可能なら学校周辺の史跡を調べ、地域の人への聞き取りも行う。出典を記録する。" data-lesson-goal="文献・地図・地域資料などから課題に関係する情報を収集し、出典を示して記録できる。" data-source-note="地域史6時間の追加指導案（ユーザー提示）。原典の分野別124回リストには含まれない独立配当。">
+              <span class="lesson-num">29</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l029" data-kind="summary" data-target="lessons/soc1-h-l029/summary.html" data-published="false">文献・古地図・地域の資料を集めて調べる</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l029" data-kind="lesson" data-target="lessons/soc1-h-l029/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l029" data-kind="questions" data-target="lessons/soc1-h-l029/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s009">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">整理・分析</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s009" data-kind="section-questions" data-target="sections/soc1-h-s009/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l030" data-seq="30" data-source-seq="" data-source-topic="【追加指導案】集めた資料の「いつ・どこで・だれが・何をしたか」をカードや年表に整理し、地域の変化の理由を考える。地域の出来事と教科書で学んだ日本の歴史を関連付ける。" data-lesson-goal="資料から地域の歴史の変化や特色を読み取り、日本史の流れと関連付けて考察できる。" data-source-note="地域史6時間の追加指導案（ユーザー提示）。原典の分野別124回リストには含まれない独立配当。">
+              <span class="lesson-num">30</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l030" data-kind="summary" data-target="lessons/soc1-h-l030/summary.html" data-published="false">地域の歴史を年表に整理し、日本の歴史と結び付ける</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l030" data-kind="lesson" data-target="lessons/soc1-h-l030/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l030" data-kind="questions" data-target="lessons/soc1-h-l030/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s010">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">まとめ・表現①</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s010" data-kind="section-questions" data-target="sections/soc1-h-s010/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l031" data-seq="31" data-source-seq="" data-source-topic="【追加指導案】調査で分かったことを新聞・ポスター・スライドなどに整理する。写真や地図を適切に引用し、問い・根拠・結論が伝わる発表資料を作る。" data-lesson-goal="調査の結果と根拠を整理し、資料の出典を示しながら分かりやすく表現できる。" data-source-note="地域史6時間の追加指導案（ユーザー提示）。原典の分野別124回リストには含まれない独立配当。">
+              <span class="lesson-num">31</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l031" data-kind="summary" data-target="lessons/soc1-h-l031/summary.html" data-published="false">地域の歴史の調査成果を新聞やスライドにまとめる</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l031" data-kind="lesson" data-target="lessons/soc1-h-l031/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l031" data-kind="questions" data-target="lessons/soc1-h-l031/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s011">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">まとめ・表現②・振り返り</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s011" data-kind="section-questions" data-target="sections/soc1-h-s011/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">1回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l032" data-seq="32" data-source-seq="" data-source-topic="【追加指導案】調べた地域史をクラスやグループで発表し合い、互いの新しい発見や良かった点を共有する。地域の歴史と日本の歴史のつながりを振り返る。" data-lesson-goal="調査成果を他者に説明して意見を交流し、地域と日本の歴史のつながりを振り返ることができる。" data-source-note="地域史6時間の追加指導案（ユーザー提示）。原典の分野別124回リストには含まれない独立配当。">
+              <span class="lesson-num">32</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l032" data-kind="summary" data-target="lessons/soc1-h-l032/summary.html" data-published="false">地域の歴史を発表し、学習を振り返る</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l032" data-kind="lesson" data-target="lessons/soc1-h-l032/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l032" data-kind="questions" data-target="lessons/soc1-h-l032/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      <details class="chapter" open data-chapter-index="9" data-chapter-id="soc1-h-c005">
+        <summary class="chapter-summary">
+          <span class="chapter-name">第３章 中世の日本</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc1-h-c005/questions.html" data-published="false">問題</a>
+            <span class="count-meta">16回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l033" data-seq="33" data-source-seq="27" data-source-topic="■導入の活動中世の武士の暮らしを探ろう" data-lesson-goal="年表や絵画資料から武士が活躍した中世の時代のイメージを掴み、学習の見通しをもつ" data-source-note="">
+              <span class="lesson-num">33</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l033" data-kind="summary" data-target="lessons/soc1-h-l033/summary.html" data-published="false">中世の武士の暮らしの概観（中世への導入）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l033" data-kind="lesson" data-target="lessons/soc1-h-l033/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l033" data-kind="questions" data-target="lessons/soc1-h-l033/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        <details class="section" open data-section-id="soc1-h-s012">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節 武士の政権の成立</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s012" data-kind="section-questions" data-target="sections/soc1-h-s012/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l034" data-seq="34" data-source-seq="28" data-source-topic="１武士の成長" data-lesson-goal="都の政治状況や地方の混乱と関連づけて、武士団が成長し力を蓄えた過程を理解する" data-source-note="">
+              <span class="lesson-num">34</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l034" data-kind="summary" data-target="lessons/soc1-h-l034/summary.html" data-published="false">武士の出現と成長（平氏と源氏）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l034" data-kind="lesson" data-target="lessons/soc1-h-l034/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l034" data-kind="questions" data-target="lessons/soc1-h-l034/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l035" data-seq="35" data-source-seq="29" data-source-topic="２院政から武士の政権へ" data-lesson-goal="白河上皇の院政、保元・平治の乱、平清盛の政権を経て武士が実権を握る過程を理解する" data-source-note="">
+              <span class="lesson-num">35</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l035" data-kind="summary" data-target="lessons/soc1-h-l035/summary.html" data-published="false">院政の開始から平氏の政権・源平の争乱へ</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l035" data-kind="lesson" data-target="lessons/soc1-h-l035/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l035" data-kind="questions" data-target="lessons/soc1-h-l035/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l036" data-seq="36" data-source-seq="30" data-source-topic="３鎌倉幕府の成立と執権政治" data-lesson-goal="源頼朝による鎌倉幕府の仕組み、承久の乱後の執権政治と御成敗式目の特色を理解する" data-source-note="">
+              <span class="lesson-num">36</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l036" data-kind="summary" data-target="lessons/soc1-h-l036/summary.html" data-published="false">鎌倉幕府の成立（御恩と奉公）と執権政治</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l036" data-kind="lesson" data-target="lessons/soc1-h-l036/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l036" data-kind="questions" data-target="lessons/soc1-h-l036/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l037" data-seq="37" data-source-seq="31" data-source-topic="４武士と民衆の生活" data-lesson-goal="地頭の支配、二毛作や定期市・貨幣の流通など、鎌倉時代の武士と民衆の暮らしを理解する" data-source-note="">
+              <span class="lesson-num">37</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l037" data-kind="summary" data-target="lessons/soc1-h-l037/summary.html" data-published="false">鎌倉時代の武士と民衆の生活・産業の発達</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l037" data-kind="lesson" data-target="lessons/soc1-h-l037/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l037" data-kind="questions" data-target="lessons/soc1-h-l037/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l038" data-seq="38" data-source-seq="32" data-source-topic="５鎌倉時代の文化と宗教／■探究のステップ" data-lesson-goal="運慶の彫刻や新古今和歌集など力強い鎌倉文化と、法然・親鸞・日蓮らの鎌倉仏教を理解する" data-source-note="">
+              <span class="lesson-num">38</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l038" data-kind="summary" data-target="lessons/soc1-h-l038/summary.html" data-published="false">鎌倉文化の特色と鎌倉仏教の広がり</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l038" data-kind="lesson" data-target="lessons/soc1-h-l038/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l038" data-kind="questions" data-target="lessons/soc1-h-l038/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        <details class="section" open data-section-id="soc1-h-s013">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">２節 ユーラシアの動きと武士の政治の展開</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc1-h-s013" data-kind="section-questions" data-target="sections/soc1-h-s013/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">10回</span>
+          </summary>
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="soc1-h-l039" data-seq="39" data-source-seq="33" data-source-topic="１中世のユーラシア大陸" data-lesson-goal="イスラム世界やヨーロッパ十字軍など、中世ユーラシアで東西の交流が広がった様子を理解する" data-source-note="">
+              <span class="lesson-num">39</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l039" data-kind="summary" data-target="lessons/soc1-h-l039/summary.html" data-published="false">中世のユーラシア大陸と東西のつながり</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l039" data-kind="lesson" data-target="lessons/soc1-h-l039/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l039" data-kind="questions" data-target="lessons/soc1-h-l039/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l040" data-seq="40" data-source-seq="34" data-source-topic="２モンゴル帝国とユーラシア世界" data-lesson-goal="チンギス・ハンとフビライによるモンゴル帝国の拡大がユーラシア世界を結びつけたことを理解する" data-source-note="">
+              <span class="lesson-num">40</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l040" data-kind="summary" data-target="lessons/soc1-h-l040/summary.html" data-published="false">モンゴル帝国の成立とユーラシア世界の一体化</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l040" data-kind="lesson" data-target="lessons/soc1-h-l040/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l040" data-kind="questions" data-target="lessons/soc1-h-l040/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l041" data-seq="41" data-source-seq="35" data-source-topic="３モンゴルの襲来" data-lesson-goal="文永・弘安の役が御家人との主従関係や幕府財政に与えた影響と幕府滅亡への流れを理解する" data-source-note="">
+              <span class="lesson-num">41</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l041" data-kind="summary" data-target="lessons/soc1-h-l041/summary.html" data-published="false">元寇（モンゴルの襲来）と鎌倉幕府の衰退</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l041" data-kind="lesson" data-target="lessons/soc1-h-l041/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l041" data-kind="questions" data-target="lessons/soc1-h-l041/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l042" data-seq="42" data-source-seq="36" data-source-topic="４南北朝の動乱と室町幕府" data-lesson-goal="足利尊氏による室町幕府の成立と、足利義満の時代の仕組みを鎌倉幕府と比較して理解する" data-source-note="">
+              <span class="lesson-num">42</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l042" data-kind="summary" data-target="lessons/soc1-h-l042/summary.html" data-published="false">建武の新政・南北朝の動乱と室町幕府の成立</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l042" data-kind="lesson" data-target="lessons/soc1-h-l042/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l042" data-kind="questions" data-target="lessons/soc1-h-l042/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l043" data-seq="43" data-source-seq="37" data-source-topic="５東アジアとの交流" data-lesson-goal="明・朝鮮・琉球王国・アイヌ民族との貿易や交易を通して、室町時代の東アジア関係を理解する" data-source-note="">
+              <span class="lesson-num">43</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l043" data-kind="summary" data-target="lessons/soc1-h-l043/summary.html" data-published="false">日明貿易（勘合貿易）・朝鮮・琉球・アイヌとの東アジア交流</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l043" data-kind="lesson" data-target="lessons/soc1-h-l043/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l043" data-kind="questions" data-target="lessons/soc1-h-l043/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l044" data-seq="44" data-source-seq="38" data-source-topic="６産業の発達と民衆の生活" data-lesson-goal="農業・手工業の発達、座や馬借の活躍、惣村の自治や土一揆など民衆の力の高まりを理解する" data-source-note="">
+              <span class="lesson-num">44</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l044" data-kind="summary" data-target="lessons/soc1-h-l044/summary.html" data-published="false">室町時代の産業の発達と民衆の自治（惣・土一揆）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l044" data-kind="lesson" data-target="lessons/soc1-h-l044/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l044" data-kind="questions" data-target="lessons/soc1-h-l044/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l045" data-seq="45" data-source-seq="39" data-source-topic="７応仁の乱と戦国大名" data-lesson-goal="応仁の乱による幕府の衰退と、分国法・城下町など戦国大名による領国支配の変化を理解する" data-source-note="">
+              <span class="lesson-num">45</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l045" data-kind="summary" data-target="lessons/soc1-h-l045/summary.html" data-published="false">応仁の乱・下剋上と戦国大名の登場</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l045" data-kind="lesson" data-target="lessons/soc1-h-l045/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l045" data-kind="questions" data-target="lessons/soc1-h-l045/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l046" data-seq="46" data-source-seq="40" data-source-topic="８室町文化とその広がり／■探究のステップ" data-lesson-goal="金閣・銀閣・水墨画・能・狂言・書院造など、現代の生活につながる室町文化の特色を理解する" data-source-note="">
+              <span class="lesson-num">46</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l046" data-kind="summary" data-target="lessons/soc1-h-l046/summary.html" data-published="false">室町文化（北山・東山文化）とその広がり</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l046" data-kind="lesson" data-target="lessons/soc1-h-l046/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l046" data-kind="questions" data-target="lessons/soc1-h-l046/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l047" data-seq="47" data-source-seq="41" data-source-topic="■まとめの活動" data-lesson-goal="Xチャートを用いて、鎌倉・室町時代の政治・東アジア情勢・産業や民衆の動きを関連づける" data-source-note="">
+              <span class="lesson-num">47</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l047" data-kind="summary" data-target="lessons/soc1-h-l047/summary.html" data-published="false">3章「中世の日本」のまとめ（政治・東アジア・民衆の整理）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l047" data-kind="lesson" data-target="lessons/soc1-h-l047/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l047" data-kind="questions" data-target="lessons/soc1-h-l047/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="soc1-h-l048" data-seq="48" data-source-seq="42" data-source-topic="■まとめの活動" data-lesson-goal="中世の日本社会がどのように変化し発展したかを多面的に考察・表現する" data-source-note="">
+              <span class="lesson-num">48</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l048" data-kind="summary" data-target="lessons/soc1-h-l048/summary.html" data-published="false">3章「中世の日本」のまとめ（中世の特色の考察と表現）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l048" data-kind="lesson" data-target="lessons/soc1-h-l048/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc1-h-l048" data-kind="questions" data-target="lessons/soc1-h-l048/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </details>
+        </div>
+      </details>
+      </section>
+    </main>
+  </div>
+
+  <div class="status-toast" id="status-toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      // 公開済み教材の相対パスをここに登録すると、自動的に有効な同タブリンクへ切り替わります。
+      // 例: "lessons/soc1-g-l001/summary.html", "chapters/soc1-g-c001/questions.html"
+      const PUBLISHED_PATHS = new Set([]);
+
+      const allDetails = Array.from(document.querySelectorAll("details.chapter, details.section"));
+      const openAllBtn = document.getElementById("open-all");
+      const closeAllBtn = document.getElementById("close-all");
+      const toast = document.getElementById("status-toast");
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("is-visible");
+        }, 2800);
+      }
+
+      function syncLinkState(link) {
+        const target = link.dataset.target || "";
+        const isPublished = link.dataset.published === "true" || PUBLISHED_PATHS.has(target);
+        if (isPublished && target) {
+          link.setAttribute("href", target);
+          link.dataset.published = "true";
+          link.classList.remove("is-unpublished");
+          link.removeAttribute("aria-disabled");
+        } else {
+          link.removeAttribute("href");
+          link.dataset.published = "false";
+          link.classList.add("is-unpublished");
+          link.setAttribute("aria-disabled", "true");
+        }
+      }
+
+      const allLinks = Array.from(document.querySelectorAll("a[data-target]"));
+      allLinks.forEach(function (link) {
+        syncLinkState(link);
+
+        function handleActivate(event) {
+          // summary内の「問題」リンク押下時に親detailsが開閉しないようにする
+          if (link.closest("summary")) {
+            event.stopPropagation();
+          }
+          if (link.dataset.published !== "true") {
+            event.preventDefault();
+            const target = link.dataset.target || "";
+            showToast("準備中のページです（予定パス: " + target + "）");
+          }
+        }
+
+        link.addEventListener("click", handleActivate);
+        link.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            if (link.dataset.published !== "true") {
+              handleActivate(event);
+            } else if (event.key === "Enter" && link.closest("summary")) {
+              event.stopPropagation();
+            }
+          }
+        });
+      });
+
+      if (openAllBtn) {
+        openAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = true;
+          });
+        });
+      }
+
+      if (closeAllBtn) {
+        closeAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = false;
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
