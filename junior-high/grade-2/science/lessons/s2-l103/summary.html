@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第103時限 オームの法則を使った電流・電圧・抵抗の計算演習｜中学2年理科 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../s2-l102/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../s2-l104/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第103時限「オームの法則を使った電流・電圧・抵抗の計算演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>オームの法則と直列・並列回路の電流・電圧の規則性を組み合わせて、回路全体の未知の電流・電圧・電気抵抗を正確に計算できるようにします。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>回路計算のコツ：回路図のそれぞれの抵抗の近くに「V（電圧）・I（電流）・R（抵抗）」の3つを書き込み、わかっている2つからオームの法則で3つ目を求める。</li>
+<li>直列回路では「電流がどこも同じ」なので、全体の電流がわかれば各抵抗の電圧（V＝R×I）がすぐ求まる。</li>
+<li>並列回路では「電圧がどこも同じ」なので、電源の電圧から各枝の電流（I＝V÷R）を求めて足し合わせる。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>10Ωと20Ωの抵抗を直列につなぎ、全体に6Vの電圧を加えました。①回路全体に流れる電流は何Aですか。②20Ωの抵抗に加わる電圧は何Vですか。</p>
+<p class="answer">答え：①0.2A（全体の抵抗＝10＋20＝30Ω、I＝6÷30＝0.2A）　②4V（V＝20×0.2＝4V）。</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>1つの抵抗のV・I・Rと、回路全体のV・I・Rをごちゃ混ぜにして割り算しないこと！必ず同じ場所どうしでオームの法則を使う。</li>
+<li>計算が終わったら「直列なら電圧の和＝電源電圧」「並列なら電流の和＝全体電流」で検算する習慣をつけよう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

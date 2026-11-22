@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第104時限 直列つなぎ・並列つなぎにおける回路全体の合成抵抗｜中学2年理科 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../s2-l103/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../s2-l105/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第104時限「直列つなぎ・並列つなぎにおける回路全体の合成抵抗」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>抵抗器を直列・並列につないだときの回路全体の電気抵抗（合成抵抗）の変化を計算して規則性を理解します。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>直列つなぎの全体の抵抗（合成抵抗）：各抵抗の和になる（R ＝ R1 ＋ R2）。つなぐほど全体の抵抗は「大きく」なる。</li>
+<li>並列つなぎの全体の抵抗（合成抵抗）：全体の電圧 ÷ 全体の電流 で求められる。つなぐほど電流の通り道が増えるため、全体の抵抗はもとのどの抵抗よりも「小さく」なる。</li>
+<li>2つの抵抗 R1、R2 の並列合成抵抗の公式：1/R ＝ 1/R1 ＋ 1/R2（または R ＝ (R1×R2) ÷ (R1＋R2)）。</li>
+<li>電気をよく通す物質を「導体」、電気をほとんど通さない物質を「不導体（絶縁体）」という。金属は導体で、ゴムやプラスチックなどは不導体である。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>10Ωと15Ωの抵抗を①直列につないだとき、②並列につないだとき、回路全体の抵抗はそれぞれ何Ωですか。</p>
+<p class="answer">答え：①直列＝25Ω（10＋15）　②並列＝6Ω（(10×15)÷(10＋15)＝150÷25＝6Ω）。</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>並列つなぎの合成抵抗は、必ず「もとの一番小さい抵抗よりさらに小さくなる」ので、答えが大きくなったら計算ミスに気づける！</li>
+<li>公式を忘れても、仮に電圧を30Vなどとおいて各枝の電流を足し、電圧÷全体電流で求めれば確実に解ける。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

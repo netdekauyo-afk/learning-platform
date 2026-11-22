@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第102時限 電圧と電流のグラフ化とオームの法則・電気抵抗｜中学2年理科 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../s2-l101/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../s2-l103/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第102時限「電圧と電流のグラフ化とオームの法則・電気抵抗」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>電圧と電流の測定データをグラフ化して比例関係を見いだし、「オームの法則」と「電気抵抗（単位：Ω）」の意味を理解します。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>オームの法則：電熱線（抵抗器）に流れる電流は、加える電圧に比例する（グラフは原点を通る直線）。</li>
+<li>電流の流れにくさを表す量を「電気抵抗（抵抗）」といい、単位はオーム（記号：Ω）で表す。</li>
+<li>公式：電圧（V）＝ 抵抗（Ω）× 電流（A）、抵抗（Ω）＝ 電圧（V）÷ 電流（A）、電流（A）＝ 電圧（V）÷ 抵抗（Ω）。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>4.5Vの電圧を加えたときに 300mA の電流が流れる電熱線の電気抵抗は何Ωですか。</p>
+<p class="answer">答え：15 Ω（300mA ＝ 0.3A。抵抗＝4.5V ÷ 0.3A ＝ 15Ω）。</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>オームの法則の計算では、電流が mA のときは必ず A（÷1000）に直してから計算すること！ミスNo.1ポイント。</li>
+<li>グラフが横軸＝電圧・縦軸＝電流のとき、傾きが急な直線ほど「電流が流れやすい＝抵抗が小さい」ことになる。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

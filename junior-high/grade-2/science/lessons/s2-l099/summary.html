@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第99時限 電圧計の使い方と回路の各区間の電圧測定実験｜中学2年理科 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../s2-l098/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../s2-l100/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第99時限「電圧計の使い方と回路の各区間の電圧測定実験」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>電圧計の正しいつなぎ方（並列つなぎ）と目盛りの読み方を理解し、直列回路と並列回路の各区間の電圧を測定できるようにします。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>電圧計は、電圧を測りたい区間（豆電球や電源の両端）に「並列」につなぐ（＋端子を＋極側、－端子を－極側）。</li>
+<li>電圧の大きさがわからないときは、まず最も大きい「300V」または「15V」の－端子につなぎ、針の振れが小さければ順に「15V」「3V」へ切り替える。</li>
+<li>直列回路・並列回路それぞれについて、電源の両端と各豆電球の両端の電圧を測定して記録する。</li>
+<li>目盛りを読むときは、つないだ－端子（300V・15V・3V）の大きさに合わせた目盛りを選び、針の正面から読み取る。</li>
+<li>測定値は、最小目盛りの10分の1まで目分量で読み取る。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>電流計と電圧計の回路へのつなぎ方の違いを答えましょう。</p>
+<p class="answer">答え：電流計は測りたい部分に「直列」につなぎ、電圧計は測りたい区間に「並列」につなぐ。</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>電流計＝直列つなぎ、電圧計＝並列つなぎ、を逆にしないこと！</li>
+<li>電源装置の電圧を上げすぎると豆電球が切れることがあるので、指定された電圧の範囲で測定する。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>
