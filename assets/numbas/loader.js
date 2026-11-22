@@ -64,6 +64,17 @@ function readPracticeAnswers(examData) {
 async function installPracticeReview(examElement, examHost, historyKey, level) {
   const question = examElement.exam?.questionList?.[0];
   if (!question?.parts?.length) return;
+  // Some lesson pages replace the card in place. Capture its identity now,
+  // before the shared host is pointed at the next question.
+  const questionId = examHost.dataset.historyQuestionId || "";
+  const questionNumber = examHost.dataset.historyQuestionNumber || "";
+  let activeQuestionIds = [];
+  try {
+    activeQuestionIds = JSON.parse(examHost.dataset.historyQuestionIds || "[]");
+    if (!Array.isArray(activeQuestionIds)) activeQuestionIds = [];
+  } catch {
+    activeQuestionIds = [];
+  }
 
   // Record each submitted answer after Numbas has marked it. Wrong answers remain
   // recorded even if the learner later submits a correct answer.
@@ -71,7 +82,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   const updateViews = [];
   const refresh = () => updateViews.forEach((fn) => fn());
   const save = (entry, messageElement) => {
-    if (!appendPracticeHistory(historyKey, entry)) {
+    if (!appendPracticeHistory(historyKey, questionId ? { ...entry, questionId } : entry)) {
       messageElement.textContent = "このブラウザでは学習履歴を保存できません。";
       messageElement.hidden = false;
     }
@@ -155,17 +166,20 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   list.className = "practice-history-list";
   details.append(summary, list);
 
-  updateViews.push(() => {
-    const history = readPracticeHistory(historyKey);
-    const wrong = history.filter((item) => item.kind === "wrong").length;
-    const reveals = history.filter((item) => item.kind === "reveal").length;
-    summary.textContent = "学習履歴：誤答" + wrong + "回・解答確認" + reveals + "回";
-    list.replaceChildren();
+  const olderDetails = document.createElement("details");
+  olderDetails.className = "practice-history";
+  const olderSummary = document.createElement("summary");
+  const olderList = document.createElement("ul");
+  olderList.className = "practice-history-list";
+  olderDetails.append(olderSummary, olderList);
+
+  function renderHistory(target, history) {
+    target.replaceChildren();
     const recent = history.slice(-10).reverse();
     if (!recent.length) {
       const item = document.createElement("li");
       item.textContent = "まだ記録はありません。";
-      list.append(item);
+      target.append(item);
     }
     for (const record of recent) {
       const item = document.createElement("li");
@@ -175,7 +189,22 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
       const when = Number.isNaN(time.valueOf()) ? "" : time.toLocaleString("ja-JP");
       item.textContent = label + (record.answer ? "（" + record.answer + "）" : "") +
         (when ? "　" + when : "");
-      list.append(item);
+      target.append(item);
+    }
+  }
+  updateViews.push(() => {
+    const allHistory = readPracticeHistory(historyKey);
+    const history = questionId ? allHistory.filter((item) => item.questionId === questionId) : allHistory;
+    const wrong = history.filter((item) => item.kind === "wrong").length;
+    const reveals = history.filter((item) => item.kind === "reveal").length;
+    const prefix = questionId ? "設問" + questionNumber + "の学習履歴：" : "学習履歴：";
+    summary.textContent = prefix + "誤答" + wrong + "回・解答確認" + reveals + "回";
+    renderHistory(list, history);
+    if (questionId) {
+      const older = allHistory.filter((item) => !item.questionId || !activeQuestionIds.includes(item.questionId));
+      olderDetails.hidden = older.length === 0;
+      olderSummary.textContent = "以前の履歴（旧問題・設問未区別）：" + older.length + "件";
+      renderHistory(olderList, older);
     }
   });
   refresh();
@@ -193,7 +222,9 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
     button.textContent = show ? "答えを隠す" : "答えを見る";
     if (show) save({ kind: "reveal" }, notice);
   });
-  section.append(button, answerBox, details, notice);
+  section.append(button, answerBox, details);
+  if (questionId) section.append(olderDetails);
+  section.append(notice);
   examHost.append(section);
 
   // Hide Numbas' irreversible reveal button only when our safe replacement

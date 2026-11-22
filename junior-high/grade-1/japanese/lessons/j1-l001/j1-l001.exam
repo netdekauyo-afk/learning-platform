@@ -172,15 +172,15 @@
             "licence": "None specified",
             "description": ""
           },
-          "statement": "<p>【漢字】次の文を読んで、問いに答えなさい。</p><p>試合の前に、選手どうしが固く<u>握手</u>した。</p>",
-          "advice": "<p>答え：あくしゅ（「握手」は音読みの「アク（握）」と「シュ（手）」を組み合わせた熟語で、「あくしゅ」と読むため）</p>",
+          "statement": "<p>【漢字】次の3つの言葉の読み方の組み合わせとして、正しいものはどれか。</p><p>握手　　扱い　　依然</p>",
+          "advice": "<p>答え：握手＝あくしゅ　扱い＝あつかい　依然＝いぜん（握手は音読みの「アク」と「シュ」の組み合わせ、扱いは動詞「扱う」の名詞形、依然は音読みの「イ」と「ゼン」の組み合わせで、それぞれこのように読むため）</p>",
           "rulesets": {},
           "parts": [
             {
               "type": "1_n_2",
               "useCustomName": false,
               "customName": "",
-              "marks": 0.3333333333333333,
+              "marks": 1,
               "showCorrectAnswer": true,
               "showFeedbackIcon": true,
               "stepsPenalty": 0,
@@ -199,7 +199,7 @@
                   "customMarkingAlgorithm": "",
                   "extendBaseMarkingAlgorithm": true,
                   "unitTests": [],
-                  "prompt": "<p>ヒント：「握」には音読みと訓読みの両方があります。「手」と結びついた熟語では、どちらの読みを使うか思い出してみましょう。</p>"
+                  "prompt": "<p>ヒント：1つでも読みを間違えている組み合わせは選べません。言葉ごとに、音読みか訓読みかを確かめながら見ていきましょう。</p>"
                 }
               ],
               "scripts": {},
@@ -209,223 +209,21 @@
               "customMarkingAlgorithm": "",
               "extendBaseMarkingAlgorithm": true,
               "unitTests": [],
-              "prompt": "<p>傍線部「握手」の読み方として正しいものはどれか。</p>",
+              "prompt": "<p>3つすべての読み方が正しい組み合わせを選びなさい。</p>",
               "minMarks": 0,
-              "maxMarks": 0.3333333333333333,
+              "maxMarks": 1,
               "shuffleChoices": true,
               "displayType": "radiogroup",
               "displayColumns": 1,
               "showCellAnswerState": true,
               "choices": [
-                "あくしゅ",
-                "にぎしゅ",
-                "あくて",
-                "にぎて"
+                "握手＝あくしゅ　扱い＝あつかい　依然＝いぜん",
+                "握手＝あくしゅ　扱い＝あつかう　依然＝いぞん",
+                "握手＝にぎしゅ　扱い＝あつかい　依然＝いねん",
+                "握手＝あくて　扱い＝きゅう　依然＝いぜん"
               ],
               "matrix": [
-                0.3333333333333333,
-                0,
-                0,
-                0
-              ],
-              "distractors": [
-                "",
-                "",
-                "",
-                ""
-              ]
-            }
-          ],
-          "preamble": {
-            "js": "",
-            "css": ""
-          },
-          "variablesTest": {
-            "condition": "",
-            "maxRuns": 100
-          },
-          "partsMode": "all",
-          "maxMarks": 0,
-          "objectives": [],
-          "penalties": [],
-          "showObjectivesNames": "when-active",
-          "showPenaltiesNames": "when-active",
-          "builtin_constants": {
-            "e": true,
-            "pi,π": true,
-            "i": true
-          },
-          "constants": []
-        },
-        {
-          "name": "「朝のリレー」の音読と世界の情景の想像（漢字）",
-          "extensions": [],
-          "custom_part_types": [],
-          "variable_groups": [],
-          "variables": {},
-          "ungrouped_variables": [],
-          "tags": [
-            "扉の詩",
-            "朝のリレー",
-            "level:basic"
-          ],
-          "metadata": {
-            "licence": "None specified",
-            "description": ""
-          },
-          "statement": "<p>【漢字】次の文を読んで、問いに答えなさい。</p><p>この機械は<u>扱い</u>が難しい。</p>",
-          "advice": "<p>答え：あつかい（「扱い」は動詞「扱う（あつかう）」の名詞形で、「あつかい」と読むため）</p>",
-          "rulesets": {},
-          "parts": [
-            {
-              "type": "1_n_2",
-              "useCustomName": false,
-              "customName": "",
-              "marks": 0.3333333333333333,
-              "showCorrectAnswer": true,
-              "showFeedbackIcon": true,
-              "stepsPenalty": 0,
-              "steps": [
-                {
-                  "type": "information",
-                  "useCustomName": false,
-                  "customName": "",
-                  "marks": 0,
-                  "showCorrectAnswer": true,
-                  "showFeedbackIcon": true,
-                  "scripts": {},
-                  "variableReplacements": [],
-                  "variableReplacementStrategy": "originalfirst",
-                  "adaptiveMarkingPenalty": 0,
-                  "customMarkingAlgorithm": "",
-                  "extendBaseMarkingAlgorithm": true,
-                  "unitTests": [],
-                  "prompt": "<p>ヒント：「扱」は「あつか（う）」と訓読みする漢字です。文の中で名詞になっている形の読みを選びましょう。</p>"
-                }
-              ],
-              "scripts": {},
-              "variableReplacements": [],
-              "variableReplacementStrategy": "originalfirst",
-              "adaptiveMarkingPenalty": 0,
-              "customMarkingAlgorithm": "",
-              "extendBaseMarkingAlgorithm": true,
-              "unitTests": [],
-              "prompt": "<p>傍線部「扱い」の読み方として正しいものはどれか。</p>",
-              "minMarks": 0,
-              "maxMarks": 0.3333333333333333,
-              "shuffleChoices": true,
-              "displayType": "radiogroup",
-              "displayColumns": 1,
-              "showCellAnswerState": true,
-              "choices": [
-                "あつかい",
-                "あつかう",
-                "きゅう",
-                "そう"
-              ],
-              "matrix": [
-                0.3333333333333333,
-                0,
-                0,
-                0
-              ],
-              "distractors": [
-                "",
-                "",
-                "",
-                ""
-              ]
-            }
-          ],
-          "preamble": {
-            "js": "",
-            "css": ""
-          },
-          "variablesTest": {
-            "condition": "",
-            "maxRuns": 100
-          },
-          "partsMode": "all",
-          "maxMarks": 0,
-          "objectives": [],
-          "penalties": [],
-          "showObjectivesNames": "when-active",
-          "showPenaltiesNames": "when-active",
-          "builtin_constants": {
-            "e": true,
-            "pi,π": true,
-            "i": true
-          },
-          "constants": []
-        },
-        {
-          "name": "「朝のリレー」の音読と世界の情景の想像（漢字）",
-          "extensions": [],
-          "custom_part_types": [],
-          "variable_groups": [],
-          "variables": {},
-          "ungrouped_variables": [],
-          "tags": [
-            "扉の詩",
-            "朝のリレー",
-            "level:basic"
-          ],
-          "metadata": {
-            "licence": "None specified",
-            "description": ""
-          },
-          "statement": "<p>【漢字】次の文を読んで、問いに答えなさい。</p><p>彼の態度は、去年から<u>依然</u>として変わらない。</p>",
-          "advice": "<p>答え：いぜん（「依然」は音読みの「イ（依）」と「ゼン（然）」を組み合わせた熟語で、「いぜん」と読むため）</p>",
-          "rulesets": {},
-          "parts": [
-            {
-              "type": "1_n_2",
-              "useCustomName": false,
-              "customName": "",
-              "marks": 0.3333333333333333,
-              "showCorrectAnswer": true,
-              "showFeedbackIcon": true,
-              "stepsPenalty": 0,
-              "steps": [
-                {
-                  "type": "information",
-                  "useCustomName": false,
-                  "customName": "",
-                  "marks": 0,
-                  "showCorrectAnswer": true,
-                  "showFeedbackIcon": true,
-                  "scripts": {},
-                  "variableReplacements": [],
-                  "variableReplacementStrategy": "originalfirst",
-                  "adaptiveMarkingPenalty": 0,
-                  "customMarkingAlgorithm": "",
-                  "extendBaseMarkingAlgorithm": true,
-                  "unitTests": [],
-                  "prompt": "<p>ヒント：「依」は音読みで読む漢字です。「い」で始まる読みを手がかりに考えてみましょう。</p>"
-                }
-              ],
-              "scripts": {},
-              "variableReplacements": [],
-              "variableReplacementStrategy": "originalfirst",
-              "adaptiveMarkingPenalty": 0,
-              "customMarkingAlgorithm": "",
-              "extendBaseMarkingAlgorithm": true,
-              "unitTests": [],
-              "prompt": "<p>傍線部「依然」の読み方として正しいものはどれか。</p>",
-              "minMarks": 0,
-              "maxMarks": 0.3333333333333333,
-              "shuffleChoices": true,
-              "displayType": "radiogroup",
-              "displayColumns": 1,
-              "showCellAnswerState": true,
-              "choices": [
-                "いぜん",
-                "いねん",
-                "えぜん",
-                "いぞん"
-              ],
-              "matrix": [
-                0.3333333333333333,
+                1,
                 0,
                 0,
                 0

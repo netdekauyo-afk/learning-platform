@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>中学1年国語 学習一覧（全120回） | Classroom</title>
-  <link rel="stylesheet" href="../../../assets/style.css">
+  <link rel="stylesheet" href="../../../assets/style.css?v=20261122-question-history">
   <style>
     /* Colors are defined only in the shared :root palette. */
 
@@ -318,6 +318,12 @@
       font-size: 0.88rem;
     }
 
+    .lesson-progress-mark {
+      color: var(--color-progress-marker);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
     .section-link {
       font-size: 0.88rem;
       font-weight: 400;
@@ -439,7 +445,7 @@
             <span class="count-meta">2回</span>
           </summary>
           <ol class="lesson-list">
-            <li class="lesson-item" data-lesson-id="j1-l001" data-seq="1" data-month="4月" data-source-material="朝のリレー（1-2時）" data-learning-goal="詩を情景を思い浮かべながら音読し、朝が地球をめぐる広がりを味わう">
+            <li class="lesson-item" data-lesson-id="j1-l001" data-progress-exam="lessons/j1-l001/j1-l001.exam?v=20261122-question-history" data-seq="1" data-month="4月" data-source-material="朝のリレー（1-2時）" data-learning-goal="詩を情景を思い浮かべながら音読し、朝が地球をめぐる広がりを味わう">
               <span class="lesson-num">1</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l001" data-kind="summary" data-target="lessons/j1-l001/summary.html" data-published="false">「朝のリレー」の音読と世界の情景の想像</a>
               <span class="lesson-links">
@@ -2199,5 +2205,6 @@
       }
     })();
   </script>
+  <script type="module" src="../../../assets/numbas/lesson-progress.js?v=20261122-question-history"></script>
 </body>
 </html>

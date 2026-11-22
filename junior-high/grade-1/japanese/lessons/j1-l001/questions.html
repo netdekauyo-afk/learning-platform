@@ -47,15 +47,27 @@
     </main>
   </div>
   <script type="module">
+    import { examQuestions, questionIds } from "../../../../../assets/numbas/question-progress.js?v=20261122-question-history";
+
     try {
-      const response = await fetch("./j1-l001.exam");
+      const response = await fetch("./j1-l001.exam?v=20261122-question-history");
       if (!response.ok) throw new Error("問題データを読み込めませんでした。");
       const raw = await response.text();
       const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
-      const questions = (examData.question_groups || []).flatMap((group) =>
-        (group.questions || []).map((question) => ({ group, question }))
-      );
+      const questions = examQuestions(examData);
       if (!questions.length) throw new Error("問題が見つかりません。");
+      let ids = [];
+      try {
+        ids = await questionIds(questions);
+        if (new Set(ids).size !== ids.length) throw new Error("設問を識別できません。");
+      } catch (error) {
+        console.error(error);
+        ids = [];
+        const warning = document.createElement("p");
+        warning.setAttribute("role", "status");
+        warning.textContent = "設問ごとの学習記録を準備できませんでした。問題は解くことができます。";
+        document.getElementById("question-progress").after(warning);
+      }
 
       // Keep the original file intact and reuse the existing one-question renderer.
       const sources = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
@@ -71,6 +83,13 @@
       const progress = document.getElementById("question-progress");
       const previous = document.getElementById("question-previous");
       const next = document.getElementById("question-next");
+
+      function setQuestionSource() {
+        host.dataset.examSource = sources[current];
+        host.dataset.historyQuestionId = ids[current] || "";
+        host.dataset.historyQuestionNumber = String(current + 1);
+        host.dataset.historyQuestionIds = JSON.stringify(ids);
+      }
 
       function cancelAutoAdvance() {
         if (autoAdvance !== undefined) clearTimeout(autoAdvance);
@@ -132,7 +151,7 @@
         current = index;
         updateControls();
         status.textContent = "問題を読み込んでいます。";
-        host.dataset.examSource = sources[current];
+        setQuestionSource();
         const currentUrl = new URL(location.href);
         currentUrl.searchParams.set("question", String(current + 1));
         history.replaceState(history.state, "", currentUrl);
@@ -155,9 +174,9 @@
         }
       });
 
-      host.dataset.examSource = sources[current];
+      setQuestionSource();
       updateControls();
-      ({ bootExam } = await import("../../../../../assets/numbas/loader.js?v=20261122-jp-sequence"));
+      ({ bootExam } = await import("../../../../../assets/numbas/loader.js?v=20261122-question-history"));
       const basicPanel = document.getElementById("difficulty-basic-panel");
       if (!basicPanel) throw new Error("基礎問題を準備できませんでした。");
       basicPanel.insertBefore(progress, status);
