@@ -207,6 +207,8 @@
       const gradeKey = 'classroom-study-home-grade';
       const settingsKey = 'classroom-study-home-settings';
       const lessonsCache = new Map();
+      const gradeTimingCache = new Map();
+      const gradeTimingFiles = Object.freeze({ '1': '../assets/junior-high-grade-1-timing.json' });
       let loadVersion = 0;
       let navigationVersion = 0;
       let pendingSubject = null;
@@ -260,8 +262,38 @@
         return lessonsCache.get(key);
       }
 
-      // Use the existing lesson IDs and month data; do not duplicate them in a
-      // second table or assume dates for a course with no month information.
+      // One shared table per grade contains only the subjects that have been
+      // scheduled. Lesson titles and links remain in the existing course pages.
+      async function getGradeTiming(grade) {
+        const path = gradeTimingFiles[grade];
+        if (!path) return null;
+        if (!gradeTimingCache.has(grade)) {
+          const request = (async () => {
+            const response = await fetch(new URL(path, location.href).href, { credentials: 'same-origin', cache: 'no-cache' });
+            if (!response.ok) throw new Error('授業時期の対応表を読み込めませんでした。');
+            const table = await response.json();
+            if (!table || table.version !== 1 || table.school !== 'junior-high' || String(table.grade) !== grade || table.approximate !== true || !Array.isArray(table.days)) {
+              throw new Error('授業時期の対応表が不正です。');
+            }
+            let previous = 0;
+            for (const row of table.days) {
+              if (!row || !Number.isInteger(row.dateNumber) || row.dateNumber <= previous) throw new Error('日付番号が不正です。');
+              previous = row.dateNumber;
+              for (const [subject, ids] of Object.entries(row)) {
+                if (subject === 'dateNumber') continue;
+                if (!Object.prototype.hasOwnProperty.call(subjectNames, subject) || !Array.isArray(ids) || ids.some(id => typeof id !== 'string' || !id)) {
+                  throw new Error('授業IDが不正です。');
+                }
+              }
+            }
+            return table;
+          })();
+          gradeTimingCache.set(grade, request);
+          request.catch(() => { if (gradeTimingCache.get(grade) === request) gradeTimingCache.delete(grade); });
+        }
+        return gradeTimingCache.get(grade);
+      }
+
       async function courseDateNumbers(year, grade, subject) {
         const selectedGrade = String(grade);
         if (!grades.has(selectedGrade) || !Object.prototype.hasOwnProperty.call(subjectNames, subject) || (subject === 'information' && selectedGrade !== '3')) {
@@ -270,10 +302,34 @@
         if (!globalThis.ClassroomCalendar?.lessonDateNumberRanges) throw new Error('Calendar is unavailable');
         const lessons = await getLessons(selectedGrade, subject);
         const result = await globalThis.ClassroomCalendar.lessonDateNumberRanges(year, lessons);
+        // If the grade table is unavailable, preserve the existing month-based
+        // results and expose the failure instead of inventing a date.
+        let table = null;
+        let tableStatus = gradeTimingFiles[selectedGrade] ? 'ready' : 'not-configured';
+        try { table = await getGradeTiming(selectedGrade); } catch (_) { tableStatus = 'unavailable'; }
+        const knownIds = new Set(lessons.map(lesson => lesson.id));
+        const dateNumbers = new Map();
+        if (table) {
+          for (const row of table.days) {
+            for (const id of row[subject] || []) {
+              if (!knownIds.has(id) || dateNumbers.has(id)) throw new Error('授業時期の対応表に不正な授業IDがあります。');
+              // A number without a day in the requested year is not a match.
+              if (row.dateNumber <= result.days.length) dateNumbers.set(id, row.dateNumber);
+            }
+          }
+        }
         return Object.freeze({
           academicYear: year, grade: selectedGrade, subject,
+          tableStatus,
           days: result.days,
-          lessons: Object.freeze(result.lessons.map((item, index) => Object.freeze({ ...item, title: lessons[index].title })))
+          lessons: Object.freeze(result.lessons.map((item, index) => {
+            const number = dateNumbers.get(item.id);
+            return Object.freeze({
+              ...item,
+              ...(number ? { startDateNumber: number, endDateNumber: number, basis: 'grade-date-number-table', approximate: true } : {}),
+              title: lessons[index].title
+            });
+          }))
         });
       }
       async function courseLessonsOnDateNumber(year, grade, subject, number) {
