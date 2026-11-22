@@ -1,23 +1,1544 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#151515">
-  <title>小学6年生・理科 | Classroom</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小学6年理科 学習一覧（全95回） | Classroom</title>
   <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    /* Colors are defined only in the shared :root palette. */
 
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(30px, 8vw, 72px) 0;
+    }
+
+    .page-header {
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-title {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-heading);
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .control-link {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .control-link:hover,
+    .control-link:focus-visible {
+      color: var(--color-heading);
+    }
+
+    .control-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .curriculum-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Chapter */
+    details.chapter {
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    summary.chapter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: var(--color-surface);
+      border-left: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.chapter-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chapter-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 245px;
+      color: var(--color-heading);
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--color-surface-hover);
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
+      text-decoration: underline;
+    }
+
+    .chapter-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.85em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.chapter[open] > summary.chapter-summary .chapter-name::before {
+      transform: rotate(90deg);
+    }
+
+    details.chapter[open] > summary.chapter-summary {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-body {
+      padding: 8px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Section */
+    details.section {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    details.section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    summary.section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-hover);
+      border-left: 3px solid var(--color-border-hover);
+      border-radius: 9px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.section-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--color-heading);
+    }
+
+    .section-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.8em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.section[open] > summary.section-summary .section-name::before {
+      transform: rotate(90deg);
+    }
+
+    .count-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Lesson list */
+    .lesson-list {
+      list-style: none;
+      margin: 2px 0 6px;
+      padding: 0 0 0 18px;
+    }
+
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr auto;
+      align-items: baseline;
+      column-gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-item:first-child {
+      border-top: none;
+    }
+
+    .lesson-num {
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-heading);
+      text-align: right;
+    }
+
+    /* Text links (explicitly non-button UI) */
+    .text-link {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .text-link:hover {
+      color: var(--color-heading);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .text-link.is-unpublished {
+      color: var(--color-muted);
+      text-decoration-style: dotted;
+    }
+
+    .text-link.is-unpublished:hover {
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
+    }
+
+    .lesson-title-link {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .lesson-links {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .section-link {
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    /* Toast notification for unpublished links */
+    .status-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      max-width: calc(100vw - 32px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 100;
+    }
+
+    .status-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      summary.chapter-summary {
+        padding: 11px 12px;
+      }
+
+      .chapter-body {
+        padding: 6px 10px 10px;
+      }
+
+      .lesson-list {
+        padding-left: 6px;
+      }
+
+      .lesson-item {
+        grid-template-columns: 2.1rem 1fr;
+        row-gap: 4px;
+        padding: 8px 2px;
+      }
+
+      .lesson-links {
+        grid-column: 2;
+        gap: 18px;
+        padding-top: 2px;
+      }
+    }
+
+    .curriculum-source-notes {
+      margin-top: 13px;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--color-muted);
+    }
+    .curriculum-source-notes p {
+      margin: 3px 0;
+    }
+    .curriculum-source-notes strong {
+      color: var(--color-heading);
+    }
+    .curriculum-source-notes a {
+      color: var(--color-heading);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
 </head>
-<body>
-  <div class="site-shell">
+<body class="math-curriculum science-curriculum">
+  <div class="container">
     <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">小学校</a><span aria-hidden="true"> / </span><a href="../">6年生</a><span aria-hidden="true"> / </span><span aria-current="page">理科</span></nav>
-    <main>
-      <h1>理科</h1>
-      <nav class="problem-toolbar grade-navigation" aria-label="同じ科目の学年移動" style="margin-top: 24px;">
+    <header class="page-header">
+      <h1 class="page-title">小学6年理科 学習一覧</h1>
+      <div class="page-meta">
+        <span>全10領域ブロック・14単元・95回（啓林館「わくわく理科」）</span>
+        <div class="controls">
+          <button type="button" class="control-link" id="open-all">すべて開く</button>
+          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
+        </div>
+      </div>
+
+      <div class="curriculum-source-notes" aria-label="参照教科書と資料">
+        <p><strong>基準教科書：</strong>啓林館（令和6年度版） <a href="https://shinko-keirin.co.jp/keirinkan/sho_r6/rika/" target="_blank" rel="noopener noreferrer">『わくわく理科 6』</a></p>
+        <p><strong>参照資料：</strong><a href="https://shinko-keirin.co.jp/keirinkan/sho_r6/rika/file/rika_guidance_plan_standard.pdf" target="_blank" rel="noopener noreferrer">啓林館・年間指導計画</a> ／ <a href="https://shinko-keirin.co.jp/keirinkan/sho_r6/rika/file/rika_unit_example06.pdf" target="_blank" rel="noopener noreferrer">啓林館・評価資料</a> ／ <a href="https://ten.tokyo-shoseki.co.jp/text/shou/rika/data/rika_nenkankeikaku_6_saian.pdf" target="_blank" rel="noopener noreferrer">東京書籍・細案（参考）</a></p>
+        <p><strong>元データ：</strong><a href="https://docs.google.com/spreadsheets/d/1eHZ26-JTJFY2Ld5FBQFCtw02qaff2kRHN2eqtb7cayE/edit#gid=386893704" target="_blank" rel="noopener noreferrer">小学6年理科・95回の授業タイトル表</a></p>
+      </div>
+    </header>
+
+    <main class="curriculum-list" id="curriculum-list">
+      <details class="chapter" open data-chapter-index="0" data-chapter-id="es6-c001" data-source-domain="導入">
+        <summary class="chapter-summary">
+          <span class="chapter-name">導入</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c001/questions.html" data-published="false">問題</a>
+            <span class="count-meta">1回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" open data-section-id="es6-s001" data-source-subunit="理科のガイダンス">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">理科のガイダンス</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s001" data-kind="section-questions" data-target="sections/es6-s001/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l001" data-seq="1" data-source-domain="導入" data-source-unit="理科のガイダンス" data-source-section="●理科のガイダンス" data-unit-period="1／1" data-learning-goal="安全な観察・実験の手順を確認し、結果から根拠のある考えをつくる学習の進め方を説明できる。">
+                <span class="lesson-num">1</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l001" data-kind="summary" data-target="lessons/es6-l001/summary.html" data-published="false">６年理科の学び方と安全な実験の進め方</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l001" data-kind="lesson" data-target="lessons/es6-l001/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l001" data-kind="questions" data-target="lessons/es6-l001/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="1" data-chapter-id="es6-c002" data-source-domain="粒子">
+        <summary class="chapter-summary">
+          <span class="chapter-name">粒子</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c002/questions.html" data-published="false">問題</a>
+            <span class="count-meta">8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s002" data-source-subunit="ものが燃えるしくみ">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">ものが燃えるしくみ</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s002" data-kind="section-questions" data-target="sections/es6-s002/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">8回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l002" data-seq="2" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="1／8" data-learning-goal="瓶の中でろうそくの火が消える様子から、燃え続ける条件について調べる問いを立てられる。">
+                <span class="lesson-num">2</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l002" data-kind="summary" data-target="lessons/es6-l002/summary.html" data-published="false">ろうそくの火が消える理由を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l002" data-kind="lesson" data-target="lessons/es6-l002/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l002" data-kind="questions" data-target="lessons/es6-l002/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l003" data-seq="3" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="2／8" data-learning-goal="空気の出入口を変える実験を計画し、燃え続ける条件を根拠を挙げて予想できる。">
+                <span class="lesson-num">3</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l003" data-kind="summary" data-target="lessons/es6-l003/summary.html" data-published="false">空気の通り道と燃え方の関係を予想する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l003" data-kind="lesson" data-target="lessons/es6-l003/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l003" data-kind="questions" data-target="lessons/es6-l003/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l004" data-seq="4" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="3／8" data-learning-goal="瓶の開け方を変えて燃え方を比べ、空気の流れが燃焼に必要なことを説明できる。">
+                <span class="lesson-num">4</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l004" data-kind="summary" data-target="lessons/es6-l004/summary.html" data-published="false">空気の入れ替わりと燃え方を実験で調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l004" data-kind="lesson" data-target="lessons/es6-l004/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l004" data-kind="questions" data-target="lessons/es6-l004/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l005" data-seq="5" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="4／8" data-learning-goal="気体の種類を変えた燃焼の結果を比較し、酸素が燃える働きを助けることを説明できる。">
+                <span class="lesson-num">5</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l005" data-kind="summary" data-target="lessons/es6-l005/summary.html" data-published="false">酸素・窒素・二酸化炭素の燃え方を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l005" data-kind="lesson" data-target="lessons/es6-l005/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l005" data-kind="questions" data-target="lessons/es6-l005/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l006" data-seq="6" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="5／8" data-learning-goal="燃える前と後の空気を石灰水や気体検知管で比較する方法を安全に考えられる。">
+                <span class="lesson-num">6</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l006" data-kind="summary" data-target="lessons/es6-l006/summary.html" data-published="false">燃焼前後の空気を調べる実験を計画する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l006" data-kind="lesson" data-target="lessons/es6-l006/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l006" data-kind="questions" data-target="lessons/es6-l006/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l007" data-seq="7" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="6／8" data-learning-goal="石灰水などを正しく使い、燃焼後に二酸化炭素が増えることを記録できる。">
+                <span class="lesson-num">7</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l007" data-kind="summary" data-target="lessons/es6-l007/summary.html" data-published="false">石灰水で燃焼後の二酸化炭素を確かめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l007" data-kind="lesson" data-target="lessons/es6-l007/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l007" data-kind="questions" data-target="lessons/es6-l007/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l008" data-seq="8" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="7／8" data-learning-goal="燃焼前後の気体の割合を比べ、酸素が使われ二酸化炭素ができることを説明できる。">
+                <span class="lesson-num">8</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l008" data-kind="summary" data-target="lessons/es6-l008/summary.html" data-published="false">燃焼前後の酸素と二酸化炭素を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l008" data-kind="lesson" data-target="lessons/es6-l008/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l008" data-kind="questions" data-target="lessons/es6-l008/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l009" data-seq="9" data-source-domain="粒子" data-source-unit="ものが燃えるしくみ" data-source-section="ものが燃えるしくみ" data-unit-period="8／8" data-learning-goal="燃焼に必要な空気の出入りと酸素の働きを、実験結果を根拠に整理できる。">
+                <span class="lesson-num">9</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l009" data-kind="summary" data-target="lessons/es6-l009/summary.html" data-published="false">ものが燃える条件と空気の変化をまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l009" data-kind="lesson" data-target="lessons/es6-l009/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l009" data-kind="questions" data-target="lessons/es6-l009/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="2" data-chapter-id="es6-c003" data-source-domain="生命">
+        <summary class="chapter-summary">
+          <span class="chapter-name">生命</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c003/questions.html" data-published="false">問題</a>
+            <span class="count-meta">22回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s003" data-source-subunit="ヒトや動物の体">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">ヒトや動物の体</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s003" data-kind="section-questions" data-target="sections/es6-s003/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">8回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l010" data-seq="10" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="1／8" data-learning-goal="食べ物の通り道と体内での変化について予想し、消化の仕組みを調べる問いを立てられる。">
+                <span class="lesson-num">10</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l010" data-kind="summary" data-target="lessons/es6-l010/summary.html" data-published="false">食べ物は体の中でどう変わるのか考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l010" data-kind="lesson" data-target="lessons/es6-l010/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l010" data-kind="questions" data-target="lessons/es6-l010/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l011" data-seq="11" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="2／8" data-learning-goal="だ液の有無を比べる実験で、でんぷんが変化することを観察結果から説明できる。">
+                <span class="lesson-num">11</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l011" data-kind="summary" data-target="lessons/es6-l011/summary.html" data-published="false">だ液がでんぷんを変えることを実験する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l011" data-kind="lesson" data-target="lessons/es6-l011/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l011" data-kind="questions" data-target="lessons/es6-l011/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l012" data-seq="12" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="3／8" data-learning-goal="消化管と消化液の働き、小腸から養分が吸収される仕組みを説明できる。">
+                <span class="lesson-num">12</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l012" data-kind="summary" data-target="lessons/es6-l012/summary.html" data-published="false">胃・小腸などの消化と吸収を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l012" data-kind="lesson" data-target="lessons/es6-l012/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l012" data-kind="questions" data-target="lessons/es6-l012/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l013" data-seq="13" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="4／8" data-learning-goal="呼気と吸気を石灰水などで比べ、呼吸で取り入れる気体と出す気体の違いを説明できる。">
+                <span class="lesson-num">13</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l013" data-kind="summary" data-target="lessons/es6-l013/summary.html" data-published="false">吸う空気と吐く空気の違いを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l013" data-kind="lesson" data-target="lessons/es6-l013/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l013" data-kind="questions" data-target="lessons/es6-l013/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l014" data-seq="14" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="5／8" data-learning-goal="肺で酸素が取り込まれ二酸化炭素が出ることを、呼吸の模型や資料から説明できる。">
+                <span class="lesson-num">14</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l014" data-kind="summary" data-target="lessons/es6-l014/summary.html" data-published="false">肺の仕組みと呼吸の働きを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l014" data-kind="lesson" data-target="lessons/es6-l014/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l014" data-kind="questions" data-target="lessons/es6-l014/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l015" data-seq="15" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="6／8" data-learning-goal="脈拍や資料を手がかりに、心臓が血液を送り全身に物質を運ぶ仕組みを説明できる。">
+                <span class="lesson-num">15</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l015" data-kind="summary" data-target="lessons/es6-l015/summary.html" data-published="false">心臓と血液の流れを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l015" data-kind="lesson" data-target="lessons/es6-l015/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l015" data-kind="questions" data-target="lessons/es6-l015/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l016" data-seq="16" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="7／8" data-learning-goal="腎臓が血液中の不要な物を取り除くことなど、体内の臓器の働きを説明できる。">
+                <span class="lesson-num">16</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l016" data-kind="summary" data-target="lessons/es6-l016/summary.html" data-published="false">腎臓などの臓器の役割を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l016" data-kind="lesson" data-target="lessons/es6-l016/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l016" data-kind="questions" data-target="lessons/es6-l016/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l017" data-seq="17" data-source-domain="生命" data-source-unit="ヒトや動物の体" data-source-section="ヒトや動物の体" data-unit-period="8／8" data-learning-goal="食べ物の養分と呼吸で得た酸素が血液で運ばれる関係を説明できる。">
+                <span class="lesson-num">17</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l017" data-kind="summary" data-target="lessons/es6-l017/summary.html" data-published="false">消化・呼吸・循環がつながる仕組みをまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l017" data-kind="lesson" data-target="lessons/es6-l017/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l017" data-kind="questions" data-target="lessons/es6-l017/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es6-s004" data-source-subunit="植物のつくりとはたらき">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">植物のつくりとはたらき</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s004" data-kind="section-questions" data-target="sections/es6-s004/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">8回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l018" data-seq="18" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="1／8" data-learning-goal="水やりした植物の様子から、根で吸った水がどこへ行くか予想できる。">
+                <span class="lesson-num">18</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l018" data-kind="summary" data-target="lessons/es6-l018/summary.html" data-published="false">植物が吸い上げた水の行方を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l018" data-kind="lesson" data-target="lessons/es6-l018/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l018" data-kind="questions" data-target="lessons/es6-l018/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l019" data-seq="19" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="2／8" data-learning-goal="色水を吸わせた植物の茎や葉を観察し、水が通る部分を記録できる。">
+                <span class="lesson-num">19</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l019" data-kind="summary" data-target="lessons/es6-l019/summary.html" data-published="false">色水で植物の水の通り道を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l019" data-kind="lesson" data-target="lessons/es6-l019/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l019" data-kind="questions" data-target="lessons/es6-l019/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l020" data-seq="20" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="3／8" data-learning-goal="色水の実験から、根で吸った水が茎を通って葉まで届くことを説明できる。">
+                <span class="lesson-num">20</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l020" data-kind="summary" data-target="lessons/es6-l020/summary.html" data-published="false">根・茎・葉へ水が運ばれる仕組みを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l020" data-kind="lesson" data-target="lessons/es6-l020/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l020" data-kind="questions" data-target="lessons/es6-l020/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l021" data-seq="21" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="4／8" data-learning-goal="葉を袋で覆うなどの方法で水滴の出方を比べ、蒸散が起こることを確かめられる。">
+                <span class="lesson-num">21</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l021" data-kind="summary" data-target="lessons/es6-l021/summary.html" data-published="false">葉から水が出るか袋を使って調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l021" data-kind="lesson" data-target="lessons/es6-l021/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l021" data-kind="questions" data-target="lessons/es6-l021/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l022" data-seq="22" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="5／8" data-learning-goal="葉の表面の気孔を観察し、植物の水が水蒸気として外へ出ることを説明できる。">
+                <span class="lesson-num">22</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l022" data-kind="summary" data-target="lessons/es6-l022/summary.html" data-published="false">葉の気孔と蒸散の関係を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l022" data-kind="lesson" data-target="lessons/es6-l022/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l022" data-kind="questions" data-target="lessons/es6-l022/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l023" data-seq="23" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="6／8" data-learning-goal="日光を当てる部分と遮る部分を比べる実験を考え、葉のでんぷんの変化を予想できる。">
+                <span class="lesson-num">23</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l023" data-kind="summary" data-target="lessons/es6-l023/summary.html" data-published="false">日光と葉のでんぷんの関係を予想する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l023" data-kind="lesson" data-target="lessons/es6-l023/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l023" data-kind="questions" data-target="lessons/es6-l023/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l024" data-seq="24" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="7／8" data-learning-goal="ヨウ素液を使い、日光を当てた葉と遮った葉のでんぷんの違いを調べられる。">
+                <span class="lesson-num">24</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l024" data-kind="summary" data-target="lessons/es6-l024/summary.html" data-published="false">日光を当てた葉のでんぷんを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l024" data-kind="lesson" data-target="lessons/es6-l024/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l024" data-kind="questions" data-target="lessons/es6-l024/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l025" data-seq="25" data-source-domain="生命" data-source-unit="植物のつくりとはたらき" data-source-section="植物のつくりとはたらき" data-unit-period="8／8" data-learning-goal="植物が水を運び、葉で日光を受けて養分をつくる仕組みを実験結果で説明できる。">
+                <span class="lesson-num">25</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l025" data-kind="summary" data-target="lessons/es6-l025/summary.html" data-published="false">植物の水の通り道と養分づくりをまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l025" data-kind="lesson" data-target="lessons/es6-l025/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l025" data-kind="questions" data-target="lessons/es6-l025/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es6-s005" data-source-subunit="生物どうしのつながり">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">生物どうしのつながり</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s005" data-kind="section-questions" data-target="sections/es6-s005/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">6回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l026" data-seq="26" data-source-domain="生命" data-source-unit="生物どうしのつながり" data-source-section="わたしたちの地球(1)" data-unit-period="1／6" data-learning-goal="人や動物の食べ物の由来をたどり、生物どうしの関わりについて問いを立てられる。">
+                <span class="lesson-num">26</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l026" data-kind="summary" data-target="lessons/es6-l026/summary.html" data-published="false">生き物は何を食べて生きるのか調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l026" data-kind="lesson" data-target="lessons/es6-l026/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l026" data-kind="questions" data-target="lessons/es6-l026/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l027" data-seq="27" data-source-domain="生命" data-source-unit="生物どうしのつながり" data-source-section="わたしたちの地球(1)" data-unit-period="2／6" data-learning-goal="水中の微生物や落ち葉を食べる生物を調べ、食べ物を通した関わりを記録できる。">
+                <span class="lesson-num">27</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l027" data-kind="summary" data-target="lessons/es6-l027/summary.html" data-published="false">水中や土の小さな生き物を観察する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l027" data-kind="lesson" data-target="lessons/es6-l027/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l027" data-kind="questions" data-target="lessons/es6-l027/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l028" data-seq="28" data-source-domain="生命" data-source-unit="生物どうしのつながり" data-source-section="わたしたちの地球(1)" data-unit-period="3／6" data-learning-goal="植物と動物の食べ物の関係を図にまとめ、生物のつながりを説明できる。">
+                <span class="lesson-num">28</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l028" data-kind="summary" data-target="lessons/es6-l028/summary.html" data-published="false">食べる・食べられる関係をつなげる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l028" data-kind="lesson" data-target="lessons/es6-l028/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l028" data-kind="questions" data-target="lessons/es6-l028/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l029" data-seq="29" data-source-domain="生命" data-source-unit="生物どうしのつながり" data-source-section="わたしたちの地球(1)" data-unit-period="4／6" data-learning-goal="植物が明るい場所で酸素を出す現象を資料や実験で調べ、空気との関わりを説明できる。">
+                <span class="lesson-num">29</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l029" data-kind="summary" data-target="lessons/es6-l029/summary.html" data-published="false">植物が空気中の酸素を増やすことを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l029" data-kind="lesson" data-target="lessons/es6-l029/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l029" data-kind="questions" data-target="lessons/es6-l029/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l030" data-seq="30" data-source-domain="生命" data-source-unit="生物どうしのつながり" data-source-section="わたしたちの地球(1)" data-unit-period="5／6" data-learning-goal="植物と動物が酸素や二酸化炭素を通して関係していることを説明できる。">
+                <span class="lesson-num">30</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l030" data-kind="summary" data-target="lessons/es6-l030/summary.html" data-published="false">生き物と空気の関係をまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l030" data-kind="lesson" data-target="lessons/es6-l030/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l030" data-kind="questions" data-target="lessons/es6-l030/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l031" data-seq="31" data-source-domain="生命" data-source-unit="生物どうしのつながり" data-source-section="わたしたちの地球(1)" data-unit-period="6／6" data-learning-goal="水が生物の体や環境をめぐることを調べ、食べ物・空気・水の関係を総合して説明できる。">
+                <span class="lesson-num">31</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l031" data-kind="summary" data-target="lessons/es6-l031/summary.html" data-published="false">生き物と水の関わりを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l031" data-kind="lesson" data-target="lessons/es6-l031/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l031" data-kind="questions" data-target="lessons/es6-l031/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="3" data-chapter-id="es6-c004" data-source-domain="総合">
+        <summary class="chapter-summary">
+          <span class="chapter-name">総合</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c004/questions.html" data-published="false">問題</a>
+            <span class="count-meta">1回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s006" data-source-subunit="これまでの学習をつなげよう">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">これまでの学習をつなげよう</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s006" data-kind="section-questions" data-target="sections/es6-s006/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l032" data-seq="32" data-source-domain="総合" data-source-unit="これまでの学習をつなげよう" data-source-section="●これまでの学習をつなげよう" data-unit-period="1／1" data-learning-goal="人や植物の働きを振り返り、生物が食べ物・空気・水を通して関わることを説明できる。">
+                <span class="lesson-num">32</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l032" data-kind="summary" data-target="lessons/es6-l032/summary.html" data-published="false">人・植物・ほかの生物のつながりを整理する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l032" data-kind="lesson" data-target="lessons/es6-l032/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l032" data-kind="questions" data-target="lessons/es6-l032/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="4" data-chapter-id="es6-c005" data-source-domain="探究">
+        <summary class="chapter-summary">
+          <span class="chapter-name">探究</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c005/questions.html" data-published="false">問題</a>
+            <span class="count-meta">2回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s007" data-source-subunit="自由研究">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">自由研究</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s007" data-kind="section-questions" data-target="sections/es6-s007/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">2回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l033" data-seq="33" data-source-domain="探究" data-source-unit="自由研究" data-source-section="●自由研究" data-unit-period="1／2" data-learning-goal="自然の疑問から仮説を立て、比較条件と安全な調査方法を考えられる。">
+                <span class="lesson-num">33</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l033" data-kind="summary" data-target="lessons/es6-l033/summary.html" data-published="false">身近な疑問から自由研究の実験を計画する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l033" data-kind="lesson" data-target="lessons/es6-l033/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l033" data-kind="questions" data-target="lessons/es6-l033/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l034" data-seq="34" data-source-domain="探究" data-source-unit="自由研究" data-source-section="●自由研究" data-unit-period="2／2" data-learning-goal="観察・実験の結果を表や図にまとめ、予想との違いと根拠を説明できる。">
+                <span class="lesson-num">34</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l034" data-kind="summary" data-target="lessons/es6-l034/summary.html" data-published="false">自由研究の結果を整理して考察を伝える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l034" data-kind="lesson" data-target="lessons/es6-l034/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l034" data-kind="questions" data-target="lessons/es6-l034/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="5" data-chapter-id="es6-c006" data-source-domain="観察・実験">
+        <summary class="chapter-summary">
+          <span class="chapter-name">観察・実験</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c006/questions.html" data-published="false">問題</a>
+            <span class="count-meta">2回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s008" data-source-subunit="みんなで使う理科室">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">みんなで使う理科室</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s008" data-kind="section-questions" data-target="sections/es6-s008/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">2回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l035" data-seq="35" data-source-domain="観察・実験" data-source-unit="みんなで使う理科室" data-source-section="●みんなで使う理科室" data-unit-period="1／2" data-learning-goal="火気や薬品を使うときの保護具・換気・廃液処理などの安全な手順を説明できる。">
+                <span class="lesson-num">35</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l035" data-kind="summary" data-target="lessons/es6-l035/summary.html" data-published="false">理科室の器具・薬品を安全に扱う</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l035" data-kind="lesson" data-target="lessons/es6-l035/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l035" data-kind="questions" data-target="lessons/es6-l035/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l036" data-seq="36" data-source-domain="観察・実験" data-source-unit="みんなで使う理科室" data-source-section="●みんなで使う理科室" data-unit-period="2／2" data-learning-goal="試験管・加熱器具・温度計などを適切に使い、安全な後片付けを実行できる。">
+                <span class="lesson-num">36</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l036" data-kind="summary" data-target="lessons/es6-l036/summary.html" data-published="false">実験器具の使い方と片付けを練習する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l036" data-kind="lesson" data-target="lessons/es6-l036/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l036" data-kind="questions" data-target="lessons/es6-l036/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="6" data-chapter-id="es6-c007" data-source-domain="粒子">
+        <summary class="chapter-summary">
+          <span class="chapter-name">粒子</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c007/questions.html" data-published="false">問題</a>
+            <span class="count-meta">13回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s009" data-source-subunit="水よう液の性質">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">水よう液の性質</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s009" data-kind="section-questions" data-target="sections/es6-s009/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">13回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l037" data-seq="37" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="1／13" data-learning-goal="食塩水などの液体を安全に比較するため、見た目以外の調べ方を予想できる。">
+                <span class="lesson-num">37</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l037" data-kind="summary" data-target="lessons/es6-l037/summary.html" data-published="false">水溶液の違いを調べる方法を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l037" data-kind="lesson" data-target="lessons/es6-l037/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l037" data-kind="questions" data-target="lessons/es6-l037/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l038" data-seq="38" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="2／13" data-learning-goal="水溶液から水を蒸発させた後の様子を比べ、固体が溶けている場合を見分けられる。">
+                <span class="lesson-num">38</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l038" data-kind="summary" data-target="lessons/es6-l038/summary.html" data-published="false">水溶液を蒸発させて残る物を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l038" data-kind="lesson" data-target="lessons/es6-l038/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l038" data-kind="questions" data-target="lessons/es6-l038/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l039" data-seq="39" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="3／13" data-learning-goal="炭酸水から出る気体を安全に集め、石灰水の反応から二酸化炭素と説明できる。">
+                <span class="lesson-num">39</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l039" data-kind="summary" data-target="lessons/es6-l039/summary.html" data-published="false">炭酸水に溶けている気体を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l039" data-kind="lesson" data-target="lessons/es6-l039/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l039" data-kind="questions" data-target="lessons/es6-l039/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l040" data-seq="40" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="4／13" data-learning-goal="炭酸水などの実験結果をもとに、水溶液には気体が溶けているものがあると説明できる。">
+                <span class="lesson-num">40</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l040" data-kind="summary" data-target="lessons/es6-l040/summary.html" data-published="false">水溶液には気体が溶けることをまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l040" data-kind="lesson" data-target="lessons/es6-l040/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l040" data-kind="questions" data-target="lessons/es6-l040/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l041" data-seq="41" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="5／13" data-learning-goal="赤色・青色リトマス紙の使い方を確かめ、液体の性質を分類する方法を考えられる。">
+                <span class="lesson-num">41</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l041" data-kind="summary" data-target="lessons/es6-l041/summary.html" data-published="false">リトマス紙を使う実験を計画する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l041" data-kind="lesson" data-target="lessons/es6-l041/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l041" data-kind="questions" data-target="lessons/es6-l041/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l042" data-seq="42" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="6／13" data-learning-goal="リトマス紙の色の変化を記録し、酸性・中性・アルカリ性に分類できる。">
+                <span class="lesson-num">42</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l042" data-kind="summary" data-target="lessons/es6-l042/summary.html" data-published="false">リトマス紙で水溶液を仲間分けする</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l042" data-kind="lesson" data-target="lessons/es6-l042/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l042" data-kind="questions" data-target="lessons/es6-l042/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l043" data-seq="43" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="7／13" data-learning-goal="家庭で使われる水溶液の性質を安全な資料や試験で比較し、分類の根拠を説明できる。">
+                <span class="lesson-num">43</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l043" data-kind="summary" data-target="lessons/es6-l043/summary.html" data-published="false">身近な水溶液の性質を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l043" data-kind="lesson" data-target="lessons/es6-l043/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l043" data-kind="questions" data-target="lessons/es6-l043/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l044" data-seq="44" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="8／13" data-learning-goal="金属を水や塩酸に入れたときの変化を予想し、調べる方法を説明できる。">
+                <span class="lesson-num">44</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l044" data-kind="summary" data-target="lessons/es6-l044/summary.html" data-published="false">金属に水溶液を加えるとどうなるか予想する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l044" data-kind="lesson" data-target="lessons/es6-l044/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l044" data-kind="questions" data-target="lessons/es6-l044/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l045" data-seq="45" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="9／13" data-learning-goal="教師の指導の下で金属と塩酸の反応を観察し、泡の発生などの変化を記録できる。">
+                <span class="lesson-num">45</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l045" data-kind="summary" data-target="lessons/es6-l045/summary.html" data-published="false">塩酸で金属が変化する様子を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l045" data-kind="lesson" data-target="lessons/es6-l045/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l045" data-kind="questions" data-target="lessons/es6-l045/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l046" data-seq="46" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="10／13" data-learning-goal="金属が見えなくなった液を調べる方法を考え、溶けた金属の行方を予想できる。">
+                <span class="lesson-num">46</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l046" data-kind="summary" data-target="lessons/es6-l046/summary.html" data-published="false">塩酸に溶けた金属の行方を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l046" data-kind="lesson" data-target="lessons/es6-l046/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l046" data-kind="questions" data-target="lessons/es6-l046/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l047" data-seq="47" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="11／13" data-learning-goal="適切な安全管理の下で試料から固体が得られることを観察し、元の金属との違いを考えられる。">
+                <span class="lesson-num">47</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l047" data-kind="summary" data-target="lessons/es6-l047/summary.html" data-published="false">金属が溶けた液から固体を取り出す</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l047" data-kind="lesson" data-target="lessons/es6-l047/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l047" data-kind="questions" data-target="lessons/es6-l047/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l048" data-seq="48" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="12／13" data-learning-goal="得られた固体の性質を元の金属と比較し、新しい物ができたことを説明できる。">
+                <span class="lesson-num">48</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l048" data-kind="summary" data-target="lessons/es6-l048/summary.html" data-published="false">取り出した固体と元の金属を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l048" data-kind="lesson" data-target="lessons/es6-l048/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l048" data-kind="questions" data-target="lessons/es6-l048/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l049" data-seq="49" data-source-domain="粒子" data-source-unit="水よう液の性質" data-source-section="水よう液の性質" data-unit-period="13／13" data-learning-goal="水溶液の分類、気体の溶解、金属を変化させる働きを実験結果で説明できる。">
+                <span class="lesson-num">49</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l049" data-kind="summary" data-target="lessons/es6-l049/summary.html" data-published="false">水溶液の酸性・アルカリ性と働きをまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l049" data-kind="lesson" data-target="lessons/es6-l049/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l049" data-kind="questions" data-target="lessons/es6-l049/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="7" data-chapter-id="es6-c008" data-source-domain="地球">
+        <summary class="chapter-summary">
+          <span class="chapter-name">地球</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c008/questions.html" data-published="false">問題</a>
+            <span class="count-meta">20回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s010" data-source-subunit="月と太陽">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">月と太陽</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s010" data-kind="section-questions" data-target="sections/es6-s010/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">5回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l050" data-seq="50" data-source-domain="地球" data-source-unit="月と太陽" data-source-section="月と太陽" data-unit-period="1／5" data-learning-goal="月の形や位置の写真から、見え方の変化について問いを立てられる。">
+                <span class="lesson-num">50</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l050" data-kind="summary" data-target="lessons/es6-l050/summary.html" data-published="false">月が日によって違う形に見える理由を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l050" data-kind="lesson" data-target="lessons/es6-l050/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l050" data-kind="questions" data-target="lessons/es6-l050/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l051" data-seq="51" data-source-domain="地球" data-source-unit="月と太陽" data-source-section="月と太陽" data-unit-period="2／5" data-learning-goal="同じ時刻ごろの月の形や方位を調べ、日付とともに記録できる。">
+                <span class="lesson-num">51</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l051" data-kind="summary" data-target="lessons/es6-l051/summary.html" data-published="false">数日間の月の形と位置を観察する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l051" data-kind="lesson" data-target="lessons/es6-l051/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l051" data-kind="questions" data-target="lessons/es6-l051/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l052" data-seq="52" data-source-domain="地球" data-source-unit="月と太陽" data-source-section="月と太陽" data-unit-period="3／5" data-learning-goal="観察した月の形の違いから、太陽と月の位置関係を図で予想できる。">
+                <span class="lesson-num">52</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l052" data-kind="summary" data-target="lessons/es6-l052/summary.html" data-published="false">月と太陽の位置関係を予想する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l052" data-kind="lesson" data-target="lessons/es6-l052/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l052" data-kind="questions" data-target="lessons/es6-l052/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l053" data-seq="53" data-source-domain="地球" data-source-unit="月と太陽" data-source-section="月と太陽" data-unit-period="4／5" data-learning-goal="光源と球の位置を変えて月の形を再現し、見える明るい部分の変化を確かめられる。">
+                <span class="lesson-num">53</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l053" data-kind="summary" data-target="lessons/es6-l053/summary.html" data-published="false">光と球を使って月の見え方を再現する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l053" data-kind="lesson" data-target="lessons/es6-l053/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l053" data-kind="questions" data-target="lessons/es6-l053/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l054" data-seq="54" data-source-domain="地球" data-source-unit="月と太陽" data-source-section="月と太陽" data-unit-period="5／5" data-learning-goal="月は太陽の光を反射し、位置関係によって形が変わって見えると説明できる。">
+                <span class="lesson-num">54</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l054" data-kind="summary" data-target="lessons/es6-l054/summary.html" data-published="false">月が光って見える仕組みをまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l054" data-kind="lesson" data-target="lessons/es6-l054/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l054" data-kind="questions" data-target="lessons/es6-l054/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es6-s011" data-source-subunit="大地のつくりと変化">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">大地のつくりと変化</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s011" data-kind="section-questions" data-target="sections/es6-s011/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">15回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l055" data-seq="55" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="1／15" data-learning-goal="崖の写真などから地面の下に層があることに気づき、調べる問いを立てられる。">
+                <span class="lesson-num">55</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l055" data-kind="summary" data-target="lessons/es6-l055/summary.html" data-published="false">地層のしま模様から大地のつくりを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l055" data-kind="lesson" data-target="lessons/es6-l055/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l055" data-kind="questions" data-target="lessons/es6-l055/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l056" data-seq="56" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="2／15" data-learning-goal="地層の試料や写真から粒の大きさや色などの特徴を比較できる。">
+                <span class="lesson-num">56</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l056" data-kind="summary" data-target="lessons/es6-l056/summary.html" data-published="false">地層に含まれる砂・泥・礫を観察する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l056" data-kind="lesson" data-target="lessons/es6-l056/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l056" data-kind="questions" data-target="lessons/es6-l056/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l057" data-seq="57" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="3／15" data-learning-goal="離れた場所の地層の写真や資料を比べ、層の続き方について説明できる。">
+                <span class="lesson-num">57</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l057" data-kind="summary" data-target="lessons/es6-l057/summary.html" data-published="false">地層の重なり方と広がりを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l057" data-kind="lesson" data-target="lessons/es6-l057/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l057" data-kind="questions" data-target="lessons/es6-l057/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l058" data-seq="58" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="4／15" data-learning-goal="地層中の岩石や化石を観察し、かつての環境を推測できる。">
+                <span class="lesson-num">58</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l058" data-kind="summary" data-target="lessons/es6-l058/summary.html" data-published="false">岩石や化石から昔の環境を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l058" data-kind="lesson" data-target="lessons/es6-l058/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l058" data-kind="questions" data-target="lessons/es6-l058/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l059" data-seq="59" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="5／15" data-learning-goal="川の侵食・運搬・堆積を思い出し、地層のでき方を確かめる実験を考えられる。">
+                <span class="lesson-num">59</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l059" data-kind="summary" data-target="lessons/es6-l059/summary.html" data-published="false">水の流れで地層ができるか予想する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l059" data-kind="lesson" data-target="lessons/es6-l059/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l059" data-kind="questions" data-target="lessons/es6-l059/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l060" data-seq="60" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="6／15" data-learning-goal="水槽などを用いた模型実験で、粒の大きさにより堆積の様子が違うことを観察できる。">
+                <span class="lesson-num">60</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l060" data-kind="summary" data-target="lessons/es6-l060/summary.html" data-published="false">土砂を水に流して層ができる様子を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l060" data-kind="lesson" data-target="lessons/es6-l060/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l060" data-kind="questions" data-target="lessons/es6-l060/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l061" data-seq="61" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="7／15" data-learning-goal="模型実験の結果から、流水による堆積の繰り返しが地層をつくることを説明できる。">
+                <span class="lesson-num">61</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l061" data-kind="summary" data-target="lessons/es6-l061/summary.html" data-published="false">水が運ぶ土砂の重なり方を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l061" data-kind="lesson" data-target="lessons/es6-l061/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l061" data-kind="questions" data-target="lessons/es6-l061/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l062" data-seq="62" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="8／15" data-learning-goal="火山灰の粒や火山周辺の地層を資料で調べ、火山による地層の特徴を説明できる。">
+                <span class="lesson-num">62</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l062" data-kind="summary" data-target="lessons/es6-l062/summary.html" data-published="false">火山灰でできた地層の特徴を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l062" data-kind="lesson" data-target="lessons/es6-l062/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l062" data-kind="questions" data-target="lessons/es6-l062/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l063" data-seq="63" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="9／15" data-learning-goal="水成の地層と火山灰の地層の特徴を比較し、でき方の違いを説明できる。">
+                <span class="lesson-num">63</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l063" data-kind="summary" data-target="lessons/es6-l063/summary.html" data-published="false">水の働きと火山の働きによる地層を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l063" data-kind="lesson" data-target="lessons/es6-l063/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l063" data-kind="questions" data-target="lessons/es6-l063/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l064" data-seq="64" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="10／15" data-learning-goal="地震や噴火の前後の写真を比較し、土地が変化する例を挙げられる。">
+                <span class="lesson-num">64</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l064" data-kind="summary" data-target="lessons/es6-l064/summary.html" data-published="false">地震や噴火で大地が変わる様子を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l064" data-kind="lesson" data-target="lessons/es6-l064/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l064" data-kind="questions" data-target="lessons/es6-l064/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l065" data-seq="65" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="11／15" data-learning-goal="地震によるずれや割れ目の資料から、大地が動いて変化することを説明できる。">
+                <span class="lesson-num">65</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l065" data-kind="summary" data-target="lessons/es6-l065/summary.html" data-published="false">断層や地割れができる仕組みを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l065" data-kind="lesson" data-target="lessons/es6-l065/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l065" data-kind="questions" data-target="lessons/es6-l065/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l066" data-seq="66" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="12／15" data-learning-goal="火山の噴出物と地形の変化を資料で調べ、火山活動による土地の変化を説明できる。">
+                <span class="lesson-num">66</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l066" data-kind="summary" data-target="lessons/es6-l066/summary.html" data-published="false">火山の噴火で地形が変わる様子を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l066" data-kind="lesson" data-target="lessons/es6-l066/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l066" data-kind="questions" data-target="lessons/es6-l066/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l067" data-seq="67" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="13／15" data-learning-goal="地震・噴火が暮らしに与える影響を調べ、被害の特徴を整理できる。">
+                <span class="lesson-num">67</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l067" data-kind="summary" data-target="lessons/es6-l067/summary.html" data-published="false">地震や火山が引き起こす災害を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l067" data-kind="lesson" data-target="lessons/es6-l067/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l067" data-kind="questions" data-target="lessons/es6-l067/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l068" data-seq="68" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="14／15" data-learning-goal="地震や噴火の危険に対し、避難情報や防災の工夫の例を挙げられる。">
+                <span class="lesson-num">68</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l068" data-kind="summary" data-target="lessons/es6-l068/summary.html" data-published="false">地震や噴火への安全な備えを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l068" data-kind="lesson" data-target="lessons/es6-l068/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l068" data-kind="questions" data-target="lessons/es6-l068/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l069" data-seq="69" data-source-domain="地球" data-source-unit="大地のつくりと変化" data-source-section="大地のつくりと変化" data-unit-period="15／15" data-learning-goal="地層のでき方と地震・火山による変化を関連づけ、土地の成り立ちを説明できる。">
+                <span class="lesson-num">69</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l069" data-kind="summary" data-target="lessons/es6-l069/summary.html" data-published="false">長い時間をかけた大地の変化をまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l069" data-kind="lesson" data-target="lessons/es6-l069/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l069" data-kind="questions" data-target="lessons/es6-l069/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="8" data-chapter-id="es6-c009" data-source-domain="エネルギー">
+        <summary class="chapter-summary">
+          <span class="chapter-name">エネルギー</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c009/questions.html" data-published="false">問題</a>
+            <span class="count-meta">22回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s012" data-source-subunit="てこのはたらき">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">てこのはたらき</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s012" data-kind="section-questions" data-target="sections/es6-s012/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">9回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l070" data-seq="70" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="1／9" data-learning-goal="棒と支えを使って重い物を動かし、小さい力にする方法を予想できる。">
+                <span class="lesson-num">70</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l070" data-kind="summary" data-target="lessons/es6-l070/summary.html" data-published="false">長い棒で重い物を持ち上げる工夫を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l070" data-kind="lesson" data-target="lessons/es6-l070/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l070" data-kind="questions" data-target="lessons/es6-l070/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l071" data-seq="71" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="2／9" data-learning-goal="てこの三つの点の役割を理解し、棒で物を持ち上げる場面に当てはめられる。">
+                <span class="lesson-num">71</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l071" data-kind="summary" data-target="lessons/es6-l071/summary.html" data-published="false">てこの支点・力点・作用点を見分ける</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l071" data-kind="lesson" data-target="lessons/es6-l071/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l071" data-kind="questions" data-target="lessons/es6-l071/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l072" data-seq="72" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="3／9" data-learning-goal="支点から力点までの距離を変え、必要な力がどう変わるか調べられる。">
+                <span class="lesson-num">72</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l072" data-kind="summary" data-target="lessons/es6-l072/summary.html" data-published="false">力点の位置を変えて手応えを比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l072" data-kind="lesson" data-target="lessons/es6-l072/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l072" data-kind="questions" data-target="lessons/es6-l072/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l073" data-seq="73" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="4／9" data-learning-goal="支点から作用点までの距離を変え、物を動かす力の違いを比較できる。">
+                <span class="lesson-num">73</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l073" data-kind="summary" data-target="lessons/es6-l073/summary.html" data-published="false">作用点の位置を変えて手応えを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l073" data-kind="lesson" data-target="lessons/es6-l073/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l073" data-kind="questions" data-target="lessons/es6-l073/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l074" data-seq="74" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="5／9" data-learning-goal="実験用てこの左右でおもりの重さと位置を変え、つり合う条件を記録できる。">
+                <span class="lesson-num">74</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l074" data-kind="summary" data-target="lessons/es6-l074/summary.html" data-published="false">おもりを使ってつり合う条件を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l074" data-kind="lesson" data-target="lessons/es6-l074/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l074" data-kind="questions" data-target="lessons/es6-l074/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l075" data-seq="75" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="6／9" data-learning-goal="てこがつり合うときは力の大きさと距離の積が左右で等しいことを説明できる。">
+                <span class="lesson-num">75</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l075" data-kind="summary" data-target="lessons/es6-l075/summary.html" data-published="false">重さと支点からの距離のきまりを見つける</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l075" data-kind="lesson" data-target="lessons/es6-l075/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l075" data-kind="questions" data-target="lessons/es6-l075/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l076" data-seq="76" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="7／9" data-learning-goal="てんびんなどの仕組みを例に、てこのつり合いのきまりを活用できる。">
+                <span class="lesson-num">76</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l076" data-kind="summary" data-target="lessons/es6-l076/summary.html" data-published="false">てこを使って重さを測る方法を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l076" data-kind="lesson" data-target="lessons/es6-l076/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l076" data-kind="questions" data-target="lessons/es6-l076/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l077" data-seq="77" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="8／9" data-learning-goal="身の回りのてこを利用した道具で支点・力点・作用点を見分けられる。">
+                <span class="lesson-num">77</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l077" data-kind="summary" data-target="lessons/es6-l077/summary.html" data-published="false">はさみや栓抜きの三つの点を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l077" data-kind="lesson" data-target="lessons/es6-l077/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l077" data-kind="questions" data-target="lessons/es6-l077/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l078" data-seq="78" data-source-domain="エネルギー" data-source-unit="てこのはたらき" data-source-section="てこのはたらき" data-unit-period="9／9" data-learning-goal="てこの力と距離の関係を説明し、用途に応じた道具の工夫を考えられる。">
+                <span class="lesson-num">78</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l078" data-kind="summary" data-target="lessons/es6-l078/summary.html" data-published="false">てこの働きと暮らしの利用をまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l078" data-kind="lesson" data-target="lessons/es6-l078/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l078" data-kind="questions" data-target="lessons/es6-l078/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es6-s013" data-source-subunit="発電と電気の利用">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">発電と電気の利用</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s013" data-kind="section-questions" data-target="sections/es6-s013/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">13回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l079" data-seq="79" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="1／13" data-learning-goal="身の回りの機器を調べ、電気のつくられ方と利用について問いを立てられる。">
+                <span class="lesson-num">79</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l079" data-kind="summary" data-target="lessons/es6-l079/summary.html" data-published="false">電気はどこで作られ何に使われるか考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l079" data-kind="lesson" data-target="lessons/es6-l079/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l079" data-kind="questions" data-target="lessons/es6-l079/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l080" data-seq="80" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="2／13" data-learning-goal="手回し発電機を使い、回すと豆電球などが働くことから発電を確かめられる。">
+                <span class="lesson-num">80</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l080" data-kind="summary" data-target="lessons/es6-l080/summary.html" data-published="false">手回し発電機で電気をつくる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l080" data-kind="lesson" data-target="lessons/es6-l080/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l080" data-kind="questions" data-target="lessons/es6-l080/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l081" data-seq="81" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="3／13" data-learning-goal="発電機を回す速さや向きを変え、電気の働きの違いを記録できる。">
+                <span class="lesson-num">81</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l081" data-kind="summary" data-target="lessons/es6-l081/summary.html" data-published="false">発電機の回し方と電気の働きを比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l081" data-kind="lesson" data-target="lessons/es6-l081/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l081" data-kind="questions" data-target="lessons/es6-l081/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l082" data-seq="82" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="4／13" data-learning-goal="光電池でモーターを動かし、光の当て方で働きが変わることを確かめられる。">
+                <span class="lesson-num">82</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l082" data-kind="summary" data-target="lessons/es6-l082/summary.html" data-published="false">光電池で日光から電気をつくる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l082" data-kind="lesson" data-target="lessons/es6-l082/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l082" data-kind="questions" data-target="lessons/es6-l082/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l083" data-seq="83" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="5／13" data-learning-goal="二つの発電方法を比較し、動きや光から電気をつくれることを説明できる。">
+                <span class="lesson-num">83</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l083" data-kind="summary" data-target="lessons/es6-l083/summary.html" data-published="false">手回し発電機と光電池の特徴を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l083" data-kind="lesson" data-target="lessons/es6-l083/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l083" data-kind="questions" data-target="lessons/es6-l083/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l084" data-seq="84" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="6／13" data-learning-goal="発電した電気をコンデンサーなどにため、後で利用できることを確かめられる。">
+                <span class="lesson-num">84</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l084" data-kind="summary" data-target="lessons/es6-l084/summary.html" data-published="false">コンデンサーに電気をためる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l084" data-kind="lesson" data-target="lessons/es6-l084/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l084" data-kind="questions" data-target="lessons/es6-l084/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l085" data-seq="85" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="7／13" data-learning-goal="ためた電気を使い、電気が光・音・運動などに変わることを説明できる。">
+                <span class="lesson-num">85</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l085" data-kind="summary" data-target="lessons/es6-l085/summary.html" data-published="false">ためた電気で光や音や運動をつくる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l085" data-kind="lesson" data-target="lessons/es6-l085/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l085" data-kind="questions" data-target="lessons/es6-l085/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l086" data-seq="86" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="8／13" data-learning-goal="電気が熱に変わる機器の例を調べ、電気の利用方法を整理できる。">
+                <span class="lesson-num">86</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l086" data-kind="summary" data-target="lessons/es6-l086/summary.html" data-published="false">電気を熱に変える身近な例を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l086" data-kind="lesson" data-target="lessons/es6-l086/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l086" data-kind="questions" data-target="lessons/es6-l086/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l087" data-seq="87" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="9／13" data-learning-goal="豆電球と発光ダイオードの点灯時間などを比較し、消費する電気の違いを説明できる。">
+                <span class="lesson-num">87</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l087" data-kind="summary" data-target="lessons/es6-l087/summary.html" data-published="false">豆電球とLEDの電気の使い方を比べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l087" data-kind="lesson" data-target="lessons/es6-l087/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l087" data-kind="questions" data-target="lessons/es6-l087/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l088" data-seq="88" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="10／13" data-learning-goal="限られた電気を効率よく使うための条件と方法を考えられる。">
+                <span class="lesson-num">88</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l088" data-kind="summary" data-target="lessons/es6-l088/summary.html" data-published="false">電気を節約する工夫を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l088" data-kind="lesson" data-target="lessons/es6-l088/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l088" data-kind="questions" data-target="lessons/es6-l088/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l089" data-seq="89" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="11／13" data-learning-goal="人が来たときだけ明かりがつく仕組みを、条件に応じた動作で表せる。">
+                <span class="lesson-num">89</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l089" data-kind="summary" data-target="lessons/es6-l089/summary.html" data-published="false">センサーで明かりを制御する仕組みを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l089" data-kind="lesson" data-target="lessons/es6-l089/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l089" data-kind="questions" data-target="lessons/es6-l089/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l090" data-seq="90" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="12／13" data-learning-goal="明るさや人の動きに応じて点灯する装置を試し、動作を修正できる。">
+                <span class="lesson-num">90</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l090" data-kind="summary" data-target="lessons/es6-l090/summary.html" data-published="false">プログラムで電気を使う装置を試す</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l090" data-kind="lesson" data-target="lessons/es6-l090/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l090" data-kind="questions" data-target="lessons/es6-l090/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l091" data-seq="91" data-source-domain="エネルギー" data-source-unit="発電と電気の利用" data-source-section="発電と電気の利用" data-unit-period="13／13" data-learning-goal="電気をつくり、ため、ほかの働きに変えて使う流れを生活の例で説明できる。">
+                <span class="lesson-num">91</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l091" data-kind="summary" data-target="lessons/es6-l091/summary.html" data-published="false">発電・蓄電・電気の利用をまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l091" data-kind="lesson" data-target="lessons/es6-l091/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l091" data-kind="questions" data-target="lessons/es6-l091/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="9" data-chapter-id="es6-c010" data-source-domain="総合">
+        <summary class="chapter-summary">
+          <span class="chapter-name">総合</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es6-c010/questions.html" data-published="false">問題</a>
+            <span class="count-meta">4回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es6-s014" data-source-subunit="自然とともに生きる">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">自然とともに生きる</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es6-s014" data-kind="section-questions" data-target="sections/es6-s014/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">4回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es6-l092" data-seq="92" data-source-domain="総合" data-source-unit="自然とともに生きる" data-source-section="わたしたちの地球(2)" data-unit-period="1／4" data-learning-goal="人が自然環境とどのように関わって暮らしているか、身近な例から問いを立てられる。">
+                <span class="lesson-num">92</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l092" data-kind="summary" data-target="lessons/es6-l092/summary.html" data-published="false">人の暮らしと空気・水・生き物の関係を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l092" data-kind="lesson" data-target="lessons/es6-l092/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l092" data-kind="questions" data-target="lessons/es6-l092/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l093" data-seq="93" data-source-domain="総合" data-source-unit="自然とともに生きる" data-source-section="わたしたちの地球(2)" data-unit-period="2／4" data-learning-goal="水・空気・生き物・土地への影響を資料で調べ、原因と結果を整理できる。">
+                <span class="lesson-num">93</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l093" data-kind="summary" data-target="lessons/es6-l093/summary.html" data-published="false">人の生活が環境に与える影響を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l093" data-kind="lesson" data-target="lessons/es6-l093/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l093" data-kind="questions" data-target="lessons/es6-l093/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l094" data-seq="94" data-source-domain="総合" data-source-unit="自然とともに生きる" data-source-section="わたしたちの地球(2)" data-unit-period="3／4" data-learning-goal="環境保全や防災の工夫を調べ、人と自然の関わり方について説明できる。">
+                <span class="lesson-num">94</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l094" data-kind="summary" data-target="lessons/es6-l094/summary.html" data-published="false">自然を守り災害に備える取組を調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l094" data-kind="lesson" data-target="lessons/es6-l094/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l094" data-kind="questions" data-target="lessons/es6-l094/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es6-l095" data-seq="95" data-source-domain="総合" data-source-unit="自然とともに生きる" data-source-section="わたしたちの地球(2)" data-unit-period="4／4" data-learning-goal="学んだ内容をもとに自分たちが実行できることを考え、理由を添えて提案できる。">
+                <span class="lesson-num">95</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l095" data-kind="summary" data-target="lessons/es6-l095/summary.html" data-published="false">持続可能な暮らしのためにできることを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l095" data-kind="lesson" data-target="lessons/es6-l095/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es6-l095" data-kind="questions" data-target="lessons/es6-l095/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+    </main>
+
+    <nav class="problem-toolbar grade-navigation" aria-label="同じ科目の学年移動" style="margin-top: 24px;">
         <a class="problem-previous" href="../../grade-5/science/">← 小学5年の理科</a>
         <a class="problem-next" href="../../../junior-high/grade-1/science/">中学1年の理科 →</a>
       </nav>
-    </main>
   </div>
+
+  <div class="status-toast" id="status-toast" role="status" aria-live="polite"></div>
+
+  <script src="../../../assets/curriculum-actions.js?v=20261122"></script>
+  <script>
+    (function () {
+      // 公開済み教材の相対パスをここに登録すると、自動的に有効な同タブリンクへ切り替わります。
+      // 例: "lessons/es6-l001/summary.html", "chapters/es6-c001/questions.html"
+      const PUBLISHED_PATHS = new Set([]);
+
+      const allDetails = Array.from(document.querySelectorAll("details.chapter, details.section"));
+      const openAllBtn = document.getElementById("open-all");
+      const closeAllBtn = document.getElementById("close-all");
+      const toast = document.getElementById("status-toast");
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("is-visible");
+        }, 2800);
+      }
+
+      function syncLinkState(link) {
+        const target = link.dataset.target || "";
+        const isPublished = link.dataset.published === "true" || PUBLISHED_PATHS.has(target);
+        if (isPublished && target) {
+          link.setAttribute("href", target);
+          link.dataset.published = "true";
+          link.classList.remove("is-unpublished");
+          link.removeAttribute("aria-disabled");
+        } else {
+          link.removeAttribute("href");
+          link.dataset.published = "false";
+          link.classList.add("is-unpublished");
+          link.setAttribute("aria-disabled", "true");
+        }
+      }
+
+      const allLinks = Array.from(document.querySelectorAll("a[data-target]"));
+      allLinks.forEach(function (link) {
+        syncLinkState(link);
+
+        function handleActivate(event) {
+          // summary内の「問題」リンク押下時に親detailsが開閉しないようにする
+          if (link.closest("summary")) {
+            event.stopPropagation();
+          }
+          if (link.dataset.published !== "true") {
+            event.preventDefault();
+            const target = link.dataset.target || "";
+            showToast("準備中のページです（予定パス: " + target + "）");
+          }
+        }
+
+        link.addEventListener("click", handleActivate);
+        link.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            if (link.dataset.published !== "true") {
+              handleActivate(event);
+            } else if (event.key === "Enter" && link.closest("summary")) {
+              event.stopPropagation();
+            }
+          }
+        });
+      });
+
+      if (openAllBtn) {
+        openAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = true;
+          });
+        });
+      }
+
+      if (closeAllBtn) {
+        closeAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = false;
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
