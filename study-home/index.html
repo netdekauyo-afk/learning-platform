@@ -7,33 +7,49 @@
   <title>学習ホーム | Classroom</title>
   <link rel="stylesheet" href="../assets/style.css">
   <style>
-    .grade-control {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-top: 16px;
-      color: var(--color-text);
+    .home-header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .grade-control { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: var(--color-text); }
+    .grade-control select, .settings-dialog select {
+      min-height: 44px; padding: 8px 12px; border: 1px solid var(--color-border);
+      border-radius: 10px; background: var(--color-surface); color: var(--color-text); font: inherit;
     }
-    .grade-control select {
-      min-height: 44px;
-      padding: 8px 12px;
-      border: 1px solid var(--color-border);
-      border-radius: 10px;
-      background: var(--color-surface);
-      color: var(--color-text);
-      font: inherit;
+    .grade-control select:focus-visible, .settings-dialog select:focus-visible, .home-button:focus-visible {
+      outline: 3px solid var(--color-accent); outline-offset: 3px;
     }
-    .grade-control select:focus-visible {
-      outline: 3px solid var(--color-accent);
-      outline-offset: 3px;
+    .home-button {
+      min-height: 44px; padding: 8px 16px; border: 1px solid var(--color-border);
+      border-radius: 10px; background: var(--color-surface); color: var(--color-heading);
+      font: inherit; cursor: pointer;
     }
+    .home-button:hover { background: var(--color-surface-hover); }
     .choice-card[hidden] { display: none; }
+    .free-study { margin-top: 26px; }
+    .free-study a { color: var(--color-heading); text-underline-offset: 3px; }
+    .home-status { min-height: 1.5em; margin: 12px 0 0; color: var(--color-heading); }
+    .settings-dialog {
+      width: min(92vw, 520px); max-height: min(88vh, 700px); overflow: auto; padding: 24px;
+      border: 1px solid var(--color-border); border-radius: 16px;
+      background: var(--color-bg); color: var(--color-text);
+    }
+    .settings-dialog::backdrop { background: rgba(0, 0, 0, 0.68); }
+    .settings-dialog h2 { margin: 0 0 18px; color: var(--color-heading); }
+    .settings-dialog fieldset { margin: 0 0 20px; padding: 0; border: 0; }
+    .settings-dialog legend, .settings-dialog label.field-label { display: block; margin: 0 0 8px; color: var(--color-heading); font-weight: 700; }
+    .settings-dialog .radio-choice { display: inline-flex; align-items: center; min-height: 44px; gap: 6px; margin-right: 22px; }
+    .settings-dialog .field { margin-bottom: 18px; }
+    .settings-dialog select { width: 100%; }
+    .settings-help { margin: 6px 0 0; font-size: 0.92rem; }
+    .settings-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .settings-actions .save { border-color: var(--color-accent); }
   </style>
 </head>
 <body>
   <div class="site-shell">
     <header class="site-header">
-      <p class="site-name">Classroom</p>
+      <div class="home-header-row">
+        <p class="site-name">Classroom</p>
+        <button class="home-button" id="open-settings" type="button">設定</button>
+      </div>
       <div class="grade-control">
         <label for="grade">学年</label>
         <select id="grade" disabled>
@@ -53,32 +69,220 @@
         <a class="choice-card" data-subject="japanese" href="../junior-high/grade-1/japanese/">国語<span aria-hidden="true">›</span></a>
         <a class="choice-card" data-subject="information" href="../junior-high/grade-3/information/" hidden>情報<span aria-hidden="true">›</span></a>
       </nav>
+      <p class="home-status" id="home-status" role="status" aria-live="polite"></p>
+      <p class="free-study"><a id="free-study" href="../junior-high/grade-1/">すべての授業から自由に選ぶ</a></p>
     </main>
   </div>
+
+  <dialog class="settings-dialog" id="settings" aria-labelledby="settings-title">
+    <form id="settings-form">
+      <h2 id="settings-title">設定</h2>
+      <fieldset>
+        <legend>教科を選んだときに開くもの</legend>
+        <label class="radio-choice"><input type="radio" name="destination" value="questions"> 問題</label>
+        <label class="radio-choice"><input type="radio" name="destination" value="summary"> 要約</label>
+      </fieldset>
+      <div class="field">
+        <label class="field-label" for="settings-subject">教科</label>
+        <select id="settings-subject">
+          <option value="math">数学</option>
+          <option value="science">理科</option>
+          <option value="english">英語</option>
+          <option value="social">社会</option>
+          <option value="japanese">国語</option>
+          <option value="information">情報</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="field-label" for="settings-lesson">今、学校で習っている授業</label>
+        <select id="settings-lesson" disabled><option value="">授業を読み込んでいます</option></select>
+        <p class="settings-help">教科ごとに授業を選べます。選んだ授業から始まります。</p>
+        <p class="settings-help" id="settings-status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="settings-actions">
+        <button class="home-button" id="close-settings" type="button">閉じる</button>
+        <button class="home-button save" type="submit">保存</button>
+      </div>
+    </form>
+  </dialog>
+
   <script>
     (() => {
+      'use strict';
       const gradeControl = document.getElementById('grade');
-      const subjects = document.querySelectorAll('[data-subject]');
-      const storageKey = 'classroom-study-home-grade';
+      const subjects = [...document.querySelectorAll('a[data-subject]')];
+      const subjectSelect = document.getElementById('settings-subject');
+      const lessonSelect = document.getElementById('settings-lesson');
+      const settings = document.getElementById('settings');
+      const form = document.getElementById('settings-form');
+      const settingsStatus = document.getElementById('settings-status');
+      const homeStatus = document.getElementById('home-status');
+      const freeStudy = document.getElementById('free-study');
       const grades = new Set(['1', '2', '3']);
+      const subjectNames = Object.fromEntries(subjects.map((link) => [link.dataset.subject, link.textContent.replace('›', '').trim()]));
+      const gradeKey = 'classroom-study-home-grade';
+      const settingsKey = 'classroom-study-home-settings';
+      const lessonsCache = new Map();
+      let loadVersion = 0;
+      let navigationVersion = 0;
+      let pendingSubject = null;
+      let selectionBySubject = {};
+      let draftLessons = {};
+      let destination = 'questions';
+
+      function readStorage(key) {
+        try { return localStorage.getItem(key); } catch (_) { return null; }
+      }
+      function saveStorage(key, value) {
+        try { localStorage.setItem(key, value); return true; } catch (_) { return false; }
+      }
+      try {
+        const saved = JSON.parse(readStorage(settingsKey) || '{}');
+        if (saved && typeof saved.lessons === 'object' && saved.lessons && !Array.isArray(saved.lessons)) selectionBySubject = saved.lessons;
+        if (saved && (saved.destination === 'questions' || saved.destination === 'summary')) destination = saved.destination;
+      } catch (_) { /* Start with empty settings if the saved data cannot be read. */ }
+
+      function subjectKey(grade, subject) { return `${grade}:${subject}`; }
+      function currentDestination() { return form.elements.destination.value || destination; }
+      function subjectUrl(grade, subject) { return new URL(`../junior-high/grade-${grade}/${subject}/`, location.href); }
+      function safeTarget(anchor, base) {
+        if (!anchor || anchor.dataset.published !== 'true' || !anchor.dataset.target) return null;
+        const target = new URL(anchor.dataset.target, base);
+        return target.origin === base.origin && target.pathname.startsWith(base.pathname) ? target.href : null;
+      }
+      async function getLessons(grade, subject) {
+        const key = subjectKey(grade, subject);
+        if (!lessonsCache.has(key)) {
+          const request = (async () => {
+            const base = subjectUrl(grade, subject);
+            const response = await fetch(base.href);
+            if (!response.ok) throw new Error('授業を読み込めませんでした。');
+            const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
+            return [...doc.querySelectorAll('.lesson-item[data-lesson-id]')].map((row) => {
+              const title = row.querySelector('.lesson-title-link[data-kind="summary"]');
+              return {
+                id: row.dataset.lessonId,
+                title: title?.textContent.trim() || row.dataset.lessonId,
+                number: row.dataset.seq || row.querySelector('.lesson-num')?.textContent.trim() || '',
+                month: row.dataset.month || '',
+                summary: safeTarget(title, base),
+                questions: safeTarget(row.querySelector('[data-kind="questions"]'), base)
+              };
+            });
+          })();
+          lessonsCache.set(key, request);
+          request.catch(() => { if (lessonsCache.get(key) === request) lessonsCache.delete(key); });
+        }
+        return lessonsCache.get(key);
+      }
 
       function updateGrade(grade) {
+        navigationVersion++;
         const selectedGrade = grades.has(grade) ? grade : '1';
         gradeControl.value = selectedGrade;
         subjects.forEach((link) => {
-          const subject = link.dataset.subject;
-          link.hidden = subject === 'information' && selectedGrade !== '3';
-          link.href = `../junior-high/grade-${selectedGrade}/${subject}/`;
+          link.hidden = link.dataset.subject === 'information' && selectedGrade !== '3';
+          link.href = '#';
         });
+        subjectSelect.querySelector('[value="information"]').hidden = selectedGrade !== '3';
+        freeStudy.href = `../junior-high/grade-${selectedGrade}/`;
+        homeStatus.textContent = '';
       }
 
-      let savedGrade;
-      try { savedGrade = localStorage.getItem(storageKey); } catch (_) { /* Continue without saved settings. */ }
-      updateGrade(savedGrade);
+      async function showLessons(subject) {
+        const grade = gradeControl.value;
+        const version = ++loadVersion;
+        lessonSelect.disabled = true;
+        lessonSelect.replaceChildren(new Option('授業を読み込んでいます', ''));
+        settingsStatus.textContent = '';
+        try {
+          const lessons = await getLessons(grade, subject);
+          if (version !== loadVersion) return;
+          lessonSelect.replaceChildren(new Option('授業を選んでください', ''));
+          const selected = draftLessons[subjectKey(grade, subject)] || '';
+          for (const lesson of lessons) {
+            const availability = !lesson[currentDestination()] ? '（選択中の教材は準備中）' : '';
+            const label = `${lesson.number ? `第${lesson.number}時限 ` : ''}${lesson.title}${lesson.month ? `［${lesson.month}ごろ］` : ''}${availability}`;
+            lessonSelect.add(new Option(label, lesson.id));
+          }
+          lessonSelect.value = lessons.some((lesson) => lesson.id === selected) ? selected : '';
+          lessonSelect.disabled = lessons.length === 0;
+          if (!lessons.length) settingsStatus.textContent = 'この教科の授業はまだありません。';
+        } catch (_) {
+          if (version !== loadVersion) return;
+          lessonSelect.replaceChildren(new Option('授業を読み込めませんでした', ''));
+          settingsStatus.textContent = '時間をおいて設定を開き直してください。';
+        }
+      }
+
+      function openSettings(subject, navigateAfterSave = false) {
+        navigationVersion++;
+        pendingSubject = navigateAfterSave ? subject : null;
+        draftLessons = { ...selectionBySubject };
+        const visible = subjects.filter((link) => !link.hidden).map((link) => link.dataset.subject);
+        subjectSelect.value = visible.includes(subject) ? subject : visible[0];
+        form.elements.destination.value = destination;
+        if (!settings.open) settings.showModal();
+        showLessons(subjectSelect.value);
+      }
+
+      async function openSubject(subject) {
+        const version = ++navigationVersion;
+        homeStatus.textContent = '';
+        const grade = gradeControl.value;
+        const lessonId = selectionBySubject[subjectKey(grade, subject)];
+        if (!lessonId) { openSettings(subject, true); return; }
+        homeStatus.textContent = '授業を開いています。';
+        try {
+          const lessons = await getLessons(grade, subject);
+          if (version !== navigationVersion || grade !== gradeControl.value) return;
+          const lesson = lessons.find((item) => item.id === lessonId);
+          if (!lesson) {
+            homeStatus.textContent = '選んだ授業が見つかりません。設定から選び直してください。';
+          } else if (!lesson[destination]) {
+            homeStatus.textContent = `${subjectNames[subject]}「${lesson.title}」の${destination === 'questions' ? '問題' : '要約'}は準備中です。`;
+          } else {
+            location.assign(lesson[destination]);
+          }
+        } catch (_) {
+          if (version === navigationVersion) homeStatus.textContent = '授業を読み込めませんでした。時間をおいてもう一度お試しください。';
+        }
+      }
+
+      updateGrade(readStorage(gradeKey));
       gradeControl.disabled = false;
       gradeControl.addEventListener('change', () => {
         updateGrade(gradeControl.value);
-        try { localStorage.setItem(storageKey, gradeControl.value); } catch (_) { /* Keep the current selection. */ }
+        saveStorage(gradeKey, gradeControl.value);
+      });
+      subjects.forEach((link) => link.addEventListener('click', (event) => {
+        event.preventDefault();
+        openSubject(link.dataset.subject);
+      }));
+      document.getElementById('open-settings').addEventListener('click', () => openSettings(subjects.find((link) => !link.hidden).dataset.subject));
+      document.getElementById('close-settings').addEventListener('click', () => settings.close());
+      settings.addEventListener('close', () => { pendingSubject = null; });
+      subjectSelect.addEventListener('change', () => showLessons(subjectSelect.value));
+      lessonSelect.addEventListener('change', () => {
+        const key = subjectKey(gradeControl.value, subjectSelect.value);
+        if (lessonSelect.value) draftLessons[key] = lessonSelect.value;
+        else delete draftLessons[key];
+      });
+      form.elements.destination.forEach((radio) => radio.addEventListener('change', () => showLessons(subjectSelect.value)));
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const subject = subjectSelect.value;
+        if (pendingSubject === subject && !draftLessons[subjectKey(gradeControl.value, subject)]) {
+          settingsStatus.textContent = '授業を選んでください。';
+          return;
+        }
+        destination = currentDestination();
+        selectionBySubject = { ...draftLessons };
+        const persisted = saveStorage(settingsKey, JSON.stringify({ destination, lessons: selectionBySubject }));
+        const shouldOpen = persisted && pendingSubject === subject && !!selectionBySubject[subjectKey(gradeControl.value, subject)];
+        settings.close();
+        if (shouldOpen) openSubject(subject);
+        else homeStatus.textContent = persisted ? '設定を保存しました。' : 'この画面では設定できますが、次回まで保存できません。';
       });
     })();
   </script>
