@@ -130,6 +130,11 @@
   }
 
   const SCHOOL_BREAKS_KEY = 'classroom-calendar-school-breaks-v1';
+  // Shared calendar data lives in GitHub beside this script. It is not drawn
+  // on the calendar. Add schoolBreaks as { name, start, end } using ISO dates.
+  const currentScript = global.document && global.document.currentScript;
+  const SHARED_CALENDAR_URL = currentScript && currentScript.src
+    ? new URL('calendar-data.json', currentScript.src).href : null;
 
   function normalizeSchoolBreak(period) {
     if (!period || typeof period !== 'object' || typeof period.name !== 'string') throw new TypeError('Invalid school break');
@@ -174,7 +179,29 @@
     return getSchoolBreaks().filter((period) => period.start <= date && date <= period.end);
   }
 
-  global.ClassroomCalendar = Object.freeze({ day, fromISO, today, month, academicYear, refreshHolidays, getSchoolBreaks, saveSchoolBreaks, schoolBreaksOn });
+  async function loadSharedCalendarData() {
+    if (!SHARED_CALENDAR_URL || typeof global.fetch !== 'function') throw new Error('Shared calendar data is unavailable');
+    const response = await global.fetch(SHARED_CALENDAR_URL, { credentials: 'same-origin', cache: 'no-cache' });
+    if (!response.ok) throw new Error('Shared calendar data is unavailable');
+    const data = await response.json();
+    if (!data || data.version !== 1 || !Array.isArray(data.schoolBreaks)) throw new Error('Shared calendar data is invalid');
+    const schoolBreaks = data.schoolBreaks.map(normalizeSchoolBreak);
+    const seen = new Set();
+    for (const period of schoolBreaks) {
+      const key = JSON.stringify([period.name, period.start, period.end]);
+      if (seen.has(key)) throw new Error('Duplicate shared school break');
+      seen.add(key);
+    }
+    return Object.freeze({ version: 1, schoolBreaks: Object.freeze(schoolBreaks) });
+  }
+
+  async function sharedSchoolBreaksOn(isoDate) {
+    const date = fromISO(isoDate).isoDate;
+    const data = await loadSharedCalendarData();
+    return data.schoolBreaks.filter((period) => period.start <= date && date <= period.end);
+  }
+
+  global.ClassroomCalendar = Object.freeze({ day, fromISO, today, month, academicYear, refreshHolidays, getSchoolBreaks, saveSchoolBreaks, schoolBreaksOn, loadSharedCalendarData, sharedSchoolBreaksOn });
   if (global.document) {
     publishHolidayStatus();
     void refreshHolidays();
