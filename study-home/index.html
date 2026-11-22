@@ -32,6 +32,7 @@
       background: var(--color-bg); color: var(--color-text);
     }
     .settings-dialog::backdrop { background: rgba(0, 0, 0, 0.68); }
+    .settings-dialog [hidden] { display: none; }
     .settings-dialog h2 { margin: 0 0 18px; color: var(--color-heading); }
     .settings-dialog fieldset { margin: 0 0 20px; padding: 0; border: 0; }
     .settings-dialog legend, .settings-dialog label.field-label { display: block; margin: 0 0 8px; color: var(--color-heading); font-weight: 700; }
@@ -77,12 +78,12 @@
   <dialog class="settings-dialog" id="settings" aria-labelledby="settings-title">
     <form id="settings-form">
       <h2 id="settings-title">設定</h2>
-      <fieldset>
-        <legend>教科を選んだときに開くもの</legend>
+      <fieldset id="destination-settings">
+        <legend>教科を選んだときに開くもの（全教科共通）</legend>
         <label class="radio-choice"><input type="radio" name="destination" value="questions"> 問題</label>
         <label class="radio-choice"><input type="radio" name="destination" value="summary"> 要約</label>
       </fieldset>
-      <div class="field">
+      <div class="field" id="subject-settings">
         <label class="field-label" for="settings-subject">教科</label>
         <select id="settings-subject">
           <option value="math">数学</option>
@@ -96,12 +97,12 @@
       <div class="field">
         <label class="field-label" for="settings-lesson">今、学校で習っている授業</label>
         <select id="settings-lesson" disabled><option value="">授業を読み込んでいます</option></select>
-        <p class="settings-help">教科ごとに授業を選べます。選んだ授業から始まります。</p>
+        <p class="settings-help" id="settings-help">教科ごとに授業を選べます。選んだ授業から始まります。</p>
         <p class="settings-help" id="settings-status" role="status" aria-live="polite"></p>
       </div>
       <div class="settings-actions">
         <button class="home-button" id="close-settings" type="button">閉じる</button>
-        <button class="home-button save" type="submit">保存</button>
+        <button class="home-button save" id="save-settings" type="submit">保存</button>
       </div>
     </form>
   </dialog>
@@ -115,6 +116,11 @@
       const lessonSelect = document.getElementById('settings-lesson');
       const settings = document.getElementById('settings');
       const form = document.getElementById('settings-form');
+      const settingsTitle = document.getElementById('settings-title');
+      const destinationSettings = document.getElementById('destination-settings');
+      const subjectSettings = document.getElementById('subject-settings');
+      const settingsHelp = document.getElementById('settings-help');
+      const saveButton = document.getElementById('save-settings');
       const settingsStatus = document.getElementById('settings-status');
       const homeStatus = document.getElementById('home-status');
       const freeStudy = document.getElementById('free-study');
@@ -222,6 +228,11 @@
         const visible = subjects.filter((link) => !link.hidden).map((link) => link.dataset.subject);
         subjectSelect.value = visible.includes(subject) ? subject : visible[0];
         form.elements.destination.value = destination;
+        destinationSettings.hidden = navigateAfterSave;
+        subjectSettings.hidden = navigateAfterSave;
+        settingsTitle.textContent = navigateAfterSave ? `${subjectNames[subjectSelect.value]}の授業を選ぶ` : '設定';
+        settingsHelp.textContent = navigateAfterSave ? '学校で今、習っている授業を選んでください。' : '教科ごとに授業を選べます。選んだ授業から始まります。';
+        saveButton.textContent = navigateAfterSave ? '保存して開く' : '保存';
         if (!settings.open) settings.showModal();
         showLessons(subjectSelect.value);
       }
