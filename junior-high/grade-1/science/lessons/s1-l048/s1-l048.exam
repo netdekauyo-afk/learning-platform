@@ -1,0 +1,169 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l048 大地の変化と防災・減災の取り組み",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第48時限「大地の変化と防災・減災の取り組み」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "大地の変化と防災・減災の取り組み",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "活きている地球",
+            "４章 語る大地",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>地震や火山などの災害から身を守るためには、ふだんからの備えと、災害が起きたときの適切な行動が大切です。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：地震のときにエレベーターを使うと、途中で止まって閉じ込められるおそれがあることに注意しよう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地震が発生したときの行動として、<strong><u>正しくない</u></strong>ものはどれですか。1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "ゆれている間は、机の下などにもぐって頭を守る",
+                "ゆれがおさまったら、火の始末を確認する",
+                "ゆれている間に、エレベーターを使って下の階へ避難する",
+                "避難するときは、落下物に気をつけて徒歩で避難する"
+              ],
+              "matrix": [
+                0,
+                0,
+                1,
+                0
+              ],
+              "distractors": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

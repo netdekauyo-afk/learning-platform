@@ -1,0 +1,169 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l032 地域の大地の観察と成り立ちの推測",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第32時限「地域の大地の観察と成り立ちの推測」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "地域の大地の観察と成り立ちの推測",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "活きている地球",
+            "１章 身近な大地",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>ある露頭を調べると、下の地層からは貝の化石が、上の地層からは陸の植物の化石が見つかりました。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：地層は下のものほど古いことと、それぞれの化石が示す環境を組み合わせて考えよう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この観察結果から推測できる、その地域の大地の変化として最も適切なものはどれですか。1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "昔は陸だった場所が、だんだん海になっていった",
+                "昔は海だった場所が、のちに陸になっていった",
+                "昔からずっと、海の深さは変わっていない",
+                "地層の上下の順序と、時代の新旧は関係がない"
+              ],
+              "matrix": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

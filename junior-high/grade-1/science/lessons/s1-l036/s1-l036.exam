@@ -1,0 +1,169 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l036 日本列島付近の地震分布とプレートの動き",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第36時限「日本列島付近の地震分布とプレートの動き」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "日本列島付近の地震分布とプレートの動き",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "活きている地球",
+            "２章 ゆれる大地",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>日本列島のまわりでは、海洋プレートが大陸プレートの下へ沈み込んでいます。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：プレートが沈み込む場所では、岩盤が引きずり込まれてひずみがたまることに注目しよう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本列島付近で地震が起こるしくみとして、正しいものはどれですか。1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "海洋プレートが大陸プレートから離れていくことで、地震が起こる",
+                "火山のマグマが上昇することだけが、地震の原因である",
+                "海洋プレートの沈み込みによって岩盤に力がはたらき、そのひずみが解消されるときに地震が発生する",
+                "地震は、大陸プレートの内部だけで起こる"
+              ],
+              "matrix": [
+                0,
+                0,
+                1,
+                0
+              ],
+              "distractors": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

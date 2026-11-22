@@ -1,0 +1,169 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l038 日本列島の火山分布とマグマが噴火するしくみ",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第38時限「日本列島の火山分布とマグマが噴火するしくみ」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "日本列島の火山分布とマグマが噴火するしくみ",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "活きている地球",
+            "３章 火をふく大地",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>日本列島の地下では、海洋プレートが陸のプレートの下へ沈み込んでいます。火山の噴火は、この沈み込みと関係して地下でマグマができることから始まります。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：マグマができるきっかけとして、沈み込んだプレートから出るものと、できたマグマが上昇する理由に注目しよう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>沈み込むプレートと関係してマグマができ、地表に噴出するまでの過程として、正しいものはどれですか。1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "沈み込んだプレートから出た水のはたらきで地下深くにマグマができ、周囲の岩石より軽いため上昇してマグマだまりにたまり、やがて地表へ噴出する",
+                "プレートどうしがぶつかる摩擦の熱で地表の岩石が溶け、そのまま噴出する",
+                "海水が割れ目から地下にしみこみ、高温で溶けたものがマグマになる",
+                "マグマだまりのマグマは周囲の岩石より重いため、しだいに沈んでいって地表に噴出する"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

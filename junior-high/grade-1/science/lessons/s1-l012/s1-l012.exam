@@ -1,0 +1,169 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l012 花のつくりの規則性と被子植物・離弁花・合弁花",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第12時限「花のつくりの規則性と被子植物・離弁花・合弁花」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "花のつくりの規則性と被子植物・離弁花・合弁花",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "いろいろな生物とその共通点",
+            "１章 植物の特徴と分類",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>花の観察で、ある植物の花を調べると、めしべの子房の中に胚珠があり、花弁は根もとでくっついて筒のような形になっていました。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：胚珠が子房に包まれているかどうかと、花弁が離れているか、くっついているかという、2つの観点で考えよう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この植物について、正しいものはどれですか。1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "胚珠が子房に包まれている被子植物で、花弁のつき方からは合弁花類である",
+                "胚珠が子房に包まれている被子植物で、花弁のつき方からは離弁花類である",
+                "たくさんの小さな花が集まった集合花であり、離弁花類である",
+                "胚珠が子房に包まれていない植物で、花弁のつき方からは合弁花類である"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "",
+                "",
+                ""
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

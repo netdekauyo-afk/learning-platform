@@ -1,0 +1,165 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l064 水溶液の濃さの表し方（質量パーセント濃度）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第64時限「水溶液の濃さの表し方（質量パーセント濃度）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "水溶液の濃さの表し方（質量パーセント濃度）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "身のまわりの物質",
+            "３章 水溶液の性質",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>水溶液の濃さは、溶液全体の質量に対する溶質の質量の割合を百分率で表した、質量パーセント濃度で表します。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "numberentry",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "allowFractions": false,
+              "mustBeReduced": false,
+              "mustBeReducedPC": 0,
+              "displayAnswer": "12.5",
+              "notationStyles": [
+                "plain",
+                "en",
+                "si-en"
+              ],
+              "correctAnswerStyle": "plain",
+              "minValue": 12.5,
+              "maxValue": 12.5,
+              "correctAnswerFraction": false,
+              "showFractionHint": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：まず溶液全体の質量（溶質＋水）を求め、溶質の質量を溶液の質量でわって100をかけよう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>食塩25gを水175gに溶かして食塩水をつくりました。この食塩水の質量パーセント濃度は何％ですか。答えを数値で入力しなさい。</p>",
+              "precisionType": "none",
+              "precision": 0,
+              "precisionPartialCredit": 0,
+              "precisionMessage": "You have not given your answer to the correct precision.",
+              "requirePrecision": false,
+              "showPrecisionHint": true
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

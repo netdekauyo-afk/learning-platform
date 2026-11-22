@@ -1,0 +1,165 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l073 エタノールの加熱グラフと融点・沸点",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第73時限「エタノールの加熱グラフと融点・沸点」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "エタノールの加熱グラフと融点・沸点",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "身のまわりの物質",
+            "４章 物質のすがたとその変化",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>物質が固体から液体に変化しているときの温度は一定に保たれます。この温度を融点といい、物質の種類によって決まっています。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "numberentry",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "allowFractions": false,
+              "mustBeReduced": false,
+              "mustBeReducedPC": 0,
+              "displayAnswer": "63",
+              "notationStyles": [
+                "plain",
+                "en",
+                "si-en"
+              ],
+              "correctAnswerStyle": "plain",
+              "minValue": 63,
+              "maxValue": 63,
+              "correctAnswerFraction": false,
+              "showFractionHint": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：融点は、固体がとけている間、温度が一定になっている部分の温度である。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>固体のパルミチン酸を加熱したところ、温度は20℃から上がり始め、63℃でしばらく一定になったあと、全部が液体になってから再び上がり始めました。パルミチン酸の融点は何℃ですか。答えを数値で入力しなさい。</p>",
+              "precisionType": "none",
+              "precision": 0,
+              "precisionPartialCredit": 0,
+              "precisionMessage": "You have not given your answer to the correct precision.",
+              "requirePrecision": false,
+              "showPrecisionHint": true
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

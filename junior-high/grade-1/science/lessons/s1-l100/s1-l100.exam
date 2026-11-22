@@ -1,0 +1,165 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "s1-l100 「光・音・力による現象」のまとめ演習（力だめし）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年理科 第100時限「「光・音・力による現象」のまとめ演習（力だめし）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "「光・音・力による現象」のまとめ演習（力だめし）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "光・音・力による現象",
+            "３章 力による現象",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>光は、発生した場所からほとんど一瞬で目に届きますが、音は空気中を伝わるのに時間がかかります。音の速さを340m/sとします。</p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "numberentry",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "allowFractions": false,
+              "mustBeReduced": false,
+              "mustBeReducedPC": 0,
+              "displayAnswer": "1020",
+              "notationStyles": [
+                "plain",
+                "en",
+                "si-en"
+              ],
+              "correctAnswerStyle": "plain",
+              "minValue": 1020,
+              "maxValue": 1020,
+              "correctAnswerFraction": false,
+              "showFractionHint": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：光は一瞬で届くので、光ってから音が聞こえるまでの時間は、音が伝わるのにかかった時間と考えられます。距離＝速さ×時間の関係を使おう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>かみなりが光ってから、3秒後に音が聞こえました。かみなりが発生した場所までの距離はおよそ何mですか。答えを数値で入力しなさい。</p>",
+              "precisionType": "none",
+              "precision": 0,
+              "precisionPartialCredit": 0,
+              "precisionMessage": "You have not given your answer to the correct precision.",
+              "requirePrecision": false,
+              "showPrecisionHint": true
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}
