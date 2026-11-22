@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0D1622">
+  <title>学習ホーム | Classroom</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <style>
+    .grade-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      color: var(--color-text);
+    }
+    .grade-control select {
+      min-height: 44px;
+      padding: 8px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font: inherit;
+    }
+    .grade-control select:focus-visible {
+      outline: 3px solid var(--color-accent);
+      outline-offset: 3px;
+    }
+    .choice-card[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <p class="site-name">Classroom</p>
+      <div class="grade-control">
+        <label for="grade">学年</label>
+        <select id="grade" disabled>
+          <option value="1">中学1年生</option>
+          <option value="2">中学2年生</option>
+          <option value="3">中学3年生</option>
+        </select>
+      </div>
+    </header>
+    <main>
+      <h1>今日は何を勉強した？</h1>
+      <nav class="choices" aria-label="教科を選ぶ">
+        <a class="choice-card" data-subject="math" href="../junior-high/grade-1/math/">数学<span aria-hidden="true">›</span></a>
+        <a class="choice-card" data-subject="science" href="../junior-high/grade-1/science/">理科<span aria-hidden="true">›</span></a>
+        <a class="choice-card" data-subject="english" href="../junior-high/grade-1/english/">英語<span aria-hidden="true">›</span></a>
+        <a class="choice-card" data-subject="social" href="../junior-high/grade-1/social/">社会<span aria-hidden="true">›</span></a>
+        <a class="choice-card" data-subject="japanese" href="../junior-high/grade-1/japanese/">国語<span aria-hidden="true">›</span></a>
+        <a class="choice-card" data-subject="information" href="../junior-high/grade-3/information/" hidden>情報<span aria-hidden="true">›</span></a>
+      </nav>
+    </main>
+  </div>
+  <script>
+    (() => {
+      const gradeControl = document.getElementById('grade');
+      const subjects = document.querySelectorAll('[data-subject]');
+      const storageKey = 'classroom-study-home-grade';
+      const grades = new Set(['1', '2', '3']);
+
+      function updateGrade(grade) {
+        const selectedGrade = grades.has(grade) ? grade : '1';
+        gradeControl.value = selectedGrade;
+        subjects.forEach((link) => {
+          const subject = link.dataset.subject;
+          link.hidden = subject === 'information' && selectedGrade !== '3';
+          link.href = `../junior-high/grade-${selectedGrade}/${subject}/`;
+        });
+      }
+
+      let savedGrade;
+      try { savedGrade = localStorage.getItem(storageKey); } catch (_) { /* Continue without saved settings. */ }
+      updateGrade(savedGrade);
+      gradeControl.disabled = false;
+      gradeControl.addEventListener('change', () => {
+        updateGrade(gradeControl.value);
+        try { localStorage.setItem(storageKey, gradeControl.value); } catch (_) { /* Keep the current selection. */ }
+      });
+    })();
+  </script>
+</body>
+</html>
