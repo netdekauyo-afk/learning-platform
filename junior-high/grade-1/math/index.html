@@ -384,14 +384,20 @@
       }
 
       .lesson-item {
-        grid-template-columns: 1.5rem minmax(0, 1fr) auto auto;
+        grid-template-columns: 1.5rem minmax(0, 1fr) auto;
         column-gap: 5px;
-        row-gap: 0;
+        row-gap: 4px;
         padding: 8px 2px;
       }
 
+      .lesson-title-link {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+      }
+
       .lesson-links {
-        grid-column: auto;
+        grid-column: 2 / -1;
         gap: 9px;
         padding-top: 0;
       }
