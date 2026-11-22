@@ -7,7 +7,8 @@
   <title>学習ホーム | Classroom</title>
   <link rel="stylesheet" href="../assets/style.css">
   <style>
-    .home-header-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .home-header-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .grade-control { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: var(--color-text); }
     .grade-control select, .settings-dialog select {
       min-height: 44px; padding: 8px 12px; border: 1px solid var(--color-border);
@@ -42,6 +43,28 @@
     .settings-help { margin: 6px 0 0; font-size: 0.92rem; }
     .settings-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .settings-actions .save { border-color: var(--color-accent); }
+    .calendar-dialog {
+      width: min(94vw, 680px); max-height: 90vh; overflow: auto; padding: clamp(14px, 4vw, 24px);
+      border: 1px solid var(--color-border); border-radius: 16px;
+      background: var(--color-bg); color: var(--color-text);
+    }
+    .calendar-dialog::backdrop { background: rgba(0, 0, 0, 0.68); }
+    .calendar-heading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .calendar-heading h2 { margin: 0; color: var(--color-heading); }
+    .calendar-controls { display: grid; grid-template-columns: auto 1fr auto; gap: 8px; align-items: center; margin-bottom: 12px; }
+    .calendar-controls h3 { margin: 0; text-align: center; color: var(--color-heading); font-size: 1.2rem; }
+    .calendar-controls .home-button { padding-inline: 12px; }
+    .calendar-grid { width: 100%; border-collapse: collapse; table-layout: fixed; }
+    .calendar-grid th, .calendar-grid td { border: 1px solid var(--color-border); text-align: center; color: var(--color-heading); }
+    .calendar-grid th { padding: 8px 2px; background: var(--color-surface); }
+    .calendar-grid td { height: 48px; padding: 4px 1px; font-size: 1rem; }
+    .calendar-grid td.is-holiday { background: var(--color-surface-hover); font-weight: 700; }
+    .calendar-grid time[aria-current="date"] { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border: 2px solid var(--color-accent); border-radius: 50%; }
+    .calendar-holidays { margin-top: 16px; }
+    .calendar-holidays h3 { margin: 0 0 8px; color: var(--color-heading); font-size: 1rem; }
+    .calendar-holidays ul { margin: 0; padding-left: 1.4em; }
+    .calendar-holidays p { margin: 0; }
+    .calendar-footer { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -49,7 +72,10 @@
     <header class="site-header">
       <div class="home-header-row">
         <p class="site-name">Classroom</p>
-        <button class="home-button" id="open-settings" type="button">設定</button>
+        <div class="home-actions">
+          <button class="home-button" id="open-calendar" type="button">カレンダー</button>
+          <button class="home-button" id="open-settings" type="button">設定</button>
+        </div>
       </div>
       <div class="grade-control">
         <label for="grade">学年</label>
@@ -105,6 +131,29 @@
         <button class="home-button save" id="save-settings" type="submit">保存</button>
       </div>
     </form>
+  </dialog>
+
+  <dialog class="calendar-dialog" id="calendar-dialog" aria-labelledby="calendar-title">
+    <div class="calendar-heading">
+      <h2 id="calendar-title">カレンダー</h2>
+    </div>
+    <div class="calendar-controls">
+      <button class="home-button" id="calendar-previous" type="button" aria-label="前の月">前月</button>
+      <h3 id="calendar-month" aria-live="polite"></h3>
+      <button class="home-button" id="calendar-next" type="button" aria-label="次の月">翌月</button>
+    </div>
+    <table class="calendar-grid" id="calendar-grid" aria-label="カレンダー">
+      <thead><tr><th scope="col">日</th><th scope="col">月</th><th scope="col">火</th><th scope="col">水</th><th scope="col">木</th><th scope="col">金</th><th scope="col">土</th></tr></thead>
+      <tbody id="calendar-days"></tbody>
+    </table>
+    <section class="calendar-holidays" aria-labelledby="calendar-holidays-title">
+      <h3 id="calendar-holidays-title">祝日・休日</h3>
+      <div id="calendar-holidays"></div>
+    </section>
+    <div class="calendar-footer">
+      <button class="home-button" id="calendar-today" type="button">今月</button>
+      <button class="home-button" id="close-calendar" type="button">閉じる</button>
+    </div>
   </dialog>
 
   <script src="../assets/calendar.js?v=20261122-holidays"></script>
@@ -295,6 +344,86 @@
         settings.close();
         if (shouldOpen) openSubject(subject);
         else homeStatus.textContent = persisted ? '設定を保存しました。' : 'この画面では設定できますが、次回まで保存できません。';
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      'use strict';
+      const calendar = globalThis.ClassroomCalendar;
+      const open = document.getElementById('open-calendar');
+      const dialog = document.getElementById('calendar-dialog');
+      if (!calendar) { open.disabled = true; return; }
+      const monthHeading = document.getElementById('calendar-month');
+      const grid = document.getElementById('calendar-grid');
+      const body = document.getElementById('calendar-days');
+      const holidays = document.getElementById('calendar-holidays');
+      const previous = document.getElementById('calendar-previous');
+      const next = document.getElementById('calendar-next');
+      let year;
+      let month;
+
+      function render() {
+        const today = calendar.today();
+        const days = calendar.month(year, month);
+        const label = `${year}年${month}月`;
+        monthHeading.textContent = label;
+        grid.setAttribute('aria-label', `${label}のカレンダー`);
+        previous.disabled = year === 1 && month === 1;
+        next.disabled = year === 9999 && month === 12;
+        body.replaceChildren();
+        holidays.replaceChildren();
+        const holidayList = document.createElement('ul');
+        const offset = days[0].weekday;
+        const count = Math.ceil((offset + days.length) / 7) * 7;
+        let row;
+        for (let i = 0; i < count; i++) {
+          if (i % 7 === 0) { row = document.createElement('tr'); body.appendChild(row); }
+          const cell = document.createElement('td');
+          const date = days[i - offset];
+          if (date) {
+            const time = document.createElement('time');
+            time.dateTime = date.isoDate;
+            time.textContent = String(date.day);
+            time.setAttribute('aria-label', `${year}年${month}月${date.day}日 ${date.weekdayJa}曜日${date.isHoliday ? ` ${date.holidayName}` : ''}`);
+            if (date.isoDate === today.isoDate) time.setAttribute('aria-current', 'date');
+            if (date.isHoliday) {
+              cell.classList.add('is-holiday');
+              const item = document.createElement('li');
+              item.textContent = `${date.day}日（${date.weekdayJa}） ${date.holidayName}`;
+              holidayList.appendChild(item);
+            }
+            cell.appendChild(time);
+          }
+          row.appendChild(cell);
+        }
+        if (holidayList.childElementCount) holidays.appendChild(holidayList);
+        else {
+          const message = document.createElement('p');
+          message.textContent = days[0].holidayKnown ? '今月の祝日・休日はありません。' : 'この年の祝日情報はまだありません。';
+          holidays.appendChild(message);
+        }
+      }
+
+      function shift(amount) {
+        month += amount;
+        if (month < 1) { month = 12; year--; }
+        if (month > 12) { month = 1; year++; }
+        render();
+      }
+      function showCurrentMonth() {
+        const today = calendar.today();
+        year = today.year;
+        month = today.month;
+        render();
+      }
+      open.addEventListener('click', () => { showCurrentMonth(); dialog.showModal(); });
+      previous.addEventListener('click', () => shift(-1));
+      next.addEventListener('click', () => shift(1));
+      document.getElementById('calendar-today').addEventListener('click', showCurrentMonth);
+      document.getElementById('close-calendar').addEventListener('click', () => dialog.close());
+      new MutationObserver(() => { if (dialog.open) render(); }).observe(document.documentElement, {
+        attributes: true, attributeFilter: ['data-calendar-holiday-status', 'data-calendar-holiday-years']
       });
     })();
   </script>
