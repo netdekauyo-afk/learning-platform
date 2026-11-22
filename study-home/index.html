@@ -228,6 +228,12 @@
         if (saved && (saved.destination === 'questions' || saved.destination === 'summary')) destination = saved.destination;
       } catch (_) { /* Start with empty settings if the saved data cannot be read. */ }
 
+      // Lessons 1–13 moved from grade 3 to grade 1; retain an existing choice.
+      function movedInformationLesson(id) { return /^info3-l0(?:0[1-9]|1[0-3])$/.test(id || ''); }
+      if (!selectionBySubject['1:information'] && movedInformationLesson(selectionBySubject['3:information'])) {
+        selectionBySubject['1:information'] = selectionBySubject['3:information'];
+      }
+
       function subjectKey(grade, subject) { return `${grade}:${subject}`; }
       function currentDestination() { return form.elements.destination.value || destination; }
       function subjectUrl(grade, subject) { return new URL(`../junior-high/grade-${grade}/${subject}/`, location.href); }
@@ -296,7 +302,7 @@
 
       async function courseDateNumbers(year, grade, subject) {
         const selectedGrade = String(grade);
-        if (!grades.has(selectedGrade) || !Object.prototype.hasOwnProperty.call(subjectNames, subject) || (subject === 'information' && selectedGrade !== '3')) {
+        if (!grades.has(selectedGrade) || !Object.prototype.hasOwnProperty.call(subjectNames, subject) || (subject === 'information' && selectedGrade === '2')) {
           throw new RangeError('Invalid grade or subject');
         }
         if (!globalThis.ClassroomCalendar?.lessonDateNumberRanges) throw new Error('Calendar is unavailable');
@@ -348,10 +354,10 @@
         const selectedGrade = grades.has(grade) ? grade : '1';
         gradeControl.value = selectedGrade;
         subjects.forEach((link) => {
-          link.hidden = link.dataset.subject === 'information' && selectedGrade !== '3';
+          link.hidden = link.dataset.subject === 'information' && selectedGrade === '2';
           link.href = '#';
         });
-        subjectSelect.querySelector('[value="information"]').hidden = selectedGrade !== '3';
+        subjectSelect.querySelector('[value="information"]').hidden = selectedGrade === '2';
         freeStudy.href = `../junior-high/grade-${selectedGrade}/`;
         homeStatus.textContent = '';
       }
@@ -411,7 +417,9 @@
           if (version !== navigationVersion || grade !== gradeControl.value) return;
           const lesson = lessons.find((item) => item.id === lessonId);
           if (!lesson) {
-            homeStatus.textContent = '選んだ授業が見つかりません。設定から選び直してください。';
+            homeStatus.textContent = subject === 'information' && grade === '3' && movedInformationLesson(lessonId)
+              ? '選んだ授業は中学1年の情報に移りました。設定から中3の授業を選び直してください。'
+              : '選んだ授業が見つかりません。設定から選び直してください。';
           } else if (!lesson[destination]) {
             homeStatus.textContent = `${subjectNames[subject]}「${lesson.title}」の${destination === 'questions' ? '問題' : '要約'}は準備中です。`;
           } else {
