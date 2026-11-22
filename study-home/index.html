@@ -183,7 +183,7 @@
     </div>
   </dialog>
 
-  <script src="../assets/calendar.js?v=20261122-recurring-breaks"></script>
+  <script src="../assets/calendar.js?v=20261122-date-numbers"></script>
   <script>
     (() => {
       'use strict';
@@ -259,6 +259,33 @@
         }
         return lessonsCache.get(key);
       }
+
+      // Use the existing lesson IDs and month data; do not duplicate them in a
+      // second table or assume dates for a course with no month information.
+      async function courseDateNumbers(year, grade, subject) {
+        const selectedGrade = String(grade);
+        if (!grades.has(selectedGrade) || !Object.prototype.hasOwnProperty.call(subjectNames, subject) || (subject === 'information' && selectedGrade !== '3')) {
+          throw new RangeError('Invalid grade or subject');
+        }
+        if (!globalThis.ClassroomCalendar?.lessonDateNumberRanges) throw new Error('Calendar is unavailable');
+        const lessons = await getLessons(selectedGrade, subject);
+        const result = await globalThis.ClassroomCalendar.lessonDateNumberRanges(year, lessons);
+        return Object.freeze({
+          academicYear: year, grade: selectedGrade, subject,
+          days: result.days,
+          lessons: Object.freeze(result.lessons.map((item, index) => Object.freeze({ ...item, title: lessons[index].title })))
+        });
+      }
+      async function courseLessonsOnDateNumber(year, grade, subject, number) {
+        if (!Number.isInteger(number) || number < 1) throw new RangeError('Invalid date number');
+        const course = await courseDateNumbers(year, grade, subject);
+        return Object.freeze({
+          day: course.days[number - 1] || null,
+          lessons: Object.freeze(course.lessons.filter((item) => item.startDateNumber !== null && item.startDateNumber <= number && number <= item.endDateNumber)),
+          unmappedCount: course.lessons.filter((item) => item.startDateNumber === null).length
+        });
+      }
+      globalThis.ClassroomLessonSchedule = Object.freeze({ forCourse: courseDateNumbers, onDateNumber: courseLessonsOnDateNumber });
 
       function updateGrade(grade) {
         navigationVersion++;

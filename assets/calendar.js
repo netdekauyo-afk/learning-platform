@@ -246,7 +246,63 @@
     return [...exact, ...approximate];
   }
 
-  global.ClassroomCalendar = Object.freeze({ day, fromISO, today, month, academicYear, refreshHolidays, getSchoolBreaks, saveSchoolBreaks, schoolBreaksOn, loadSharedCalendarData, sharedSchoolBreaksOn });
+  // Numbers are estimates for an academic year, not a school's official schedule.
+  // The shared break data is read once per calculation; browser-local settings
+  // intentionally do not change the common numbering.
+  async function numberedSchoolDays(year) {
+    const data = await loadSharedCalendarData();
+    await refreshHolidays();
+    const days = academicYear(year);
+    if (days.some((date) => !date.holidayKnown)) throw new Error('Holiday data is unavailable for this academic year');
+    const numbered = [];
+    for (const date of days) {
+      if (date.isWeekend || date.isHoliday) continue;
+      const isExactBreak = data.schoolBreaks.some((period) => period.start <= date.isoDate && date.isoDate <= period.end);
+      const isApproximateBreak = data.recurringSchoolBreaks.some((period) => recurringSchoolBreakOn(period, date.isoDate));
+      if (isExactBreak || isApproximateBreak) continue;
+      numbered.push(Object.freeze({ ...date, dateNumber: numbered.length + 1, approximate: true }));
+    }
+    return Object.freeze(numbered);
+  }
+
+  async function dateNumberForDate(isoDate) {
+    const date = fromISO(isoDate);
+    const days = await numberedSchoolDays(date.schoolYear);
+    return days.find((item) => item.isoDate === date.isoDate)?.dateNumber ?? null;
+  }
+
+  async function dateForNumber(year, dateNumber) {
+    if (!Number.isInteger(dateNumber) || dateNumber < 1) throw new RangeError('Invalid date number');
+    const days = await numberedSchoolDays(year);
+    return days[dateNumber - 1] || null;
+  }
+
+  async function lessonDateNumberRanges(year, lessons) {
+    if (!Array.isArray(lessons)) throw new TypeError('Expected lesson list');
+    const days = await numberedSchoolDays(year);
+    const bounds = new Map();
+    for (const date of days) {
+      const previous = bounds.get(date.month);
+      bounds.set(date.month, { start: previous ? previous.start : date.dateNumber, end: date.dateNumber });
+    }
+    const mappings = lessons.map((lesson) => {
+      if (!lesson || typeof lesson.id !== 'string' || !lesson.id) throw new TypeError('Invalid lesson ID');
+      const match = typeof lesson.month === 'string' ? /^(\d{1,2})月$/.exec(lesson.month.trim()) : null;
+      const monthNumber = match ? Number(match[1]) : null;
+      const range = bounds.get(monthNumber);
+      return Object.freeze({
+        id: lesson.id,
+        month: monthNumber,
+        startDateNumber: range ? range.start : null,
+        endDateNumber: range ? range.end : null,
+        approximate: true,
+        basis: range ? 'existing-lesson-month' : 'unknown'
+      });
+    });
+    return Object.freeze({ academicYear: year, days, lessons: Object.freeze(mappings) });
+  }
+
+  global.ClassroomCalendar = Object.freeze({ day, fromISO, today, month, academicYear, refreshHolidays, getSchoolBreaks, saveSchoolBreaks, schoolBreaksOn, loadSharedCalendarData, sharedSchoolBreaksOn, numberedSchoolDays, dateNumberForDate, dateForNumber, lessonDateNumberRanges });
   if (global.document) {
     publishHolidayStatus();
     void refreshHolidays();
