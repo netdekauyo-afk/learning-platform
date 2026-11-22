@@ -131,7 +131,8 @@
 
   const SCHOOL_BREAKS_KEY = 'classroom-calendar-school-breaks-v1';
   // Shared calendar data lives in GitHub beside this script. It is not drawn
-  // on the calendar. Add schoolBreaks as { name, start, end } using ISO dates.
+  // on the calendar. Add exact schoolBreaks with ISO dates, or yearly
+  // recurringSchoolBreaks as approximate periods with MM-DD dates.
   const currentScript = global.document && global.document.currentScript;
   const SHARED_CALENDAR_URL = currentScript && currentScript.src
     ? new URL('calendar-data.json', currentScript.src).href : null;
@@ -179,6 +180,20 @@
     return getSchoolBreaks().filter((period) => period.start <= date && date <= period.end);
   }
 
+  function normalizeRecurringSchoolBreak(period) {
+    if (!period || typeof period !== 'object' || typeof period.name !== 'string' || period.approximate !== true) {
+      throw new TypeError('Invalid approximate school break');
+    }
+    const name = period.name.trim();
+    if (!name || name.length > 80) throw new RangeError('Invalid school break name');
+    for (const date of [period.start, period.end]) {
+      if (typeof date !== 'string' || !/^\d{2}-\d{2}$/.test(date)) throw new RangeError('Expected a month and day');
+      // 2001 is not a leap year, so each endpoint is valid every year.
+      fromISO(`2001-${date}`);
+    }
+    return Object.freeze({ name, start: period.start, end: period.end, approximate: true });
+  }
+
   async function loadSharedCalendarData() {
     if (!SHARED_CALENDAR_URL || typeof global.fetch !== 'function') throw new Error('Shared calendar data is unavailable');
     const response = await global.fetch(SHARED_CALENDAR_URL, { credentials: 'same-origin', cache: 'no-cache' });
@@ -186,19 +201,49 @@
     const data = await response.json();
     if (!data || data.version !== 1 || !Array.isArray(data.schoolBreaks)) throw new Error('Shared calendar data is invalid');
     const schoolBreaks = data.schoolBreaks.map(normalizeSchoolBreak);
+    if (data.recurringSchoolBreaks !== undefined && !Array.isArray(data.recurringSchoolBreaks)) throw new Error('Shared calendar data is invalid');
+    const recurringSchoolBreaks = (data.recurringSchoolBreaks || []).map(normalizeRecurringSchoolBreak);
     const seen = new Set();
     for (const period of schoolBreaks) {
       const key = JSON.stringify([period.name, period.start, period.end]);
       if (seen.has(key)) throw new Error('Duplicate shared school break');
       seen.add(key);
     }
-    return Object.freeze({ version: 1, schoolBreaks: Object.freeze(schoolBreaks) });
+    const recurringSeen = new Set();
+    for (const period of recurringSchoolBreaks) {
+      const key = JSON.stringify([period.name, period.start, period.end]);
+      if (recurringSeen.has(key)) throw new Error('Duplicate recurring school break');
+      recurringSeen.add(key);
+    }
+    return Object.freeze({ version: 1, schoolBreaks: Object.freeze(schoolBreaks), recurringSchoolBreaks: Object.freeze(recurringSchoolBreaks) });
+  }
+
+  function recurringSchoolBreakOn(period, date) {
+    const monthDay = date.slice(5);
+    const crossesYear = period.start > period.end;
+    const matches = crossesYear
+      ? monthDay >= period.start || monthDay <= period.end
+      : monthDay >= period.start && monthDay <= period.end;
+    if (!matches) return null;
+    const year = Number(date.slice(0, 4));
+    let startYear = year;
+    let endYear = year;
+    if (crossesYear) {
+      if (monthDay >= period.start) endYear++;
+      else startYear--;
+    }
+    // Clip to the calendar's supported years at the extreme boundaries.
+    const start = startYear < 1 ? '0001-01-01' : `${String(startYear).padStart(4, '0')}-${period.start}`;
+    const end = endYear > 9999 ? '9999-12-31' : `${String(endYear).padStart(4, '0')}-${period.end}`;
+    return Object.freeze({ name: period.name, start, end, approximate: true, recurrence: 'annual' });
   }
 
   async function sharedSchoolBreaksOn(isoDate) {
     const date = fromISO(isoDate).isoDate;
     const data = await loadSharedCalendarData();
-    return data.schoolBreaks.filter((period) => period.start <= date && date <= period.end);
+    const exact = data.schoolBreaks.filter((period) => period.start <= date && date <= period.end);
+    const approximate = data.recurringSchoolBreaks.map((period) => recurringSchoolBreakOn(period, date)).filter(Boolean);
+    return [...exact, ...approximate];
   }
 
   global.ClassroomCalendar = Object.freeze({ day, fromISO, today, month, academicYear, refreshHolidays, getSchoolBreaks, saveSchoolBreaks, schoolBreaksOn, loadSharedCalendarData, sharedSchoolBreaksOn });
