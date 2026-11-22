@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第109時限 富士山が見える距離と地球の切り口への活用｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l108/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l110/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第109時限「富士山が見える距離と地球の切り口への活用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>地球を球とみた切り口の円と接線の関係に三平方の定理を適用し、富士山が見える限界の距離などを求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>地球の中心をO、半径を r、富士山の高さを h、山頂をA、地平線（接点）をTとすると、接線ATは半径OTと垂直（∠OTA＝90°）になります。</li>
+<li>したがって直角三角形OATで、OA＝r＋h、OT＝r なので、見える距離 AT＝x は x²＋r²＝(r＋h)² より x＝√(2rh＋h²) で求められます。</li>
+<li>地球半径 r≒6370km、富士山の高さ h≒3.776km を当てはめると、理論上は約219km先まで見えることが計算できます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>半径が 6400km の地球の表面から高さ 1km の場所Aに立ったとき、地平線Tまでの距離AT（km）を三平方の定理の式で表しましょう。</p>
+<p>考え方：直角三角形OATで斜辺は OA＝6400＋1＝6401km、OT＝6400km なので、AT²＋6400²＝6401²、よって AT＝√(6401²−6400²)＝√(12801×1)≒113km です。</p>
+<p class="answer">答え：AT＝√(6401²−6400²)＝√12801 km（約113km）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>6401²−6400² は1章で学んだ因数分解 (6401＋6400)(6401−6400)＝12801×1 を使うと暗算で計算できます。</li>
+<li>単位が m と km で混ざっているときは、必ず同じ単位（kmなど）にそろえてから計算しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

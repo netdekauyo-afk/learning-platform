@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第65時限 身のまわりのいろいろな事象と関数関係｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l064/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l066/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第65時限「身のまわりのいろいろな事象と関数関係」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>郵便料金や駐車場料金など、比例・反比例・1次関数・y＝ax² のいずれにも当てはまらない身のまわりの関数関係を見いだし、変化や対応の様子を調べることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>xの値を決めるとyの値がただ1つに決まれば、式が y＝ax＋b や y＝ax² で表せなくても「yはxの関数」です。</li>
+<li>たとえば、重さに応じて段階的に上がる郵便料金や、30分ごとに加算される駐車場料金は、一定の区間ごとにyの値が決まる関数になります。</li>
+<li>表やグラフに表すことで、式が1つで表せない関数でも変化の特徴をわかりやすく捉えられます。</li>
+<li>身のまわりの関係が「yがxの2乗に比例する」かどうかは、その関係を式に表してみて、y＝ax² の形になるかどうかで見分けます。たとえば、落下した距離のようにxの2乗に比例して増える量はこの形に表せますが、y＝ax の形になる関係や、xとyの積が一定になる関係は、2乗に比例する関係ではありません。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>ある駐車場の料金は、30分以内は200円、30分をこえて60分以内は400円、60分をこえて90分以内は600円です。駐車時間45分のときの料金はいくらですか。</p>
+<p>考え方：45分は「30分をこえて60分以内」の区間に含まれるため、料金は400円にただ1つに決まります。</p>
+<p class="answer">答え：400円</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「決まった式で表せないから関数ではない」と誤解しやすいですが、xに対してyがただ1つ決まれば立派な関数です。</li>
+<li>「以内（以下）」と「をこえて（より大きい）」の境目に注意して読み取りましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

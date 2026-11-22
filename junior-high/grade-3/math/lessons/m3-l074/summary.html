@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第74時限 三角形の相似条件を利用した図形の性質の証明｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l073/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l075/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第74時限「三角形の相似条件を利用した図形の性質の証明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>三角形の相似条件を利用して、2つの三角形が相似であることや、それを使って辺の長さ・比・角が等しいことを論理的に証明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>相似の証明の型は合同の証明と同じです：①2つの三角形を宣言→②等しい角や辺の比を理由とともに示す→③当てはまる相似条件を書いて ∽ を結論づける→④必要なら対応する辺の比や角の等しさを導く。</li>
+<li>「2組の角がそれぞれ等しい」を使うときは、2つの角の等しさだけで十分（3つ目は不要）です。</li>
+<li>直角（90°）が2か所ある図形では、共通な角や対頂角と合わせて「2組の角がそれぞれ等しい」になることが非常に多いです。</li>
+<li>平行な2直線がある図形では、錯角が等しくなることも「2組の角がそれぞれ等しい」の根拠になります。たとえば AB//CD のとき、平行線の錯角の組が等しくなり、対頂角や共通な角と組み合わせて相似条件を示せます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>∠A＝90° の直角三角形ABCの頂点Aから辺BCに垂線ADをひくとき、△ABC∽△DBA であることを証明しましょう。</p>
+<p>考え方：△ABCと△DBAにおいて、仮定より ∠BAC＝∠BDA＝90°…①、共通な角より ∠B＝∠B…②。①、②より2組の角がそれぞれ等しいので △ABC∽△DBA です。</p>
+<p class="answer">答え：∠BAC＝∠BDA＝90° と共通な角 ∠B より、2組の角がそれぞれ等しいので △ABC∽△DBA</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>辺の比を使う証明では「AB：DE＝6：9＝2：3」「BC：EF＝4：6＝2：3」のように比の値をそれぞれ計算してから「よって AB：DE＝BC：EF」とつなげます。</li>
+<li>対応する頂点の順番がずれると、比例式を立てるときに間違えてしまうので慎重に確認しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

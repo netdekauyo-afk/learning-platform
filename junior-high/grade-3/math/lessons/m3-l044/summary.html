@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第44時限 いろいろな2次方程式と適切な解法の選択｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l043/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l045/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第44時限「いろいろな2次方程式と適切な解法の選択」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>かっこ・分数・小数をふくむいろいろな2次方程式を整理し、平方根・因数分解・解の公式の中から最も適した解法を選んで解けるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>2次方程式を解くときの選び方の目安：①(x＋m)²＝n の形ならそのまま平方根を使う、②そうでなければ展開・整理して ax²＋bx＋c＝0 にする、③因数分解できれば因数分解、できなければ解の公式を使う。</li>
+<li>小数や分数をふくむ式は、両辺を10倍や分母の最小公倍数倍して整数係数にしてから解くとミスが減ります。</li>
+<li>x² の係数が負なら両辺に−1をかけて正にし、すべての項が同じ数でわれるならわって係数を小さくします。</li>
+<li>共通因数でくくり出して解く手順：定数項がない ax²＋bx＝0 の形は、x でくくり出して x(ax＋b)＝0 とし、「x＝0 または ax＋b＝0」から2つの解を求めます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>2次方程式 (x＋1)(x−3)＝5 を解きましょう。</p>
+<p>考え方：右辺が0ではないので、まず展開して左辺に集めます。x²−2x−3＝5 より x²−2x−8＝0。因数分解すると (x−4)(x＋2)＝0 なので x＝4、−2 です。</p>
+<p class="answer">答え：x＝4、−2</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>(x＋1)(x−3)＝5 のまま「x＋1＝5 または x−3＝5」と解くのは誤りです。積が使えるのは右辺が0のときだけです。</li>
+<li>解の公式を使う前に、まず因数分解できないか数秒チェックすると計算が大幅に速くなります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

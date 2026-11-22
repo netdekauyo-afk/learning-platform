@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第62時限 ブレーキ痕の長さと走行時の速さの推測｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l061/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l063/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第62時限「ブレーキ痕の長さと走行時の速さの推測」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>自動車の走行時の速さとブレーキ痕（制動距離）の長さの関係を関数 y＝ax² とみなして、事故現場のブレーキ痕から走行時の速さを推測できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>自動車がブレーキをかけてから止まるまでに進む距離（制動距離）y m は、速さ x km/h の2乗にほぼ比例します（y＝ax²）。</li>
+<li>速さが2倍になると制動距離は 2²＝4倍、3倍になると 3²＝9倍になるため、スピードの出しすぎは極めて危険です。</li>
+<li>基準となる1組のデータから比例定数 a を求めれば、ブレーキ痕の長さから元の速さを逆算できます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>ある自動車の速さx km/hと制動距離y mが y＝(1/100)x² で表されるとき、時速60kmの制動距離と、制動距離が64mのときの速さを求めましょう。</p>
+<p>考え方：x＝60 を代入すると y＝(1/100)×3600＝36m です。y＝64 を代入すると 64＝(1/100)x² より x²＝6400、x＞0 なので x＝80km/h です。</p>
+<p class="answer">答え：時速60kmのとき36m ／ 制動距離64mのとき時速80km</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>速さは正の数なので、x²＝6400 から正の平方根 x＝80 だけを選びます。</li>
+<li>「速さが2倍で距離が4倍」という2乗に比例の感覚を日常の安全意識にもつなげましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

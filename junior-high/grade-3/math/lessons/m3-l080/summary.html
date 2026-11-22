@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第80時限 中点連結定理の発見と線分の長さ｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l079/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l081/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第80時限「中点連結定理の発見と線分の長さ」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>三角形の2辺の中点を結ぶ線分の性質「中点連結定理」を三角形と比の定理から見いだし、線分の長さや平行関係を求める問題に活用できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>中点連結定理：△ABCの2辺AB、ACの中点をそれぞれM、Nとすると、① MN // BC、② MN＝1/2 BC が成り立ちます。</li>
+<li>理由：AM：AB＝AN：AC＝1：2 なので、三角形と比の定理の逆より MN // BC。さらに △AMN∽△ABC（相似比1：2）なので MN＝1/2 BC です。</li>
+<li>1辺の中点からもう1辺に平行な直線をひいたとき、残りの辺の中点を通ることもよく使います。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>△ABCの辺AB、ACの中点をそれぞれM、Nとします。BC＝14cm、∠B＝55° のとき、MNの長さと ∠AMNの大きさを求めましょう。</p>
+<p>考え方：中点連結定理より MN＝1/2 BC＝7cm、また MN // BC より同位角が等しいので ∠AMN＝∠B＝55° です。</p>
+<p class="answer">答え：MN＝7cm、∠AMN＝55°</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>中点連結定理は「平行」と「長さ半分」の2つの結論を同時に得られる非常に強力な定理です。</li>
+<li>図に中点の印（＝や//）が2辺についていたら、まず中点連結定理を疑いましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

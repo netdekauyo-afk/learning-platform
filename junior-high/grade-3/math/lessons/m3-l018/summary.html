@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第18時限 幅一定の図形の面積と文字式による証明｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l017/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l019/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第18時限「幅一定の図形の面積と文字式による証明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>円形の道や正方形の周囲の道など、幅が一定の図形の面積 S が「(道の幅 a)×(道の真ん中を通る線の長さ l)」すなわち S＝al になることを文字式で証明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>半径 r の円の外側に幅 a の円形の道があるとき、道の面積 S は「外側の円−内側の円」で S＝π(r＋a)²−πr²＝2πar＋πa²＝a(2πr＋πa) となります。</li>
+<li>一方、道の真ん中を通る円の半径は r＋a/2 なので、その円周 l は l＝2π(r＋a/2)＝2πr＋πa です。</li>
+<li>2つの式を比べると S＝al が成り立つことが証明でき、正方形や長方形の周りの道でも同様に S＝al が成り立ちます。</li>
+<li>正方形や長方形の内部を通る十字の道については、道を端に寄せて考えると、道でない部分が1つの長方形（正方形）にまとめられるので、残りの面積が求めやすくなります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>半径 r mの円形の池のまわりに幅 a mの道があります。道の面積Sと真ん中の線の長さlをそれぞれr、aで表し、S＝al を確かめましょう。</p>
+<p>考え方：S＝π(r＋a)²−πr²＝π(r²＋2ar＋a²−r²)＝2πar＋πa²。l＝2π(r＋a/2)＝2πr＋πa。al＝a(2πr＋πa)＝2πar＋πa² となり、S＝al が成り立ちます。</p>
+<p class="answer">答え：S＝2πar＋πa²、l＝2πr＋πa となり、al＝2πar＋πa²＝S</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>証明では「Sをr、aで表した式」と「alをr、aで表した式」の両方を計算し、まったく同じ式になることを示します。</li>
+<li>道の真ん中を通る円の半径が「r＋a」ではなく「r＋a/2」である点に注意しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

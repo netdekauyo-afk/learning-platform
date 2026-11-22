@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第111時限 紙の折り返しや円の接線に関する三平方の定理の問題｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l110/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l112/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第111時限「紙の折り返しや円の接線に関する三平方の定理の問題」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>長方形の紙を折り返した図形や、円と接線の図形に直角三角形を見つけ、未知の辺を x とおいて三平方の定理の方程式で線分の長さを求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>紙の折り返し問題では「折る前と折った後で重なる辺の長さは等しい」ことを使い、求める長さを x とすると残りの辺が (辺の長さ−x) で表せます。</li>
+<li>できた直角三角形に三平方の定理を当てはめると、x² が両辺で消えて1次方程式になり、簡単に x が求まります。</li>
+<li>円と接線の問題では「接線⊥半径（90°）」と「円外の点からの2本の接線の長さは等しい」を組み合わせて直角三角形をつくります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>縦6cm、横8cmの長方形ABCDを、頂点Aが頂点Cに重なるように折ったとき、折り目と辺ADの交点をEとします。AEの長さx cmを求めましょう。</p>
+<p>考え方：折り返しより CE＝AE＝x cm、よって DE＝8−x cm です。直角三角形CDEで三平方の定理より x²＝6²＋(8−x)²。x²＝36＋64−16x＋x² より 16x＝100、x＝25/4 cm です。</p>
+<p class="answer">答え：25/4 cm（6.25cm）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>x² が両辺に現れても、移項するときれいに消えることが多いので恐れずに展開しましょう。</li>
+<li>「どの辺とどの辺が折り返しで重なるか」を図に同じ印で書き込むと立式しやすくなります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

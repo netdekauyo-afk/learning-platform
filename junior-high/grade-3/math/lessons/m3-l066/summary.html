@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第66時限 いろいろな関数の変化と対応の比較・説明｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l065/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l067/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第66時限「いろいろな関数の変化と対応の比較・説明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>階段状のグラフや折れ線のグラフなど、いろいろな関数のグラフのかき方（白丸○と黒丸●の使い分け）や変化・対応の特徴を説明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>料金表などをグラフに表すと、横の線分が段々に並んだ「階段状のグラフ」になります。</li>
+<li>区間の端の点を含むときは黒丸「●」、含まないときは白丸「○」を使って、境目の値がどちらの段に属するかを正確に表します。</li>
+<li>たとえば「30分をこえて60分以内は400円」なら、左端の (30, 400) は白丸○、右端の (60, 400) は黒丸●でかきます。</li>
+<li>2つの関数の値を比べるときは、同じxの値に対するyの値をそれぞれ計算して比べます。どちらの関数が大きいかはxの値によって入れ替わることもあるので、1つのxの値だけで判断せず、いくつかの値で確かめることが大切です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>「重さが50gより大きく100g以下のとき料金は140円」をグラフに表すとき、点 (50, 140) と点 (100, 140) はそれぞれ白丸○・黒丸●のどちらにしますか。</p>
+<p>考え方：50gは含まない（より大きい）ので (50, 140) は白丸○、100gは含む（以下）ので (100, 140) は黒丸●にします。</p>
+<p class="answer">答え：(50, 140) は白丸○、(100, 140) は黒丸●</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>同じxの位置（例：x＝50）に黒丸●が2つ重なると、1つのxに2つのyが対応してしまい関数ではなくなるため、必ず一方が●、もう一方が○になります。</li>
+<li>グラフから条件を読み取るときも、○と●の違いに注目しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

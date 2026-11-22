@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第86時限 相似な多角形・円の相似比と面積比｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l085/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l087/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第86時限「相似な多角形・円の相似比と面積比」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>相似な多角形（三角形に分割して考える）や円（半径の2乗に比例）でも、平面図形全体で「面積比は相似比の2乗（m²：n²）」になることをまとめることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>どんな多角形でも対角線で同じ個数の相似な三角形に分割できるため、多角形どうしでも相似比が m：n なら面積比は m²：n² になります。</li>
+<li>すべての円はたがいに相似であり、半径の比が m：n なら面積は πm²：πn²＝m²：n² となります。</li>
+<li>したがって、三角形・多角形・円を問わず、相似な平面図形の面積比はつねに「相似比の2乗」です。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>半径が3cmの円と半径が5cmの円の、周の長さの比と面積の比をそれぞれ求めましょう。</p>
+<p>考え方：2つの円の相似比は半径の比 3：5 です。周の長さの比は相似比と同じ 3：5、面積の比は2乗して 3²：5²＝9：25 です。</p>
+<p class="answer">答え：周の長さの比：3：5 ／ 面積の比：9：25</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>「半径が2倍のピザは、面積（量）が4倍になる」というように身近な例でイメージすると忘れにくくなります。</li>
+<li>面積比から相似比を逆に求めるときは平方根をとります（例：面積比 9：16 → 相似比 3：4）。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

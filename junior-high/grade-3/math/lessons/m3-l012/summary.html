@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第12時限 平方・和と差の積の公式を使う因数分解｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l011/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l013/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第12時限「平方・和と差の積の公式を使う因数分解」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>乗法公式2・3・4の逆（平方の公式・和と差の積の公式）を使って、多項式を素早く因数分解できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>平方の公式：x²＋2ax＋a²＝(x＋a)²、x²−2ax＋a²＝(x−a)²。両端が何かの2乗になっていて、真ん中が「2×前×後ろ」になっているか確認します。</li>
+<li>和と差の積の公式：x²−a²＝(x＋a)(x−a)。「2乗−2乗」の2項だけの式を見たらこの公式を使います。</li>
+<li>x²＋a² のように「2乗＋2乗」の形は、実数の範囲では因数分解できません。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>次の2つの式を因数分解しましょう。(1) 9x²−12x＋4　(2) 4x²−25y²</p>
+<p>考え方：(1) 9x²＝(3x)²、4＝2² で、真ん中が −2×3x×2＝−12x なので (3x−2)²。(2) (2x)²−(5y)² の形なので (2x＋5y)(2x−5y) です。</p>
+<p class="answer">答え：(1) (3x−2)²　(2) (2x＋5y)(2x−5y)</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>4x²−25y² を (4x＋25y)(4x−25y) と係数にルートをとらずに書いてしまうミスに注意しましょう。</li>
+<li>x²−1 は 1＝1² と見て (x＋1)(x−1) に因数分解できます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

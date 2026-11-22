@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第104時限 三平方の定理とその逆の基本演習｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l103/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l105/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第104時限「三平方の定理とその逆の基本演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>三平方の定理を使った辺の長さの計算と、三平方の定理の逆による直角三角形の判断の基本問題に取り組み、計算力を定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>三平方の定理：直角三角形で、直角をはさむ2辺の長さを a、b、斜辺の長さを c とすると、a²＋b²＝c² が成り立ちます。1辺を求めるときは、斜辺なら c＝√(a²＋b²)、他の辺なら a＝√(c²−b²) の形で計算します。</li>
+<li>「3：4：5」「5：12：13」「8：15：17」などのよく出る整数の組（ピタゴラス数）を知っておくと検算に役立ちます。</li>
+<li>根号をふくむ辺の計算や、文字式を含む三平方の定理の基本演習を丁寧に行います。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>3辺の長さが √3 cm、√5 cm、2√2 cm の三角形は直角三角形といえますか。</p>
+<p>考え方：一番長い辺は 2√2＝√8 です。それぞれの2乗は (√3)²＝3、(√5)²＝5、(2√2)²＝8 となり、3＋5＝8 が成り立つので直角三角形です。</p>
+<p class="answer">答え：直角三角形といえる（2√2 cm の辺が斜辺）</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>2√2 の2乗は 2²×(√2)²＝4×2＝8 です。2×2＝4 と間違えないように注意しましょう。</li>
+<li>長さは必ず正の数なので、x²＝k から x＞0 を確認して x＝√k をとります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

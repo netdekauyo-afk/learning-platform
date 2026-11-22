@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第5時限 和の平方・差の平方の乗法公式による展開｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l004/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l006/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第5時限「和の平方・差の平方の乗法公式による展開」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>乗法公式2・3（和の平方・差の平方）を見いだし、2乗の形を正確に展開できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>乗法公式2（和の平方）：(x＋a)²＝x²＋2ax＋a²。</li>
+<li>乗法公式3（差の平方）：(x−a)²＝x²−2ax＋a²。</li>
+<li>真ん中の項は「2×前×後ろ」、最後の項は「後ろの2乗（つねに＋）」になります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>(3x−5y)² を展開しましょう。</p>
+<p>考え方：前を3x、後ろを5yとして差の平方の公式を使います。(3x)²−2×3x×5y＋(5y)²＝9x²−30xy＋25y² となります。</p>
+<p class="answer">答え：9x²−30xy＋25y²</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>(x＋a)² を x²＋a² として真ん中の項 2ax を落とすミスが非常に多いので気をつけましょう。</li>
+<li>(x−a)² の最後の項は (−a)²＝＋a² なので、マイナスではなくプラスになります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

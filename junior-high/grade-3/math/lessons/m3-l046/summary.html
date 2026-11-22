@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第46時限 畑の通路の幅と2次方程式を利用した問題解決の手順｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l045/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l047/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第46時限「畑の通路の幅と2次方程式を利用した問題解決の手順」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>畑の通路の幅を求める問題を通して、2次方程式を利用して文章題を解く手順と、求めた2つの解が問題に適しているかを確かめる「解の吟味」を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>2次方程式の文章題の手順：①求める数量をxとおく→②xの変域（とりうる範囲）を確認する→③方程式を立てて解く→④求めた解が問題に適しているか吟味して答える。</li>
+<li>畑の中に縦横の通路を作る問題では、通路を端に寄せると残った畑が1つの長方形になり、(縦−x)(横−x)＝(残りの面積) と簡単に立式できます。</li>
+<li>2次方程式では解が2つ出ますが、一方が負の数になったり、もとの畑の幅より大きくなったりして「問題に合わない」場合があるため、必ず解を吟味します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>縦10m、横14mの長方形の畑に、同じ幅の通路を縦横に1本ずつ作り、残りの畑の面積を96m²にしたい。通路の幅を何mにすればよいですか。</p>
+<p>考え方：通路の幅を x m とすると 0＜x＜10 です。通路を端に寄せると (10−x)(14−x)＝96。展開して整理すると x²−24x＋44＝0、(x−2)(x−22)＝0 より x＝2、22。0＜x＜10 に適するのは x＝2 だけです。</p>
+<p class="answer">答え：2m</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>x＝22 は方程式の解としては正しいですが、縦10mの畑に22mの通路は作れないため不適になります。</li>
+<li>「0＜x＜10 より x＝2 は問題に適しているが、x＝22 は適していない」と一言添えて答えるのが理想です。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

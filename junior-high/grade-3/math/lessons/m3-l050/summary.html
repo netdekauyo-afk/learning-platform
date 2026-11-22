@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第50時限 3章「2次方程式」のまとめ演習｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l049/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l051/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第50時限「3章「2次方程式」のまとめ演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>3章「2次方程式」全体の学習内容（各種解法と使い分け、数・図形・動点の文章題と解の吟味）を総復習し、定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>平方根・平方完成・解の公式・因数分解のすべてを正確に使えるようにします。</li>
+<li>文章題では「立式→変域の確認→解く→解の吟味」の4ステップを漏れなく実践します。</li>
+<li>解の1つが与えられて係数やもう1つの解を求める問題（代入して係数を求め、元の式を解き直す）も押さえておきます。</li>
+<li>解の公式：2次方程式 ax²＋bx＋c＝0 の解は x＝{−b±√(b²−4ac)}/(2a) で求められます（a、b、c は各項の係数）。√ の中（b²−4ac）を先に計算し、約分や √ の簡約ができる場合は最後に必ず行います。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>2次方程式 x²＋ax−12＝0 の解の1つが x＝4 のとき、aの値ともう1つの解を求めましょう。</p>
+<p>考え方：x＝4 を代入すると 16＋4a−12＝0 より 4a＝−4、a＝−1 です。もとの式は x²−x−12＝0 となり、(x−4)(x＋3)＝0 よりもう1つの解は x＝−3 です。</p>
+<p class="answer">答え：a＝−1、もう1つの解は x＝−3</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>解がわかっているときは「方程式に代入して成り立つ」という基本に立ち返るとすぐ解けます。</li>
+<li>文章題では単位や「〜秒後」「〜cm」の書き忘れがないか最後に確認しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

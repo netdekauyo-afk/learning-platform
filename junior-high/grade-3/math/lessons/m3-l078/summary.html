@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第78時限 三角形と比の定理の証明と線分の長さ｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l077/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l079/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第78時限「三角形と比の定理の証明と線分の長さ」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>「三角形と比の定理」を相似を使って証明し、三角形の1辺に平行な直線によって分けられる線分の長さを求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>三角形と比の定理：△ABCの辺AB、AC上（または延長上）に点D、Eがあり、DE // BC ならば、① AD：AB＝AE：AC＝DE：BC、② AD：DB＝AE：EC が成り立ちます。</li>
+<li>①は △ADE∽△ABC から直接導け、②は点Eを通りABに平行な補助線をひいて △ADE∽△EFC と平行四辺形DBFEから証明できます。</li>
+<li>2本の平行線（DEとBC）の長さを求めるときは、必ず「上：全体（AD：AB＝DE：BC）」を使い、「上：下（AD：DB）」とは混ぜないようにします。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>△ABCで DE // BC とします。AD＝4cm、DB＝2cm、BC＝9cm のとき、DEの長さx cmを求めましょう。</p>
+<p>考え方：DEとBCは平行な2辺なので「上：全体」の比を使います。AB＝4＋2＝6cm なので、AD：AB＝DE：BC より 4：6＝x：9。2：3＝x：9 なので 3x＝18、x＝6 です。</p>
+<p class="answer">答え：6cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>DE：BC を求めるときに誤って 4：2＝x：9 としてしまうミスが最多です。平行線どうしの比は必ず「AD：AB（上：全体）」です。</li>
+<li>砂時計型（点D、Eが延長上にある場合）でも、錯角で △ADE∽△ABC となり同じ比が成り立ちます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第61時限 関数y＝ax²の性質とグラフの基本演習｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l060/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l062/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第61時限「関数y＝ax²の性質とグラフの基本演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>関数 y＝ax² の式・グラフ・変化の割合・変域・平均の速さに関する基本問題に取り組み、基礎を確実に定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>1組の (x, y) から y＝ax² の比例定数 a を求める手順と、aの符号・絶対値によるグラフの形を整理します。</li>
+<li>変化の割合（平均の速さ）と、0をまたぐときの変域の求め方を正確にこなせるようにします。</li>
+<li>変化の割合の求め方：x が p から q まで増加するとき、変化の割合は (y の増加量)/(x の増加量) で求め、y＝ax² では a(p＋q) となります。</li>
+<li>変域における最大値・最小値の求め方：x の変域が0をまたぐときは頂点（y＝0）も最大値・最小値の候補になるので、両端の値とあわせて比べます。0をまたがないときは、両端の2つの値が最大値・最小値になります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>関数 y＝−(1/2)x² で、xの変域が −4≦x≦2 のときのyの変域を求めましょう。</p>
+<p>考え方：a＜0（下に開く）で変域に0を含むので、最大値は y＝0 です。両端は x＝−4 で y＝−8、x＝2 で y＝−2 なので最小値は−8です。</p>
+<p class="answer">答え：−8≦y≦0</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>変域の端を代入するとき、2乗の計算ミス（(−4)²＝16）とマイナス符号の付け忘れに気をつけましょう。</li>
+<li>グラフを小さくかいて確認すれば、変域や増減のミスを防げます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

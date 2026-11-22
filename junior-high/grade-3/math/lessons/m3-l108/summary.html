@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第108時限 直方体の対角線や錐体の高さへの三平方の定理の利用｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l107/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l109/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第108時限「直方体の対角線や錐体の高さへの三平方の定理の利用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>空間図形の中に直角三角形を見いだし、直方体の対角線の長さや、円錐・正四角錐の高さと体積を三平方の定理で求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>縦a、横b、高さcの直方体の対角線の長さは、底面の対角線 √(a²＋b²) と高さcでさらに三平方の定理を使い、√(a²＋b²＋c²) で求められます（1辺aの立方体なら √3 a）。</li>
+<li>円錐や正四角錐の高さは、頂点から底面の中心へ垂線をひいてできる直角三角形（斜辺が母線や側面の辺）に三平方の定理を適用して求めます。</li>
+<li>高さが求まれば、体積＝1/3×底面積×高さ で錐体の体積も計算できます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>縦3cm、横4cm、高さ12cmの直方体の対角線の長さを求めましょう。</p>
+<p>考え方：三平方の定理を2回使うと √(3²＋4²＋12²)＝√(9＋16＋144)＝√169＝13cm です。</p>
+<p class="answer">答え：13cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>正四角錐の「側面の辺の長さ」と「側面の三角形の高さ」は別物なので、どの直角三角形を使っているか見取り図に書き込んで確認しましょう。</li>
+<li>空間図形でも、切り出した「平面の直角三角形」を描き直せば平面の問題と同じように解けます。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

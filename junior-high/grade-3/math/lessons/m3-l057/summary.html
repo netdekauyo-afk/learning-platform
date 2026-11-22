@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第57時限 関数y＝ax²の値の増減と変化の割合の性質｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l056/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l058/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第57時限「関数y＝ax²の値の増減と変化の割合の性質」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>関数 y＝ax² の値の増減（x＜0 と x＞0 での違い）を調べ、比例・1次関数と比べながら変化の割合の特徴を理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>a＞0 のとき：x＜0 の範囲ではxが増加するとyは「減少」し、x＞0 の範囲ではxが増加するとyは「増加」します（x＝0で最小値0）。</li>
+<li>a＜0 のとき：x＜0 の範囲ではxが増加するとyは「増加」し、x＞0 の範囲ではxが増加するとyは「減少」します（x＝0で最大値0）。</li>
+<li>y＝ax² の変化の割合は、1次関数とはちがって一定ではなく、xの区間によって変わります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>関数 y＝−3x² で、xの値が増加するときyの値も増加するのは、xがどのような範囲のときですか。</p>
+<p>考え方：a＝−3＜0 なので下に開く放物線です。頂点（原点）より左側では右上がりになっているため、x＜0（またはx≦0）の範囲でyも増加します。</p>
+<p class="answer">答え：x＜0（または x≦0）の範囲</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>増減の向きは暗記しようとせず、上に開くU字か下に開く逆U字かを小さく図にかいて「左から右へなぞる」と一目でわかります。</li>
+<li>x＝0 を境目にして増加と減少が切りかわるのが放物線の大きな特徴です。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

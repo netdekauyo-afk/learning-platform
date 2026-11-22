@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第83時限 平行線と比の定理を利用した線分の分割と証明｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l082/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l084/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第83時限「平行線と比の定理を利用した線分の分割と証明」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>平行線と比の定理を利用して線分を指定の比に分割する作図や、三角形の角の二等分線などの図形の性質の証明に活用できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>線分ABを 2：3 に分けたいときは、点Aから別の半直線をひいてコンパスで 2：3 の目盛りをとり、端をBと結んで平行線をひけば正確に分割できます。</li>
+<li>平行線と比の定理は、台形の中点を結ぶ線分の長さや、三角形の重なりから比を求める証明問題にも幅広く応用できます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>台形ABCD（AD // BC）で、AD＝4cm、BC＝10cm、辺AB、DCの中点をそれぞれM、Nとするとき、MNの長さを求めましょう。</p>
+<p>考え方：対角線BDをひき、MNとの交点をPとします。△ABDで中点連結定理より MP＝1/2 AD＝2cm、△DBCで PN＝1/2 BC＝5cm となるので、MN＝2＋5＝7cm です。</p>
+<p class="answer">答え：7cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>台形の2辺の中点を結ぶ線分の長さは、いつでも「(上底＋下底)÷2」になります。</li>
+<li>補助線（対角線や辺に平行な線）を1本ひく発想を身につけると応用問題が一気に解きやすくなります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

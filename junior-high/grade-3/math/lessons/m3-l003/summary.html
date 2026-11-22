@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第3時限 式の展開の意味と多項式どうしの乗法｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l002/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l004/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第3時限「式の展開の意味と多項式どうしの乗法」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>式を展開する意味を理解し、分配法則を使って多項式どうしの積 (a＋b)(c＋d) を正確に展開できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>単項式や多項式の積の形をした式を、かっこを外して単項式の和の形に表すことを「式を展開する」といいます。</li>
+<li>多項式どうしの乗法は、(a＋b)(c＋d)＝ac＋ad＋bc＋bd のように、前のかっこの各項を後ろのかっこの各項に漏れなくかけ合わせます。</li>
+<li>縦が a＋b、横が c＋d の長方形を4つの小長方形に分けた面積図で考えると、4つの項が出る理由が視覚的に理解できます。</li>
+<li>展開したあとに同類項があれば、必ずまとめて簡単にして答えます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>(2x＋3)(x−4) を展開しましょう。</p>
+<p>考え方：2xをxと−4にかけ、3をxと−4にかけます。2x²−8x＋3x−12 となり、同類項 −8x＋3x をまとめると 2x²−5x−12 です。</p>
+<p class="answer">答え：2x²−5x−12</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>かけ合わせる回数は「前のかっこの項数×後ろのかっこの項数」です。掛け漏れがないか項の数を確認しましょう。</li>
+<li>展開したまま同類項をまとめ忘れないように最後まで見直しましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

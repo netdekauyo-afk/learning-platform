@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第30時限 根号をふくむ加法で√a＋√b≠√(a＋b)の理由｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l029/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l031/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第30時限「根号をふくむ加法で√a＋√b≠√(a＋b)の理由」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>√a＋√b が √(a＋b) にならない理由を、近似値や正方形の面積図を用いて筋道立てて説明できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>たとえば √2＋√3 を近似値で計算すると 1.414…＋1.732…＝3.146… ですが、√(2＋3)＝√5＝2.236… であり、まったく一致しません。</li>
+<li>また、1辺が √2＋√3 の正方形の面積は (√2＋√3)²＝2＋2√6＋3＝5＋2√6 となり、1辺が √5 の正方形の面積5より 2√6 だけ大きくなります。</li>
+<li>したがって、根号のついた数の加法・減法は、乗除のように根号の中どうしをそのまま足し引きすることはできません。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>√4＋√9 と √(4＋9) の値を比べて、√a＋√b≠√(a＋b) であることを確かめましょう。</p>
+<p>考え方：√4＋√9＝2＋3＝5（＝√25）ですが、√(4＋9)＝√13 であり、√25≠√13 なので等しくありません。</p>
+<p class="answer">答え：√4＋√9＝5 だが √(4＋9)＝√13 なので等しくない</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>乗法は √a×√b＝√(ab) が成り立つのに対し、加法は √a＋√b≠√(a＋b) です。この違いをはっきり区別しましょう。</li>
+<li>文字式で 2a＋3b がそれ以上まとめられないのと同じように、√2＋√3 もそれ以上簡単にはできません。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

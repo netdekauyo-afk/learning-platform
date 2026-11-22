@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第64時限 放物線と直線の交点の座標と直線の式｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l063/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l065/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第64時限「放物線と直線の交点の座標と直線の式」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>放物線 y＝ax² と直線 y＝mx＋n の2つの交点の座標や、放物線上の2点を通る直線の式を求められるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>放物線 y＝ax² 上の2点 A、B のx座標が p、q のとき、それぞれ y＝ax² に代入して座標 (p, ap²)、(q, aq²) を求めます。</li>
+<li>この2点を通る直線の式は、2点の座標から1次関数の式を求める手順（傾きは変化の割合 a(p＋q) と一致）で求められます。</li>
+<li>逆に、放物線 y＝ax² と直線 y＝mx＋n の交点の座標は、2つの式を連立させて ax²＝mx＋n の2次方程式を解くことで求められます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>放物線 y＝(1/2)x² 上の2点 A（x座標が−2）、B（x座標が4）を通る直線の式を求めましょう。</p>
+<p>考え方：Aのy座標は 1/2×(−2)²＝2 なので A(−2, 2)、Bのy座標は 1/2×4²＝8 なので B(4, 8) です。傾きは (8−2)/(4−(−2))＝6/6＝1。y＝x＋b に (4, 8) を代入すると b＝4 となります。</p>
+<p class="answer">答え：y＝x＋4</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>放物線上の2点を通る直線の傾きは、変化の割合 a(p＋q)＝1/2×(−2＋4)＝1 と一致します。検算にも使えます。</li>
+<li>放物線と直線で囲まれた三角形の面積を求めるときは、直線のy切片で左右2つの三角形に分けて計算すると簡単です。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

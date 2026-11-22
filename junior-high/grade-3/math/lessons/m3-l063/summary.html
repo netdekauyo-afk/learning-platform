@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第63時限 身のまわりの事象における関数y＝ax²の活用｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l062/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l064/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第63時限「身のまわりの事象における関数y＝ax²の活用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>落下運動・動点と面積・図形の重なりなど、身のまわりの具体的な問題を関数 y＝ax² の式やグラフを利用して解決できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>三角形の底辺と高さがどちらも時間 x に比例して大きくなるとき、面積 y は x² に比例する関数 y＝ax² になります。</li>
+<li>点や図形が動く範囲によって変域を分け、y＝ax² の区間と1次関数（または定数）の区間を組み合わせてグラフをかきます。</li>
+<li>具体的な問題では、xの変域（0≦x≦上限）を最初に確認します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>1辺6cmの正方形ABCDの頂点Aを出発し、点Pは辺AB上を毎秒1cm、点Qは辺AD上を毎秒1cmで同時に進みます。x秒後（0≦x≦6）の△APQの面積y cm²を式に表し、面積が8cm²になる時刻を求めましょう。</p>
+<p>考え方：AP＝x、AQ＝x なので、y＝(1/2)x² です。y＝8 を代入すると (1/2)x²＝8 より x²＝16。0≦x≦6 より x＝4秒後です。</p>
+<p class="answer">答え：式：y＝(1/2)x² ／ 4秒後</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>底辺も高さも x の1次式になるとき、積である面積は x² の関数になります。</li>
+<li>x²＝16 の解 ±4 のうち、変域 0≦x≦6 に合う正の値だけを採用します。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

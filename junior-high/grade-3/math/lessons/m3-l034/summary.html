@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第34時限 コピー用紙の辺の比と平方根の活用｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l033/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l035/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第34時限「コピー用紙の辺の比と平方根の活用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>B5判やA4判などのコピー用紙の2辺の比が 1：√2 になっている理由を調べ、平方根が身のまわりで活用されていることを理解することが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>A4判やB5判のコピー用紙は、長い方の辺を半分に折っても、もとの紙と「縦と横の比（形）」がまったく同じになるように作られています。</li>
+<li>短い辺を1、長い辺を x とすると、半分に折った紙の短い辺は x/2、長い辺は1になります。比が等しいので 1：x＝x/2：1、つまり x²＝2 より x＝√2 です。</li>
+<li>そのため、コピー用紙の2辺の比は 1：√2（白銀比）になっており、拡大・縮小コピーをしても余白や切れが出ずにきれいに収まります。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>短い辺の長さが20cm、2辺の比が 1：√2 の長方形の紙があります。長い辺の長さを √2＝1.414 として小数第1位まで求めましょう。</p>
+<p>考え方：長い辺は 20×√2＝20×1.414＝28.28（cm）です。小数第2位を四捨五入すると 28.3cm になります。</p>
+<p class="answer">答え：約 28.3cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>半分に折ると「もとの短い辺が新しい長い辺に、もとの長い辺の半分が新しい短い辺に」入れかわる点がポイントです。</li>
+<li>白銀比 1：√2 は、紙の規格だけでなく日本の伝統建築などにも使われています。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第100時限 6章「円」のまとめ演習｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l099/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l101/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第100時限「6章「円」のまとめ演習」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>6章「円」全体の学習内容（円周角の定理・直径と90°・弧と円周角・定理の逆・接線の作図・相似との融合証明）を総復習し、定着させることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>円周角と中心角の関係、直径に対する90°、弧の比と円周角の比を確実に使いこなせるようにします。</li>
+<li>円周角の定理の逆、円外の点からの接線の作図手順、円と相似を組み合わせた証明問題を総点検します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>円Oの直径ABと弦CDが点Pで交わっています。∠ACD＝28°、∠ADC＝62° のとき、∠BAD の大きさを求めましょう。</p>
+<p>考え方：ABは直径なので ∠ADB＝90°。また弧ADに対する円周角より ∠ABD＝∠ACD＝28°。△ABDで ∠BAD＝180°−(90°＋28°)＝62° です。</p>
+<p class="answer">答え：62°</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>図にたくさんの線が引かれていても、「どの弧に対する円周角か」を1つずつ色分け・印付けして見るとシンプルになります。</li>
+<li>円の問題で困ったら「直径→90°」「半径→二等辺三角形」「同じ弧→円周角が等しい」の3つをチェックしましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

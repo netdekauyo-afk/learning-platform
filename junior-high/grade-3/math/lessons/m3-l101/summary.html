@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第101時限 直角三角形の各辺にできる3つの正方形の面積関係｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l100/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l102/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第101時限「直角三角形の各辺にできる3つの正方形の面積関係」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>方眼紙上で直角三角形の3つの辺をそれぞれ1辺とする正方形の面積を調べ、斜辺の正方形の面積が他の2辺の正方形の面積の和に等しい関係を見いだすことが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>直角を挟む2辺の長さが a、b、斜辺の長さが c である直角三角形の各辺に正方形をつくると、面積はそれぞれ a²、b²、c² になります。</li>
+<li>たとえば 3cm、4cm、5cm の直角三角形では、3²＋4²＝9＋16＝25＝5² が成り立ちます。</li>
+<li>いろいろな直角三角形で調べても、いつも a²＋b²＝c² という美しい面積関係が成り立つことが見いだせます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>直角を挟む2辺が 6cm、8cm の直角三角形で、斜辺を1辺とする正方形の面積は何cm²ですか。また、斜辺の長さは何cmですか。</p>
+<p>考え方：斜辺の正方形の面積は 6²＋8²＝36＋64＝100cm² です。斜辺の長さはその正の平方根なので √100＝10cm です。</p>
+<p class="answer">答え：正方形の面積：100cm² ／ 斜辺の長さ：10cm</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>どの辺が「斜辺（直角の向かい側の一番長い辺）」かを最初に確認するのが一番大事です。</li>
+<li>この関係が、次の時間に証明する有名な「三平方の定理（ピタゴラスの定理）」です。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

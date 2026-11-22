@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第47時限 数に関する2次方程式の利用｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l046/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l048/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第47時限「数に関する2次方程式の利用」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>連続する整数やある数の2乗など、数に関する文章題を2次方程式に表し、条件（自然数・整数など）に照らして解を吟味できるようになることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>連続する2つの自然数は n、n＋1、連続する3つの自然数は n−1、n、n＋1（または n、n＋1、n＋2）と表します。</li>
+<li>「自然数」が条件なら正の整数だけが適し、「整数」が条件なら負の整数も答えになることがあります。</li>
+<li>問題文の「自然数」か「整数」かの違いによって、採用する解の個数が変わる点に注意します。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>連続する2つの自然数があり、それぞれの2乗の和が61になります。この2つの自然数を求めましょう。</p>
+<p>考え方：小さい方の自然数を x とすると大きい方は x＋1 です。x²＋(x＋1)²＝61 より 2x²＋2x−60＝0、x²＋x−30＝0、(x＋6)(x−5)＝0 なので x＝−6、5。xは自然数なので x＝5 が適します。</p>
+<p class="answer">答え：5 と 6</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>x＝5 を求めただけで終わりにせず、聞かれている「2つの自然数（5と6）」を両方答えましょう。</li>
+<li>もし問題が「連続する2つの整数」であれば、−6と−5 の組も答えになります。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>

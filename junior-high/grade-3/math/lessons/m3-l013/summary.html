@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>第13時限 共通因数のくくり出しやおきかえを使う因数分解｜中学3年数学 要約</title>
+<link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+</head>
+<body class="lesson-summary">
+<main>
+<nav class="summary-nav" aria-label="ページ移動">
+  <a class="summary-previous" href="../m3-l012/summary.html">前の授業へ</a>
+  <a id="summary-back" href="../../">← 学習一覧に戻る</a>
+  <a class="summary-next" href="../m3-l014/summary.html">次の授業へ</a>
+  <a class="summary-question" href="./questions.html">この時間の問題</a>
+</nav>
+<h1>第13時限「共通因数のくくり出しやおきかえを使う因数分解」</h1>
+
+<section class="goal">
+<h2>この時間の目標</h2>
+<p>まず共通因数をくくり出してから公式を使う方法や、式の一部を1つの文字におきかえて因数分解する工夫を身につけることが目標です。</p>
+</section>
+
+<section class="points">
+<h2>大事なポイント</h2>
+<ul>
+<li>因数分解の鉄則は「①まず共通因数がないか探してくくり出す→②残ったかっこ内に公式を使う」の順番です。</li>
+<li>(x＋2)²＋5(x＋2)＋6 のように同じ多項式がくり返し現れるときは、x＋2＝M とおきかえて M²＋5M＋6＝(M＋2)(M＋3) としてから M を戻して整理します。</li>
+<li>ax＋ay＋bx＋by のような4項の式は、2項ずつ組にして共通因数をくくり出すと共通のかっこが現れます。</li>
+</ul>
+</section>
+
+<section class="example">
+<h2>例題</h2>
+<p>2x²−18 を因数分解しましょう。</p>
+<p>考え方：まず共通因数2をくくり出すと 2(x²−9) となります。さらに x²−9＝(x＋3)(x−3) と公式で因数分解できます。</p>
+<p class="answer">答え：2(x＋3)(x−3)</p>
+</section>
+
+<section class="caution">
+<h2>つまずきやすいところ</h2>
+<ul>
+<li>2(x²−9) で止めてしまうと途中までしか因数分解できていません。かっこ内がさらに分解できないか必ず確認しましょう。</li>
+<li>おきかえを元に戻したあと、(x＋2＋2) のような定数どうしの計算を忘れずにまとめましょう。</li>
+</ul>
+</section>
+
+<footer>
+<p>この要約の内容が分かれば、この時間の確認問題（基礎）に取り組めます。</p>
+</footer>
+</main>
+<script>
+(function () {
+  var back = document.getElementById("summary-back");
+  back.addEventListener("click", function (event) {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      var ref = new URL(document.referrer);
+      var list = new URL("../../", window.location.href);
+      if (ref.origin === list.origin &&
+          (ref.pathname === list.pathname || ref.pathname === list.pathname + "index.html") &&
+          window.history.length > 1) {
+        event.preventDefault();
+        window.history.back();
+      }
+    } catch (error) { /* 直接開いた場合は一覧へ移動する */ }
+  });
+})();
+</script>
+</body>
+</html>
