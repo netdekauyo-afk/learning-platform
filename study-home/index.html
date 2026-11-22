@@ -10,11 +10,11 @@
     .home-header-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
     .home-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .grade-control { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: var(--color-text); }
-    .grade-control select, .settings-dialog select {
+    .grade-control select, .settings-dialog select, .settings-dialog input[type="date"], .settings-dialog input[type="text"] {
       min-height: 44px; padding: 8px 12px; border: 1px solid var(--color-border);
       border-radius: 10px; background: var(--color-surface); color: var(--color-text); font: inherit;
     }
-    .grade-control select:focus-visible, .settings-dialog select:focus-visible, .home-button:focus-visible {
+    .grade-control select:focus-visible, .settings-dialog select:focus-visible, .settings-dialog input:focus-visible, .home-button:focus-visible {
       outline: 3px solid var(--color-accent); outline-offset: 3px;
     }
     .home-button {
@@ -43,6 +43,14 @@
     .settings-help { margin: 6px 0 0; font-size: 0.92rem; }
     .settings-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .settings-actions .save { border-color: var(--color-accent); }
+    .school-breaks { margin-top: 18px; border-top: 1px solid var(--color-border); padding-top: 14px; }
+    .school-breaks summary { min-height: 44px; cursor: pointer; color: var(--color-heading); font-weight: 700; }
+    .school-breaks summary:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
+    .school-breaks .field { margin-top: 14px; }
+    .school-breaks input { width: 100%; }
+    .school-break-list { display: grid; gap: 8px; list-style: none; padding: 0; margin: 12px 0; }
+    .school-break-list li { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .school-break-status { min-height: 1.5em; color: var(--color-heading); }
     .calendar-dialog {
       width: min(94vw, 680px); max-height: 90vh; overflow: auto; padding: clamp(14px, 4vw, 24px);
       border: 1px solid var(--color-border); border-radius: 16px;
@@ -126,6 +134,25 @@
         <p class="settings-help" id="settings-help">教科ごとに授業を選べます。選んだ授業から始まります。</p>
         <p class="settings-help" id="settings-status" role="status" aria-live="polite"></p>
       </div>
+      <details class="school-breaks" id="school-break-settings">
+        <summary>学校の休み</summary>
+        <p class="settings-help">このブラウザーに保存し、カレンダーには表示しません。</p>
+        <ul class="school-break-list" id="school-break-list"></ul>
+        <div class="field">
+          <label class="field-label" for="school-break-name">休みの名前</label>
+          <input id="school-break-name" type="text" maxlength="80" placeholder="夏休みなど">
+        </div>
+        <div class="field">
+          <label class="field-label" for="school-break-start">開始日</label>
+          <input id="school-break-start" type="date">
+        </div>
+        <div class="field">
+          <label class="field-label" for="school-break-end">終了日</label>
+          <input id="school-break-end" type="date">
+        </div>
+        <button class="home-button" id="school-break-add" type="button">休みを登録</button>
+        <p class="school-break-status" id="school-break-status" role="status" aria-live="polite"></p>
+      </details>
       <div class="settings-actions">
         <button class="home-button" id="close-settings" type="button">閉じる</button>
         <button class="home-button save" id="save-settings" type="submit">保存</button>
@@ -156,7 +183,7 @@
     </div>
   </dialog>
 
-  <script src="../assets/calendar.js?v=20261122-holidays"></script>
+  <script src="../assets/calendar.js?v=20261122-school-breaks"></script>
   <script>
     (() => {
       'use strict';
@@ -169,6 +196,7 @@
       const settingsTitle = document.getElementById('settings-title');
       const destinationSettings = document.getElementById('destination-settings');
       const subjectSettings = document.getElementById('subject-settings');
+      const schoolBreakSettings = document.getElementById('school-break-settings');
       const settingsHelp = document.getElementById('settings-help');
       const saveButton = document.getElementById('save-settings');
       const settingsStatus = document.getElementById('settings-status');
@@ -280,6 +308,7 @@
         form.elements.destination.value = destination;
         destinationSettings.hidden = navigateAfterSave;
         subjectSettings.hidden = navigateAfterSave;
+        schoolBreakSettings.hidden = navigateAfterSave;
         settingsTitle.textContent = navigateAfterSave ? `${subjectNames[subjectSelect.value]}の授業を選ぶ` : '設定';
         settingsHelp.textContent = navigateAfterSave ? '学校で今、習っている授業を選んでください。' : '教科ごとに授業を選べます。選んだ授業から始まります。';
         saveButton.textContent = navigateAfterSave ? '保存して開く' : '保存';
@@ -425,6 +454,84 @@
       new MutationObserver(() => { if (dialog.open) render(); }).observe(document.documentElement, {
         attributes: true, attributeFilter: ['data-calendar-holiday-status', 'data-calendar-holiday-years']
       });
+    })();
+  </script>
+  <script>
+    (() => {
+      'use strict';
+      const calendar = globalThis.ClassroomCalendar;
+      const settings = document.getElementById('school-break-settings');
+      const list = document.getElementById('school-break-list');
+      const status = document.getElementById('school-break-status');
+      const name = document.getElementById('school-break-name');
+      const start = document.getElementById('school-break-start');
+      const end = document.getElementById('school-break-end');
+      const add = document.getElementById('school-break-add');
+      if (!calendar || !calendar.getSchoolBreaks) { add.disabled = true; return; }
+
+      function render() {
+        list.replaceChildren();
+        try {
+          const periods = calendar.getSchoolBreaks();
+          if (!periods.length) {
+            const item = document.createElement('li');
+            item.textContent = 'まだ登録されていません。';
+            list.appendChild(item);
+          }
+          for (const period of periods) {
+            const item = document.createElement('li');
+            const description = document.createElement('span');
+            description.textContent = `${period.name}：${period.start}〜${period.end}`;
+            const remove = document.createElement('button');
+            remove.type = 'button';
+            remove.className = 'home-button';
+            remove.textContent = '削除';
+            remove.setAttribute('aria-label', `${period.name} ${period.start}から${period.end}を削除`);
+            remove.addEventListener('click', () => {
+              try {
+                const latest = calendar.getSchoolBreaks();
+                const index = latest.findIndex((entry) => entry.name === period.name && entry.start === period.start && entry.end === period.end);
+                if (index < 0) { status.textContent = 'この休みはすでに削除されています。'; render(); return; }
+                calendar.saveSchoolBreaks(latest.filter((_, i) => i !== index));
+                status.textContent = '学校の休みを削除しました。';
+                render();
+              } catch (_) { status.textContent = '学校の休みを保存できませんでした。'; }
+            });
+            item.appendChild(description);
+            item.appendChild(remove);
+            list.appendChild(item);
+          }
+        } catch (_) {
+          const item = document.createElement('li');
+          item.textContent = '学校の休みを読み込めません。';
+          list.appendChild(item);
+          status.textContent = '保存されている情報を変更せずに残しています。';
+        }
+      }
+
+      add.addEventListener('click', () => {
+        const period = { name: name.value.trim() || '学校の休み', start: start.value, end: end.value };
+        try {
+          calendar.fromISO(period.start);
+          calendar.fromISO(period.end);
+          if (period.start > period.end) { status.textContent = '終了日は開始日以降にしてください。'; return; }
+        } catch (_) { status.textContent = '開始日と終了日を選んでください。'; return; }
+        try {
+          const periods = calendar.getSchoolBreaks();
+          if (periods.some((entry) => entry.name === period.name && entry.start === period.start && entry.end === period.end)) {
+            status.textContent = '同じ休みがすでに登録されています。';
+            return;
+          }
+          calendar.saveSchoolBreaks([...periods, period]);
+          name.value = '';
+          start.value = '';
+          end.value = '';
+          status.textContent = '学校の休みを登録しました。';
+          render();
+        } catch (_) { status.textContent = '学校の休みを保存できませんでした。'; }
+      });
+      settings.addEventListener('toggle', () => { if (settings.open) render(); });
+      document.getElementById('open-settings').addEventListener('click', () => { if (settings.open) render(); });
     })();
   </script>
 </body>

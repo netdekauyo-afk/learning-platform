@@ -129,7 +129,52 @@
     return [4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2, 3].flatMap((monthNumber) => month(monthNumber >= 4 ? year : year + 1, monthNumber));
   }
 
-  global.ClassroomCalendar = Object.freeze({ day, fromISO, today, month, academicYear, refreshHolidays });
+  const SCHOOL_BREAKS_KEY = 'classroom-calendar-school-breaks-v1';
+
+  function normalizeSchoolBreak(period) {
+    if (!period || typeof period !== 'object' || typeof period.name !== 'string') throw new TypeError('Invalid school break');
+    const name = period.name.trim();
+    if (!name || name.length > 80) throw new RangeError('Invalid school break name');
+    const start = fromISO(period.start).isoDate;
+    const end = fromISO(period.end).isoDate;
+    if (start > end) throw new RangeError('School break ends before it starts');
+    return Object.freeze({ name, start, end });
+  }
+
+  function getSchoolBreaks() {
+    let value;
+    try { value = global.localStorage.getItem(SCHOOL_BREAKS_KEY); }
+    catch (_) { throw new Error('School break storage is unavailable'); }
+    if (value === null) return [];
+    let stored;
+    try { stored = JSON.parse(value); } catch (_) { throw new Error('School break data is invalid'); }
+    if (!stored || stored.version !== 1 || !Array.isArray(stored.periods)) throw new Error('School break data is invalid');
+    try { return stored.periods.map(normalizeSchoolBreak); }
+    catch (_) { throw new Error('School break data is invalid'); }
+  }
+
+  function saveSchoolBreaks(periods) {
+    if (!Array.isArray(periods)) throw new TypeError('Expected school break periods');
+    const normalized = periods.map(normalizeSchoolBreak);
+    const seen = new Set();
+    for (const period of normalized) {
+      const key = JSON.stringify([period.name, period.start, period.end]);
+      if (seen.has(key)) throw new RangeError('Duplicate school break');
+      seen.add(key);
+    }
+    // Do not replace an existing value that cannot be read and validated.
+    getSchoolBreaks();
+    try { global.localStorage.setItem(SCHOOL_BREAKS_KEY, JSON.stringify({ version: 1, periods: normalized })); }
+    catch (_) { throw new Error('School break storage is unavailable'); }
+    return normalized;
+  }
+
+  function schoolBreaksOn(isoDate) {
+    const date = fromISO(isoDate).isoDate;
+    return getSchoolBreaks().filter((period) => period.start <= date && date <= period.end);
+  }
+
+  global.ClassroomCalendar = Object.freeze({ day, fromISO, today, month, academicYear, refreshHolidays, getSchoolBreaks, saveSchoolBreaks, schoolBreaksOn });
   if (global.document) {
     publishHolidayStatus();
     void refreshHolidays();
