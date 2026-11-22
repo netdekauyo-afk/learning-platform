@@ -14,6 +14,8 @@
     }
     #numbas-host, numbas-exam { display: block; min-width: 0; }
     #numbas-status { min-height: 1.5em; color: var(--color-muted); }
+    .question-switcher { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 18px; }
+    .question-switcher button:disabled { opacity: .5; cursor: default; }
   </style>
   <script src="../../../../../assets/numbas/math-config.js"></script>
   <script defer src="../../../../../assets/numbas/engine/mathjax/tex-svg.js"></script>
@@ -28,18 +30,20 @@
       <a href="../../">国語</a><span aria-hidden="true"> / </span>
       <span aria-current="page">問題</span>
     </nav>
-    <nav class="problem-toolbar lesson-navigation" aria-label="この時間の問題の移動">
-      <a id="question-previous" class="problem-previous" hidden>前の問題へ</a>
-      <span id="question-previous-pending" class="problem-previous problem-previous-pending" aria-label="前の問題はありません">前の問題へ</span>
+    <nav class="problem-toolbar lesson-navigation" aria-label="問題ページの移動">
+      <span class="problem-previous problem-previous-pending" aria-label="前の時限の問題はありません">前の問題へ</span>
       <a class="problem-list" href="../../">学習一覧に戻る</a>
-      <a id="question-next" class="problem-next" hidden>次の問題へ</a>
-      <span id="question-next-pending" class="problem-next problem-next-pending" aria-label="次の問題はありません" hidden>次の問題へ</span>
+      <span class="problem-next problem-next-pending" aria-label="次の時限の問題は準備中です">次の問題へ</span>
     </nav>
     <main>
       <h1>「朝のリレー」の音読と世界の情景の想像</h1>
       <p id="question-progress" aria-live="polite"></p>
       <p id="numbas-status" role="status">問題を読み込んでいます。</p>
       <div id="numbas-host" data-difficulty-tabs></div>
+      <div id="question-switcher" class="question-switcher" role="group" aria-label="この時限の設問の移動">
+        <button id="question-previous" class="practice-reveal-button" type="button" disabled>前の設問へ</button>
+        <button id="question-next" class="practice-reveal-button" type="button" disabled>次の設問へ</button>
+      </div>
     </main>
   </div>
   <script type="module">
@@ -52,23 +56,120 @@
         (group.questions || []).map((question) => ({ group, question }))
       );
       if (!questions.length) throw new Error("問題が見つかりません。");
+
+      // Keep the original file intact and reuse the existing one-question renderer.
+      const sources = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
+        JSON.stringify({ ...examData, question_groups: [{ ...group, questions: [question] }] })
+      ], { type: "application/json" })));
       const requested = Number(new URLSearchParams(location.search).get("question") || 1);
-      const number = Number.isInteger(requested) && requested >= 1 && requested <= questions.length ? requested : 1;
-      const selected = questions[number - 1];
-      examData.question_groups = [{ ...selected.group, questions: [selected.question] }];
-      const examUrl = URL.createObjectURL(new Blob([JSON.stringify(examData)], { type: "application/json" }));
-      document.getElementById("numbas-host").dataset.examSource = examUrl;
-      document.getElementById("question-progress").textContent = "問題 " + number + " / " + questions.length;
-      for (const [name, target] of [["previous", number - 1], ["next", number + 1]]) {
-        if (target < 1 || target > questions.length) continue;
-        const link = document.getElementById("question-" + name);
-        link.href = "?question=" + target;
-        link.hidden = false;
-        document.getElementById("question-" + name + "-pending").hidden = true;
+      let current = Number.isInteger(requested) && requested >= 1 && requested <= questions.length ? requested - 1 : 0;
+      let switching = true;
+      let autoAdvance;
+      let bootExam;
+      const host = document.getElementById("numbas-host");
+      const status = document.getElementById("numbas-status");
+      const progress = document.getElementById("question-progress");
+      const previous = document.getElementById("question-previous");
+      const next = document.getElementById("question-next");
+
+      function cancelAutoAdvance() {
+        if (autoAdvance !== undefined) clearTimeout(autoAdvance);
+        autoAdvance = undefined;
       }
-      await import("../../../../../assets/numbas/loader.js");
-      // The in-memory basic exam has a blob URL, so preserve the existing
-      // "not yet available" behavior for the two unpublished levels.
+      function updateControls() {
+        progress.textContent = "問題 " + (current + 1) + " / " + questions.length;
+        previous.disabled = switching || current === 0;
+        next.disabled = switching || current === questions.length - 1;
+      }
+      function bindExam(exam) {
+        const index = current;
+        exam.addEventListener("numbas:loaded", () => {
+          if (host.querySelector("numbas-exam") !== exam || index !== current) return;
+          const question = exam.exam?.questionList?.[0];
+          const parts = question?.parts?.filter((part) => Number(part.marks) > 0) || [];
+          if (!parts.length) {
+            switching = false;
+            updateControls();
+            return;
+          }
+          for (const part of parts) {
+            part.events.on("post-submit", () => {
+              if (host.querySelector("numbas-exam") !== exam || index !== current) return;
+              cancelAutoAdvance();
+              const correct = parts.every((item) =>
+                item.answered && Number.isFinite(Number(item.score)) &&
+                Number(item.score) >= Number(item.marks)
+              );
+              const answerOpen = host.querySelector(".practice-answer:not([hidden])");
+              if (correct && !answerOpen && index < questions.length - 1) {
+                autoAdvance = setTimeout(() => {
+                  autoAdvance = undefined;
+                  const basicPanel = document.getElementById("difficulty-basic-panel");
+                  if (index === current && !switching && basicPanel && !basicPanel.hidden) {
+                    void showQuestion(index + 1);
+                  }
+                }, 2000);
+              }
+            });
+          }
+          switching = false;
+          updateControls();
+        }, { once: true });
+      }
+      const observer = new MutationObserver((mutations) => {
+        for (const mutation of mutations) {
+          for (const node of mutation.addedNodes) {
+            if (node.nodeType === Node.ELEMENT_NODE && node.localName === "numbas-exam") bindExam(node);
+          }
+        }
+      });
+      observer.observe(host, { childList: true });
+
+      async function showQuestion(index) {
+        cancelAutoAdvance();
+        if (switching || index < 0 || index >= questions.length || index === current) return;
+        switching = true;
+        current = index;
+        updateControls();
+        status.textContent = "問題を読み込んでいます。";
+        host.dataset.examSource = sources[current];
+        const currentUrl = new URL(location.href);
+        currentUrl.searchParams.set("question", String(current + 1));
+        history.replaceState(history.state, "", currentUrl);
+        try {
+          await bootExam(host, status, "basic", true);
+        } catch (error) {
+          console.error(error);
+          status.textContent = "問題を表示できませんでした。";
+          switching = false;
+          updateControls();
+        }
+      }
+      previous.addEventListener("click", () => { void showQuestion(current - 1); });
+      next.addEventListener("click", () => { void showQuestion(current + 1); });
+      // When a learner opens a hint, answer or history, let them finish reading.
+      host.addEventListener("click", (event) => {
+        if (event.composedPath().some((node) => node instanceof Element &&
+            node.matches(".practice-reveal-button, .stepsBtn, .practice-history summary"))) {
+          cancelAutoAdvance();
+        }
+      });
+
+      host.dataset.examSource = sources[current];
+      updateControls();
+      ({ bootExam } = await import("../../../../../assets/numbas/loader.js?v=20261122-jp-sequence"));
+      const basicPanel = document.getElementById("difficulty-basic-panel");
+      if (!basicPanel) throw new Error("基礎問題を準備できませんでした。");
+      basicPanel.insertBefore(progress, status);
+      basicPanel.append(document.getElementById("question-switcher"));
+      const tablist = document.querySelector(".difficulty-tabs");
+      tablist?.addEventListener("click", (event) => {
+        if (event.target.closest('[role="tab"]')?.id !== "difficulty-basic-tab") cancelAutoAdvance();
+      });
+      tablist?.addEventListener("keydown", (event) => {
+        if (["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) cancelAutoAdvance();
+      });
+      // The basic exam uses a blob URL; unpublished levels keep their own paths.
       for (const [level, suffix] of [["standard", "-s"], ["advanced", "-a"]]) {
         const levelHost = document.querySelector("#difficulty-" + level + "-panel .numbas-difficulty-host");
         if (!levelHost) throw new Error("難易度の表示を準備できませんでした。");

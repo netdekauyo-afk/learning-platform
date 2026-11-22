@@ -118,6 +118,8 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   if (!response.ok) return;
   const raw = await response.text();
   const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+  // A replaced card must not append its review controls to the new card.
+  if (!examHost.contains(examElement)) return examData;
   const answers = readPracticeAnswers(examData);
   if (!answers) return;
 
@@ -350,7 +352,7 @@ async function prepareRuntime() {
   await setExerciseLanguage();
 }
 
-async function bootExam(examHost, examStatus, level, lessonLayout) {
+export async function bootExam(examHost, examStatus, level, lessonLayout) {
   const exam = document.createElement("numbas-exam");
   exam.setAttribute("noload", "");
   exam.setAttribute("source_url", examHost.dataset.examSource);
