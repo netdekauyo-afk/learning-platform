@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0D1622">
+  <title>「朝のリレー」の音読と世界の情景の想像・問題 | Classroom</title>
+  <link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
+  <style>
+    @font-face {
+      font-family: "FontAwesome";
+      src: url("../../../../../assets/numbas/engine/numbas-runtime/resources/iconfont/fontawesome.woff") format("woff");
+      font-display: block;
+    }
+    #numbas-host, numbas-exam { display: block; min-width: 0; }
+    #numbas-status { min-height: 1.5em; color: var(--color-muted); }
+  </style>
+  <script src="../../../../../assets/numbas/math-config.js"></script>
+  <script defer src="../../../../../assets/numbas/engine/mathjax/tex-svg.js"></script>
+  <script defer src="../../../../../assets/numbas/engine/numbas-runtime/numbas.js"></script>
+</head>
+<body>
+  <div class="site-shell">
+    <nav class="breadcrumb" aria-label="現在の場所">
+      <a href="../../../../../">Classroom</a><span aria-hidden="true"> / </span>
+      <a href="../../../../">中学校</a><span aria-hidden="true"> / </span>
+      <a href="../../../">1年生</a><span aria-hidden="true"> / </span>
+      <a href="../../">国語</a><span aria-hidden="true"> / </span>
+      <span aria-current="page">問題</span>
+    </nav>
+    <nav class="problem-toolbar lesson-navigation" aria-label="この時間の問題の移動">
+      <a id="question-previous" class="problem-previous" hidden>前の問題へ</a>
+      <span id="question-previous-pending" class="problem-previous problem-previous-pending" aria-label="前の問題はありません">前の問題へ</span>
+      <a class="problem-list" href="../../">学習一覧に戻る</a>
+      <a id="question-next" class="problem-next" hidden>次の問題へ</a>
+      <span id="question-next-pending" class="problem-next problem-next-pending" aria-label="次の問題はありません" hidden>次の問題へ</span>
+    </nav>
+    <main>
+      <h1>「朝のリレー」の音読と世界の情景の想像</h1>
+      <p id="question-progress" aria-live="polite"></p>
+      <p id="numbas-status" role="status">問題を読み込んでいます。</p>
+      <div id="numbas-host" data-difficulty-tabs></div>
+    </main>
+  </div>
+  <script type="module">
+    try {
+      const response = await fetch("./j1-l001.exam");
+      if (!response.ok) throw new Error("問題データを読み込めませんでした。");
+      const raw = await response.text();
+      const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+      const questions = (examData.question_groups || []).flatMap((group) =>
+        (group.questions || []).map((question) => ({ group, question }))
+      );
+      if (!questions.length) throw new Error("問題が見つかりません。");
+      const requested = Number(new URLSearchParams(location.search).get("question") || 1);
+      const number = Number.isInteger(requested) && requested >= 1 && requested <= questions.length ? requested : 1;
+      const selected = questions[number - 1];
+      examData.question_groups = [{ ...selected.group, questions: [selected.question] }];
+      const examUrl = URL.createObjectURL(new Blob([JSON.stringify(examData)], { type: "application/json" }));
+      document.getElementById("numbas-host").dataset.examSource = examUrl;
+      document.getElementById("question-progress").textContent = "問題 " + number + " / " + questions.length;
+      for (const [name, target] of [["previous", number - 1], ["next", number + 1]]) {
+        if (target < 1 || target > questions.length) continue;
+        const link = document.getElementById("question-" + name);
+        link.href = "?question=" + target;
+        link.hidden = false;
+        document.getElementById("question-" + name + "-pending").hidden = true;
+      }
+      await import("../../../../../assets/numbas/loader.js");
+      // The in-memory basic exam has a blob URL, so preserve the existing
+      // "not yet available" behavior for the two unpublished levels.
+      for (const [level, suffix] of [["standard", "-s"], ["advanced", "-a"]]) {
+        const levelHost = document.querySelector("#difficulty-" + level + "-panel .numbas-difficulty-host");
+        if (!levelHost) throw new Error("難易度の表示を準備できませんでした。");
+        levelHost.dataset.examSource = "./j1-l001" + suffix + ".exam";
+      }
+    } catch (error) {
+      console.error(error);
+      document.getElementById("numbas-status").textContent = "問題を読み込めませんでした。";
+    }
+  </script>
+</body>
+</html>
