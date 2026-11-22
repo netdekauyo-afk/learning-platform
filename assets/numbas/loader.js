@@ -43,6 +43,13 @@ function readPracticeAnswers(examData) {
   if (questions.length !== 1 || !questions[0].parts?.length) return null;
   const answers = questions[0].parts.map((part) => {
     if (part.type === "numberentry" && typeof part.displayAnswer === "string") {
+      // Numbas may store a display answer as a quoted JME string literal.
+      try {
+        const literal = JSON.parse(part.displayAnswer);
+        if (typeof literal === "string") return literal;
+      } catch {
+        // Keep ordinary numbers and other JME expressions unchanged.
+      }
       return part.displayAnswer;
     }
     if (part.type === "1_n_2" && Array.isArray(part.choices) && Array.isArray(part.matrix)) {
@@ -173,6 +180,12 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
 
   button.addEventListener("click", () => {
     const show = answerBox.hidden;
+    if (show && typeof question.display?.hasAdvice === "function" &&
+        question.display.hasAdvice()) {
+      // Reuse Numbas' rendered advice, including its formatting and variables.
+      const advice = examElement.shadowRoot?.querySelector(".adviceDisplay");
+      if (advice) answerBox.replaceChildren(heading, advice.cloneNode(true));
+    }
     answerBox.hidden = !show;
     button.setAttribute("aria-expanded", String(show));
     button.textContent = show ? "答えを隠す" : "答えを見る";
