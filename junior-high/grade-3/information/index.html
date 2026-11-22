@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中学3年情報 学習一覧（全31回） | Classroom</title>
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    /* Colors are defined only in the shared :root palette. */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(30px, 8vw, 72px) 0;
+    }
+
+    .page-header {
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-title {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-heading);
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .control-link {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .control-link:hover,
+    .control-link:focus-visible {
+      color: var(--color-heading);
+    }
+
+    .control-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .curriculum-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Chapter */
+    details.chapter {
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    summary.chapter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: var(--color-surface);
+      border-left: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.chapter-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chapter-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 245px;
+      color: var(--color-heading);
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--color-surface-hover);
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
+      text-decoration: underline;
+    }
+
+    .chapter-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.85em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.chapter[open] > summary.chapter-summary .chapter-name::before {
+      transform: rotate(90deg);
+    }
+
+    details.chapter[open] > summary.chapter-summary {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-body {
+      padding: 8px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Section */
+    details.section {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    details.section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    summary.section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-hover);
+      border-left: 3px solid var(--color-border-hover);
+      border-radius: 9px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.section-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--color-heading);
+    }
+
+    .section-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.8em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.section[open] > summary.section-summary .section-name::before {
+      transform: rotate(90deg);
+    }
+
+    .count-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Lesson list */
+    .lesson-list {
+      list-style: none;
+      margin: 2px 0 6px;
+      padding: 0 0 0 18px;
+    }
+
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr auto;
+      align-items: baseline;
+      column-gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-item:first-child {
+      border-top: none;
+    }
+
+    .lesson-num {
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-heading);
+      text-align: right;
+    }
+
+    /* Text links (explicitly non-button UI) */
+    .text-link {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .text-link:hover {
+      color: var(--color-heading);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .text-link.is-unpublished {
+      color: var(--color-muted);
+      text-decoration-style: dotted;
+    }
+
+    .text-link.is-unpublished:hover {
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
+    }
+
+    .lesson-title-link {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .lesson-links {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .section-link {
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    /* Toast notification for unpublished links */
+    .status-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      max-width: calc(100vw - 32px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 100;
+    }
+
+    .status-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      summary.chapter-summary {
+        padding: 11px 12px;
+      }
+
+      .chapter-body {
+        padding: 6px 10px 10px;
+      }
+
+      .lesson-list {
+        padding-left: 6px;
+      }
+
+      .lesson-item {
+        grid-template-columns: 2.1rem 1fr;
+        row-gap: 4px;
+        padding: 8px 2px;
+      }
+
+      .lesson-links {
+        grid-column: 2;
+        gap: 18px;
+        padding-top: 2px;
+      }
+    }
+
+    .curriculum-source-notes {
+      margin-top: 13px;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--color-muted);
+    }
+    .curriculum-source-notes p {
+      margin: 3px 0;
+    }
+    .curriculum-source-notes strong {
+      color: var(--color-heading);
+    }
+    .curriculum-source-notes a {
+      color: var(--color-heading);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">中学校</a><span aria-hidden="true"> / </span><a href="../">3年生</a><span aria-hidden="true"> / </span><span aria-current="page">情報</span></nav>
+    <header class="page-header">
+      <h1 class="page-title">中学3年情報 学習一覧</h1>
+      <div class="page-meta">
+        <span>全4章・12節・31回（東京書籍「情報の技術」）</span>
+        <div class="controls">
+          <button type="button" class="control-link" id="open-all">すべて開く</button>
+          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
+        </div>
+      </div>
+
+      <div class="curriculum-source-notes" aria-label="参照教科書と資料">
+        <p><strong>基準教科書：</strong>東京書籍（令和7年度版） <a href="https://ten.tokyo-shoseki.co.jp/text/chu/gijutsu/" target="_blank" rel="noopener noreferrer">『新編 新しい技術・家庭 技術分野』</a></p>
+        <p><strong>参照資料：</strong><a href="https://ten.tokyo-shoseki.co.jp/text/chu/gijutsu/download/documents/R7gijutsu_keikaku.pdf?20250130=" target="_blank" rel="noopener noreferrer">技術分野の年間指導計画作成資料</a> ／ <a href="https://docs.google.com/spreadsheets/d/16w74_vbi4S1we2bby2fW4-AlPCtDVxzgIKhpSD2hdKI/edit" target="_blank" rel="noopener noreferrer">情報31回の授業区分表</a></p>
+        <p>「情報の技術」にあたる30.5時間（原計画：中1に13時間・中3に17.5時間）を、中学3年の31コマとしてまとめています。</p>
+      </div>
+    </header>
+
+    <main class="curriculum-list" id="curriculum-list">
+      <details class="chapter" open data-chapter-index="0" data-chapter-id="info3-c001">
+        <summary class="chapter-summary">
+          <span class="chapter-name">4編1章 生活や社会を支える情報の技術</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/info3-c001/questions.html" data-published="false">問題</a>
+            <span class="count-meta">6回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" open data-section-id="info3-s001">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">１ 情報技術の仕組み</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s001" data-kind="section-questions" data-target="sections/info3-s001/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l001" data-seq="1" data-source-topic="①身の回りの情報の技術" data-learning-goal="家庭・学校・社会にある情報技術の例を挙げ、どのように生活を支えているか説明できる。" data-original-allocation="中学1年・6時間">
+                <span class="lesson-num">1</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l001" data-kind="summary" data-target="lessons/info3-l001/summary.html" data-published="false">身近な暮らしを支える情報の技術</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l001" data-kind="lesson" data-target="lessons/info3-l001/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l001" data-kind="questions" data-target="lessons/info3-l001/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l002" data-seq="2" data-source-topic="②コンピュータの仕組み" data-learning-goal="コンピュータの基本機能とハードウェア・ソフトウェアの役割を区別して説明できる。" data-original-allocation="中学1年・6時間">
+                <span class="lesson-num">2</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l002" data-kind="summary" data-target="lessons/info3-l002/summary.html" data-published="false">コンピュータの構成と基本的な働き</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l002" data-kind="lesson" data-target="lessons/info3-l002/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l002" data-kind="questions" data-target="lessons/info3-l002/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l003" data-seq="3" data-source-topic="③情報のデジタル化" data-learning-goal="アナログとデジタルの違いを理解し、文字・画像のデータ化とデータ量の関係を説明できる。" data-original-allocation="中学1年・6時間">
+                <span class="lesson-num">3</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l003" data-kind="summary" data-target="lessons/info3-l003/summary.html" data-published="false">文字・画像のデジタル化とデータ量</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l003" data-kind="lesson" data-target="lessons/info3-l003/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l003" data-kind="questions" data-target="lessons/info3-l003/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s002">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">２ 情報通信と安全</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s002" data-kind="section-questions" data-target="sections/info3-s002/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l004" data-seq="4" data-source-topic="④情報通信ネットワークの仕組み" data-learning-goal="LANやインターネットで情報がやりとりされる仕組みと、必要な機器の役割を説明できる。" data-original-allocation="中学1年・6時間">
+                <span class="lesson-num">4</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l004" data-kind="summary" data-target="lessons/info3-l004/summary.html" data-published="false">情報通信ネットワークの仕組み</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l004" data-kind="lesson" data-target="lessons/info3-l004/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l004" data-kind="questions" data-target="lessons/info3-l004/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l005" data-seq="5" data-source-topic="⑤情報セキュリティの仕組み" data-learning-goal="機密性・完全性・可用性を理解し、身近な情報機器に必要な安全対策を選べる。" data-original-allocation="中学1年・6時間">
+                <span class="lesson-num">5</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l005" data-kind="summary" data-target="lessons/info3-l005/summary.html" data-published="false">情報セキュリティの仕組みと対策</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l005" data-kind="lesson" data-target="lessons/info3-l005/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l005" data-kind="questions" data-target="lessons/info3-l005/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l006" data-seq="6" data-source-topic="⑥情報モラル／⑦情報の技術の問題解決の工夫" data-learning-goal="著作権や情報の適切な利用を考え、身近な情報システムの工夫を利用者と開発者の視点で説明できる。" data-original-allocation="中学1年・6時間">
+                <span class="lesson-num">6</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l006" data-kind="summary" data-target="lessons/info3-l006/summary.html" data-published="false">情報モラルと情報技術の問題解決の工夫</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l006" data-kind="lesson" data-target="lessons/info3-l006/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l006" data-kind="questions" data-target="lessons/info3-l006/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="1" data-chapter-id="info3-c002">
+        <summary class="chapter-summary">
+          <span class="chapter-name">4編2章 双方向性のあるコンテンツのプログラミングによる問題解決</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/info3-c002/questions.html" data-published="false">問題</a>
+            <span class="count-meta">7回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="info3-s003">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">１ 双方向コンテンツの仕組み</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s003" data-kind="section-questions" data-target="sections/info3-s003/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l007" data-seq="7" data-source-topic="①双方向性のあるコンテンツとは" data-learning-goal="利用者の操作に応じて応答するコンテンツの例を挙げ、情報の入出力の流れを説明できる。" data-original-allocation="中学1年・7時間">
+                <span class="lesson-num">7</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l007" data-kind="summary" data-target="lessons/info3-l007/summary.html" data-published="false">双方向性のあるコンテンツと情報の流れ</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l007" data-kind="lesson" data-target="lessons/info3-l007/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l007" data-kind="questions" data-target="lessons/info3-l007/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s004">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">２ 問題の発見と設計</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s004" data-kind="section-questions" data-target="sections/info3-s004/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l008" data-seq="8" data-source-topic="②問題の発見と課題の設定" data-learning-goal="利用者の不便や必要性を整理し、コンテンツの制作で解決する課題を具体的に設定できる。" data-original-allocation="中学1年・7時間">
+                <span class="lesson-num">8</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l008" data-kind="summary" data-target="lessons/info3-l008/summary.html" data-published="false">身近な問題を見つけ、制作課題を設定する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l008" data-kind="lesson" data-target="lessons/info3-l008/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l008" data-kind="questions" data-target="lessons/info3-l008/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l009" data-seq="9" data-source-topic="③解決策の構想・双方向性のあるコンテンツの設計" data-learning-goal="利用者に必要な機能・画面・メディアを選び、分かりやすいコンテンツの構成を設計できる。" data-original-allocation="中学1年・7時間">
+                <span class="lesson-num">9</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l009" data-kind="summary" data-target="lessons/info3-l009/summary.html" data-published="false">必要な機能と画面の構成を設計する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l009" data-kind="lesson" data-target="lessons/info3-l009/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l009" data-kind="questions" data-target="lessons/info3-l009/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l010" data-seq="10" data-source-topic="③解決策の構想・双方向性のあるコンテンツの設計" data-learning-goal="コンテンツの処理手順をフローチャートやアクティビティ図で表現できる。" data-original-allocation="中学1年・7時間">
+                <span class="lesson-num">10</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l010" data-kind="summary" data-target="lessons/info3-l010/summary.html" data-published="false">情報処理の手順を図に表す</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l010" data-kind="lesson" data-target="lessons/info3-l010/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l010" data-kind="questions" data-target="lessons/info3-l010/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s005">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">３ プログラムの制作と改善</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s005" data-kind="section-questions" data-target="sections/info3-s005/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l011" data-seq="11" data-source-topic="④双方向性のあるコンテンツのプログラムの制作" data-learning-goal="利用者の入力に応じて表示や処理が変わる基本的なプログラムを制作できる。" data-original-allocation="中学1年・7時間">
+                <span class="lesson-num">11</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l011" data-kind="summary" data-target="lessons/info3-l011/summary.html" data-published="false">入力に応じて応答するプログラムを制作する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l011" data-kind="lesson" data-target="lessons/info3-l011/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l011" data-kind="questions" data-target="lessons/info3-l011/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l012" data-seq="12" data-source-topic="④双方向性のあるコンテンツのプログラムの制作" data-learning-goal="設計した動作と実行結果を比較し、不具合を見つけて修正できる。" data-original-allocation="中学1年・7時間">
+                <span class="lesson-num">12</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l012" data-kind="summary" data-target="lessons/info3-l012/summary.html" data-published="false">コンテンツの動作確認とデバッグ</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l012" data-kind="lesson" data-target="lessons/info3-l012/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l012" data-kind="questions" data-target="lessons/info3-l012/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l013" data-seq="13" data-source-topic="⑤問題解決の評価、改善・修正" data-learning-goal="使いやすさ・安全性・情報の扱いなどの観点から制作物を評価し、改善案を示せる。" data-original-allocation="中学1年・7時間">
+                <span class="lesson-num">13</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l013" data-kind="summary" data-target="lessons/info3-l013/summary.html" data-published="false">双方向コンテンツを評価して改善する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l013" data-kind="lesson" data-target="lessons/info3-l013/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l013" data-kind="questions" data-target="lessons/info3-l013/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="2" data-chapter-id="info3-c003">
+        <summary class="chapter-summary">
+          <span class="chapter-name">4編3章 計測・制御のプログラミングによる問題解決</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/info3-c003/questions.html" data-published="false">問題</a>
+            <span class="count-meta">15回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="info3-s006">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">１ 計測・制御の仕組み</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s006" data-kind="section-questions" data-target="sections/info3-s006/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l014" data-seq="14" data-source-topic="①計測・制御システムとは" data-learning-goal="身近な自動化システムの例を挙げ、計測・制御が果たす役割を説明できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">14</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l014" data-kind="summary" data-target="lessons/info3-l014/summary.html" data-published="false">身近な計測・制御システムを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l014" data-kind="lesson" data-target="lessons/info3-l014/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l014" data-kind="questions" data-target="lessons/info3-l014/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l015" data-seq="15" data-source-topic="①計測・制御システムとは" data-learning-goal="センサ、コンピュータ、動作部、インタフェースの働きとつながりを説明できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">15</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l015" data-kind="summary" data-target="lessons/info3-l015/summary.html" data-published="false">センサと動作部・インタフェースの役割</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l015" data-kind="lesson" data-target="lessons/info3-l015/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l015" data-kind="questions" data-target="lessons/info3-l015/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l016" data-seq="16" data-source-topic="①計測・制御システムとは" data-learning-goal="入力から判断・出力までの情報の流れを、身近な制御システムを例に図示できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">16</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l016" data-kind="summary" data-target="lessons/info3-l016/summary.html" data-published="false">計測・制御における情報の流れ</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l016" data-kind="lesson" data-target="lessons/info3-l016/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l016" data-kind="questions" data-target="lessons/info3-l016/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s007">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">２ 問題の発見と課題設定</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s007" data-kind="section-questions" data-target="sections/info3-s007/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">2回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l017" data-seq="17" data-source-topic="②問題の発見と課題の設定" data-learning-goal="学校や生活の場面から計測・制御によって解決できる問題を見つけられる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">17</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l017" data-kind="summary" data-target="lessons/info3-l017/summary.html" data-published="false">自動化で解決できる問題を探す</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l017" data-kind="lesson" data-target="lessons/info3-l017/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l017" data-kind="questions" data-target="lessons/info3-l017/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l018" data-seq="18" data-source-topic="②問題の発見と課題の設定" data-learning-goal="使いやすさ・安全性などの条件を整理し、実現したい動作を具体的な課題にできる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">18</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l018" data-kind="summary" data-target="lessons/info3-l018/summary.html" data-published="false">利用者の条件に合った課題を具体化する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l018" data-kind="lesson" data-target="lessons/info3-l018/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l018" data-kind="questions" data-target="lessons/info3-l018/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s008">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">３ 計測・制御システムの設計</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s008" data-kind="section-questions" data-target="sections/info3-s008/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l019" data-seq="19" data-source-topic="③解決策の構想・計測・制御システムの設計" data-learning-goal="課題に応じて必要なセンサと動作部を選び、選択理由を説明できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">19</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l019" data-kind="summary" data-target="lessons/info3-l019/summary.html" data-published="false">計測・制御に必要な機器を選ぶ</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l019" data-kind="lesson" data-target="lessons/info3-l019/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l019" data-kind="questions" data-target="lessons/info3-l019/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l020" data-seq="20" data-source-topic="③解決策の構想・計測・制御システムの設計" data-learning-goal="どの情報を入力し、どの条件で何を動かすかを表に整理できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">20</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l020" data-kind="summary" data-target="lessons/info3-l020/summary.html" data-published="false">入出力の条件と動作の順序を整理する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l020" data-kind="lesson" data-target="lessons/info3-l020/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l020" data-kind="questions" data-target="lessons/info3-l020/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l021" data-seq="21" data-source-topic="③解決策の構想・計測・制御システムの設計" data-learning-goal="計測結果に応じた判断と動作の手順をフローチャートで表せる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">21</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l021" data-kind="summary" data-target="lessons/info3-l021/summary.html" data-published="false">制御の手順をフローチャートに表す</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l021" data-kind="lesson" data-target="lessons/info3-l021/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l021" data-kind="questions" data-target="lessons/info3-l021/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s009">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">４ プログラムの制作と改良</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s009" data-kind="section-questions" data-target="sections/info3-s009/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">5回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l022" data-seq="22" data-source-topic="④計測・制御システムのプログラムの制作" data-learning-goal="順次処理と条件分岐を組み合わせ、条件に応じて動作するプログラムを作れる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">22</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l022" data-kind="summary" data-target="lessons/info3-l022/summary.html" data-published="false">順次処理と条件分岐で動作を制御する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l022" data-kind="lesson" data-target="lessons/info3-l022/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l022" data-kind="questions" data-target="lessons/info3-l022/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l023" data-seq="23" data-source-topic="④計測・制御システムのプログラムの制作" data-learning-goal="処理の繰り返しを用いて、設定した動作を継続・反復する制御を実現できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">23</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l023" data-kind="summary" data-target="lessons/info3-l023/summary.html" data-published="false">繰り返し処理による自動制御</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l023" data-kind="lesson" data-target="lessons/info3-l023/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l023" data-kind="questions" data-target="lessons/info3-l023/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l024" data-seq="24" data-source-topic="④計測・制御システムのプログラムの制作" data-learning-goal="センサの値を読み取り、しきい値などの条件に応じて動作を変えられる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">24</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l024" data-kind="summary" data-target="lessons/info3-l024/summary.html" data-published="false">センサの入力値に応じた制御プログラム</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l024" data-kind="lesson" data-target="lessons/info3-l024/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l024" data-kind="questions" data-target="lessons/info3-l024/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l025" data-seq="25" data-source-topic="④計測・制御システムのプログラムの制作" data-learning-goal="入力・判断・出力をつなぎ、目的に沿った一連の自動動作を実現できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">25</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l025" data-kind="summary" data-target="lessons/info3-l025/summary.html" data-published="false">計測・制御システム全体を組み合わせる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l025" data-kind="lesson" data-target="lessons/info3-l025/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l025" data-kind="questions" data-target="lessons/info3-l025/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l026" data-seq="26" data-source-topic="④計測・制御システムのプログラムの制作" data-learning-goal="実行結果を手順図と照合し、誤動作の原因を調べて修正できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">26</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l026" data-kind="summary" data-target="lessons/info3-l026/summary.html" data-published="false">計測・制御の動作確認と不具合の修正</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l026" data-kind="lesson" data-target="lessons/info3-l026/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l026" data-kind="questions" data-target="lessons/info3-l026/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s010">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">５ 評価・改善</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s010" data-kind="section-questions" data-target="sections/info3-s010/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">2回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l027" data-seq="27" data-source-topic="⑤問題解決の評価、改善・修正" data-learning-goal="安全性・有用性・使いやすさ・効率の観点から制御システムを評価し、改良できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">27</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l027" data-kind="summary" data-target="lessons/info3-l027/summary.html" data-published="false">使いやすさと安全性を考えた改良</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l027" data-kind="lesson" data-target="lessons/info3-l027/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l027" data-kind="questions" data-target="lessons/info3-l027/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l028" data-seq="28" data-source-topic="⑤問題解決の評価、改善・修正" data-learning-goal="課題設定から制作・評価までを振り返り、目標の達成度と次の改善点を説明できる。" data-original-allocation="中学3年・15時間">
+                <span class="lesson-num">28</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l028" data-kind="summary" data-target="lessons/info3-l028/summary.html" data-published="false">計測・制御の成果を評価し振り返る</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l028" data-kind="lesson" data-target="lessons/info3-l028/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l028" data-kind="questions" data-target="lessons/info3-l028/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="3" data-chapter-id="info3-c004">
+        <summary class="chapter-summary">
+          <span class="chapter-name">4編4章 社会の発展と情報の技術</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/info3-c004/questions.html" data-published="false">問題</a>
+            <span class="count-meta">3回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="info3-s011">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">１ 情報技術の最適化</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s011" data-kind="section-questions" data-target="sections/info3-s011/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l029" data-seq="29" data-source-topic="①情報の技術の最適化" data-learning-goal="利便性・安全性・経済性など複数の条件を比べ、情報技術の最適化を説明できる。" data-original-allocation="中学3年・2.5時間→3コマ">
+                <span class="lesson-num">29</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l029" data-kind="summary" data-target="lessons/info3-l029/summary.html" data-published="false">情報の技術の最適化を考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l029" data-kind="lesson" data-target="lessons/info3-l029/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l029" data-kind="questions" data-target="lessons/info3-l029/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="info3-s012">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">２ これからの情報の技術</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="info3-s012" data-kind="section-questions" data-target="sections/info3-s012/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">2回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="info3-l030" data-seq="30" data-source-topic="②これからの情報の技術" data-learning-goal="情報技術が社会にもたらす利点と、障害・セキュリティなどの課題を整理できる。" data-original-allocation="中学3年・2.5時間→3コマ">
+                <span class="lesson-num">30</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l030" data-kind="summary" data-target="lessons/info3-l030/summary.html" data-published="false">情報技術の利点と課題を比較する</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l030" data-kind="lesson" data-target="lessons/info3-l030/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l030" data-kind="questions" data-target="lessons/info3-l030/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="info3-l031" data-seq="31" data-source-topic="②これからの情報の技術" data-learning-goal="持続可能な社会に向けて、情報技術をどう選択・運用・改良するか自分の考えをまとめられる。" data-original-allocation="中学3年・2.5時間→3コマ">
+                <span class="lesson-num">31</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l031" data-kind="summary" data-target="lessons/info3-l031/summary.html" data-published="false">これからの情報社会と持続可能な技術</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l031" data-kind="lesson" data-target="lessons/info3-l031/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="info3-l031" data-kind="questions" data-target="lessons/info3-l031/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+    </main>
+    </main>
+  </div>
+
+  <div class="status-toast" id="status-toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      // 公開済み教材の相対パスをここに登録すると、自動的に有効な同タブリンクへ切り替わります。
+      // 例: "lessons/info3-l001/summary.html", "chapters/s3-c001/questions.html"
+      const PUBLISHED_PATHS = new Set([]);
+
+      const allDetails = Array.from(document.querySelectorAll("details.chapter, details.section"));
+      const openAllBtn = document.getElementById("open-all");
+      const closeAllBtn = document.getElementById("close-all");
+      const toast = document.getElementById("status-toast");
+      let toastTimer = null;
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.add("is-visible");
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toast.classList.remove("is-visible");
+        }, 2800);
+      }
+
+      function syncLinkState(link) {
+        const target = link.dataset.target || "";
+        const isPublished = link.dataset.published === "true" || PUBLISHED_PATHS.has(target);
+        if (isPublished && target) {
+          link.setAttribute("href", target);
+          link.dataset.published = "true";
+          link.classList.remove("is-unpublished");
+          link.removeAttribute("aria-disabled");
+        } else {
+          link.removeAttribute("href");
+          link.dataset.published = "false";
+          link.classList.add("is-unpublished");
+          link.setAttribute("aria-disabled", "true");
+        }
+      }
+
+      const allLinks = Array.from(document.querySelectorAll("a[data-target]"));
+      allLinks.forEach(function (link) {
+        syncLinkState(link);
+
+        function handleActivate(event) {
+          // summary内の「問題」リンク押下時に親detailsが開閉しないようにする
+          if (link.closest("summary")) {
+            event.stopPropagation();
+          }
+          if (link.dataset.published !== "true") {
+            event.preventDefault();
+            const target = link.dataset.target || "";
+            showToast("準備中のページです（予定パス: " + target + "）");
+          }
+        }
+
+        link.addEventListener("click", handleActivate);
+        link.addEventListener("keydown", function (event) {
+          if (event.key === "Enter" || event.key === " ") {
+            if (link.dataset.published !== "true") {
+              handleActivate(event);
+            } else if (event.key === "Enter" && link.closest("summary")) {
+              event.stopPropagation();
+            }
+          }
+        });
+      });
+
+      if (openAllBtn) {
+        openAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = true;
+          });
+        });
+      }
+
+      if (closeAllBtn) {
+        closeAllBtn.addEventListener("click", function () {
+          allDetails.forEach(function (el) {
+            el.open = false;
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
