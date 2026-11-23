@@ -4,6 +4,8 @@ import {
   RECOGNITION_WAIT_MS as wait,
   initializeRecognitionRule,
   isRecognizedCorrect,
+  canRecordRepeatedCorrect,
+  bindSelectedChoiceRetry,
   latestGradedKind,
   questionProgress,
 } from "../assets/numbas/question-progress.js";
@@ -106,4 +108,40 @@ test("ルールの開始時刻は既存履歴と別に一度だけ保存", () =>
   const blocked = { getItem() { throw new Error("unavailable"); } };
   assert.equal(initializeRecognitionRule(blocked, start), null);
   assert.equal(isRecognizedCorrect([{ kind: "correct" }], null, null), true);
+});
+
+test("同じ正解の再送は、待機終了後の未認定問題だけで記録できる", () => {
+  const records = [event("wrong", 1, "q1"), event("correct", 2, "q1"), event("correct", 3, "q2")];
+  assert.equal(canRecordRepeatedCorrect(records, "q1", start, start + wait), false);
+  assert.equal(canRecordRepeatedCorrect(records, "q1", start, start + wait + 1), true);
+  assert.equal(canRecordRepeatedCorrect(records, "q2", start, start + wait + 1), false);
+  records.push(event("correct", wait + 1, "q1"));
+  assert.equal(canRecordRepeatedCorrect(records, "q1", start, start + wait + 2), false);
+});
+
+test("選択済みの答えを押し直した時だけ、待機終了後の再採点を呼ぶ", () => {
+  const handlers = new Map();
+  const section = { addEventListener(type, callback) { handlers.set(type, callback); } };
+  const input = { checked: false, matches: (selector) => selector === 'input[type="radio"]' };
+  const labelChild = { matches: () => false, closest: () => ({ querySelector: () => input }) };
+  let ready = false;
+  let submissions = 0;
+  bindSelectedChoiceRetry(section, () => ready, () => { submissions++; });
+  const emit = (type, target, key) => handlers.get(type)({ target, key });
+
+  emit("pointerdown", labelChild);
+  input.checked = true;
+  emit("click", labelChild);
+  assert.equal(submissions, 0); // A new choice follows the normal Numbas path.
+  emit("pointerdown", input);
+  emit("click", input);
+  assert.equal(submissions, 0); // Still waiting.
+  ready = true;
+  emit("pointerdown", labelChild);
+  emit("click", labelChild);
+  emit("click", input); // A label may also dispatch a click on its input.
+  assert.equal(submissions, 1);
+  emit("keydown", input, " ");
+  emit("click", input);
+  assert.equal(submissions, 2);
 });

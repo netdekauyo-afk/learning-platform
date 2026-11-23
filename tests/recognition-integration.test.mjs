@@ -55,7 +55,10 @@ async function withList({ href, rows, difficulty, records, examRaw }, run) {
     const dependency = new URL("../assets/numbas/question-progress.js?v=20261123-recognition", import.meta.url).href;
     const source = (await readFile(moduleFile, "utf8")).replace("./question-progress.js?v=20261123-recognition", dependency);
     await import("data:text/javascript;base64," + Buffer.from(source).toString("base64") + "#" + Math.random());
-    const settle = async () => { await new Promise(setImmediate); await new Promise(setImmediate); };
+    const settle = async (ready = () => true) => {
+      for (let i = 0; i < 200 && !ready(); i++) await new Promise((resolve) => setTimeout(resolve, 5));
+      assert.ok(ready(), "一覧の非同期更新が完了しませんでした");
+    };
     await settle();
     await run({ values, listeners, settle });
   } finally {
@@ -94,15 +97,16 @@ test("国語の実教材の2問は、別々の結果を◯・◎へ反映する"
   await withList({ href: "https://example.test/learning-platform/junior-high/grade-1/japanese/index.html", rows: [row], difficulty: false,
     records: { [key]: JSON.stringify(records) }, examRaw }, async ({ values, listeners, settle }) => {
     const mark = row.link.nextElement;
+    await settle(() => mark.textContent === "◯");
     assert.equal(mark.textContent, "◯");
     assert.equal(mark.hidden, false);
     values.set(key, JSON.stringify([...records, event("correct", wait + 1, ids[0])]));
     for (const callback of listeners.get("pageshow") || []) callback();
-    await settle();
+    await settle(() => mark.textContent === "◎");
     assert.equal(mark.textContent, "◎");
     values.set(key, JSON.stringify([...records, event("correct", wait + 1, ids[0]), event("wrong", wait + 2, ids[1])]));
     for (const callback of listeners.get("pageshow") || []) callback();
-    await settle();
+    await settle(() => mark.textContent === "◯");
     assert.equal(mark.textContent, "◯");
   });
 });

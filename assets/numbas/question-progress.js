@@ -50,11 +50,13 @@ export function initializeRecognitionRule(storage, now = Date.now()) {
   }
 }
 
-// Numbas still marks every answer immediately. This function only decides
-// whether a question has earned its progress mark from the recorded events.
-export function isRecognizedCorrect(records, questionId = null, startedAt = initializeRecognitionRule()) {
-  if (!Array.isArray(records)) return false;
-  if (!Number.isFinite(startedAt)) return latestGradedKind(records, questionId) === "correct";
+// Numbas still marks every answer immediately. This state only decides whether
+// a question has earned its progress mark and when another attempt may do so.
+export function recognitionState(records, questionId = null, startedAt = initializeRecognitionRule()) {
+  if (!Array.isArray(records)) return { recognized: false, waitUntil: 0 };
+  if (!Number.isFinite(startedAt)) {
+    return { recognized: latestGradedKind(records, questionId) === "correct", waitUntil: 0 };
+  }
 
   const relevant = records.filter((record) =>
     record && (questionId === null || record.questionId === questionId)
@@ -83,7 +85,41 @@ export function isRecognizedCorrect(records, questionId = null, startedAt = init
       waitUntil = 0;
     }
   }
-  return recognized;
+  return { recognized, waitUntil };
+}
+
+export function isRecognizedCorrect(records, questionId = null, startedAt = initializeRecognitionRule()) {
+  return recognitionState(records, questionId, startedAt).recognized;
+}
+
+export function canRecordRepeatedCorrect(records, questionId, startedAt, now = Date.now()) {
+  const state = recognitionState(records, questionId, startedAt);
+  return !state.recognized && state.waitUntil > 0 && now >= state.waitUntil;
+}
+
+// A selected radio does not emit another change event when selected again.
+// Allow an explicit repeat only when the waiting period has already ended.
+export function bindSelectedChoiceRetry(section, canRetry, submit) {
+  let selectedBeforeAction = null;
+  const inputFrom = (target) => {
+    if (!target || typeof target.matches !== "function") return null;
+    if (target.matches('input[type="radio"]')) return target;
+    return target.closest("label")?.querySelector('input[type="radio"]') || null;
+  };
+  const remember = (event) => {
+    const input = inputFrom(event.target);
+    selectedBeforeAction = input?.checked ? input : null;
+  };
+  section.addEventListener("pointerdown", remember, true);
+  section.addEventListener("keydown", (event) => {
+    if (event.key === " " || event.key === "Enter") remember(event);
+  }, true);
+  section.addEventListener("click", (event) => {
+    const input = inputFrom(event.target);
+    const repeat = input && input === selectedBeforeAction && input.checked;
+    selectedBeforeAction = null;
+    if (repeat && canRetry()) submit();
+  }, true);
 }
 
 // A reveal or an older, unidentified question is not a new marked answer.

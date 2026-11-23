@@ -1,7 +1,7 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js";
 import { createDifficultyTabs } from "./difficulty-tabs.js";
 import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
-import { initializeRecognitionRule } from "./question-progress.js?v=20261123-recognition";
+import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry } from "./question-progress.js?v=20261123-recognition";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
@@ -9,7 +9,7 @@ const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
 
 // Start the rule before any answer or reveal can be added to the history.
-initializeRecognitionRule();
+const recognitionStartedAt = initializeRecognitionRule();
 
 /* A non-locking answer view and a local practice history. The original .exam files
    and the Numbas score calculation are deliberately left unchanged. */
@@ -97,6 +97,9 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   notice.hidden = true;
 
   for (const part of question.parts) {
+    const repeatCanCount = () => canRecordRepeatedCorrect(
+      readPracticeHistory(historyKey), questionId || null, recognitionStartedAt
+    );
     part.events.on("post-submit", () => {
       if (!part.answered || !Number.isFinite(Number(part.score))) return;
       const score = Number(part.score);
@@ -105,7 +108,8 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
       const answer = String(part.display?.studentAnswer?.() ?? "");
       if (!answer.trim()) return;
       const signature = JSON.stringify([part.path, answer, score, maximum]);
-      if (lastSubmission.get(part.path) === signature) return;
+      if (lastSubmission.get(part.path) === signature &&
+          !(score >= maximum && repeatCanCount())) return;
       lastSubmission.set(part.path, signature);
       save({
         kind: score >= maximum ? "correct" : "wrong",
@@ -123,6 +127,12 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
           part.stagedAnswer.some((row) => Array.isArray(row) && row[0] === true);
         if (selected) part.submit();
       });
+      void part.display?.html_promise?.then((section) => {
+        if (!examHost.contains(examElement)) return;
+        bindSelectedChoiceRetry(section, () =>
+          Number(part.score) >= Number(part.marks) && !part.locked && !part.submitting && repeatCanCount(),
+        () => part.submit());
+      }).catch((error) => console.error("再回答の準備に失敗しました。", error));
     }
   }
 
