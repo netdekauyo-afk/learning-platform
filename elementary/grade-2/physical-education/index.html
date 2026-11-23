@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小学2年体育 学習一覧 | Classroom</title>
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    /* Colors are defined only in the shared :root palette. */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(30px, 8vw, 72px) 0;
+    }
+
+    .page-header {
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-title {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-heading);
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .control-link {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .control-link:hover,
+    .control-link:focus-visible {
+      color: var(--color-heading);
+    }
+
+    .control-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .curriculum-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Chapter */
+    details.chapter {
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    summary.chapter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: var(--color-surface);
+      border-left: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.chapter-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chapter-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 245px;
+      color: var(--color-heading);
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--color-surface-hover);
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
+      text-decoration: underline;
+    }
+
+    .chapter-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.85em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.chapter[open] > summary.chapter-summary .chapter-name::before {
+      transform: rotate(90deg);
+    }
+
+    details.chapter[open] > summary.chapter-summary {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-body {
+      padding: 8px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Section */
+    details.section {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    details.section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    summary.section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-hover);
+      border-left: 3px solid var(--color-border-hover);
+      border-radius: 9px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.section-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--color-heading);
+    }
+
+    .section-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.8em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.section[open] > summary.section-summary .section-name::before {
+      transform: rotate(90deg);
+    }
+
+    .count-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Lesson list */
+    .lesson-list {
+      list-style: none;
+      margin: 2px 0 6px;
+      padding: 0 0 0 18px;
+    }
+
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr auto;
+      align-items: baseline;
+      column-gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-item:first-child {
+      border-top: none;
+    }
+
+    .lesson-num {
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-heading);
+      text-align: right;
+    }
+
+    /* Text links (explicitly non-button UI) */
+    .text-link {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .text-link:hover {
+      color: var(--color-heading);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .text-link.is-unpublished {
+      color: var(--color-muted);
+      text-decoration-style: dotted;
+    }
+
+    .text-link.is-unpublished:hover {
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
+    }
+
+    .lesson-title-link {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .lesson-links {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .section-link {
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    /* Toast notification for unpublished links */
+    .status-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      max-width: calc(100vw - 32px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 100;
+    }
+
+    .status-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      summary.chapter-summary {
+        padding: 11px 12px;
+      }
+
+      .chapter-body {
+        padding: 6px 10px 10px;
+      }
+
+      .lesson-list {
+        padding-left: 6px;
+      }
+
+      .lesson-item {
+        grid-template-columns: 2.1rem 1fr;
+        row-gap: 4px;
+        padding: 8px 2px;
+      }
+
+      .lesson-links {
+        grid-column: 2;
+        gap: 18px;
+        padding-top: 2px;
+      }
+    }
+
+    .curriculum-source-notes {
+      margin-top: 13px;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--color-muted);
+    }
+    .curriculum-source-notes p {
+      margin: 3px 0;
+    }
+    .curriculum-source-notes strong {
+      color: var(--color-heading);
+    }
+    .curriculum-source-notes a {
+      color: var(--color-heading);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="math-curriculum physical-education-curriculum">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">小学校</a><span aria-hidden="true"> / </span><a href="../">2年生</a><span aria-hidden="true"> / </span><span aria-current="page">体育</span></nav>
+    <header class="page-header">
+      <h1 class="page-title">小学2年体育 学習一覧</h1>
+      <div class="page-meta">
+        <div class="controls" style="margin-left: auto;">
+          <button type="button" class="control-link" id="open-all">すべて開く</button>
+          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
+        </div>
+      </div>
+    </header>
+    <main class="curriculum-list" id="curriculum-list">
+      <details class="chapter" open data-chapter-index="0" data-chapter-id="ep2-c001">
+        <summary class="chapter-summary">
+          <span class="chapter-name">1学期</span>
+          <span class="chapter-actions">
+            <span class="count-meta">36回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" open data-section-id="ep2-s001" data-learning-area="体つくりの運動遊び" data-source-subunit="体ほぐしの運動遊び（3時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">体つくりの運動遊び｜体ほぐしの運動遊び</span>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l001" data-seq="1" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="体ほぐしの運動遊び（3時間）" data-unit-period="1/3" data-learning-activities="じゃんけんゲーム・ペアストレッチ・集団でのリズム体操で心と体をほぐす" data-safety-points="ぶつからない間隔の確保・笑顔で関わる声かけ・無理のない負荷調整">
+                <span class="lesson-num">1</span>
+                <span class="lesson-title-link">オリエンテーション・仲間と関わる運動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l002" data-seq="2" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="体ほぐしの運動遊び（3時間）" data-unit-period="2/3" data-learning-activities="二人組のバランス運動・背中合わせ立ち上がり・ゆったり呼吸や伸び動作" data-safety-points="ぶつからない間隔の確保・笑顔で関わる声かけ・無理のない負荷調整">
+                <span class="lesson-num">2</span>
+                <span class="lesson-title-link">体の調子に気づく運動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l003" data-seq="3" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="体ほぐしの運動遊び（3時間）" data-unit-period="3/3" data-learning-activities="グループでのフラフープくぐり・新聞紙リレー・振り返り" data-safety-points="ぶつからない間隔の確保・笑顔で関わる声かけ・無理のない負荷調整">
+                <span class="lesson-num">3</span>
+                <span class="lesson-title-link">仲間と協力して楽しむ運動</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s002" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="固定施設を使った運動遊び（2時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">器械・器具を使っての運動遊び｜固定施設を使った運動遊び</span>
+              </span>
+              <span class="count-meta">2回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l004" data-seq="4" data-term="1学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="固定施設を使った運動遊び（2時間）" data-unit-period="1/2" data-learning-activities="うんてい・のぼり棒・ジャングルジムの安全な使い方とぶら下がり遊び" data-safety-points="遊具の事前安全点検・順番と間隔の徹底・着地時の膝の曲げ方指導">
+                <span class="lesson-num">4</span>
+                <span class="lesson-title-link">オリエンテーション・安全ルールと登り降り</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l005" data-seq="5" data-term="1学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="固定施設を使った運動遊び（2時間）" data-unit-period="2/2" data-learning-activities="複数の固定施設をつないだコース遊びとできたことの確認" data-safety-points="遊具の事前安全点検・順番と間隔の徹底・着地時の膝の曲げ方指導">
+                <span class="lesson-num">5</span>
+                <span class="lesson-title-link">サーキット遊び・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s003" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">器械・器具を使っての運動遊び｜鉄棒を使った運動遊び</span>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l006" data-seq="6" data-term="1学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）" data-unit-period="1/3" data-learning-activities="つばめ・ぶたの丸焼き・こうもりなど基本的な支持と懸垂遊び" data-safety-points="鉄棒のぐらつき点検・下にマット敷設・親指を握り込む安全握りの徹底">
+                <span class="lesson-num">6</span>
+                <span class="lesson-title-link">オリエンテーション・握り方とぶら下がり</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l007" data-seq="7" data-term="1学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）" data-unit-period="2/3" data-learning-activities="布団干し・前回り降り・足かけ回りなど易しい回転遊び" data-safety-points="鉄棒のぐらつき点検・下にマット敷設・親指を握り込む安全握りの徹底">
+                <span class="lesson-num">7</span>
+                <span class="lesson-title-link">回り遊びの基本（前回り降り等）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l008" data-seq="8" data-term="1学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）" data-unit-period="3/3" data-learning-activities="できるようになった技の組み合わせ発表と安全振り返り" data-safety-points="鉄棒のぐらつき点検・下にマット敷設・親指を握り込む安全握りの徹底">
+                <span class="lesson-num">8</span>
+                <span class="lesson-title-link">いろいろな技にチャレンジ・発表会</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s004" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">走・跳の運動遊び｜走の運動遊び</span>
+              </span>
+              <span class="count-meta">4回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l009" data-seq="9" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="1/4" data-learning-activities="直線走・ジグザグ走・合図でダッシュなど楽しく走る遊び" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">9</span>
+                <span class="lesson-title-link">オリエンテーション・いろいろな走り方遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l010" data-seq="10" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="2/4" data-learning-activities="コーンを回ってタッチでつなぐチーム対抗リレー" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">10</span>
+                <span class="lesson-title-link">折り返しリレー遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l011" data-seq="11" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="3/4" data-learning-activities="低いミニハードルやラインを跳び越えながら走る遊び" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">11</span>
+                <span class="lesson-title-link">障害物かけっこ遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l012" data-seq="12" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="4/4" data-learning-activities="全力で走り切る楽しさを味わう競争と振り返り" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">12</span>
+                <span class="lesson-title-link">ミニ運動会（かけっこ・リレー）と振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s005" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">走・跳の運動遊び｜跳の運動遊び</span>
+              </span>
+              <span class="count-meta">4回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l013" data-seq="13" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="1/4" data-learning-activities="ケンケン・両足跳び・川跳びなどリズムよく跳ぶ遊び" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">13</span>
+                <span class="lesson-title-link">オリエンテーション・いろいろな跳び方遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l014" data-seq="14" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="2/4" data-learning-activities="助走をつけてラインや川を跳び越えるチャレンジ" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">14</span>
+                <span class="lesson-title-link">遠くへ跳ぶ遊び（幅跳び系）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l015" data-seq="15" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="3/4" data-learning-activities="ゴムひもや段ボールをリズミカルに跳び越える遊び" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">15</span>
+                <span class="lesson-title-link">高く跳ぶ遊び（ゴム跳び系）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l016" data-seq="16" data-term="1学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="4/4" data-learning-activities="記録カードに印をつけながら楽しむ活動と振り返り" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">16</span>
+                <span class="lesson-title-link">跳びっこチャレンジ・振り返り（投の運動遊び含む）</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s006" data-learning-area="ゲーム" data-source-subunit="鬼遊び（4時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">ゲーム｜鬼遊び</span>
+              </span>
+              <span class="count-meta">4回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l017" data-seq="17" data-term="1学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（4時間）" data-unit-period="1/4" data-learning-activities="線鬼・バナナ鬼など簡単なルールの鬼遊び" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">17</span>
+                <span class="lesson-title-link">オリエンテーション・ルール確認と基本の鬼ごっこ</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l018" data-seq="18" data-term="1学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（4時間）" data-unit-period="2/4" data-learning-activities="宝取り鬼のルール確認と攻守の体験" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">18</span>
+                <span class="lesson-title-link">陣地を守る・攻める鬼遊び（宝取り鬼①）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l019" data-seq="19" data-term="1学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（4時間）" data-unit-period="3/4" data-learning-activities="コートの広さやルールを工夫した宝取り鬼" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">19</span>
+                <span class="lesson-title-link">いろいろな鬼遊びチャレンジ②</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l020" data-seq="20" data-term="1学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（4時間）" data-unit-period="4/4" data-learning-activities="ルールの良さを味わい、楽しかった工夫を振り返る" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">20</span>
+                <span class="lesson-title-link">ミニ大会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s007" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（6時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">体つくりの運動遊び｜多様な動きをつくる運動遊び</span>
+              </span>
+              <span class="count-meta">6回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l021" data-seq="21" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（6時間）" data-unit-period="1/6" data-learning-activities="ケンケンパ・平均台やライン歩き・動物歩きなど多様な移動運動" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">21</span>
+                <span class="lesson-title-link">オリエンテーション・体のバランスと移動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l022" data-seq="22" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（6時間）" data-unit-period="2/6" data-learning-activities="短縄とびの基本・ボールのキャッチ＆スロー・フープ回し" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">22</span>
+                <span class="lesson-title-link">用具を操作する運動（短縄・ボール）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l023" data-seq="23" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（6時間）" data-unit-period="3/6" data-learning-activities="手押し車・引っ張り合い・サーキット形式での複合チャレンジ" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">23</span>
+                <span class="lesson-title-link">力試しと組み合わせ運動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l024" data-seq="24" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（6時間）" data-unit-period="4/6" data-learning-activities="大波小波・八の字跳びなど仲間とタイミングを合わせる運動" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">24</span>
+                <span class="lesson-title-link">長縄・集団でのリズム運動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l025" data-seq="25" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（6時間）" data-unit-period="5/6" data-learning-activities="自分たちでコースや技を工夫して挑戦するサーキット運動" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">25</span>
+                <span class="lesson-title-link">工夫して楽しむ運動・サーキット</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l026" data-seq="26" data-term="1学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（6時間）" data-unit-period="6/6" data-learning-activities="できるようになった動きの発表と日常の運動へのつなげ方確認" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">26</span>
+                <span class="lesson-title-link">チャレンジ発表会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s008" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">水遊び｜水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）</span>
+              </span>
+              <span class="count-meta">10回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l027" data-seq="27" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="1/10" data-learning-activities="バディ確認・シャワー・入水ルール・水中じゃんけんや歩き遊び" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">27</span>
+                <span class="lesson-title-link">オリエンテーション・プール安全と水慣れ</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l028" data-seq="28" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="2/10" data-learning-activities="水中かけっこ・洗濯機（渦巻き）・電車ごっこ" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">28</span>
+                <span class="lesson-title-link">水の中を移動する運動遊び①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l029" data-seq="29" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="3/10" data-learning-activities="動物変身（ワニ歩き・カエル跳び）で顔つけ慣れ" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">29</span>
+                <span class="lesson-title-link">水の中を移動する運動遊び②</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l030" data-seq="30" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="4/10" data-learning-activities="ぶくぶくパー・宝探しゲームで息吐きと目開け" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">30</span>
+                <span class="lesson-title-link">もぐる遊び（顔つけ・水中開眼）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l031" data-seq="31" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="5/10" data-learning-activities="力を抜いて浮く感覚を味わう遊び" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">31</span>
+                <span class="lesson-title-link">浮く遊び（だるま浮き・くらげ浮き）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l032" data-seq="32" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="6/10" data-learning-activities="壁を蹴ってすーっと伸びるロケット遊び" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">32</span>
+                <span class="lesson-title-link">ふし浮き・けのび遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l033" data-seq="33" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="7/10" data-learning-activities="ビート板を使ったバタ足リレーや水中探検" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">33</span>
+                <span class="lesson-title-link">バタ足・いろいろな移動遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l034" data-seq="34" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="8/10" data-learning-activities="フープくぐりや長いけのびに挑戦" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">34</span>
+                <span class="lesson-title-link">もぐる・浮くチャレンジ①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l035" data-seq="35" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="9/10" data-learning-activities="自分のめあてに合わせたコース別遊び" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">35</span>
+                <span class="lesson-title-link">もぐる・浮くチャレンジ②</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l036" data-seq="36" data-term="1学期" data-learning-area="水遊び" data-source-subunit="水遊び（水の中を移動する運動遊び  もぐる 浮く運動遊び）（10時間）" data-unit-period="10/10" data-learning-activities="できるようになったことの発表と水の安全ルール確認" data-safety-points="バディシステム・入水前健康観察・プールサイド歩行厳守・監視体制の徹底">
+                <span class="lesson-num">36</span>
+                <span class="lesson-title-link">水遊び発表会・まとめ（着衣泳・安全心得含む）</span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="1" data-chapter-id="ep2-c002">
+        <summary class="chapter-summary">
+          <span class="chapter-name">2学期</span>
+          <span class="chapter-actions">
+            <span class="count-meta">42回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="ep2-s009" data-learning-area="表現リズム遊び" data-source-subunit="リズム遊び（6時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">表現リズム遊び｜リズム遊び</span>
+              </span>
+              <span class="count-meta">6回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l037" data-seq="37" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="リズム遊び（6時間）" data-unit-period="1/6" data-learning-activities="軽快なリズムに合わせて拍手・ステップ・全身で弾む" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">37</span>
+                <span class="lesson-title-link">オリエンテーション・音楽に合わせて弾む</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l038" data-seq="38" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="リズム遊び（6時間）" data-unit-period="2/6" data-learning-activities="ボックスステップや手足の動きの組み合わせ練習" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">38</span>
+                <span class="lesson-title-link">基本のステップとポーズづくり</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l039" data-seq="39" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="リズム遊び（6時間）" data-unit-period="3/6" data-learning-activities="簡単なフレーズを仲間と合わせて踊る" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">39</span>
+                <span class="lesson-title-link">ペア・グループでの動きづくり</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l040" data-seq="40" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="リズム遊び（6時間）" data-unit-period="4/6" data-learning-activities="隊形変化や決めポーズを取り入れたアレンジ" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">40</span>
+                <span class="lesson-title-link">隊形やアクセントの工夫</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l041" data-seq="41" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="リズム遊び（6時間）" data-unit-period="5/6" data-learning-activities="グループ同士で見合い、良いところを伝え合う" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">41</span>
+                <span class="lesson-title-link">発表会に向けた通し練習</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l042" data-seq="42" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="リズム遊び（6時間）" data-unit-period="6/6" data-learning-activities="全員で楽しく踊り合い、感想を共有する" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">42</span>
+                <span class="lesson-title-link">リズム発表会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s010" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">走・跳の運動遊び｜走の運動遊び</span>
+              </span>
+              <span class="count-meta">4回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l043" data-seq="43" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="1/4" data-learning-activities="直線走・ジグザグ走・合図でダッシュなど楽しく走る遊び" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">43</span>
+                <span class="lesson-title-link">オリエンテーション・いろいろな走り方遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l044" data-seq="44" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="2/4" data-learning-activities="コーンを回ってタッチでつなぐチーム対抗リレー" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">44</span>
+                <span class="lesson-title-link">折り返しリレー遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l045" data-seq="45" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="3/4" data-learning-activities="低いミニハードルやラインを跳び越えながら走る遊び" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">45</span>
+                <span class="lesson-title-link">障害物かけっこ遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l046" data-seq="46" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="走の運動遊び（4時間）" data-unit-period="4/4" data-learning-activities="全力で走り切る楽しさを味わう競争と振り返り" data-safety-points="走路の石・段差確認・レーン走行の徹底・接触防止・熱中症対策">
+                <span class="lesson-num">46</span>
+                <span class="lesson-title-link">ミニ運動会（かけっこ・リレー）と振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s011" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">器械・器具を使っての運動遊び｜マットを使った運動遊び</span>
+              </span>
+              <span class="count-meta">8回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l047" data-seq="47" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="1/8" data-learning-activities="マットの運び方・丸太転がり・ゆりかごなど回転感覚づくり" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">47</span>
+                <span class="lesson-title-link">オリエンテーション・場づくりと転がり遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l048" data-seq="48" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="2/8" data-learning-activities="坂道マットを使った前転がり・後ろ転がり遊び" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">48</span>
+                <span class="lesson-title-link">いろいろな方向への転がり遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l049" data-seq="49" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="3/8" data-learning-activities="手をついて体を支える感覚・うさぎ跳び・かえるの足打ち" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">49</span>
+                <span class="lesson-title-link">手支持と川跳び・かえるの足打ち</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l050" data-seq="50" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="4/8" data-learning-activities="あごを引く・丸くなるポイントを意識した練習" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">50</span>
+                <span class="lesson-title-link">前転がり・後ろ転がりのコツ探し</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l051" data-seq="51" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="5/8" data-learning-activities="動物変身サーキットと好きな転がり技の連続練習" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">51</span>
+                <span class="lesson-title-link">いろいろな動物歩きと転がり組み合わせ</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l052" data-seq="52" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="6/8" data-learning-activities="友達と良いところを見つけ合いながら技を磨く" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">52</span>
+                <span class="lesson-title-link">得意な技の練習とペア見合い</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l053" data-seq="53" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="7/8" data-learning-activities="好きな動きを2〜3つ組み合わせた演技の練習" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">53</span>
+                <span class="lesson-title-link">発表会の準備・通し練習</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l054" data-seq="54" data-term="2学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="マットを使った運動遊び（8時間）" data-unit-period="8/8" data-learning-activities="グループごとの発表とできるようになったことの共有" data-safety-points="マットの隙間・ずれ防止・首を痛めない手のつき方と順番待ちの徹底">
+                <span class="lesson-num">54</span>
+                <span class="lesson-title-link">ミニ発表会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s012" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">ゲーム｜ボールゲーム</span>
+              </span>
+              <span class="count-meta">6回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l055" data-seq="55" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="1/6" data-learning-activities="的当てゲーム・シュートゲーム・転がしドッジの基本操作（パス・捕球・打つ等）と簡易ルールの確認" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">55</span>
+                <span class="lesson-title-link">オリエンテーション・ボール操作とルール確認</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l056" data-seq="56" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="2/6" data-learning-activities="ペア・小グループでの基本練習と短い試しのゲーム" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">56</span>
+                <span class="lesson-title-link">基本技能のドリルと試しのゲーム</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l057" data-seq="57" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="3/6" data-learning-activities="仲間と声をかけ合う守備・パスつなぎの練習とゲーム" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">57</span>
+                <span class="lesson-title-link">守備と連携の工夫</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l058" data-seq="58" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="4/6" data-learning-activities="チームの課題に合った作戦を立てて試合で試す" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">58</span>
+                <span class="lesson-title-link">チーム作戦タイムと練習試合①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l059" data-seq="59" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="5/6" data-learning-activities="ルールを守りフェアプレーで競い合う総当たり戦" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">59</span>
+                <span class="lesson-title-link">リーグ戦・ミニ大会①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l060" data-seq="60" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="6/6" data-learning-activities="決勝・交流戦とチームでの成長・作戦の振り返り" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">60</span>
+                <span class="lesson-title-link">リーグ戦・ミニ大会②・まとめ</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s013" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">走・跳の運動遊び｜跳の運動遊び</span>
+              </span>
+              <span class="count-meta">4回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l061" data-seq="61" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="1/4" data-learning-activities="ケンケン・両足跳び・川跳びなどリズムよく跳ぶ遊び" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">61</span>
+                <span class="lesson-title-link">オリエンテーション・いろいろな跳び方遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l062" data-seq="62" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="2/4" data-learning-activities="助走をつけてラインや川を跳び越えるチャレンジ" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">62</span>
+                <span class="lesson-title-link">遠くへ跳ぶ遊び（幅跳び系）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l063" data-seq="63" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="3/4" data-learning-activities="ゴムひもや段ボールをリズミカルに跳び越える遊び" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">63</span>
+                <span class="lesson-title-link">高く跳ぶ遊び（ゴム跳び系）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l064" data-seq="64" data-term="2学期" data-learning-area="走・跳の運動遊び" data-source-subunit="跳の運動遊び（4時間）" data-unit-period="4/4" data-learning-activities="記録カードに印をつけながら楽しむ活動と振り返り" data-safety-points="砂場の掘り起こしと異物確認・着地マットの安全配置・助走路の交差防止">
+                <span class="lesson-num">64</span>
+                <span class="lesson-title-link">跳びっこチャレンジ・振り返り（投の運動遊び含む）</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s014" data-learning-area="表現リズム遊び" data-source-subunit="表現遊び（6時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">表現リズム遊び｜表現遊び</span>
+              </span>
+              <span class="count-meta">6回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l065" data-seq="65" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="表現遊び（6時間）" data-unit-period="1/6" data-learning-activities="生き物・自然・スポーツなど身近な題材になりきって動く" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">65</span>
+                <span class="lesson-title-link">オリエンテーション・即興表現で体をほぐす</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l066" data-seq="66" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="表現遊び（6時間）" data-unit-period="2/6" data-learning-activities="緩急・強弱・高低のアクセントをつけた表現の工夫" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">66</span>
+                <span class="lesson-title-link">イメージを広げる動き探し</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l067" data-seq="67" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="表現遊び（6時間）" data-unit-period="3/6" data-learning-activities="「はじめ・なか・おわり」のひとまとまりの動きを構想" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">67</span>
+                <span class="lesson-title-link">グループでの題材選びと場面づくり</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l068" data-seq="68" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="表現遊び（6時間）" data-unit-period="4/6" data-learning-activities="時間差・対比・シンクロなど仲間と合わせた表現練習" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">68</span>
+                <span class="lesson-title-link">群（集団）の動きと工夫</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l069" data-seq="69" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="表現遊び（6時間）" data-unit-period="5/6" data-learning-activities="他のグループの良さを見つけて自分たちの表現に生かす" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">69</span>
+                <span class="lesson-title-link">中間発表と見合い・ブラッシュアップ</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l070" data-seq="70" data-term="2学期" data-learning-area="表現リズム遊び" data-source-subunit="表現遊び（6時間）" data-unit-period="6/6" data-learning-activities="各グループの発表鑑賞と温かい感想の共有" data-safety-points="周囲とぶつからないスペース確保・互いの表現を認め合う温かい雰囲気づくり">
+                <span class="lesson-num">70</span>
+                <span class="lesson-title-link">表現発表会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s015" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">ゲーム｜鬼遊び</span>
+              </span>
+              <span class="count-meta">8回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l071" data-seq="71" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="1/8" data-learning-activities="線鬼・バナナ鬼など簡単なルールの鬼遊び" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">71</span>
+                <span class="lesson-title-link">オリエンテーション・ルール確認と基本の鬼ごっこ</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l072" data-seq="72" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="2/8" data-learning-activities="フェイントや方向転換を使ったしっぽ取りゲーム" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">72</span>
+                <span class="lesson-title-link">かわす・追いかける動きの工夫</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l073" data-seq="73" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="3/8" data-learning-activities="宝取り鬼のルール確認と攻守の体験" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">73</span>
+                <span class="lesson-title-link">陣地を守る・攻める鬼遊び（宝取り鬼①）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l074" data-seq="74" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="4/8" data-learning-activities="チームで作戦を話し合い、役割を工夫して楽しむ" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">74</span>
+                <span class="lesson-title-link">作戦を工夫する宝取り鬼②</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l075" data-seq="75" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="5/8" data-learning-activities="増え鬼・氷鬼・こおりおにアレンジ" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">75</span>
+                <span class="lesson-title-link">いろいろな鬼遊びチャレンジ①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l076" data-seq="76" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="6/8" data-learning-activities="コートの広さやルールを工夫した宝取り鬼" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">76</span>
+                <span class="lesson-title-link">いろいろな鬼遊びチャレンジ②</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l077" data-seq="77" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="7/8" data-learning-activities="みんなで考えた作戦を試して対戦" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">77</span>
+                <span class="lesson-title-link">チーム対抗戦（作戦の実行）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l078" data-seq="78" data-term="2学期" data-learning-area="ゲーム" data-source-subunit="鬼遊び（8時間）" data-unit-period="8/8" data-learning-activities="ルールの良さを味わい、楽しかった工夫を振り返る" data-safety-points="コート境界の明示・衝突防止の周囲確認・優しいタッチのルール徹底">
+                <span class="lesson-num">78</span>
+                <span class="lesson-title-link">ミニ大会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="2" data-chapter-id="ep2-c003">
+        <summary class="chapter-summary">
+          <span class="chapter-name">3学期</span>
+          <span class="chapter-actions">
+            <span class="count-meta">27回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="ep2-s016" data-learning-area="体つくりの運動遊び" data-source-subunit="体ほぐしの運動遊び（2時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">体つくりの運動遊び｜体ほぐしの運動遊び</span>
+              </span>
+              <span class="count-meta">2回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l079" data-seq="79" data-term="3学期" data-learning-area="体つくりの運動遊び" data-source-subunit="体ほぐしの運動遊び（2時間）" data-unit-period="1/2" data-learning-activities="じゃんけんゲーム・ペアストレッチ・集団でのリズム体操で心と体をほぐす" data-safety-points="ぶつからない間隔の確保・笑顔で関わる声かけ・無理のない負荷調整">
+                <span class="lesson-num">79</span>
+                <span class="lesson-title-link">オリエンテーション・仲間と関わる運動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l080" data-seq="80" data-term="3学期" data-learning-area="体つくりの運動遊び" data-source-subunit="体ほぐしの運動遊び（2時間）" data-unit-period="2/2" data-learning-activities="グループでのフラフープくぐり・新聞紙リレー・振り返り" data-safety-points="ぶつからない間隔の確保・笑顔で関わる声かけ・無理のない負荷調整">
+                <span class="lesson-num">80</span>
+                <span class="lesson-title-link">仲間と協力して楽しむ運動</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s017" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">器械・器具を使っての運動遊び｜跳び箱を使った運動遊び</span>
+              </span>
+              <span class="count-meta">8回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l081" data-seq="81" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="1/8" data-learning-activities="跳び箱の運び方・両足踏み切りで跳び乗り・跳び降り遊び" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">81</span>
+                <span class="lesson-title-link">オリエンテーション・安全ルールと跳び乗り</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l082" data-seq="82" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="2/8" data-learning-activities="低い段での手つき位置と着地ポーズの練習" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">82</span>
+                <span class="lesson-title-link">またぎ乗り・またぎ降り遊び</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l083" data-seq="83" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="3/8" data-learning-activities="友達と馬跳び・低い跳び箱での開脚跳び遊び" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">83</span>
+                <span class="lesson-title-link">開脚跳びの基礎（馬跳び・低い段）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l084" data-seq="84" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="4/8" data-learning-activities="段数や向きを選べる場での開脚跳び練習" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">84</span>
+                <span class="lesson-title-link">いろいろな場での跳び越しチャレンジ</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l085" data-seq="85" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="5/8" data-learning-activities="助走→両足踏み切り→手つきのリズム確認" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">85</span>
+                <span class="lesson-title-link">リズムよく踏み切る練習</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l086" data-seq="86" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="6/8" data-learning-activities="安心できる高さから1段ずつステップアップ" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">86</span>
+                <span class="lesson-title-link">自分のめあての高さに挑戦①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l087" data-seq="87" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="7/8" data-learning-activities="着地までピタッと止まる練習と友達との応援" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">87</span>
+                <span class="lesson-title-link">自分のめあての高さに挑戦②</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l088" data-seq="88" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="跳び箱を使った運動遊び（8時間）" data-unit-period="8/8" data-learning-activities="できるようになった跳び越し遊びの発表と振り返り" data-safety-points="跳び箱の固定・ロイター板のずれ確認・着地マットの安全配置・一方向実施">
+                <span class="lesson-num">88</span>
+                <span class="lesson-title-link">発表会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s018" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（5時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">体つくりの運動遊び｜多様な動きをつくる運動遊び</span>
+              </span>
+              <span class="count-meta">5回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l089" data-seq="89" data-term="3学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（5時間）" data-unit-period="1/5" data-learning-activities="ケンケンパ・平均台やライン歩き・動物歩きなど多様な移動運動" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">89</span>
+                <span class="lesson-title-link">オリエンテーション・体のバランスと移動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l090" data-seq="90" data-term="3学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（5時間）" data-unit-period="2/5" data-learning-activities="短縄とびの基本・ボールのキャッチ＆スロー・フープ回し" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">90</span>
+                <span class="lesson-title-link">用具を操作する運動（短縄・ボール）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l091" data-seq="91" data-term="3学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（5時間）" data-unit-period="3/5" data-learning-activities="手押し車・引っ張り合い・サーキット形式での複合チャレンジ" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">91</span>
+                <span class="lesson-title-link">力試しと組み合わせ運動</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l092" data-seq="92" data-term="3学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（5時間）" data-unit-period="4/5" data-learning-activities="自分たちでコースや技を工夫して挑戦するサーキット運動" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">92</span>
+                <span class="lesson-title-link">工夫して楽しむ運動・サーキット</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l093" data-seq="93" data-term="3学期" data-learning-area="体つくりの運動遊び" data-source-subunit="多様な動きをつくる運動遊び（5時間）" data-unit-period="5/5" data-learning-activities="できるようになった動きの発表と日常の運動へのつなげ方確認" data-safety-points="用具の安全な受け渡し・周囲の安全確認・こまめな水分補給">
+                <span class="lesson-num">93</span>
+                <span class="lesson-title-link">チャレンジ発表会・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s019" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="固定施設を使った運動遊び（3時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">器械・器具を使っての運動遊び｜固定施設を使った運動遊び</span>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l094" data-seq="94" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="固定施設を使った運動遊び（3時間）" data-unit-period="1/3" data-learning-activities="うんてい・のぼり棒・ジャングルジムの安全な使い方とぶら下がり遊び" data-safety-points="遊具の事前安全点検・順番と間隔の徹底・着地時の膝の曲げ方指導">
+                <span class="lesson-num">94</span>
+                <span class="lesson-title-link">オリエンテーション・安全ルールと登り降り</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l095" data-seq="95" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="固定施設を使った運動遊び（3時間）" data-unit-period="2/3" data-learning-activities="うんていの進み方・肋木や平均台の多様な渡り方に挑戦" data-safety-points="遊具の事前安全点検・順番と間隔の徹底・着地時の膝の曲げ方指導">
+                <span class="lesson-num">95</span>
+                <span class="lesson-title-link">移動・渡り遊びのチャレンジ</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l096" data-seq="96" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="固定施設を使った運動遊び（3時間）" data-unit-period="3/3" data-learning-activities="複数の固定施設をつないだコース遊びとできたことの確認" data-safety-points="遊具の事前安全点検・順番と間隔の徹底・着地時の膝の曲げ方指導">
+                <span class="lesson-num">96</span>
+                <span class="lesson-title-link">サーキット遊び・振り返り</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s020" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">器械・器具を使っての運動遊び｜鉄棒を使った運動遊び</span>
+              </span>
+              <span class="count-meta">3回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l097" data-seq="97" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）" data-unit-period="1/3" data-learning-activities="つばめ・ぶたの丸焼き・こうもりなど基本的な支持と懸垂遊び" data-safety-points="鉄棒のぐらつき点検・下にマット敷設・親指を握り込む安全握りの徹底">
+                <span class="lesson-num">97</span>
+                <span class="lesson-title-link">オリエンテーション・握り方とぶら下がり</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l098" data-seq="98" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）" data-unit-period="2/3" data-learning-activities="布団干し・前回り降り・足かけ回りなど易しい回転遊び" data-safety-points="鉄棒のぐらつき点検・下にマット敷設・親指を握り込む安全握りの徹底">
+                <span class="lesson-num">98</span>
+                <span class="lesson-title-link">回り遊びの基本（前回り降り等）</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l099" data-seq="99" data-term="3学期" data-learning-area="器械・器具を使っての運動遊び" data-source-subunit="鉄棒を使った運動遊び（3時間）" data-unit-period="3/3" data-learning-activities="できるようになった技の組み合わせ発表と安全振り返り" data-safety-points="鉄棒のぐらつき点検・下にマット敷設・親指を握り込む安全握りの徹底">
+                <span class="lesson-num">99</span>
+                <span class="lesson-title-link">いろいろな技にチャレンジ・発表会</span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="ep2-s021" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">ゲーム｜ボールゲーム</span>
+              </span>
+              <span class="count-meta">6回</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="ep2-l100" data-seq="100" data-term="3学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="1/6" data-learning-activities="的当てゲーム・シュートゲーム・転がしドッジの基本操作（パス・捕球・打つ等）と簡易ルールの確認" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">100</span>
+                <span class="lesson-title-link">オリエンテーション・ボール操作とルール確認</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l101" data-seq="101" data-term="3学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="2/6" data-learning-activities="ペア・小グループでの基本練習と短い試しのゲーム" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">101</span>
+                <span class="lesson-title-link">基本技能のドリルと試しのゲーム</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l102" data-seq="102" data-term="3学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="3/6" data-learning-activities="仲間と声をかけ合う守備・パスつなぎの練習とゲーム" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">102</span>
+                <span class="lesson-title-link">守備と連携の工夫</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l103" data-seq="103" data-term="3学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="4/6" data-learning-activities="チームの課題に合った作戦を立てて試合で試す" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">103</span>
+                <span class="lesson-title-link">チーム作戦タイムと練習試合①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l104" data-seq="104" data-term="3学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="5/6" data-learning-activities="ルールを守りフェアプレーで競い合う総当たり戦" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">104</span>
+                <span class="lesson-title-link">リーグ戦・ミニ大会①</span>
+              </li>
+              <li class="lesson-item" data-lesson-id="ep2-l105" data-seq="105" data-term="3学期" data-learning-area="ゲーム" data-source-subunit="ボールゲーム（6時間）" data-unit-period="6/6" data-learning-activities="決勝・交流戦とチームでの成長・作戦の振り返り" data-safety-points="ボールの顔面衝突防止・バット（ティーボール）の安全ゾーン確保・フェアプレー指導">
+                <span class="lesson-num">105</span>
+                <span class="lesson-title-link">リーグ戦・ミニ大会②・まとめ</span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+    </main>
+  </div>
+  <div class="status-toast" id="status-toast" role="status" aria-live="polite"></div>
+  <script src="../../../assets/curriculum-page.js?v=20261124-grade-nav"></script>
+</body>
+</html>
