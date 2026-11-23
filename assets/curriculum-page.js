@@ -115,4 +115,75 @@
       allDetails.forEach(function (el) { el.open = false; });
     });
   }
+
+  // One route map drives previous/next grade links across subject listings.
+  const gradeRoutes = {
+    math:        ["e1", "e2", "e3", "e4", "e5", "e6", "m1", "m2", "m3", "h1", "h2", "h3"],
+    japanese:    ["e1", "e2", "e3", "e4", "e5", "e6", "m1", "m2", "m3"],
+    science:     ["e3", "e4", "e5", "e6", "m1", "m2", "m3", "h1", "h2", "h3"],
+    english:     ["e3", "e4", "e5", "e6", "m1", "m2", "m3", "h1", "h2", "h3"],
+    social:      ["e3", "e4", "e5", "e6", "m1", "m2", "m3"],
+    information: ["m1", "m3"],
+  };
+  const schoolCodes = { elementary: "e", "junior-high": "m", "high-school": "h" };
+  const schoolPaths = { e: "elementary", m: "junior-high", h: "high-school" };
+  const schoolNames = { e: "小学", m: "中学", h: "高校" };
+  const subjectNames = { japanese: "国語", science: "理科", english: "英語", social: "社会", information: "情報" };
+  const pathParts = window.location.pathname.match(/(?:^|\/)(elementary|junior-high|high-school)\/grade-(\d+)\/(math|japanese|science|english|social|information)(?:\/(?:index\.html)?)?$/);
+  if (pathParts) {
+    const school = schoolCodes[pathParts[1]];
+    const grade = Number(pathParts[2]);
+    const subject = pathParts[3];
+    const pageCode = school + grade;
+    // Keep navigation on the existing grade 1–2 placeholder pages. Teaching
+    // in science and foreign languages starts with grade 3 in the main route.
+    const isEarlyPlaceholder = school === "e" && grade <= 2 &&
+      (subject === "science" || subject === "english");
+    const route = isEarlyPlaceholder ? ["e1", "e2", "e3"] : gradeRoutes[subject];
+    const current = route.indexOf(pageCode);
+    if (current !== -1) {
+      const previous = route[current - 1];
+      const next = route[current + 1];
+      const main = document.querySelector("main");
+      let gradeNav = document.querySelector("nav.grade-navigation");
+      if (!gradeNav && main && (previous || next)) {
+        gradeNav = document.createElement("nav");
+        gradeNav.className = "problem-toolbar grade-navigation";
+        gradeNav.setAttribute("aria-label", "同じ科目の学年移動");
+        gradeNav.style.marginTop = "24px";
+        main.appendChild(gradeNav);
+      }
+      if (gradeNav) {
+        function setGradeLink(target, direction) {
+          if (!target) return;
+          const targetSchool = target.charAt(0);
+          const targetGrade = Number(target.slice(1));
+          let name = subject === "math"
+            ? (targetSchool === "e" ? "算数" : "数学")
+            : subjectNames[subject];
+          if (subject === "english" && targetSchool === "e" &&
+              targetGrade >= 3 && targetGrade <= 4 && !isEarlyPlaceholder) {
+            name = "外国語活動";
+          }
+          const label = schoolNames[targetSchool] + targetGrade + "年の" + name;
+          const href = (targetSchool === school
+            ? "../../grade-" + targetGrade + "/"
+            : "../../../" + schoolPaths[targetSchool] + "/grade-" + targetGrade + "/") +
+            subject + "/";
+          const className = direction === "previous" ? "problem-previous" : "problem-next";
+          let link = gradeNav.querySelector("a." + className);
+          if (!link) {
+            link = document.createElement("a");
+            link.className = className;
+            if (direction === "previous") gradeNav.insertBefore(link, gradeNav.firstChild);
+            else gradeNav.appendChild(link);
+          }
+          link.setAttribute("href", href);
+          link.textContent = direction === "previous" ? "← " + label : label + " →";
+        }
+        setGradeLink(previous, "previous");
+        setGradeLink(next, "next");
+      }
+    }
+  }
 })();
