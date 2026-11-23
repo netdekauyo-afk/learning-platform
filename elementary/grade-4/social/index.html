@@ -1,0 +1,1543 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小学4年社会 学習一覧（全90時限） | Classroom</title>
+  <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    /* Colors are defined only in the shared :root palette. */
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(30px, 8vw, 72px) 0;
+    }
+
+    .page-header {
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-title {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-heading);
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .control-link {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .control-link:hover,
+    .control-link:focus-visible {
+      color: var(--color-heading);
+    }
+
+    .control-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .curriculum-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Chapter */
+    details.chapter {
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    summary.chapter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: var(--color-surface);
+      border-left: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.chapter-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chapter-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 245px;
+      color: var(--color-heading);
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--color-surface-hover);
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
+      text-decoration: underline;
+    }
+
+    .chapter-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.85em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.chapter[open] > summary.chapter-summary .chapter-name::before {
+      transform: rotate(90deg);
+    }
+
+    details.chapter[open] > summary.chapter-summary {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-body {
+      padding: 8px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Section */
+    details.section {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    details.section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    summary.section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-hover);
+      border-left: 3px solid var(--color-border-hover);
+      border-radius: 9px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.section-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--color-heading);
+    }
+
+    .section-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.8em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.section[open] > summary.section-summary .section-name::before {
+      transform: rotate(90deg);
+    }
+
+    .count-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Lesson list */
+    .lesson-list {
+      list-style: none;
+      margin: 2px 0 6px;
+      padding: 0 0 0 18px;
+    }
+
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr auto;
+      align-items: baseline;
+      column-gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-item:first-child {
+      border-top: none;
+    }
+
+    .lesson-num {
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-heading);
+      text-align: right;
+    }
+
+    /* Text links (explicitly non-button UI) */
+    .text-link {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .text-link:hover {
+      color: var(--color-heading);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .text-link.is-unpublished {
+      color: var(--color-muted);
+      text-decoration-style: dotted;
+    }
+
+    .text-link.is-unpublished:hover {
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
+    }
+
+    .lesson-title-link {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .lesson-links {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .section-link {
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    /* Toast notification for unpublished links */
+    .status-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      max-width: calc(100vw - 32px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 100;
+    }
+
+    .status-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      summary.chapter-summary {
+        padding: 11px 12px;
+      }
+
+      .chapter-body {
+        padding: 6px 10px 10px;
+      }
+
+      .lesson-list {
+        padding-left: 6px;
+      }
+
+      .lesson-item {
+        grid-template-columns: 2.1rem 1fr;
+        row-gap: 4px;
+        padding: 8px 2px;
+      }
+
+      .lesson-links {
+        grid-column: 2;
+        gap: 18px;
+        padding-top: 2px;
+      }
+    }
+
+    .curriculum-source-notes {
+      margin-top: 13px;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--color-muted);
+    }
+    .curriculum-source-notes p {
+      margin: 3px 0;
+    }
+    .curriculum-source-notes strong {
+      color: var(--color-heading);
+    }
+    .curriculum-source-notes a {
+      color: var(--color-heading);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="math-curriculum social-curriculum">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">小学校</a><span aria-hidden="true"> / </span><a href="../">4年生</a><span aria-hidden="true"> / </span><span aria-current="page">社会</span></nav>
+    <header class="page-header">
+      <h1 class="page-title">小学4年 社会 学習一覧</h1>
+      <div class="page-meta">
+        <span>全5大単元・90時限（選択教材を含む103授業項目）</span>
+        <div class="controls">
+          <button type="button" class="control-link" id="open-all">すべて開く</button>
+          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
+        </div>
+      </div>
+      <div class="curriculum-source-notes" aria-label="教材出典と選択授業について">
+        <p><strong>参照教科書：</strong>東京書籍『新編 新しい社会』小学4年</p>
+        <p><strong>コマ割り原表：</strong><a href="https://docs.google.com/spreadsheets/d/1aRsYMW1yJHFNCXBJnhUf14thLCAuATs_Qgp559xZvXc/edit#gid=296392618" target="_blank" rel="noopener noreferrer">小学3〜6年社会 年間コマ割り（小学4年）</a></p>
+        <p><strong>選択授業：</strong>第49〜51時限は3つの伝統文化事例から1つ、第83〜89時限は松島町（選択A）か登米町（選択B）を選んで学びます。候補はすべて掲載しています。</p>
+      </div>
+    </header>
+    <main class="curriculum-list" id="curriculum-list">
+      <details class="chapter" open data-chapter-index="0" data-chapter-id="es4-c001">
+        <summary class="chapter-summary">
+          <span class="chapter-name">1 わたしたちの県</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es4-c001/questions.html" data-published="false">問題</a>
+            <span class="count-meta">11時限</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" open data-section-id="es4-s001" data-source-subunit="単元の導入（第1単元オリエンテーション）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">単元の導入（第1単元オリエンテーション）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s001" data-kind="section-questions" data-target="sections/es4-s001/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l001" data-seq="1" data-chapter="1 わたしたちの県" data-source-subunit="単元の導入（第1単元オリエンテーション）" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="1/1" data-textbook-pages="P.6〜9" data-learning-objective="知っている都道府県を地図帳でたしかめましょう。" data-learning-activities="地図帳を活用し、自分が住んでいる県の位置を確認する。 / いろいろな都道府県の名所や特産品について調べたことを発表する。">
+                <span class="lesson-num">1</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l001" data-kind="summary" data-target="lessons/es4-l001/summary.html" data-published="false">単元の導入（第1単元オリエンテーション）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l001" data-kind="lesson" data-target="lessons/es4-l001/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l001" data-kind="questions" data-target="lessons/es4-l001/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s002" data-source-subunit="日本地図を広げて">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">日本地図を広げて</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s002" data-kind="section-questions" data-target="sections/es4-s002/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">2時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l002" data-seq="2" data-chapter="1 わたしたちの県" data-source-subunit="日本地図を広げて" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="1/2" data-textbook-pages="P.10〜15" data-learning-objective="日本の都道府県について、それぞれの名前と場所を調べ、白地図にまとめてみましょう。" data-learning-activities="日本地図で自分の県の位置や都道府県の数・構成を確認し、都道府県カードで名称と位置を調べ白地図にまとめる。">
+                <span class="lesson-num">2</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l002" data-kind="summary" data-target="lessons/es4-l002/summary.html" data-published="false">日本地図を広げて（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l002" data-kind="lesson" data-target="lessons/es4-l002/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l002" data-kind="questions" data-target="lessons/es4-l002/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l003" data-seq="3" data-chapter="1 わたしたちの県" data-source-subunit="日本地図を広げて" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="2/2" data-textbook-pages="P.10〜15" data-learning-objective="日本の都道府県について、それぞれの名前と場所を調べ、白地図にまとめてみましょう。" data-learning-activities="日本地図で自分の県の位置や都道府県の数・構成を確認し、都道府県カードで名称と位置を調べ白地図にまとめる。">
+                <span class="lesson-num">3</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l003" data-kind="summary" data-target="lessons/es4-l003/summary.html" data-published="false">日本地図を広げて（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l003" data-kind="lesson" data-target="lessons/es4-l003/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l003" data-kind="questions" data-target="lessons/es4-l003/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s003" data-source-subunit="県の広がり">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">県の広がり</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s003" data-kind="section-questions" data-target="sections/es4-s003/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">8時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l004" data-seq="4" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="1/8" data-textbook-pages="P.16〜17" data-learning-objective="わたしたちが住む宮城県について話し合い、学習問題をつくりましょう。" data-learning-activities="地図帳を活用し、自分たちが住む県や周囲の様子を話し合い、学習問題をつくる。">
+                <span class="lesson-num">4</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l004" data-kind="summary" data-target="lessons/es4-l004/summary.html" data-published="false">日本の中の宮城県</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l004" data-kind="lesson" data-target="lessons/es4-l004/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l004" data-kind="questions" data-target="lessons/es4-l004/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l005" data-seq="5" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="2/8" data-textbook-pages="P.18〜19" data-learning-objective="学習問題をつくり、学習の進め方をかくにんしよう。" data-learning-activities="「つかむ→調べる→まとめる→いかす」の流れを確認し、学習問題について予想を立て調べる計画を立てる。">
+                <span class="lesson-num">5</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l005" data-kind="summary" data-target="lessons/es4-l005/summary.html" data-published="false">学習の進め方</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l005" data-kind="lesson" data-target="lessons/es4-l005/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l005" data-kind="questions" data-target="lessons/es4-l005/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l006" data-seq="6" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="3/8" data-textbook-pages="P.20〜21" data-learning-objective="宮城県では、どのような地形が見られるのでしょうか。" data-learning-activities="県の衛星写真や地勢図・断面図を読み取り、県の地形の特色を考え話し合う。">
+                <span class="lesson-num">6</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l006" data-kind="summary" data-target="lessons/es4-l006/summary.html" data-published="false">宮城県の地形</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l006" data-kind="lesson" data-target="lessons/es4-l006/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l006" data-kind="questions" data-target="lessons/es4-l006/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l007" data-seq="7" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="4/8" data-textbook-pages="P.22〜23" data-learning-objective="宮城県では、どのように土地が使われているのでしょうか。" data-learning-activities="県内の写真や土地利用図を見て、地形とのつながりに着目し県の土地利用の特色を考え話し合う。">
+                <span class="lesson-num">7</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l007" data-kind="summary" data-target="lessons/es4-l007/summary.html" data-published="false">宮城県の土地利用の様子</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l007" data-kind="lesson" data-target="lessons/es4-l007/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l007" data-kind="questions" data-target="lessons/es4-l007/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l008" data-seq="8" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="5/8" data-textbook-pages="P.24〜25" data-learning-objective="宮城県には、どこにどのような市や町、村があるのでしょうか。" data-learning-activities="県内の主な市町村の名称、位置、特徴などを調べ発表し合う。">
+                <span class="lesson-num">8</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l008" data-kind="summary" data-target="lessons/es4-l008/summary.html" data-published="false">宮城県の市や町、村</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l008" data-kind="lesson" data-target="lessons/es4-l008/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l008" data-kind="questions" data-target="lessons/es4-l008/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l009" data-seq="9" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="6/8" data-textbook-pages="P.26〜27" data-learning-objective="宮城県の交通は、どのように広がっているのでしょうか。" data-learning-activities="県内の交通機関を調べ、宮城県の交通の広がり方について考え話し合う。">
+                <span class="lesson-num">9</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l009" data-kind="summary" data-target="lessons/es4-l009/summary.html" data-published="false">宮城県の交通の広がり</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l009" data-kind="lesson" data-target="lessons/es4-l009/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l009" data-kind="questions" data-target="lessons/es4-l009/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l010" data-seq="10" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="7/8" data-textbook-pages="P.28〜29" data-learning-objective="宮城県には、どのあたりにどのような産業があるのでしょうか。" data-learning-activities="県内の産業を地図帳や資料で調べ、白地図にまとめ産業の特色について話し合う。">
+                <span class="lesson-num">10</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l010" data-kind="summary" data-target="lessons/es4-l010/summary.html" data-published="false">宮城県の主な産業</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l010" data-kind="lesson" data-target="lessons/es4-l010/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l010" data-kind="questions" data-target="lessons/es4-l010/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l011" data-seq="11" data-chapter="1 わたしたちの県" data-source-subunit="県の広がり" data-month="4月" data-choice="" data-choice-variant="" data-unit-period="8/8" data-textbook-pages="P.30〜31" data-learning-objective="調べたことをもとに、宮城県の特色について話し合い、パンフレットをつくりましょう。" data-learning-activities="調べたことをもとに県の特色を話し合い、県の紹介パンフレットをつくる。">
+                <span class="lesson-num">11</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l011" data-kind="summary" data-target="lessons/es4-l011/summary.html" data-published="false">宮城県の特色をまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l011" data-kind="lesson" data-target="lessons/es4-l011/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l011" data-kind="questions" data-target="lessons/es4-l011/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="1" data-chapter-id="es4-c002">
+        <summary class="chapter-summary">
+          <span class="chapter-name">2 住みよいくらしをつくる</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es4-c002/questions.html" data-published="false">問題</a>
+            <span class="count-meta">24時限</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es4-s004" data-source-subunit="単元の導入（第2単元オリエンテーション）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">単元の導入（第2単元オリエンテーション）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s004" data-kind="section-questions" data-target="sections/es4-s004/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l012" data-seq="12" data-chapter="2 住みよいくらしをつくる" data-source-subunit="単元の導入（第2単元オリエンテーション）" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="1/1" data-textbook-pages="P.32〜33" data-learning-objective="だれが何をしているか、絵を見て考えてみましょう。" data-learning-activities="教科書のイラストを見て、住みよいくらしをつくるためのしくみや人々の働きを探し話し合う。">
+                <span class="lesson-num">12</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l012" data-kind="summary" data-target="lessons/es4-l012/summary.html" data-published="false">単元の導入（第2単元オリエンテーション）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l012" data-kind="lesson" data-target="lessons/es4-l012/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l012" data-kind="questions" data-target="lessons/es4-l012/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s005" data-source-subunit="水はどこから">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">水はどこから</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s005" data-kind="section-questions" data-target="sections/es4-s005/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">11時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l013" data-seq="13" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="1/11" data-textbook-pages="P.34〜35" data-learning-objective="わたしたちは、毎日どのくらいの水を使っているのでしょうか。" data-learning-activities="日頃の水を使う場面や量、市の水の使用量と人口の変化のグラフを読み取り、水の大切さを考える。">
+                <span class="lesson-num">13</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l013" data-kind="summary" data-target="lessons/es4-l013/summary.html" data-published="false">わたしたちが使う水の量</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l013" data-kind="lesson" data-target="lessons/es4-l013/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l013" data-kind="questions" data-target="lessons/es4-l013/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l014" data-seq="14" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="2/11" data-textbook-pages="P.36〜37" data-learning-objective="水がどこからどのように送られてくるのかを考え、学習問題をつくりましょう。" data-learning-activities="水道管や水道メーターの観察・水の通り道のイラストから疑問を出し合い、学習問題と学習計画を立てる。">
+                <span class="lesson-num">14</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l014" data-kind="summary" data-target="lessons/es4-l014/summary.html" data-published="false">じゃ口の水が通る道</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l014" data-kind="lesson" data-target="lessons/es4-l014/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l014" data-kind="questions" data-target="lessons/es4-l014/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l015" data-seq="15" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="3/11" data-textbook-pages="P.38〜39" data-learning-objective="じょう水場では、どのようなことをしているのでしょうか。" data-learning-activities="浄水場の写真や資料を見て、浄水場を見学し、その働きについて話し合う。">
+                <span class="lesson-num">15</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l015" data-kind="summary" data-target="lessons/es4-l015/summary.html" data-published="false">きれいな水をつくる（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l015" data-kind="lesson" data-target="lessons/es4-l015/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l015" data-kind="questions" data-target="lessons/es4-l015/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l016" data-seq="16" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="4/11" data-textbook-pages="P.38〜39" data-learning-objective="じょう水場では、どのようなことをしているのでしょうか。" data-learning-activities="浄水場の写真や資料を見て、浄水場を見学し、その働きについて話し合う。">
+                <span class="lesson-num">16</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l016" data-kind="summary" data-target="lessons/es4-l016/summary.html" data-published="false">きれいな水をつくる（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l016" data-kind="lesson" data-target="lessons/es4-l016/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l016" data-kind="questions" data-target="lessons/es4-l016/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l017" data-seq="17" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="5/11" data-textbook-pages="P.40〜41" data-learning-objective="じょう水場では、安全できれいな水をつくるためにどのようなくふうをしているのでしょうか。" data-learning-activities="「水質けんさをする吉岡さんの話」から、浄水場で働いている人の願いや工夫について話し合う。">
+                <span class="lesson-num">17</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l017" data-kind="summary" data-target="lessons/es4-l017/summary.html" data-published="false">安全できれいな水をつくるために（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l017" data-kind="lesson" data-target="lessons/es4-l017/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l017" data-kind="questions" data-target="lessons/es4-l017/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l018" data-seq="18" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="6/11" data-textbook-pages="P.40〜41" data-learning-objective="じょう水場では、安全できれいな水をつくるためにどのようなくふうをしているのでしょうか。" data-learning-activities="「水質けんさをする吉岡さんの話」から、浄水場で働いている人の願いや工夫について話し合う。">
+                <span class="lesson-num">18</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l018" data-kind="summary" data-target="lessons/es4-l018/summary.html" data-published="false">安全できれいな水をつくるために（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l018" data-kind="lesson" data-target="lessons/es4-l018/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l018" data-kind="questions" data-target="lessons/es4-l018/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l019" data-seq="19" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="7/11" data-textbook-pages="P.42〜43" data-learning-objective="じょう水場ができる前は、どのようにして水を手に入れていたのでしょうか。" data-learning-activities="金沢市の水道の移り変わりを調べ、水道の歴史年表などから水道施設の役割を考え話し合う。">
+                <span class="lesson-num">19</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l019" data-kind="summary" data-target="lessons/es4-l019/summary.html" data-published="false">金沢市の水道のうつり変わり</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l019" data-kind="lesson" data-target="lessons/es4-l019/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l019" data-kind="questions" data-target="lessons/es4-l019/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l020" data-seq="20" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="8/11" data-textbook-pages="P.44〜45" data-learning-objective="ダムやまわりの森にはどのような働きがあるのでしょうか。" data-learning-activities="ダムの働きや水源の森の働き、水源の森を守る取り組みについて調べ話し合う。">
+                <span class="lesson-num">20</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l020" data-kind="summary" data-target="lessons/es4-l020/summary.html" data-published="false">ダムや水げんの森の働きを調べる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l020" data-kind="lesson" data-target="lessons/es4-l020/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l020" data-kind="questions" data-target="lessons/es4-l020/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l021" data-seq="21" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="9/11" data-textbook-pages="P.46〜47" data-learning-objective="水はどのようにつくられ、送られてくるのか話し合い、黒板に整理しましょう。" data-learning-activities="これまでに調べたことをふり返り、水が送られてくるまでの流れを図に整理する。">
+                <span class="lesson-num">21</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l021" data-kind="summary" data-target="lessons/es4-l021/summary.html" data-published="false">水の流れをまとめる（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l021" data-kind="lesson" data-target="lessons/es4-l021/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l021" data-kind="questions" data-target="lessons/es4-l021/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l022" data-seq="22" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="10/11" data-textbook-pages="P.46〜47" data-learning-objective="水はどのようにつくられ、送られてくるのか話し合い、黒板に整理しましょう。" data-learning-activities="これまでに調べたことをふり返り、水が送られてくるまでの流れを図に整理する。">
+                <span class="lesson-num">22</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l022" data-kind="summary" data-target="lessons/es4-l022/summary.html" data-published="false">水の流れをまとめる（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l022" data-kind="lesson" data-target="lessons/es4-l022/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l022" data-kind="questions" data-target="lessons/es4-l022/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l023" data-seq="23" data-chapter="2 住みよいくらしをつくる" data-source-subunit="水はどこから" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="11/11" data-textbook-pages="P.48〜49" data-learning-objective="かぎりある水を使い続けるために、自分たちにできることを考えてみましょう。" data-learning-activities="大切な水の使い方について話し合い、自分にできることを考え地域の環境を守る活動に参加する。">
+                <span class="lesson-num">23</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l023" data-kind="summary" data-target="lessons/es4-l023/summary.html" data-published="false">大切な水のために</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l023" data-kind="lesson" data-target="lessons/es4-l023/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l023" data-kind="questions" data-target="lessons/es4-l023/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s006" data-source-subunit="ごみのしょりと利用">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">ごみのしょりと利用</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s006" data-kind="section-questions" data-target="sections/es4-s006/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">12時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l024" data-seq="24" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="1/12" data-textbook-pages="P.54〜55" data-learning-objective="家では、ごみをどのように出し、出されたごみはどこへ行くのでしょうか。" data-learning-activities="家庭のごみの出し方や種類別ごみの量のグラフ、ごみステーションのきまりを話し合う。">
+                <span class="lesson-num">24</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l024" data-kind="summary" data-target="lessons/es4-l024/summary.html" data-published="false">ごみの種類と分別</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l024" data-kind="lesson" data-target="lessons/es4-l024/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l024" data-kind="questions" data-target="lessons/es4-l024/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l025" data-seq="25" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="2/12" data-textbook-pages="P.56〜57" data-learning-objective="わたしたちが出したごみのゆくえを話し合い、学習問題をつくりましょう。" data-learning-activities="集められたごみのゆくえを調べ、疑問を話し合って学習問題と学習計画を立てる。">
+                <span class="lesson-num">25</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l025" data-kind="summary" data-target="lessons/es4-l025/summary.html" data-published="false">ごみのゆくえ</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l025" data-kind="lesson" data-target="lessons/es4-l025/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l025" data-kind="questions" data-target="lessons/es4-l025/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l026" data-seq="26" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="3/12" data-textbook-pages="P.58〜59" data-learning-objective="せいそう工場では、ごみをどのようにもやしているのでしょうか。" data-learning-activities="ごみを燃やして処理する理由を考え話し合う。">
+                <span class="lesson-num">26</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l026" data-kind="summary" data-target="lessons/es4-l026/summary.html" data-published="false">もえるごみのゆくえ（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l026" data-kind="lesson" data-target="lessons/es4-l026/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l026" data-kind="questions" data-target="lessons/es4-l026/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l027" data-seq="27" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="4/12" data-textbook-pages="P.58〜59" data-learning-objective="せいそう工場では、ごみをどのようにもやしているのでしょうか。" data-learning-activities="ごみを燃やして処理する理由を考え話し合う。">
+                <span class="lesson-num">27</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l027" data-kind="summary" data-target="lessons/es4-l027/summary.html" data-published="false">もえるごみのゆくえ（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l027" data-kind="lesson" data-target="lessons/es4-l027/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l027" data-kind="questions" data-target="lessons/es4-l027/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l028" data-seq="28" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="5/12" data-textbook-pages="P.60〜61" data-learning-objective="ごみをもやすときやもやした後のくふうには、どのようなものがあるのでしょうか。" data-learning-activities="熱や灰の利用、再利用できないごみの処理、清掃工場の工夫や課題について調べる。">
+                <span class="lesson-num">28</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l028" data-kind="summary" data-target="lessons/es4-l028/summary.html" data-published="false">もやすときやもやした後のくふう（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l028" data-kind="lesson" data-target="lessons/es4-l028/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l028" data-kind="questions" data-target="lessons/es4-l028/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l029" data-seq="29" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="6/12" data-textbook-pages="P.60〜61" data-learning-objective="ごみをもやすときやもやした後のくふうには、どのようなものがあるのでしょうか。" data-learning-activities="熱や灰の利用、再利用できないごみの処理、清掃工場の工夫や課題について調べる。">
+                <span class="lesson-num">29</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l029" data-kind="summary" data-target="lessons/es4-l029/summary.html" data-published="false">もやすときやもやした後のくふう（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l029" data-kind="lesson" data-target="lessons/es4-l029/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l029" data-kind="questions" data-target="lessons/es4-l029/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l030" data-seq="30" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="7/12" data-textbook-pages="P.62〜63" data-learning-objective="そ大ごみやしげん化物は、どのようにしょりされているのでしょうか。" data-learning-activities="資源化物や粗大ごみの処理をリサイクルプラザ見学で調べ、身のまわりのリサイクルについて話し合う。">
+                <span class="lesson-num">30</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l030" data-kind="summary" data-target="lessons/es4-l030/summary.html" data-published="false">人々の協力でごみが生まれ変わる（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l030" data-kind="lesson" data-target="lessons/es4-l030/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l030" data-kind="questions" data-target="lessons/es4-l030/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l031" data-seq="31" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="8/12" data-textbook-pages="P.62〜63" data-learning-objective="そ大ごみやしげん化物は、どのようにしょりされているのでしょうか。" data-learning-activities="資源化物や粗大ごみの処理をリサイクルプラザ見学で調べ、身のまわりのリサイクルについて話し合う。">
+                <span class="lesson-num">31</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l031" data-kind="summary" data-target="lessons/es4-l031/summary.html" data-published="false">人々の協力でごみが生まれ変わる（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l031" data-kind="lesson" data-target="lessons/es4-l031/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l031" data-kind="questions" data-target="lessons/es4-l031/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l032" data-seq="32" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="9/12" data-textbook-pages="P.64〜65" data-learning-objective="ごみしょりはどのようにうつり変わり、新たにどのような課題が生まれているのでしょうか。" data-learning-activities="ごみ処理方法の移り変わりや新たな問題について調べ話し合う。">
+                <span class="lesson-num">32</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l032" data-kind="summary" data-target="lessons/es4-l032/summary.html" data-published="false">ごみしょりのうつり変わりと課題（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l032" data-kind="lesson" data-target="lessons/es4-l032/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l032" data-kind="questions" data-target="lessons/es4-l032/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l033" data-seq="33" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="10/12" data-textbook-pages="P.64〜65" data-learning-objective="ごみしょりはどのようにうつり変わり、新たにどのような課題が生まれているのでしょうか。" data-learning-activities="ごみ処理方法の移り変わりや新たな問題について調べ話し合う。">
+                <span class="lesson-num">33</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l033" data-kind="summary" data-target="lessons/es4-l033/summary.html" data-published="false">ごみしょりのうつり変わりと課題（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l033" data-kind="lesson" data-target="lessons/es4-l033/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l033" data-kind="questions" data-target="lessons/es4-l033/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l034" data-seq="34" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="11/12" data-textbook-pages="P.66〜67" data-learning-objective="ごみのしょりについて、わかったことや考えたことを図にまとめましょう。" data-learning-activities="手順にしたがって図を作成し、わかったことや考えたことを話し合いノートにまとめる。">
+                <span class="lesson-num">34</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l034" data-kind="summary" data-target="lessons/es4-l034/summary.html" data-published="false">ごみのしょりについてまとめる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l034" data-kind="lesson" data-target="lessons/es4-l034/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l034" data-kind="questions" data-target="lessons/es4-l034/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l035" data-seq="35" data-chapter="2 住みよいくらしをつくる" data-source-subunit="ごみのしょりと利用" data-month="5〜7月" data-choice="" data-choice-variant="" data-unit-period="12/12" data-textbook-pages="P.68〜69" data-learning-objective="ごみをへらすために、自分たちにできることを考えてみましょう。" data-learning-activities="家庭・学校・商店・地域の取り組みを発表し合い、自分たちにできることを考え話し合う。">
+                <span class="lesson-num">35</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l035" data-kind="summary" data-target="lessons/es4-l035/summary.html" data-published="false">自分たちにできることを考える</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l035" data-kind="lesson" data-target="lessons/es4-l035/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l035" data-kind="questions" data-target="lessons/es4-l035/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="2" data-chapter-id="es4-c003">
+        <summary class="chapter-summary">
+          <span class="chapter-name">3 自然災害からくらしを守る</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es4-c003/questions.html" data-published="false">問題</a>
+            <span class="count-meta">10時限</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <details class="section" data-section-id="es4-s007" data-source-subunit="単元の導入（第3単元オリエンテーション）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">単元の導入（第3単元オリエンテーション）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s007" data-kind="section-questions" data-target="sections/es4-s007/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l036" data-seq="36" data-chapter="3 自然災害からくらしを守る" data-source-subunit="単元の導入（第3単元オリエンテーション）" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="1/1" data-textbook-pages="P.72〜73" data-learning-objective="わたしたちが住んでいる県では、これまでにどのような自然災害が起きてきたのでしょうか。" data-learning-activities="県内各地の自然災害の写真や年表を見て、気づいたことや考えたことを話し合う。">
+                <span class="lesson-num">36</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l036" data-kind="summary" data-target="lessons/es4-l036/summary.html" data-published="false">単元の導入（第3単元オリエンテーション）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l036" data-kind="lesson" data-target="lessons/es4-l036/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l036" data-kind="questions" data-target="lessons/es4-l036/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s008" data-source-subunit="風水害からくらしを守る">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">風水害からくらしを守る</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s008" data-kind="section-questions" data-target="sections/es4-s008/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">9時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l037" data-seq="37" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="1/9" data-textbook-pages="P.74〜75" data-learning-objective="風水害からくらしを守る人々の働きについて考え、学習問題をつくりましょう。" data-learning-activities="風水害の写真や市役所職員の話から学習問題をつくり、予想と学習計画を立てる。">
+                <span class="lesson-num">37</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l037" data-kind="summary" data-target="lessons/es4-l037/summary.html" data-published="false">風水害から人々を守る</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l037" data-kind="lesson" data-target="lessons/es4-l037/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l037" data-kind="questions" data-target="lessons/es4-l037/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l038" data-seq="38" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="2/9" data-textbook-pages="P.76〜77" data-learning-objective="風水害からくらしを守るために、人々はどのようなことをしてきたのでしょうか。" data-learning-activities="写真や年表からこれまでの風水害と、誰がどのように対処してきたかを整理する。">
+                <span class="lesson-num">38</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l038" data-kind="summary" data-target="lessons/es4-l038/summary.html" data-published="false">くり返し起きてきた風水害</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l038" data-kind="lesson" data-target="lessons/es4-l038/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l038" data-kind="questions" data-target="lessons/es4-l038/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l039" data-seq="39" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="3/9" data-textbook-pages="P.78〜79" data-learning-objective="千葉県では、風水害にそなえて、どのような取り組みをしているのでしょうか。" data-learning-activities="千葉県の風水害への備えや防災情報ウェブサイトについて調べ話し合う。">
+                <span class="lesson-num">39</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l039" data-kind="summary" data-target="lessons/es4-l039/summary.html" data-published="false">県の取り組み</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l039" data-kind="lesson" data-target="lessons/es4-l039/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l039" data-kind="questions" data-target="lessons/es4-l039/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l040" data-seq="40" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="4/9" data-textbook-pages="P.80〜81" data-learning-objective="千葉市では、風水害にそなえて、どのような取り組みをしているのでしょうか。" data-learning-activities="千葉市の取り組みや関係機関との連携、ハザードマップを読み取り話し合う。">
+                <span class="lesson-num">40</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l040" data-kind="summary" data-target="lessons/es4-l040/summary.html" data-published="false">市の取り組み</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l040" data-kind="lesson" data-target="lessons/es4-l040/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l040" data-kind="questions" data-target="lessons/es4-l040/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l041" data-seq="41" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="5/9" data-textbook-pages="P.82〜83" data-learning-objective="地いきの人々は、風水害にそなえて、どのような取り組みをしているのでしょうか。" data-learning-activities="避難所運営委員会の取り組みや地域で守る活動を大切にする理由を調べ話し合う。">
+                <span class="lesson-num">41</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l041" data-kind="summary" data-target="lessons/es4-l041/summary.html" data-published="false">地いきの人々の取り組み</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l041" data-kind="lesson" data-target="lessons/es4-l041/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l041" data-kind="questions" data-target="lessons/es4-l041/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l042" data-seq="42" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="6/9" data-textbook-pages="P.84〜85" data-learning-objective="家庭では、風水害にそなえて、どのような取り組みをしているのでしょうか。" data-learning-activities="家庭での風水害への備えについてインタビューし、クラスで整理して話し合う。">
+                <span class="lesson-num">42</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l042" data-kind="summary" data-target="lessons/es4-l042/summary.html" data-published="false">自助の取り組み</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l042" data-kind="lesson" data-target="lessons/es4-l042/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l042" data-kind="questions" data-target="lessons/es4-l042/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l043" data-seq="43" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="7/9" data-textbook-pages="P.86〜87" data-learning-objective="風水害からわたしたちのくらしを守るために、だれがどのような取り組みをしているのかノートにまとめましょう。" data-learning-activities="風水害からくらしを守る働きをふり返り、ノートに図で整理し話し合う。">
+                <span class="lesson-num">43</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l043" data-kind="summary" data-target="lessons/es4-l043/summary.html" data-published="false">ノートにまとめる（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l043" data-kind="lesson" data-target="lessons/es4-l043/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l043" data-kind="questions" data-target="lessons/es4-l043/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l044" data-seq="44" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="8/9" data-textbook-pages="P.86〜87" data-learning-objective="風水害からわたしたちのくらしを守るために、だれがどのような取り組みをしているのかノートにまとめましょう。" data-learning-activities="風水害からくらしを守る働きをふり返り、ノートに図で整理し話し合う。">
+                <span class="lesson-num">44</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l044" data-kind="summary" data-target="lessons/es4-l044/summary.html" data-published="false">ノートにまとめる（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l044" data-kind="lesson" data-target="lessons/es4-l044/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l044" data-kind="questions" data-target="lessons/es4-l044/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l045" data-seq="45" data-chapter="3 自然災害からくらしを守る" data-source-subunit="風水害からくらしを守る" data-month="9〜10月" data-choice="" data-choice-variant="" data-unit-period="9/9" data-textbook-pages="P.88〜89" data-learning-objective="風水害にそなえて、わたしたちにできることは何でしょうか。" data-learning-activities="マイ・タイムラインをつくり、自分たちにできる取り組みを発表する。">
+                <span class="lesson-num">45</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l045" data-kind="summary" data-target="lessons/es4-l045/summary.html" data-published="false">マイ・タイムラインでそなえを点けん</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l045" data-kind="lesson" data-target="lessons/es4-l045/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l045" data-kind="questions" data-target="lessons/es4-l045/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="3" data-chapter-id="es4-c004">
+        <summary class="chapter-summary">
+          <span class="chapter-name">4 きょう土の伝統・文化と先人たち</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es4-c004/questions.html" data-published="false">問題</a>
+            <span class="count-meta">22時限</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <p class="curriculum-source-notes">選択授業：第49〜51時限は「道後温泉本館」「宇和島市の八ツ鹿おどり」「新居浜太鼓祭り」から1つを選びます。</p>
+          <details class="section" data-section-id="es4-s009" data-source-subunit="単元の導入（第4単元オリエンテーション）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">単元の導入（第4単元オリエンテーション）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s009" data-kind="section-questions" data-target="sections/es4-s009/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l046" data-seq="46" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="単元の導入（第4単元オリエンテーション）" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="1/1" data-textbook-pages="P.94〜95" data-learning-objective="わたしたちの身のまわりには、どのような古いものがあるのでしょうか。" data-learning-activities="それぞれが気づいた、身のまわりの古いものについて話し合う。">
+                <span class="lesson-num">46</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l046" data-kind="summary" data-target="lessons/es4-l046/summary.html" data-published="false">単元の導入（第4単元オリエンテーション）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l046" data-kind="lesson" data-target="lessons/es4-l046/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l046" data-kind="questions" data-target="lessons/es4-l046/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s010" data-source-subunit="残したいもの 伝えたいもの">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">残したいもの 伝えたいもの</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s010" data-kind="section-questions" data-target="sections/es4-s010/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">2時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l047" data-seq="47" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="1/9" data-textbook-pages="P.96〜97" data-learning-objective="県内に古くから残るものについて調べ、学習問題をつくりましょう。" data-learning-activities="県内に残る古いものの資料から学習問題をつくり、調べるものを1つ選択して計画を立てる。">
+                <span class="lesson-num">47</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l047" data-kind="summary" data-target="lessons/es4-l047/summary.html" data-published="false">愛媛県に古くから残るもの（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l047" data-kind="lesson" data-target="lessons/es4-l047/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l047" data-kind="questions" data-target="lessons/es4-l047/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l048" data-seq="48" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="2/9" data-textbook-pages="P.96〜97" data-learning-objective="県内に古くから残るものについて調べ、学習問題をつくりましょう。" data-learning-activities="県内に残る古いものの資料から学習問題をつくり、調べるものを1つ選択して計画を立てる。">
+                <span class="lesson-num">48</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l048" data-kind="summary" data-target="lessons/es4-l048/summary.html" data-published="false">愛媛県に古くから残るもの（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l048" data-kind="lesson" data-target="lessons/es4-l048/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l048" data-kind="questions" data-target="lessons/es4-l048/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s011" data-source-subunit="残したいもの 伝えたいもの" data-choice="選択（事例）" data-choice-variant="case1">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">残したいもの 伝えたいもの（選択事例1：道後温泉本館）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s011" data-kind="section-questions" data-target="sections/es4-s011/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l049-case1" data-seq="49" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case1" data-unit-period="3/9" data-textbook-pages="P.98〜99" data-learning-objective="道後温泉本館は、どのようにして残されてきたのでしょうか。" data-learning-activities="道後温泉本館への質問内容を考え、年表資料等をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">49</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case1" data-kind="summary" data-target="lessons/es4-l049-case1/summary.html" data-published="false">【選択（事例）】(1)道後温泉本館（1/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case1" data-kind="lesson" data-target="lessons/es4-l049-case1/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case1" data-kind="questions" data-target="lessons/es4-l049-case1/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l050-case1" data-seq="50" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case1" data-unit-period="4/9" data-textbook-pages="P.98〜99" data-learning-objective="道後温泉本館は、どのようにして残されてきたのでしょうか。" data-learning-activities="道後温泉本館への質問内容を考え、年表資料等をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">50</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case1" data-kind="summary" data-target="lessons/es4-l050-case1/summary.html" data-published="false">【選択（事例）】(1)道後温泉本館（2/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case1" data-kind="lesson" data-target="lessons/es4-l050-case1/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case1" data-kind="questions" data-target="lessons/es4-l050-case1/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l051-case1" data-seq="51" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case1" data-unit-period="5/9" data-textbook-pages="P.98〜99" data-learning-objective="道後温泉本館は、どのようにして残されてきたのでしょうか。" data-learning-activities="道後温泉本館への質問内容を考え、年表資料等をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">51</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case1" data-kind="summary" data-target="lessons/es4-l051-case1/summary.html" data-published="false">【選択（事例）】(1)道後温泉本館（3/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case1" data-kind="lesson" data-target="lessons/es4-l051-case1/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case1" data-kind="questions" data-target="lessons/es4-l051-case1/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s012" data-source-subunit="残したいもの 伝えたいもの" data-choice="選択（事例）" data-choice-variant="case2">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">残したいもの 伝えたいもの（選択事例2：宇和島市の八ツ鹿おどり）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s012" data-kind="section-questions" data-target="sections/es4-s012/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l049-case2" data-seq="49" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case2" data-unit-period="3/9" data-textbook-pages="P.100〜101" data-learning-objective="八ツ鹿おどりは、どのようにして受けつがれてきたのでしょうか。" data-learning-activities="パンフレットや保存会へのインタビュー・年表資料をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">49</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case2" data-kind="summary" data-target="lessons/es4-l049-case2/summary.html" data-published="false">【選択（事例）】(2)宇和島市の八ツ鹿おどり（1/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case2" data-kind="lesson" data-target="lessons/es4-l049-case2/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case2" data-kind="questions" data-target="lessons/es4-l049-case2/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l050-case2" data-seq="50" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case2" data-unit-period="4/9" data-textbook-pages="P.100〜101" data-learning-objective="八ツ鹿おどりは、どのようにして受けつがれてきたのでしょうか。" data-learning-activities="パンフレットや保存会へのインタビュー・年表資料をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">50</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case2" data-kind="summary" data-target="lessons/es4-l050-case2/summary.html" data-published="false">【選択（事例）】(2)宇和島市の八ツ鹿おどり（2/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case2" data-kind="lesson" data-target="lessons/es4-l050-case2/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case2" data-kind="questions" data-target="lessons/es4-l050-case2/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l051-case2" data-seq="51" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case2" data-unit-period="5/9" data-textbook-pages="P.100〜101" data-learning-objective="八ツ鹿おどりは、どのようにして受けつがれてきたのでしょうか。" data-learning-activities="パンフレットや保存会へのインタビュー・年表資料をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">51</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case2" data-kind="summary" data-target="lessons/es4-l051-case2/summary.html" data-published="false">【選択（事例）】(2)宇和島市の八ツ鹿おどり（3/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case2" data-kind="lesson" data-target="lessons/es4-l051-case2/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case2" data-kind="questions" data-target="lessons/es4-l051-case2/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s013" data-source-subunit="残したいもの 伝えたいもの" data-choice="選択（事例）" data-choice-variant="case3">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">残したいもの 伝えたいもの（選択事例3：新居浜太鼓祭り）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s013" data-kind="section-questions" data-target="sections/es4-s013/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">3時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l049-case3" data-seq="49" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case3" data-unit-period="3/9" data-textbook-pages="P.102〜103" data-learning-objective="新居浜太鼓祭りは、どのようにして続けられてきたのでしょうか。" data-learning-activities="太鼓祭りの写真やインタビュー・太鼓台ミュージアム見学をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">49</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case3" data-kind="summary" data-target="lessons/es4-l049-case3/summary.html" data-published="false">【選択（事例）】(3)新居浜太鼓祭り（1/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case3" data-kind="lesson" data-target="lessons/es4-l049-case3/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l049-case3" data-kind="questions" data-target="lessons/es4-l049-case3/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l050-case3" data-seq="50" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case3" data-unit-period="4/9" data-textbook-pages="P.102〜103" data-learning-objective="新居浜太鼓祭りは、どのようにして続けられてきたのでしょうか。" data-learning-activities="太鼓祭りの写真やインタビュー・太鼓台ミュージアム見学をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">50</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case3" data-kind="summary" data-target="lessons/es4-l050-case3/summary.html" data-published="false">【選択（事例）】(3)新居浜太鼓祭り（2/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case3" data-kind="lesson" data-target="lessons/es4-l050-case3/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l050-case3" data-kind="questions" data-target="lessons/es4-l050-case3/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l051-case3" data-seq="51" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="選択（事例）" data-choice-variant="case3" data-unit-period="5/9" data-textbook-pages="P.102〜103" data-learning-objective="新居浜太鼓祭りは、どのようにして続けられてきたのでしょうか。" data-learning-activities="太鼓祭りの写真やインタビュー・太鼓台ミュージアム見学をもとに調べ発表の準備を行う。">
+                <span class="lesson-num">51</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case3" data-kind="summary" data-target="lessons/es4-l051-case3/summary.html" data-published="false">【選択（事例）】(3)新居浜太鼓祭り（3/3時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case3" data-kind="lesson" data-target="lessons/es4-l051-case3/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l051-case3" data-kind="questions" data-target="lessons/es4-l051-case3/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s014" data-source-subunit="残したいもの 伝えたいもの">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">残したいもの 伝えたいもの</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s014" data-kind="section-questions" data-target="sections/es4-s014/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">4時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l052" data-seq="52" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="6/9" data-textbook-pages="P.104〜105" data-learning-objective="県内に古くから残るものについて調べたことを伝え合い、表に整理しましょう。" data-learning-activities="調べたことを発表して表にまとめ、共通点や違う点などを話し合う。">
+                <span class="lesson-num">52</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l052" data-kind="summary" data-target="lessons/es4-l052/summary.html" data-published="false">受けつがれてきた古いもの（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l052" data-kind="lesson" data-target="lessons/es4-l052/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l052" data-kind="questions" data-target="lessons/es4-l052/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l053" data-seq="53" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="7/9" data-textbook-pages="P.104〜105" data-learning-objective="県内に古くから残るものについて調べたことを伝え合い、表に整理しましょう。" data-learning-activities="調べたことを発表して表にまとめ、共通点や違う点などを話し合う。">
+                <span class="lesson-num">53</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l053" data-kind="summary" data-target="lessons/es4-l053/summary.html" data-published="false">受けつがれてきた古いもの（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l053" data-kind="lesson" data-target="lessons/es4-l053/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l053" data-kind="questions" data-target="lessons/es4-l053/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l054" data-seq="54" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="8/9" data-textbook-pages="P.106〜107" data-learning-objective="地いきに古くから残るものを受けつぐために、自分たちにできることを考えてみましょう。" data-learning-activities="身近な地域に古くから残るものを受け継ぐために、自分たちにできることを話し合う。">
+                <span class="lesson-num">54</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l054" data-kind="summary" data-target="lessons/es4-l054/summary.html" data-published="false">身近な地いきを見直そう（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l054" data-kind="lesson" data-target="lessons/es4-l054/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l054" data-kind="questions" data-target="lessons/es4-l054/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l055" data-seq="55" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="残したいもの 伝えたいもの" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="9/9" data-textbook-pages="P.106〜107" data-learning-objective="地いきに古くから残るものを受けつぐために、自分たちにできることを考えてみましょう。" data-learning-activities="身近な地域に古くから残るものを受け継ぐために、自分たちにできることを話し合う。">
+                <span class="lesson-num">55</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l055" data-kind="summary" data-target="lessons/es4-l055/summary.html" data-published="false">身近な地いきを見直そう（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l055" data-kind="lesson" data-target="lessons/es4-l055/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l055" data-kind="questions" data-target="lessons/es4-l055/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s015" data-source-subunit="谷に囲まれた台地に水を引く">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">谷に囲まれた台地に水を引く</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s015" data-kind="section-questions" data-target="sections/es4-s015/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">12時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l056" data-seq="56" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="1/12" data-textbook-pages="P.108〜109" data-learning-objective="通潤橋を観察して、どのようなことがわかるのかを話し合いましょう。" data-learning-activities="通潤橋の写真を見て気づいたことを発表し、なぜこのような橋をつくったのか考える。">
+                <span class="lesson-num">56</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l056" data-kind="summary" data-target="lessons/es4-l056/summary.html" data-published="false">石でできた橋</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l056" data-kind="lesson" data-target="lessons/es4-l056/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l056" data-kind="questions" data-target="lessons/es4-l056/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l057" data-seq="57" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="2/12" data-textbook-pages="P.110〜111" data-learning-objective="白糸台地に住んでいた人々の願いと地形の特ちょうをもとに、学習問題をつくりましょう。" data-learning-activities="白糸台地の地形や人々の願いを調べ、学習問題と学習計画を立てる。">
+                <span class="lesson-num">57</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l057" data-kind="summary" data-target="lessons/es4-l057/summary.html" data-published="false">昔の人々の願い</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l057" data-kind="lesson" data-target="lessons/es4-l057/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l057" data-kind="questions" data-target="lessons/es4-l057/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l058" data-seq="58" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="3/12" data-textbook-pages="P.112〜113" data-learning-objective="保之助は、どこからどのようにして、白糸台地に水を引こうとしたのでしょうか。" data-learning-activities="布田保之助について読み取り、用水がどのように送られているか調べる。">
+                <span class="lesson-num">58</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l058" data-kind="summary" data-target="lessons/es4-l058/summary.html" data-published="false">用水路としての通潤橋（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l058" data-kind="lesson" data-target="lessons/es4-l058/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l058" data-kind="questions" data-target="lessons/es4-l058/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l059" data-seq="59" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="4/12" data-textbook-pages="P.112〜113" data-learning-objective="保之助は、どこからどのようにして、白糸台地に水を引こうとしたのでしょうか。" data-learning-activities="布田保之助について読み取り、用水がどのように送られているか調べる。">
+                <span class="lesson-num">59</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l059" data-kind="summary" data-target="lessons/es4-l059/summary.html" data-published="false">用水路としての通潤橋（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l059" data-kind="lesson" data-target="lessons/es4-l059/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l059" data-kind="questions" data-target="lessons/es4-l059/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l060" data-seq="60" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="5/12" data-textbook-pages="P.114〜115" data-learning-objective="深い谷に囲まれた台地に、どのようにして水を送ったのでしょうか。" data-learning-activities="地形の課題を整理し、橋より高い土地に水を送った工夫を調べる。">
+                <span class="lesson-num">60</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l060" data-kind="summary" data-target="lessons/es4-l060/summary.html" data-published="false">水を送るくふう（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l060" data-kind="lesson" data-target="lessons/es4-l060/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l060" data-kind="questions" data-target="lessons/es4-l060/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l061" data-seq="61" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="6/12" data-textbook-pages="P.114〜115" data-learning-objective="深い谷に囲まれた台地に、どのようにして水を送ったのでしょうか。" data-learning-activities="地形の課題を整理し、橋より高い土地に水を送った工夫を調べる。">
+                <span class="lesson-num">61</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l061" data-kind="summary" data-target="lessons/es4-l061/summary.html" data-published="false">水を送るくふう（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l061" data-kind="lesson" data-target="lessons/es4-l061/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l061" data-kind="questions" data-target="lessons/es4-l061/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l062" data-seq="62" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="7/12" data-textbook-pages="P.116〜117" data-learning-objective="どのようにして、石の管をつなげて水を通したのでしょうか。" data-learning-activities="水漏れを防ぎ、橋が崩れないように行った工夫を調べる。">
+                <span class="lesson-num">62</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l062" data-kind="summary" data-target="lessons/es4-l062/summary.html" data-published="false">石の管をつなげて水を送るくふう（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l062" data-kind="lesson" data-target="lessons/es4-l062/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l062" data-kind="questions" data-target="lessons/es4-l062/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l063" data-seq="63" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="8/12" data-textbook-pages="P.116〜117" data-learning-objective="どのようにして、石の管をつなげて水を通したのでしょうか。" data-learning-activities="水漏れを防ぎ、橋が崩れないように行った工夫を調べる。">
+                <span class="lesson-num">63</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l063" data-kind="summary" data-target="lessons/es4-l063/summary.html" data-published="false">石の管をつなげて水を送るくふう（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l063" data-kind="lesson" data-target="lessons/es4-l063/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l063" data-kind="questions" data-target="lessons/es4-l063/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l064" data-seq="64" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="9/12" data-textbook-pages="P.118〜119" data-learning-objective="石工たちは、じょうぶな橋にするために、どのようなことをしたのでしょうか。" data-learning-activities="橋本勘五郎や石工たちが丈夫な橋にするために行った工夫を調べる。">
+                <span class="lesson-num">64</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l064" data-kind="summary" data-target="lessons/es4-l064/summary.html" data-published="false">じょうぶな橋にするために</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l064" data-kind="lesson" data-target="lessons/es4-l064/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l064" data-kind="questions" data-target="lessons/es4-l064/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l065" data-seq="65" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="10/12" data-textbook-pages="P.120〜121" data-learning-objective="通潤橋ができて、人々のくらしはどのように変わったのでしょうか。" data-learning-activities="くらしの変化や通潤橋を残す取り組み、熊本地震後の様子を調べる。">
+                <span class="lesson-num">65</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l065" data-kind="summary" data-target="lessons/es4-l065/summary.html" data-published="false">人々のくらしの変化</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l065" data-kind="lesson" data-target="lessons/es4-l065/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l065" data-kind="questions" data-target="lessons/es4-l065/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l066" data-seq="66" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="11/12" data-textbook-pages="P.122〜123" data-learning-objective="調べてわかったことや考えたことを、紙しばいにまとめて発表しましょう。" data-learning-activities="調べたことを紙芝居にまとめて、通潤橋物語をつくる。">
+                <span class="lesson-num">66</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l066" data-kind="summary" data-target="lessons/es4-l066/summary.html" data-published="false">通潤橋物語を紙しばいにまとめよう（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l066" data-kind="lesson" data-target="lessons/es4-l066/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l066" data-kind="questions" data-target="lessons/es4-l066/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l067" data-seq="67" data-chapter="4 きょう土の伝統・文化と先人たち" data-source-subunit="谷に囲まれた台地に水を引く" data-month="10〜12月" data-choice="" data-choice-variant="" data-unit-period="12/12" data-textbook-pages="P.122〜123" data-learning-objective="調べてわかったことや考えたことを、紙しばいにまとめて発表しましょう。" data-learning-activities="調べたことを紙芝居にまとめて、通潤橋物語をつくる。">
+                <span class="lesson-num">67</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l067" data-kind="summary" data-target="lessons/es4-l067/summary.html" data-published="false">通潤橋物語を紙しばいにまとめよう（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l067" data-kind="lesson" data-target="lessons/es4-l067/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l067" data-kind="questions" data-target="lessons/es4-l067/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="4" data-chapter-id="es4-c005">
+        <summary class="chapter-summary">
+          <span class="chapter-name">5 特色ある地いきと人々のくらし</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es4-c005/questions.html" data-published="false">問題</a>
+            <span class="count-meta">23時限</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <p class="curriculum-source-notes">選択授業：第83〜89時限は「選択A：松島町」か「選択B：登米市登米町」を選びます。</p>
+          <details class="section" data-section-id="es4-s016" data-source-subunit="単元の導入（第5単元オリエンテーション）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">単元の導入（第5単元オリエンテーション）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s016" data-kind="section-questions" data-target="sections/es4-s016/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l068" data-seq="68" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="単元の導入（第5単元オリエンテーション）" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="1/1" data-textbook-pages="P.130〜131" data-learning-objective="わたしたちが住む県には、どのような特色をもった地いきがあるのでしょうか。" data-learning-activities="県内各地の写真を見て、地域の特色や人々のくらしについて話し合う。">
+                <span class="lesson-num">68</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l068" data-kind="summary" data-target="lessons/es4-l068/summary.html" data-published="false">単元の導入（第5単元オリエンテーション）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l068" data-kind="lesson" data-target="lessons/es4-l068/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l068" data-kind="questions" data-target="lessons/es4-l068/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s017" data-source-subunit="こけしをつくるまち・蔵王町">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">こけしをつくるまち・蔵王町</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s017" data-kind="section-questions" data-target="sections/es4-s017/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">7時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l069" data-seq="69" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="こけしをつくるまち・蔵王町" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="1/7" data-textbook-pages="P.132〜133" data-learning-objective="写真や資料から、気づいたことを話し合い、学習問題をつくりましょう。" data-learning-activities="写真や統計資料から気づいたことを話し合い、学習問題と学習計画を立てる。">
+                <span class="lesson-num">69</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l069" data-kind="summary" data-target="lessons/es4-l069/summary.html" data-published="false">こけしづくりの伝統を守る蔵王町</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l069" data-kind="lesson" data-target="lessons/es4-l069/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l069" data-kind="questions" data-target="lessons/es4-l069/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l070" data-seq="70" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="こけしをつくるまち・蔵王町" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="2/7" data-textbook-pages="P.134〜135" data-learning-objective="なぜ蔵王町では、こけしづくりがさかんになったのでしょうか。" data-learning-activities="蔵王町でこけしづくりがさかんになった理由を資料で調べ話し合う。">
+                <span class="lesson-num">70</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l070" data-kind="summary" data-target="lessons/es4-l070/summary.html" data-published="false">古くからつくられてきたこけし（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l070" data-kind="lesson" data-target="lessons/es4-l070/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l070" data-kind="questions" data-target="lessons/es4-l070/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l071" data-seq="71" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="こけしをつくるまち・蔵王町" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="3/7" data-textbook-pages="P.134〜135" data-learning-objective="なぜ蔵王町では、こけしづくりがさかんになったのでしょうか。" data-learning-activities="蔵王町でこけしづくりがさかんになった理由を資料で調べ話し合う。">
+                <span class="lesson-num">71</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l071" data-kind="summary" data-target="lessons/es4-l071/summary.html" data-published="false">古くからつくられてきたこけし（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l071" data-kind="lesson" data-target="lessons/es4-l071/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l071" data-kind="questions" data-target="lessons/es4-l071/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l072" data-seq="72" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="こけしをつくるまち・蔵王町" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="4/7" data-textbook-pages="P.136〜137" data-learning-objective="200年以上の伝統をもつこけしは、どのようにつくられてきたのでしょうか。" data-learning-activities="蔵王町のこけしの作り方や受け継がれ方を資料で調べ話し合う。">
+                <span class="lesson-num">72</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l072" data-kind="summary" data-target="lessons/es4-l072/summary.html" data-published="false">遠刈田こけしづくり（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l072" data-kind="lesson" data-target="lessons/es4-l072/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l072" data-kind="questions" data-target="lessons/es4-l072/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l073" data-seq="73" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="こけしをつくるまち・蔵王町" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="5/7" data-textbook-pages="P.136〜137" data-learning-objective="200年以上の伝統をもつこけしは、どのようにつくられてきたのでしょうか。" data-learning-activities="蔵王町のこけしの作り方や受け継がれ方を資料で調べ話し合う。">
+                <span class="lesson-num">73</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l073" data-kind="summary" data-target="lessons/es4-l073/summary.html" data-published="false">遠刈田こけしづくり（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l073" data-kind="lesson" data-target="lessons/es4-l073/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l073" data-kind="questions" data-target="lessons/es4-l073/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l074" data-seq="74" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="こけしをつくるまち・蔵王町" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="6/7" data-textbook-pages="P.138" data-learning-objective="蔵王町では、伝統のこけしづくりを未来へつなげるために、どのような取り組みをしているのでしょうか。" data-learning-activities="伝統のこけしづくりを未来につなぐ取り組みを調べ話し合う。">
+                <span class="lesson-num">74</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l074" data-kind="summary" data-target="lessons/es4-l074/summary.html" data-published="false">未来へつなげるこけしづくり</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l074" data-kind="lesson" data-target="lessons/es4-l074/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l074" data-kind="questions" data-target="lessons/es4-l074/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l075" data-seq="75" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="こけしをつくるまち・蔵王町" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="7/7" data-textbook-pages="P.139" data-learning-objective="こけしをつくる蔵王町について調べたことをもとに、4コマCMをつくりましょう。" data-learning-activities="蔵王町について調べたことをもとに4コマCMをつくる。">
+                <span class="lesson-num">75</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l075" data-kind="summary" data-target="lessons/es4-l075/summary.html" data-published="false">４コマＣＭをつくる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l075" data-kind="lesson" data-target="lessons/es4-l075/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l075" data-kind="questions" data-target="lessons/es4-l075/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s018" data-source-subunit="国際交流に取り組むまち・仙台市">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">国際交流に取り組むまち・仙台市</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s018" data-kind="section-questions" data-target="sections/es4-s018/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">7時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l076" data-seq="76" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="国際交流に取り組むまち・仙台市" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="1/7" data-textbook-pages="P.140〜141" data-learning-objective="写真や資料から、気づいたことを話し合い、学習問題をつくりましょう。" data-learning-activities="写真や統計資料から気づいたことを話し合い、学習問題と学習計画を立てる。">
+                <span class="lesson-num">76</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l076" data-kind="summary" data-target="lessons/es4-l076/summary.html" data-published="false">外国とのつながりが深い仙台市</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l076" data-kind="lesson" data-target="lessons/es4-l076/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l076" data-kind="questions" data-target="lessons/es4-l076/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l077" data-seq="77" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="国際交流に取り組むまち・仙台市" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="2/7" data-textbook-pages="P.142〜143" data-learning-objective="仙台市は、どのような国際交流をしているのでしょうか。" data-learning-activities="仙台市の国際交流の取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">77</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l077" data-kind="summary" data-target="lessons/es4-l077/summary.html" data-published="false">国際交流の取り組み（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l077" data-kind="lesson" data-target="lessons/es4-l077/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l077" data-kind="questions" data-target="lessons/es4-l077/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l078" data-seq="78" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="国際交流に取り組むまち・仙台市" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="3/7" data-textbook-pages="P.142〜143" data-learning-objective="仙台市は、どのような国際交流をしているのでしょうか。" data-learning-activities="仙台市の国際交流の取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">78</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l078" data-kind="summary" data-target="lessons/es4-l078/summary.html" data-published="false">国際交流の取り組み（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l078" data-kind="lesson" data-target="lessons/es4-l078/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l078" data-kind="questions" data-target="lessons/es4-l078/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l079" data-seq="79" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="国際交流に取り組むまち・仙台市" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="4/7" data-textbook-pages="P.144〜145" data-learning-objective="SenTIAでは、どのような取り組みが行われているのでしょうか。" data-learning-activities="SenTIAの交流の取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">79</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l079" data-kind="summary" data-target="lessons/es4-l079/summary.html" data-published="false">共にくらしやすいまちづくり（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l079" data-kind="lesson" data-target="lessons/es4-l079/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l079" data-kind="questions" data-target="lessons/es4-l079/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l080" data-seq="80" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="国際交流に取り組むまち・仙台市" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="5/7" data-textbook-pages="P.144〜145" data-learning-objective="SenTIAでは、どのような取り組みが行われているのでしょうか。" data-learning-activities="SenTIAの交流の取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">80</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l080" data-kind="summary" data-target="lessons/es4-l080/summary.html" data-published="false">共にくらしやすいまちづくり（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l080" data-kind="lesson" data-target="lessons/es4-l080/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l080" data-kind="questions" data-target="lessons/es4-l080/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l081" data-seq="81" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="国際交流に取り組むまち・仙台市" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="6/7" data-textbook-pages="P.146" data-learning-objective="市民は、共にくらすために、どのような取り組みをしているのでしょうか。" data-learning-activities="市民の共にくらすための取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">81</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l081" data-kind="summary" data-target="lessons/es4-l081/summary.html" data-published="false">だれもが安心してくらせるまちを目指して</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l081" data-kind="lesson" data-target="lessons/es4-l081/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l081" data-kind="questions" data-target="lessons/es4-l081/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l082" data-seq="82" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="国際交流に取り組むまち・仙台市" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="7/7" data-textbook-pages="P.147" data-learning-objective="国際交流に取り組む仙台市について調べたことをもとに、4コマCMをつくりましょう。" data-learning-activities="仙台市について調べたことをもとに4コマCMをつくる。">
+                <span class="lesson-num">82</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l082" data-kind="summary" data-target="lessons/es4-l082/summary.html" data-published="false">４コマＣＭをつくる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l082" data-kind="lesson" data-target="lessons/es4-l082/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l082" data-kind="questions" data-target="lessons/es4-l082/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s019" data-source-subunit="美しい景観を生かすまち・松島町" data-choice="選択A" data-choice-variant="a">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">美しい景観を生かすまち・松島町（選択A）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s019" data-kind="section-questions" data-target="sections/es4-s019/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">7時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l083-a" data-seq="83" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="美しい景観を生かすまち・松島町" data-month="1〜3月" data-choice="選択A" data-choice-variant="a" data-unit-period="1/7" data-textbook-pages="P.148〜149" data-learning-objective="写真や資料から、気づいたことを話し合い、学習問題をつくりましょう。" data-learning-activities="写真や統計資料から気づいたことを話し合い、学習問題と学習計画を立てる。">
+                <span class="lesson-num">83</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l083-a" data-kind="summary" data-target="lessons/es4-l083-a/summary.html" data-published="false">【選択A】日本三景・松島</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l083-a" data-kind="lesson" data-target="lessons/es4-l083-a/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l083-a" data-kind="questions" data-target="lessons/es4-l083-a/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l084-a" data-seq="84" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="美しい景観を生かすまち・松島町" data-month="1〜3月" data-choice="選択A" data-choice-variant="a" data-unit-period="2/7" data-textbook-pages="P.150〜151" data-learning-objective="松島町では、れきしある美しい景観をどのようにして守っているのでしょうか。" data-learning-activities="松島町の歴史ある美しい景観を守る取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">84</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l084-a" data-kind="summary" data-target="lessons/es4-l084-a/summary.html" data-published="false">【選択A】昔からのまちなみを守る（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l084-a" data-kind="lesson" data-target="lessons/es4-l084-a/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l084-a" data-kind="questions" data-target="lessons/es4-l084-a/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l085-a" data-seq="85" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="美しい景観を生かすまち・松島町" data-month="1〜3月" data-choice="選択A" data-choice-variant="a" data-unit-period="3/7" data-textbook-pages="P.150〜151" data-learning-objective="松島町では、れきしある美しい景観をどのようにして守っているのでしょうか。" data-learning-activities="松島町の歴史ある美しい景観を守る取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">85</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l085-a" data-kind="summary" data-target="lessons/es4-l085-a/summary.html" data-published="false">【選択A】昔からのまちなみを守る（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l085-a" data-kind="lesson" data-target="lessons/es4-l085-a/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l085-a" data-kind="questions" data-target="lessons/es4-l085-a/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l086-a" data-seq="86" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="美しい景観を生かすまち・松島町" data-month="1〜3月" data-choice="選択A" data-choice-variant="a" data-unit-period="4/7" data-textbook-pages="P.152〜153" data-learning-objective="松島町では、美しい自然をどのように守り、まちづくりに生かしているのでしょうか。" data-learning-activities="松島湾の自然環境と景観の維持について資料で調べ話し合う。">
+                <span class="lesson-num">86</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l086-a" data-kind="summary" data-target="lessons/es4-l086-a/summary.html" data-published="false">【選択A】美しい自然と景観を生かした観光（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l086-a" data-kind="lesson" data-target="lessons/es4-l086-a/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l086-a" data-kind="questions" data-target="lessons/es4-l086-a/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l087-a" data-seq="87" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="美しい景観を生かすまち・松島町" data-month="1〜3月" data-choice="選択A" data-choice-variant="a" data-unit-period="5/7" data-textbook-pages="P.152〜153" data-learning-objective="松島町では、美しい自然をどのように守り、まちづくりに生かしているのでしょうか。" data-learning-activities="松島湾の自然環境と景観の維持について資料で調べ話し合う。">
+                <span class="lesson-num">87</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l087-a" data-kind="summary" data-target="lessons/es4-l087-a/summary.html" data-published="false">【選択A】美しい自然と景観を生かした観光（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l087-a" data-kind="lesson" data-target="lessons/es4-l087-a/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l087-a" data-kind="questions" data-target="lessons/es4-l087-a/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l088-a" data-seq="88" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="美しい景観を生かすまち・松島町" data-month="1〜3月" data-choice="選択A" data-choice-variant="a" data-unit-period="6/7" data-textbook-pages="P.154" data-learning-objective="これからも景観を生かしていくために、どのような活動が行われているのでしょうか。" data-learning-activities="景観を生かしたまちづくりを続ける活動を資料で調べ話し合う。">
+                <span class="lesson-num">88</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l088-a" data-kind="summary" data-target="lessons/es4-l088-a/summary.html" data-published="false">【選択A】景観を未来に</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l088-a" data-kind="lesson" data-target="lessons/es4-l088-a/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l088-a" data-kind="questions" data-target="lessons/es4-l088-a/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l089-a" data-seq="89" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="美しい景観を生かすまち・松島町" data-month="1〜3月" data-choice="選択A" data-choice-variant="a" data-unit-period="7/7" data-textbook-pages="P.155" data-learning-objective="美しい景観を生かす松島町について調べたことをもとに、4コマCMをつくりましょう。" data-learning-activities="松島町について調べたことをもとに4コマCMをつくる。">
+                <span class="lesson-num">89</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l089-a" data-kind="summary" data-target="lessons/es4-l089-a/summary.html" data-published="false">【選択A】４コマＣＭをつくる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l089-a" data-kind="lesson" data-target="lessons/es4-l089-a/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l089-a" data-kind="questions" data-target="lessons/es4-l089-a/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s020" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-choice="選択B" data-choice-variant="b">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">古いまちなみを生かすまち・登米市登米町（選択B）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s020" data-kind="section-questions" data-target="sections/es4-s020/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">7時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l083-b" data-seq="83" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-month="1〜3月" data-choice="選択B" data-choice-variant="b" data-unit-period="1/7" data-textbook-pages="P.156〜157" data-learning-objective="写真や資料から、気づいたことを話し合い、学習問題をつくりましょう。" data-learning-activities="写真や統計資料から気づいたことを話し合い、学習問題と学習計画を立てる。">
+                <span class="lesson-num">83</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l083-b" data-kind="summary" data-target="lessons/es4-l083-b/summary.html" data-published="false">【選択B】「まちのいたるところに、古い建物が」</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l083-b" data-kind="lesson" data-target="lessons/es4-l083-b/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l083-b" data-kind="questions" data-target="lessons/es4-l083-b/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l084-b" data-seq="84" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-month="1〜3月" data-choice="選択B" data-choice-variant="b" data-unit-period="2/7" data-textbook-pages="P.158〜159" data-learning-objective="登米町では、どのようにしてれきしある景観を守っているのでしょうか。" data-learning-activities="登米町の歴史ある景観を守る取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">84</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l084-b" data-kind="summary" data-target="lessons/es4-l084-b/summary.html" data-published="false">【選択B】文化ざいとれきしある景観を守り伝える（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l084-b" data-kind="lesson" data-target="lessons/es4-l084-b/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l084-b" data-kind="questions" data-target="lessons/es4-l084-b/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l085-b" data-seq="85" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-month="1〜3月" data-choice="選択B" data-choice-variant="b" data-unit-period="3/7" data-textbook-pages="P.158〜159" data-learning-objective="登米町では、どのようにしてれきしある景観を守っているのでしょうか。" data-learning-activities="登米町の歴史ある景観を守る取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">85</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l085-b" data-kind="summary" data-target="lessons/es4-l085-b/summary.html" data-published="false">【選択B】文化ざいとれきしある景観を守り伝える（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l085-b" data-kind="lesson" data-target="lessons/es4-l085-b/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l085-b" data-kind="questions" data-target="lessons/es4-l085-b/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l086-b" data-seq="86" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-month="1〜3月" data-choice="選択B" data-choice-variant="b" data-unit-period="4/7" data-textbook-pages="P.160〜161" data-learning-objective="「みやぎの明治村」の景観を生かしたまちづくりは、どのように行われているのでしょうか。" data-learning-activities="「みやぎの明治村」の景観を生かしたまちづくりを資料で調べ話し合う。">
+                <span class="lesson-num">86</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l086-b" data-kind="summary" data-target="lessons/es4-l086-b/summary.html" data-published="false">【選択B】景観を生かしたまちづくり（1/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l086-b" data-kind="lesson" data-target="lessons/es4-l086-b/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l086-b" data-kind="questions" data-target="lessons/es4-l086-b/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l087-b" data-seq="87" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-month="1〜3月" data-choice="選択B" data-choice-variant="b" data-unit-period="5/7" data-textbook-pages="P.160〜161" data-learning-objective="「みやぎの明治村」の景観を生かしたまちづくりは、どのように行われているのでしょうか。" data-learning-activities="「みやぎの明治村」の景観を生かしたまちづくりを資料で調べ話し合う。">
+                <span class="lesson-num">87</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l087-b" data-kind="summary" data-target="lessons/es4-l087-b/summary.html" data-published="false">【選択B】景観を生かしたまちづくり（2/2時間目）</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l087-b" data-kind="lesson" data-target="lessons/es4-l087-b/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l087-b" data-kind="questions" data-target="lessons/es4-l087-b/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l088-b" data-seq="88" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-month="1〜3月" data-choice="選択B" data-choice-variant="b" data-unit-period="6/7" data-textbook-pages="P.162" data-learning-objective="これからも文化ざいや景観を生かしていくために、どのようなことが行われているのでしょうか。" data-learning-activities="景観や文化財を生かしたまちづくりを続ける取り組みを資料で調べ話し合う。">
+                <span class="lesson-num">88</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l088-b" data-kind="summary" data-target="lessons/es4-l088-b/summary.html" data-published="false">【選択B】古くから伝わる景観や文化を未来へつなぐ</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l088-b" data-kind="lesson" data-target="lessons/es4-l088-b/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l088-b" data-kind="questions" data-target="lessons/es4-l088-b/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+              <li class="lesson-item" data-lesson-id="es4-l089-b" data-seq="89" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="古いまちなみを生かすまち・登米市登米町" data-month="1〜3月" data-choice="選択B" data-choice-variant="b" data-unit-period="7/7" data-textbook-pages="P.163" data-learning-objective="古いまちなみを生かす登米町について調べたことをもとに、4コマCMをつくりましょう。" data-learning-activities="登米町について調べたことをもとに4コマCMをつくる。">
+                <span class="lesson-num">89</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l089-b" data-kind="summary" data-target="lessons/es4-l089-b/summary.html" data-published="false">【選択B】４コマＣＭをつくる</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l089-b" data-kind="lesson" data-target="lessons/es4-l089-b/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l089-b" data-kind="questions" data-target="lessons/es4-l089-b/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+          <details class="section" data-section-id="es4-s021" data-source-subunit="いかす（第5単元全体）">
+            <summary class="section-summary">
+              <span class="section-heading">
+                <span class="section-name">いかす（第5単元全体）</span>
+                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es4-s021" data-kind="section-questions" data-target="sections/es4-s021/questions.html" data-published="false">問題</a>
+              </span>
+              <span class="count-meta">1時限</span>
+            </summary>
+            <ol class="lesson-list">
+              <li class="lesson-item" data-lesson-id="es4-l090" data-seq="90" data-chapter="5 特色ある地いきと人々のくらし" data-source-subunit="いかす（第5単元全体）" data-month="1〜3月" data-choice="" data-choice-variant="" data-unit-period="1/1" data-textbook-pages="P.164〜165" data-learning-objective="県内の特色ある地いきのよさを、学校のみんなに伝えてみましょう。" data-learning-activities="4コマCMや写真を整理し、三角ポストをつくって県の特色ある地域のよさを発信する。">
+                <span class="lesson-num">90</span>
+                <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l090" data-kind="summary" data-target="lessons/es4-l090/summary.html" data-published="false">いかす（第5単元全体）：県内の特色ある地いきのよさを伝えよう</a>
+                <span class="lesson-links">
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l090" data-kind="lesson" data-target="lessons/es4-l090/lesson.html" data-published="false">授業</a>
+                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es4-l090" data-kind="questions" data-target="lessons/es4-l090/questions.html" data-published="false">問題</a>
+                </span>
+              </li>
+            </ol>
+          </details>
+        </div>
+      </details>
+    </main>
+  </div>
+
+  <div class="status-toast" id="status-toast" role="status" aria-live="polite"></div>
+
+  <script src="../../../assets/curriculum-actions.js?v=20261122"></script>
+  <script src="../../../assets/curriculum-page.js?v=20261123-shared"></script>
+</body>
+</html>
