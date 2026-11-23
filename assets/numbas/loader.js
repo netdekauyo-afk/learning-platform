@@ -1,5 +1,6 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js";
 import { createDifficultyTabs } from "./difficulty-tabs.js";
+import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
@@ -384,9 +385,20 @@ async function prepareRuntime() {
 }
 
 export async function bootExam(examHost, examStatus, level, lessonLayout) {
+  const response = await fetch(new URL(examHost.dataset.examSource, location.href));
+  if (!response.ok) throw new Error("問題の情報を取得できませんでした。");
+  const raw = await response.text();
+  const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+  applyExerciseSettings(examData);
+
   const exam = document.createElement("numbas-exam");
   exam.setAttribute("noload", "");
-  exam.setAttribute("source_url", examHost.dataset.examSource);
+  // Numbas accepts an inline exam definition. The original source is retained
+  // on the host for answer review and for question-specific history IDs.
+  const source = document.createElement("script");
+  source.type = "application/numbas-exam";
+  source.textContent = JSON.stringify(examData);
+  exam.append(source);
   exam.setAttribute("scorm", "false");
   exam.addEventListener("numbas:loaded", () => {
     examStatus.textContent = "";
