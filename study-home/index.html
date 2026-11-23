@@ -26,7 +26,11 @@
     .choice-card[hidden] { display: none; }
     .home-actions[hidden], .grade-control[hidden],
     #initial-grade-screen[hidden], #subject-home[hidden] { display: none; }
-    .initial-grade-choice { width: 100%; font-family: inherit; text-align: left; cursor: pointer; }
+    .initial-grade-group + .initial-grade-group { margin-top: 28px; }
+    .initial-grade-group h2 { margin: 0 0 12px; font-size: 1.2rem; color: var(--color-heading); }
+    .initial-grade-choices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+    .initial-grade-choice { width: 100%; min-height: 64px; padding: 12px 8px; justify-content: center; font-family: inherit; font-size: 1.1rem; cursor: pointer; }
+    .initial-grade-choice span { display: none; }
     .initial-grade-choice:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
     .free-study { margin-top: 26px; }
     .free-study a { color: var(--color-heading); text-underline-offset: 3px; }
@@ -78,6 +82,9 @@
     .calendar-holidays p { margin: 0; }
     .calendar-footer { display: flex; justify-content: space-between; gap: 10px; margin-top: 20px; }
   </style>
+  <noscript>
+    <style>#subject-home { display: block; } #grade-control-row { display: flex; } #home-actions { display: flex; }</style>
+  </noscript>
 </head>
 <body>
   <div class="site-shell">
@@ -92,7 +99,13 @@
       <div class="grade-control" id="grade-control-row" hidden>
         <label for="grade">学年</label>
         <select id="grade" disabled>
-          <option value="1">中学1年生</option>
+          <option value="e1">小学1年生</option>
+          <option value="e2">小学2年生</option>
+          <option value="e3">小学3年生</option>
+          <option value="e4">小学4年生</option>
+          <option value="e5">小学5年生</option>
+          <option value="e6">小学6年生</option>
+          <option value="1" selected>中学1年生</option>
           <option value="2">中学2年生</option>
           <option value="3">中学3年生</option>
         </select>
@@ -102,14 +115,28 @@
       <section id="initial-grade-screen" aria-labelledby="initial-grade-title" hidden>
         <h1 id="initial-grade-title">学年を選ぶ</h1>
         <p class="hint">最初に学年を選んでください。次回からは科目選択が開きます。</p>
-        <div class="choices" role="group" aria-label="学年">
-          <button class="choice-card initial-grade-choice" type="button" data-initial-grade="1">中学1年生<span aria-hidden="true">›</span></button>
-          <button class="choice-card initial-grade-choice" type="button" data-initial-grade="2">中学2年生<span aria-hidden="true">›</span></button>
-          <button class="choice-card initial-grade-choice" type="button" data-initial-grade="3">中学3年生<span aria-hidden="true">›</span></button>
-        </div>
+        <section class="initial-grade-group" aria-labelledby="elementary-grades-title">
+          <h2 id="elementary-grades-title">小学校</h2>
+          <div class="initial-grade-choices">
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="e1" aria-label="小学1年生">1年生<span aria-hidden="true">›</span></button>
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="e2" aria-label="小学2年生">2年生<span aria-hidden="true">›</span></button>
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="e3" aria-label="小学3年生">3年生<span aria-hidden="true">›</span></button>
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="e4" aria-label="小学4年生">4年生<span aria-hidden="true">›</span></button>
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="e5" aria-label="小学5年生">5年生<span aria-hidden="true">›</span></button>
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="e6" aria-label="小学6年生">6年生<span aria-hidden="true">›</span></button>
+          </div>
+        </section>
+        <section class="initial-grade-group" aria-labelledby="junior-high-grades-title">
+          <h2 id="junior-high-grades-title">中学校</h2>
+          <div class="initial-grade-choices">
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="1" aria-label="中学1年生">1年生<span aria-hidden="true">›</span></button>
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="2" aria-label="中学2年生">2年生<span aria-hidden="true">›</span></button>
+            <button class="choice-card initial-grade-choice" type="button" data-initial-grade="3" aria-label="中学3年生">3年生<span aria-hidden="true">›</span></button>
+          </div>
+        </section>
       </section>
       <section id="subject-home" hidden>
-        <h1>今日は何を勉強した？</h1>
+        <h1 id="subject-home-title" tabindex="-1">今日は何を勉強した？</h1>
         <nav class="choices" aria-label="教科を選ぶ">
         <a class="choice-card" data-subject="math" href="../junior-high/grade-1/math/">数学<span aria-hidden="true">›</span></a>
         <a class="choice-card" data-subject="science" href="../junior-high/grade-1/science/">理科<span aria-hidden="true">›</span></a>
@@ -222,7 +249,7 @@
       const settingsStatus = document.getElementById('settings-status');
       const homeStatus = document.getElementById('home-status');
       const freeStudy = document.getElementById('free-study');
-      const grades = new Set(['1', '2', '3']);
+      const grades = new Set(['e1', 'e2', 'e3', 'e4', 'e5', 'e6', '1', '2', '3']);
       const subjectNames = Object.fromEntries(subjects.map((link) => [link.dataset.subject, link.textContent.replace('›', '').trim()]));
       const gradeKey = 'classroom-study-home-grade';
       const settingsKey = 'classroom-study-home-settings';
@@ -256,7 +283,16 @@
 
       function subjectKey(grade, subject) { return `${grade}:${subject}`; }
       function currentDestination() { return form.elements.destination.value || destination; }
-      function subjectUrl(grade, subject) { return new URL(`../junior-high/grade-${grade}/${subject}/`, location.href); }
+      function schoolForGrade(grade) { return grade.startsWith('e') ? 'elementary' : 'junior-high'; }
+      function numberForGrade(grade) { return grade.startsWith('e') ? grade.slice(1) : grade; }
+      function hasSubject(grade, subject) {
+        if (!grades.has(grade) || !Object.prototype.hasOwnProperty.call(subjectNames, subject)) return false;
+        if (schoolForGrade(grade) === 'junior-high') return subject !== 'information' || grade !== '2';
+        if (subject === 'math' || subject === 'japanese') return true;
+        return Number(numberForGrade(grade)) >= 3 && (subject === 'science' || subject === 'english');
+      }
+      function gradeUrl(grade) { return `../${schoolForGrade(grade)}/grade-${numberForGrade(grade)}/`; }
+      function subjectUrl(grade, subject) { return new URL(`${gradeUrl(grade)}${subject}/`, location.href); }
       function safeTarget(anchor, base) {
         if (!anchor || anchor.dataset.published !== 'true' || !anchor.dataset.target) return null;
         const target = new URL(anchor.dataset.target, base);
@@ -322,7 +358,7 @@
 
       async function courseDateNumbers(year, grade, subject) {
         const selectedGrade = String(grade);
-        if (!grades.has(selectedGrade) || !Object.prototype.hasOwnProperty.call(subjectNames, subject) || (subject === 'information' && selectedGrade === '2')) {
+        if (!hasSubject(selectedGrade, subject)) {
           throw new RangeError('Invalid grade or subject');
         }
         if (!globalThis.ClassroomCalendar?.lessonDateNumberRanges) throw new Error('Calendar is unavailable');
@@ -373,12 +409,18 @@
         navigationVersion++;
         const selectedGrade = grades.has(grade) ? grade : '1';
         gradeControl.value = selectedGrade;
+        const isElementary = schoolForGrade(selectedGrade) === 'elementary';
+        subjectNames.math = isElementary ? '算数' : '数学';
+        subjectNames.english = isElementary && Number(numberForGrade(selectedGrade)) <= 4 ? '外国語活動' : '英語';
         subjects.forEach((link) => {
-          link.hidden = link.dataset.subject === 'information' && selectedGrade === '2';
+          const subject = link.dataset.subject;
+          link.hidden = !hasSubject(selectedGrade, subject);
+          if (subject === 'math' || subject === 'english') link.firstChild.textContent = subjectNames[subject];
+          const option = subjectSelect.querySelector(`[value="${subject}"]`);
+          if (option) { option.hidden = link.hidden; option.textContent = subjectNames[subject]; }
           link.href = '#';
         });
-        subjectSelect.querySelector('[value="information"]').hidden = selectedGrade === '2';
-        freeStudy.href = `../junior-high/grade-${selectedGrade}/`;
+        freeStudy.href = gradeUrl(selectedGrade);
         homeStatus.textContent = '';
       }
 
@@ -468,6 +510,7 @@
         updateGrade(chosenGrade);
         const persisted = saveStorage(gradeKey, chosenGrade);
         showStudyHome(true);
+        document.getElementById('subject-home-title').focus();
         if (!persisted) {
           homeStatus.textContent = 'このブラウザーでは学年を保存できません。次回はもう一度選択してください。';
         }
