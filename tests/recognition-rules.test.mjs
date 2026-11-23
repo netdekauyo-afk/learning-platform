@@ -145,3 +145,23 @@ test("選択済みの答えを押し直した時だけ、待機終了後の再�
   emit("click", input);
   assert.equal(submissions, 2);
 });
+
+test("画面を開いたまま、24時間後に選択済みの正解を押し直すと認定される", () => {
+  const handlers = new Map();
+  const section = { addEventListener(type, callback) { handlers.set(type, callback); } };
+  const input = { checked: true, matches: (selector) => selector === 'input[type="radio"]' };
+  const records = [event("wrong", 1, "q1"), event("correct", 2, "q1")];
+  let now = start + wait;
+  bindSelectedChoiceRetry(section,
+    () => canRecordRepeatedCorrect(records, "q1", start, now),
+    () => records.push(event("correct", now - start, "q1")));
+  const press = () => { handlers.get("pointerdown")({ target: input }); handlers.get("click")({ target: input }); };
+  press();
+  assert.equal(records.length, 2);
+  now++;
+  press();
+  assert.equal(records.length, 3);
+  assert.equal(isRecognizedCorrect(records, "q1", start), true);
+  press();
+  assert.equal(records.length, 3);
+});
