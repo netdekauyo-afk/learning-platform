@@ -10,11 +10,11 @@
     .home-header-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
     .home-actions { display: flex; flex-wrap: wrap; gap: 8px; }
     .grade-control { display: flex; align-items: center; gap: 12px; margin-top: 16px; color: var(--color-text); }
-    .grade-control select, .settings-dialog select, .settings-dialog input[type="date"], .settings-dialog input[type="text"] {
+    .grade-control select, .settings-panel select, .settings-panel input[type="date"], .settings-panel input[type="text"] {
       min-height: 44px; padding: 8px 12px; border: 1px solid var(--color-border);
       border-radius: 10px; background: var(--color-surface); color: var(--color-text); font: inherit;
     }
-    .grade-control select:focus-visible, .settings-dialog select:focus-visible, .settings-dialog input:focus-visible, .home-button:focus-visible {
+    .grade-control select:focus-visible, .settings-panel select:focus-visible, .settings-panel input:focus-visible, .home-button:focus-visible {
       outline: 3px solid var(--color-accent); outline-offset: 3px;
     }
     .home-button {
@@ -35,19 +35,17 @@
     .free-study { margin-top: 26px; }
     .free-study a { color: var(--color-heading); text-underline-offset: 3px; }
     .home-status { min-height: 1.5em; margin: 12px 0 0; color: var(--color-heading); }
-    .settings-dialog {
-      width: min(92vw, 520px); max-height: min(88vh, 700px); overflow: auto; padding: 24px;
-      border: 1px solid var(--color-border); border-radius: 16px;
-      background: var(--color-bg); color: var(--color-text);
-    }
-    .settings-dialog::backdrop { background: rgba(0, 0, 0, 0.68); }
-    .settings-dialog [hidden] { display: none; }
-    .settings-dialog h2 { margin: 0 0 18px; color: var(--color-heading); }
-    .settings-dialog fieldset { margin: 0 0 20px; padding: 0; border: 0; }
-    .settings-dialog legend, .settings-dialog label.field-label { display: block; margin: 0 0 8px; color: var(--color-heading); font-weight: 700; }
-    .settings-dialog .radio-choice { display: inline-flex; align-items: center; min-height: 44px; gap: 6px; margin-right: 22px; }
-    .settings-dialog .field { margin-bottom: 18px; }
-    .settings-dialog select { width: 100%; }
+    .settings-panel { max-width: 640px; color: var(--color-text); }
+    .settings-panel[hidden], .home-screen[hidden], .settings-panel [hidden] { display: none; }
+    .settings-panel h1 { margin: 0 0 18px; color: var(--color-heading); }
+    .settings-panel fieldset { margin: 0 0 20px; padding: 0; border: 0; }
+    .settings-panel legend, .settings-panel label.field-label { display: block; margin: 0 0 8px; color: var(--color-heading); font-weight: 700; }
+    .settings-panel .radio-choice { display: inline-flex; align-items: center; min-height: 44px; gap: 6px; margin-right: 22px; }
+    .settings-panel .field { margin-bottom: 18px; }
+    .settings-panel select { width: 100%; }
+    .home-screen .choice-card { width: 100%; font: inherit; font-weight: 700; text-align: left; cursor: pointer; }
+    .screen-back { margin-top: 20px; }
+    .candidate-more { display: inline-block; margin-top: 18px; color: var(--color-heading); text-underline-offset: 3px; }
     .settings-help { margin: 6px 0 0; font-size: 0.92rem; }
     .settings-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .settings-actions .save { border-color: var(--color-accent); }
@@ -148,14 +146,41 @@
       <p class="home-status" id="home-status" role="status" aria-live="polite"></p>
       <p class="free-study"><a id="free-study" href="../junior-high/grade-1/">すべての授業から自由に選ぶ</a></p>
       </section>
-    </main>
-  </div>
-
-  <dialog class="settings-dialog" id="settings" aria-labelledby="settings-title">
+      <section class="home-screen" id="start-screen" aria-labelledby="start-title" hidden>
+        <h1 id="start-title" tabindex="-1">どこから始める？</h1>
+        <div class="choices">
+          <button class="choice-card" id="start-recent" type="button">今日習ったところから</button>
+          <button class="choice-card" id="start-list" type="button">自分で選ぶ</button>
+          <button class="choice-card" id="start-diagnostic" type="button">わからないから判定してもらう</button>
+        </div>
+        <p class="home-status" id="start-status" role="status" aria-live="polite"></p>
+        <button class="home-button screen-back" id="start-back" type="button">戻る</button>
+      </section>
+      <section class="home-screen" id="candidate-screen" aria-labelledby="candidate-title" hidden>
+        <h1 id="candidate-title" tabindex="-1">今日習ったところから</h1>
+        <p class="home-status" id="candidate-status" role="status" aria-live="polite"></p>
+        <div class="choices" id="candidate-list"></div>
+        <a class="candidate-more" id="candidate-more" href="#">ほかの授業から選ぶ</a><br>
+        <button class="home-button screen-back" id="candidate-back" type="button">戻る</button>
+      </section>
+      <section class="home-screen" id="destination-screen" aria-labelledby="destination-title" hidden>
+        <h1 id="destination-title" tabindex="-1">何を見る？</h1>
+        <p id="destination-lesson"></p>
+        <div class="choices">
+          <button class="choice-card" data-open-kind="lesson" type="button">授業</button>
+          <button class="choice-card" data-open-kind="questions" type="button">問題</button>
+          <button class="choice-card" data-open-kind="summary" type="button">要約</button>
+        </div>
+        <p class="home-status" id="destination-status" role="status" aria-live="polite"></p>
+        <button class="home-button screen-back" id="destination-back" type="button">戻る</button>
+      </section>
+  <section class="settings-panel home-screen" id="settings" aria-labelledby="settings-title" hidden>
     <form id="settings-form">
-      <h2 id="settings-title">設定</h2>
+      <h1 id="settings-title" tabindex="-1">設定</h1>
+      <div class="field"><label class="field-label" for="settings-grade">学年</label><select id="settings-grade"></select></div>
       <fieldset id="destination-settings">
         <legend>教科を選んだときに開くもの（全教科共通）</legend>
+        <label class="radio-choice"><input type="radio" name="destination" value="lesson"> 授業</label>
         <label class="radio-choice"><input type="radio" name="destination" value="questions"> 問題</label>
         <label class="radio-choice"><input type="radio" name="destination" value="summary"> 要約</label>
       </fieldset>
@@ -169,6 +194,7 @@
           <option value="japanese">国語</option>
           <option value="information">情報</option>
         </select>
+        <button class="home-button screen-back" id="reselect-start" type="button">開始場所を選び直す</button>
       </div>
       <div class="field">
         <label class="field-label" for="settings-lesson">今、学校で習っている授業</label>
@@ -196,11 +222,14 @@
         <p class="school-break-status" id="school-break-status" role="status" aria-live="polite"></p>
       </details>
       <div class="settings-actions">
-        <button class="home-button" id="close-settings" type="button">閉じる</button>
+        <button class="home-button" id="close-settings" type="button">戻る</button>
         <button class="home-button save" id="save-settings" type="submit" formnovalidate>保存</button>
       </div>
     </form>
-  </dialog>
+  </section>
+    </main>
+  </div>
+
 
   <dialog class="calendar-dialog" id="calendar-dialog" aria-labelledby="calendar-title">
     <div class="calendar-heading">
@@ -227,62 +256,94 @@
 
   <script src="../assets/calendar.js?v=20261122-date-numbers"></script>
   <script>
-    (() => {
-      'use strict';
-      const gradeControl = document.getElementById('grade');
-      const initialGradeScreen = document.getElementById('initial-grade-screen');
-      const subjectHome = document.getElementById('subject-home');
-      const homeActions = document.getElementById('home-actions');
-      const gradeControlRow = document.getElementById('grade-control-row');
-      const initialGradeChoices = [...document.querySelectorAll('[data-initial-grade]')];
-      const subjects = [...document.querySelectorAll('a[data-subject]')];
-      const subjectSelect = document.getElementById('settings-subject');
-      const lessonSelect = document.getElementById('settings-lesson');
-      const settings = document.getElementById('settings');
-      const form = document.getElementById('settings-form');
-      const settingsTitle = document.getElementById('settings-title');
-      const destinationSettings = document.getElementById('destination-settings');
-      const subjectSettings = document.getElementById('subject-settings');
-      const schoolBreakSettings = document.getElementById('school-break-settings');
-      const settingsHelp = document.getElementById('settings-help');
-      const saveButton = document.getElementById('save-settings');
-      const settingsStatus = document.getElementById('settings-status');
-      const homeStatus = document.getElementById('home-status');
-      const freeStudy = document.getElementById('free-study');
-      const grades = new Set(['e1', 'e2', 'e3', 'e4', 'e5', 'e6', '1', '2', '3']);
-      const subjectNames = Object.fromEntries(subjects.map((link) => [link.dataset.subject, link.textContent.replace('›', '').trim()]));
-      const gradeKey = 'classroom-study-home-grade';
-      const settingsKey = 'classroom-study-home-settings';
-      const lessonsCache = new Map();
-      const gradeTimingCache = new Map();
-      const gradeTimingFiles = Object.freeze({ '1': '../assets/junior-high-grade-1-timing.json' });
-      let loadVersion = 0;
-      let navigationVersion = 0;
-      let pendingSubject = null;
-      let selectionBySubject = {};
-      let draftLessons = {};
-      let destination = 'questions';
+(() => {
+  'use strict';
+  const gradeControl = document.getElementById('grade');
+  const initialGradeScreen = document.getElementById('initial-grade-screen');
+  const subjectHome = document.getElementById('subject-home');
+  const homeActions = document.getElementById('home-actions');
+  const gradeControlRow = document.getElementById('grade-control-row');
+  const initialGradeChoices = [...document.querySelectorAll('[data-initial-grade]')];
+  const subjects = [...document.querySelectorAll('a[data-subject]')];
+  const subjectSelect = document.getElementById('settings-subject');
+  const lessonSelect = document.getElementById('settings-lesson');
+  const settingsGrade = document.getElementById('settings-grade');
+  const form = document.getElementById('settings-form');
+  const settingsStatus = document.getElementById('settings-status');
+  const settingsHelp = document.getElementById('settings-help');
+  const homeStatus = document.getElementById('home-status');
+  const freeStudy = document.getElementById('free-study');
+  const startStatus = document.getElementById('start-status');
+  const candidateStatus = document.getElementById('candidate-status');
+  const candidateList = document.getElementById('candidate-list');
+  const candidateMore = document.getElementById('candidate-more');
+  const destinationStatus = document.getElementById('destination-status');
+  const destinationLesson = document.getElementById('destination-lesson');
+  const grades = new Set(['e1', 'e2', 'e3', 'e4', 'e5', 'e6', '1', '2', '3']);
+  const subjectNames = Object.fromEntries(subjects.map((link) => [link.dataset.subject, link.textContent.replace('›', '').trim()]));
+  const gradeKey = 'classroom-study-home-grade';
+  const settingsKey = 'classroom-study-home-settings';
+  const lessonsCache = new Map();
+  const gradeTimingCache = new Map();
+  const gradeTimingFiles = Object.freeze({
+    '1': '../assets/junior-high-grade-1-timing.json',
+    '2': '../assets/junior-high-grade-2-timing.json',
+    '3': '../assets/junior-high-grade-3-timing.json'
+  });
+  const kindLabels = Object.freeze({ lesson: '授業', questions: '問題', summary: '要約' });
+  const screens = {
+    grade: initialGradeScreen,
+    subject: subjectHome,
+    start: document.getElementById('start-screen'),
+    candidates: document.getElementById('candidate-screen'),
+    destination: document.getElementById('destination-screen'),
+    settings: document.getElementById('settings')
+  };
+  let loadVersion = 0;
+  let navigationVersion = 0;
+  let candidateVersion = 0;
+  let selectionBySubject = {};
+  let startModes = {};
+  let draftLessons = {};
+  let draftModes = {};
+  let destination = null;
+  let savedSettings = {};
+  let invalidSavedSettings = false;
+  let flowSubject = null;
+  let chosenLessonId = null;
+  let currentScreen = 'grade';
 
-      function readStorage(key) {
-        try { return localStorage.getItem(key); } catch (_) { return null; }
-      }
-      function saveStorage(key, value) {
-        try { localStorage.setItem(key, value); return true; } catch (_) { return false; }
-      }
-      try {
-        const saved = JSON.parse(readStorage(settingsKey) || '{}');
-        if (saved && typeof saved.lessons === 'object' && saved.lessons && !Array.isArray(saved.lessons)) selectionBySubject = saved.lessons;
-        if (saved && (saved.destination === 'questions' || saved.destination === 'summary')) destination = saved.destination;
-      } catch (_) { /* Start with empty settings if the saved data cannot be read. */ }
+  function readStorage(key) {
+    try { return localStorage.getItem(key); } catch (_) { return null; }
+  }
+  function saveStorage(key, value) {
+    try { localStorage.setItem(key, value); return true; } catch (_) { return false; }
+  }
+  try {
+    const raw = readStorage(settingsKey);
+    const saved = raw ? JSON.parse(raw) : {};
+    if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+      savedSettings = saved;
+      if (saved.lessons && typeof saved.lessons === 'object' && !Array.isArray(saved.lessons)) selectionBySubject = { ...saved.lessons };
+      if (saved.startModes && typeof saved.startModes === 'object' && !Array.isArray(saved.startModes)) startModes = { ...saved.startModes };
+      if (Object.prototype.hasOwnProperty.call(kindLabels, saved.destination)) destination = saved.destination;
+    } else if (raw) invalidSavedSettings = true;
+  } catch (_) { invalidSavedSettings = true; }
 
-      // Lessons 1–13 moved from grade 3 to grade 1; retain an existing choice.
-      function movedInformationLesson(id) { return /^info3-l0(?:0[1-9]|1[0-3])$/.test(id || ''); }
-      if (!selectionBySubject['1:information'] && movedInformationLesson(selectionBySubject['3:information'])) {
-        selectionBySubject['1:information'] = selectionBySubject['3:information'];
-      }
+  // Lessons 1–13 moved from grade 3 to grade 1; retain an existing choice.
+  function movedInformationLesson(id) { return /^info3-l0(?:0[1-9]|1[0-3])$/.test(id || ''); }
+  if (!selectionBySubject['1:information'] && movedInformationLesson(selectionBySubject['3:information'])) {
+    selectionBySubject['1:information'] = selectionBySubject['3:information'];
+  }
+  function saveSettings() {
+    if (invalidSavedSettings) return false;
+    savedSettings = { ...savedSettings, lessons: { ...selectionBySubject }, startModes: { ...startModes } };
+    if (destination) savedSettings.destination = destination;
+    return saveStorage(settingsKey, JSON.stringify(savedSettings));
+  }
+  function subjectKey(grade, subject) { return `${grade}:${subject}`; }
+  function currentDestination() { return form.elements.destination.value || destination || ''; }
 
-      function subjectKey(grade, subject) { return `${grade}:${subject}`; }
-      function currentDestination() { return form.elements.destination.value || destination; }
       function schoolForGrade(grade) { return grade.startsWith('e') ? 'elementary' : 'junior-high'; }
       function numberForGrade(grade) { return grade.startsWith('e') ? grade.slice(1) : grade; }
       function hasSubject(grade, subject) {
@@ -312,8 +373,9 @@
                 id: row.dataset.lessonId,
                 title: title?.textContent.trim() || row.dataset.lessonId,
                 number: row.dataset.seq || row.querySelector('.lesson-num')?.textContent.trim() || '',
-                month: row.dataset.month || '',
+                month: row.dataset.month || ((row.dataset.semester || '').match(/(\d{1,2})月/) || [])[0] || '',
                 summary: safeTarget(title, base),
+                lesson: safeTarget(row.querySelector('[data-kind="lesson"]'), base),
                 questions: safeTarget(row.querySelector('[data-kind="questions"]'), base)
               };
             });
@@ -405,150 +467,320 @@
       }
       globalThis.ClassroomLessonSchedule = Object.freeze({ forCourse: courseDateNumbers, onDateNumber: courseLessonsOnDateNumber });
 
-      function updateGrade(grade) {
-        navigationVersion++;
-        const selectedGrade = grades.has(grade) ? grade : '1';
-        gradeControl.value = selectedGrade;
-        const isElementary = schoolForGrade(selectedGrade) === 'elementary';
-        subjectNames.math = isElementary ? '算数' : '数学';
-        subjectNames.english = isElementary && Number(numberForGrade(selectedGrade)) <= 4 ? '外国語活動' : '英語';
-        subjects.forEach((link) => {
-          const subject = link.dataset.subject;
-          link.hidden = !hasSubject(selectedGrade, subject);
-          if (subject === 'math' || subject === 'english') link.firstChild.textContent = subjectNames[subject];
-          const option = subjectSelect.querySelector(`[value="${subject}"]`);
-          if (option) { option.hidden = link.hidden; option.textContent = subjectNames[subject]; }
-          link.href = '#';
-        });
-        freeStudy.href = gradeUrl(selectedGrade);
-        homeStatus.textContent = '';
-      }
 
-      async function showLessons(subject) {
-        const grade = gradeControl.value;
-        const version = ++loadVersion;
-        lessonSelect.disabled = true;
-        lessonSelect.replaceChildren(new Option('授業を読み込んでいます', ''));
-        settingsStatus.textContent = '';
-        try {
-          const lessons = await getLessons(grade, subject);
-          if (version !== loadVersion) return;
-          lessonSelect.replaceChildren(new Option('授業を選んでください', ''));
-          const selected = draftLessons[subjectKey(grade, subject)] || '';
-          for (const lesson of lessons) {
-            const availability = !lesson[currentDestination()] ? '（選択中の教材は準備中）' : '';
-            const label = `${lesson.number ? `第${lesson.number}時限 ` : ''}${lesson.title}${lesson.month ? `［${lesson.month}ごろ］` : ''}${availability}`;
-            lessonSelect.add(new Option(label, lesson.id));
-          }
-          lessonSelect.value = lessons.some((lesson) => lesson.id === selected) ? selected : '';
-          lessonSelect.disabled = lessons.length === 0;
-          if (!lessons.length) settingsStatus.textContent = 'この教科の授業はまだありません。';
-        } catch (_) {
-          if (version !== loadVersion) return;
-          lessonSelect.replaceChildren(new Option('授業を読み込めませんでした', ''));
-          settingsStatus.textContent = '時間をおいて設定を開き直してください。';
+
+  function updateGrade(grade) {
+    navigationVersion++;
+    const selectedGrade = grades.has(grade) ? grade : '1';
+    gradeControl.value = selectedGrade;
+    settingsGrade.value = selectedGrade;
+    const isElementary = schoolForGrade(selectedGrade) === 'elementary';
+    subjectNames.math = isElementary ? '算数' : '数学';
+    subjectNames.english = isElementary && Number(numberForGrade(selectedGrade)) <= 4 ? '外国語活動' : '英語';
+    subjects.forEach((link) => {
+      const subject = link.dataset.subject;
+      link.hidden = !hasSubject(selectedGrade, subject);
+      if (subject === 'math' || subject === 'english') link.firstChild.textContent = subjectNames[subject];
+      const option = subjectSelect.querySelector(`[value="${subject}"]`);
+      if (option) { option.hidden = link.hidden; option.textContent = subjectNames[subject]; }
+      link.href = '#';
+    });
+    if (!hasSubject(selectedGrade, subjectSelect.value)) {
+      subjectSelect.value = subjects.find((link) => !link.hidden).dataset.subject;
+    }
+    freeStudy.href = gradeUrl(selectedGrade);
+    homeStatus.textContent = '';
+  }
+
+  function rememberCurrentFlow() {
+    const previous = history.state && typeof history.state === 'object' ? history.state : {};
+    history.replaceState({ ...previous, classroomHome: { ...(previous.classroomHome || {}), screen: currentScreen, subject: flowSubject, lessonId: chosenLessonId } }, '', location.href);
+  }
+  function navigate(screen) {
+    const previous = history.state && typeof history.state === 'object' ? history.state : {};
+    history.pushState({ ...previous, classroomHome: { screen, from: currentScreen, subject: flowSubject, lessonId: chosenLessonId } }, '', location.href);
+    renderScreen(screen);
+  }
+  function backTo(screen) {
+    if (history.state?.classroomHome?.from === screen) history.back();
+    else navigate(screen);
+  }
+  function renderScreen(screen) {
+    if (!Object.prototype.hasOwnProperty.call(screens, screen)) screen = 'subject';
+    currentScreen = screen;
+    navigationVersion++;
+    for (const [name, element] of Object.entries(screens)) element.hidden = name !== screen;
+    homeActions.hidden = screen === 'grade';
+    gradeControlRow.hidden = screen === 'grade';
+    gradeControl.disabled = screen === 'grade';
+    if (screen === 'candidates') void showCandidates();
+    if (screen === 'destination') void showDestination();
+    const heading = screens[screen].querySelector('h1');
+    if (heading && screen !== 'grade') heading.focus({ preventScroll: true });
+  }
+  window.addEventListener('popstate', (event) => {
+    const state = event.state?.classroomHome;
+    if (state) {
+      flowSubject = state.subject || null;
+      chosenLessonId = state.lessonId || null;
+      renderScreen(state.screen);
+    } else {
+      renderScreen(grades.has(readStorage(gradeKey)) ? 'subject' : 'grade');
+    }
+  });
+
+  function showStart(subject, message = '') {
+    flowSubject = subject;
+    chosenLessonId = null;
+    startStatus.textContent = message;
+    navigate('start');
+  }
+
+  function chooseFromList() {
+    if (!flowSubject || !hasSubject(gradeControl.value, flowSubject)) return;
+    startModes[subjectKey(gradeControl.value, flowSubject)] = 'list';
+    saveSettings();
+    location.assign(subjectUrl(gradeControl.value, flowSubject).href);
+  }
+
+  async function rankedCandidates(grade, subject, lessons) {
+    const calendar = globalThis.ClassroomCalendar;
+    const today = calendar?.today();
+    if (today) {
+      try {
+        const schedule = await courseDateNumbers(today.schoolYear, grade, subject);
+        const pastDays = schedule.days.filter((day) => day.isoDate <= today.isoDate);
+        const number = pastDays.length ? pastDays[pastDays.length - 1].dateNumber : 0;
+        const dated = schedule.lessons.map((item, index) => ({ ...item, index })).filter((item) => item.startDateNumber !== null);
+        if (dated.length) {
+          dated.sort((a, b) => {
+            const da = number < a.startDateNumber ? a.startDateNumber - number : Math.max(0, number - a.endDateNumber);
+            const db = number < b.startDateNumber ? b.startDateNumber - number : Math.max(0, number - b.endDateNumber);
+            return da - db || Number(a.startDateNumber > number) - Number(b.startDateNumber > number) || a.index - b.index;
+          });
+          const byId = new Map(lessons.map((lesson) => [lesson.id, lesson]));
+          return { lessons: dated.slice(0, 5).map((item) => byId.get(item.id)).filter(Boolean), status: '授業時期の目安から選んでいます。' };
         }
+      } catch (_) { /* Use available month metadata or the existing list below. */ }
+      const academicMonth = (month) => (month + 8) % 12;
+      const withMonth = lessons.map((lesson, index) => {
+        const match = /^(\d{1,2})月$/.exec(lesson.month);
+        return { lesson, index, month: match ? Number(match[1]) : null };
+      }).filter((item) => item.month >= 1 && item.month <= 12);
+      if (withMonth.length) {
+        const thisMonth = academicMonth(today.month);
+        withMonth.sort((a, b) => Math.abs(academicMonth(a.month) - thisMonth) - Math.abs(academicMonth(b.month) - thisMonth) || a.index - b.index);
+        return { lessons: withMonth.slice(0, 5).map((item) => item.lesson), status: '授業の月の目安から選んでいます。' };
       }
+    }
+    return { lessons: lessons.slice(0, 5), status: '時期の情報がないため、授業一覧の最初から表示しています。' };
+  }
 
-      function openSettings(subject, navigateAfterSave = false) {
-        navigationVersion++;
-        pendingSubject = navigateAfterSave ? subject : null;
-        draftLessons = { ...selectionBySubject };
-        const visible = subjects.filter((link) => !link.hidden).map((link) => link.dataset.subject);
-        subjectSelect.value = visible.includes(subject) ? subject : visible[0];
-        form.elements.destination.value = destination;
-        destinationSettings.hidden = navigateAfterSave;
-        subjectSettings.hidden = navigateAfterSave;
-        schoolBreakSettings.hidden = navigateAfterSave;
-        settingsTitle.textContent = navigateAfterSave ? `${subjectNames[subjectSelect.value]}の授業を選ぶ` : '設定';
-        settingsHelp.textContent = navigateAfterSave ? '学校で今、習っている授業を選んでください。' : '教科ごとに授業を選べます。選んだ授業から始まります。';
-        saveButton.textContent = navigateAfterSave ? '保存して開く' : '保存';
-        if (!settings.open) settings.showModal();
-        showLessons(subjectSelect.value);
+  async function showCandidates() {
+    const subject = flowSubject;
+    const grade = gradeControl.value;
+    const version = ++candidateVersion;
+    candidateList.replaceChildren();
+    candidateStatus.textContent = '授業を読み込んでいます。';
+    if (!subject || !hasSubject(grade, subject)) { candidateStatus.textContent = '科目を選び直してください。'; return; }
+    candidateMore.href = subjectUrl(grade, subject).href;
+    try {
+      const lessons = await getLessons(grade, subject);
+      const result = await rankedCandidates(grade, subject, lessons);
+      if (version !== candidateVersion || currentScreen !== 'candidates' || grade !== gradeControl.value || subject !== flowSubject) return;
+      candidateStatus.textContent = result.lessons.length ? result.status : 'この科目の授業はまだありません。';
+      for (const lesson of result.lessons) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'choice-card';
+        button.dataset.lessonId = lesson.id;
+        button.textContent = `${lesson.number ? `第${lesson.number}時限 ` : ''}${lesson.title}`;
+        if (lesson.id === chosenLessonId) button.setAttribute('aria-current', 'true');
+        button.addEventListener('click', () => chooseLesson(lesson));
+        candidateList.appendChild(button);
       }
+    } catch (_) {
+      if (version === candidateVersion && currentScreen === 'candidates') candidateStatus.textContent = '授業を読み込めませんでした。授業一覧から選んでください。';
+    }
+  }
 
-      async function openSubject(subject) {
-        const version = ++navigationVersion;
-        homeStatus.textContent = '';
-        const grade = gradeControl.value;
-        const lessonId = selectionBySubject[subjectKey(grade, subject)];
-        if (!lessonId) { openSettings(subject, true); return; }
-        homeStatus.textContent = '授業を開いています。';
-        try {
-          const lessons = await getLessons(grade, subject);
-          if (version !== navigationVersion || grade !== gradeControl.value) return;
-          const lesson = lessons.find((item) => item.id === lessonId);
-          if (!lesson) {
-            homeStatus.textContent = subject === 'information' && grade === '3' && movedInformationLesson(lessonId)
-              ? '選んだ授業は中学1年の情報に移りました。設定から中3の授業を選び直してください。'
-              : '選んだ授業が見つかりません。設定から選び直してください。';
-          } else if (!lesson[destination]) {
-            homeStatus.textContent = `${subjectNames[subject]}「${lesson.title}」の${destination === 'questions' ? '問題' : '要約'}は準備中です。`;
-          } else {
-            location.assign(lesson[destination]);
-          }
-        } catch (_) {
-          if (version === navigationVersion) homeStatus.textContent = '授業を読み込めませんでした。時間をおいてもう一度お試しください。';
-        }
-      }
+  function chooseLesson(lesson) {
+    const key = subjectKey(gradeControl.value, flowSubject);
+    chosenLessonId = lesson.id;
+    selectionBySubject[key] = lesson.id;
+    startModes[key] = 'lesson';
+    const persisted = saveSettings();
+    rememberCurrentFlow();
+    if (destination && lesson[destination]) {
+      location.assign(lesson[destination]);
+      return;
+    }
+    navigate('destination');
+    if (!persisted) destinationStatus.textContent = '設定を保存できません。今回の選択は利用できますが、次回は再選択が必要です。';
+  }
 
-      function showStudyHome(ready) {
-        initialGradeScreen.hidden = ready;
-        subjectHome.hidden = !ready;
-        homeActions.hidden = !ready;
-        gradeControlRow.hidden = !ready;
-        gradeControl.disabled = !ready;
-      }
-
-      // Previously selected grades skip the one-time first-use screen.
-      const savedGrade = readStorage(gradeKey);
-      updateGrade(savedGrade);
-      showStudyHome(grades.has(savedGrade));
-      initialGradeChoices.forEach((button) => button.addEventListener('click', () => {
-        const chosenGrade = button.dataset.initialGrade;
-        if (!grades.has(chosenGrade)) return;
-        updateGrade(chosenGrade);
-        const persisted = saveStorage(gradeKey, chosenGrade);
-        showStudyHome(true);
-        document.getElementById('subject-home-title').focus();
-        if (!persisted) {
-          homeStatus.textContent = 'このブラウザーでは学年を保存できません。次回はもう一度選択してください。';
-        }
-      }));
-      gradeControl.addEventListener('change', () => {
-        updateGrade(gradeControl.value);
-        saveStorage(gradeKey, gradeControl.value);
+  async function showDestination() {
+    const grade = gradeControl.value;
+    const subject = flowSubject;
+    const lessonId = chosenLessonId;
+    destinationStatus.textContent = '';
+    destinationLesson.textContent = '';
+    if (!subject || !lessonId) return;
+    try {
+      const lesson = (await getLessons(grade, subject)).find((item) => item.id === lessonId);
+      if (currentScreen !== 'destination' || flowSubject !== subject || chosenLessonId !== lessonId) return;
+      if (!lesson) { destinationStatus.textContent = '授業が見つかりません。戻って選び直してください。'; return; }
+      destinationLesson.textContent = lesson.title;
+      if (destination && !lesson[destination]) destinationStatus.textContent = `${kindLabels[destination]}は準備中です。ほかの種類を選んでください。`;
+      document.querySelectorAll('[data-open-kind]').forEach((button) => {
+        const kind = button.dataset.openKind;
+        button.textContent = `${kindLabels[kind]}${lesson[kind] ? '' : '（準備中）'}`;
       });
-      subjects.forEach((link) => link.addEventListener('click', (event) => {
-        event.preventDefault();
-        openSubject(link.dataset.subject);
-      }));
-      document.getElementById('open-settings').addEventListener('click', () => openSettings(subjects.find((link) => !link.hidden).dataset.subject));
-      document.getElementById('close-settings').addEventListener('click', () => settings.close());
-      settings.addEventListener('close', () => { pendingSubject = null; });
-      subjectSelect.addEventListener('change', () => showLessons(subjectSelect.value));
-      lessonSelect.addEventListener('change', () => {
-        const key = subjectKey(gradeControl.value, subjectSelect.value);
-        if (lessonSelect.value) draftLessons[key] = lessonSelect.value;
-        else delete draftLessons[key];
-      });
-      form.elements.destination.forEach((radio) => radio.addEventListener('change', () => showLessons(subjectSelect.value)));
-      form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const subject = subjectSelect.value;
-        if (pendingSubject === subject && !draftLessons[subjectKey(gradeControl.value, subject)]) {
-          settingsStatus.textContent = '授業を選んでください。';
-          return;
-        }
-        destination = currentDestination();
-        selectionBySubject = { ...draftLessons };
-        const persisted = saveStorage(settingsKey, JSON.stringify({ destination, lessons: selectionBySubject }));
-        const shouldOpen = persisted && pendingSubject === subject && !!selectionBySubject[subjectKey(gradeControl.value, subject)];
-        settings.close();
-        if (shouldOpen) openSubject(subject);
-        else homeStatus.textContent = persisted ? '設定を保存しました。' : 'この画面では設定できますが、次回まで保存できません。';
-      });
-    })();
+    } catch (_) { if (currentScreen === 'destination') destinationStatus.textContent = '授業を読み込めませんでした。戻って選び直してください。'; }
+  }
+
+  async function openKind(kind) {
+    const grade = gradeControl.value;
+    const subject = flowSubject;
+    const lessonId = chosenLessonId;
+    if (!Object.prototype.hasOwnProperty.call(kindLabels, kind) || !subject || !lessonId) return;
+    try {
+      const lesson = (await getLessons(grade, subject)).find((item) => item.id === lessonId);
+      if (!lesson || currentScreen !== 'destination' || subject !== flowSubject || lessonId !== chosenLessonId) return;
+      destination = kind;
+      saveSettings();
+      if (!lesson[kind]) { destinationStatus.textContent = `${kindLabels[kind]}は準備中です。ほかの種類を選んでください。`; return; }
+      location.assign(lesson[kind]);
+    } catch (_) { destinationStatus.textContent = '授業を読み込めませんでした。'; }
+  }
+
+  async function openSubject(subject) {
+    const version = ++navigationVersion;
+    homeStatus.textContent = '';
+    const grade = gradeControl.value;
+    const key = subjectKey(grade, subject);
+    if (startModes[key] === 'list') { location.assign(subjectUrl(grade, subject).href); return; }
+    const lessonId = selectionBySubject[key];
+    if (!lessonId) { showStart(subject); return; }
+    homeStatus.textContent = '授業を開いています。';
+    try {
+      const lessons = await getLessons(grade, subject);
+      if (version !== navigationVersion || grade !== gradeControl.value) return;
+      const lesson = lessons.find((item) => item.id === lessonId);
+      if (!lesson) {
+        showStart(subject, subject === 'information' && grade === '3' && movedInformationLesson(lessonId)
+          ? '選んだ授業は中学1年の情報に移りました。選び直してください。'
+          : '選んだ授業が見つかりません。選び直してください。');
+      } else if (destination && lesson[destination]) {
+        location.assign(lesson[destination]);
+      } else {
+        flowSubject = subject;
+        chosenLessonId = lessonId;
+        navigate('candidates');
+        navigate('destination');
+      }
+    } catch (_) {
+      if (version === navigationVersion) homeStatus.textContent = '授業を読み込めませんでした。時間をおいてもう一度お試しください。';
+    }
+  }
+
+  async function showSettingsLessons(subject) {
+    const grade = gradeControl.value;
+    const version = ++loadVersion;
+    const key = subjectKey(grade, subject);
+    lessonSelect.disabled = true;
+    lessonSelect.replaceChildren(new Option('授業を読み込んでいます', ''));
+    settingsStatus.textContent = '';
+    settingsHelp.textContent = draftModes[key] === 'list' ? '現在は授業一覧から選びます。' : '教科ごとに授業を選べます。選んだ授業から始まります。';
+    try {
+      const lessons = await getLessons(grade, subject);
+      if (version !== loadVersion || grade !== gradeControl.value || subject !== subjectSelect.value) return;
+      lessonSelect.replaceChildren(new Option('授業を選んでください', ''));
+      for (const lesson of lessons) {
+        const kind = currentDestination();
+        const availability = kind && !lesson[kind] ? '（選択中の教材は準備中）' : '';
+        lessonSelect.add(new Option(`${lesson.number ? `第${lesson.number}時限 ` : ''}${lesson.title}${lesson.month ? `［${lesson.month}ごろ］` : ''}${availability}`, lesson.id));
+      }
+      lessonSelect.value = lessons.some((lesson) => lesson.id === draftLessons[key]) ? draftLessons[key] : '';
+      lessonSelect.disabled = lessons.length === 0;
+      if (!lessons.length) settingsStatus.textContent = 'この科目の授業はまだありません。';
+    } catch (_) {
+      if (version !== loadVersion) return;
+      lessonSelect.replaceChildren(new Option('授業を読み込めませんでした', ''));
+      settingsStatus.textContent = '時間をおいて設定を開き直してください。';
+    }
+  }
+
+  function openSettings() {
+    draftLessons = { ...selectionBySubject };
+    draftModes = { ...startModes };
+    const visible = subjects.filter((link) => !link.hidden).map((link) => link.dataset.subject);
+    if (!visible.includes(subjectSelect.value)) subjectSelect.value = visible[0];
+    settingsGrade.value = gradeControl.value;
+    form.elements.destination.value = destination || '';
+    settingsStatus.textContent = '';
+    navigate('settings');
+    void showSettingsLessons(subjectSelect.value);
+  }
+
+  settingsGrade.innerHTML = gradeControl.innerHTML;
+  const savedGrade = readStorage(gradeKey);
+  updateGrade(savedGrade);
+  currentScreen = grades.has(savedGrade) ? 'subject' : 'grade';
+  const initialState = history.state && typeof history.state === 'object' ? history.state : {};
+  history.replaceState({ ...initialState, classroomHome: { screen: currentScreen, subject: null, lessonId: null } }, '', location.href);
+  renderScreen(currentScreen);
+  initialGradeChoices.forEach((button) => button.addEventListener('click', () => {
+    const chosenGrade = button.dataset.initialGrade;
+    if (!grades.has(chosenGrade)) return;
+    updateGrade(chosenGrade);
+    const persisted = saveStorage(gradeKey, chosenGrade);
+    navigate('subject');
+    if (!persisted) homeStatus.textContent = 'このブラウザーでは学年を保存できません。次回はもう一度選択してください。';
+  }));
+  function changeGrade(grade) {
+    if (!grades.has(grade)) return;
+    updateGrade(grade);
+    const persisted = saveStorage(gradeKey, grade);
+    if (currentScreen === 'settings') {
+      void showSettingsLessons(subjectSelect.value);
+      if (!persisted) settingsStatus.textContent = '学年を保存できませんでした。';
+    } else if (currentScreen !== 'subject') {
+      navigate('subject');
+      if (!persisted) homeStatus.textContent = '学年を保存できませんでした。';
+    } else if (!persisted) homeStatus.textContent = '学年を保存できませんでした。';
+  }
+  gradeControl.addEventListener('change', () => changeGrade(gradeControl.value));
+  settingsGrade.addEventListener('change', () => changeGrade(settingsGrade.value));
+  subjects.forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); void openSubject(link.dataset.subject); }));
+  document.getElementById('open-settings').addEventListener('click', openSettings);
+  document.getElementById('close-settings').addEventListener('click', () => backTo('subject'));
+  document.getElementById('start-back').addEventListener('click', () => backTo('subject'));
+  document.getElementById('candidate-back').addEventListener('click', () => backTo('start'));
+  document.getElementById('destination-back').addEventListener('click', () => backTo('candidates'));
+  document.getElementById('start-recent').addEventListener('click', () => navigate('candidates'));
+  document.getElementById('start-list').addEventListener('click', chooseFromList);
+  document.getElementById('start-diagnostic').addEventListener('click', () => { startStatus.textContent = '準備中です。ほかの方法で始めてください。'; });
+  candidateMore.addEventListener('click', (event) => { event.preventDefault(); chooseFromList(); });
+  document.querySelectorAll('[data-open-kind]').forEach((button) => button.addEventListener('click', () => { void openKind(button.dataset.openKind); }));
+  document.getElementById('reselect-start').addEventListener('click', () => showStart(subjectSelect.value));
+  subjectSelect.addEventListener('change', () => { void showSettingsLessons(subjectSelect.value); });
+  lessonSelect.addEventListener('change', () => {
+    const key = subjectKey(gradeControl.value, subjectSelect.value);
+    if (lessonSelect.value) { draftLessons[key] = lessonSelect.value; draftModes[key] = 'lesson'; }
+    else { delete draftLessons[key]; delete draftModes[key]; }
+  });
+  form.elements.destination.forEach((radio) => radio.addEventListener('change', () => { void showSettingsLessons(subjectSelect.value); }));
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    destination = currentDestination() || null;
+    selectionBySubject = { ...draftLessons };
+    startModes = { ...draftModes };
+    const persisted = saveSettings();
+    navigate('subject');
+    homeStatus.textContent = persisted ? '設定を保存しました。' : 'この画面では設定できますが、次回まで保存できません。';
+  });
+})();
   </script>
   <script>
     (() => {
