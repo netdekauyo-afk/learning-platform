@@ -16,16 +16,21 @@ export async function questionIds(questions) {
   }));
 }
 
+// Revealing an answer is not a marked response. With no question ID, preserve
+// the lesson-level history used by one-question pages and difficulty markers.
+export function latestGradedKind(records, questionId = null) {
+  if (!Array.isArray(records)) return null;
+  for (let i = records.length - 1; i >= 0; i--) {
+    const record = records[i];
+    if (record && (questionId === null || record.questionId === questionId) &&
+        (record.kind === "correct" || record.kind === "wrong")) return record.kind;
+  }
+  return null;
+}
+
 // A reveal or an older, unidentified question is not a new marked answer.
 export function questionProgress(records, ids) {
   if (!Array.isArray(records) || !Array.isArray(ids) || ids.length !== 2 ||
       ids.some((id) => !id) || new Set(ids).size !== 2) return 0;
-  const latest = new Map();
-  for (const record of records) {
-    if (record && ids.includes(record.questionId) &&
-        (record.kind === "correct" || record.kind === "wrong")) {
-      latest.set(record.questionId, record.kind);
-    }
-  }
-  return ids.filter((id) => latest.get(id) === "correct").length;
+  return ids.filter((id) => latestGradedKind(records, id) === "correct").length;
 }
