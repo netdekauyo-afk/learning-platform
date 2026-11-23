@@ -24,6 +24,10 @@
     }
     .home-button:hover { background: var(--color-surface-hover); }
     .choice-card[hidden] { display: none; }
+    .home-actions[hidden], .grade-control[hidden],
+    #initial-grade-screen[hidden], #subject-home[hidden] { display: none; }
+    .initial-grade-choice { width: 100%; font-family: inherit; text-align: left; cursor: pointer; }
+    .initial-grade-choice:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
     .free-study { margin-top: 26px; }
     .free-study a { color: var(--color-heading); text-underline-offset: 3px; }
     .home-status { min-height: 1.5em; margin: 12px 0 0; color: var(--color-heading); }
@@ -80,12 +84,12 @@
     <header class="site-header">
       <div class="home-header-row">
         <p class="site-name">Classroom</p>
-        <div class="home-actions">
+        <div class="home-actions" id="home-actions" hidden>
           <button class="home-button" id="open-calendar" type="button">カレンダー</button>
           <button class="home-button" id="open-settings" type="button">設定</button>
         </div>
       </div>
-      <div class="grade-control">
+      <div class="grade-control" id="grade-control-row" hidden>
         <label for="grade">学年</label>
         <select id="grade" disabled>
           <option value="1">中学1年生</option>
@@ -95,8 +99,18 @@
       </div>
     </header>
     <main>
-      <h1>今日は何を勉強した？</h1>
-      <nav class="choices" aria-label="教科を選ぶ">
+      <section id="initial-grade-screen" aria-labelledby="initial-grade-title" hidden>
+        <h1 id="initial-grade-title">学年を選ぶ</h1>
+        <p class="hint">最初に学年を選んでください。次回からは科目選択が開きます。</p>
+        <div class="choices" role="group" aria-label="学年">
+          <button class="choice-card initial-grade-choice" type="button" data-initial-grade="1">中学1年生<span aria-hidden="true">›</span></button>
+          <button class="choice-card initial-grade-choice" type="button" data-initial-grade="2">中学2年生<span aria-hidden="true">›</span></button>
+          <button class="choice-card initial-grade-choice" type="button" data-initial-grade="3">中学3年生<span aria-hidden="true">›</span></button>
+        </div>
+      </section>
+      <section id="subject-home" hidden>
+        <h1>今日は何を勉強した？</h1>
+        <nav class="choices" aria-label="教科を選ぶ">
         <a class="choice-card" data-subject="math" href="../junior-high/grade-1/math/">数学<span aria-hidden="true">›</span></a>
         <a class="choice-card" data-subject="science" href="../junior-high/grade-1/science/">理科<span aria-hidden="true">›</span></a>
         <a class="choice-card" data-subject="english" href="../junior-high/grade-1/english/">英語<span aria-hidden="true">›</span></a>
@@ -106,6 +120,7 @@
       </nav>
       <p class="home-status" id="home-status" role="status" aria-live="polite"></p>
       <p class="free-study"><a id="free-study" href="../junior-high/grade-1/">すべての授業から自由に選ぶ</a></p>
+      </section>
     </main>
   </div>
 
@@ -188,6 +203,11 @@
     (() => {
       'use strict';
       const gradeControl = document.getElementById('grade');
+      const initialGradeScreen = document.getElementById('initial-grade-screen');
+      const subjectHome = document.getElementById('subject-home');
+      const homeActions = document.getElementById('home-actions');
+      const gradeControlRow = document.getElementById('grade-control-row');
+      const initialGradeChoices = [...document.querySelectorAll('[data-initial-grade]')];
       const subjects = [...document.querySelectorAll('a[data-subject]')];
       const subjectSelect = document.getElementById('settings-subject');
       const lessonSelect = document.getElementById('settings-lesson');
@@ -430,8 +450,28 @@
         }
       }
 
-      updateGrade(readStorage(gradeKey));
-      gradeControl.disabled = false;
+      function showStudyHome(ready) {
+        initialGradeScreen.hidden = ready;
+        subjectHome.hidden = !ready;
+        homeActions.hidden = !ready;
+        gradeControlRow.hidden = !ready;
+        gradeControl.disabled = !ready;
+      }
+
+      // Previously selected grades skip the one-time first-use screen.
+      const savedGrade = readStorage(gradeKey);
+      updateGrade(savedGrade);
+      showStudyHome(grades.has(savedGrade));
+      initialGradeChoices.forEach((button) => button.addEventListener('click', () => {
+        const chosenGrade = button.dataset.initialGrade;
+        if (!grades.has(chosenGrade)) return;
+        updateGrade(chosenGrade);
+        const persisted = saveStorage(gradeKey, chosenGrade);
+        showStudyHome(true);
+        if (!persisted) {
+          homeStatus.textContent = 'このブラウザーでは学年を保存できません。次回はもう一度選択してください。';
+        }
+      }));
       gradeControl.addEventListener('change', () => {
         updateGrade(gradeControl.value);
         saveStorage(gradeKey, gradeControl.value);
