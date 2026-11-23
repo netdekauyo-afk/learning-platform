@@ -1,13 +1,15 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js";
 import { createDifficultyTabs } from "./difficulty-tabs.js";
 import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
+import { initializeRecognitionRule } from "./question-progress.js?v=20261123-recognition";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
 const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
 
-
+// Start the rule before any answer or reveal can be added to the history.
+initializeRecognitionRule();
 
 /* A non-locking answer view and a local practice history. The original .exam files
    and the Numbas score calculation are deliberately left unchanged. */

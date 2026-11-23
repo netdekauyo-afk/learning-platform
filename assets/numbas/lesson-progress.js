@@ -1,7 +1,8 @@
-import { examQuestions, questionIds, questionProgress, latestGradedKind } from "./question-progress.js?v=20261123-shared";
+import { examQuestions, questionIds, questionProgress, isRecognizedCorrect, initializeRecognitionRule } from "./question-progress.js?v=20261123-recognition";
 
 const prefix = "classroom:practice-history:v1:";
 const marks = Object.freeze({ single: "○", oneOfTwo: "◯", both: "◎" });
+const recognitionStartedAt = initializeRecognitionRule();
 
 function prepareProgress(row) {
   const link = row.querySelector('[data-kind="questions"][data-published="true"]');
@@ -51,7 +52,7 @@ function prepareProgress(row) {
     }
     void loadQuestionIds().then((ids) => {
       if (sequence !== updateSequence) return;
-      const count = ids ? questionProgress(records, ids) : 0;
+      const count = ids ? questionProgress(records, ids, recognitionStartedAt) : 0;
       mark.hidden = count === 0;
       mark.textContent = count === 2 ? marks.both : count === 1 ? marks.oneOfTwo : "";
       const description = "基礎問題2問中" + count + "問正解";
@@ -106,7 +107,7 @@ function prepareDifficultyProgress() {
         let correct = false;
         try {
           const history = JSON.parse(localStorage.getItem(key) || "[]");
-          correct = latestGradedKind(history) === "correct";
+          correct = isRecognizedCorrect(history, null, recognitionStartedAt);
         } catch (error) { /* A missing or unreadable record leaves the slot blank. */ }
         mark.node.textContent = correct ? marks.single : "";
         labels.push(mark.label + (correct ? "正解" : "未正解"));
