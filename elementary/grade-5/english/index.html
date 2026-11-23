@@ -1,23 +1,1138 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#151515">
-  <title>小学5年生・英語 | Classroom</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小学5年英語 学習一覧（全70回） | Classroom</title>
   <link rel="stylesheet" href="../../../assets/style.css">
+  <style>
+    /* Colors are defined only in the shared :root palette. */
 
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI", "Meiryo", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    .container {
+      width: min(100% - 32px, 760px);
+      max-width: 760px;
+      margin: 0 auto;
+      padding: clamp(30px, 8vw, 72px) 0;
+    }
+
+    .page-header {
+      margin-bottom: 36px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .page-title {
+      margin: 0 0 6px;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-heading);
+    }
+
+    .page-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .control-link {
+      appearance: none;
+      background: none;
+      border: none;
+      padding: 4px 0;
+      font: inherit;
+      font-size: 0.9rem;
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+    }
+
+    .control-link:hover,
+    .control-link:focus-visible {
+      color: var(--color-heading);
+    }
+
+    .control-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .curriculum-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Chapter */
+    details.chapter {
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    summary.chapter-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 13px 16px;
+      background: var(--color-surface);
+      border-left: 0;
+      cursor: pointer;
+      flex-wrap: wrap;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.chapter-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .chapter-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1 1 245px;
+      color: var(--color-heading);
+    }
+
+    .chapter-actions {
+      display: inline-flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: 12px;
+      margin-left: auto;
+    }
+
+    .chapter-question-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 6px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-heading);
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      background: var(--color-surface-hover);
+    }
+    .chapter-question-link:hover,
+    .chapter-question-link:focus-visible {
+      background: var(--color-border-hover);
+      border-color: var(--color-accent);
+      color: var(--color-heading);
+      text-decoration: underline;
+    }
+
+    .chapter-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.85em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.chapter[open] > summary.chapter-summary .chapter-name::before {
+      transform: rotate(90deg);
+    }
+
+    details.chapter[open] > summary.chapter-summary {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-body {
+      padding: 8px 16px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Section */
+    details.section {
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 6px;
+    }
+
+    details.section:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    summary.section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--color-surface-hover);
+      border-left: 3px solid var(--color-border-hover);
+      border-radius: 9px;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    summary.section-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .section-heading {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .section-name {
+      font-size: 0.98rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--color-heading);
+    }
+
+    .section-name::before {
+      content: "▸";
+      display: inline-block;
+      font-size: 0.8em;
+      color: var(--color-muted);
+      transition: transform 0.15s ease;
+    }
+
+    details.section[open] > summary.section-summary .section-name::before {
+      transform: rotate(90deg);
+    }
+
+    .count-meta {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Lesson list */
+    .lesson-list {
+      list-style: none;
+      margin: 2px 0 6px;
+      padding: 0 0 0 18px;
+    }
+
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 2.6rem 1fr auto;
+      align-items: baseline;
+      column-gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .lesson-item:first-child {
+      border-top: none;
+    }
+
+    .lesson-num {
+      font-size: 0.85rem;
+      font-variant-numeric: tabular-nums;
+      color: var(--color-heading);
+      text-align: right;
+    }
+
+    /* Text links (explicitly non-button UI) */
+    .text-link {
+      color: var(--color-accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .text-link:hover {
+      color: var(--color-heading);
+      text-decoration-thickness: 1.5px;
+    }
+
+    .text-link:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    .text-link.is-unpublished {
+      color: var(--color-muted);
+      text-decoration-style: dotted;
+    }
+
+    .text-link.is-unpublished:hover {
+      color: var(--color-text);
+    }
+
+    .lesson-title-link,
+    .text-link.lesson-title-link.is-unpublished,
+    .text-link.lesson-title-link.is-unpublished:hover {
+      color: var(--color-heading);
+    }
+
+    .lesson-title-link {
+      font-size: 0.95rem;
+      word-break: break-word;
+    }
+
+    .lesson-links {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      white-space: nowrap;
+      font-size: 0.88rem;
+    }
+
+    .section-link {
+      font-size: 0.88rem;
+      font-weight: 400;
+    }
+
+    /* Toast notification for unpublished links */
+    .status-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--color-surface-hover);
+      color: var(--color-heading);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      max-width: calc(100vw - 32px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      z-index: 100;
+    }
+
+    .status-toast.is-visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(100% - 20px, 760px);
+        padding: 24px 0 56px;
+      }
+
+      .page-title {
+        font-size: 1.5rem;
+      }
+
+      summary.chapter-summary {
+        padding: 11px 12px;
+      }
+
+      .chapter-body {
+        padding: 6px 10px 10px;
+      }
+
+      .lesson-list {
+        padding-left: 6px;
+      }
+
+      .lesson-item {
+        grid-template-columns: 2.1rem 1fr;
+        row-gap: 4px;
+        padding: 8px 2px;
+      }
+
+      .lesson-links {
+        grid-column: 2;
+        gap: 18px;
+        padding-top: 2px;
+      }
+    }
+
+    .curriculum-source-notes {
+      margin-top: 13px;
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--color-muted);
+    }
+    .curriculum-source-notes p {
+      margin: 3px 0;
+    }
+    .curriculum-source-notes strong {
+      color: var(--color-heading);
+    }
+    .curriculum-source-notes a {
+      color: var(--color-heading);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+  </style>
 </head>
-<body>
-  <div class="site-shell">
+<body class="math-curriculum english-curriculum">
+  <div class="container">
     <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">小学校</a><span aria-hidden="true"> / </span><a href="../">5年生</a><span aria-hidden="true"> / </span><span aria-current="page">英語</span></nav>
-    <main>
-      <h1>英語</h1>
+    <header class="page-header">
+      <h1 class="page-title">小学5年 英語 学習一覧</h1>
+      <div class="page-meta">
+        <span>全11学習区分・70回（東京書籍『NEW HORIZON Elementary 5』）</span>
+        <div class="controls">
+          <button type="button" class="control-link" id="open-all">すべて開く</button>
+          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
+        </div>
+      </div>
+      <div class="curriculum-source-notes" aria-label="参照教科書と資料">
+        <p><strong>参照教科書：</strong>東京書籍『NEW HORIZON Elementary 5』</p>
+        <p><strong>コマ割り原表：</strong><a href="https://docs.google.com/spreadsheets/d/1GNm-BFilYaE16meB860r1p4lXW4MdzsCgWk9g06Fqog/edit#gid=2050445802" target="_blank" rel="noopener noreferrer">小学3〜6年外国語・英語 年間コマ割り・小学5年タブ</a></p>
+        <p>原表のUnit・Check Your Stepsの順序で授業を表示しています。</p>
+      </div>
+    </header>
+    <main class="curriculum-list" id="curriculum-list">
+      <details class="chapter" open data-chapter-index="0" data-chapter-id="ef5-c001" data-period="4〜5月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 1 Hello, friends!</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c001/questions.html" data-published="false">問題</a>
+            <span class="count-meta">4〜5月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l001" data-seq="1" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="1/8" data-textbook-pages="pp.8〜9" data-learning-objective="名前や好きなもの・ことについてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">1</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l001" data-kind="summary" data-target="lessons/ef5-l001/summary.html" data-published="false">Unit 1 Hello, friends!：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l001" data-kind="lesson" data-target="lessons/ef5-l001/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l001" data-kind="questions" data-target="lessons/ef5-l001/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l002" data-seq="2" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="2/8" data-textbook-pages="pp.8〜9" data-learning-objective="名前や好きなもの・ことについてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">2</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l002" data-kind="summary" data-target="lessons/ef5-l002/summary.html" data-published="false">Unit 1 Hello, friends!：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l002" data-kind="lesson" data-target="lessons/ef5-l002/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l002" data-kind="questions" data-target="lessons/ef5-l002/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l003" data-seq="3" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="3/8" data-textbook-pages="pp.10〜11" data-learning-objective="名前のつづりについて、友達と伝え合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch 1 / Let’s Listen 1 / Let’s Try 1" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">3</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l003" data-kind="summary" data-target="lessons/ef5-l003/summary.html" data-published="false">Unit 1 Hello, friends!：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l003" data-kind="lesson" data-target="lessons/ef5-l003/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l003" data-kind="questions" data-target="lessons/ef5-l003/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l004" data-seq="4" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="4/8" data-textbook-pages="pp.10〜11" data-learning-objective="好きな教科などについて、友達と伝え合う。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Watch 2 / Let’s Listen 2 / Let’s Try 2" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">4</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l004" data-kind="summary" data-target="lessons/ef5-l004/summary.html" data-published="false">Unit 1 Hello, friends!：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l004" data-kind="lesson" data-target="lessons/ef5-l004/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l004" data-kind="questions" data-target="lessons/ef5-l004/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l005" data-seq="5" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="5/8" data-textbook-pages="pp.12〜13" data-learning-objective="名前や好きなもの・ことについて、表現を振り返ったり情報を整理したりして、自己紹介の内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Step 1 / Step 2" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">5</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l005" data-kind="summary" data-target="lessons/ef5-l005/summary.html" data-published="false">Unit 1 Hello, friends!：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l005" data-kind="lesson" data-target="lessons/ef5-l005/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l005" data-kind="questions" data-target="lessons/ef5-l005/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l006" data-seq="6" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="6/8" data-textbook-pages="pp.12〜13" data-learning-objective="お互いのことをよく知るために、名前やつづり、好きなもの・ことなどを伝え合って、自己紹介をし合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">6</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l006" data-kind="summary" data-target="lessons/ef5-l006/summary.html" data-published="false">Unit 1 Hello, friends!：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l006" data-kind="lesson" data-target="lessons/ef5-l006/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l006" data-kind="questions" data-target="lessons/ef5-l006/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l007" data-seq="7" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="7/8" data-textbook-pages="pp.14〜15" data-learning-objective="映像や音声を手がかりにして、人や国などの名前や略称について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">7</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l007" data-kind="summary" data-target="lessons/ef5-l007/summary.html" data-published="false">Unit 1 Hello, friends!：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l007" data-kind="lesson" data-target="lessons/ef5-l007/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l007" data-kind="questions" data-target="lessons/ef5-l007/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l008" data-seq="8" data-unit="Unit 1 Hello, friends!" data-month="4〜5月" data-unit-period="8/8" data-textbook-pages="pp.14〜15" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人やアイヌ文化について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【名前やつづり】I’m Akina. / How do you spell your name? / A-K-I-N-A. Akina. 【好きなもの・こと】What subject do you like? / I like P.E. / What sport [food/animal] do you like?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">8</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l008" data-kind="summary" data-target="lessons/ef5-l008/summary.html" data-published="false">Unit 1 Hello, friends!：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l008" data-kind="lesson" data-target="lessons/ef5-l008/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l008" data-kind="questions" data-target="lessons/ef5-l008/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="1" data-chapter-id="ef5-c002" data-period="5〜6月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 2 Happy birthday!</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c002/questions.html" data-published="false">問題</a>
+            <span class="count-meta">5〜6月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l009" data-seq="9" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="1/8" data-textbook-pages="pp.18〜19" data-learning-objective="誕生日や欲しいものについてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">9</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l009" data-kind="summary" data-target="lessons/ef5-l009/summary.html" data-published="false">Unit 2 Happy birthday!：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l009" data-kind="lesson" data-target="lessons/ef5-l009/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l009" data-kind="questions" data-target="lessons/ef5-l009/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l010" data-seq="10" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="2/8" data-textbook-pages="pp.18〜19" data-learning-objective="誕生日や欲しいものについてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">10</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l010" data-kind="summary" data-target="lessons/ef5-l010/summary.html" data-published="false">Unit 2 Happy birthday!：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l010" data-kind="lesson" data-target="lessons/ef5-l010/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l010" data-kind="questions" data-target="lessons/ef5-l010/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l011" data-seq="11" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="3/8" data-textbook-pages="pp.20〜21" data-learning-objective="誕生日について、友達と伝え合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch 1 / Let’s Listen 1 / Let’s Try 1" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">11</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l011" data-kind="summary" data-target="lessons/ef5-l011/summary.html" data-published="false">Unit 2 Happy birthday!：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l011" data-kind="lesson" data-target="lessons/ef5-l011/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l011" data-kind="questions" data-target="lessons/ef5-l011/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l012" data-seq="12" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="4/8" data-textbook-pages="pp.20〜21" data-learning-objective="誕生日に欲しいものについて、友達と伝え合う。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Watch 2 / Let’s Listen 2 / Let’s Try 2" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">12</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l012" data-kind="summary" data-target="lessons/ef5-l012/summary.html" data-published="false">Unit 2 Happy birthday!：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l012" data-kind="lesson" data-target="lessons/ef5-l012/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l012" data-kind="questions" data-target="lessons/ef5-l012/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l013" data-seq="13" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="5/8" data-textbook-pages="pp.22〜23" data-learning-objective="誕生日や欲しいものについての表現を振り返ったり、相手の好きなもの・ことについての情報を整理したりして、プレゼントカードの内容や伝える内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Step 1 / Step 2" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">13</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l013" data-kind="summary" data-target="lessons/ef5-l013/summary.html" data-published="false">Unit 2 Happy birthday!：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l013" data-kind="lesson" data-target="lessons/ef5-l013/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l013" data-kind="questions" data-target="lessons/ef5-l013/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l014" data-seq="14" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="6/8" data-textbook-pages="pp.22〜23" data-learning-objective="友達に喜んでもらうために、誕生日や欲しいものを伝え合いながら「プレゼントカード」を贈り合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">14</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l014" data-kind="summary" data-target="lessons/ef5-l014/summary.html" data-published="false">Unit 2 Happy birthday!：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l014" data-kind="lesson" data-target="lessons/ef5-l014/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l014" data-kind="questions" data-target="lessons/ef5-l014/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l015" data-seq="15" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="7/8" data-textbook-pages="pp.24〜25" data-learning-objective="映像や音声を手がかりにして、世界の祭りやイベントについて考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">15</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l015" data-kind="summary" data-target="lessons/ef5-l015/summary.html" data-published="false">Unit 2 Happy birthday!：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l015" data-kind="lesson" data-target="lessons/ef5-l015/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l015" data-kind="questions" data-target="lessons/ef5-l015/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l016" data-seq="16" data-unit="Unit 2 Happy birthday!" data-month="5〜6月" data-unit-period="8/8" data-textbook-pages="pp.24〜25" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人や陶芸について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【誕生日】When is your birthday? / My birthday is May 5th. 【欲しいもの】What do you want (for your birthday)? / I want new shoes." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">16</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l016" data-kind="summary" data-target="lessons/ef5-l016/summary.html" data-published="false">Unit 2 Happy birthday!：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l016" data-kind="lesson" data-target="lessons/ef5-l016/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l016" data-kind="questions" data-target="lessons/ef5-l016/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="2" data-chapter-id="ef5-c003" data-period="6〜7月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 3 Can you play dodgeball?</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c003/questions.html" data-published="false">問題</a>
+            <span class="count-meta">6〜7月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l017" data-seq="17" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="1/8" data-textbook-pages="pp.28〜29" data-learning-objective="できることについてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">17</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l017" data-kind="summary" data-target="lessons/ef5-l017/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l017" data-kind="lesson" data-target="lessons/ef5-l017/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l017" data-kind="questions" data-target="lessons/ef5-l017/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l018" data-seq="18" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="2/8" data-textbook-pages="pp.28〜29" data-learning-objective="できることについてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">18</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l018" data-kind="summary" data-target="lessons/ef5-l018/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l018" data-kind="lesson" data-target="lessons/ef5-l018/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l018" data-kind="questions" data-target="lessons/ef5-l018/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l019" data-seq="19" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="3/8" data-textbook-pages="pp.30〜31" data-learning-objective="できることについて、友達と伝え合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch / Let’s Listen 1 / Let’s Try 1" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">19</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l019" data-kind="summary" data-target="lessons/ef5-l019/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l019" data-kind="lesson" data-target="lessons/ef5-l019/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l019" data-kind="questions" data-target="lessons/ef5-l019/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l020" data-seq="20" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="4/8" data-textbook-pages="pp.30〜31" data-learning-objective="できることやできないことについて、友達と伝え合う。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Listen 2 / Let’s Try 2" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">20</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l020" data-kind="summary" data-target="lessons/ef5-l020/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l020" data-kind="lesson" data-target="lessons/ef5-l020/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l020" data-kind="questions" data-target="lessons/ef5-l020/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l021" data-seq="21" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="5/8" data-textbook-pages="pp.32〜33" data-learning-objective="できることについて、表現を振り返ったり情報を整理したりして、友達に伝える内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Step 1 / Step 2" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">21</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l021" data-kind="summary" data-target="lessons/ef5-l021/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l021" data-kind="lesson" data-target="lessons/ef5-l021/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l021" data-kind="questions" data-target="lessons/ef5-l021/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l022" data-seq="22" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="6/8" data-textbook-pages="pp.32〜33" data-learning-objective="お互いのことをよく知るために、できることを友達と伝え合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">22</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l022" data-kind="summary" data-target="lessons/ef5-l022/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l022" data-kind="lesson" data-target="lessons/ef5-l022/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l022" data-kind="questions" data-target="lessons/ef5-l022/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l023" data-seq="23" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="7/8" data-textbook-pages="pp.34〜35" data-learning-objective="映像や音声を手がかりにして、世界で使われているジェスチャーなどについて考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">23</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l023" data-kind="summary" data-target="lessons/ef5-l023/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l023" data-kind="lesson" data-target="lessons/ef5-l023/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l023" data-kind="questions" data-target="lessons/ef5-l023/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l024" data-seq="24" data-unit="Unit 3 Can you play dodgeball?" data-month="6〜7月" data-unit-period="8/8" data-textbook-pages="pp.34〜35" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人やその仕事について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【できること・できないこと】Can you play the piano? / Yes, I can. / No, I can’t. / I can swim (fast). / I can’t swim (fast). / You can sing well, too." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">24</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l024" data-kind="summary" data-target="lessons/ef5-l024/summary.html" data-published="false">Unit 3 Can you play dodgeball?：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l024" data-kind="lesson" data-target="lessons/ef5-l024/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l024" data-kind="questions" data-target="lessons/ef5-l024/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="3" data-chapter-id="ef5-c004" data-period="7月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Check Your Steps 1 おたがいの魅力、再発見！</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c004/questions.html" data-published="false">問題</a>
+            <span class="count-meta">7月・2回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l025" data-seq="25" data-unit="Check Your Steps 1 おたがいの魅力、再発見！" data-month="7月" data-unit-period="1/2" data-textbook-pages="pp.38〜39" data-learning-objective="お互いのことをよく知るために、名前や誕生日、好きなことやできることなどについて、具体的な情報を聞き取ったり、内容を整理したうえで話したりすることができる。" data-learning-activities="Let’s Sing / Small Talk / HOP / STEP / Your Goal" data-key-phrases="【既習事項の復習】My name is.... / I’m.... / My birthday is.... / I like.... / I can.... / I want.... など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">25</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l025" data-kind="summary" data-target="lessons/ef5-l025/summary.html" data-published="false">Check Your Steps 1 おたがいの魅力、再発見！（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l025" data-kind="lesson" data-target="lessons/ef5-l025/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l025" data-kind="questions" data-target="lessons/ef5-l025/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l026" data-seq="26" data-unit="Check Your Steps 1 おたがいの魅力、再発見！" data-month="7月" data-unit-period="2/2" data-textbook-pages="pp.38〜39" data-learning-objective="自分のことをよく伝えるために、名前や誕生日、好きなことやできることなどについて、内容を整理したうえで話すことができる。" data-learning-activities="Let’s Sing / Small Talk / Let’s Chant / JUMP / Your Goal" data-key-phrases="【既習事項の復習】My name is.... / I’m.... / My birthday is.... / I like.... / I can.... / I want.... など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">26</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l026" data-kind="summary" data-target="lessons/ef5-l026/summary.html" data-published="false">Check Your Steps 1 おたがいの魅力、再発見！（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l026" data-kind="lesson" data-target="lessons/ef5-l026/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l026" data-kind="questions" data-target="lessons/ef5-l026/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="4" data-chapter-id="ef5-c005" data-period="9〜10月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 4 Who is this?</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c005/questions.html" data-published="false">問題</a>
+            <span class="count-meta">9〜10月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l027" data-seq="27" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="1/8" data-textbook-pages="pp.40〜41" data-learning-objective="身近な人についてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">27</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l027" data-kind="summary" data-target="lessons/ef5-l027/summary.html" data-published="false">Unit 4 Who is this?：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l027" data-kind="lesson" data-target="lessons/ef5-l027/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l027" data-kind="questions" data-target="lessons/ef5-l027/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l028" data-seq="28" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="2/8" data-textbook-pages="pp.40〜41" data-learning-objective="身近な人についてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">28</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l028" data-kind="summary" data-target="lessons/ef5-l028/summary.html" data-published="false">Unit 4 Who is this?：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l028" data-kind="lesson" data-target="lessons/ef5-l028/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l028" data-kind="questions" data-target="lessons/ef5-l028/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l029" data-seq="29" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="3/8" data-textbook-pages="pp.42〜43" data-learning-objective="身近な人のできることについて、友達と紹介し合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch 1 / Let’s Listen 1 / Let’s Try 1" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">29</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l029" data-kind="summary" data-target="lessons/ef5-l029/summary.html" data-published="false">Unit 4 Who is this?：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l029" data-kind="lesson" data-target="lessons/ef5-l029/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l029" data-kind="questions" data-target="lessons/ef5-l029/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l030" data-seq="30" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="4/8" data-textbook-pages="pp.42〜43" data-learning-objective="身近な人のできることや性格などについて、友達と伝え合う。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Watch 2 / Let’s Listen 2 / Let’s Try" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">30</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l030" data-kind="summary" data-target="lessons/ef5-l030/summary.html" data-published="false">Unit 4 Who is this?：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l030" data-kind="lesson" data-target="lessons/ef5-l030/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l030" data-kind="questions" data-target="lessons/ef5-l030/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l031" data-seq="31" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="5/8" data-textbook-pages="pp.44〜45" data-learning-objective="身近な人のできることや性格などについて、表現を振り返ったり情報を整理したりして、友達に紹介する内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Try / Step 1 / Step 2" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">31</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l031" data-kind="summary" data-target="lessons/ef5-l031/summary.html" data-published="false">Unit 4 Who is this?：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l031" data-kind="lesson" data-target="lessons/ef5-l031/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l031" data-kind="questions" data-target="lessons/ef5-l031/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l032" data-seq="32" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="6/8" data-textbook-pages="pp.44〜45" data-learning-objective="お互いのことをよく知るために、身近な人のできることや性格などについて友達と紹介し合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">32</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l032" data-kind="summary" data-target="lessons/ef5-l032/summary.html" data-published="false">Unit 4 Who is this?：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l032" data-kind="lesson" data-target="lessons/ef5-l032/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l032" data-kind="questions" data-target="lessons/ef5-l032/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l033" data-seq="33" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="7/8" data-textbook-pages="pp.46〜47" data-learning-objective="映像や音声を手がかりにして、英語で人を指す言葉などについて考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">33</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l033" data-kind="summary" data-target="lessons/ef5-l033/summary.html" data-published="false">Unit 4 Who is this?：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l033" data-kind="lesson" data-target="lessons/ef5-l033/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l033" data-kind="questions" data-target="lessons/ef5-l033/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l034" data-seq="34" data-unit="Unit 4 Who is this?" data-month="9〜10月" data-unit-period="8/8" data-textbook-pages="pp.46〜47" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人や下駄について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【身近な人】Who is this? / This is Deepa. / She [He] is my friend. 【できること】She can play badminton (well). 【性格など】She is kind (and active)." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">34</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l034" data-kind="summary" data-target="lessons/ef5-l034/summary.html" data-published="false">Unit 4 Who is this?：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l034" data-kind="lesson" data-target="lessons/ef5-l034/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l034" data-kind="questions" data-target="lessons/ef5-l034/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="5" data-chapter-id="ef5-c006" data-period="10〜11月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 5 Let’s go to the zoo.</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c006/questions.html" data-published="false">問題</a>
+            <span class="count-meta">10〜11月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l035" data-seq="35" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="1/8" data-textbook-pages="pp.50〜51" data-learning-objective="施設や場所、道案内についてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">35</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l035" data-kind="summary" data-target="lessons/ef5-l035/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l035" data-kind="lesson" data-target="lessons/ef5-l035/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l035" data-kind="questions" data-target="lessons/ef5-l035/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l036" data-seq="36" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="2/8" data-textbook-pages="pp.50〜51" data-learning-objective="施設や場所、道案内についてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">36</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l036" data-kind="summary" data-target="lessons/ef5-l036/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l036" data-kind="lesson" data-target="lessons/ef5-l036/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l036" data-kind="questions" data-target="lessons/ef5-l036/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l037" data-seq="37" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="3/8" data-textbook-pages="pp.52〜53" data-learning-objective="場所をたずねたり、道案内したりする。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch 1 / Let’s Listen 1 / Let’s Listen 2 / Let’s Try 1" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">37</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l037" data-kind="summary" data-target="lessons/ef5-l037/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l037" data-kind="lesson" data-target="lessons/ef5-l037/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l037" data-kind="questions" data-target="lessons/ef5-l037/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l038" data-seq="38" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="4/8" data-textbook-pages="pp.52〜53" data-learning-objective="おすすめの施設について、友達と伝え合う。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Watch 2 / Let’s Listen / Let’s Try 2" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">38</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l038" data-kind="summary" data-target="lessons/ef5-l038/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l038" data-kind="lesson" data-target="lessons/ef5-l038/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l038" data-kind="questions" data-target="lessons/ef5-l038/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l039" data-seq="39" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="5/8" data-textbook-pages="pp.54〜55" data-learning-objective="施設や場所、道案内についての表現を振り返り、紹介する施設を決め、その施設の紹介や道案内の内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Step 1 / Step 2" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">39</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l039" data-kind="summary" data-target="lessons/ef5-l039/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l039" data-kind="lesson" data-target="lessons/ef5-l039/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l039" data-kind="questions" data-target="lessons/ef5-l039/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l040" data-seq="40" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="6/8" data-textbook-pages="pp.54〜55" data-learning-objective="好きな施設などを知ってもらうために、オリジナルタウンで道案内をし合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">40</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l040" data-kind="summary" data-target="lessons/ef5-l040/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l040" data-kind="lesson" data-target="lessons/ef5-l040/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l040" data-kind="questions" data-target="lessons/ef5-l040/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l041" data-seq="41" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="7/8" data-textbook-pages="pp.58〜59" data-learning-objective="映像や音声を手がかりにして、世界の標識や地図記号について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">41</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l041" data-kind="summary" data-target="lessons/ef5-l041/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l041" data-kind="lesson" data-target="lessons/ef5-l041/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l041" data-kind="questions" data-target="lessons/ef5-l041/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l042" data-seq="42" data-unit="Unit 5 Let’s go to the zoo." data-month="10〜11月" data-unit-period="8/8" data-textbook-pages="pp.58〜59" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人やお好み焼きについて考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【道案内・位置】Where is the park? / Go straight for one [two] block [blocks]. / Turn right [left]. / You can see it on your right [left]. / It’s under the tree [in the pool / on the rock / by the rock]." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">42</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l042" data-kind="summary" data-target="lessons/ef5-l042/summary.html" data-published="false">Unit 5 Let’s go to the zoo.：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l042" data-kind="lesson" data-target="lessons/ef5-l042/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l042" data-kind="questions" data-target="lessons/ef5-l042/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="6" data-chapter-id="ef5-c007" data-period="11〜12月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 6 At a restaurant.</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c007/questions.html" data-published="false">問題</a>
+            <span class="count-meta">11〜12月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l043" data-seq="43" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="1/8" data-textbook-pages="pp.62〜63" data-learning-objective="食事の注文や値段についてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">43</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l043" data-kind="summary" data-target="lessons/ef5-l043/summary.html" data-published="false">Unit 6 At a restaurant.：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l043" data-kind="lesson" data-target="lessons/ef5-l043/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l043" data-kind="questions" data-target="lessons/ef5-l043/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l044" data-seq="44" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="2/8" data-textbook-pages="pp.62〜63" data-learning-objective="食事の注文や値段についてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">44</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l044" data-kind="summary" data-target="lessons/ef5-l044/summary.html" data-published="false">Unit 6 At a restaurant.：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l044" data-kind="lesson" data-target="lessons/ef5-l044/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l044" data-kind="questions" data-target="lessons/ef5-l044/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l045" data-seq="45" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="3/8" data-textbook-pages="pp.64〜65" data-learning-objective="友達と、食事の注文のやり取りをする。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch 1 / Let’s Listen 1 / Let’s Try 1" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">45</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l045" data-kind="summary" data-target="lessons/ef5-l045/summary.html" data-published="false">Unit 6 At a restaurant.：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l045" data-kind="lesson" data-target="lessons/ef5-l045/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l045" data-kind="questions" data-target="lessons/ef5-l045/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l046" data-seq="46" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="4/8" data-textbook-pages="pp.64〜65" data-learning-objective="友達と、値段を含めた食事の注文のやり取りをする。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Watch 2 / Let’s Listen 2 / Let’s Try 2" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">46</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l046" data-kind="summary" data-target="lessons/ef5-l046/summary.html" data-published="false">Unit 6 At a restaurant.：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l046" data-kind="lesson" data-target="lessons/ef5-l046/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l046" data-kind="questions" data-target="lessons/ef5-l046/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l047" data-seq="47" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="5/8" data-textbook-pages="pp.66〜67" data-learning-objective="食事や値段について、表現を振り返ったり情報を整理したりして、おすすめランチセットの紹介の内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Step 1 / Step 2" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">47</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l047" data-kind="summary" data-target="lessons/ef5-l047/summary.html" data-published="false">Unit 6 At a restaurant.：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l047" data-kind="lesson" data-target="lessons/ef5-l047/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l047" data-kind="questions" data-target="lessons/ef5-l047/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l048" data-seq="48" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="6/8" data-textbook-pages="pp.66〜67" data-learning-objective="日本各地の料理を楽しむために、「おすすめランチセット」を紹介したり注文したりする。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">48</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l048" data-kind="summary" data-target="lessons/ef5-l048/summary.html" data-published="false">Unit 6 At a restaurant.：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l048" data-kind="lesson" data-target="lessons/ef5-l048/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l048" data-kind="questions" data-target="lessons/ef5-l048/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l049" data-seq="49" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="7/8" data-textbook-pages="pp.68〜69" data-learning-objective="映像や音声を手がかりにして、世界の料理や食文化について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">49</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l049" data-kind="summary" data-target="lessons/ef5-l049/summary.html" data-published="false">Unit 6 At a restaurant.：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l049" data-kind="lesson" data-target="lessons/ef5-l049/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l049" data-kind="questions" data-target="lessons/ef5-l049/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l050" data-seq="50" data-unit="Unit 6 At a restaurant." data-month="11〜12月" data-unit-period="8/8" data-textbook-pages="pp.68〜69" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人やお茶について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【注文】What would you like? / I’d like a hamburger and juice. 【値段】How much is it? / It’s 940 yen." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">50</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l050" data-kind="summary" data-target="lessons/ef5-l050/summary.html" data-published="false">Unit 6 At a restaurant.：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l050" data-kind="lesson" data-target="lessons/ef5-l050/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l050" data-kind="questions" data-target="lessons/ef5-l050/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="7" data-chapter-id="ef5-c008" data-period="12月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Check Your Steps 2 聞いて！わたしの町じまん</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c008/questions.html" data-published="false">問題</a>
+            <span class="count-meta">12月・2回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l051" data-seq="51" data-unit="Check Your Steps 2 聞いて！わたしの町じまん" data-month="12月" data-unit-period="1/2" data-textbook-pages="pp.72〜73" data-learning-objective="自分たちが暮らす地域のよさを知ってもらうために、地域にあるものや食べ物、身近な人などについて、具体的な情報を聞き取ったり、内容を整理したうえで話したりすることができる。" data-learning-activities="Let’s Sing / Small Talk / HOP / STEP / Your Goal" data-key-phrases="【既習事項の復習】I’m.... / I like.... / I live in.... / This is.... / She [He] is.... / She [He] can.... / What do you have [like] in your town? など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">51</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l051" data-kind="summary" data-target="lessons/ef5-l051/summary.html" data-published="false">Check Your Steps 2 聞いて！わたしの町じまん（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l051" data-kind="lesson" data-target="lessons/ef5-l051/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l051" data-kind="questions" data-target="lessons/ef5-l051/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l052" data-seq="52" data-unit="Check Your Steps 2 聞いて！わたしの町じまん" data-month="12月" data-unit-period="2/2" data-textbook-pages="pp.72〜73" data-learning-objective="自分たちが暮らす地域のよさを知ってもらうために、地域にあるものや食べ物、身近な人などについて、内容を整理したうえで話すことができる。" data-learning-activities="Let’s Sing / Small Talk / Let’s Chant / JUMP / Your Goal" data-key-phrases="【既習事項の復習】I’m.... / I like.... / I live in.... / This is.... / She [He] is.... / She [He] can.... / What do you have [like] in your town? など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">52</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l052" data-kind="summary" data-target="lessons/ef5-l052/summary.html" data-published="false">Check Your Steps 2 聞いて！わたしの町じまん（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l052" data-kind="lesson" data-target="lessons/ef5-l052/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l052" data-kind="questions" data-target="lessons/ef5-l052/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="8" data-chapter-id="ef5-c009" data-period="1〜2月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 7 Welcome to Japan!</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c009/questions.html" data-published="false">問題</a>
+            <span class="count-meta">1〜2月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l053" data-seq="53" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="1/8" data-textbook-pages="pp.74〜75" data-learning-objective="行きたい場所やそこでしたいことについてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">53</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l053" data-kind="summary" data-target="lessons/ef5-l053/summary.html" data-published="false">Unit 7 Welcome to Japan!：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l053" data-kind="lesson" data-target="lessons/ef5-l053/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l053" data-kind="questions" data-target="lessons/ef5-l053/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l054" data-seq="54" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="2/8" data-textbook-pages="pp.74〜75" data-learning-objective="行きたい場所やそこでしたいことについてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">54</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l054" data-kind="summary" data-target="lessons/ef5-l054/summary.html" data-published="false">Unit 7 Welcome to Japan!：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l054" data-kind="lesson" data-target="lessons/ef5-l054/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l054" data-kind="questions" data-target="lessons/ef5-l054/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l055" data-seq="55" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="3/8" data-textbook-pages="pp.76〜77" data-learning-objective="行きたい日本の場所とそこに行きたい理由について、友達と紹介し合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch / Let’s Listen 1 / Let’s Try 1" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">55</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l055" data-kind="summary" data-target="lessons/ef5-l055/summary.html" data-published="false">Unit 7 Welcome to Japan!：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l055" data-kind="lesson" data-target="lessons/ef5-l055/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l055" data-kind="questions" data-target="lessons/ef5-l055/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l056" data-seq="56" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="4/8" data-textbook-pages="pp.76〜77" data-learning-objective="行きたい日本の場所とそこでしたいことなどについて、友達と紹介し合う。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Listen 2 / Let’s Try 2" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">56</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l056" data-kind="summary" data-target="lessons/ef5-l056/summary.html" data-published="false">Unit 7 Welcome to Japan!：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l056" data-kind="lesson" data-target="lessons/ef5-l056/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l056" data-kind="questions" data-target="lessons/ef5-l056/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l057" data-seq="57" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="5/8" data-textbook-pages="pp.78〜79" data-learning-objective="紹介する地方と行きたい場所やそこでしたいことなどについて、表現を振り返ったり情報を整理したりして、観光案内 CM の内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Step 1 / Step 2" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">57</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l057" data-kind="summary" data-target="lessons/ef5-l057/summary.html" data-published="false">Unit 7 Welcome to Japan!：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l057" data-kind="lesson" data-target="lessons/ef5-l057/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l057" data-kind="questions" data-target="lessons/ef5-l057/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l058" data-seq="58" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="6/8" data-textbook-pages="pp.78〜79" data-learning-objective="日本各地の魅力を伝えるために、観光案内 CM（行きたい場所やそこでしたいことなど）を発表する。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">58</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l058" data-kind="summary" data-target="lessons/ef5-l058/summary.html" data-published="false">Unit 7 Welcome to Japan!：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l058" data-kind="lesson" data-target="lessons/ef5-l058/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l058" data-kind="questions" data-target="lessons/ef5-l058/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l059" data-seq="59" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="7/8" data-textbook-pages="pp.80〜81" data-learning-objective="映像や音声を手がかりに、世界に影響を与えている日本文化について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">59</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l059" data-kind="summary" data-target="lessons/ef5-l059/summary.html" data-published="false">Unit 7 Welcome to Japan!：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l059" data-kind="lesson" data-target="lessons/ef5-l059/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l059" data-kind="questions" data-target="lessons/ef5-l059/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l060" data-seq="60" data-unit="Unit 7 Welcome to Japan!" data-month="1〜2月" data-unit-period="8/8" data-textbook-pages="pp.80〜81" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人について知ったり日本文化について考えたりして、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【行きたい場所】Where do you want to go? / I want to go to Shiga. 【行きたい理由・したいこと】Why do you want to go to Shiga? / What do you want to do in Lake Biwa? / I want to go fishing. / It’s exciting." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">60</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l060" data-kind="summary" data-target="lessons/ef5-l060/summary.html" data-published="false">Unit 7 Welcome to Japan!：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l060" data-kind="lesson" data-target="lessons/ef5-l060/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l060" data-kind="questions" data-target="lessons/ef5-l060/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="9" data-chapter-id="ef5-c010" data-period="2〜3月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Unit 8 Who is your hero?</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c010/questions.html" data-published="false">問題</a>
+            <span class="count-meta">2〜3月・8回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l061" data-seq="61" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="1/8" data-textbook-pages="pp.84〜85" data-learning-objective="憧れの人についてのやり取りから、具体的な情報を聞き取る。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">61</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l061" data-kind="summary" data-target="lessons/ef5-l061/summary.html" data-published="false">Unit 8 Who is your hero?：Starting Out（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l061" data-kind="lesson" data-target="lessons/ef5-l061/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l061" data-kind="questions" data-target="lessons/ef5-l061/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l062" data-seq="62" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="2/8" data-textbook-pages="pp.84〜85" data-learning-objective="憧れの人についてのやり取りの表現に慣れ、ゴール活動への見通しをもつ。" data-learning-activities="Sounds and Letters / Listen and Think / Let’s Chant" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">62</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l062" data-kind="summary" data-target="lessons/ef5-l062/summary.html" data-published="false">Unit 8 Who is your hero?：Starting Out（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l062" data-kind="lesson" data-target="lessons/ef5-l062/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l062" data-kind="questions" data-target="lessons/ef5-l062/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l063" data-seq="63" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="3/8" data-textbook-pages="pp.86〜87" data-learning-objective="憧れの人やその人の職業について、友達と紹介し合う。" data-learning-activities="Sounds and Letters / Let’s Chant / Let’s Watch / Let’s Listen 1 / Let’s Try 1" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">63</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l063" data-kind="summary" data-target="lessons/ef5-l063/summary.html" data-published="false">Unit 8 Who is your hero?：Your Turn（第3時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l063" data-kind="lesson" data-target="lessons/ef5-l063/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l063" data-kind="questions" data-target="lessons/ef5-l063/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l064" data-seq="64" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="4/8" data-textbook-pages="pp.86〜87" data-learning-objective="憧れの人やその人の得意なことなどについて、友達と紹介し合う。" data-learning-activities="Sounds and Letters / Small Talk / Let’s Chant / Let’s Listen 2 / Let’s Try 1 / Let’s Try 2" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">64</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l064" data-kind="summary" data-target="lessons/ef5-l064/summary.html" data-published="false">Unit 8 Who is your hero?：Your Turn（第4時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l064" data-kind="lesson" data-target="lessons/ef5-l064/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l064" data-kind="questions" data-target="lessons/ef5-l064/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l065" data-seq="65" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="5/8" data-textbook-pages="pp.88〜89" data-learning-objective="憧れの人の職業や得意なことなどについて、表現を振り返ったり情報を整理したりして、友達に紹介する内容を考える。" data-learning-activities="Sounds and Letters / Small Talk / Step 1 / Step 2" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">65</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l065" data-kind="summary" data-target="lessons/ef5-l065/summary.html" data-published="false">Unit 8 Who is your hero?：Enjoy Communication（第5時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l065" data-kind="lesson" data-target="lessons/ef5-l065/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l065" data-kind="questions" data-target="lessons/ef5-l065/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l066" data-seq="66" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="6/8" data-textbook-pages="pp.88〜89" data-learning-objective="お互いのことをよく知るために、憧れの人の職業や得意なことなどについて友達に紹介する。" data-learning-activities="Sounds and Letters / Let’s Chant / Your Goal" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">66</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l066" data-kind="summary" data-target="lessons/ef5-l066/summary.html" data-published="false">Unit 8 Who is your hero?：Enjoy Communication（第6時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l066" data-kind="lesson" data-target="lessons/ef5-l066/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l066" data-kind="questions" data-target="lessons/ef5-l066/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l067" data-seq="67" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="7/8" data-textbook-pages="pp.90〜91" data-learning-objective="映像や音声を手がかりにして、日本のヒーローについて考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters / Small Talk" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">67</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l067" data-kind="summary" data-target="lessons/ef5-l067/summary.html" data-published="false">Unit 8 Who is your hero?：Over the Horizon（第7時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l067" data-kind="lesson" data-target="lessons/ef5-l067/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l067" data-kind="questions" data-target="lessons/ef5-l067/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l068" data-seq="68" data-unit="Unit 8 Who is your hero?" data-month="2〜3月" data-unit-period="8/8" data-textbook-pages="pp.90〜91" data-learning-objective="映像や音声を手がかりにして、日本に住む外国人や漆・輪島塗の作品について考え、日本と世界の文化に対する理解を深める。" data-learning-activities="Sounds and Letters" data-key-phrases="【憧れの人】Who is your hero? / My hero is Yamanaka Shinya. 【職業】He [She] is a (famous) scientist. 【得意なこと・性格】He [She] is good at running marathons. / He [She] is amazing." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">68</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l068" data-kind="summary" data-target="lessons/ef5-l068/summary.html" data-published="false">Unit 8 Who is your hero?：Over the Horizon（第8時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l068" data-kind="lesson" data-target="lessons/ef5-l068/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l068" data-kind="questions" data-target="lessons/ef5-l068/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="10" data-chapter-id="ef5-c011" data-period="3月">
+        <summary class="chapter-summary">
+          <span class="chapter-name">Check Your Steps 3 おすすめしたい！日本の素敵</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef5-c011/questions.html" data-published="false">問題</a>
+            <span class="count-meta">3月・2回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
+            <li class="lesson-item" data-lesson-id="ef5-l069" data-seq="69" data-unit="Check Your Steps 3 おすすめしたい！日本の素敵" data-month="3月" data-unit-period="1/2" data-textbook-pages="pp.94〜95" data-learning-objective="日本の魅力を知るために、紹介したい都道府県や各地にゆかりのある（有名）人などについて、具体的な情報を聞き取ったり、内容を整理したうえで話したりすることができる。" data-learning-activities="Let’s Sing / Small Talk / HOP / STEP / Your Goal" data-key-phrases="【既習事項の復習】I’m.... / Where do you want to go? / I want to go to.... / This is.... / You can.... / She [He] is my hero. / I have a question. など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">69</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l069" data-kind="summary" data-target="lessons/ef5-l069/summary.html" data-published="false">Check Your Steps 3 おすすめしたい！日本の素敵（第1時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l069" data-kind="lesson" data-target="lessons/ef5-l069/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l069" data-kind="questions" data-target="lessons/ef5-l069/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+            <li class="lesson-item" data-lesson-id="ef5-l070" data-seq="70" data-unit="Check Your Steps 3 おすすめしたい！日本の素敵" data-month="3月" data-unit-period="2/2" data-textbook-pages="pp.94〜95" data-learning-objective="日本の魅力を伝えるために、紹介したい都道府県や各地にゆかりのある（有名）人などについて、内容を整理したうえで話すことができる。" data-learning-activities="Let’s Sing / Small Talk / Let’s Chant / JUMP / Your Goal" data-key-phrases="【既習事項の復習】I’m.... / Where do you want to go? / I want to go to.... / This is.... / You can.... / She [He] is my hero. / I have a question. など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_5nen_20260821.pdf">
+              <span class="lesson-num">70</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l070" data-kind="summary" data-target="lessons/ef5-l070/summary.html" data-published="false">Check Your Steps 3 おすすめしたい！日本の素敵（第2時）</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l070" data-kind="lesson" data-target="lessons/ef5-l070/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="ef5-l070" data-kind="questions" data-target="lessons/ef5-l070/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
+        </div>
+      </details>
       <nav class="problem-toolbar grade-navigation" aria-label="同じ科目の学年移動" style="margin-top: 24px;">
         <a class="problem-previous" href="../../grade-4/english/">← 小学4年の外国語活動</a>
         <a class="problem-next" href="../../grade-6/english/">小学6年の英語 →</a>
       </nav>
     </main>
   </div>
+
+  <div class="status-toast" id="status-toast" role="status" aria-live="polite"></div>
+
+  <script src="../../../assets/curriculum-actions.js?v=20261122"></script>
+  <script src="../../../assets/curriculum-page.js?v=20261123-shared"></script>
 </body>
 </html>
