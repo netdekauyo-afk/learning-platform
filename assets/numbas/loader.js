@@ -549,6 +549,13 @@ async function installWorksheetControls(examElement, examData) {
 function arrangeExplorePart(part, section, prompt) {
   const feedback = prompt?.querySelector("[data-classroom-result]");
   const answer = section.querySelector(":scope > .student.answer");
+  if (!part.previousPart) {
+    // The native root-part legend includes the management ID in its accessible name.
+    for (const legend of answer?.querySelectorAll("fieldset:has(.radiogroup) > legend.sr-only") || []) {
+      legend.parentElement.setAttribute("aria-label", "回答の選択肢");
+      legend.setAttribute("aria-hidden", "true");
+    }
+  }
   if (feedback && answer) {
     const paragraph = feedback.parentElement;
     answer.after(feedback);
