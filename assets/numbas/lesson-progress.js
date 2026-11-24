@@ -1,4 +1,4 @@
-import { examQuestions, questionIds, questionProgress, isRecognizedCorrect, initializeRecognitionRule, readExamSource, mainQuestionSet } from "./question-progress.js?v=fixed-parts-1";
+import { examQuestions, questionIds, questionProgress, isRecognizedCorrect, initializeRecognitionRule, readExamSource, mainQuestionSet } from "./question-progress.js?v=shared-design-1";
 
 const prefix = "classroom:practice-history:v1:";
 const marks = Object.freeze({ single: "○", oneOfTwo: "◯", both: "◎" });

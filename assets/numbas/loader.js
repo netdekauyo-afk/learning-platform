@@ -1,7 +1,7 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=20261124-chapter-practice";
-import { createDifficultyTabs } from "./difficulty-tabs.js";
-import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
-import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect } from "./question-progress.js?v=fixed-parts-1";
+import { createDifficultyTabs } from "./difficulty-tabs.js?v=shared-design-1";
+import { exerciseSettings, applyExerciseSettings } from "./exercise-settings.js?v=shared-design-1";
+import { initializeRecognitionRule, isRecognizedCorrect, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect } from "./question-progress.js?v=shared-design-1";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
@@ -23,31 +23,42 @@ function lessonContext() {
     subject: match[4], lessonId: match[5] };
 }
 
-function addSubjectSelectionLink() {
-  const context = lessonContext();
-  const toolbar = document.querySelector('.problem-toolbar[aria-label="問題ページの移動"]');
-  if (!context || !toolbar || document.getElementById("other-subject-link")) return;
-  const url = new URL(context.root + "study-home/", location.origin);
-  url.searchParams.set("grade", context.grade);
+// All entry points use the same page frame. A chapter practice has a grade
+// and a subject picker, but no lesson number or study-home lesson progress.
+function preparePageFrame() {
+  if (!host) return;
+  const sheet = document.createElement("link");
+  sheet.rel = "stylesheet";
+  sheet.href = new URL("./question-tabs.css?v=shared-design-1", import.meta.url).href;
+  document.head.append(sheet);
+
+  const lesson = location.pathname.match(/\/lessons\/[^/]+-l(\d+)\/questions\.html$/);
+  const heading = document.querySelector(".site-shell > main h1");
+  if (lesson && heading && !/^第\d+時限/.test(heading.textContent.trim())) {
+    const prefix = "第" + Number(lesson[1]) + "時限 ";
+    (heading.querySelector("a") || heading).prepend(prefix);
+    if (!document.title.startsWith(prefix)) document.title = prefix + document.title;
+  }
+  const course = location.pathname.match(/^(.*\/)(elementary|junior-high)\/grade-(\d+)\//);
+  if (!course) return;
+  const url = new URL(course[1] + "study-home/", location.origin);
+  url.searchParams.set("grade", (course[2] === "elementary" ? "e" : "") + course[3]);
   url.searchParams.set("screen", "subjects");
   const link = document.createElement("a");
   link.id = "other-subject-link";
-  link.className = "text-link";
   link.href = url.href;
   link.textContent = "別の科目を見る";
-  if (host?.hasAttribute("data-main-question-set")) {
-    link.slot = "review-actions";
-    // Keep the same link available below the lesson while Numbas loads.
-    host.after(link);
-    return;
+  link.slot = "review-actions";
+  host.after(link);
+  function placeLink() {
+    const exam = Array.from(document.querySelectorAll("numbas-exam")).find((item) => !item.closest("[hidden]"));
+    // Until a difficulty's exam loads (or if it is unpublished), keep the link available.
+    const target = exam || document.querySelector(".site-shell > main");
+    if (target && target !== link.parentElement) target.append(link);
   }
-  const wrapper = document.createElement("p");
-  wrapper.className = "problem-toolbar";
-  wrapper.style.margin = "-10px 0 20px";
-  wrapper.append(link);
-  toolbar.after(wrapper);
+  document.addEventListener("classroom:panel-change", placeLink);
+  document.addEventListener("numbas:loaded", placeLink, true);
 }
-addSubjectSelectionLink();
 
 // Persist the qualifying answer synchronously, so closing the page while the
 // lesson schedule loads does not lose the update. This does not alter history.
@@ -166,7 +177,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
   const explore = question.partsMode === "explore";
   const authoredControls = set && hasAuthoredExploreControls(question);
   const primaryPart = question.parts[0];
-  const showsAnswerOnCard = (part) => set && part.type === "1_n_2" && part.settings.displayType === "radiogroup";
+  const showsAnswerOnCard = (part) => (set || part.answered) && part.type === "1_n_2" && part.settings.displayType === "radiogroup";
   // Keep auxiliary answers out of the existing main-question progress history.
   const supportHistoryKey = historyKey + ":support";
   let activeQuestionIds = [];
@@ -256,21 +267,29 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
           }
         }
       }
-      // In explore mode, follow a uniquely available wrong-answer branch.
-      // Correct answers stay on the main question with Numbas' optional paths.
-      if (!authoredControls && !question.classroomHandlesBranchNavigation && explore && !support &&
-          score < maximum && typeof part.availableNextParts === "function") {
-        setTimeout(() => {
-          if (!examHost.contains(examElement) || question.currentPart !== part ||
-              !part.answered || Number(part.score) >= Number(part.marks)) return;
-          const candidates = part.availableNextParts();
-          if (candidates.length !== 1) return;
-          const branch = candidates[0];
-          if (branch.instance) question.setCurrentPart(branch.instance);
-          else part.makeNextPart(branch);
-        }, 0);
-      }
     });
+
+    // Older unlabelled Explore files keep native navigation. Only follow a
+    // unique remedial path while the same graded part is still on screen.
+    if (!set && explore && !support && typeof part.availableNextParts === "function") {
+      let pending;
+      const cancel = () => clearTimeout(pending);
+      part.events.on("pre-submit", cancel);
+      question.events.on("setCurrentPart", cancel);
+      examHost.ownerDocument.addEventListener("classroom:panel-change", cancel);
+      window.addEventListener("pagehide", cancel);
+      part.events.on("post-submit", () => {
+        if (!part.answered || part.score >= part.marks || part.availableNextParts().length !== 1) return;
+        pending = setTimeout(() => {
+          if (!examElement.isConnected || examElement.closest("[hidden]") || question.currentPart !== part ||
+              part.isDirty || part.score >= part.marks) return;
+          const options = part.availableNextParts();
+          if (options.length !== 1) return;
+          if (options[0].instance) question.setCurrentPart(options[0].instance);
+          else part.makeNextPart(options[0]);
+        }, exerciseSettings.supportDelayMs);
+      });
+    }
 
     // Immediate correctness advances only the currently selected basic lesson.
     // Explore support parts have their own history and do not affect progress.
@@ -338,7 +357,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "practice-reveal-button";
-  const answerId = set ? "practice-answer-" + questionId : level === "basic" ? "practice-answer" : "practice-answer-" + level;
+  const answerId = questionId ? "practice-answer-" + questionId : level === "basic" ? "practice-answer" : "practice-answer-" + level;
   button.setAttribute("aria-controls", answerId);
 
   const answerBox = document.createElement("div");
@@ -473,12 +492,15 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
   section.append(notice);
   updateAnswerReview(question.currentPart || primaryPart);
   if (explore) question.events.on("setCurrentPart", updateAnswerReview);
+  if (!set && primaryPart.type === "1_n_2" && question.parts.length === 1) {
+    primaryPart.events.on("post-submit", () => updateAnswerReview(primaryPart));
+  }
   if (set) {
     const sync = () => { section.hidden = examElement.exam.currentQuestion !== question; };
     sync();
     examElement.exam.events.on("changeQuestion", sync);
   }
-  if (set && examElement.shadowRoot.querySelector('slot[name="classroom-review"]')) {
+  if (examElement.shadowRoot.querySelector('slot[name="classroom-review"]')) {
     section.slot = "classroom-review";
     examElement.append(section);
   } else {
@@ -510,6 +532,8 @@ async function installWorksheetControls(examElement, examData) {
       const hintMarkup = steps.filter((step) => step.type === "information")
         .map((step) => step.prompt || "").filter(Boolean).join("");
       controls.push(await prepareAnswerControl(part, index, hintMarkup));
+      const section = await part.display.html_promise;
+      arrangeQuestionCard(part, question, section, section.querySelector(":scope > .prompt"));
     }
 
     const form = controls[0]?.form;
@@ -518,7 +542,8 @@ async function installWorksheetControls(examElement, examData) {
     submit.type = "submit";
     submit.className = "check-answers";
     submit.textContent = controls.length > 1 ? "まとめて答え合わせ" : "答え合わせ";
-    form.append(submit);
+    const singleCard = controls.length === 1 && form.querySelector(".classroom-question-card");
+    (singleCard || form).append(submit);
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       if (!controls.every((control) => control.validate())) return;
@@ -536,14 +561,15 @@ async function installWorksheetControls(examElement, examData) {
       }
     });
 
-    // Keep the hint outside <numbas-exam>, whose shadow DOM contains the card.
+    // Keep the original light-DOM hint before the subject picker and credits.
     const panels = controls.map((control) => control.hintPanel).filter(Boolean);
     if (panels.length) {
       const external = document.createElement("section");
       external.className = "worksheet-hints";
       external.setAttribute("aria-label", "問題のヒント");
       external.append(...panels);
-      examElement.after(external);
+      external.slot = "review-actions";
+      examElement.prepend(external);
       const hideNativeSteps = document.createElement("style");
       hideNativeSteps.textContent = ".stepsBtn, .steps.well { display: none !important; }";
       examElement.shadowRoot.append(hideNativeSteps);
@@ -567,6 +593,10 @@ function formatExploreResult(output, correct) {
   let first;
   while ((first = reader.nextNode()) && !first.data.trim()) { /* skip whitespace */ }
   if (first) first.data = first.data.replace(/^\s*(?:正解です|誤答です|不正解です)。\s*/u, "");
+  output.prepend(resultHeading(correct));
+}
+
+function resultHeading(correct) {
   const heading = document.createElement("strong");
   heading.className = "classroom-result-heading";
   const mark = document.createElement("span");
@@ -574,29 +604,75 @@ function formatExploreResult(output, correct) {
   mark.setAttribute("aria-hidden", "true");
   mark.textContent = correct ? "◯" : "☓";
   heading.append(mark, correct ? "正解" : "不正解");
-  output.prepend(heading);
+  return heading;
 }
 
-// Keep the bound Numbas controls and the feedback element updated by the exam.
-function arrangeExplorePart(part, section, prompt, attachArrow) {
-  const feedback = prompt?.querySelector("[data-classroom-result]");
+// Display the answer and explanation already supplied by the running exam.
+function addMarkedResult(part, question, answer) {
+  const output = document.createElement("div");
+  output.setAttribute("data-classroom-result", "");
+  output.setAttribute("aria-live", "polite");
+  function update() {
+    if (!part.answered || part.isDirty) return;
+    const correct = part.score >= part.marks;
+    output.replaceChildren(resultHeading(correct));
+    const advice = question.parts.length === 1 && question.display.hasAdvice() &&
+      question.display.html.querySelector(".adviceDisplay");
+    if (advice?.textContent.trim()) {
+      for (const node of advice.childNodes) output.append(node.cloneNode(true));
+    } else if (!correct) {
+      const expected = part.display.correctAnswer();
+      const choice = Array.from(answer.querySelectorAll("label")).find((label) =>
+        label.querySelector('input[type="radio"]')?.value === String(expected));
+      const solution = choice?.textContent.trim() || (part.type === "numberentry" ? expected : "");
+      if (solution !== "" && solution != null) output.append("正解は「" + solution + "」です。");
+    }
+  }
+  part.events.on("post-submit", update);
+  if (part.type === "numberentry") {
+    part.display.studentAnswer.subscribe(() => { if (part.isDirty) output.replaceChildren(); });
+  }
+  update();
+  return output;
+}
+
+function arrangeQuestionCard(part, question, section, prompt, attachArrow) {
   const answer = section.querySelector(":scope > .student.answer");
-  if (!part.previousPart) {
-    // The native root-part legend includes the management ID in its accessible name.
-    for (const legend of answer?.querySelectorAll("fieldset:has(.radiogroup) > legend.sr-only") || []) {
+  const authoredResult = prompt?.querySelector("[data-classroom-result]");
+  if (!prompt || !answer || !["1_n_2", "numberentry"].includes(part.type)) {
+    attachArrow?.(part, section, authoredResult);
+    return;
+  }
+  if (question.partsMode === "explore" && !part.previousPart) {
+    for (const legend of answer.querySelectorAll("fieldset:has(.radiogroup) > legend.sr-only")) {
       legend.parentElement.setAttribute("aria-label", "回答の選択肢");
       legend.setAttribute("aria-hidden", "true");
     }
   }
-  if (feedback && answer) {
-    const paragraph = feedback.parentElement;
-    answer.after(feedback);
-    if (paragraph.matches("p:empty")) paragraph.remove();
+  const card = document.createElement("div");
+  card.className = "classroom-question-card";
+  section.classList.add("classroom-card-part");
+  section.classList.toggle("classroom-choice-part", part.type === "1_n_2");
+  if (question.parts.length === 1 || question.partsMode === "explore") section.classList.add("classroom-single-part");
+  prompt.before(card);
+  // Move the bound elements, including the worksheet's optional keypad and label.
+  card.append(prompt);
+  const label = section.querySelector(":scope > .answer-label");
+  if (label) card.append(label);
+  card.append(answer);
+  const keypad = section.querySelector(":scope > :is(.number-pad-panel, .number-pad)");
+  if (keypad) card.append(keypad);
+
+  const feedback = authoredResult || addMarkedResult(part, question, answer);
+  const paragraph = feedback.parentElement;
+  card.after(feedback);
+  if (paragraph?.matches("p:empty")) paragraph.remove();
+  if (authoredResult) {
     const format = () => formatExploreResult(feedback, part.score >= part.marks);
     new MutationObserver(format).observe(feedback, { childList: true });
     format();
   }
-  if (part.type === "1_n_2" && answer) {
+  if (part.type === "1_n_2") {
     const markExpected = () => {
       const expected = String(part.display.correctAnswer());
       for (const input of answer.querySelectorAll(".radiogroup input[type=radio]")) {
@@ -606,7 +682,7 @@ function arrangeExplorePart(part, section, prompt, attachArrow) {
     part.events.on("post-submit", markExpected);
     markExpected();
   }
-  attachArrow(part, section, prompt, answer, feedback);
+  attachArrow?.(part, section, feedback);
 }
 
 /* Reuse the native hint and its open state in both lesson layouts. */
@@ -624,7 +700,7 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
     if (part.type === "1_n_2" || prompt?.querySelector(".worksheet-text") || prompt?.textContent.trim().length > 20) {
       section.classList.add("written-question");
     }
-    if (attachArrow) arrangeExplorePart(part, section, prompt, attachArrow);
+    arrangeQuestionCard(part, question, section, prompt, attachArrow);
     const button = section.querySelector(":scope > .stepsBtn");
     const content = section.querySelector(":scope > .steps.well");
     if (!button || !content) return;
@@ -676,13 +752,12 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
 
 /* Submit a valid numeric answer after typing stops, using the same Numbas
    submission path as Enter. Existing blur and manual submissions remain active. */
-async function installNumericAutoSubmit(examElement) {
-  const question = examElement.exam?.questionList?.[0];
+async function installNumericAutoSubmit(examElement, question = examElement.exam?.questionList?.[0]) {
   if (!question) return;
   async function bind(part) {
     if (part.type !== "numberentry") return;
     const section = await part.display.html_promise;
-    const input = section.querySelector(":scope > .student.answer input.numberentry");
+    const input = section.querySelector(".student.answer input.numberentry");
     if (!input) return;
 
     let timer;
@@ -697,7 +772,7 @@ async function installNumericAutoSubmit(examElement) {
       timer = setTimeout(() => {
         timer = undefined;
         if (composing || !input.isConnected || input.disabled || input.readOnly ||
-            examElement.closest('[role="tabpanel"][hidden]') || part.locked ||
+            examElement.closest("[hidden]") || question.exam.currentQuestion !== question || part.locked ||
             part.submitting || !part.isDirty || !part.display.cleanStudentAnswer()) return;
         part.display.controls.submit();
       }, 2000);
@@ -720,7 +795,12 @@ async function installNumericAutoSubmit(examElement) {
   await Promise.all(question.parts.map(bind));
 }
 
+let runtimeReady;
 export async function prepareRuntime() {
+  return runtimeReady ??= loadRuntime();
+}
+
+async function loadRuntime() {
   const response = await fetch(resource("template.html"));
   if (!response.ok) throw new Error("Numbasの画面テンプレートを取得できませんでした。");
   const templateHost = document.createElement("div");
@@ -741,7 +821,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   let examData = authored?.examData;
   let exploreNavigation;
   if (authored) {
-    ({ exploreNavigation } = await import("./explore-navigation.js?v=ordered-support-1"));
+    ({ exploreNavigation } = await import("./explore-navigation.js?v=shared-design-1"));
     await prepareRuntime();
   } else {
     const response = await fetch(new URL(examHost.dataset.examSource, location.href));
@@ -752,8 +832,9 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   applyExerciseSettings(examData);
 
   const exam = document.createElement("numbas-exam");
-  const subjectLink = authored && document.querySelector('#other-subject-link[slot="review-actions"]');
   exam.toggleAttribute("data-main-question-set", Boolean(authored));
+  const questionCount = examData.question_groups.reduce((sum, group) => sum + group.questions.length, 0);
+  exam.toggleAttribute("data-classroom-navigation", Boolean(authored) || questionCount === 1);
   exam.setAttribute("noload", "");
   // Numbas accepts an inline exam definition. The original source is retained
   // on the host for answer review and for question-specific history IDs.
@@ -764,16 +845,13 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   exam.setAttribute("scorm", "false");
   exam.addEventListener("numbas:loaded", () => {
     examStatus.textContent = "";
+    const footer = exam.shadowRoot.querySelector("#questionContainer footer");
+    if (footer) {
+      const reviewSlot = document.createElement("slot");
+      reviewSlot.name = "classroom-review";
+      footer.after(reviewSlot);
+    }
     if (authored) {
-      const footer = exam.shadowRoot.querySelector("#questionContainer footer");
-      if (footer) {
-        if (subjectLink && exam.shadowRoot.querySelector('#questionContainer slot[name="review-actions"]')) {
-          exam.append(subjectLink);
-        }
-        const reviewSlot = document.createElement("slot");
-        reviewSlot.name = "classroom-review";
-        footer.after(reviewSlot);
-      }
       for (const question of exam.exam.questionList) {
         const main = authored.set.mains.find((item) => item.id === definitionId(question.parts[0]));
         if (!main) {
@@ -782,7 +860,8 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
         }
         void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, { set: authored.set, main, question })
           .catch((error) => { console.error(error); examStatus.textContent = "学習履歴を準備できませんでした。"; });
-        void installLessonHints(exam, question, hasAuthoredExploreControls(question), exploreNavigation(exam, question, main.parts))
+        void installNumericAutoSubmit(exam, question).catch((error) => console.error("数値入力の準備に失敗しました。", error));
+        void installLessonHints(exam, question, hasAuthoredExploreControls(question), main.parts[0].nextParts?.length ? exploreNavigation(exam, question, main.parts) : null)
           .catch((error) => console.error("ヒントの準備に失敗しました。", error));
       }
       return;
@@ -803,7 +882,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
 
   const styles = [
     resource("numbas-runtime/numbas.css"),
-    new URL("./theme.css?v=lesson-footer-1", import.meta.url).href,
+    new URL("./theme.css?v=shared-design-1", import.meta.url).href,
   ];
   await Promise.all(styles.map((href) => new Promise((resolve, reject) => {
     const link = document.createElement("link");
@@ -838,12 +917,13 @@ function prepareLessonNavigation(lessonNumber) {
 
 async function boot() {
   if (!host || !host.dataset.examSource) throw new Error("問題の参照先が設定されていません。");
+  preparePageFrame();
   const lessonMatch = location.pathname.match(/\/junior-high\/grade-1\/math\/lessons\/m1-l(\d{3})\/questions\.html$/);
   const lessonLayout = Boolean(lessonMatch) || host.hasAttribute("data-difficulty-tabs");
   if (lessonMatch) prepareLessonNavigation(Number(lessonMatch[1]));
   if (host.hasAttribute("data-main-question-set")) return; // The type tabs boot the intact exam once.
   const runtime = prepareRuntime();
-  const initialLoad = runtime.then(() => bootExam(host, status, "basic", lessonLayout));
+  const initialLoad = host.dataset.sequenceSource === host.dataset.examSource ? runtime : runtime.then(() => bootExam(host, status, "basic", lessonLayout));
 
   if (lessonLayout) {
     createDifficultyTabs(host, status, async (examHost, examStatus, level) => {
@@ -860,7 +940,7 @@ async function boot() {
         console.error(error);
         examStatus.textContent = "問題を表示できませんでした。";
       }
-    });
+    }, (level) => isRecognizedCorrect(readPracticeHistory(practiceHistoryKey(level)), null, recognitionStartedAt));
   }
   await initialLoad;
 }

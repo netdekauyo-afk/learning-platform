@@ -211,34 +211,33 @@ body.lesson-summary {
 
 #numbas-host numbas-exam { display: block; min-width: 0; }
 
-/* The hint is a sibling of <numbas-exam>, outside the question card. */
+/* The worksheet hint stays in light DOM, below its question card. */
 
-#numbas-host > .worksheet-hints { display: grid; gap: 10px; margin: 15px 0 22px; }
+#numbas-host .worksheet-hints { display: grid; gap: 10px; margin: .65rem 0 0; }
 
-#numbas-host > .worksheet-hints .worksheet-hint {
-  padding: 10px 8px 12px;
-  border-top: 1px solid var(--color-border);
+#numbas-host .worksheet-hints .worksheet-hint {
+  padding: 0;
   color: var(--color-text);
 }
 
-#numbas-host > .worksheet-hints .hint-toggle {
+#numbas-host .worksheet-hints .hint-toggle {
   display: inline-flex; align-items: center; gap: 9px;
   min-height: 44px; padding: 6px 0; border: none;
   background: transparent; color: var(--color-heading);
   font: inherit; font-weight: 650; cursor: pointer;
 }
 
-#numbas-host > .worksheet-hints .hint-toggle::before {
+#numbas-host .worksheet-hints .hint-toggle::before {
   content: ""; width: 9px; height: 9px; border-right: 2px solid currentColor;
   border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg);
 }
 
-#numbas-host > .worksheet-hints .hint-toggle[aria-expanded="true"]::before {
+#numbas-host .worksheet-hints .hint-toggle[aria-expanded="true"]::before {
   transform: translateY(2px) rotate(225deg);
 }
 
-#numbas-host > .worksheet-hints .hint-content {
+#numbas-host .worksheet-hints .hint-content {
   margin: 5px 0 0; padding-left: 18px; color: var(--color-text); line-height: 1.6;
 }
 
-#numbas-host > .worksheet-hints .hint-content[hidden] { display: none; }
+#numbas-host .worksheet-hints .hint-content[hidden] { display: none; }

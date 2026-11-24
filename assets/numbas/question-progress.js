@@ -1,8 +1,10 @@
+import { exerciseSettings } from "./exercise-settings.js?v=shared-design-1";
+
 // Identify a question by its contents, so an edited or reordered question never
 // inherits another question's results merely because it occupies the same slot.
 export function examQuestions(examData) {
   return (examData.question_groups || []).flatMap((group) =>
-    (group.questions || []).map((question) => ({ group, question }))
+    (group.questions || []).map((question, groupIndex) => ({ group, groupIndex, question }))
   );
 }
 
@@ -12,19 +14,35 @@ export async function readExamSource(source) {
   return JSON.parse((await response.text()).replace(/^\s*\/\/[^\n]*\r?\n/, ""));
 }
 
-export function questionTypeLabel(question, index, useFullName = false) {
-  const name = String(question.name || "").trim();
+export function subjectQuestionTypes(url = globalThis.location?.href || "") {
+  const course = url.match(/\/(elementary|junior-high|high-school)\/grade-\d+\/([^/?#]+)/);
+  return course ? exerciseSettings.questionTypesBySubject[course[1] + "/" + course[2]] || [] : [];
+}
+
+export function questionTypeLabel(question, index, useFullName = false, {
+  defaults = subjectQuestionTypes(), examName = "", groupName = ""
+} = {}) {
+  const name = String(groupName || question.name || "").trim();
+  // These are the existing authoring conventions: "M1 種類名" and "授業名（種類名）".
   const suffix = name.match(/[（(]([^（）()]+)[）)]\s*$/);
   const numbered = name.match(/^[A-Za-z]+\d+[\s　]+(.+)$/);
-  const label = (suffix?.[1] || numbered?.[1] || name).trim();
-  return label && (useFullName || Array.from(label).length <= 12) ? label : "問題" + (index + 1);
+  const explicit = (suffix?.[1] || numbered?.[1] || "").trim();
+  if (explicit) return explicit;
+  const generic = /^(?:M\d+|(?:問題|設問|Question)\s*\d+)$/i.test(name);
+  const shortName = name && Array.from(name).length <= 12;
+  const lessonTitle = examName.trim().replace(/^\S+\s+/, "");
+  if (!generic && name !== lessonTitle && name !== examName && (groupName || (shortName && examName))) return name;
+  const fixedNumber = question.parts?.[0]?.customName?.match(/-M(\d+)$/);
+  const slot = fixedNumber ? Number(fixedNumber[1]) - 1 : index;
+  if (defaults[slot]) return defaults[slot];
+  return name && !generic && (useFullName || shortName) ? name : "問題" + (index + 1);
 }
 
 // Only explicitly opted-in lessons use authored IDs. Existing sequences keep their content hashes.
-export function mainQuestionSet(exam) {
+export function mainQuestionSet(exam, defaults = subjectQuestionTypes()) {
   const lessonId = String(exam.name || "").trim().split(/\s+/)[0];
   const seen = new Set();
-  const mains = examQuestions(exam).map(({ question }, index) => {
+  const mains = examQuestions(exam).map(({ group, groupIndex, question }, index) => {
     const parts = question.parts || [];
     const id = parts[0]?.customName;
     if (!lessonId || question.partsMode !== "explore" || !(Number(parts[0]?.marks) > 0) ||
@@ -40,7 +58,8 @@ export function mainQuestionSet(exam) {
       }
       seen.add(partId);
     }
-    return { id, label: questionTypeLabel(question, index, true), parts };
+    const label = questionTypeLabel(question, index, true, { defaults, examName: exam.name, groupName: group.questionNames?.[groupIndex] });
+    return { id, label, parts };
   });
   if (!mains.length) throw new Error("教材に主問題がありません。");
   return { lessonId, mains, ids: mains.map((main) => main.id) };

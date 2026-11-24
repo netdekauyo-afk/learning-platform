@@ -546,12 +546,12 @@
   display: none;
 }
 .student.answer[feedback-state="correct"] .radiogroup li.checked.correct label,
-:host([data-main-question-set]) .student.answer[feedback-state="wrong"] .radiogroup li.classroom-expected label {
+.student.answer[feedback-state="wrong"] .radiogroup li.classroom-expected label {
   border-color: var(--color-success);
   box-shadow: inset 0 0 0 1px var(--color-success);
 }
 .student.answer[feedback-state="correct"] .radiogroup li.checked.correct label::after,
-:host([data-main-question-set]) .student.answer[feedback-state="wrong"] .radiogroup :is(li.checked, li.classroom-expected) label::after {
+.student.answer[feedback-state="wrong"] .radiogroup :is(li.checked, li.classroom-expected) label::after {
   content: "✓";
   display: inline-flex;
   flex: 0 0 auto;
@@ -567,7 +567,7 @@
   font-weight: 700;
   line-height: 1;
 }
-.student.answer[feedback-state="correct"]:has(.radiogroup li.checked.correct)::after {
+.part:not(.classroom-card-part) .student.answer[feedback-state="correct"]:has(.radiogroup li.checked.correct)::after {
   content: "正解です";
   display: block;
   margin-top: .8rem;
@@ -576,26 +576,31 @@
 }
 .lesson-hint[hidden] { display: none !important; }
 
-/* The Classroom tabs provide navigation for an embedded Explore set. Keep
-   Numbas' bound inputs, branch buttons, hints and accessibility settings. */
+/* On embedded sets the Classroom arrows and tabs provide Explore navigation. */
 :host([data-main-question-set]) {
-  #everything > .question-nav,
   .partsmode-explore > form > header, .partsmode-explore > .question-nav,
-  .statement + hr, [data-classroom-menu], .part-wrapper > .part > .partheader,
-  .next-parts, .dead-end, .part-wrapper:has(> .part.invisible),
+  [data-classroom-menu], .next-parts, .dead-end, .part-wrapper:has(> .part.invisible),
   [data-parent-result], .stepsBtn button[data-bind*="controls.hideSteps"] { display: none; }
+}
+:host([data-classroom-navigation]) {
+  #everything > .question-nav, article.question > form > header,
+  article.question > .question-nav, .statement + hr { display: none; }
+}
 
+/* Shared by choice, numeric, and chapter practice cards. */
+:host {
+  .classroom-single-part > .partheader { display: none; }
   .part-wrapper { --arrow-gutter: 2.75rem; }
-  .partsmode-explore .statement { margin: 0 0 .6rem; }
+  .statement:not(:empty) { margin: 0 0 .6rem; }
   .statement p { margin: 0; }
   .parts { display: block; padding: 0; }
-  .part-wrapper > .part.classroom-choice-part, .classroom-part-with-arrow {
+  .part-wrapper > .part.classroom-card-part, .classroom-part-with-arrow {
     display: grid;
     grid-template-columns: var(--arrow-gutter) minmax(0, 1fr) var(--arrow-gutter);
     align-items: center;
     gap: 0;
   }
-  .part-wrapper > .part.classroom-choice-part {
+  .part-wrapper > .part.classroom-card-part {
     min-height: 0;
     padding: 0;
     border: 0;
@@ -615,9 +620,32 @@
     border-radius: clamp(.85rem, 2.5vw, 1.35rem);
     box-shadow: 0 2px 0 var(--card-edge);
   }
+  .classroom-card-part:not(:has(> .classroom-arrow)) { --arrow-gutter: 0rem; }
+  .classroom-question-card > :is(.answer-label, .answer-row, .number-pad, .number-pad-panel) {
+    grid-area: auto;
+    justify-self: start;
+  }
+  .classroom-question-card .student.answer { min-width: 0; max-width: 100%; }
+  .type-numberentry .classroom-question-card .student.answer { width: min(100%, 16rem); }
+  .sites-worksheet-ready .classroom-card-part > .submit-and-feedback { display: none; }
+  .classroom-question-card .check-answers { margin: 0; }
+  .type-numberentry .classroom-question-card > .answer-label {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);
+  }
+  .classroom-question-card input.numberentry { max-width: 100%; min-height: 2.75rem; }
+  .classroom-card-part > .answer-note { grid-column: 2; }
+  .classroom-card-part.checked-answer > .answer-note,
+  .classroom-card-part .student.answer:not(:has(.radiogroup)) > .feedback-icon { display: none; }
   .classroom-part-with-arrow > .part { grid-area: 1 / 2; }
-  .classroom-choice-part > [data-classroom-result] { grid-area: 2 / 2; margin-top: .65rem; }
+  .classroom-card-part > [data-classroom-result] { grid-area: 2 / 2; margin-top: .65rem; }
   .classroom-countdown { grid-area: 3 / 2; color: var(--color-text); font-size: .9em; }
+  @media (prefers-reduced-motion: no-preference) {
+    .turn-on-check .part.classroom-card-part.checked-answer { animation-name: classroom-turn; }
+  }
+  @keyframes classroom-turn {
+    0%, 100% { transform: perspective(65rem) rotateY(0); }
+    50% { transform: perspective(65rem) rotateY(90deg); }
+  }
   .classroom-countdown[hidden] { display: none; }
   .classroom-arrow {
     grid-row: 1; grid-column: 3; align-self: center; justify-self: center;
@@ -637,14 +665,15 @@
   .classroom-arrow.back span { transform: rotate(180deg); }
   .classroom-arrow:enabled:is(:active,.is-moving) { color: #fff; }
   .classroom-arrow:enabled:is(:active,.is-moving) span::after { opacity: 0; }
-  .part-wrapper > .type-1_n_2::before,
-  .part-wrapper > .type-1_n_2::after { content: none; }
+  .part-wrapper > .classroom-card-part::before,
+  .part-wrapper > .classroom-card-part::after { content: none; }
   .student.answer .radiogroup label {
     font-family: var(--main-font, system-ui), "Noto Sans CJK JP", "Yu Gothic", Meiryo, sans-serif;
     overflow-wrap: anywhere;
   }
   [data-classroom-result]:empty { display: none; }
-  [data-classroom-result] { line-height: 1.55; }
+  [data-classroom-result] { line-height: 1.55; min-width: 0; overflow-wrap: anywhere; }
+  [data-classroom-result] p { margin: 0; }
   .classroom-question-card > .prompt { scroll-margin-block-start: .75rem; }
   .classroom-choice-part:has([data-classroom-result]:not(:empty)) .student.answer::after { content: none; }
   .student.answer[feedback-state="wrong"] > .feedback-icon,

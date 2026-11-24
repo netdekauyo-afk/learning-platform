@@ -1,3 +1,5 @@
+import { exerciseSettings } from "./exercise-settings.js?v=shared-design-1";
+
 const compareIds = new Intl.Collator("en", { numeric: true }).compare;
 
 // A Numbas branch's index identifies its target in the authored parts array,
@@ -11,7 +13,7 @@ export function nextOptionalBranch(available, parts, lastId) {
 
 export function exploreNavigation(examElement, question, parts) {
   const main = question.parts[0];
-  const branchDelayMs = 10000;
+  const branchDelayMs = exerciseSettings.supportDelayMs;
   const transitionMs = 220;
   let forward, countdown, movingArrow, navigationTimer, countdownInterval;
   let deadline = 0;
@@ -83,7 +85,7 @@ export function exploreNavigation(examElement, question, parts) {
   question.exam.events.on("changeQuestion", () => { if (!active(main)) cancel(); });
   window.addEventListener("pagehide", cancel);
 
-  return function attach(part, section, prompt, answer, feedback) {
+  return function attach(part, section, feedback) {
     const back = part !== main;
     const arrow = document.createElement("button");
     arrow.type = "button";
@@ -94,15 +96,9 @@ export function exploreNavigation(examElement, question, parts) {
     arrow.append(triangle);
     arrow.addEventListener("click", () => move(part, arrow));
 
-    if (part.type === "1_n_2" && prompt && answer) {
-      section.classList.add("classroom-choice-part");
-      const card = document.createElement("div");
-      card.className = "classroom-question-card";
-      prompt.before(card);
-      card.append(prompt, answer);
+    if (section.classList.contains("classroom-card-part")) {
       section.append(arrow);
     } else {
-      // Other input types keep their native part layout and input controls.
       section.parentElement.classList.add("classroom-part-with-arrow");
       section.after(arrow);
     }

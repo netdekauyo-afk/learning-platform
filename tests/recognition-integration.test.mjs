@@ -53,8 +53,9 @@ async function withList({ href, rows, difficulty, records, examRaw }, run) {
   for (const [key, value] of Object.entries(replacements)) Object.defineProperty(globalThis, key, { value, configurable: true, writable: true });
   try {
     const moduleFile = new URL("../assets/numbas/lesson-progress.js", import.meta.url);
-    const dependency = new URL("../assets/numbas/question-progress.js?v=fixed-parts-1", import.meta.url).href;
-    const source = (await readFile(moduleFile, "utf8")).replace("./question-progress.js?v=fixed-parts-1", dependency);
+    const source = (await readFile(moduleFile, "utf8")).replace(
+      /from "(\.\/question-progress\.js[^"]*)"/, (_, dependency) => 'from "' + new URL(dependency, moduleFile).href + '"'
+    );
     await import("data:text/javascript;base64," + Buffer.from(source).toString("base64") + "#" + Math.random());
     const settle = async (ready = () => true) => {
       for (let i = 0; i < 200 && !ready(); i++) await new Promise((resolve) => setTimeout(resolve, 5));
@@ -140,4 +141,30 @@ test("別の授業では固定ID、主問題数、補助問題数をその教材
   assert.deepEqual(mainQuestionSet(exam).mains.map((m) => m.label), ["読み取り", "比較"]);
   questions[1].parts[1].customName = "geo-X-M8-S7";
   assert.throws(() => mainQuestionSet(exam));
+});
+
+test("科目の標準名は教材の種類名を優先し、固定ID・実問数・従来の履歴IDを保つ", async () => {
+  const { subjectQuestionTypes, questionTypeLabel } = await import("../assets/numbas/question-progress.js");
+  const math = subjectQuestionTypes("/junior-high/grade-2/math/lessons/any/questions.html");
+  const social = subjectQuestionTypes("/junior-high/grade-1/social/");
+  assert.deepEqual(math, ["確認", "文章題", "使い分け"]);
+  assert.deepEqual(social, ["知識", "理解", "資料読解"]);
+  const part = (id) => ({ marks: 1, useCustomName: true, customName: id });
+  const q = (name, id) => ({ name, partsMode: "explore", parts: [part(id)] });
+  const exam = { name: "ex-A 地域のくらし", question_groups: [{ questions: [
+    q("地域のくらし", "ex-A-M3"), q("M1 史料の比較", "ex-A-M1")
+  ] }] };
+  const ids = await questionIds(examQuestions(exam));
+  const set = mainQuestionSet(exam, social);
+  assert.deepEqual(set.mains.map((m) => m.label), ["資料読解", "史料の比較"]);
+  assert.deepEqual(set.ids, ["ex-A-M3", "ex-A-M1"]);
+  assert.equal(questionTypeLabel({ name: "地域のくらし（地図）" }, 0, false, { defaults: social }), "地図");
+  assert.equal(questionTypeLabel({ name: "観察" }, 1, false, { defaults: social, examName: exam.name }), "観察");
+  assert.equal(questionTypeLabel({ name: "" }, 1, false, { defaults: social }), "理解");
+  assert.equal(questionTypeLabel({ name: "" }, 3, false, { defaults: social }), "問題4");
+  assert.deepEqual(subjectQuestionTypes("/junior-high/grade-1/japanese/"), []);
+  assert.equal(questionTypeLabel({ name: "漢字" }, 1, false, { defaults: [] }), "漢字");
+  exam.question_groups[0].questionNames = ["史料の比較と根拠の説明", ""];
+  assert.deepEqual(mainQuestionSet(exam, social).mains.map((m) => m.label), ["史料の比較と根拠の説明", "史料の比較"]);
+  assert.deepEqual(await questionIds(examQuestions(exam)), ids);
 });

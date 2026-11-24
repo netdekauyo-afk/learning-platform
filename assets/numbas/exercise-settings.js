@@ -1,5 +1,11 @@
 // Classroom全体の問題設定。選択肢の並び替えはNumbasの機能を使う。
 export const exerciseSettings = Object.freeze({
+  // 学校段階・科目ごとの種類名。教材側で付けた種類名を優先する。
+  questionTypesBySubject: {
+    "junior-high/math": ["確認", "文章題", "使い分け"],
+    "junior-high/social": ["知識", "理解", "資料読解"],
+  },
+  supportDelayMs: 10000,
   shuffleChoices: true,
   // 例外は教材ID、設問名、パート番号（1から）の順に指定する。
   // 例: "j2-l001": { "設問名": { "1": false } }

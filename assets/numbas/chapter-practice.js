@@ -40,7 +40,7 @@ try {
   urls = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
     JSON.stringify({ ...data, question_groups: [{ ...group, questionNames: [""], variable_overrides: [], questions: [question] }] })
   ], { type: "application/json" })));
-  const { prepareRuntime, bootExam } = await import("./loader.js?v=20261124-chapter-practice");
+  const { prepareRuntime, bootExam } = await import("./loader.js?v=shared-design-1");
   await prepareRuntime();
 
   async function show(index) {
