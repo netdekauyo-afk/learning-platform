@@ -41,10 +41,11 @@ try {
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = new URL("./question-tabs.css?v=explore-layout-1", import.meta.url).href;
+  stylesheet.href = new URL("./question-tabs.css?v=classroom-arrows-1", import.meta.url).href;
   document.head.append(stylesheet);
   const tabs = document.createElement("div");
   tabs.className = "question-type-tabs";
+  tabs.toggleAttribute("data-main-question-set", Boolean(set));
   tabs.setAttribute("role", "tablist");
   tabs.setAttribute("aria-label", "基本問題の種類");
   const panel = document.createElement("div");
@@ -182,7 +183,7 @@ try {
 
   setQuestionSource();
   updateControls();
-  ({ bootExam } = await import("./loader.js?v=explore-layout-2"));
+  ({ bootExam } = await import("./loader.js?v=classroom-arrows-1"));
   const basicPanel = set ? host.parentElement : document.getElementById("difficulty-basic-panel");
   if (!basicPanel) throw new Error("基礎問題を準備できませんでした。");
   basicPanel.insertBefore(tabs, status);

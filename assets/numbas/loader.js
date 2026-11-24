@@ -251,7 +251,8 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
       }
       // In explore mode, follow a uniquely available wrong-answer branch.
       // Correct answers stay on the main question with Numbas' optional paths.
-      if (!authoredControls && explore && !support && score < maximum && typeof part.availableNextParts === "function") {
+      if (!authoredControls && !question.classroomHandlesBranchNavigation && explore && !support &&
+          score < maximum && typeof part.availableNextParts === "function") {
         setTimeout(() => {
           if (!examHost.contains(examElement) || question.currentPart !== part ||
               !part.answered || Number(part.score) >= Number(part.marks)) return;
@@ -544,9 +545,26 @@ async function installWorksheetControls(examElement, examData) {
   }
 }
 
-// Move the bound Numbas nodes together with their handlers, including the
-// authored live feedback element that the standalone exam updates on marking.
-function arrangeExplorePart(part, section, prompt) {
+function formatExploreResult(output, correct) {
+  if (!output.textContent.trim() || output.querySelector(".classroom-result-heading")) return;
+  // Only replace the introductory status in the authored feedback. Keep the
+  // explanation, inline maths and markup supplied by the exam.
+  const reader = document.createTreeWalker(output, NodeFilter.SHOW_TEXT);
+  let first;
+  while ((first = reader.nextNode()) && !first.data.trim()) { /* skip whitespace */ }
+  if (first) first.data = first.data.replace(/^\s*(?:正解です|誤答です|不正解です)。\s*/u, "");
+  const heading = document.createElement("strong");
+  heading.className = "classroom-result-heading";
+  const mark = document.createElement("span");
+  mark.className = "classroom-result-mark";
+  mark.setAttribute("aria-hidden", "true");
+  mark.textContent = correct ? "◯" : "☓";
+  heading.append(mark, correct ? "正解" : "不正解");
+  output.prepend(heading);
+}
+
+// Keep the bound Numbas controls and the feedback element updated by the exam.
+function arrangeExplorePart(part, section, prompt, attachArrow) {
   const feedback = prompt?.querySelector("[data-classroom-result]");
   const answer = section.querySelector(":scope > .student.answer");
   if (!part.previousPart) {
@@ -560,40 +578,38 @@ function arrangeExplorePart(part, section, prompt) {
     const paragraph = feedback.parentElement;
     answer.after(feedback);
     if (paragraph.matches("p:empty")) paragraph.remove();
-    // The exam writes its own explanation on each submission. Style just
-    // the existing success label, leaving the explanation and its markup intact.
-    const highlightResult = () => {
-      const first = document.createTreeWalker(feedback, NodeFilter.SHOW_TEXT).nextNode();
-      const prefix = "正解です。";
-      if (!first?.data.startsWith(prefix) || first.parentElement.closest(".classroom-correct-label")) return;
-      const label = document.createElement("strong");
-      label.className = "classroom-correct-label";
-      first.splitText(prefix.length);
-      first.replaceWith(label);
-      label.append(first);
-    };
-    new MutationObserver(highlightResult).observe(feedback, { childList: true });
-    highlightResult();
+    const format = () => formatExploreResult(feedback, part.score >= part.marks);
+    new MutationObserver(format).observe(feedback, { childList: true });
+    format();
   }
   const previousResult = prompt?.querySelector("[data-parent-result]");
-  if (previousResult) section.before(previousResult);
-
-  const next = section.querySelector(":scope > .next-parts");
-  if (!next) return;
-  section.after(next);
-  const menu = next.querySelector(":scope > menu");
-  if (part.previousPart || !menu) return;
-  const options = document.createElement("details");
-  options.className = "classroom-support-options";
-  const summary = document.createElement("summary");
-  summary.textContent = "補助問題を見る";
-  menu.before(options);
-  options.append(summary, menu);
-  part.question.events.on("setCurrentPart", () => { options.open = false; });
+  if (previousResult) {
+    const details = document.createElement("details");
+    details.className = "classroom-parent-result";
+    details.open = true;
+    const summary = document.createElement("summary");
+    const title = previousResult.querySelector("strong");
+    summary.textContent = title?.textContent || "主問題の結果";
+    title?.remove();
+    section.before(details);
+    details.append(summary, previousResult);
+    formatExploreResult(previousResult, false);
+  }
+  if (part.type === "1_n_2" && answer) {
+    const markExpected = () => {
+      const expected = String(part.display.correctAnswer());
+      for (const input of answer.querySelectorAll(".radiogroup input[type=radio]")) {
+        input.closest("li").classList.toggle("classroom-expected", part.answered && input.value === expected);
+      }
+    };
+    part.events.on("post-submit", markExpected);
+    markExpected();
+  }
+  attachArrow(part, section, prompt, answer, feedback);
 }
 
 /* Reuse the native hint and its open state in both lesson layouts. */
-async function installLessonHints(examElement, question = examElement.exam?.questionList?.[0], authored = false) {
+async function installLessonHints(examElement, question = examElement.exam?.questionList?.[0], authored = false, attachArrow = null) {
   if (!question) return;
   const classroomExplore = examElement.hasAttribute("data-main-question-set");
   const decorated = new WeakSet();
@@ -607,7 +623,7 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
     if (part.type === "1_n_2" || prompt?.querySelector(".worksheet-text") || prompt?.textContent.trim().length > 20) {
       section.classList.add("written-question");
     }
-    if (classroomExplore) arrangeExplorePart(part, section, prompt);
+    if (attachArrow) arrangeExplorePart(part, section, prompt, attachArrow);
     const button = section.querySelector(":scope > .stepsBtn");
     const content = section.querySelector(":scope > .steps.well");
     if (!button || !content) return;
@@ -641,8 +657,8 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
       question.events.on("setCurrentPart", (part) => {
         part.display.html_promise.then((section) => requestAnimationFrame(() => {
           if (question.currentPart !== part || !section.getClientRects().length) return;
-          const result = section.parentElement.querySelector(":scope > [data-parent-result]");
-          const target = result?.getClientRects().length ? result : section.querySelector(":scope > .prompt");
+          const result = section.parentElement.querySelector(".classroom-parent-result[open] [data-parent-result]");
+          const target = result?.getClientRects().length ? result : section.querySelector(".prompt");
           if (!target) return;
           target.tabIndex = -1;
           target.focus({ preventScroll: true });
@@ -723,7 +739,9 @@ export async function prepareRuntime() {
 
 export async function bootExam(examHost, examStatus, level, lessonLayout, authored = null) {
   let examData = authored?.examData;
+  let exploreNavigation;
   if (authored) {
+    ({ exploreNavigation } = await import("./explore-navigation.js?v=classroom-arrows-1"));
     await prepareRuntime();
   } else {
     const response = await fetch(new URL(examHost.dataset.examSource, location.href));
@@ -755,7 +773,8 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
       for (const question of exam.exam.questionList) {
         void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, authored.set, question)
           .catch((error) => { console.error(error); examStatus.textContent = "学習履歴を準備できませんでした。"; });
-        void installLessonHints(exam, question, hasAuthoredExploreControls(question)).catch((error) => console.error("ヒントの準備に失敗しました。", error));
+        void installLessonHints(exam, question, hasAuthoredExploreControls(question), exploreNavigation(exam, question))
+          .catch((error) => console.error("ヒントの準備に失敗しました。", error));
       }
       return;
     }
@@ -775,7 +794,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
 
   const styles = [
     resource("numbas-runtime/numbas.css"),
-    new URL("./theme.css?v=explore-layout-1", import.meta.url).href,
+    new URL("./theme.css?v=classroom-arrows-1", import.meta.url).href,
   ];
   await Promise.all(styles.map((href) => new Promise((resolve, reject) => {
     const link = document.createElement("link");
