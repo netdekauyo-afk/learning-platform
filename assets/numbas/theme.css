@@ -690,7 +690,14 @@
   :is(.classroom-arrow, .lesson-hint button):focus-visible {
     outline: 3px solid var(--focus); outline-offset: 2px;
   }
-  #questionContainer footer > .copyright-footer { margin-top: 1rem; padding-top: 0; border: 0; }
+  #questionContainer footer > .copyright-footer {
+    flex-wrap: nowrap;
+    text-align: start;
+    margin-top: 1rem;
+    padding-top: 0;
+    border: 0;
+  }
+  #questionContainer footer .copyright-footer .logo { flex: none; height: auto; }
   @media (max-width: 450px) {
     .part-wrapper { --arrow-gutter: 1.85rem; }
   }

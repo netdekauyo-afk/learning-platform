@@ -59,3 +59,24 @@
   .practice-panel { margin-top: .75rem; }
   .practice-panel[hidden] { display: none; }
 }
+
+#other-subject-link[slot="review-actions"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  margin: .9375rem auto 0;
+  /* Match the single-line answer cards, including their vertical inset. */
+  min-height: 2.85rem;
+  padding: .5rem 1.5rem;
+  border: 1px solid var(--color-accent);
+  border-radius: .42rem;
+  background: var(--color-surface);
+  color: var(--color-heading);
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: 1.4;
+  text-decoration: none;
+}
+#other-subject-link[slot="review-actions"]:hover { background: var(--color-surface-hover); }

@@ -30,14 +30,20 @@ function addSubjectSelectionLink() {
   const url = new URL(context.root + "study-home/", location.origin);
   url.searchParams.set("grade", context.grade);
   url.searchParams.set("screen", "subjects");
-  const wrapper = document.createElement("p");
-  wrapper.className = "problem-toolbar";
-  wrapper.style.margin = "-10px 0 20px";
   const link = document.createElement("a");
   link.id = "other-subject-link";
   link.className = "text-link";
   link.href = url.href;
   link.textContent = "別の科目を見る";
+  if (host?.hasAttribute("data-main-question-set")) {
+    link.slot = "review-actions";
+    // Keep the same link available below the lesson while Numbas loads.
+    host.after(link);
+    return;
+  }
+  const wrapper = document.createElement("p");
+  wrapper.className = "problem-toolbar";
+  wrapper.style.margin = "-10px 0 20px";
   wrapper.append(link);
   toolbar.after(wrapper);
 }
@@ -746,6 +752,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   applyExerciseSettings(examData);
 
   const exam = document.createElement("numbas-exam");
+  const subjectLink = authored && document.querySelector('#other-subject-link[slot="review-actions"]');
   exam.toggleAttribute("data-main-question-set", Boolean(authored));
   exam.setAttribute("noload", "");
   // Numbas accepts an inline exam definition. The original source is retained
@@ -760,9 +767,12 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
     if (authored) {
       const footer = exam.shadowRoot.querySelector("#questionContainer footer");
       if (footer) {
+        if (subjectLink && exam.shadowRoot.querySelector('#questionContainer slot[name="review-actions"]')) {
+          exam.append(subjectLink);
+        }
         const reviewSlot = document.createElement("slot");
         reviewSlot.name = "classroom-review";
-        footer.before(reviewSlot);
+        footer.after(reviewSlot);
       }
       for (const question of exam.exam.questionList) {
         void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, authored.set, question)
@@ -788,7 +798,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
 
   const styles = [
     resource("numbas-runtime/numbas.css"),
-    new URL("./theme.css?v=explore-hints-1", import.meta.url).href,
+    new URL("./theme.css?v=lesson-footer-1", import.meta.url).href,
   ];
   await Promise.all(styles.map((href) => new Promise((resolve, reject) => {
     const link = document.createElement("link");
