@@ -1,6 +1,205 @@
 (function () {
   "use strict";
 
+  // The same grade/subject lesson is used by the home, course list and quiz.
+  // Keep the existing settings object and its unrelated properties intact.
+  const SETTINGS_KEY = "classroom-study-home-settings";
+  const LIST_CHOICE_KEY = "classroom:study-home-list-choice:v1";
+  const KINDS = new Set(["lesson", "questions", "summary"]);
+  const isObject = (value) => value && typeof value === "object" && !Array.isArray(value);
+  const subjectKey = (grade, subject) => String(grade) + ":" + subject;
+  const validGrade = (grade) => /^(?:e[1-6]|[1-3])$/.test(String(grade));
+  const validSubject = (subject) => /^(?:math|science|english|social|japanese|information)$/.test(subject);
+
+  function readSettings() {
+    try {
+      const raw = localStorage.getItem(SETTINGS_KEY);
+      const settings = raw ? JSON.parse(raw) : {};
+      if (!isObject(settings)) return null;
+      for (const name of ["lessons", "startModes", "studyProgressV1"]) {
+        if (settings[name] !== undefined && !isObject(settings[name])) return null;
+      }
+      return settings;
+    } catch (_) { return null; }
+  }
+
+  function writeSettings(settings) {
+    try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings)); return true; }
+    catch (_) { return false; }
+  }
+
+  function revision(meta) {
+    return Number.isSafeInteger(meta?.revision) && meta.revision >= 0 ? meta.revision : 0;
+  }
+
+  function chooseLesson(grade, subject, lessonId, kind) {
+    if (!validGrade(grade) || !validSubject(subject) || typeof lessonId !== "string" || !lessonId) return false;
+    const settings = readSettings();
+    if (!settings) return false;
+    const key = subjectKey(grade, subject);
+    const previous = settings.studyProgressV1?.[key];
+    if (previous !== undefined && !isObject(previous)) return false;
+    settings.lessons = { ...settings.lessons, [key]: lessonId };
+    settings.startModes = { ...settings.startModes, [key]: "lesson" };
+    settings.studyProgressV1 = { ...settings.studyProgressV1, [key]: {
+      ...previous, revision: revision(previous) + 1, pending: null, completed: false, needsChoice: false,
+    } };
+    if (!settings.destination && KINDS.has(kind)) settings.destination = kind;
+    return writeSettings(settings);
+  }
+
+  function setDestination(kind) {
+    const settings = readSettings();
+    if (!settings || !KINDS.has(kind)) return false;
+    settings.destination = kind;
+    return writeSettings(settings);
+  }
+
+  function clearLesson(grade, subject) {
+    if (!validGrade(grade) || !validSubject(subject)) return false;
+    const settings = readSettings();
+    if (!settings) return false;
+    const key = subjectKey(grade, subject);
+    const previous = settings.studyProgressV1?.[key];
+    if (previous !== undefined && !isObject(previous)) return false;
+    settings.lessons = { ...settings.lessons };
+    settings.startModes = { ...settings.startModes };
+    delete settings.lessons[key];
+    delete settings.startModes[key];
+    settings.studyProgressV1 = { ...settings.studyProgressV1, [key]: {
+      ...previous, revision: revision(previous) + 1, pending: null, completed: false, needsChoice: false,
+    } };
+    return writeSettings(settings);
+  }
+
+  function setListMode(grade, subject) {
+    if (!validGrade(grade) || !validSubject(subject)) return false;
+    const settings = readSettings();
+    if (!settings) return false;
+    const key = subjectKey(grade, subject);
+    // Merely visiting a list never replaces an existing lesson or its mode.
+    if (!settings.lessons?.[key]) settings.startModes = { ...settings.startModes, [key]: "list" };
+    return writeSettings(settings);
+  }
+
+  function beginListChoice(grade, subject) {
+    if (!validGrade(grade) || !validSubject(subject)) return false;
+    try { sessionStorage.setItem(LIST_CHOICE_KEY, JSON.stringify({ grade: String(grade), subject })); return true; }
+    catch (_) { return false; }
+  }
+
+  function cancelListChoice() {
+    try { sessionStorage.removeItem(LIST_CHOICE_KEY); } catch (_) { /* Leave navigation usable. */ }
+  }
+
+  function consumeListChoice(grade, subject, lessonId, kind) {
+    try {
+      const choice = JSON.parse(sessionStorage.getItem(LIST_CHOICE_KEY) || "null");
+      if (!choice || choice.grade !== String(grade) || choice.subject !== subject) return false;
+      if (!chooseLesson(grade, subject, lessonId, kind)) return false;
+      sessionStorage.removeItem(LIST_CHOICE_KEY);
+      return true;
+    } catch (_) { return false; }
+  }
+
+  function siteRoot() {
+    const match = location.pathname.match(/^(.*\/)(?:study-home|(?:elementary|junior-high|high-school)\/grade-\d+)(?:\/|$)/);
+    return match ? new URL(match[1], location.origin) : null;
+  }
+
+  async function validateSequence(pending, root, grade, subject, lessonId) {
+    if (!pending.ids) return true;
+    if (!Array.isArray(pending.ids) || pending.ids.length !== 2 || new Set(pending.ids).size !== 2) return false;
+    const source = new URL(pending.source, root);
+    const course = new URL(`junior-high/grade-${grade}/${subject}/lessons/${lessonId}/`, root);
+    if (source.origin !== root.origin || !source.pathname.startsWith(course.pathname) || !source.pathname.endsWith(".exam")) return false;
+    const response = await fetch(source.href);
+    if (!response.ok) throw new Error("問題データを読み込めませんでした。");
+    const raw = await response.text();
+    const exam = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+    const { examQuestions, questionIds } = await import(new URL("assets/numbas/question-progress.js?v=20261123-shared", root).href);
+    const questions = examQuestions(exam);
+    if (questions.length !== 2 || questions.some(({ question }) =>
+      !Array.isArray(question.parts) || question.parts.length !== 1 || Number(question.parts[0].marks) <= 0)) return false;
+    const ids = await questionIds(questions);
+    return ids.every((id, index) => id === pending.ids[index]);
+  }
+
+  async function nextLesson(grade, subject, lessonId, root) {
+    const elementary = String(grade).startsWith("e");
+    const number = elementary ? String(grade).slice(1) : String(grade);
+    const school = elementary ? "elementary" : "junior-high";
+    const course = new URL(`${school}/grade-${number}/${subject}/`, root);
+    const response = await fetch(course.href);
+    if (!response.ok) throw new Error("授業一覧を読み込めませんでした。");
+    const doc = new DOMParser().parseFromString(await response.text(), "text/html");
+    const rows = Array.from(doc.querySelectorAll(".lesson-item[data-lesson-id]"));
+    const list = rows.map((row) => row.dataset.lessonId);
+    if (!list.length || list.some((id) => !id) || new Set(list).size !== list.length || !list.includes(lessonId)) return { ambiguous: true };
+    let ordered = list;
+    if (!elementary) {
+      const timingResponse = await fetch(new URL(`assets/junior-high-grade-${number}-timing.json`, root).href);
+      if (!timingResponse.ok) throw new Error("授業時期の対応表を読み込めませんでした。");
+      const table = await timingResponse.json();
+      if (!table || table.version !== 1 || table.school !== "junior-high" || String(table.grade) !== number || !Array.isArray(table.days)) return { ambiguous: true };
+      ordered = [];
+      let last = 0;
+      for (const day of table.days) {
+        if (!Number.isInteger(day.dateNumber) || day.dateNumber <= last) return { ambiguous: true };
+        last = day.dateNumber;
+        const ids = day[subject] || [];
+        if (!Array.isArray(ids) || ids.length > 1 || ids.some((id) => typeof id !== "string")) return { ambiguous: true };
+        ordered.push(...ids);
+      }
+      if (ordered.length !== list.length || new Set(ordered).size !== list.length || ordered.some((id) => !list.includes(id))) return { ambiguous: true };
+    } else {
+      const numbers = rows.map((row) => row.dataset.seq).filter(Boolean);
+      if (new Set(numbers).size !== numbers.length || rows.some((row) => row.dataset.choice || row.dataset.choiceVariant)) return { ambiguous: true };
+    }
+    const index = ordered.indexOf(lessonId);
+    if (index < 0) return { ambiguous: true };
+    return index === ordered.length - 1 ? { completed: true } : { next: ordered[index + 1] };
+  }
+
+  async function resolvePending(grade, subject) {
+    if (!validGrade(grade) || !validSubject(subject)) return false;
+    const key = subjectKey(grade, subject);
+    const before = readSettings();
+    const meta = before?.studyProgressV1?.[key];
+    const lessonId = before?.lessons?.[key];
+    const pending = meta?.pending;
+    const root = siteRoot();
+    if (!isObject(meta) || !isObject(pending) || !lessonId || !root || pending.revision !== revision(meta)) return false;
+    let result;
+    try {
+      if (!await validateSequence(pending, root, String(grade), subject, lessonId)) result = { ambiguous: true };
+      else result = await nextLesson(String(grade), subject, lessonId, root);
+    } catch (_) { return false; } // Keep the pending item for a later retry.
+    const latest = readSettings();
+    const now = latest?.studyProgressV1?.[key];
+    if (!latest || !isObject(now) || latest.lessons?.[key] !== lessonId || revision(now) !== pending.revision || now.pending?.revision !== pending.revision) return false;
+    if (result.next) latest.lessons = { ...latest.lessons, [key]: result.next };
+    latest.startModes = { ...latest.startModes, [key]: "lesson" };
+    latest.studyProgressV1 = { ...latest.studyProgressV1, [key]: {
+      ...now, revision: revision(now) + 1, pending: null,
+      completed: Boolean(result.completed), needsChoice: Boolean(result.ambiguous),
+    } };
+    return writeSettings(latest);
+  }
+
+  globalThis.ClassroomStudyProgress = Object.freeze({
+    read: readSettings, chooseLesson, clearLesson, setDestination, setListMode, beginListChoice, cancelListChoice,
+    consumeListChoice, resolvePending,
+  });
+
+  // This file also supplies the storage helpers to the home and problem pages.
+  // Run the existing list and grade-navigation setup only on course lists.
+  if (!/(?:^|\/)(?:elementary|junior-high|high-school)\/grade-\d+\/[a-z-]+(?:\/(?:index\.html)?)?$/.test(location.pathname)) return;
+
+  // A list choice applies only while the learner is on that list. If they
+  // leave without selecting a lesson, a later review must not reuse it.
+  window.addEventListener("pagehide", cancelListChoice);
+
   // Page-specific data remains in the page; common behavior lives here.
   const options = document.currentScript?.dataset || {};
   let publishedPaths = [];
@@ -85,6 +284,14 @@
     }
 
     link.addEventListener("click", handleActivate);
+    link.addEventListener("click", function (event) {
+      if (event.defaultPrevented || event.button !== 0 || link.dataset.published !== "true" || !KINDS.has(link.dataset.kind)) return;
+      const row = link.closest(".lesson-item[data-lesson-id]");
+      const page = location.pathname.match(/(?:^|\/)(elementary|junior-high)\/grade-(\d+)\/(math|science|english|social|japanese|information)(?:\/(?:index\.html)?)?$/);
+      if (!row || !page || !row.dataset.lessonId) return;
+      const grade = page[1] === "elementary" ? "e" + page[2] : page[2];
+      consumeListChoice(grade, page[3], row.dataset.lessonId, link.dataset.kind);
+    });
     if (summaryReturnKey) {
       link.addEventListener("click", function (event) {
         if (link.dataset.kind === "summary" && link.dataset.published === "true" &&

@@ -49,6 +49,14 @@
     .settings-help { margin: 6px 0 0; font-size: 0.92rem; }
     .settings-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .settings-actions .save { border-color: var(--color-accent); }
+    .today-subject { margin: 0 0 8px; color: var(--color-heading); font-weight: 650; }
+    .today-lesson { margin: 0 0 22px; color: var(--color-heading); font-size: 1.2rem; font-weight: 650; line-height: 1.55; }
+    .today-secondary { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .today-navigation { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .progress-list { display: grid; gap: 14px; }
+    .progress-row { display: grid; grid-template-columns: minmax(5em, auto) minmax(0, 1fr) auto; align-items: center; gap: 10px; }
+    .progress-row select, #progress-grade { min-width: 0; min-height: 44px; padding: 8px 12px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-surface); color: var(--color-heading); font: inherit; }
+    @media (max-width: 480px) { .progress-row { grid-template-columns: 1fr auto; } .progress-row label { grid-column: 1 / -1; } }
     .school-breaks { margin-top: 18px; border-top: 1px solid var(--color-border); padding-top: 14px; }
     .school-breaks summary { min-height: 44px; cursor: pointer; color: var(--color-heading); font-weight: 700; }
     .school-breaks summary:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 3px; }
@@ -91,6 +99,7 @@
         <p class="site-name">Classroom</p>
         <div class="home-actions" id="home-actions" hidden>
           <button class="home-button" id="open-calendar" type="button">カレンダー</button>
+          <button class="home-button" id="open-progress" type="button">進み具合</button>
           <button class="home-button" id="open-settings" type="button">設定</button>
         </div>
       </div>
@@ -174,6 +183,28 @@
         <p class="home-status" id="destination-status" role="status" aria-live="polite"></p>
         <button class="home-button screen-back" id="destination-back" type="button">戻る</button>
       </section>
+      <section class="home-screen" id="today-screen" aria-labelledby="today-title" hidden>
+        <p class="today-subject" id="today-subject"></p>
+        <h1 id="today-title" tabindex="-1">今日の教材</h1>
+        <p class="today-lesson" id="today-lesson"></p>
+        <div id="today-materials" hidden>
+          <button class="choice-card" id="today-primary" type="button"></button>
+          <div class="today-secondary" id="today-secondary"></div>
+        </div>
+        <p class="home-status" id="today-status" role="status" aria-live="polite"></p>
+        <div class="today-navigation">
+          <button class="home-button" id="today-list" type="button" hidden>授業一覧から選ぶ</button>
+          <button class="home-button" id="today-progress" type="button">進み具合を変更</button>
+          <button class="home-button" id="today-back" type="button">科目選択へ戻る</button>
+        </div>
+      </section>
+      <section class="home-screen" id="progress-screen" aria-labelledby="progress-title" hidden>
+        <h1 id="progress-title" tabindex="-1">進み具合</h1>
+        <div class="grade-control"><label for="progress-grade">学年</label><select id="progress-grade"></select></div>
+        <div class="progress-list" id="progress-list"></div>
+        <p class="home-status" id="progress-status" role="status" aria-live="polite"></p>
+        <button class="home-button screen-back" id="progress-back" type="button">戻る</button>
+      </section>
   <section class="settings-panel home-screen" id="settings" aria-labelledby="settings-title" hidden>
     <form id="settings-form">
       <h1 id="settings-title" tabindex="-1">設定</h1>
@@ -255,6 +286,7 @@
   </dialog>
 
   <script src="../assets/calendar.js?v=20261122-date-numbers"></script>
+  <script src="../assets/curriculum-page.js?v=20261124-study-progress"></script>
   <script>
 (() => {
   'use strict';
@@ -279,6 +311,62 @@
   const candidateMore = document.getElementById('candidate-more');
   const destinationStatus = document.getElementById('destination-status');
   const destinationLesson = document.getElementById('destination-lesson');
+  const todaySubject = document.getElementById('today-subject');
+  const todayLesson = document.getElementById('today-lesson');
+  const todayStatus = document.getElementById('today-status');
+  const todayMaterials = document.getElementById('today-materials');
+  const todayPrimary = document.getElementById('today-primary');
+  const todaySecondary = document.getElementById('today-secondary');
+  const todayList = document.getElementById('today-list');
+  const progressGrade = document.getElementById('progress-grade');
+  const progressList = document.getElementById('progress-list');
+  const progressStatus = document.getElementById('progress-status');
+  // Keep the existing home usable if the optional shared script cannot load.
+  const progressApi = globalThis.ClassroomStudyProgress || (() => {
+    const isObject = (value) => value && typeof value === 'object' && !Array.isArray(value);
+    function read() {
+      try {
+        const raw = localStorage.getItem('classroom-study-home-settings');
+        const value = raw ? JSON.parse(raw) : {};
+        if (!isObject(value) || ['lessons', 'startModes', 'studyProgressV1'].some((key) => value[key] !== undefined && !isObject(value[key]))) return null;
+        return value;
+      } catch (_) { return null; }
+    }
+    function update(change) {
+      try {
+        const value = read();
+        if (!value || change(value) === false) return false;
+        localStorage.setItem('classroom-study-home-settings', JSON.stringify(value));
+        return true;
+      } catch (_) { return false; }
+    }
+    function setLesson(grade, subject, lessonId) {
+      return update((value) => {
+        const key = `${grade}:${subject}`;
+        const old = value.studyProgressV1?.[key];
+        if (old !== undefined && !isObject(old)) return false;
+        value.lessons = { ...value.lessons };
+        value.startModes = { ...value.startModes };
+        if (lessonId) { value.lessons[key] = lessonId; value.startModes[key] = 'lesson'; }
+        else { delete value.lessons[key]; delete value.startModes[key]; }
+        const revision = Number.isSafeInteger(old?.revision) && old.revision >= 0 ? old.revision : 0;
+        value.studyProgressV1 = { ...value.studyProgressV1, [key]: { ...old, revision: revision + 1, pending: null, completed: false, needsChoice: false } };
+      });
+    }
+    return {
+      read,
+      chooseLesson: (grade, subject, id) => setLesson(grade, subject, id),
+      clearLesson: (grade, subject) => setLesson(grade, subject, ''),
+      setDestination: (kind) => update((value) => { value.destination = kind; }),
+      setListMode: (grade, subject) => update((value) => {
+        const key = `${grade}:${subject}`;
+        if (!value.lessons?.[key]) value.startModes = { ...value.startModes, [key]: 'list' };
+      }),
+      beginListChoice: (grade, subject) => { try { sessionStorage.setItem('classroom:study-home-list-choice:v1', JSON.stringify({ grade, subject })); return true; } catch (_) { return false; } },
+      cancelListChoice: () => { try { sessionStorage.removeItem('classroom:study-home-list-choice:v1'); } catch (_) {} },
+      resolvePending: async () => false,
+    };
+  })();
   const grades = new Set(['e1', 'e2', 'e3', 'e4', 'e5', 'e6', '1', '2', '3']);
   const subjectNames = Object.fromEntries(subjects.map((link) => [link.dataset.subject, link.textContent.replace('›', '').trim()]));
   const gradeKey = 'classroom-study-home-grade';
@@ -297,6 +385,8 @@
     start: document.getElementById('start-screen'),
     candidates: document.getElementById('candidate-screen'),
     destination: document.getElementById('destination-screen'),
+    today: document.getElementById('today-screen'),
+    progress: document.getElementById('progress-screen'),
     settings: document.getElementById('settings')
   };
   let loadVersion = 0;
@@ -312,6 +402,11 @@
   let flowSubject = null;
   let chosenLessonId = null;
   let currentScreen = 'grade';
+  let progressReturnScreen = 'subject';
+  let progressVersion = 0;
+  let dirtyLessons = new Set();
+  let destinationChanged = false;
+  let currentTodayLesson = null;
 
   function readStorage(key) {
     try { return localStorage.getItem(key); } catch (_) { return null; }
@@ -319,28 +414,22 @@
   function saveStorage(key, value) {
     try { localStorage.setItem(key, value); return true; } catch (_) { return false; }
   }
-  try {
-    const raw = readStorage(settingsKey);
-    const saved = raw ? JSON.parse(raw) : {};
-    if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
-      savedSettings = saved;
-      if (saved.lessons && typeof saved.lessons === 'object' && !Array.isArray(saved.lessons)) selectionBySubject = { ...saved.lessons };
-      if (saved.startModes && typeof saved.startModes === 'object' && !Array.isArray(saved.startModes)) startModes = { ...saved.startModes };
-      if (Object.prototype.hasOwnProperty.call(kindLabels, saved.destination)) destination = saved.destination;
-    } else if (raw) invalidSavedSettings = true;
-  } catch (_) { invalidSavedSettings = true; }
-
   // Lessons 1–13 moved from grade 3 to grade 1; retain an existing choice.
   function movedInformationLesson(id) { return /^info3-l0(?:0[1-9]|1[0-3])$/.test(id || ''); }
-  if (!selectionBySubject['1:information'] && movedInformationLesson(selectionBySubject['3:information'])) {
-    selectionBySubject['1:information'] = selectionBySubject['3:information'];
+  function syncSettings() {
+    const saved = progressApi?.read();
+    if (!saved) { invalidSavedSettings = true; return false; }
+    invalidSavedSettings = false;
+    savedSettings = saved;
+    selectionBySubject = { ...saved.lessons };
+    startModes = { ...saved.startModes };
+    destination = Object.prototype.hasOwnProperty.call(kindLabels, saved.destination) ? saved.destination : null;
+    if (!selectionBySubject['1:information'] && movedInformationLesson(selectionBySubject['3:information'])) {
+      selectionBySubject['1:information'] = selectionBySubject['3:information'];
+    }
+    return true;
   }
-  function saveSettings() {
-    if (invalidSavedSettings) return false;
-    savedSettings = { ...savedSettings, lessons: { ...selectionBySubject }, startModes: { ...startModes } };
-    if (destination) savedSettings.destination = destination;
-    return saveStorage(settingsKey, JSON.stringify(savedSettings));
-  }
+  syncSettings();
   function subjectKey(grade, subject) { return `${grade}:${subject}`; }
   function currentDestination() { return form.elements.destination.value || destination || ''; }
 
@@ -372,7 +461,7 @@
               return {
                 id: row.dataset.lessonId,
                 title: title?.textContent.trim() || row.dataset.lessonId,
-                number: row.dataset.seq || row.querySelector('.lesson-num')?.textContent.trim() || '',
+                number: row.dataset.unit ? '' : (row.dataset.seq || row.querySelector('.lesson-num')?.textContent.trim() || ''),
                 month: row.dataset.month || ((row.dataset.semester || '').match(/(\d{1,2})月/) || [])[0] || '',
                 summary: safeTarget(title, base),
                 lesson: safeTarget(row.querySelector('[data-kind="lesson"]'), base),
@@ -494,11 +583,11 @@
 
   function rememberCurrentFlow() {
     const previous = history.state && typeof history.state === 'object' ? history.state : {};
-    history.replaceState({ ...previous, classroomHome: { ...(previous.classroomHome || {}), screen: currentScreen, subject: flowSubject, lessonId: chosenLessonId } }, '', location.href);
+    history.replaceState({ ...previous, classroomHome: { ...(previous.classroomHome || {}), screen: currentScreen, subject: flowSubject, lessonId: chosenLessonId, grade: gradeControl.value } }, '', location.href);
   }
   function navigate(screen) {
     const previous = history.state && typeof history.state === 'object' ? history.state : {};
-    history.pushState({ ...previous, classroomHome: { screen, from: currentScreen, subject: flowSubject, lessonId: chosenLessonId } }, '', location.href);
+    history.pushState({ ...previous, classroomHome: { screen, from: currentScreen, subject: flowSubject, lessonId: chosenLessonId, grade: gradeControl.value } }, '', location.href);
     renderScreen(screen);
   }
   function backTo(screen) {
@@ -515,12 +604,16 @@
     gradeControl.disabled = screen === 'grade';
     if (screen === 'candidates') void showCandidates();
     if (screen === 'destination') void showDestination();
+    if (screen === 'today') void showToday();
+    if (screen === 'progress') void showProgress();
     const heading = screens[screen].querySelector('h1');
     if (heading && screen !== 'grade') heading.focus({ preventScroll: true });
   }
   window.addEventListener('popstate', (event) => {
     const state = event.state?.classroomHome;
     if (state) {
+      syncSettings();
+      if (grades.has(state.grade) && state.grade !== gradeControl.value) updateGrade(state.grade);
       flowSubject = state.subject || null;
       chosenLessonId = state.lessonId || null;
       renderScreen(state.screen);
@@ -538,8 +631,9 @@
 
   function chooseFromList() {
     if (!flowSubject || !hasSubject(gradeControl.value, flowSubject)) return;
-    startModes[subjectKey(gradeControl.value, flowSubject)] = 'list';
-    saveSettings();
+    progressApi?.setListMode(gradeControl.value, flowSubject);
+    progressApi?.beginListChoice(gradeControl.value, flowSubject);
+    syncSettings();
     location.assign(subjectUrl(gradeControl.value, flowSubject).href);
   }
 
@@ -605,11 +699,9 @@
   }
 
   function chooseLesson(lesson) {
-    const key = subjectKey(gradeControl.value, flowSubject);
     chosenLessonId = lesson.id;
-    selectionBySubject[key] = lesson.id;
-    startModes[key] = 'lesson';
-    const persisted = saveSettings();
+    const persisted = progressApi?.chooseLesson(gradeControl.value, flowSubject, lesson.id) || false;
+    if (persisted) syncSettings();
     rememberCurrentFlow();
     if (destination && lesson[destination]) {
       location.assign(lesson[destination]);
@@ -648,40 +740,165 @@
       const lesson = (await getLessons(grade, subject)).find((item) => item.id === lessonId);
       if (!lesson || currentScreen !== 'destination' || subject !== flowSubject || lessonId !== chosenLessonId) return;
       destination = kind;
-      saveSettings();
+      progressApi?.setDestination(kind);
       if (!lesson[kind]) { destinationStatus.textContent = `${kindLabels[kind]}は準備中です。ほかの種類を選んでください。`; return; }
       location.assign(lesson[kind]);
     } catch (_) { destinationStatus.textContent = '授業を読み込めませんでした。'; }
   }
 
   async function openSubject(subject) {
-    const version = ++navigationVersion;
     homeStatus.textContent = '';
     const grade = gradeControl.value;
     const key = subjectKey(grade, subject);
-    if (startModes[key] === 'list') { location.assign(subjectUrl(grade, subject).href); return; }
+    syncSettings();
+    if (!selectionBySubject[key] && !startModes[key]) { showStart(subject); return; }
+    flowSubject = subject;
+    chosenLessonId = selectionBySubject[key] || null;
+    navigate('today');
+  }
+
+  function subjectLabel(grade, subject) {
+    if (subject === 'math') return grade.startsWith('e') ? '算数' : '数学';
+    if (subject === 'english' && /^e[34]$/.test(grade)) return '外国語活動';
+    return subjectNames[subject] || subject;
+  }
+  function lessonLabel(lesson) {
+    return `${lesson.number ? `第${lesson.number}時限 ` : ''}${lesson.title}`;
+  }
+  const actionLabels = Object.freeze({ lesson: '授業を見る', questions: '問題を解く', summary: '要約を見る' });
+
+  async function showToday() {
+    const version = ++navigationVersion;
+    const grade = gradeControl.value;
+    const subject = flowSubject;
+    currentTodayLesson = null;
+    todaySubject.textContent = subject ? subjectLabel(grade, subject) : '';
+    todayLesson.textContent = '';
+    todayStatus.textContent = '授業を読み込んでいます。';
+    todayMaterials.hidden = true;
+    todayList.hidden = true;
+    if (!subject || !hasSubject(grade, subject)) { todayStatus.textContent = '科目を選び直してください。'; return; }
+    await progressApi?.resolvePending(grade, subject);
+    if (version !== navigationVersion || currentScreen !== 'today' || grade !== gradeControl.value || subject !== flowSubject) return;
+    syncSettings();
+    const key = subjectKey(grade, subject);
     const lessonId = selectionBySubject[key];
-    if (!lessonId) { showStart(subject); return; }
-    homeStatus.textContent = '授業を開いています。';
-    try {
-      const lessons = await getLessons(grade, subject);
-      if (version !== navigationVersion || grade !== gradeControl.value) return;
-      const lesson = lessons.find((item) => item.id === lessonId);
-      if (!lesson) {
-        showStart(subject, subject === 'information' && grade === '3' && movedInformationLesson(lessonId)
-          ? '選んだ授業は中学1年の情報に移りました。選び直してください。'
-          : '選んだ授業が見つかりません。選び直してください。');
-      } else if (destination && lesson[destination]) {
-        location.assign(lesson[destination]);
-      } else {
-        flowSubject = subject;
-        chosenLessonId = lessonId;
-        navigate('candidates');
-        navigate('destination');
-      }
-    } catch (_) {
-      if (version === navigationVersion) homeStatus.textContent = '授業を読み込めませんでした。時間をおいてもう一度お試しください。';
+    const meta = savedSettings.studyProgressV1?.[key] || {};
+    chosenLessonId = lessonId || null;
+    if (!lessonId) {
+      todayLesson.textContent = '開始する授業がまだ決まっていません。';
+      todayStatus.textContent = '';
+      todayList.hidden = false;
+      return;
     }
+    try {
+      const lesson = (await getLessons(grade, subject)).find((item) => item.id === lessonId);
+      if (version !== navigationVersion || currentScreen !== 'today' || grade !== gradeControl.value || subject !== flowSubject) return;
+      if (!lesson) {
+        todayLesson.textContent = '選んだ授業が見つかりません。';
+        todayStatus.textContent = '授業一覧または進み具合から選び直してください。';
+        todayList.hidden = false;
+        return;
+      }
+      currentTodayLesson = lesson;
+      todayLesson.textContent = lessonLabel(lesson);
+      todayStatus.textContent = meta.completed ? '最後の授業まで終了しました。' :
+        meta.needsChoice ? '次の授業を進み具合から選んでください。' :
+        meta.pending ? '進み具合を確認できませんでした。後でもう一度確認します。' : '';
+      const primary = destination || 'questions';
+      todayPrimary.dataset.kind = primary;
+      todayPrimary.textContent = actionLabels[primary] + (lesson[primary] ? '' : '（準備中）');
+      todaySecondary.replaceChildren();
+      for (const kind of ['lesson', 'questions', 'summary']) {
+        if (kind === primary) continue;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'home-button';
+        button.dataset.kind = kind;
+        button.textContent = actionLabels[kind] + (lesson[kind] ? '' : '（準備中）');
+        todaySecondary.append(button);
+      }
+      todayMaterials.hidden = false;
+    } catch (_) {
+      if (version === navigationVersion && currentScreen === 'today') {
+        todayStatus.textContent = '授業を読み込めませんでした。時間をおいてもう一度お試しください。';
+        todayList.hidden = false;
+      }
+    }
+  }
+
+  function openTodayKind(kind) {
+    if (currentScreen !== 'today' || !currentTodayLesson || !Object.prototype.hasOwnProperty.call(actionLabels, kind)) return;
+    if (!destination) {
+      destination = kind;
+      if (progressApi?.setDestination(kind)) syncSettings();
+    }
+    if (!currentTodayLesson[kind]) {
+      todayStatus.textContent = `${kindLabels[kind]}は準備中です。ほかの種類を選んでください。`;
+      return;
+    }
+    location.assign(currentTodayLesson[kind]);
+  }
+
+  function openProgress() {
+    if (currentScreen === 'grade') return;
+    progressReturnScreen = currentScreen === 'progress' ? progressReturnScreen : currentScreen;
+    progressGrade.value = gradeControl.value;
+    navigate('progress');
+  }
+
+  async function showProgress() {
+    const version = ++progressVersion;
+    const grade = progressGrade.value;
+    progressList.replaceChildren();
+    progressStatus.textContent = '授業を読み込んでいます。';
+    if (!grades.has(grade)) { progressStatus.textContent = '学年を選んでください。'; return; }
+    const available = subjects.map((link) => link.dataset.subject).filter((subject) => hasSubject(grade, subject));
+    await Promise.all(available.map((subject) => progressApi?.resolvePending(grade, subject)));
+    const results = await Promise.all(available.map(async (subject) => {
+      try { return { subject, lessons: await getLessons(grade, subject) }; }
+      catch (_) { return { subject, lessons: null }; }
+    }));
+    if (version !== progressVersion || currentScreen !== 'progress' || grade !== progressGrade.value) return;
+    syncSettings();
+    let failed = false;
+    for (const { subject, lessons } of results) {
+      const key = subjectKey(grade, subject);
+      const row = document.createElement('div');
+      row.className = 'progress-row';
+      const label = document.createElement('label');
+      const select = document.createElement('select');
+      select.id = `progress-${grade}-${subject}`;
+      label.htmlFor = select.id;
+      label.textContent = subjectLabel(grade, subject);
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'home-button';
+      button.textContent = '変更';
+      select.add(new Option('授業を選んでください', ''));
+      if (!lessons) {
+        failed = true;
+        select.disabled = true;
+        button.disabled = true;
+      } else {
+        for (const lesson of lessons) select.add(new Option(lessonLabel(lesson), lesson.id));
+        const existing = selectionBySubject[key];
+        if (existing && !lessons.some((lesson) => lesson.id === existing)) {
+          select.add(new Option('選んだ授業が見つかりません', existing));
+        }
+        select.value = existing || '';
+        button.disabled = lessons.length === 0;
+        button.addEventListener('click', () => {
+          if (!lessons.some((lesson) => lesson.id === select.value)) { progressStatus.textContent = '授業を選んでください。'; return; }
+          if (!progressApi?.chooseLesson(grade, subject, select.value)) { progressStatus.textContent = '進み具合を保存できませんでした。'; return; }
+          syncSettings();
+          progressStatus.textContent = `${subjectLabel(grade, subject)}の進み具合を変更しました。`;
+        });
+      }
+      row.append(label, select, button);
+      progressList.append(row);
+    }
+    progressStatus.textContent = failed ? '一部の授業を読み込めませんでした。' : '';
   }
 
   async function showSettingsLessons(subject) {
@@ -712,8 +929,11 @@
   }
 
   function openSettings() {
+    syncSettings();
     draftLessons = { ...selectionBySubject };
     draftModes = { ...startModes };
+    dirtyLessons = new Set();
+    destinationChanged = false;
     const visible = subjects.filter((link) => !link.hidden).map((link) => link.dataset.subject);
     if (!visible.includes(subjectSelect.value)) subjectSelect.value = visible[0];
     settingsGrade.value = gradeControl.value;
@@ -724,11 +944,14 @@
   }
 
   settingsGrade.innerHTML = gradeControl.innerHTML;
+  progressGrade.innerHTML = gradeControl.innerHTML;
   const savedGrade = readStorage(gradeKey);
-  updateGrade(savedGrade);
-  currentScreen = grades.has(savedGrade) ? 'subject' : 'grade';
+  const params = new URLSearchParams(location.search);
+  const requestedGrade = params.get('screen') === 'subjects' && grades.has(params.get('grade')) ? params.get('grade') : null;
+  updateGrade(requestedGrade || savedGrade);
+  currentScreen = requestedGrade || grades.has(savedGrade) ? 'subject' : 'grade';
   const initialState = history.state && typeof history.state === 'object' ? history.state : {};
-  history.replaceState({ ...initialState, classroomHome: { screen: currentScreen, subject: null, lessonId: null } }, '', location.href);
+  history.replaceState({ ...initialState, classroomHome: { screen: currentScreen, subject: null, lessonId: null, grade: gradeControl.value } }, '', location.href);
   renderScreen(currentScreen);
   initialGradeChoices.forEach((button) => button.addEventListener('click', () => {
     const chosenGrade = button.dataset.initialGrade;
@@ -742,6 +965,13 @@
     if (!grades.has(grade)) return;
     updateGrade(grade);
     const persisted = saveStorage(gradeKey, grade);
+    const url = new URL(location.href);
+    if (url.searchParams.get('screen') === 'subjects') {
+      url.searchParams.delete('screen');
+      url.searchParams.delete('grade');
+      history.replaceState(history.state, '', url.href);
+    }
+    rememberCurrentFlow();
     if (currentScreen === 'settings') {
       void showSettingsLessons(subjectSelect.value);
       if (!persisted) settingsStatus.textContent = '学年を保存できませんでした。';
@@ -754,6 +984,17 @@
   settingsGrade.addEventListener('change', () => changeGrade(settingsGrade.value));
   subjects.forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); void openSubject(link.dataset.subject); }));
   document.getElementById('open-settings').addEventListener('click', openSettings);
+  document.getElementById('open-progress').addEventListener('click', openProgress);
+  document.getElementById('today-progress').addEventListener('click', openProgress);
+  document.getElementById('today-back').addEventListener('click', () => backTo('subject'));
+  todayList.addEventListener('click', chooseFromList);
+  todayPrimary.addEventListener('click', () => openTodayKind(todayPrimary.dataset.kind));
+  todaySecondary.addEventListener('click', (event) => {
+    const button = event.target.closest('button[data-kind]');
+    if (button) openTodayKind(button.dataset.kind);
+  });
+  progressGrade.addEventListener('change', () => { void showProgress(); });
+  document.getElementById('progress-back').addEventListener('click', () => backTo(progressReturnScreen));
   document.getElementById('close-settings').addEventListener('click', () => backTo('subject'));
   document.getElementById('start-back').addEventListener('click', () => backTo('subject'));
   document.getElementById('candidate-back').addEventListener('click', () => backTo('start'));
@@ -767,18 +1008,35 @@
   subjectSelect.addEventListener('change', () => { void showSettingsLessons(subjectSelect.value); });
   lessonSelect.addEventListener('change', () => {
     const key = subjectKey(gradeControl.value, subjectSelect.value);
+    dirtyLessons.add(key);
     if (lessonSelect.value) { draftLessons[key] = lessonSelect.value; draftModes[key] = 'lesson'; }
     else { delete draftLessons[key]; delete draftModes[key]; }
   });
-  form.elements.destination.forEach((radio) => radio.addEventListener('change', () => { void showSettingsLessons(subjectSelect.value); }));
+  form.elements.destination.forEach((radio) => radio.addEventListener('change', () => { destinationChanged = true; void showSettingsLessons(subjectSelect.value); }));
   form.addEventListener('submit', (event) => {
     event.preventDefault();
-    destination = currentDestination() || null;
-    selectionBySubject = { ...draftLessons };
-    startModes = { ...draftModes };
-    const persisted = saveSettings();
+    let persisted = Boolean(progressApi) && !invalidSavedSettings;
+    for (const key of dirtyLessons) {
+      const [grade, subject] = key.split(':');
+      const ok = draftLessons[key] ? progressApi?.chooseLesson(grade, subject, draftLessons[key]) : progressApi?.clearLesson(grade, subject);
+      persisted = Boolean(ok) && persisted;
+    }
+    if (destinationChanged && currentDestination()) persisted = Boolean(progressApi?.setDestination(currentDestination())) && persisted;
+    if (persisted) syncSettings();
     navigate('subject');
     homeStatus.textContent = persisted ? '設定を保存しました。' : 'この画面では設定できますが、次回まで保存できません。';
+  });
+  window.addEventListener('pageshow', () => {
+    progressApi?.cancelListChoice();
+    syncSettings();
+    if (currentScreen === 'today') void showToday();
+    if (currentScreen === 'progress') void showProgress();
+  });
+  window.addEventListener('storage', (event) => {
+    if (event.key !== settingsKey) return;
+    syncSettings();
+    if (currentScreen === 'today') void showToday();
+    if (currentScreen === 'progress') void showProgress();
   });
 })();
   </script>
