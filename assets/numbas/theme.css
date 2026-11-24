@@ -582,7 +582,8 @@
   #everything > .question-nav,
   .partsmode-explore > form > header, .partsmode-explore > .question-nav,
   .statement + hr, [data-classroom-menu], .part-wrapper > .part > .partheader,
-  .next-parts, .dead-end, .part-wrapper:has(> .part.invisible) { display: none; }
+  .next-parts, .dead-end, .part-wrapper:has(> .part.invisible),
+  [data-parent-result], .stepsBtn button[data-bind*="controls.hideSteps"] { display: none; }
 
   .part-wrapper { --arrow-gutter: 2.75rem; }
   .partsmode-explore .statement { margin: 0 0 .6rem; }
@@ -643,11 +644,8 @@
     overflow-wrap: anywhere;
   }
   [data-classroom-result]:empty { display: none; }
-  [data-classroom-result], [data-parent-result] { line-height: 1.55; }
-  .classroom-parent-result { margin: 0 var(--arrow-gutter) .75rem; }
-  .classroom-parent-result summary { width: fit-content; cursor: pointer; }
-  [data-parent-result] { margin: .3rem 0 0; }
-  [data-parent-result], .classroom-question-card > .prompt { scroll-margin-block-start: .75rem; }
+  [data-classroom-result] { line-height: 1.55; }
+  .classroom-question-card > .prompt { scroll-margin-block-start: .75rem; }
   .classroom-choice-part:has([data-classroom-result]:not(:empty)) .student.answer::after { content: none; }
   .student.answer[feedback-state="wrong"] > .feedback-icon,
   .student.answer[feedback-state="wrong"] > .feedback-icon + .sr-only { display: none; }
@@ -689,13 +687,12 @@
     font: inherit;
     text-align: start;
   }
-  :is(.classroom-arrow, .classroom-parent-result summary, .lesson-hint button):focus-visible {
+  :is(.classroom-arrow, .lesson-hint button):focus-visible {
     outline: 3px solid var(--focus); outline-offset: 2px;
   }
   #questionContainer footer > .copyright-footer { margin-top: 1rem; padding-top: 0; border: 0; }
   @media (max-width: 450px) {
     .part-wrapper { --arrow-gutter: 1.85rem; }
-    .classroom-parent-result { margin-inline: 0; }
   }
 }
 

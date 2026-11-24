@@ -160,6 +160,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
   const explore = question.partsMode === "explore";
   const authoredControls = set && hasAuthoredExploreControls(question);
   const primaryPart = question.parts[0];
+  const showsAnswerOnCard = (part) => set && part.type === "1_n_2" && part.settings.displayType === "radiogroup";
   // Keep auxiliary answers out of the existing main-question progress history.
   const supportHistoryKey = historyKey + ":support";
   let activeQuestionIds = [];
@@ -327,15 +328,12 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
 
   const section = document.createElement("section");
   section.className = "practice-panel";
-  section.setAttribute("aria-label", "解答の確認と学習履歴");
 
   const button = document.createElement("button");
   button.type = "button";
   button.className = "practice-reveal-button";
-  button.textContent = "答えを見る";
   const answerId = set ? "practice-answer-" + questionId : level === "basic" ? "practice-answer" : "practice-answer-" + level;
   button.setAttribute("aria-controls", answerId);
-  button.setAttribute("aria-expanded", "false");
 
   const answerBox = document.createElement("div");
   answerBox.className = "practice-answer";
@@ -398,7 +396,8 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
     const wrong = history.filter((item) => item.kind === "wrong").length;
     const reveals = history.filter((item) => item.kind === "reveal").length;
     const prefix = questionId ? "設問" + questionNumber + "の学習履歴：" : "学習履歴：";
-    summary.textContent = prefix + "誤答" + wrong + "回・解答確認" + reveals + "回";
+    const revealCount = reveals > 0 || !showsAnswerOnCard(primaryPart) ? "・解答確認" + reveals + "回" : "";
+    summary.textContent = prefix + "誤答" + wrong + "回" + revealCount;
     renderHistory(list, history);
     if (questionId) {
       const older = allHistory.filter((item) => !item.questionId || !activeQuestionIds.includes(item.questionId));
@@ -449,15 +448,25 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
     button.textContent = show ? "答えを隠す" : "答えを見る";
     if (show) save({ kind: "reveal" }, notice, inSupport, question.currentPart || primaryPart);
   });
-  if (explore) question.events.on("setCurrentPart", () => {
+  function updateAnswerReview(part) {
+    if (showsAnswerOnCard(part)) {
+      button.remove();
+      answerBox.remove();
+      section.setAttribute("aria-label", "学習履歴");
+      return;
+    }
+    section.setAttribute("aria-label", "解答の確認と学習履歴");
     answerBox.hidden = true;
     button.setAttribute("aria-expanded", "false");
     button.textContent = "答えを見る";
-  });
-  section.append(button, answerBox, details);
+    if (button.parentElement !== section) section.prepend(button, answerBox);
+  }
+  section.append(details);
   if (questionId) section.append(olderDetails);
   if (explore) section.append(supportDetails);
   section.append(notice);
+  updateAnswerReview(question.currentPart || primaryPart);
+  if (explore) question.events.on("setCurrentPart", updateAnswerReview);
   if (set) {
     const sync = () => { section.hidden = examElement.exam.currentQuestion !== question; };
     sync();
@@ -470,8 +479,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
     examHost.append(section);
   }
 
-  // Hide Numbas' irreversible reveal button only when our safe replacement
-  // is ready. If this setup fails, Numbas retains its original functionality.
+  // The card or the review panel now supplies the correct answer.
   const style = document.createElement("style");
   style.textContent = ".revealBtn { display: none !important; }";
   examElement.shadowRoot.append(style);
@@ -582,19 +590,6 @@ function arrangeExplorePart(part, section, prompt, attachArrow) {
     new MutationObserver(format).observe(feedback, { childList: true });
     format();
   }
-  const previousResult = prompt?.querySelector("[data-parent-result]");
-  if (previousResult) {
-    const details = document.createElement("details");
-    details.className = "classroom-parent-result";
-    details.open = true;
-    const summary = document.createElement("summary");
-    const title = previousResult.querySelector("strong");
-    summary.textContent = title?.textContent || "主問題の結果";
-    title?.remove();
-    section.before(details);
-    details.append(summary, previousResult);
-    formatExploreResult(previousResult, false);
-  }
   if (part.type === "1_n_2" && answer) {
     const markExpected = () => {
       const expected = String(part.display.correctAnswer());
@@ -657,8 +652,7 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
       question.events.on("setCurrentPart", (part) => {
         part.display.html_promise.then((section) => requestAnimationFrame(() => {
           if (question.currentPart !== part || !section.getClientRects().length) return;
-          const result = section.parentElement.querySelector(".classroom-parent-result[open] [data-parent-result]");
-          const target = result?.getClientRects().length ? result : section.querySelector(".prompt");
+          const target = section.querySelector(".prompt");
           if (!target) return;
           target.tabIndex = -1;
           target.focus({ preventScroll: true });
@@ -794,7 +788,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
 
   const styles = [
     resource("numbas-runtime/numbas.css"),
-    new URL("./theme.css?v=classroom-arrows-1", import.meta.url).href,
+    new URL("./theme.css?v=explore-hints-1", import.meta.url).href,
   ];
   await Promise.all(styles.map((href) => new Promise((resolve, reject) => {
     const link = document.createElement("link");
