@@ -6,6 +6,55 @@ export function examQuestions(examData) {
   );
 }
 
+export async function readExamSource(source) {
+  const response = await fetch(source);
+  if (!response.ok) throw new Error("問題データを読み込めませんでした。");
+  return JSON.parse((await response.text()).replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+}
+
+export function questionTypeLabel(question, index, useFullName = false) {
+  const name = String(question.name || "").trim();
+  const suffix = name.match(/[（(]([^（）()]+)[）)]\s*$/);
+  const numbered = name.match(/^[A-Za-z]+\d+[\s　]+(.+)$/);
+  const label = (suffix?.[1] || numbered?.[1] || name).trim();
+  return label && (useFullName || Array.from(label).length <= 12) ? label : "問題" + (index + 1);
+}
+
+// Only explicitly opted-in lessons use authored IDs. Existing sequences keep their content hashes.
+export function mainQuestionSet(exam) {
+  const lessonId = String(exam.name || "").trim().split(/\s+/)[0];
+  const seen = new Set();
+  const mains = examQuestions(exam).map(({ question }, index) => {
+    const parts = question.parts || [];
+    const id = parts[0]?.customName;
+    if (!lessonId || question.partsMode !== "explore" || !(Number(parts[0]?.marks) > 0) ||
+        typeof id !== "string" || !id.startsWith(lessonId + "-") || !/^M[1-9]\d*$/.test(id.slice(lessonId.length + 1))) {
+      throw new Error("教材の主問題IDを確認できませんでした。");
+    }
+    for (const [i, part] of parts.entries()) {
+      const partId = part.customName;
+      const validChild = typeof partId === "string" && partId.startsWith(id + "-") &&
+        /^S[1-9]\d*$/.test(partId.slice(id.length + 1));
+      if (!part.useCustomName || seen.has(partId) || (i > 0 && !validChild)) {
+        throw new Error("補助問題の親IDまたは教材内の固定IDを確認できませんでした。");
+      }
+      seen.add(partId);
+    }
+    return { id, label: questionTypeLabel(question, index, true), parts };
+  });
+  if (!mains.length) throw new Error("教材に主問題がありません。");
+  return { lessonId, mains, ids: mains.map((main) => main.id) };
+}
+
+export function definitionId(part) {
+  // Explore may replace part.customName with the branch label. The original definition is stable.
+  return part?.json?.customName || part?.xml?.getAttribute("customname");
+}
+
+export function allMainAnswersCorrect(records, ids) {
+  return ids.length > 0 && ids.every((id) => latestGradedKind(records, id) === "correct");
+}
+
 export async function questionIds(questions) {
   return Promise.all(questions.map(async ({ question }) => {
     const bytes = new TextEncoder().encode(JSON.stringify(question));

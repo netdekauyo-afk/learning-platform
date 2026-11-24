@@ -1,7 +1,7 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=20261124-explore";
 import { createDifficultyTabs } from "./difficulty-tabs.js";
 import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
-import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind } from "./question-progress.js?v=20261123-recognition";
+import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect } from "./question-progress.js?v=fixed-parts-1";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
@@ -9,7 +9,7 @@ const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
 
 // Load the shared home/list storage helper without delaying or changing Numbas.
-const studyProgressReady = import(new URL("../curriculum-page.js?v=20261124-study-progress", import.meta.url).href)
+const studyProgressReady = import(new URL("../curriculum-page.js?v=fixed-parts-1", import.meta.url).href)
   .then(() => globalThis.ClassroomStudyProgress || null)
   .catch((error) => { console.error("進み具合の準備に失敗しました。", error); return null; });
 
@@ -45,7 +45,7 @@ addSubjectSelectionLink();
 
 // Persist the qualifying answer synchronously, so closing the page while the
 // lesson schedule loads does not lose the update. This does not alter history.
-function queueStudyAdvance(context, ids, source) {
+function queueStudyAdvance(context, ids, source, mainSetReady) {
   try {
     const raw = localStorage.getItem("classroom-study-home-settings");
     if (!raw) return false;
@@ -58,13 +58,24 @@ function queueStudyAdvance(context, ids, source) {
     const old = settings.studyProgressV1?.[key];
     if (old !== undefined && !object(old)) return false;
     if (old?.completed || old?.needsChoice) return false;
-    const revision = Number.isSafeInteger(old?.revision) && old.revision >= 0 ? old.revision : 0;
-    if (old?.pending?.revision === revision) return true;
-    const pending = { revision };
-    if (ids) { pending.ids = ids; pending.source = source; }
+    let revision = Number.isSafeInteger(old?.revision) && old.revision >= 0 ? old.revision : 0;
+    let pending = null;
+    if (mainSetReady === false) {
+      if (!old?.pending) return false;
+      revision++;
+    } else {
+      if (old?.pending?.revision === revision) {
+        if (mainSetReady === undefined || (old.pending.mode === "main-set" &&
+            old.pending.source === source && JSON.stringify(old.pending.ids) === JSON.stringify(ids))) return true;
+        revision++;
+      }
+      pending = { revision };
+      if (ids) { pending.ids = ids; pending.source = source; }
+      if (mainSetReady) pending.mode = "main-set";
+    }
     settings.studyProgressV1 = { ...settings.studyProgressV1, [key]: { ...old, revision, pending } };
     localStorage.setItem("classroom-study-home-settings", JSON.stringify(settings));
-    return true;
+    return pending !== null;
   } catch (_) { return false; }
 }
 
@@ -128,14 +139,21 @@ function readPracticeAnswers(examData) {
   return answers.every((answer) => typeof answer === "string" && answer.length) ? answers : null;
 }
 
-async function installPracticeReview(examElement, examHost, historyKey, level) {
-  const question = examElement.exam?.questionList?.[0];
+// The standalone Explore preamble exposes its attempts and already handles selection, branches and initial hints.
+function hasAuthoredExploreControls(question) {
+  return Array.isArray(question.classroomAttempts);
+}
+
+async function installPracticeReview(examElement, examHost, historyKey, level, set = null, question = examElement.exam?.questionList?.[0]) {
   if (!question?.parts?.length) return;
   // Some lesson pages replace the card in place. Capture its identity now,
   // before the shared host is pointed at the next question.
-  const questionId = examHost.dataset.historyQuestionId || "";
-  const questionNumber = examHost.dataset.historyQuestionNumber || "";
+  const main = set?.mains.find((item) => item.id === definitionId(question.parts[0]));
+  if (set && !main) throw new Error("動作中の主問題と教材の固定IDが一致しません。");
+  const questionId = main?.id || examHost.dataset.historyQuestionId || "";
+  const questionNumber = set ? set.ids.indexOf(questionId) + 1 : examHost.dataset.historyQuestionNumber || "";
   const explore = question.partsMode === "explore";
+  const authoredControls = set && hasAuthoredExploreControls(question);
   const primaryPart = question.parts[0];
   // Keep auxiliary answers out of the existing main-question progress history.
   const supportHistoryKey = historyKey + ":support";
@@ -149,17 +167,25 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
 
   // Record each submitted answer after Numbas has marked it. Wrong answers remain
   // recorded even if the learner later submits a correct answer.
-  const lastSubmission = new Map();
+  const lastSubmission = new WeakMap();
+  const routes = new WeakMap();
   const updateViews = [];
   const refresh = () => updateViews.forEach((fn) => fn());
-  const save = (entry, messageElement, support = false) => {
+  const save = (entry, messageElement, support = false, part = primaryPart) => {
     const key = support ? supportHistoryKey : historyKey;
-    if (!appendPracticeHistory(key, questionId ? { ...entry, questionId } : entry)) {
+    if (set) {
+      entry = { ...entry, lessonId: set.lessonId, questionId: definitionId(part),
+        parentId: support ? questionId : null, role: support ? "supplement" : "main",
+        route: support ? routes.get(part) : "main" };
+    } else if (questionId) entry = { ...entry, questionId };
+    if (!appendPracticeHistory(key, entry)) {
       messageElement.textContent = "このブラウザでは学習履歴を保存できません。";
       messageElement.hidden = false;
+      return false;
     }
     refresh();
     examHost.dispatchEvent(new CustomEvent("classroom:history-changed", { bubbles: true }));
+    return true;
   };
 
   const notice = document.createElement("p");
@@ -171,30 +197,56 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
     if (boundParts.has(part)) return;
     boundParts.add(part);
     const support = explore && part !== primaryPart;
+    const defined = main?.parts[part.index];
+    if (set && (!defined || defined.customName !== definitionId(part))) return;
+    if (set && support) {
+      const fromWrong = part.getScope().getVariable("from_wrong")?.value ??
+        (part.previousPart?.answered && Number(part.previousPart.score) < Number(part.previousPart.marks));
+      routes.set(part, fromWrong ? "wrong" : "optional");
+    }
     const repeatCanCount = () => !support && canRecordRepeatedCorrect(
       readPracticeHistory(historyKey), questionId || null, recognitionStartedAt
     );
     part.events.on("post-submit", () => {
-      if (!part.answered || !Number.isFinite(Number(part.score))) return;
+      if (!part.answered || !Number.isFinite(Number(part.score)) ||
+          (set && (part.resuming || question.exam.loading || question.exam.mode === "review"))) return;
       const score = Number(part.score);
       const maximum = Number(part.marks);
       if (!Number.isFinite(maximum) || maximum <= 0) return;
-      const answer = String(part.display?.studentAnswer?.() ?? "");
+      const choiceIndex = defined && part.type === "1_n_2" ? part.ticks.findIndex((row) => row[0]) : -1;
+      let answer = String(part.display?.studentAnswer?.() ?? "");
+      if (choiceIndex >= 0) {
+        const label = document.createElement("template");
+        label.innerHTML = defined.choices[choiceIndex];
+        answer = label.content.textContent.trim();
+      }
       if (!answer.trim()) return;
       const signature = JSON.stringify([part.path, answer, score, maximum]);
-      if (lastSubmission.get(part) === signature &&
-          !(score >= maximum && repeatCanCount())) return;
-      lastSubmission.set(part, signature);
-      save({
-        kind: score >= maximum ? "correct" : "wrong",
+      const kind = score >= maximum ? "correct" : "wrong";
+      if (lastSubmission.get(part) === signature && !(score >= maximum && repeatCanCount()) &&
+          (!set || support || latestGradedKind(readPracticeHistory(historyKey), questionId) === kind)) return;
+      const saved = save({
+        kind,
         part: String(part.path),
         answer,
         score,
         maximum,
-      }, notice, support);
+        ...(choiceIndex >= 0 ? { choiceIndex } : {}),
+      }, notice, support, part);
+      if (saved) lastSubmission.set(part, signature);
+      if (set && !support && (saved || score < maximum)) {
+        const context = lessonContext();
+        if (context && context.lessonId === set.lessonId) {
+          const ready = saved && score >= maximum && allMainAnswersCorrect(readPracticeHistory(historyKey), set.ids);
+          const source = new URL(examHost.dataset.sequenceSource, location.href).href;
+          if (queueStudyAdvance(context, set.ids, source, ready)) {
+            void studyProgressReady.then((api) => api?.resolvePending(context.grade, context.subject));
+          }
+        }
+      }
       // In explore mode, follow a uniquely available wrong-answer branch.
       // Correct answers stay on the main question with Numbas' optional paths.
-      if (explore && !support && score < maximum && typeof part.availableNextParts === "function") {
+      if (!authoredControls && explore && !support && score < maximum && typeof part.availableNextParts === "function") {
         setTimeout(() => {
           if (!examHost.contains(examElement) || question.currentPart !== part ||
               !part.answered || Number(part.score) >= Number(part.marks)) return;
@@ -210,7 +262,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
     // Immediate correctness advances only the currently selected basic lesson.
     // Explore support parts have their own history and do not affect progress.
     // This listener is independent of history deduplication and 24-hour marks.
-    if (level === "basic" && !support) part.events.on("post-submit", () => {
+    if (!set && level === "basic" && !support) part.events.on("post-submit", () => {
       try {
         const context = lessonContext();
         const parts = (explore ? [primaryPart] : question.parts).filter((item) => Number(item.marks) > 0);
@@ -236,7 +288,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
 
     // Mark a single-choice answer as soon as Numbas has stored the selection.
     if (part.type === "1_n_2") {
-      part.events.on("storeAnswer", () => {
+      if (!authoredControls) part.events.on("storeAnswer", () => {
         const selected = Array.isArray(part.stagedAnswer) &&
           part.stagedAnswer.some((row) => Array.isArray(row) && row[0] === true);
         if (selected) part.submit();
@@ -254,13 +306,17 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
 
   // Unlike Numbas' own "Reveal answer", the separate view below never calls
   // revealAnswer(), so the existing input fields remain editable.
-  const response = await fetch(new URL(examHost.dataset.examSource, location.href));
-  if (!response.ok) return;
-  const raw = await response.text();
-  const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+  let examData;
+  if (!set) {
+    const response = await fetch(new URL(examHost.dataset.examSource, location.href));
+    if (!response.ok) return;
+    const raw = await response.text();
+    examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+  }
   // A replaced card must not append its review controls to the new card.
+  const questionContent = set ? await question.display.html_promise : examElement.shadowRoot;
   if (!examHost.contains(examElement)) return examData;
-  const answers = readPracticeAnswers(examData);
+  const answers = set ? [readPartAnswer(main.parts[0])] : readPracticeAnswers(examData);
   if (!answers) return;
 
   const section = document.createElement("section");
@@ -271,7 +327,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   button.type = "button";
   button.className = "practice-reveal-button";
   button.textContent = "答えを見る";
-  const answerId = level === "basic" ? "practice-answer" : "practice-answer-" + level;
+  const answerId = set ? "practice-answer-" + questionId : level === "basic" ? "practice-answer" : "practice-answer-" + level;
   button.setAttribute("aria-controls", answerId);
   button.setAttribute("aria-expanded", "false");
 
@@ -323,7 +379,9 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
         record.kind === "correct" ? "○ 正解" : "答えを確認";
       const time = new Date(record.at);
       const when = Number.isNaN(time.valueOf()) ? "" : time.toLocaleString("ja-JP");
-      item.textContent = label + (record.answer ? "（" + record.answer + "）" : "") +
+      const branch = record.role === "supplement" ? record.questionId +
+        (record.route === "wrong" ? "（誤答から）" : "（任意）") + "　" : "";
+      item.textContent = branch + label + (record.answer ? "（" + record.answer + "）" : "") +
         (when ? "　" + when : "");
       target.append(item);
     }
@@ -338,13 +396,18 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
     renderHistory(list, history);
     if (questionId) {
       const older = allHistory.filter((item) => !item.questionId || !activeQuestionIds.includes(item.questionId));
+      if (set) {
+        for (const level of ["standard", "advanced"]) older.push(...readPracticeHistory(practiceHistoryKey(level)));
+        older.push(...readPracticeHistory(supportHistoryKey).filter((item) => !activeQuestionIds.includes(item.parentId)));
+        older.sort((a, b) => Date.parse(a.at) - Date.parse(b.at));
+      }
       olderDetails.hidden = older.length === 0;
       olderSummary.textContent = "以前の履歴（旧問題・設問未区別）：" + older.length + "件";
       renderHistory(olderList, older);
     }
     if (explore) {
       const supportHistory = readPracticeHistory(supportHistoryKey)
-        .filter((item) => !questionId || item.questionId === questionId);
+        .filter((item) => set ? item.parentId === questionId : !questionId || item.questionId === questionId);
       supportDetails.hidden = supportHistory.length === 0;
       supportSummary.textContent = "補助問題の学習履歴：" + supportHistory.length + "件";
       renderHistory(supportList, supportHistory);
@@ -356,7 +419,8 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
     const show = answerBox.hidden;
     const inSupport = explore && question.currentPart !== primaryPart;
     if (show && inSupport) {
-      const defined = examData.question_groups?.[0]?.questions?.[0]?.parts?.[question.currentPart?.index];
+      const parts = main?.parts || examData.question_groups?.[0]?.questions?.[0]?.parts;
+      const defined = parts?.[question.currentPart?.index];
       const value = defined && readPartAnswer(defined);
       const p = document.createElement("p");
       p.textContent = value || "この補助問題の答えは表示できません。";
@@ -364,7 +428,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
     } else if (show && typeof question.display?.hasAdvice === "function" &&
         question.display.hasAdvice()) {
       // Reuse Numbas' rendered advice, including its formatting and variables.
-      const advice = examElement.shadowRoot?.querySelector(".adviceDisplay");
+      const advice = questionContent?.querySelector(".adviceDisplay");
       if (advice) answerBox.replaceChildren(heading, advice.cloneNode(true));
     } else if (show) {
       const nodes = answers.map((answer, index) => {
@@ -377,7 +441,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
     answerBox.hidden = !show;
     button.setAttribute("aria-expanded", String(show));
     button.textContent = show ? "答えを隠す" : "答えを見る";
-    if (show) save({ kind: "reveal" }, notice, inSupport);
+    if (show) save({ kind: "reveal" }, notice, inSupport, question.currentPart || primaryPart);
   });
   if (explore) question.events.on("setCurrentPart", () => {
     answerBox.hidden = true;
@@ -388,6 +452,11 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   if (questionId) section.append(olderDetails);
   if (explore) section.append(supportDetails);
   section.append(notice);
+  if (set) {
+    const sync = () => { section.hidden = examElement.exam.currentQuestion !== question; };
+    sync();
+    examElement.exam.events.on("changeQuestion", sync);
+  }
   examHost.append(section);
 
   // Hide Numbas' irreversible reveal button only when our safe replacement
@@ -467,8 +536,7 @@ async function installWorksheetControls(examElement, examData) {
 
 /* Keep the existing Numbas controls and card, but put its own hint after the
    card. Opening a hint after an incorrect answer does not re-submit the part. */
-async function installLessonHints(examElement) {
-  const question = examElement.exam?.questionList?.[0];
+async function installLessonHints(examElement, question = examElement.exam?.questionList?.[0], authored = false) {
   if (!question) return;
   const decorated = new WeakSet();
   async function decorate(part) {
@@ -499,7 +567,7 @@ async function installLessonHints(examElement) {
       }
     });
     // A branch opened after a wrong main answer starts with its hint visible.
-    if (question.partsMode === "explore" && part.previousPart?.answered &&
+    if (!authored && question.partsMode === "explore" && part.previousPart?.answered &&
         Number(part.previousPart.score) < Number(part.previousPart.marks) && !part.stepsOpen) {
       part.openSteps();
     }
@@ -575,11 +643,16 @@ async function prepareRuntime() {
   await setExerciseLanguage();
 }
 
-export async function bootExam(examHost, examStatus, level, lessonLayout) {
-  const response = await fetch(new URL(examHost.dataset.examSource, location.href));
-  if (!response.ok) throw new Error("問題の情報を取得できませんでした。");
-  const raw = await response.text();
-  const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+export async function bootExam(examHost, examStatus, level, lessonLayout, authored = null) {
+  let examData = authored?.examData;
+  if (authored) {
+    await prepareRuntime();
+  } else {
+    const response = await fetch(new URL(examHost.dataset.examSource, location.href));
+    if (!response.ok) throw new Error("問題の情報を取得できませんでした。");
+    const raw = await response.text();
+    examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+  }
   applyExerciseSettings(examData);
 
   const exam = document.createElement("numbas-exam");
@@ -593,6 +666,14 @@ export async function bootExam(examHost, examStatus, level, lessonLayout) {
   exam.setAttribute("scorm", "false");
   exam.addEventListener("numbas:loaded", () => {
     examStatus.textContent = "";
+    if (authored) {
+      for (const question of exam.exam.questionList) {
+        void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, authored.set, question)
+          .catch((error) => { console.error(error); examStatus.textContent = "学習履歴を準備できませんでした。"; });
+        void installLessonHints(exam, question, hasAuthoredExploreControls(question)).catch((error) => console.error("ヒントの準備に失敗しました。", error));
+      }
+      return;
+    }
     // Keep Numbas marking unchanged. Only replace the irreversible reveal action.
     const review = installPracticeReview(exam, examHost, practiceHistoryKey(level), level);
     if (lessonLayout) {
@@ -647,6 +728,7 @@ async function boot() {
   const lessonMatch = location.pathname.match(/\/junior-high\/grade-1\/math\/lessons\/m1-l(\d{3})\/questions\.html$/);
   const lessonLayout = Boolean(lessonMatch) || host.hasAttribute("data-difficulty-tabs");
   if (lessonMatch) prepareLessonNavigation(Number(lessonMatch[1]));
+  if (host.hasAttribute("data-main-question-set")) return; // The type tabs boot the intact exam once.
   const runtime = prepareRuntime();
   const initialLoad = runtime.then(() => bootExam(host, status, "basic", lessonLayout));
 

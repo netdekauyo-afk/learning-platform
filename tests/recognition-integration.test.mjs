@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
-import { examQuestions, questionIds, RECOGNITION_WAIT_MS as wait } from "../assets/numbas/question-progress.js";
+import { examQuestions, questionIds, mainQuestionSet, RECOGNITION_WAIT_MS as wait } from "../assets/numbas/question-progress.js";
 
 const start = Date.UTC(2026, 0, 2);
 const event = (kind, offset, questionId) => ({
@@ -44,7 +44,8 @@ async function withList({ href, rows, difficulty, records, examRaw }, run) {
       body: { hasAttribute: (name) => difficulty && name === "data-difficulty-progress" },
       createElement: () => new Element(),
       querySelectorAll: (selector) => selector === "[data-progress-exam]" ? (difficulty ? [] : rows) :
-        selector === ".lesson-item[data-lesson-id]" ? (difficulty ? rows : []) : [],
+        selector === ".lesson-item[data-lesson-id]" ? (difficulty ? rows : []) :
+        selector === ".lesson-item[data-main-question-set]" ? rows.filter((row) => row.dataset.mainQuestionSet) : [],
     },
     fetch: async () => ({ ok: true, text: async () => examRaw }),
   };
@@ -52,8 +53,8 @@ async function withList({ href, rows, difficulty, records, examRaw }, run) {
   for (const [key, value] of Object.entries(replacements)) Object.defineProperty(globalThis, key, { value, configurable: true, writable: true });
   try {
     const moduleFile = new URL("../assets/numbas/lesson-progress.js", import.meta.url);
-    const dependency = new URL("../assets/numbas/question-progress.js?v=20261123-recognition", import.meta.url).href;
-    const source = (await readFile(moduleFile, "utf8")).replace("./question-progress.js?v=20261123-recognition", dependency);
+    const dependency = new URL("../assets/numbas/question-progress.js?v=fixed-parts-1", import.meta.url).href;
+    const source = (await readFile(moduleFile, "utf8")).replace("./question-progress.js?v=fixed-parts-1", dependency);
     await import("data:text/javascript;base64," + Buffer.from(source).toString("base64") + "#" + Math.random());
     const settle = async (ready = () => true) => {
       for (let i = 0; i < 200 && !ready(); i++) await new Promise((resolve) => setTimeout(resolve, 5));
@@ -109,4 +110,34 @@ test("国語の実教材の2問は、別々の結果を◯・◎へ反映する"
     await settle(() => mark.textContent === "◯");
     assert.equal(mark.textContent, "◯");
   });
+});
+
+test("固定ID式の一覧は教材にある数と種類を使い、補助・旧正答を数えない", async () => {
+  const raw = await readFile(new URL("../junior-high/grade-1/math/lessons/m1-l009/m1-l009.exam", import.meta.url), "utf8");
+  const exam = JSON.parse(raw.slice(raw.indexOf("\n") + 1));
+  const set = mainQuestionSet(exam);
+  const row = new Row("lessons/m1-l009/questions.html");
+  row.dataset.lessonId = set.lessonId;
+  row.dataset.mainQuestionSet = "lessons/m1-l009/m1-l009.exam";
+  const key = "classroom:practice-history:v1:/learning-platform/junior-high/grade-1/math/" + row.link.dataset.target;
+  const [a, b, c] = set.ids;
+  await withList({ href: "https://example.test/learning-platform/junior-high/grade-1/math/", rows: [row], difficulty: true, examRaw: raw,
+    records: { [key]: JSON.stringify([event("correct", 1), event("wrong", 2, a), event("correct", 3, b), event("correct", 4, a)]),
+      [key + ":support"]: JSON.stringify([event("correct", 4, a + "-S1"), event("wrong", 4, b + "-S3"), event("correct", 5, c + "-S2")]) } },
+  async ({ settle }) => {
+    await settle(() => !!row.progress);
+    assert.deepEqual(row.progress.children.map((mark) => mark.textContent), ["", "○", ""]);
+    assert.equal(row.progress.attributes["aria-label"], "確認未正解、文章題正解、使い分け未正解");
+  });
+});
+
+test("別の授業では固定ID、主問題数、補助問題数をその教材から決定する", () => {
+  const part = (customName) => ({ useCustomName: true, customName, marks: 1 });
+  const q = (name, names) => ({ name, partsMode: "explore", parts: names.map(part) });
+  const questions = [q("M8 読み取り", ["geo-X-M8"]), q("M2 比較", ["geo-X-M2", "geo-X-M2-S7"])];
+  const exam = { name: "geo-X 別科目", question_groups: [{ questions }] };
+  assert.deepEqual(mainQuestionSet(exam).ids, ["geo-X-M8", "geo-X-M2"]);
+  assert.deepEqual(mainQuestionSet(exam).mains.map((m) => m.label), ["読み取り", "比較"]);
+  questions[1].parts[1].customName = "geo-X-M8-S7";
+  assert.throws(() => mainQuestionSet(exam));
 });

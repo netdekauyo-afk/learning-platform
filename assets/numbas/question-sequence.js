@@ -1,21 +1,20 @@
 import {
-  examQuestions, questionIds, isRecognizedCorrect, initializeRecognitionRule
-} from "./question-progress.js?v=20261123-recognition";
+  examQuestions, questionIds, questionTypeLabel, mainQuestionSet, readExamSource,
+  definitionId, isRecognizedCorrect, initializeRecognitionRule
+} from "./question-progress.js?v=fixed-parts-1";
 
 try {
   const host = document.getElementById("numbas-host");
   const source = host?.dataset.sequenceSource;
   if (!source) throw new Error("問題データの参照先が設定されていません。");
-  const response = await fetch(source);
-  if (!response.ok) throw new Error("問題データを読み込めませんでした。");
-  const raw = await response.text();
-  const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+  const examData = await readExamSource(source);
+  const set = host.hasAttribute("data-main-question-set") ? mainQuestionSet(examData) : null;
   const questions = examQuestions(examData);
   if (!questions.length) throw new Error("問題が見つかりません。");
   const recognitionStartedAt = initializeRecognitionRule();
   let ids = [];
   try {
-    ids = await questionIds(questions);
+    ids = set ? set.ids : await questionIds(questions);
     if (new Set(ids).size !== ids.length) throw new Error("設問を識別できません。");
   } catch (error) {
     console.error(error);
@@ -26,13 +25,14 @@ try {
     document.getElementById("question-progress").after(warning);
   }
 
-  const sources = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
+  const sources = set ? [] : questions.map(({ group, question }) => URL.createObjectURL(new Blob([
     JSON.stringify({ ...examData, question_groups: [{ ...group, questions: [question] }] })
   ], { type: "application/json" })));
   const requested = Number(new URLSearchParams(location.search).get("question") || 1);
   let current = Number.isInteger(requested) && requested >= 1 && requested <= questions.length ? requested - 1 : 0;
   let switching = true;
   let bootExam;
+  let runningExam;
   const status = document.getElementById("numbas-status");
   const progress = document.getElementById("question-progress");
   const previous = document.getElementById("question-previous");
@@ -51,15 +51,8 @@ try {
   panel.id = "question-type-panel";
   panel.setAttribute("role", "tabpanel");
 
-  function labelFor(question, index) {
-    const name = String(question.name || "").trim();
-    const suffix = name.match(/[（(]([^（）()]+)[）)]\s*$/);
-    const numbered = name.match(/^[A-Za-z]+\d+[\s　]+(.+)$/);
-    const label = (suffix?.[1] || numbered?.[1] || name).trim();
-    return label && Array.from(label).length <= 12 ? label : "問題" + (index + 1);
-  }
-  const buttons = questions.map(({ question }, index) => {
-    const label = labelFor(question, index);
+  const labels = questions.map(({ question }, index) => set ? set.mains[index].label : questionTypeLabel(question, index));
+  const buttons = labels.map((label, index) => {
     const button = document.createElement("button");
     button.type = "button";
     button.id = "question-type-tab-" + (index + 1);
@@ -89,7 +82,7 @@ try {
     return button;
   });
   function setQuestionSource() {
-    host.dataset.examSource = sources[current];
+    host.dataset.examSource = set ? source : sources[current];
     host.dataset.historyQuestionId = ids[current] || "";
     host.dataset.historyQuestionNumber = String(current + 1);
     host.dataset.historyQuestionIds = JSON.stringify(ids);
@@ -103,8 +96,7 @@ try {
     buttons.forEach((button, index) => {
       const recognized = !!ids[index] && isRecognizedCorrect(records, ids[index], recognitionStartedAt);
       button.querySelector(".question-type-mark").classList.toggle("is-recognized", recognized);
-      const label = labelFor(questions[index].question, index);
-      button.setAttribute("aria-label", label + (recognized ? "、正解認定済み" : "、未認定"));
+      button.setAttribute("aria-label", labels[index] + (recognized ? "、正解認定済み" : "、未認定"));
     });
   }
   function updateControls() {
@@ -123,6 +115,22 @@ try {
     const index = current;
     exam.addEventListener("numbas:loaded", () => {
       if (host.querySelector("numbas-exam") !== exam || index !== current) return;
+      if (set) {
+        runningExam = exam.exam;
+        runningExam.signals.on("begin", () => {
+          switching = false;
+          selectRunningQuestion(current);
+          updateControls();
+        });
+        // The standalone exam offers its own menu. Here the visible tablist is that menu.
+        exam.addEventListener("click", (event) => {
+          if (event.composedPath().some((node) => node.hasAttribute?.("data-classroom-menu"))) {
+            event.stopPropagation();
+            buttons[current].focus();
+          }
+        }, true);
+        return;
+      }
       switching = false;
       updateControls();
     }, { once: true });
@@ -136,16 +144,25 @@ try {
   });
   observer.observe(host, { childList: true });
 
+  function selectRunningQuestion(index) {
+    const target = runningExam.questionList.findIndex((q) => definitionId(q.parts[0]) === ids[index]);
+    if (target < 0) throw new Error("表示する主問題が見つかりません。");
+    runningExam.tryChangeQuestion(target);
+    return runningExam.currentQuestion === runningExam.questionList[target];
+  }
+
   async function showQuestion(index) {
     if (switching || index < 0 || index >= questions.length || index === current) return;
-    switching = true;
+    if (set && !selectRunningQuestion(index)) return;
+    switching = !set;
     current = index;
     updateControls();
-    status.textContent = "問題を読み込んでいます。";
     setQuestionSource();
     const currentUrl = new URL(location.href);
     currentUrl.searchParams.set("question", String(current + 1));
     history.replaceState(history.state, "", currentUrl);
+    if (set) return;
+    status.textContent = "問題を読み込んでいます。";
     try {
       await bootExam(host, status, "basic", true);
     } catch (error) {
@@ -165,17 +182,21 @@ try {
 
   setQuestionSource();
   updateControls();
-  ({ bootExam } = await import("./loader.js?v=20261124-question-types"));
-  const basicPanel = document.getElementById("difficulty-basic-panel");
+  ({ bootExam } = await import("./loader.js?v=fixed-parts-1"));
+  const basicPanel = set ? host.parentElement : document.getElementById("difficulty-basic-panel");
   if (!basicPanel) throw new Error("基礎問題を準備できませんでした。");
   basicPanel.insertBefore(tabs, status);
   basicPanel.insertBefore(panel, status);
   panel.append(progress, status, host, document.getElementById("question-switcher"));
-  for (const [level, suffix] of [["standard", "-s"], ["advanced", "-a"]]) {
-    const levelHost = document.querySelector("#difficulty-" + level + "-panel .numbas-difficulty-host");
-    if (!levelHost) throw new Error("難易度の表示を準備できませんでした。");
+  if (set) {
+    await bootExam(host, status, "basic", true, { examData, set });
+  } else {
     const examName = new URL(source, location.href).pathname.split("/").pop().replace(/\.exam$/, "");
-    levelHost.dataset.examSource = "./" + examName + suffix + ".exam";
+    for (const [level, suffix] of [["standard", "-s"], ["advanced", "-a"]]) {
+      const levelHost = document.querySelector("#difficulty-" + level + "-panel .numbas-difficulty-host");
+      if (!levelHost) throw new Error("難易度の表示を準備できませんでした。");
+      levelHost.dataset.examSource = "./" + examName + suffix + ".exam";
+    }
   }
 } catch (error) {
   console.error(error);

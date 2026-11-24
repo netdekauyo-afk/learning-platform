@@ -3,7 +3,7 @@
   "name": "m1-l009 東西への移動と正負の数の加法",
   "metadata": {
     "licence": "None specified",
-    "description": "中学1年数学 第9時限「東西への移動と正負の数の加法」の宿題用確認問題"
+    "description": "中学1年数学・第9時限。主問題3問と、誤答別に開く補助問題9問。"
   },
   "extensions": [],
   "custom_part_types": [],
@@ -22,7 +22,9 @@
     },
     "reverse": true,
     "browse": true,
-    "enterreviewmode": true
+    "enterreviewmode": true,
+    "navigatemode": "menu",
+    "autoSubmit": true
   },
   "timing": {
     "allowPause": false,
@@ -42,106 +44,278 @@
     "allowrevealanswer": true,
     "messages": [],
     "advice": "",
-    "intro": ""
+    "intro": "",
+    "showactualmarkwhen": "always",
+    "showtotalmarkwhen": "always",
+    "showanswerstatewhen": "always",
+    "showpartfeedbackmessageswhen": "always"
   },
   "duration": 0,
   "question_groups": [
     {
-      "name": "問題",
+      "name": "第9時限",
       "pickingStrategy": "all-ordered",
       "pickQuestions": 0,
       "questionNames": [
-        ""
+        "M1　確認",
+        "M2　文章題",
+        "M3　使い分け"
       ],
       "variable_overrides": [],
       "questions": [
         {
-          "name": "東西への移動と正負の数の加法",
+          "name": "M1　確認",
           "extensions": [],
           "custom_part_types": [],
           "variable_groups": [],
-          "variables": {},
-          "ungrouped_variables": [],
+          "variables": {
+            "from_wrong": {
+              "name": "from_wrong",
+              "definition": "false",
+              "templateType": "anything",
+              "description": "主問題の誤答から開いた補助問題だけで真。"
+            }
+          },
+          "ungrouped_variables": [
+            "from_wrong"
+          ],
           "tags": [
             "1章 数の世界をひろげよう［正負の数］",
             "２ 加法と減法",
-            "level:basic"
+            "level:basic",
+            "m1-l009-M1"
           ],
           "metadata": {
             "licence": "None specified",
             "description": ""
           },
-          "statement": "<p>東西への移動は正負の数で表すことができ、続けて移動する場合は加法で考えることができます。</p>",
+          "statement": "<p>東を正、西を負とし、数直線の右を東とします。1目盛りは1 mです。</p><p><button type=\"button\" data-classroom-menu=\"yes\">3問の一覧へ</button></p>",
           "advice": "",
           "rulesets": {},
           "parts": [
             {
-              "type": "numberentry",
-              "useCustomName": false,
-              "customName": "",
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M1",
+              "prompt": "<p>（−2）＋（＋4）を数直線の上に2本の矢印で表します。1本目は0から−2まで引きました。続けて引く2本目の矢印はどれですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
               "marks": 1,
+              "choices": [
+                "① 0 → ＋4",
+                "② −2 → ＋2",
+                "③ −2 → ＋1",
+                "④ −2 → −6"
+              ],
+              "matrix": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "distractors": [
+                "誤答です。選んだ答えは「① 0 → ＋4」。正解は「② −2 → ＋2」です。2回目も、数直線の0から出発した。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。",
+                "正解です。−2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。",
+                "誤答です。選んだ答えは「③ −2 → ＋1」。正解は「② −2 → ＋2」です。立っている−2を1歩目に数えたため、実際には3目盛りしか進んでいない。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。",
+                "誤答です。選んだ答えは「④ −2 → −6」。正解は「② −2 → ＋2」です。＋4を左へ4目盛り進む動きとして読んだ。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
               "showCorrectAnswer": true,
               "showFeedbackIcon": true,
-              "allowFractions": false,
-              "mustBeReduced": false,
-              "mustBeReducedPC": 0,
-              "displayAnswer": "-2",
-              "notationStyles": [
-                "plain",
-                "en",
-                "si-en"
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [],
+              "nextParts": [
+                {
+                  "otherPart": 1,
+                  "label": "2本の矢印をつなぐ位置",
+                  "rawLabel": "2本の矢印をつなぐ位置",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[0][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                },
+                {
+                  "otherPart": 2,
+                  "label": "目印と、実際に進んだ歩数",
+                  "rawLabel": "目印と、実際に進んだ歩数",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[2][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                },
+                {
+                  "otherPart": 3,
+                  "label": "負の位置から動くときの向き",
+                  "rawLabel": "負の位置から動くときの向き",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[3][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                }
               ],
-              "correctAnswerStyle": "plain",
-              "minValue": -2,
-              "maxValue": -2,
-              "correctAnswerFraction": false,
-              "showFractionHint": true,
+              "exploreObjective": "確認"
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M1-S1",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「① 0 → ＋4」。正解は「② −2 → ＋2」です。2回目も、数直線の0から出発した。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。</p><p>直線の道を「校門 → 花屋 → 公園」の順に歩きました。この移動を2本の矢印でかくとき、2本目の矢印の根元を置くのはどこですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① 花屋",
+                "② 校門",
+                "③ 公園"
+              ],
+              "matrix": [
+                1,
+                0,
+                0
+              ],
+              "distractors": [
+                "正解です。正解は「① 花屋」です。校門から花屋までが1回目。2回目は花屋から出発し、公園に着きます。",
+                "誤答です。正解は「① 花屋」です。校門から花屋までが1回目。2回目は花屋から出発し、公園に着きます。",
+                "誤答です。正解は「① 花屋」です。校門から花屋までが1回目。2回目は花屋から出発し、公園に着きます。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
               "stepsPenalty": 0,
               "steps": [
                 {
                   "type": "information",
-                  "useCustomName": false,
-                  "customName": "",
                   "marks": 0,
-                  "showCorrectAnswer": true,
-                  "showFeedbackIcon": true,
-                  "scripts": {},
-                  "variableReplacements": [],
-                  "variableReplacementStrategy": "originalfirst",
-                  "adaptiveMarkingPenalty": 0,
-                  "customMarkingAlgorithm": "",
-                  "extendBaseMarkingAlgorithm": true,
-                  "unitTests": [],
-                  "prompt": "<p>ヒント：東へ4mは＋4、西へ6mは−6と表せます。この2つの和を計算しよう。</p>"
+                  "prompt": "<p>ヒント　1回目の矢印の先に指を置こう。次の一歩を踏み出すのはその場所です。</p>"
                 }
               ],
-              "scripts": {},
-              "variableReplacements": [],
-              "variableReplacementStrategy": "originalfirst",
-              "adaptiveMarkingPenalty": 0,
-              "customMarkingAlgorithm": "",
-              "extendBaseMarkingAlgorithm": true,
-              "unitTests": [],
-              "prompt": "<p>東へ進むことを正の数で表します。ある地点から東へ4m進み、続けて西へ6m進みました。最後の位置は、出発した地点から何mのところですか。東へ進んだ向きを正として、数値で入力しなさい。</p>",
-              "precisionType": "none",
-              "precision": 0,
-              "precisionPartialCredit": 0,
-              "precisionMessage": "You have not given your answer to the correct precision.",
-              "requirePrecision": false,
-              "showPrecisionHint": true
+              "nextParts": [],
+              "suggestGoingBack": true
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M1-S2",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「③ −2 → ＋1」。正解は「② −2 → ＋2」です。立っている−2を1歩目に数えたため、実際には3目盛りしか進んでいない。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。</p><p>床に「−1、0、＋1」の目印が1 mおきに並んでいます。−1の上に立ち、となりの目印までを1歩として、＋1まで歩きました。何歩進みましたか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① 3歩",
+                "② 1歩",
+                "③ 2歩"
+              ],
+              "matrix": [
+                0,
+                0,
+                1
+              ],
+              "distractors": [
+                "誤答です。正解は「③ 2歩」です。−1から0までが1歩目、0から＋1までが2歩目。目印は3つ、歩いた区間は2つです。",
+                "誤答です。正解は「③ 2歩」です。−1から0までが1歩目、0から＋1までが2歩目。目印は3つ、歩いた区間は2つです。",
+                "正解です。正解は「③ 2歩」です。−1から0までが1歩目、0から＋1までが2歩目。目印は3つ、歩いた区間は2つです。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　まだ足を動かしていないときは0歩です。次の目印に足が着くたびに数えよう。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M1-S3",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「④ −2 → −6」。正解は「② −2 → ＋2」です。＋4を左へ4目盛り進む動きとして読んだ。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。</p><p>数直線の−4 mの目盛りから、となりの−3 mの目盛りに移りました。この1回の移動を表す数はどれですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① −1 m",
+                "② ＋1 m",
+                "③ −3 m"
+              ],
+              "matrix": [
+                0,
+                1,
+                0
+              ],
+              "distractors": [
+                "誤答です。正解は「② ＋1 m」です。右へ1目盛り動いたので、移動は＋1 m。−3 mは到着した位置です。",
+                "正解です。正解は「② ＋1 m」です。右へ1目盛り動いたので、移動は＋1 m。−3 mは到着した位置です。",
+                "誤答です。正解は「② ＋1 m」です。右へ1目盛り動いたので、移動は＋1 m。−3 mは到着した位置です。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　−4と−3を0の左に並べよう。−4から−3へ指を動かすと、右と左のどちらに進みますか。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
             }
           ],
           "preamble": {
-            "js": "",
+            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n\n        if (parent || correct || question.currentPart !== part) return;\n        const available = part.availableNextParts();\n        if (available.length === 1) {\n            const next = available[0];\n            if (next.instance) question.setCurrentPart(next.instance);\n            else part.makeNextPart(next);\n        }\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
             "css": ""
           },
           "variablesTest": {
             "condition": "",
             "maxRuns": 100
           },
-          "partsMode": "all",
-          "maxMarks": 0,
-          "objectives": [],
+          "partsMode": "explore",
+          "maxMarks": 1,
+          "objectives": [
+            {
+              "name": "確認",
+              "limit": 1
+            }
+          ],
           "penalties": [],
           "showObjectivesNames": "when-active",
           "showPenaltiesNames": "when-active",
@@ -150,7 +324,542 @@
             "pi,π": true,
             "i": true
           },
-          "constants": []
+          "constants": [],
+          "customName": "M1　確認",
+          "objectiveVisibility": "when-active",
+          "penaltyVisibility": "when-active"
+        },
+        {
+          "name": "M2　文章題",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {
+            "from_wrong": {
+              "name": "from_wrong",
+              "definition": "false",
+              "templateType": "anything",
+              "description": "主問題の誤答から開いた補助問題だけで真。"
+            }
+          },
+          "ungrouped_variables": [
+            "from_wrong"
+          ],
+          "tags": [
+            "1章 数の世界をひろげよう［正負の数］",
+            "２ 加法と減法",
+            "level:basic",
+            "m1-l009-M2"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>東を正、西を負とし、数直線の右を東とします。1目盛りは1 mです。</p><p><button type=\"button\" data-classroom-menu=\"yes\">3問の一覧へ</button></p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M2",
+              "prompt": "<p>直線の道を、出発点から東へ4 m歩き、そこから西へ6 m歩きました。出発点の位置を0 mとします。「1回目の移動」＋「2回目の移動」＝「最後の位置」の順に、この歩き方を記録したものはどれですか。式の数値の単位はmです。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① （＋4）＋（＋6）＝＋10",
+                "② （−4）＋（＋6）＝＋2",
+                "③ （−6）＋（＋4）＝−2",
+                "④ （＋4）＋（−6）＝−2"
+              ],
+              "matrix": [
+                0,
+                0,
+                0,
+                1
+              ],
+              "distractors": [
+                "誤答です。選んだ答えは「① （＋4）＋（＋6）＝＋10」。正解は「④ （＋4）＋（−6）＝−2」です。西へ歩いた6 mも正の数で記録し、2回とも東へ進む式にした。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。",
+                "誤答です。選んだ答えは「② （−4）＋（＋6）＝＋2」。正解は「④ （＋4）＋（−6）＝−2」です。東を負、西を正として、両方の符号を逆にした。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。",
+                "誤答です。選んだ答えは「③ （−6）＋（＋4）＝−2」。正解は「④ （＋4）＋（−6）＝−2」です。到着位置は合っている。この記録を順にたどると、最初に西へ6 m歩くことになる。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。",
+                "正解です。東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [],
+              "nextParts": [
+                {
+                  "otherPart": 1,
+                  "label": "折り返したあとの移動の符号",
+                  "rawLabel": "折り返したあとの移動の符号",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[0][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                },
+                {
+                  "otherPart": 2,
+                  "label": "東西と正負の対応",
+                  "rawLabel": "東西と正負の対応",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[1][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                },
+                {
+                  "otherPart": 3,
+                  "label": "到着位置が同じ2人の途中経過",
+                  "rawLabel": "到着位置が同じ2人の途中経過",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[2][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                }
+              ],
+              "exploreObjective": "文章題"
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M2-S1",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「① （＋4）＋（＋6）＝＋10」。正解は「④ （＋4）＋（−6）＝−2」です。西へ歩いた6 mも正の数で記録し、2回とも東へ進む式にした。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。</p><p>東へ歩いて＋5 mの位置に来ました。そこで折り返し、＋3 mの位置で止まりました。折り返してからの移動を表す数はどれですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① ＋3 m",
+                "② ＋2 m",
+                "③ −2 m"
+              ],
+              "matrix": [
+                0,
+                0,
+                1
+              ],
+              "distractors": [
+                "誤答です。正解は「③ −2 m」です。＋5 mから＋3 mまでは西へ2 m進むので、移動は−2 mです。①は最後の位置、②は東へ2 m進む移動です。",
+                "誤答です。正解は「③ −2 m」です。＋5 mから＋3 mまでは西へ2 m進むので、移動は−2 mです。①は最後の位置、②は東へ2 m進む移動です。",
+                "正解です。正解は「③ −2 m」です。＋5 mから＋3 mまでは西へ2 m進むので、移動は−2 mです。①は最後の位置、②は東へ2 m進む移動です。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　＋5から＋3へ矢印を引こう。2つの目盛りがどちらも正でも、矢印には向きがあります。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M2-S2",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「② （−4）＋（＋6）＝＋2」。正解は「④ （＋4）＋（−6）＝−2」です。東を負、西を正として、両方の符号を逆にした。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。</p><p>校門を0 mとします。校門の東3 mに赤い旗、西3 mに白い旗があります。赤い旗、白い旗の順に位置を並べた組はどれですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① （＋3 m、−3 m）",
+                "② （−3 m、＋3 m）",
+                "③ （＋3 m、＋3 m）"
+              ],
+              "matrix": [
+                1,
+                0,
+                0
+              ],
+              "distractors": [
+                "正解です。正解は「① （＋3 m、−3 m）」です。東側の赤い旗が＋3 m、西側の白い旗が−3 mです。同じ3 mでも、校門のどちら側かが符号に表れます。",
+                "誤答です。正解は「① （＋3 m、−3 m）」です。東側の赤い旗が＋3 m、西側の白い旗が−3 mです。同じ3 mでも、校門のどちら側かが符号に表れます。",
+                "誤答です。正解は「① （＋3 m、−3 m）」です。東側の赤い旗が＋3 m、西側の白い旗が−3 mです。同じ3 mでも、校門のどちら側かが符号に表れます。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　校門の東側に「＋」の札を置こう。どちらの旗が札と同じ側にありますか。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M2-S3",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「③ （−6）＋（＋4）＝−2」。正解は「④ （＋4）＋（−6）＝−2」です。到着位置は合っている。この記録を順にたどると、最初に西へ6 m歩くことになる。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。</p><p>2人とも0 mから出発しました。ゆいの移動記録は（−3）＋（＋1）、そうたの移動記録は（＋1）＋（−3）です。1回目の移動が終わったとき、出発点の西側にいるのは誰ですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① 2人とも",
+                "② ゆいだけ",
+                "③ そうただけ"
+              ],
+              "matrix": [
+                0,
+                1,
+                0
+              ],
+              "distractors": [
+                "誤答です。正解は「② ゆいだけ」です。その時点でゆいは西へ3 m、そうたは東へ1 mの位置にいます。最後は2人とも−2 mに着きます。",
+                "正解です。正解は「② ゆいだけ」です。その時点でゆいは西へ3 m、そうたは東へ1 mの位置にいます。最後は2人とも−2 mに着きます。",
+                "誤答です。正解は「② ゆいだけ」です。その時点でゆいは西へ3 m、そうたは東へ1 mの位置にいます。最後は2人とも−2 mに着きます。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　写真を撮ったのは2回目に動く前です。それぞれの式の最初のかっこだけをたどろう。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
+            }
+          ],
+          "preamble": {
+            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n\n        if (parent || correct || question.currentPart !== part) return;\n        const available = part.availableNextParts();\n        if (available.length === 1) {\n            const next = available[0];\n            if (next.instance) question.setCurrentPart(next.instance);\n            else part.makeNextPart(next);\n        }\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 1,
+          "objectives": [
+            {
+              "name": "文章題",
+              "limit": 1
+            }
+          ],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": [],
+          "customName": "M2　文章題",
+          "objectiveVisibility": "when-active",
+          "penaltyVisibility": "when-active"
+        },
+        {
+          "name": "M3　使い分け",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {
+            "from_wrong": {
+              "name": "from_wrong",
+              "definition": "false",
+              "templateType": "anything",
+              "description": "主問題の誤答から開いた補助問題だけで真。"
+            }
+          },
+          "ungrouped_variables": [
+            "from_wrong"
+          ],
+          "tags": [
+            "1章 数の世界をひろげよう［正負の数］",
+            "２ 加法と減法",
+            "level:basic",
+            "m1-l009-M3"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": ""
+          },
+          "statement": "<p>東を正、西を負とし、数直線の右を東とします。1目盛りは1 mです。</p><p><button type=\"button\" data-classroom-menu=\"yes\">3問の一覧へ</button></p>",
+          "advice": "",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M3",
+              "prompt": "<p>ロボットを直線の道で2回動かします。「歩いた道のりは合わせて6 m」「最後は出発点に戻る」の両方を満たす指示はどれですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① 西へ2 m → 東へ2 m",
+                "② 西へ3 m → 西へ3 m",
+                "③ 西へ3 m → 東へ3 m",
+                "④ 西へ2 m → 東へ4 m"
+              ],
+              "matrix": [
+                0,
+                0,
+                1,
+                0
+              ],
+              "distractors": [
+                "誤答です。選んだ答えは「① 西へ2 m → 東へ2 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは4 m、最後の位置は0 m。出発点に戻ることだけを確かめ、道のりの条件を見落とした。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。",
+                "誤答です。選んだ答えは「② 西へ3 m → 西へ3 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは6 m、最後の位置は−6 m。同じ長さを2回歩けば戻れると考え、2回とも西向きであることを見落とした。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。",
+                "正解です。歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。",
+                "誤答です。選んだ答えは「④ 西へ2 m → 東へ4 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは6 m、最後の位置は＋2 m。途中で向きを変えれば戻れると考えた。この指示では出発点を東へ2 m通り越す。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [],
+              "nextParts": [
+                {
+                  "otherPart": 1,
+                  "label": "行きと帰りを合わせた道のり",
+                  "rawLabel": "行きと帰りを合わせた道のり",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[0][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                },
+                {
+                  "otherPart": 2,
+                  "label": "出発点に近づく向き",
+                  "rawLabel": "出発点に近づく向き",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[1][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                },
+                {
+                  "otherPart": 3,
+                  "label": "折り返してから戻る長さ",
+                  "rawLabel": "折り返してから戻る長さ",
+                  "availabilityCondition": "answered and (credit=1 or interpreted_answer[3][0])",
+                  "variableReplacements": [
+                    {
+                      "variable": "from_wrong",
+                      "definition": "credit < 1"
+                    }
+                  ],
+                  "lockAfterLeaving": false,
+                  "showPenaltyHint": false,
+                  "penalty": "",
+                  "penaltyAmount": "0"
+                }
+              ],
+              "exploreObjective": "使い分け"
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M3-S1",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「① 西へ2 m → 東へ2 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは4 m、最後の位置は0 m。出発点に戻ることだけを確かめ、道のりの条件を見落とした。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。</p><p>門・木・ベンチが、この順に直線上に1 mおきに並んでいます。「門 → 木 → ベンチ → 木 → 門」と歩いた道のりは何mですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① 0 m",
+                "② 4 m",
+                "③ 2 m"
+              ],
+              "matrix": [
+                0,
+                1,
+                0
+              ],
+              "distractors": [
+                "誤答です。正解は「② 4 m」です。1 mの区間を行きに2回、帰りに2回通るので4 mです。0 mは最後の位置、2 mは片道の長さです。",
+                "正解です。正解は「② 4 m」です。1 mの区間を行きに2回、帰りに2回通るので4 mです。0 mは最後の位置、2 mは片道の長さです。",
+                "誤答です。正解は「② 4 m」です。1 mの区間を行きに2回、帰りに2回通るので4 mです。0 mは最後の位置、2 mは片道の長さです。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　帰りに同じ区間を通るときにも、歩いた印を1つ付けよう。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M3-S2",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「② 西へ3 m → 西へ3 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは6 m、最後の位置は−6 m。同じ長さを2回歩けば戻れると考え、2回とも西向きであることを見落とした。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。</p><p>出発点の西2 mのところにいます。そこから1 m歩いたら、出発点に近づきました。どこに着きましたか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① 出発点の西3 m",
+                "② 出発点",
+                "③ 出発点の西1 m"
+              ],
+              "matrix": [
+                0,
+                0,
+                1
+              ],
+              "distractors": [
+                "誤答です。正解は「③ 出発点の西1 m」です。東向きに1 m戻ると、西1 mの位置です。西向きに進めば西3 mになり、出発点まで戻るには2 m必要です。",
+                "誤答です。正解は「③ 出発点の西1 m」です。東向きに1 m戻ると、西1 mの位置です。西向きに進めば西3 mになり、出発点まで戻るには2 m必要です。",
+                "正解です。正解は「③ 出発点の西1 m」です。東向きに1 m戻ると、西1 mの位置です。西向きに進めば西3 mになり、出発点まで戻るには2 m必要です。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　西へ来た道を振り返り、出発点に向かって1目盛りだけたどろう。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
+            },
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m1-l009-M3-S3",
+              "prompt": "<p data-jme-visible=\"from_wrong\" data-parent-result=\"yes\"><strong>主問題の結果</strong>　誤答です。選んだ答えは「④ 西へ2 m → 東へ4 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは6 m、最後の位置は＋2 m。途中で向きを変えれば戻れると考えた。この指示では出発点を東へ2 m通り越す。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。</p><p>出発点から東へ5 m歩いて折り返し、そこから西へ2 m戻りました。出発点にぴったり着くには、あと西へ何m進めばよいですか。</p><p><span data-classroom-result=\"yes\" role=\"status\" aria-live=\"polite\"></span></p>",
+              "marks": 1,
+              "choices": [
+                "① 3 m",
+                "② 2 m",
+                "③ 5 m"
+              ],
+              "matrix": [
+                1,
+                0,
+                0
+              ],
+              "distractors": [
+                "正解です。正解は「① 3 m」です。行きの5 mのうち2 mを戻ったので、残りは3 mです。西へ合計5 m戻ったときに出発点に着きます。",
+                "誤答です。正解は「① 3 m」です。行きの5 mのうち2 mを戻ったので、残りは3 mです。西へ合計5 m戻ったときに出発点に着きます。",
+                "誤答です。正解は「① 3 m」です。行きの5 mのうち2 mを戻ったので、残りは3 mです。西へ合計5 m戻ったときに出発点に着きます。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": true,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "marks": 0,
+                  "prompt": "<p>ヒント　行きに歩いた5 mを、1 mずつの区間に分けよう。そのうち帰りにたどり終えた区間はいくつですか。</p>"
+                }
+              ],
+              "nextParts": [],
+              "suggestGoingBack": true
+            }
+          ],
+          "preamble": {
+            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n\n        if (parent || correct || question.currentPart !== part) return;\n        const available = part.availableNextParts();\n        if (available.length === 1) {\n            const next = available[0];\n            if (next.instance) question.setCurrentPart(next.instance);\n            else part.makeNextPart(next);\n        }\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 1,
+          "objectives": [
+            {
+              "name": "使い分け",
+              "limit": 1
+            }
+          ],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": [],
+          "customName": "M3　使い分け",
+          "objectiveVisibility": "when-active",
+          "penaltyVisibility": "when-active"
         }
       ]
     }

@@ -125,7 +125,27 @@
     return ids.every((id, index) => id === pending.ids[index]);
   }
 
-  async function nextLesson(grade, subject, lessonId, root) {
+  async function mainSetEligibility(pending, row, course, root) {
+    if (pending.mode !== "main-set" || !Array.isArray(pending.ids) || !row.dataset.mainQuestionSet) return null;
+    const source = new URL(row.dataset.mainQuestionSet, course);
+    const requested = new URL(pending.source, course);
+    const folder = new URL("lessons/" + row.dataset.lessonId + "/", course);
+    if (source.origin !== root.origin || !source.pathname.startsWith(folder.pathname) ||
+        requested.origin !== source.origin || requested.pathname !== source.pathname) return null;
+    const { mainQuestionSet, readExamSource, allMainAnswersCorrect } =
+      await import(new URL("assets/numbas/question-progress.js?v=fixed-parts-1", root).href);
+    const set = mainQuestionSet(await readExamSource(source.href));
+    if (set.lessonId !== row.dataset.lessonId || set.ids.length !== pending.ids.length ||
+        !set.ids.every((id) => pending.ids.includes(id))) return null;
+    const key = "classroom:practice-history:v1:" + new URL("questions.html", folder).pathname;
+    // Called after the final asynchronous fetch, immediately before updating the resume position.
+    return () => {
+      try { return allMainAnswersCorrect(JSON.parse(localStorage.getItem(key) || "[]"), set.ids); }
+      catch (_) { return false; }
+    };
+  }
+
+  async function nextLesson(grade, subject, lessonId, root, pending) {
     const elementary = String(grade).startsWith("e");
     const number = elementary ? String(grade).slice(1) : String(grade);
     const school = elementary ? "elementary" : "junior-high";
@@ -136,6 +156,14 @@
     const rows = Array.from(doc.querySelectorAll(".lesson-item[data-lesson-id]"));
     const list = rows.map((row) => row.dataset.lessonId);
     if (!list.length || list.some((id) => !id) || new Set(list).size !== list.length || !list.includes(lessonId)) return { ambiguous: true };
+    const row = rows[list.indexOf(lessonId)];
+    let stillReady;
+    if (row.dataset.mainQuestionSet || pending.mode === "main-set") {
+      stillReady = await mainSetEligibility(pending, row, course, root);
+      if (!stillReady) return { stale: true };
+    } else if (!await validateSequence(pending, root, grade, subject, lessonId)) {
+      return { ambiguous: true };
+    }
     let ordered = list;
     if (!elementary) {
       const timingResponse = await fetch(new URL(`assets/junior-high-grade-${number}-timing.json`, root).href);
@@ -158,7 +186,7 @@
     }
     const index = ordered.indexOf(lessonId);
     if (index < 0) return { ambiguous: true };
-    return index === ordered.length - 1 ? { completed: true } : { next: ordered[index + 1] };
+    return index === ordered.length - 1 ? { completed: true, stillReady } : { next: ordered[index + 1], stillReady };
   }
 
   async function resolvePending(grade, subject) {
@@ -172,12 +200,18 @@
     if (!isObject(meta) || !isObject(pending) || !lessonId || !root || pending.revision !== revision(meta)) return false;
     let result;
     try {
-      if (!await validateSequence(pending, root, String(grade), subject, lessonId)) result = { ambiguous: true };
-      else result = await nextLesson(String(grade), subject, lessonId, root);
+      result = await nextLesson(String(grade), subject, lessonId, root, pending);
     } catch (_) { return false; } // Keep the pending item for a later retry.
     const latest = readSettings();
     const now = latest?.studyProgressV1?.[key];
     if (!latest || !isObject(now) || latest.lessons?.[key] !== lessonId || revision(now) !== pending.revision || now.pending?.revision !== pending.revision) return false;
+    if (result.stale || (result.stillReady && !result.stillReady())) {
+      latest.studyProgressV1 = { ...latest.studyProgressV1, [key]: {
+        ...now, revision: revision(now) + 1, pending: null,
+      } };
+      writeSettings(latest);
+      return false;
+    }
     if (result.next) latest.lessons = { ...latest.lessons, [key]: result.next };
     latest.startModes = { ...latest.startModes, [key]: "lesson" };
     latest.studyProgressV1 = { ...latest.studyProgressV1, [key]: {

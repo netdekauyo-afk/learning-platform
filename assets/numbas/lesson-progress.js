@@ -1,4 +1,4 @@
-import { examQuestions, questionIds, questionProgress, isRecognizedCorrect, initializeRecognitionRule } from "./question-progress.js?v=20261123-recognition";
+import { examQuestions, questionIds, questionProgress, isRecognizedCorrect, initializeRecognitionRule, readExamSource, mainQuestionSet } from "./question-progress.js?v=fixed-parts-1";
 
 const prefix = "classroom:practice-history:v1:";
 const marks = Object.freeze({ single: "○", oneOfTwo: "◯", both: "◎" });
@@ -80,6 +80,7 @@ function prepareDifficultyProgress() {
   ];
   const rows = [];
   document.querySelectorAll(".lesson-item[data-lesson-id]").forEach((row) => {
+    if (row.dataset.mainQuestionSet) return;
     const questionLink = row.querySelector('a[data-kind="questions"]');
     const actions = row.querySelector(".lesson-links");
     if (!actions || !questionLink || questionLink.dataset.published !== "true") return;
@@ -119,7 +120,48 @@ function prepareDifficultyProgress() {
   window.addEventListener("pageshow", refreshDifficultyProgress);
 }
 
+// The course row opts in with the source URL. Its exam supplies all names and IDs.
+async function prepareMainMarks(row) {
+  const link = row.querySelector('a[data-kind="questions"][data-published="true"]');
+  const actions = row.querySelector(".lesson-links");
+  if (!link?.dataset.target || !actions) return;
+  const set = mainQuestionSet(await readExamSource(new URL(row.dataset.mainQuestionSet, location.href)));
+  if (set.lessonId !== row.dataset.lessonId) throw new Error("授業と教材のIDが一致しません。");
+  const key = prefix + new URL(link.dataset.target, location.href).pathname;
+  const progress = document.createElement("span");
+  progress.className = "difficulty-progress";
+  progress.setAttribute("role", "img");
+  const palette = ["basic", "standard", "advanced"];
+  const nodes = set.mains.map((_, index) => {
+    const node = document.createElement("span");
+    node.className = "difficulty-progress-mark";
+    node.dataset.level = palette[index % palette.length];
+    node.setAttribute("aria-hidden", "true");
+    progress.append(node);
+    return node;
+  });
+  row.insertBefore(progress, actions);
+  function update() {
+    let records = [];
+    try { records = JSON.parse(localStorage.getItem(key) || "[]"); } catch { /* Unavailable history. */ }
+    const labels = set.mains.map(({ id, label }, index) => {
+      const recognized = isRecognizedCorrect(records, id, recognitionStartedAt);
+      nodes[index].textContent = recognized ? marks.single : "";
+      return label + (recognized ? "正解" : "未正解");
+    });
+    progress.setAttribute("aria-label", labels.join("、"));
+  }
+  update();
+  window.addEventListener("pageshow", update);
+  window.addEventListener("storage", (event) => { if (event.key === key || event.key === null) update(); });
+}
+
+for (const row of document.querySelectorAll(".lesson-item[data-main-question-set]")) {
+  void prepareMainMarks(row).catch((error) => console.error("主問題の学習状況を表示できませんでした。", error));
+}
+
 for (const row of document.querySelectorAll("[data-progress-exam]")) {
+  if (row.dataset.mainQuestionSet) continue;
   try {
     prepareProgress(row);
   } catch (error) {

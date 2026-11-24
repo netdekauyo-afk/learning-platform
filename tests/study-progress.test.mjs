@@ -267,3 +267,42 @@ test('国語は２問の最新正答が必要で、誤答後の再正答で進�
   assert.deepEqual(pending.ids, ['q1', 'q2']);
   assert.deepEqual(JSON.parse(h.localStorage.getItem(h.historyKey)).map((r) => r.kind), ['correct', 'wrong', 'correct', 'correct']);
 });
+
+test('固定ID教材の進行予約は確定直前の主問題履歴を再確認し、旧予約を破棄する', async () => {
+  const { mainQuestionSet, allMainAnswersCorrect } = await import('../assets/numbas/question-progress.js');
+  const raw = await readFile(new URL('../junior-high/grade-1/math/lessons/m1-l009/m1-l009.exam', import.meta.url), 'utf8');
+  const exam = JSON.parse(raw.slice(raw.indexOf('\n') + 1));
+  const set = mainQuestionSet(exam);
+  const key = '1:math';
+  const root = 'https://example.test/learning-platform/';
+  const lesson = 'junior-high/grade-1/math/lessons/m1-l009/';
+  const historyKey = 'classroom:practice-history:v1:/' + 'learning-platform/' + lesson + 'questions.html';
+  const rows = [{ dataset: { lessonId: 'm1-l009', mainQuestionSet: 'lessons/m1-l009/m1-l009.exam' } }, { dataset: { lessonId: 'm1-l010' } }];
+  const typed = { revision: 8, mode: 'main-set', ids: set.ids, source: root + lesson + 'm1-l009.exam' };
+  for (const scenario of ['correct', 'wrong while awaiting', 'legacy', 'incorrect ids']) {
+    const pending = scenario === 'legacy' ? { revision: 8 } : scenario === 'incorrect ids' ? { ...typed, ids: set.ids.slice(1) } : typed;
+    const localStorage = storage({ [SETTINGS]: JSON.stringify({ lessons: { [key]: set.lessonId }, studyProgressV1: { [key]: { revision: 8, pending } } }) });
+    const answers = set.ids.map((questionId) => ({ questionId, kind: 'correct' }));
+    localStorage.setItem(historyKey, JSON.stringify(answers));
+    const ctx = {
+      URL, localStorage, location: new URL(root + 'study-home/'),
+      DOMParser: class { parseFromString() { return { querySelectorAll: () => rows }; } },
+      __fixed: { mainQuestionSet, allMainAnswersCorrect, readExamSource: async (url) => { assert.equal(url, typed.source); return exam; } },
+      fetch: async (url) => {
+        if (String(url).endsWith('/math/')) return { ok: true, text: async () => '' };
+        assert.ok(String(url).endsWith('junior-high-grade-1-timing.json'));
+        if (scenario === 'wrong while awaiting') {
+          localStorage.setItem(historyKey, JSON.stringify([...answers, { questionId: set.ids[0], kind: 'wrong' }]));
+        }
+        return { ok: true, json: async () => ({ version: 1, school: 'junior-high', grade: 1,
+          days: rows.map((row, i) => ({ dateNumber: i + 1, math: [row.dataset.lessonId] })) }) };
+      },
+    };
+    vm.runInNewContext(commonSource.replace('await import(new URL("assets/numbas/question-progress.js?v=fixed-parts-1", root).href)', 'globalThis.__fixed'), ctx);
+    assert.equal(await ctx.ClassroomStudyProgress.resolvePending('1', 'math'), scenario === 'correct', scenario);
+    const result = ctx.ClassroomStudyProgress.read();
+    assert.equal(result.lessons[key], scenario === 'correct' ? 'm1-l010' : set.lessonId, scenario);
+    assert.equal(result.studyProgressV1[key].pending, null);
+    assert.ok(!result.studyProgressV1[key].needsChoice);
+  }
+});
