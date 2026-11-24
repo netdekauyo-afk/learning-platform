@@ -1,21 +1,30 @@
-// Classroom controls when the learner moves. Numbas supplies the available
-// branches, their order, the part instances and the return action.
-export function exploreNavigation(examElement, question) {
+const compareIds = new Intl.Collator("en", { numeric: true }).compare;
+
+// A Numbas branch's index identifies its target in the authored parts array,
+// even before that part has a runtime instance or a path.
+export function nextOptionalBranch(available, parts, lastId) {
+  const ordered = available.map((branch) => ({ branch, id: parts[branch.index].customName }));
+  ordered.sort((a, b) => compareIds(a.id, b.id));
+  const next = ordered.find(({ id }) => compareIds(id, lastId) > 0) ?? ordered[0];
+  return next?.branch;
+}
+
+export function exploreNavigation(examElement, question, parts) {
   const main = question.parts[0];
-  const branchDelayMs = 5000;
+  const branchDelayMs = 10000;
   const transitionMs = 220;
   let forward, countdown, movingArrow, navigationTimer, countdownInterval;
   let deadline = 0;
-  let optionalIndex = 0;
+  let lastOptionalId = "";
 
   function active(part) {
     return examElement.isConnected && question.exam.currentQuestion === question && question.currentPart === part;
   }
   function next() {
     if (!main.answered || main.isDirty) return;
-    const options = main.display.nextParts();
-    if (!options.length || (main.score < main.marks && options.length !== 1)) return;
-    return options[optionalIndex % options.length];
+    const available = main.availableNextParts();
+    if (main.score < main.marks) return available.length === 1 ? available[0] : undefined;
+    return nextOptionalBranch(available, parts, lastOptionalId);
   }
   function refresh() {
     if (!forward) return;
@@ -43,16 +52,17 @@ export function exploreNavigation(examElement, question) {
       if (part !== main) {
         question.display.goToPreviousPart();
       } else {
-        const option = next();
-        if (!option) return;
-        if (main.score >= main.marks) optionalIndex = (optionalIndex + 1) % main.display.nextParts().length;
-        option.select();
+        const branch = next();
+        if (!branch) return;
+        if (branch.instance) question.setCurrentPart(branch.instance);
+        else main.makeNextPart(branch);
+        if (main.score >= main.marks) lastOptionalId = parts[branch.index].customName;
       }
       refresh();
     }, delay);
   }
   function afterMark() {
-    if (main.score < main.marks) optionalIndex = 0;
+    if (main.score < main.marks) lastOptionalId = "";
     refresh();
     if (!forward || !active(main) || main.resuming || question.exam.loading ||
         question.exam.mode === "review" || main.score >= main.marks || !next()) return;

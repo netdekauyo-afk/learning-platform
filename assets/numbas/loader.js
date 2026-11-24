@@ -150,12 +150,12 @@ function hasAuthoredExploreControls(question) {
   return Array.isArray(question.classroomAttempts);
 }
 
-async function installPracticeReview(examElement, examHost, historyKey, level, set = null, question = examElement.exam?.questionList?.[0]) {
+async function installPracticeReview(examElement, examHost, historyKey, level, {
+  set = null, main = null, question = examElement.exam?.questionList?.[0]
+} = {}) {
   if (!question?.parts?.length) return;
   // Some lesson pages replace the card in place. Capture its identity now,
   // before the shared host is pointed at the next question.
-  const main = set?.mains.find((item) => item.id === definitionId(question.parts[0]));
-  if (set && !main) throw new Error("動作中の主問題と教材の固定IDが一致しません。");
   const supportLabels = new Map();
   for (const edge of main?.parts[0].nextParts || []) {
     const id = main.parts[edge.otherPart]?.customName;
@@ -741,7 +741,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   let examData = authored?.examData;
   let exploreNavigation;
   if (authored) {
-    ({ exploreNavigation } = await import("./explore-navigation.js?v=classroom-arrows-1"));
+    ({ exploreNavigation } = await import("./explore-navigation.js?v=ordered-support-1"));
     await prepareRuntime();
   } else {
     const response = await fetch(new URL(examHost.dataset.examSource, location.href));
@@ -775,9 +775,14 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
         footer.after(reviewSlot);
       }
       for (const question of exam.exam.questionList) {
-        void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, authored.set, question)
+        const main = authored.set.mains.find((item) => item.id === definitionId(question.parts[0]));
+        if (!main) {
+          examStatus.textContent = "動作中の主問題と教材の固定IDが一致しません。";
+          continue;
+        }
+        void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, { set: authored.set, main, question })
           .catch((error) => { console.error(error); examStatus.textContent = "学習履歴を準備できませんでした。"; });
-        void installLessonHints(exam, question, hasAuthoredExploreControls(question), exploreNavigation(exam, question))
+        void installLessonHints(exam, question, hasAuthoredExploreControls(question), exploreNavigation(exam, question, main.parts))
           .catch((error) => console.error("ヒントの準備に失敗しました。", error));
       }
       return;
