@@ -15,6 +15,11 @@ const translations = {
   "part.feedback out of date": "答えを変更したら、もう一度答え合わせをしてください。",
   "question.score feedback.score total actual": "{{score,niceNumber}} / {{marks,niceNumber}} 点",
   "question.nav.label": "問題の操作",
+  "question.progress": "問題の進み具合",
+  "question.back to previous part": "基本問題に戻る",
+  "part.choose next part.answered": "次に進む問題を選ぶ",
+  "part.choose next part.unanswered": "または、次の操作を選ぶ",
+  "part.reached dead end": "この問題はここまでです。",
   "control.style options": "表示設定",
   "modal.style.main font": "書体",
   "modal.style.font.sans serif": "ゴシック体",
@@ -352,3 +357,4 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
     },
   };
 }
+
