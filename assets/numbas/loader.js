@@ -1,12 +1,72 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=20261124-explore";
 import { createDifficultyTabs } from "./difficulty-tabs.js";
 import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
-import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry } from "./question-progress.js?v=20261123-recognition";
+import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind } from "./question-progress.js?v=20261123-recognition";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
 const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
+
+// Load the shared home/list storage helper without delaying or changing Numbas.
+const studyProgressReady = import(new URL("../curriculum-page.js?v=20261124-study-progress", import.meta.url).href)
+  .then(() => globalThis.ClassroomStudyProgress || null)
+  .catch((error) => { console.error("進み具合の準備に失敗しました。", error); return null; });
+
+function lessonContext() {
+  const match = location.pathname.match(/^(.*\/)(elementary|junior-high)\/grade-(\d+)\/(math|science|english|social|japanese|information)\/lessons\/([^/]+)\/questions\.html$/);
+  if (!match) return null;
+  const number = Number(match[3]);
+  if ((match[2] === "elementary" && (number < 1 || number > 6)) ||
+      (match[2] === "junior-high" && (number < 1 || number > 3))) return null;
+  return { root: match[1], grade: match[2] === "elementary" ? "e" + number : String(number),
+    subject: match[4], lessonId: match[5] };
+}
+
+function addSubjectSelectionLink() {
+  const context = lessonContext();
+  const toolbar = document.querySelector('.problem-toolbar[aria-label="問題ページの移動"]');
+  if (!context || !toolbar || document.getElementById("other-subject-link")) return;
+  const url = new URL(context.root + "study-home/", location.origin);
+  url.searchParams.set("grade", context.grade);
+  url.searchParams.set("screen", "subjects");
+  const wrapper = document.createElement("p");
+  wrapper.className = "problem-toolbar";
+  wrapper.style.margin = "-10px 0 20px";
+  const link = document.createElement("a");
+  link.id = "other-subject-link";
+  link.className = "text-link";
+  link.href = url.href;
+  link.textContent = "別の科目を見る";
+  wrapper.append(link);
+  toolbar.after(wrapper);
+}
+addSubjectSelectionLink();
+
+// Persist the qualifying answer synchronously, so closing the page while the
+// lesson schedule loads does not lose the update. This does not alter history.
+function queueStudyAdvance(context, ids, source) {
+  try {
+    const raw = localStorage.getItem("classroom-study-home-settings");
+    if (!raw) return false;
+    const settings = JSON.parse(raw);
+    const object = (value) => value && typeof value === "object" && !Array.isArray(value);
+    if (!object(settings) || !object(settings.lessons) ||
+        (settings.studyProgressV1 !== undefined && !object(settings.studyProgressV1))) return false;
+    const key = context.grade + ":" + context.subject;
+    if (settings.lessons[key] !== context.lessonId) return false;
+    const old = settings.studyProgressV1?.[key];
+    if (old !== undefined && !object(old)) return false;
+    if (old?.completed || old?.needsChoice) return false;
+    const revision = Number.isSafeInteger(old?.revision) && old.revision >= 0 ? old.revision : 0;
+    if (old?.pending?.revision === revision) return true;
+    const pending = { revision };
+    if (ids) { pending.ids = ids; pending.source = source; }
+    settings.studyProgressV1 = { ...settings.studyProgressV1, [key]: { ...old, revision, pending } };
+    localStorage.setItem("classroom-study-home-settings", JSON.stringify(settings));
+    return true;
+  } catch (_) { return false; }
+}
 
 // Start the rule before any answer or reveal can be added to the history.
 const recognitionStartedAt = initializeRecognitionRule();
@@ -145,6 +205,33 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
           else part.makeNextPart(branch);
         }, 0);
       }
+    });
+
+    // Immediate correctness advances only the currently selected basic lesson.
+    // Explore support parts have their own history and do not affect progress.
+    // This listener is independent of history deduplication and 24-hour marks.
+    if (level === "basic" && !support) part.events.on("post-submit", () => {
+      try {
+        const context = lessonContext();
+        const parts = (explore ? [primaryPart] : question.parts).filter((item) => Number(item.marks) > 0);
+        if (!context || examElement.exam?.questionList?.length !== 1 || !parts.length ||
+            !parts.every((item) => item.answered && Number.isFinite(Number(item.score)) &&
+              Number(item.score) >= Number(item.marks) && String(item.display?.studentAnswer?.() ?? "").trim())) return;
+        let ids = null;
+        let source = null;
+        if (examHost.dataset.sequenceSource) {
+          // Existing Japanese sequences provide stable IDs for two questions.
+          // Validate the original question structure before advancing.
+          if (parts.length !== 1 || !questionId || activeQuestionIds.length !== 2 ||
+              new Set(activeQuestionIds).size !== 2 || !activeQuestionIds.includes(questionId)) return;
+          const other = activeQuestionIds.find((id) => id !== questionId);
+          if (latestGradedKind(readPracticeHistory(historyKey), other) !== "correct") return;
+          ids = activeQuestionIds.slice();
+          source = new URL(examHost.dataset.sequenceSource, location.href).href;
+        } else if (questionId || activeQuestionIds.length) return;
+        if (!queueStudyAdvance(context, ids, source)) return;
+        void studyProgressReady.then((api) => api?.resolvePending(context.grade, context.subject));
+      } catch (error) { console.error("進み具合を更新できませんでした。", error); }
     });
 
     // Mark a single-choice answer as soon as Numbas has stored the selection.
