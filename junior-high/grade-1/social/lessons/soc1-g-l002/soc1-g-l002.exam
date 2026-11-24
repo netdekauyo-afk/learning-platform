@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-g-l002 世界の国・日本の都道府県クイズと学習の見通し",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（地理） 第2時限「世界の国・日本の都道府県クイズと学習の見通し」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "世界の国・日本の都道府県クイズと学習の見通し（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l002 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本は都道府県に分かれており、各地に特色があります。</p>",
+          "advice": "<p>答え：47（1都・1道・2府・43県）（日本は東京都（1都）、北海道（1道）、大阪府・京都府（2府）、43県の合計47都道府県から成り立っています）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「府」は大阪府と京都府の2つだけでしたね。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の都道府県の数と、その内訳として正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "47（1都・1道・2府・43県）",
+                "46（1都・1道・2府・42県）",
+                "47（1都・2道・2府・42県）",
+                "48（1都・1道・3府・43県）"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "合計を47と覚え間違えているか、県の数を42と思っている誤解（47という総数の定着不足）。",
+                "合計は合っているが、「道」が北海道以外にもあると思っている内訳の混同。",
+                "「府」が3つあると思っている誤解（大阪・京都以外の府県との混同）。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界の国・日本の都道府県クイズと学習の見通し（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l002 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本は南北に長い列島で、地域ごとの特色が豊かです。</p>",
+          "advice": "<p>答え：日本列島が南北に長く広がっているから（日本列島は南北に長く広がっているため、北の端の北海道と南の端の沖縄では、同じ季節でも気温が大きく異なります。海に囲まれていることは両地域に共通する条件なので、違いの理由にはなりません）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：北海道と沖縄の位置関係を、日本列島全体の形から考えてみましょう。なお、2つの地域に共通している条件は、違いの理由にはなりません。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>北海道と沖縄県では、同じ真冬でも気温が大きく異なります。この気温の違いが生じる理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "日本列島が南北に長く広がっているから",
+                "北海道のほうが、標高の高い山地が多いから",
+                "沖縄県のまわりが、海に囲まれているから",
+                "北海道には、大都市が少ないから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "「標高が高い場所は涼しい」という知識を、地域全体の気温差にそのまま当てはめてしまった誤解。沖縄にも山地はあり、北海道にも広い平野がある。",
+                "「海の近くは温暖」というイメージで選んだ誤解。北海道も海に囲まれており、共通する条件では違いを説明できないという視点が抜けている。",
+                "「都市は暑い（ヒートアイランド）」という知識の断片を結びつけた誤解。都市の規模では、列島の両端の気温差という大きな現象は説明できない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界の国・日本の都道府県クイズと学習の見通し（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l002 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した例（地図帳のさくいんの再現）"
+          },
+          "statement": "<p>資料は、地図帳の巻末にある「さくいん（索引）」の一部を再現したものです。</p><p><strong>資料　地図帳のさくいん（一部）</strong>（学習用に作成した例）</p><table><thead><tr><th>地名</th><th>ページ</th><th>記号</th></tr></thead><tbody><tr><td>さっぽろし（札幌市）</td><td>10</td><td>B-2</td></tr><tr><td>くまもとし（熊本市）</td><td>36</td><td>C-4</td></tr><tr><td>なごやし（名古屋市）</td><td>24</td><td>B-3</td></tr></tbody></table>",
+          "advice": "<p>答え：地図帳の36ページを開き、縦と横の記号Cと4が交わる区画を探す（さくいんでは、地名ごとに「ページ番号」と「縦・横の記号」が示されています。熊本市は36ページのC-4の区画にあります）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": false,
+              "customName": "",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：さくいんの数字と記号は、「何ページの、どの区画か」を示すものでしたね。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>「くまもとし（熊本市）」の位置を調べる方法として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地図帳の36ページを開き、縦と横の記号Cと4が交わる区画を探す",
+                "緯度36度、経度4度の地点を探す",
+                "地図帳の目次を開き、36ページの項目から探す",
+                "地図帳の36ページを開き、文章の4行目を読む"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "さくいんの数字を緯度・経度と混同している。36や4は座標ではなく、ページと区画の目印である（後の「緯度と経度」の学習内容との先取り混同）。",
+                "さくいんと目次（もくじ）の役割を混同している。目次は単元や地図の題名を探すもので、地名の位置は巻末のさくいんで調べる。",
+                "記号を「文章の行数」のような意味に誤解している。記号は地図上の区画を区切る縦横の目印である。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "all",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

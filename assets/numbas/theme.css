@@ -527,3 +527,50 @@
 .part.type-1_n_2 > .submit-and-feedback {
   grid-area: 9 / 1 / 10 / -1;
 }
+
+/* The input remains keyboard- and screen-reader-accessible inside the card. */
+.student.answer .radiogroup input[type=radio].choice {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+.student.answer .radiogroup label:focus-within { outline: none; }
+.student.answer .radiogroup label:has(input:focus-visible) {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+.type-1_n_2 .student.answer[feedback-state="correct"] > .feedback-icon,
+.type-1_n_2 .student.answer[feedback-state="correct"] > .feedback-icon + .sr-only {
+  display: none;
+}
+.student.answer[feedback-state="correct"] .radiogroup li.checked.correct label {
+  border-color: var(--color-success);
+  box-shadow: inset 0 0 0 1px var(--color-success);
+}
+.student.answer[feedback-state="correct"] .radiogroup li.checked.correct label::after {
+  content: "✓";
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-inline-start: auto;
+  border: 2px solid var(--color-success);
+  border-radius: 50%;
+  color: var(--color-success);
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.student.answer[feedback-state="correct"]:has(.radiogroup li.checked.correct)::after {
+  content: "正解です";
+  display: block;
+  margin-top: .8rem;
+  color: var(--color-success);
+  font-weight: 700;
+}
+.lesson-hint[hidden] { display: none !important; }
+

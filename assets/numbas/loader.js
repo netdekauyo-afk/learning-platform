@@ -1,4 +1,4 @@
-import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js";
+import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=20261124-explore";
 import { createDifficultyTabs } from "./difficulty-tabs.js";
 import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
 import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind } from "./question-progress.js?v=20261123-recognition";
@@ -100,27 +100,31 @@ function appendPracticeHistory(key, entry) {
   }
 }
 
+function readPartAnswer(part) {
+  if (part.type === "numberentry" && typeof part.displayAnswer === "string") {
+    // Numbas may store a display answer as a quoted JME string literal.
+    try {
+      const literal = JSON.parse(part.displayAnswer);
+      if (typeof literal === "string") return literal;
+    } catch {
+      // Keep ordinary numbers and other JME expressions unchanged.
+    }
+    return part.displayAnswer;
+  }
+  if (part.type === "1_n_2" && Array.isArray(part.choices) && Array.isArray(part.matrix)) {
+    const choices = part.choices.filter((_, index) => Number(part.matrix[index]) > 0);
+    if (choices.length === 1) return choices[0];
+  }
+  return null;
+}
+
 function readPracticeAnswers(examData) {
   const groups = examData.question_groups || [];
   const questions = groups.flatMap((group) => group.questions || []);
   if (questions.length !== 1 || !questions[0].parts?.length) return null;
-  const answers = questions[0].parts.map((part) => {
-    if (part.type === "numberentry" && typeof part.displayAnswer === "string") {
-      // Numbas may store a display answer as a quoted JME string literal.
-      try {
-        const literal = JSON.parse(part.displayAnswer);
-        if (typeof literal === "string") return literal;
-      } catch {
-        // Keep ordinary numbers and other JME expressions unchanged.
-      }
-      return part.displayAnswer;
-    }
-    if (part.type === "1_n_2" && Array.isArray(part.choices) && Array.isArray(part.matrix)) {
-      const choices = part.choices.filter((_, index) => Number(part.matrix[index]) > 0);
-      if (choices.length === 1) return choices[0];
-    }
-    return null;
-  });
+  const definitions = questions[0].partsMode === "explore"
+    ? questions[0].parts.slice(0, 1) : questions[0].parts;
+  const answers = definitions.map(readPartAnswer);
   return answers.every((answer) => typeof answer === "string" && answer.length) ? answers : null;
 }
 
@@ -131,6 +135,10 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   // before the shared host is pointed at the next question.
   const questionId = examHost.dataset.historyQuestionId || "";
   const questionNumber = examHost.dataset.historyQuestionNumber || "";
+  const explore = question.partsMode === "explore";
+  const primaryPart = question.parts[0];
+  // Keep auxiliary answers out of the existing main-question progress history.
+  const supportHistoryKey = historyKey + ":support";
   let activeQuestionIds = [];
   try {
     activeQuestionIds = JSON.parse(examHost.dataset.historyQuestionIds || "[]");
@@ -144,20 +152,26 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   const lastSubmission = new Map();
   const updateViews = [];
   const refresh = () => updateViews.forEach((fn) => fn());
-  const save = (entry, messageElement) => {
-    if (!appendPracticeHistory(historyKey, questionId ? { ...entry, questionId } : entry)) {
+  const save = (entry, messageElement, support = false) => {
+    const key = support ? supportHistoryKey : historyKey;
+    if (!appendPracticeHistory(key, questionId ? { ...entry, questionId } : entry)) {
       messageElement.textContent = "このブラウザでは学習履歴を保存できません。";
       messageElement.hidden = false;
     }
     refresh();
+    examHost.dispatchEvent(new CustomEvent("classroom:history-changed", { bubbles: true }));
   };
 
   const notice = document.createElement("p");
   notice.className = "practice-save-warning";
   notice.hidden = true;
 
-  for (const part of question.parts) {
-    const repeatCanCount = () => canRecordRepeatedCorrect(
+  const boundParts = new WeakSet();
+  function bindPart(part) {
+    if (boundParts.has(part)) return;
+    boundParts.add(part);
+    const support = explore && part !== primaryPart;
+    const repeatCanCount = () => !support && canRecordRepeatedCorrect(
       readPracticeHistory(historyKey), questionId || null, recognitionStartedAt
     );
     part.events.on("post-submit", () => {
@@ -168,24 +182,38 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
       const answer = String(part.display?.studentAnswer?.() ?? "");
       if (!answer.trim()) return;
       const signature = JSON.stringify([part.path, answer, score, maximum]);
-      if (lastSubmission.get(part.path) === signature &&
+      if (lastSubmission.get(part) === signature &&
           !(score >= maximum && repeatCanCount())) return;
-      lastSubmission.set(part.path, signature);
+      lastSubmission.set(part, signature);
       save({
         kind: score >= maximum ? "correct" : "wrong",
         part: String(part.path),
         answer,
         score,
         maximum,
-      }, notice);
+      }, notice, support);
+      // In explore mode, follow a uniquely available wrong-answer branch.
+      // Correct answers stay on the main question with Numbas' optional paths.
+      if (explore && !support && score < maximum && typeof part.availableNextParts === "function") {
+        setTimeout(() => {
+          if (!examHost.contains(examElement) || question.currentPart !== part ||
+              !part.answered || Number(part.score) >= Number(part.marks)) return;
+          const candidates = part.availableNextParts();
+          if (candidates.length !== 1) return;
+          const branch = candidates[0];
+          if (branch.instance) question.setCurrentPart(branch.instance);
+          else part.makeNextPart(branch);
+        }, 0);
+      }
     });
 
     // Immediate correctness advances only the currently selected basic lesson.
+    // Explore support parts have their own history and do not affect progress.
     // This listener is independent of history deduplication and 24-hour marks.
-    if (level === "basic") part.events.on("post-submit", () => {
+    if (level === "basic" && !support) part.events.on("post-submit", () => {
       try {
         const context = lessonContext();
-        const parts = question.parts.filter((item) => Number(item.marks) > 0);
+        const parts = (explore ? [primaryPart] : question.parts).filter((item) => Number(item.marks) > 0);
         if (!context || examElement.exam?.questionList?.length !== 1 || !parts.length ||
             !parts.every((item) => item.answered && Number.isFinite(Number(item.score)) &&
               Number(item.score) >= Number(item.marks) && String(item.display?.studentAnswer?.() ?? "").trim())) return;
@@ -221,6 +249,8 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
       }).catch((error) => console.error("再回答の準備に失敗しました。", error));
     }
   }
+  question.parts.forEach(bindPart);
+  if (explore) question.events.on("addExtraPart", bindPart);
 
   // Unlike Numbas' own "Reveal answer", the separate view below never calls
   // revealAnswer(), so the existing input fields remain editable.
@@ -272,6 +302,13 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
   olderList.className = "practice-history-list";
   olderDetails.append(olderSummary, olderList);
 
+  const supportDetails = document.createElement("details");
+  supportDetails.className = "practice-history";
+  const supportSummary = document.createElement("summary");
+  const supportList = document.createElement("ul");
+  supportList.className = "practice-history-list";
+  supportDetails.append(supportSummary, supportList);
+
   function renderHistory(target, history) {
     target.replaceChildren();
     const recent = history.slice(-10).reverse();
@@ -305,24 +342,51 @@ async function installPracticeReview(examElement, examHost, historyKey, level) {
       olderSummary.textContent = "以前の履歴（旧問題・設問未区別）：" + older.length + "件";
       renderHistory(olderList, older);
     }
+    if (explore) {
+      const supportHistory = readPracticeHistory(supportHistoryKey)
+        .filter((item) => !questionId || item.questionId === questionId);
+      supportDetails.hidden = supportHistory.length === 0;
+      supportSummary.textContent = "補助問題の学習履歴：" + supportHistory.length + "件";
+      renderHistory(supportList, supportHistory);
+    }
   });
   refresh();
 
   button.addEventListener("click", () => {
     const show = answerBox.hidden;
-    if (show && typeof question.display?.hasAdvice === "function" &&
+    const inSupport = explore && question.currentPart !== primaryPart;
+    if (show && inSupport) {
+      const defined = examData.question_groups?.[0]?.questions?.[0]?.parts?.[question.currentPart?.index];
+      const value = defined && readPartAnswer(defined);
+      const p = document.createElement("p");
+      p.textContent = value || "この補助問題の答えは表示できません。";
+      answerBox.replaceChildren(heading, p);
+    } else if (show && typeof question.display?.hasAdvice === "function" &&
         question.display.hasAdvice()) {
       // Reuse Numbas' rendered advice, including its formatting and variables.
       const advice = examElement.shadowRoot?.querySelector(".adviceDisplay");
       if (advice) answerBox.replaceChildren(heading, advice.cloneNode(true));
+    } else if (show) {
+      const nodes = answers.map((answer, index) => {
+        const p = document.createElement("p");
+        p.textContent = answers.length === 1 ? answer : (index + 1) + ". " + answer;
+        return p;
+      });
+      answerBox.replaceChildren(heading, ...nodes);
     }
     answerBox.hidden = !show;
     button.setAttribute("aria-expanded", String(show));
     button.textContent = show ? "答えを隠す" : "答えを見る";
-    if (show) save({ kind: "reveal" }, notice);
+    if (show) save({ kind: "reveal" }, notice, inSupport);
+  });
+  if (explore) question.events.on("setCurrentPart", () => {
+    answerBox.hidden = true;
+    button.setAttribute("aria-expanded", "false");
+    button.textContent = "答えを見る";
   });
   section.append(button, answerBox, details);
   if (questionId) section.append(olderDetails);
+  if (explore) section.append(supportDetails);
   section.append(notice);
   examHost.append(section);
 
@@ -404,9 +468,14 @@ async function installWorksheetControls(examElement, examData) {
 /* Keep the existing Numbas controls and card, but put its own hint after the
    card. Opening a hint after an incorrect answer does not re-submit the part. */
 async function installLessonHints(examElement) {
-  const parts = examElement.exam?.questionList?.[0]?.parts || [];
-  await Promise.all(parts.map(async (part) => {
+  const question = examElement.exam?.questionList?.[0];
+  if (!question) return;
+  const decorated = new WeakSet();
+  async function decorate(part) {
+    if (decorated.has(part)) return;
+    decorated.add(part);
     const section = await part.display.html_promise;
+    if (!examElement.isConnected) return;
     // Preserve the existing layout classification made by worksheet controls.
     const prompt = section.querySelector(":scope > .prompt");
     if (part.type === "1_n_2" || prompt?.querySelector(".worksheet-text") || prompt?.textContent.trim().length > 20) {
@@ -419,19 +488,37 @@ async function installLessonHints(examElement) {
     hint.className = "lesson-hint";
     hint.append(button, content);
     section.after(hint);
+    if (question.partsMode === "explore" && typeof part.display.visible === "function") {
+      const updateHintVisibility = (visible) => { hint.hidden = !visible; };
+      updateHintVisibility(part.display.visible());
+      part.display.visible.subscribe(updateHintVisibility);
+    }
     part.events.on("post-submit", () => {
       if (part.answered && Number(part.score) < Number(part.marks) && !part.stepsOpen) {
         part.openSteps();
       }
     });
-  }));
+    // A branch opened after a wrong main answer starts with its hint visible.
+    if (question.partsMode === "explore" && part.previousPart?.answered &&
+        Number(part.previousPart.score) < Number(part.previousPart.marks) && !part.stepsOpen) {
+      part.openSteps();
+    }
+  }
+  if (question.partsMode === "explore") {
+    question.events.on("addExtraPart", (part) => {
+      void decorate(part).catch((error) => console.error("ヒントの準備に失敗しました。", error));
+    });
+  }
+  await Promise.all(question.parts.map(decorate));
 }
 
 /* Submit a valid numeric answer after typing stops, using the same Numbas
    submission path as Enter. Existing blur and manual submissions remain active. */
 async function installNumericAutoSubmit(examElement) {
-  const parts = examElement.exam?.questionList?.[0]?.parts || [];
-  await Promise.all(parts.filter((part) => part.type === "numberentry").map(async (part) => {
+  const question = examElement.exam?.questionList?.[0];
+  if (!question) return;
+  async function bind(part) {
+    if (part.type !== "numberentry") return;
     const section = await part.display.html_promise;
     const input = section.querySelector(":scope > .student.answer input.numberentry");
     if (!input) return;
@@ -448,7 +535,7 @@ async function installNumericAutoSubmit(examElement) {
       timer = setTimeout(() => {
         timer = undefined;
         if (composing || !input.isConnected || input.disabled || input.readOnly ||
-            examElement.closest('[role="tabpanel"]')?.hidden || part.locked ||
+            examElement.closest('[role="tabpanel"][hidden]') || part.locked ||
             part.submitting || !part.isDirty || !part.display.cleanStudentAnswer()) return;
         part.display.controls.submit();
       }, 2000);
@@ -462,7 +549,13 @@ async function installNumericAutoSubmit(examElement) {
     input.addEventListener("compositionend", () => { composing = false; schedule(); });
     input.addEventListener("blur", cancel);
     part.events.on("post-submit", cancel);
-  }));
+  }
+  if (question.partsMode === "explore") {
+    question.events.on("addExtraPart", (part) => {
+      void bind(part).catch((error) => console.error("数値入力の準備に失敗しました。", error));
+    });
+  }
+  await Promise.all(question.parts.map(bind));
 }
 
 async function prepareRuntime() {
@@ -516,7 +609,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout) {
 
   const styles = [
     resource("numbas-runtime/numbas.css"),
-    new URL("./theme.css", import.meta.url).href,
+    new URL("./theme.css?v=20261124-choice-feedback", import.meta.url).href,
   ];
   await Promise.all(styles.map((href) => new Promise((resolve, reject) => {
     const link = document.createElement("link");
@@ -580,3 +673,4 @@ boot().catch((error) => {
   console.error(error);
   status.textContent = "問題を表示できませんでした。";
 });
+

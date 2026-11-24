@@ -156,11 +156,12 @@ test('実際の国語教材の設問IDと２問構成を確認してから進む
   assert.equal(context.ClassroomStudyProgress.read().lessons[key], 'j1-l002');
 });
 
-function loaderHarness({ subject = 'math', lessonId = 'm1-l025', level = 'basic', sequence = false } = {}) {
+function loaderHarness({ subject = 'math', lessonId = 'm1-l025', level = 'basic', sequence = false, explore = false } = {}) {
   const key = `1:${subject}`;
   const localStorage = storage({ [SETTINGS]: JSON.stringify({ lessons: { [key]: lessonId }, startModes: { [key]: 'lesson' } }) });
   const historyKey = 'classroom:practice-history:v1:/learning-platform/junior-high/grade-1/' + subject + '/lessons/' + lessonId + '/questions.html' + (level === 'basic' ? '' : ':' + level);
-  const host = { dataset: sequence ? { sequenceSource: './' + lessonId + '.exam', historyQuestionIds: JSON.stringify(['q1', 'q2']) } : {} };
+  const host = { dataset: sequence ? { sequenceSource: './' + lessonId + '.exam', historyQuestionIds: JSON.stringify(['q1', 'q2']) } : {},
+    dispatchEvent: () => true, contains: () => true };
   let resolved = 0;
   const stub = {
     initializeRecognitionRule: () => 0, canRecordRepeatedCorrect: () => false,
@@ -174,7 +175,7 @@ function loaderHarness({ subject = 'math', lessonId = 'm1-l025', level = 'basic'
   source = source.slice(0, source.lastIndexOf('\nboot().catch'));
   source = 'const { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage, createDifficultyTabs, applyExerciseSettings } = globalThis.__stub;\n' + source;
   source = source.replace('export async function bootExam', 'async function bootExam') + '\nglobalThis.__install = installPracticeReview;';
-  const context = { URL, localStorage, __stub: stub, __resolved: 0,
+  const context = { URL, localStorage, __stub: stub, __resolved: 0, CustomEvent: class {},
     location: new URL('https://example.test/learning-platform/junior-high/grade-1/' + subject + '/lessons/' + lessonId + '/questions.html'),
     document: { querySelector: () => null, getElementById: () => null, createElement: () => ({}) },
     fetch: async () => ({ ok: false }), console, setTimeout, clearTimeout,
@@ -182,12 +183,24 @@ function loaderHarness({ subject = 'math', lessonId = 'm1-l025', level = 'basic'
   vm.runInNewContext(source, context, { filename: 'loader-test.js' });
   async function part(questionId) {
     host.dataset.historyQuestionId = questionId || '';
-    const handlers = {};
-    const p = { type: 'test', path: 'p0', marks: 1, answered: true, score: 0,
-      display: { studentAnswer: () => 'answer' }, events: { on: (event, callback) => { (handlers[event] ||= []).push(callback); } } };
-    const exam = { exam: { questionList: [{ parts: [p] }] } };
+    function makePart(path) {
+      const handlers = {};
+      const value = { type: 'test', path, marks: 1, answered: true, score: 0,
+        display: { studentAnswer: () => 'answer' }, events: { on: (event, callback) => { (handlers[event] ||= []).push(callback); } } };
+      return { value, submit(score) { value.score = score; for (const fn of handlers['post-submit'] || []) fn(); } };
+    }
+    const primary = makePart('p0');
+    const questionEvents = {};
+    const question = { parts: [primary.value], partsMode: explore ? 'explore' : 'all',
+      events: { on: (event, callback) => { questionEvents[event] = callback; } } };
+    const exam = { exam: { questionList: [question] } };
     await context.__install(exam, host, historyKey, level);
-    return { submit(score) { p.score = score; for (const fn of handlers['post-submit'] || []) fn(); } };
+    return { submit: primary.submit, addSupport() {
+      const support = makePart('p1');
+      question.parts.push(support.value);
+      questionEvents.addExtraPart(support.value);
+      return support;
+    } };
   }
   return { key, host, localStorage, historyKey, part, context };
 }
@@ -208,6 +221,25 @@ test('標準問題の正答では共通の再開位置を進めない', async ()
   p.submit(1);
   assert.equal(JSON.parse(h.localStorage.getItem(SETTINGS)).studyProgressV1, undefined);
   assert.equal(JSON.parse(h.localStorage.getItem(h.historyKey))[0].kind, 'correct');
+});
+
+test('補助問題の正答では進まず、主問題の正答は補助問題の誤答に妨げられない', async () => {
+  const h = loaderHarness({ explore: true });
+  const primary = await h.part();
+  primary.submit(0);
+  const support = primary.addSupport();
+  support.submit(1);
+  assert.equal(JSON.parse(h.localStorage.getItem(SETTINGS)).studyProgressV1, undefined);
+  assert.equal(JSON.parse(h.localStorage.getItem(h.historyKey))[0].kind, 'wrong');
+  assert.equal(JSON.parse(h.localStorage.getItem(h.historyKey + ':support'))[0].kind, 'correct');
+
+  const another = loaderHarness({ explore: true });
+  const main = await another.part();
+  main.submit(0);
+  main.addSupport().submit(0);
+  main.submit(1);
+  assert.equal(JSON.parse(another.localStorage.getItem(SETTINGS)).studyProgressV1[another.key].pending.revision, 0);
+  assert.equal(JSON.parse(another.localStorage.getItem(another.historyKey + ':support'))[0].kind, 'wrong');
 });
 
 test('再開位置より前の問題を復習して正解しても位置を変えない', async () => {

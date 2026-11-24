@@ -74,6 +74,29 @@ test("2問の状態は独立し、古い設問未区別の履歴は混ざらな�
   assert.equal(questionProgress(records, ["q1", "q1"], start), 0);
 });
 
+test("3種類の基本問題の認定と24時間待機は互いに独立する", () => {
+  const records = [
+    event("correct", 1, "knowledge"),
+    event("wrong", 2, "understanding"),
+    event("reveal", 3, "reading"),
+    event("wrong", wait - 1, "understanding"),
+    event("reveal", wait - 1, "reading"),
+    event("correct", wait, "understanding"),
+    event("correct", wait + 2, "reading"),
+  ];
+  assert.equal(recognized(records, "knowledge"), true);
+  assert.equal(recognized(records, "understanding"), false);
+  assert.equal(recognized(records, "reading"), false);
+  records.push(event("correct", wait + 2, "understanding"));
+  records.push(event("correct", wait + 3, "reading"));
+  assert.equal(recognized(records, "understanding"), true);
+  assert.equal(recognized(records, "reading"), true);
+  records.push(event("wrong", wait + 4, "knowledge"));
+  assert.equal(recognized(records, "knowledge"), false);
+  assert.equal(recognized(records, "understanding"), true);
+  assert.equal(recognized(records, "reading"), true);
+});
+
 test("導入前の○を維持し、直近の未認定の誤答には待機を引き継ぐ", () => {
   assert.equal(recognized([event("wrong", -100), event("correct", -1)]), true);
   assert.equal(recognized([event("correct", -100), event("reveal", -1)]), true);

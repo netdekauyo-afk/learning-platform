@@ -1,9 +1,10 @@
-import { examQuestions, questionIds } from "./question-progress.js?v=20261123-shared";
-
-const AUTO_ADVANCE_MS = 2000;
+import {
+  examQuestions, questionIds, isRecognizedCorrect, initializeRecognitionRule
+} from "./question-progress.js?v=20261123-recognition";
 
 try {
-  const source = document.getElementById("numbas-host")?.dataset.sequenceSource;
+  const host = document.getElementById("numbas-host");
+  const source = host?.dataset.sequenceSource;
   if (!source) throw new Error("問題データの参照先が設定されていません。");
   const response = await fetch(source);
   if (!response.ok) throw new Error("問題データを読み込めませんでした。");
@@ -11,6 +12,7 @@ try {
   const examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
   const questions = examQuestions(examData);
   if (!questions.length) throw new Error("問題が見つかりません。");
+  const recognitionStartedAt = initializeRecognitionRule();
   let ids = [];
   try {
     ids = await questionIds(questions);
@@ -24,68 +26,103 @@ try {
     document.getElementById("question-progress").after(warning);
   }
 
-  // Keep the original file intact and reuse the existing one-question renderer.
   const sources = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
     JSON.stringify({ ...examData, question_groups: [{ ...group, questions: [question] }] })
   ], { type: "application/json" })));
   const requested = Number(new URLSearchParams(location.search).get("question") || 1);
   let current = Number.isInteger(requested) && requested >= 1 && requested <= questions.length ? requested - 1 : 0;
   let switching = true;
-  let autoAdvance;
   let bootExam;
-  const host = document.getElementById("numbas-host");
   const status = document.getElementById("numbas-status");
   const progress = document.getElementById("question-progress");
   const previous = document.getElementById("question-previous");
   const next = document.getElementById("question-next");
+  const historyKey = "classroom:practice-history:v1:" + location.pathname;
 
+  const stylesheet = document.createElement("link");
+  stylesheet.rel = "stylesheet";
+  stylesheet.href = new URL("./question-tabs.css?v=20261124", import.meta.url).href;
+  document.head.append(stylesheet);
+  const tabs = document.createElement("div");
+  tabs.className = "question-type-tabs";
+  tabs.setAttribute("role", "tablist");
+  tabs.setAttribute("aria-label", "基本問題の種類");
+  const panel = document.createElement("div");
+  panel.id = "question-type-panel";
+  panel.setAttribute("role", "tabpanel");
+
+  function labelFor(question, index) {
+    const name = String(question.name || "").trim();
+    const suffix = name.match(/[（(]([^（）()]+)[）)]\s*$/);
+    const numbered = name.match(/^[A-Za-z]+\d+[\s　]+(.+)$/);
+    const label = (suffix?.[1] || numbered?.[1] || name).trim();
+    return label && Array.from(label).length <= 12 ? label : "問題" + (index + 1);
+  }
+  const buttons = questions.map(({ question }, index) => {
+    const label = labelFor(question, index);
+    const button = document.createElement("button");
+    button.type = "button";
+    button.id = "question-type-tab-" + (index + 1);
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-controls", panel.id);
+    const title = document.createElement("span");
+    title.textContent = label;
+    const mark = document.createElement("span");
+    mark.className = "question-type-mark";
+    mark.setAttribute("aria-hidden", "true");
+    button.append(title, mark);
+    button.addEventListener("click", () => { void showQuestion(index); });
+    button.addEventListener("keydown", (event) => {
+      let target;
+      if (event.key === "ArrowRight") target = (index + 1) % buttons.length;
+      else if (event.key === "ArrowLeft") target = (index + buttons.length - 1) % buttons.length;
+      else if (event.key === "Home") target = 0;
+      else if (event.key === "End") target = buttons.length - 1;
+      else return;
+      event.preventDefault();
+      if (!switching) {
+        buttons[target].focus();
+        void showQuestion(target);
+      }
+    });
+    tabs.append(button);
+    return button;
+  });
   function setQuestionSource() {
     host.dataset.examSource = sources[current];
     host.dataset.historyQuestionId = ids[current] || "";
     host.dataset.historyQuestionNumber = String(current + 1);
     host.dataset.historyQuestionIds = JSON.stringify(ids);
   }
-
-  function cancelAutoAdvance() {
-    if (autoAdvance !== undefined) clearTimeout(autoAdvance);
-    autoAdvance = undefined;
+  function refreshMarks() {
+    let records = [];
+    try {
+      const saved = JSON.parse(localStorage.getItem(historyKey) || "[]");
+      if (Array.isArray(saved)) records = saved;
+    } catch { /* Unavailable history leaves the marks unrecognized. */ }
+    buttons.forEach((button, index) => {
+      const recognized = !!ids[index] && isRecognizedCorrect(records, ids[index], recognitionStartedAt);
+      button.querySelector(".question-type-mark").classList.toggle("is-recognized", recognized);
+      const label = labelFor(questions[index].question, index);
+      button.setAttribute("aria-label", label + (recognized ? "、正解認定済み" : "、未認定"));
+    });
   }
   function updateControls() {
     progress.textContent = "問題 " + (current + 1) + " / " + questions.length;
     previous.disabled = switching || current === 0;
     next.disabled = switching || current === questions.length - 1;
+    buttons.forEach((button, index) => {
+      button.setAttribute("aria-selected", String(index === current));
+      button.tabIndex = index === current ? 0 : -1;
+    });
+    tabs.setAttribute("aria-busy", String(switching));
+    panel.setAttribute("aria-labelledby", buttons[current].id);
+    refreshMarks();
   }
   function bindExam(exam) {
     const index = current;
     exam.addEventListener("numbas:loaded", () => {
       if (host.querySelector("numbas-exam") !== exam || index !== current) return;
-      const question = exam.exam?.questionList?.[0];
-      const parts = question?.parts?.filter((part) => Number(part.marks) > 0) || [];
-      if (!parts.length) {
-        switching = false;
-        updateControls();
-        return;
-      }
-      for (const part of parts) {
-        part.events.on("post-submit", () => {
-          if (host.querySelector("numbas-exam") !== exam || index !== current) return;
-          cancelAutoAdvance();
-          const correct = parts.every((item) =>
-            item.answered && Number.isFinite(Number(item.score)) &&
-            Number(item.score) >= Number(item.marks)
-          );
-          const answerOpen = host.querySelector(".practice-answer:not([hidden])");
-          if (correct && !answerOpen && index < questions.length - 1) {
-            autoAdvance = setTimeout(() => {
-              autoAdvance = undefined;
-              const basicPanel = document.getElementById("difficulty-basic-panel");
-              if (index === current && !switching && basicPanel && !basicPanel.hidden) {
-                void showQuestion(index + 1);
-              }
-            }, AUTO_ADVANCE_MS);
-          }
-        });
-      }
       switching = false;
       updateControls();
     }, { once: true });
@@ -100,7 +137,6 @@ try {
   observer.observe(host, { childList: true });
 
   async function showQuestion(index) {
-    cancelAutoAdvance();
     if (switching || index < 0 || index >= questions.length || index === current) return;
     switching = true;
     current = index;
@@ -121,29 +157,20 @@ try {
   }
   previous.addEventListener("click", () => { void showQuestion(current - 1); });
   next.addEventListener("click", () => { void showQuestion(current + 1); });
-  // When a learner opens a hint, answer or history, let them finish reading.
-  host.addEventListener("click", (event) => {
-    if (event.composedPath().some((node) => node instanceof Element &&
-        node.matches(".practice-reveal-button, .stepsBtn, .practice-history summary"))) {
-      cancelAutoAdvance();
-    }
+  host.addEventListener("classroom:history-changed", refreshMarks);
+  window.addEventListener("pageshow", refreshMarks);
+  window.addEventListener("storage", (event) => {
+    if (event.key === historyKey || event.key === null) refreshMarks();
   });
 
   setQuestionSource();
   updateControls();
-  ({ bootExam } = await import("./loader.js?v=20261122-question-history"));
+  ({ bootExam } = await import("./loader.js?v=20261124-question-types"));
   const basicPanel = document.getElementById("difficulty-basic-panel");
   if (!basicPanel) throw new Error("基礎問題を準備できませんでした。");
-  basicPanel.insertBefore(progress, status);
-  basicPanel.append(document.getElementById("question-switcher"));
-  const tablist = document.querySelector(".difficulty-tabs");
-  tablist?.addEventListener("click", (event) => {
-    if (event.target.closest('[role="tab"]')?.id !== "difficulty-basic-tab") cancelAutoAdvance();
-  });
-  tablist?.addEventListener("keydown", (event) => {
-    if (["ArrowRight", "ArrowLeft", "Home", "End"].includes(event.key)) cancelAutoAdvance();
-  });
-  // The basic exam uses a blob URL; unpublished levels keep their own paths.
+  basicPanel.insertBefore(tabs, status);
+  basicPanel.insertBefore(panel, status);
+  panel.append(progress, status, host, document.getElementById("question-switcher"));
   for (const [level, suffix] of [["standard", "-s"], ["advanced", "-a"]]) {
     const levelHost = document.querySelector("#difficulty-" + level + "-panel .numbas-difficulty-host");
     if (!levelHost) throw new Error("難易度の表示を準備できませんでした。");
