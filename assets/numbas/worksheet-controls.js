@@ -254,7 +254,8 @@ function choiceControl(part, answer) {
 export async function prepareAnswerControl(part, index, stepHintHTML = '') {
   const display = part.display;
   const section = await display.html_promise;
-  const answer = section.querySelector(".student.answer");
+  // An information step can have its own answer element before the main input.
+  const answer = section.querySelector(":scope > .student.answer") || section.querySelector(".student.answer");
   const heading = section.querySelector(".partheader");
   const prompt = section.querySelector(".prompt");
   const choice = part.type === "1_n_2";

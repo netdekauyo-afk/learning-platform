@@ -1,4 +1,4 @@
-import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=20261124-explore";
+import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=20261124-chapter-practice";
 import { createDifficultyTabs } from "./difficulty-tabs.js";
 import { applyExerciseSettings } from "./exercise-settings.js?v=20261123-shuffle";
 import { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect } from "./question-progress.js?v=fixed-parts-1";
@@ -626,7 +626,7 @@ async function installNumericAutoSubmit(examElement) {
   await Promise.all(question.parts.map(bind));
 }
 
-async function prepareRuntime() {
+export async function prepareRuntime() {
   const response = await fetch(resource("template.html"));
   if (!response.ok) throw new Error("Numbasの画面テンプレートを取得できませんでした。");
   const templateHost = document.createElement("div");
