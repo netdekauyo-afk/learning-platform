@@ -41,3 +41,9 @@
   .question-type-tabs { gap: .25rem; }
   .question-type-tabs button { font-size: .9rem; }
 }
+
+#question-type-panel:has(> [data-main-question-set]) {
+  :is(#question-progress, #question-switcher, #numbas-status:empty) { display: none; }
+  .practice-panel { margin-top: .75rem; }
+  .practice-panel[hidden] { display: none; }
+}

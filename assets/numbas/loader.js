@@ -150,6 +150,11 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
   // before the shared host is pointed at the next question.
   const main = set?.mains.find((item) => item.id === definitionId(question.parts[0]));
   if (set && !main) throw new Error("動作中の主問題と教材の固定IDが一致しません。");
+  const supportLabels = new Map();
+  for (const edge of main?.parts[0].nextParts || []) {
+    const id = main.parts[edge.otherPart]?.customName;
+    if (id && edge.label && edge.label !== id) supportLabels.set(id, edge.label);
+  }
   const questionId = main?.id || examHost.dataset.historyQuestionId || "";
   const questionNumber = set ? set.ids.indexOf(questionId) + 1 : examHost.dataset.historyQuestionNumber || "";
   const explore = question.partsMode === "explore";
@@ -379,7 +384,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
         record.kind === "correct" ? "○ 正解" : "答えを確認";
       const time = new Date(record.at);
       const when = Number.isNaN(time.valueOf()) ? "" : time.toLocaleString("ja-JP");
-      const branch = record.role === "supplement" ? record.questionId +
+      const branch = record.role === "supplement" ? (supportLabels.get(record.questionId) || "補助問題") +
         (record.route === "wrong" ? "（誤答から）" : "（任意）") + "　" : "";
       item.textContent = branch + label + (record.answer ? "（" + record.answer + "）" : "") +
         (when ? "　" + when : "");
@@ -457,7 +462,12 @@ async function installPracticeReview(examElement, examHost, historyKey, level, s
     sync();
     examElement.exam.events.on("changeQuestion", sync);
   }
-  examHost.append(section);
+  if (set && examElement.shadowRoot.querySelector('slot[name="classroom-review"]')) {
+    section.slot = "classroom-review";
+    examElement.append(section);
+  } else {
+    examHost.append(section);
+  }
 
   // Hide Numbas' irreversible reveal button only when our safe replacement
   // is ready. If this setup fails, Numbas retains its original functionality.
@@ -534,10 +544,51 @@ async function installWorksheetControls(examElement, examData) {
   }
 }
 
-/* Keep the existing Numbas controls and card, but put its own hint after the
-   card. Opening a hint after an incorrect answer does not re-submit the part. */
+// Move the bound Numbas nodes together with their handlers, including the
+// authored live feedback element that the standalone exam updates on marking.
+function arrangeExplorePart(part, section, prompt) {
+  const feedback = prompt?.querySelector("[data-classroom-result]");
+  const answer = section.querySelector(":scope > .student.answer");
+  if (feedback && answer) {
+    const paragraph = feedback.parentElement;
+    answer.after(feedback);
+    if (paragraph.matches("p:empty")) paragraph.remove();
+    // The exam writes its own explanation on each submission. Style just
+    // the existing success label, leaving the explanation and its markup intact.
+    const highlightResult = () => {
+      const first = document.createTreeWalker(feedback, NodeFilter.SHOW_TEXT).nextNode();
+      const prefix = "正解です。";
+      if (!first?.data.startsWith(prefix) || first.parentElement.closest(".classroom-correct-label")) return;
+      const label = document.createElement("strong");
+      label.className = "classroom-correct-label";
+      first.splitText(prefix.length);
+      first.replaceWith(label);
+      label.append(first);
+    };
+    new MutationObserver(highlightResult).observe(feedback, { childList: true });
+    highlightResult();
+  }
+  const previousResult = prompt?.querySelector("[data-parent-result]");
+  if (previousResult) section.before(previousResult);
+
+  const next = section.querySelector(":scope > .next-parts");
+  if (!next) return;
+  section.after(next);
+  const menu = next.querySelector(":scope > menu");
+  if (part.previousPart || !menu) return;
+  const options = document.createElement("details");
+  options.className = "classroom-support-options";
+  const summary = document.createElement("summary");
+  summary.textContent = "補助問題を見る";
+  menu.before(options);
+  options.append(summary, menu);
+  part.question.events.on("setCurrentPart", () => { options.open = false; });
+}
+
+/* Reuse the native hint and its open state in both lesson layouts. */
 async function installLessonHints(examElement, question = examElement.exam?.questionList?.[0], authored = false) {
   if (!question) return;
+  const classroomExplore = examElement.hasAttribute("data-main-question-set");
   const decorated = new WeakSet();
   async function decorate(part) {
     if (decorated.has(part)) return;
@@ -549,13 +600,19 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
     if (part.type === "1_n_2" || prompt?.querySelector(".worksheet-text") || prompt?.textContent.trim().length > 20) {
       section.classList.add("written-question");
     }
+    if (classroomExplore) arrangeExplorePart(part, section, prompt);
     const button = section.querySelector(":scope > .stepsBtn");
     const content = section.querySelector(":scope > .steps.well");
     if (!button || !content) return;
     const hint = document.createElement("div");
     hint.className = "lesson-hint";
-    hint.append(button, content);
-    section.after(hint);
+    if (classroomExplore && prompt) {
+      hint.append(content, button);
+      prompt.after(hint);
+    } else {
+      hint.append(button, content);
+      section.after(hint);
+    }
     if (question.partsMode === "explore" && typeof part.display.visible === "function") {
       const updateHintVisibility = (visible) => { hint.hidden = !visible; };
       updateHintVisibility(part.display.visible());
@@ -573,6 +630,20 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
     }
   }
   if (question.partsMode === "explore") {
+    if (classroomExplore) {
+      question.events.on("setCurrentPart", (part) => {
+        part.display.html_promise.then((section) => requestAnimationFrame(() => {
+          if (question.currentPart !== part || !section.getClientRects().length) return;
+          const result = section.parentElement.querySelector(":scope > [data-parent-result]");
+          const target = result?.getClientRects().length ? result : section.querySelector(":scope > .prompt");
+          if (!target) return;
+          target.tabIndex = -1;
+          target.focus({ preventScroll: true });
+          const top = target.getBoundingClientRect().top;
+          if (top < 0 || top >= window.innerHeight) target.scrollIntoView({ block: "start", behavior: "instant" });
+        }));
+      });
+    }
     question.events.on("addExtraPart", (part) => {
       void decorate(part).catch((error) => console.error("ヒントの準備に失敗しました。", error));
     });
@@ -656,6 +727,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   applyExerciseSettings(examData);
 
   const exam = document.createElement("numbas-exam");
+  exam.toggleAttribute("data-main-question-set", Boolean(authored));
   exam.setAttribute("noload", "");
   // Numbas accepts an inline exam definition. The original source is retained
   // on the host for answer review and for question-specific history IDs.
@@ -667,6 +739,12 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   exam.addEventListener("numbas:loaded", () => {
     examStatus.textContent = "";
     if (authored) {
+      const footer = exam.shadowRoot.querySelector("#questionContainer footer");
+      if (footer) {
+        const reviewSlot = document.createElement("slot");
+        reviewSlot.name = "classroom-review";
+        footer.before(reviewSlot);
+      }
       for (const question of exam.exam.questionList) {
         void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, authored.set, question)
           .catch((error) => { console.error(error); examStatus.textContent = "学習履歴を準備できませんでした。"; });
@@ -690,7 +768,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
 
   const styles = [
     resource("numbas-runtime/numbas.css"),
-    new URL("./theme.css?v=20261124-choice-feedback", import.meta.url).href,
+    new URL("./theme.css?v=explore-layout-1", import.meta.url).href,
   ];
   await Promise.all(styles.map((href) => new Promise((resolve, reject) => {
     const link = document.createElement("link");

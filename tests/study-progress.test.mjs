@@ -174,7 +174,7 @@ function loaderHarness({ subject = 'math', lessonId = 'm1-l025', level = 'basic'
   source = source.replaceAll('import.meta.url', "'https://example.test/learning-platform/assets/numbas/loader.js'");
   source = source.slice(0, source.lastIndexOf('\nboot().catch'));
   source = 'const { initializeRecognitionRule, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage, createDifficultyTabs, applyExerciseSettings } = globalThis.__stub;\n' + source;
-  source = source.replace('export async function bootExam', 'async function bootExam') + '\nglobalThis.__install = installPracticeReview;';
+  source = source.replace(/^export (?=async function )/gm, '') + '\nglobalThis.__install = installPracticeReview;';
   const context = { URL, localStorage, __stub: stub, __resolved: 0, CustomEvent: class {},
     location: new URL('https://example.test/learning-platform/junior-high/grade-1/' + subject + '/lessons/' + lessonId + '/questions.html'),
     document: { querySelector: () => null, getElementById: () => null, createElement: () => ({}) },

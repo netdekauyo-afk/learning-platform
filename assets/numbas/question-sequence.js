@@ -41,7 +41,7 @@ try {
 
   const stylesheet = document.createElement("link");
   stylesheet.rel = "stylesheet";
-  stylesheet.href = new URL("./question-tabs.css?v=20261124", import.meta.url).href;
+  stylesheet.href = new URL("./question-tabs.css?v=explore-layout-1", import.meta.url).href;
   document.head.append(stylesheet);
   const tabs = document.createElement("div");
   tabs.className = "question-type-tabs";
@@ -182,7 +182,7 @@ try {
 
   setQuestionSource();
   updateControls();
-  ({ bootExam } = await import("./loader.js?v=fixed-parts-1"));
+  ({ bootExam } = await import("./loader.js?v=explore-layout-1"));
   const basicPanel = set ? host.parentElement : document.getElementById("difficulty-basic-panel");
   if (!basicPanel) throw new Error("基礎問題を準備できませんでした。");
   basicPanel.insertBefore(tabs, status);

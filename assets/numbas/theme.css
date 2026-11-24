@@ -574,3 +574,77 @@
 }
 .lesson-hint[hidden] { display: none !important; }
 
+/* The Classroom tabs provide navigation for an embedded Explore set. Keep
+   Numbas' bound inputs, branch buttons, hints and accessibility settings. */
+:host([data-main-question-set]) {
+  #everything > .question-nav,
+  .partsmode-explore > form > header, .partsmode-explore > .question-nav,
+  .statement + hr, [data-classroom-menu], .part-wrapper > .part > .partheader,
+  .next-parts > p:has(.what-next), .dead-end,
+  .part-wrapper:has(> .part.invisible), .next-parts.invisible,
+  .next-parts > menu:not(:has(li)) { display: none; }
+
+  .partsmode-explore .statement { margin: 0 0 .6rem; }
+  .statement p { margin: 0; }
+  .parts { display: block; padding: 0; }
+  .part-wrapper > .part.type-1_n_2 {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: .7rem;
+    min-height: 0;
+    padding: clamp(.8rem, 3vw, 1.2rem);
+  }
+  .part-wrapper > .type-1_n_2::before,
+  .part-wrapper > .type-1_n_2::after { content: none; }
+  .student.answer .radiogroup label {
+    font-family: var(--main-font, system-ui), "Noto Sans CJK JP", "Yu Gothic", Meiryo, sans-serif;
+    overflow-wrap: anywhere;
+  }
+  [data-classroom-result]:empty { display: none; }
+  [data-classroom-result], [data-parent-result] { line-height: 1.55; }
+  [data-parent-result] { margin: 0 0 .75rem; }
+  [data-parent-result], .part > .prompt { scroll-margin-block-start: .75rem; }
+  [data-parent-result] strong { display: block; }
+  .student.answer[feedback-state="correct"]:has(+ [data-classroom-result] .classroom-correct-label)::after { content: none; }
+  .classroom-correct-label {
+    display: block;
+    color: var(--color-success);
+    font-weight: 700;
+  }
+
+  .lesson-hint { margin: 0; }
+  .lesson-hint > .steps.well {
+    margin: 0;
+    padding: .5rem .75rem;
+    border: 0;
+    border-inline-start: 2px solid var(--color-accent);
+    box-shadow: none;
+    color: inherit;
+    background: transparent;
+  }
+  .lesson-hint .step, .lesson-hint .step .prompt, .lesson-hint .step .prompt p { margin: 0; }
+  .lesson-hint .step .prompt p { font: inherit; line-height: 1.55; }
+  .next-parts { margin: .4rem 0 0; }
+  .next-parts menu { list-style: none; padding: 0; margin: .25rem 0 .5rem; }
+  .next-part + .next-part { margin-top: .35rem; }
+  .classroom-support-options > summary {
+    width: fit-content; padding: .55rem 0; cursor: pointer; font-weight: 650;
+  }
+  .next-parts .btn, .lesson-hint .stepsBtn button {
+    min-height: 2.75rem;
+    max-width: 100%;
+    padding: .35rem .65rem;
+    border: 1px solid var(--color-border);
+    border-radius: .5rem;
+    background: var(--color-surface);
+    color: var(--color-heading);
+    font: inherit;
+    text-align: start;
+  }
+  :is(.classroom-support-options > summary, .next-parts .btn, .lesson-hint button):focus-visible {
+    outline: 3px solid var(--focus); outline-offset: 2px;
+  }
+  #questionContainer footer > .copyright-footer { margin-top: 1rem; padding-top: 0; border: 0; }
+}
+
