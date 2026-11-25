@@ -1,4 +1,4 @@
-import { examQuestions, questionIds, readExamSource } from "./question-progress.js?v=fixed-parts-1";
+import { examQuestions, questionIds, readExamSource } from "./question-progress.js?v=continuous-3";
 import { exerciseSettings } from "./exercise-settings.js?v=continuous-1";
 
 const host = document.getElementById("numbas-host");
@@ -80,7 +80,7 @@ async function waitForControls(exam) {
 
 try {
   const original = host.dataset.examSource;
-  const data = await readExamSource(original);
+  const data = await readExamSource(original, { retry: continuous });
   const questions = examQuestions(data);
   if (!questions.length) throw new Error("問題がありません。");
   if (continuous && questions.some(({ question }) => question.parts?.length !== 1 ||
@@ -92,8 +92,8 @@ try {
   const urls = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
     JSON.stringify({ ...data, question_groups: [{ ...group, questionNames: [""], variable_overrides: [], questions: [question] }] })
   ], { type: "application/json" })));
-  const { prepareRuntime, bootExam } = await import("./loader.js?v=continuous-2");
-  await prepareRuntime();
+  const { prepareRuntime, bootExam } = await import("./loader.js?v=continuous-3");
+  await prepareRuntime({ retryResources: continuous });
   const progress = continuous ? mountProgress(questions, show) : null;
   const correctIds = new Set();
   let advanceTimer;

@@ -8,10 +8,25 @@ export function examQuestions(examData) {
   );
 }
 
-export async function readExamSource(source) {
-  const response = await fetch(source);
-  if (!response.ok) throw new Error("問題データを読み込めませんでした。");
-  return JSON.parse((await response.text()).replace(/^\s*\/\/[^\n]*\r?\n/, ""));
+export async function readExerciseText(source, message, { retry = false } = {}) {
+  async function read(cache) {
+    const response = await fetch(source, { cache });
+    if (response.ok) return response.text();
+    throw Object.assign(new Error(message), { status: response.status });
+  }
+
+  try {
+    return await read("default");
+  } catch (error) {
+    const temporary = error instanceof TypeError || error.status === 408 || error.status >= 500;
+    if (!retry || !temporary) throw error;
+    return read("reload");
+  }
+}
+
+export async function readExamSource(source, options) {
+  const text = await readExerciseText(source, "問題データを読み込めませんでした。", options);
+  return JSON.parse(text.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
 }
 
 export function subjectQuestionTypes(url = globalThis.location?.href || "") {

@@ -1,7 +1,7 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=continuous-1";
 import { createDifficultyTabs } from "./difficulty-tabs.js?v=shared-design-1";
 import { exerciseSettings, applyExerciseSettings } from "./exercise-settings.js?v=shared-design-1";
-import { initializeRecognitionRule, isRecognizedCorrect, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect } from "./question-progress.js?v=shared-design-1";
+import { initializeRecognitionRule, isRecognizedCorrect, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect, readExerciseText } from "./question-progress.js?v=continuous-3";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
@@ -823,9 +823,7 @@ let continuousStyles;
 function prepareContinuousStyles() {
   // One set supplies every exam in the chapter, even if the preview disconnects.
   return continuousStyles ??= Promise.all(stylesheetURLs.map(async (href) => {
-    const response = await fetch(href);
-    if (!response.ok) throw new Error("Numbasのスタイルを読み込めませんでした。");
-    const css = await response.text();
+    const css = await readExerciseText(href, "Numbasのスタイルを読み込めませんでした。", { retry: true });
     // Inline styles resolve font URLs relative to the page instead of the stylesheet.
     return css.replaceAll("resources/iconfont/", resource("numbas-runtime/resources/iconfont/"));
   })).catch((error) => {
@@ -835,15 +833,15 @@ function prepareContinuousStyles() {
 }
 
 let runtimeReady;
-export async function prepareRuntime() {
-  return runtimeReady ??= loadRuntime();
+export async function prepareRuntime({ retryResources = false } = {}) {
+  return runtimeReady ??= loadRuntime(retryResources);
 }
 
-async function loadRuntime() {
-  const response = await fetch(resource("template.html"));
-  if (!response.ok) throw new Error("Numbasの画面テンプレートを取得できませんでした。");
+async function loadRuntime(retryResources) {
+  const html = await readExerciseText(resource("template.html"), "Numbasの画面テンプレートを取得できませんでした。",
+    { retry: retryResources });
   const templateHost = document.createElement("div");
-  templateHost.innerHTML = (await response.text()).replaceAll(
+  templateHost.innerHTML = html.replaceAll(
     "numbas-runtime/", resource("numbas-runtime/")
   );
   const template = templateHost.querySelector("#numbas-exam-template");
