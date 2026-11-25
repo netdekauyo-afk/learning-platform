@@ -318,6 +318,22 @@
       font-size: 0.88rem;
     }
 
+    .lesson-item[data-main-question-set] { grid-template-columns: 2.6rem minmax(0, 1fr) auto auto; }
+
+    .difficulty-progress {
+      display: inline-flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 3px;
+      white-space: nowrap;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .difficulty-progress-mark { display: inline-block; width: 1em; text-align: center; }
+    .difficulty-progress-mark[data-level="basic"] { color: #FF5A62; }
+    .difficulty-progress-mark[data-level="standard"] { color: #FFD447; }
+    .difficulty-progress-mark[data-level="advanced"] { color: #FF79B0; }
+
     .section-link {
       font-size: 0.88rem;
       font-weight: 400;
@@ -374,6 +390,9 @@
         row-gap: 4px;
         padding: 8px 2px;
       }
+
+      .lesson-item[data-main-question-set] { grid-template-columns: 2.1rem minmax(0, 1fr) auto; }
+      .lesson-item[data-main-question-set] > .lesson-links { grid-column: 2 / -1; }
 
       .lesson-links {
         grid-column: 2;
@@ -563,12 +582,12 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="em2-l006" data-kind="questions" data-target="lessons/em2-l006/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-              <li class="lesson-item" data-lesson-id="em2-l007" data-seq="7" data-semester="1学期・4月中" data-source-subunit="1 たし算" data-unit-period="2" data-textbook-pages="上p.20-21" data-learning-content="(2位数)＋(1位数)で繰り上がりのある暗算" data-source-terms="-">
+              <li class="lesson-item" data-lesson-id="em2-l007" data-main-question-set="lessons/em2-l007/em2-l007.exam" data-seq="7" data-semester="1学期・4月中" data-source-subunit="1 たし算" data-unit-period="2" data-textbook-pages="上p.20-21" data-learning-content="(2位数)＋(1位数)で繰り上がりのある暗算" data-source-terms="-">
                 <span class="lesson-num">7</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="em2-l007" data-kind="summary" data-target="lessons/em2-l007/summary.html" data-published="true">(2位数)＋(1位数)でくり上がりのある暗算</a>
                 <span class="lesson-links">
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="em2-l007" data-kind="lesson" data-target="lessons/em2-l007/lesson.html" data-published="false">授業</a>
-                  <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="em2-l007" data-kind="questions" data-target="lessons/em2-l007/questions.html" data-published="false">問題</a>
+                  <a class="text-link action-link" href="lessons/em2-l007/questions.html" data-lesson-id="em2-l007" data-kind="questions" data-target="lessons/em2-l007/questions.html" data-published="true">問題</a>
                 </span>
               </li>
             </ol>
@@ -3351,5 +3370,6 @@
 
   <script src="../../../assets/curriculum-actions.js?v=20261122"></script>
   <script src="../../../assets/curriculum-page.js?v=20261124-grade-nav"></script>
+  <script type="module" src="../../../assets/numbas/lesson-progress.js?v=shared-design-1"></script>
 </body>
 </html>

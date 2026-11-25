@@ -34,7 +34,7 @@ function preparePageFrame() {
 
   const lesson = location.pathname.match(/\/lessons\/[^/]+-l(\d+)\/questions\.html$/);
   const heading = document.querySelector(".site-shell > main h1");
-  if (lesson && heading && !/^第\d+時限/.test(heading.textContent.trim())) {
+  if (lesson && heading && !/^第\d+(?:時限|回)/.test(heading.textContent.trim())) {
     const prefix = "第" + Number(lesson[1]) + "時限 ";
     (heading.querySelector("a") || heading).prepend(prefix);
     if (!document.title.startsWith(prefix)) document.title = prefix + document.title;
