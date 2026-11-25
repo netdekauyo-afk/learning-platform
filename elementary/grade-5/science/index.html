@@ -89,7 +89,8 @@
     }
 
     /* Chapter */
-    details.chapter {
+    details.chapter,
+    .chapter-single {
       background: var(--color-surface);
       border: 2px solid var(--color-border);
       border-radius: 14px;
@@ -174,6 +175,30 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .chapter-single .chapter-body {
+      gap: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .chapter-single-name {
+      padding: 9px 16px 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-heading);
+    }
+
+    .chapter-single .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+
+    .chapter-body > .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
     /* Section */
@@ -420,24 +445,10 @@
     </header>
 
     <main class="curriculum-list" id="curriculum-list">
-      <details class="chapter" open data-chapter-index="0" data-chapter-id="es5-c001" data-source-domain="導入">
-        <summary class="chapter-summary">
-          <span class="chapter-name">導入</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c001/questions.html" data-published="false">問題</a>
-            <span class="count-meta">1回</span>
-          </span>
-        </summary>
+      <section class="chapter chapter-single" data-chapter-index="0" data-chapter-id="es5-c001" data-source-domain="導入" data-source-subunit="理科のガイダンス" data-original-chapter-id="es5-c001" data-original-section-id="es5-s001" data-original-chapter-question-target="chapters/es5-c001/questions.html" data-original-section-question-target="sections/es5-s001/questions.html" data-chapter-name="理科のガイダンス" aria-label="理科のガイダンス" data-chapter-question-target="chapters/es5-c001/questions.html">
+        <div class="chapter-single-name">理科のガイダンス</div>
         <div class="chapter-body">
-          <details class="section" open data-section-id="es5-s001" data-source-subunit="理科のガイダンス">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">理科のガイダンス</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s001" data-kind="section-questions" data-target="sections/es5-s001/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">1回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l001" data-seq="1" data-source-domain="導入" data-source-unit="理科のガイダンス" data-source-section="●理科のガイダンス" data-unit-period="1／1" data-learning-goal="自然の疑問から予想を立て、条件をそろえた実験と記録・考察の基本を説明できる。">
                 <span class="lesson-num">1</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l001" data-kind="summary" data-target="lessons/es5-l001/summary.html" data-published="true">理科の学習の進め方と安全な実験の約束</a>
@@ -446,28 +457,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l001" data-kind="questions" data-target="lessons/es5-l001/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="1" data-chapter-id="es5-c002" data-source-domain="生命">
+      </section>
+      <details class="chapter" open data-chapter-index="1" data-chapter-id="es5-c002" data-source-domain="生命" data-source-subunit="花のつくり" data-original-chapter-id="es5-c002" data-original-section-id="es5-s002" data-original-chapter-question-target="chapters/es5-c002/questions.html" data-original-section-question-target="sections/es5-s002/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">生命</span>
+          <span class="chapter-name">花のつくり</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c002/questions.html" data-published="false">問題</a>
             <span class="count-meta">2回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s002" data-source-subunit="花のつくり">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">花のつくり</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s002" data-kind="section-questions" data-target="sections/es5-s002/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">2回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l002" data-seq="2" data-source-domain="生命" data-source-unit="花のつくり" data-source-section="受けつがれる生命(1)" data-unit-period="1／2" data-learning-goal="花のおしべ・めしべ・花びらなどの位置を観察し、花のつくりを記録できる。">
                 <span class="lesson-num">2</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l002" data-kind="summary" data-target="lessons/es5-l002/summary.html" data-published="true">花のつくりと実ができる場所を調べる</a>
@@ -484,28 +486,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l003" data-kind="questions" data-target="lessons/es5-l003/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="2" data-chapter-id="es5-c003" data-source-domain="地球">
+      <details class="chapter" data-chapter-index="2" data-chapter-id="es5-c003" data-source-domain="地球" data-source-subunit="雲と天気の変化" data-original-chapter-id="es5-c003" data-original-section-id="es5-s003" data-original-chapter-question-target="chapters/es5-c003/questions.html" data-original-section-question-target="sections/es5-s003/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">地球</span>
+          <span class="chapter-name">雲と天気の変化</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c003/questions.html" data-published="false">問題</a>
             <span class="count-meta">7回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s003" data-source-subunit="雲と天気の変化">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">雲と天気の変化</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s003" data-kind="section-questions" data-target="sections/es5-s003/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">7回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l004" data-seq="4" data-source-domain="地球" data-source-unit="雲と天気の変化" data-source-section="天気の変化(1)" data-unit-period="1／7" data-learning-goal="時刻で変わる空と雲の様子を比べ、雲と天気の関係について問いを立てられる。">
                 <span class="lesson-num">4</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l004" data-kind="summary" data-target="lessons/es5-l004/summary.html" data-published="true">朝と午後の空を比べて天気の疑問を見つける</a>
@@ -562,28 +555,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l010" data-kind="questions" data-target="lessons/es5-l010/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="3" data-chapter-id="es5-c004" data-source-domain="生命">
+      <details class="chapter" data-chapter-index="3" data-chapter-id="es5-c014" data-source-domain="生命" data-source-subunit="植物の発芽と成長" data-original-chapter-id="es5-c004" data-original-section-id="es5-s004" data-original-chapter-question-target="chapters/es5-c004/questions.html" data-original-section-question-target="sections/es5-s004/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">生命</span>
+          <span class="chapter-name">植物の発芽と成長</span>
           <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c004/questions.html" data-published="false">問題</a>
-            <span class="count-meta">19回</span>
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c014/questions.html" data-published="false">問題</a>
+            <span class="count-meta">12回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s004" data-source-subunit="植物の発芽と成長">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">植物の発芽と成長</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s004" data-kind="section-questions" data-target="sections/es5-s004/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">12回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l011" data-seq="11" data-source-domain="生命" data-source-unit="植物の発芽と成長" data-source-section="受けつがれる生命(2)" data-unit-period="1／12" data-learning-goal="水を与えた種子と与えない種子の違いから、発芽の条件について問いを立てられる。">
                 <span class="lesson-num">11</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l011" data-kind="summary" data-target="lessons/es5-l011/summary.html" data-published="true">種子が発芽するための条件を考える</a>
@@ -680,17 +664,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l022" data-kind="questions" data-target="lessons/es5-l022/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
-          <details class="section" data-section-id="es5-s005" data-source-subunit="メダカのたんじょう">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">メダカのたんじょう</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s005" data-kind="section-questions" data-target="sections/es5-s005/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">7回</span>
-            </summary>
-            <ol class="lesson-list">
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="4" data-chapter-id="es5-c015" data-source-domain="生命" data-source-subunit="メダカのたんじょう" data-original-chapter-id="es5-c004" data-original-section-id="es5-s005" data-original-chapter-question-target="chapters/es5-c004/questions.html" data-original-section-question-target="sections/es5-s005/questions.html">
+        <summary class="chapter-summary">
+          <span class="chapter-name">メダカのたんじょう</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c015/questions.html" data-published="false">問題</a>
+            <span class="count-meta">7回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l023" data-seq="23" data-source-domain="生命" data-source-unit="メダカのたんじょう" data-source-section="受けつがれる生命(3)" data-unit-period="1／7" data-learning-goal="体やひれの形を観察し、メダカの雄と雌を見分けられる。">
                 <span class="lesson-num">23</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l023" data-kind="summary" data-target="lessons/es5-l023/summary.html" data-published="true">メダカの雄と雌の体の違いを観察する</a>
@@ -747,28 +733,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l029" data-kind="questions" data-target="lessons/es5-l029/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="4" data-chapter-id="es5-c005" data-source-domain="地球">
+      <details class="chapter" data-chapter-index="5" data-chapter-id="es5-c005" data-source-domain="地球" data-source-subunit="台風と気象情報" data-original-chapter-id="es5-c005" data-original-section-id="es5-s006" data-original-chapter-question-target="chapters/es5-c005/questions.html" data-original-section-question-target="sections/es5-s006/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">地球</span>
+          <span class="chapter-name">台風と気象情報</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c005/questions.html" data-published="false">問題</a>
             <span class="count-meta">3回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s006" data-source-subunit="台風と気象情報">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">台風と気象情報</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s006" data-kind="section-questions" data-target="sections/es5-s006/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">3回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l030" data-seq="30" data-source-domain="地球" data-source-unit="台風と気象情報" data-source-section="天気の変化(2)" data-unit-period="1／3" data-learning-goal="台風の連続する雲画像や進路図から、移動する様子を読み取れる。">
                 <span class="lesson-num">30</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l030" data-kind="summary" data-target="lessons/es5-l030/summary.html" data-published="true">台風の雲画像から進み方を調べる</a>
@@ -793,28 +770,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l032" data-kind="questions" data-target="lessons/es5-l032/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="5" data-chapter-id="es5-c006" data-source-domain="探究">
+      <details class="chapter" data-chapter-index="6" data-chapter-id="es5-c006" data-source-domain="探究" data-source-subunit="自由研究" data-original-chapter-id="es5-c006" data-original-section-id="es5-s007" data-original-chapter-question-target="chapters/es5-c006/questions.html" data-original-section-question-target="sections/es5-s007/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">探究</span>
+          <span class="chapter-name">自由研究</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c006/questions.html" data-published="false">問題</a>
             <span class="count-meta">2回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s007" data-source-subunit="自由研究">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">自由研究</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s007" data-kind="section-questions" data-target="sections/es5-s007/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">2回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l033" data-seq="33" data-source-domain="探究" data-source-unit="自由研究" data-source-section="●自由研究" data-unit-period="1／2" data-learning-goal="身近な疑問について予想を立て、条件をそろえた観察・実験の方法を考えられる。">
                 <span class="lesson-num">33</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l033" data-kind="summary" data-target="lessons/es5-l033/summary.html" data-published="true">理科の疑問を選んで自由研究を計画する</a>
@@ -831,28 +799,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l034" data-kind="questions" data-target="lessons/es5-l034/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="6" data-chapter-id="es5-c007" data-source-domain="生命">
+      <details class="chapter" data-chapter-index="7" data-chapter-id="es5-c016" data-source-domain="生命" data-source-subunit="花から実へ" data-original-chapter-id="es5-c007" data-original-section-id="es5-s008" data-original-chapter-question-target="chapters/es5-c007/questions.html" data-original-section-question-target="sections/es5-s008/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">生命</span>
+          <span class="chapter-name">花から実へ</span>
           <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c007/questions.html" data-published="false">問題</a>
-            <span class="count-meta">14回</span>
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c016/questions.html" data-published="false">問題</a>
+            <span class="count-meta">8回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s008" data-source-subunit="花から実へ">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">花から実へ</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s008" data-kind="section-questions" data-target="sections/es5-s008/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">8回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l035" data-seq="35" data-source-domain="生命" data-source-unit="花から実へ" data-source-section="受けつがれる生命(4)" data-unit-period="1／8" data-learning-goal="花と実の写真や実物を比較し、花が実になる仕組みについて問いを立てられる。">
                 <span class="lesson-num">35</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l035" data-kind="summary" data-target="lessons/es5-l035/summary.html" data-published="true">ヘチマなどの花と実のつくりを比べる</a>
@@ -917,17 +876,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l042" data-kind="questions" data-target="lessons/es5-l042/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
-          <details class="section" data-section-id="es5-s009" data-source-subunit="ヒトのたんじょう">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">ヒトのたんじょう</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s009" data-kind="section-questions" data-target="sections/es5-s009/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">6回</span>
-            </summary>
-            <ol class="lesson-list">
+          </ol>
+        </div>
+      </details>
+      <details class="chapter" data-chapter-index="8" data-chapter-id="es5-c017" data-source-domain="生命" data-source-subunit="ヒトのたんじょう" data-original-chapter-id="es5-c007" data-original-section-id="es5-s009" data-original-chapter-question-target="chapters/es5-c007/questions.html" data-original-section-question-target="sections/es5-s009/questions.html">
+        <summary class="chapter-summary">
+          <span class="chapter-name">ヒトのたんじょう</span>
+          <span class="chapter-actions">
+            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c017/questions.html" data-published="false">問題</a>
+            <span class="count-meta">6回</span>
+          </span>
+        </summary>
+        <div class="chapter-body">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l043" data-seq="43" data-source-domain="生命" data-source-unit="ヒトのたんじょう" data-source-section="受けつがれる生命(5)" data-unit-period="1／6" data-learning-goal="赤ちゃんが母体のどこで育つか予想し、成長を調べる問いを立てられる。">
                 <span class="lesson-num">43</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l043" data-kind="summary" data-target="lessons/es5-l043/summary.html" data-published="true">ヒトの赤ちゃんはどこで育つのか考える</a>
@@ -976,28 +937,13 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l048" data-kind="questions" data-target="lessons/es5-l048/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="7" data-chapter-id="es5-c008" data-source-domain="総合">
-        <summary class="chapter-summary">
-          <span class="chapter-name">総合</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c008/questions.html" data-published="false">問題</a>
-            <span class="count-meta">1回</span>
-          </span>
-        </summary>
+      <section class="chapter chapter-single" data-chapter-index="9" data-chapter-id="es5-c008" data-source-domain="総合" data-source-subunit="これまでの学習をつなげよう" data-original-chapter-id="es5-c008" data-original-section-id="es5-s010" data-original-chapter-question-target="chapters/es5-c008/questions.html" data-original-section-question-target="sections/es5-s010/questions.html" data-chapter-name="これまでの学習をつなげよう" aria-label="これまでの学習をつなげよう" data-chapter-question-target="chapters/es5-c008/questions.html">
+        <div class="chapter-single-name">これまでの学習をつなげよう</div>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s010" data-source-subunit="これまでの学習をつなげよう">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">これまでの学習をつなげよう</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s010" data-kind="section-questions" data-target="sections/es5-s010/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">1回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l049" data-seq="49" data-source-domain="総合" data-source-unit="これまでの学習をつなげよう" data-source-section="●これまでの学習をつなげよう" data-unit-period="1／1" data-learning-goal="植物の結実、メダカの産卵とふ化、ヒトの誕生を比較し、命が受け継がれることを説明できる。">
                 <span class="lesson-num">49</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l049" data-kind="summary" data-target="lessons/es5-l049/summary.html" data-published="true">植物・メダカ・ヒトの命のつながりを考える</a>
@@ -1006,28 +952,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l049" data-kind="questions" data-target="lessons/es5-l049/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="8" data-chapter-id="es5-c009" data-source-domain="地球">
+      </section>
+      <details class="chapter" data-chapter-index="10" data-chapter-id="es5-c009" data-source-domain="地球" data-source-subunit="流れる水のはたらき" data-original-chapter-id="es5-c009" data-original-section-id="es5-s011" data-original-chapter-question-target="chapters/es5-c009/questions.html" data-original-section-question-target="sections/es5-s011/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">地球</span>
+          <span class="chapter-name">流れる水のはたらき</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c009/questions.html" data-published="false">問題</a>
             <span class="count-meta">12回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s011" data-source-subunit="流れる水のはたらき">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">流れる水のはたらき</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s011" data-kind="section-questions" data-target="sections/es5-s011/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">12回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l050" data-seq="50" data-source-domain="地球" data-source-unit="流れる水のはたらき" data-source-section="流れる水のはたらき" data-unit-period="1／12" data-learning-goal="川の上流と下流の写真を比較し、川や川原の形の違いから問いを立てられる。">
                 <span class="lesson-num">50</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l050" data-kind="summary" data-target="lessons/es5-l050/summary.html" data-published="true">川の上流と下流の景色を比べる</a>
@@ -1124,28 +1061,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l061" data-kind="questions" data-target="lessons/es5-l061/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="9" data-chapter-id="es5-c010" data-source-domain="エネルギー">
+      <details class="chapter" data-chapter-index="11" data-chapter-id="es5-c010" data-source-domain="エネルギー" data-source-subunit="ふりこのきまり" data-original-chapter-id="es5-c010" data-original-section-id="es5-s012" data-original-chapter-question-target="chapters/es5-c010/questions.html" data-original-section-question-target="sections/es5-s012/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">エネルギー</span>
+          <span class="chapter-name">ふりこのきまり</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c010/questions.html" data-published="false">問題</a>
             <span class="count-meta">7回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s012" data-source-subunit="ふりこのきまり">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">ふりこのきまり</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s012" data-kind="section-questions" data-target="sections/es5-s012/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">7回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l062" data-seq="62" data-source-domain="エネルギー" data-source-unit="ふりこのきまり" data-source-section="ふりこのきまり" data-unit-period="1／7" data-learning-goal="振り子を動かし、何が１往復の時間を変えるか予想できる。">
                 <span class="lesson-num">62</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l062" data-kind="summary" data-target="lessons/es5-l062/summary.html" data-published="true">振り子の１往復の時間を調べる問いを立てる</a>
@@ -1202,28 +1130,13 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l068" data-kind="questions" data-target="lessons/es5-l068/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="10" data-chapter-id="es5-c011" data-source-domain="観察・実験">
-        <summary class="chapter-summary">
-          <span class="chapter-name">観察・実験</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c011/questions.html" data-published="false">問題</a>
-            <span class="count-meta">1回</span>
-          </span>
-        </summary>
+      <section class="chapter chapter-single" data-chapter-index="12" data-chapter-id="es5-c011" data-source-domain="観察・実験" data-source-subunit="みんなで使う理科室" data-original-chapter-id="es5-c011" data-original-section-id="es5-s013" data-original-chapter-question-target="chapters/es5-c011/questions.html" data-original-section-question-target="sections/es5-s013/questions.html" data-chapter-name="みんなで使う理科室" aria-label="みんなで使う理科室" data-chapter-question-target="chapters/es5-c011/questions.html">
+        <div class="chapter-single-name">みんなで使う理科室</div>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s013" data-source-subunit="みんなで使う理科室">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">みんなで使う理科室</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s013" data-kind="section-questions" data-target="sections/es5-s013/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">1回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l069" data-seq="69" data-source-domain="観察・実験" data-source-unit="みんなで使う理科室" data-source-section="●みんなで使う理科室" data-unit-period="1／1" data-learning-goal="器具や薬品の扱い方と後片付けを確認し、実験で注意すべき点を説明できる。">
                 <span class="lesson-num">69</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l069" data-kind="summary" data-target="lessons/es5-l069/summary.html" data-published="true">安全な実験器具の使い方と片付けを確かめる</a>
@@ -1232,28 +1145,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l069" data-kind="questions" data-target="lessons/es5-l069/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="11" data-chapter-id="es5-c012" data-source-domain="粒子">
+      </section>
+      <details class="chapter" data-chapter-index="13" data-chapter-id="es5-c012" data-source-domain="粒子" data-source-subunit="もののとけ方" data-original-chapter-id="es5-c012" data-original-section-id="es5-s014" data-original-chapter-question-target="chapters/es5-c012/questions.html" data-original-section-question-target="sections/es5-s014/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">粒子</span>
+          <span class="chapter-name">もののとけ方</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c012/questions.html" data-published="false">問題</a>
             <span class="count-meta">15回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s014" data-source-subunit="もののとけ方">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">もののとけ方</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s014" data-kind="section-questions" data-target="sections/es5-s014/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">15回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l070" data-seq="70" data-source-domain="粒子" data-source-unit="もののとけ方" data-source-section="もののとけ方" data-unit-period="1／15" data-learning-goal="食塩を水に入れたときの見え方から、溶けた物の行方について問いを立てられる。">
                 <span class="lesson-num">70</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l070" data-kind="summary" data-target="lessons/es5-l070/summary.html" data-published="true">食塩が水に溶ける様子を観察する</a>
@@ -1374,28 +1278,19 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l084" data-kind="questions" data-target="lessons/es5-l084/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
-      <details class="chapter" data-chapter-index="12" data-chapter-id="es5-c013" data-source-domain="エネルギー">
+      <details class="chapter" data-chapter-index="14" data-chapter-id="es5-c013" data-source-domain="エネルギー" data-source-subunit="電流と電磁石" data-original-chapter-id="es5-c013" data-original-section-id="es5-s015" data-original-chapter-question-target="chapters/es5-c013/questions.html" data-original-section-question-target="sections/es5-s015/questions.html">
         <summary class="chapter-summary">
-          <span class="chapter-name">エネルギー</span>
+          <span class="chapter-name">電流と電磁石</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/es5-c013/questions.html" data-published="false">問題</a>
             <span class="count-meta">11回</span>
           </span>
         </summary>
         <div class="chapter-body">
-          <details class="section" data-section-id="es5-s015" data-source-subunit="電流と電磁石">
-            <summary class="section-summary">
-              <span class="section-heading">
-                <span class="section-name">電流と電磁石</span>
-                <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="es5-s015" data-kind="section-questions" data-target="sections/es5-s015/questions.html" data-published="false">問題</a>
-              </span>
-              <span class="count-meta">11回</span>
-            </summary>
-            <ol class="lesson-list">
+          <ol class="lesson-list">
               <li class="lesson-item" data-lesson-id="es5-l085" data-seq="85" data-source-domain="エネルギー" data-source-unit="電流と電磁石" data-source-section="電流と電磁石" data-unit-period="1／11" data-learning-goal="導線を巻いたコイルに電流を流し、鉄心が磁石のように働くことを確かめられる。">
                 <span class="lesson-num">85</span>
                 <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l085" data-kind="summary" data-target="lessons/es5-l085/summary.html" data-published="true">導線を巻いて電磁石を作る</a>
@@ -1484,8 +1379,7 @@
                   <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="es5-l095" data-kind="questions" data-target="lessons/es5-l095/questions.html" data-published="false">問題</a>
                 </span>
               </li>
-            </ol>
-          </details>
+          </ol>
         </div>
       </details>
     </main>
