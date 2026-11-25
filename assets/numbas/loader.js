@@ -103,8 +103,8 @@ const recognitionStartedAt = initializeRecognitionRule();
    and the Numbas score calculation are deliberately left unchanged. */
 const practiceHistoryPrefix = "classroom:practice-history:v1:";
 
-function practiceHistoryKey(level = "basic") {
-  const base = practiceHistoryPrefix + location.pathname;
+function practiceHistoryKey(level = "basic", pathname = location.pathname) {
+  const base = practiceHistoryPrefix + pathname;
   return level === "basic" ? base : base + ":" + level;
 }
 
@@ -174,6 +174,19 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
   }
   const questionId = main?.id || examHost.dataset.historyQuestionId || "";
   const questionNumber = set ? set.ids.indexOf(questionId) + 1 : examHost.dataset.historyQuestionNumber || "";
+  const previousPage = examHost.dataset.previousHistoryPage;
+  const previousKey = previousPage && practiceHistoryKey(level, new URL(previousPage, location.href).pathname);
+
+  // A moved question keeps its content ID. Read its old attempts in place;
+  // new attempts belong to this page, and unrelated questions stay separate.
+  function questionHistory(records) {
+    if (!questionId) return records;
+    const current = records.filter((item) => item?.questionId === questionId);
+    if (!previousKey || previousKey === historyKey) return current;
+    const earlier = readPracticeHistory(previousKey).filter((item) => item?.questionId === questionId);
+    return earlier.concat(current).sort((a, b) => Date.parse(a.at) - Date.parse(b.at));
+  }
+
   const explore = question.partsMode === "explore";
   const authoredControls = set && hasAuthoredExploreControls(question);
   const primaryPart = question.parts[0];
@@ -228,7 +241,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
       routes.set(part, fromWrong ? "wrong" : "optional");
     }
     const repeatCanCount = () => !support && canRecordRepeatedCorrect(
-      readPracticeHistory(historyKey), questionId || null, recognitionStartedAt
+      questionHistory(readPracticeHistory(historyKey)), questionId || null, recognitionStartedAt
     );
     part.events.on("post-submit", () => {
       if (!part.answered || !Number.isFinite(Number(part.score)) ||
@@ -417,7 +430,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
   }
   updateViews.push(() => {
     const allHistory = readPracticeHistory(historyKey);
-    const history = questionId ? allHistory.filter((item) => item.questionId === questionId) : allHistory;
+    const history = questionHistory(allHistory);
     const wrong = history.filter((item) => item.kind === "wrong").length;
     const reveals = history.filter((item) => item.kind === "reveal").length;
     const prefix = questionId ? "設問" + questionNumber + "の学習履歴：" : "学習履歴：";
