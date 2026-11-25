@@ -89,7 +89,8 @@
     }
 
     /* Chapter */
-    details.chapter {
+    details.chapter,
+    .chapter-single {
       background: var(--color-surface);
       border: 2px solid var(--color-border);
       border-radius: 14px;
@@ -174,6 +175,23 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .chapter-single .chapter-body {
+      gap: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .chapter-single .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+
+    .chapter-body > .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
     /* Section */
@@ -406,26 +424,14 @@
     <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">小学校</a><span aria-hidden="true"> / </span><a href="../">6年生</a><span aria-hidden="true"> / </span><span aria-current="page">英語</span></nav>
     <header class="page-header">
       <h1 class="page-title">小学6年 英語 学習一覧</h1>
-      <div class="page-meta">
-        <div class="controls" style="margin-left: auto;">
-          <button type="button" class="control-link" id="open-all">すべて開く</button>
-          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
-        </div>
-      </div>
       <div class="curriculum-source-notes" aria-label="参照教科書と資料">
         <p><strong>参照教科書：</strong>東京書籍『NEW HORIZON Elementary 6』</p>
       </div>
     </header>
     <main class="curriculum-list" id="curriculum-list">
-      <details class="chapter" open data-chapter-index="0" data-chapter-id="ef6-c001" data-period="4〜5月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 1 This is me!</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c001/questions.html" data-published="false">問題</a>
-            <span class="count-meta">4〜5月</span>
-          </span>
-        </summary>
+      <section class="chapter chapter-single" data-chapter-index="0" data-chapter-id="ef6-c001" data-period="4〜5月" data-chapter-name="Unit 1 This is me!" aria-label="Unit 1 This is me!" data-chapter-question-target="chapters/ef6-c001/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">4〜5月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u001" data-seq="1" data-unit="Unit 1 This is me!" data-month="4〜5月" data-former-period-range="1-8" data-allocated-periods="8" data-textbook-pages="pp.6〜13" data-learning-objective="お互いのことをよく知るために，好きなものや宝物などについて聞き取ったり紹介し合ったりする。また，例文を参考に書くことができる。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch 1・2 / Let’s Listen 1・2 / Let’s Try 1・2 / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【好きなもの】What... do you like? / I like.... 【宝物】What is your treasure? / My treasure is.... / It&#39;s from.... 【その他】I&#39;m from.... / I&#39;m good at.... / Any questions?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">1</span>
@@ -437,16 +443,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="1" data-chapter-id="ef6-c002" data-period="5〜6月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 2 My Daily Schedule</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c002/questions.html" data-published="false">問題</a>
-            <span class="count-meta">5〜6月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="1" data-chapter-id="ef6-c002" data-period="5〜6月" data-chapter-name="Unit 2 My Daily Schedule" aria-label="Unit 2 My Daily Schedule" data-chapter-question-target="chapters/ef6-c002/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">5〜6月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u002" data-seq="2" data-unit="Unit 2 My Daily Schedule" data-month="5〜6月" data-former-period-range="9-16" data-allocated-periods="8" data-textbook-pages="pp.16〜23" data-learning-objective="お互いの生活をよく知るために，日常生活について聞き取ったり紹介し合ったりする。また，週末の過ごし方について例文を参考に書くことができる。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch / Let’s Listen 1・2 / Let’s Try 1・2 / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【日常生活（過ごし方）】What time do you (usually)...? / I (usually) (動作) at (時刻). 【日常生活（頻度）】I usually [always/sometimes/never].... 【その他】Oh, you have.... / Lucky you! / This is my weekend schedule." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">2</span>
@@ -458,16 +458,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="2" data-chapter-id="ef6-c003" data-period="6〜7月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 3 My Weekend</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c003/questions.html" data-published="false">問題</a>
-            <span class="count-meta">6〜7月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="2" data-chapter-id="ef6-c003" data-period="6〜7月" data-chapter-name="Unit 3 My Weekend" aria-label="Unit 3 My Weekend" data-chapter-question-target="chapters/ef6-c003/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">6〜7月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u003" data-seq="3" data-unit="Unit 3 My Weekend" data-month="6〜7月" data-former-period-range="17-24" data-allocated-periods="8" data-textbook-pages="pp.26〜33" data-learning-objective="お互いの生活をよく知るために，週末にしたことについて聞き取ったり伝え合ったりする。また，週末にしたことについて例文を参考に書くことができる。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch / Let’s Listen 1・2 / Let’s Try 1・2 / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【週末の感想】How was your weekend? / It was (感想). 【したこと】I went to.... / I enjoyed.... / I ate.... / I played.... 【その他】Sounds good! / How was the weather? / It was (天気). / Cool!" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">3</span>
@@ -479,16 +473,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="3" data-chapter-id="ef6-c004" data-period="7月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Check Your Steps 1 発信！わたしのニュースあれこれ</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c004/questions.html" data-published="false">問題</a>
-            <span class="count-meta">7月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="3" data-chapter-id="ef6-c004" data-period="7月" data-chapter-name="Check Your Steps 1 発信！わたしのニュースあれこれ" aria-label="Check Your Steps 1 発信！わたしのニュースあれこれ" data-chapter-question-target="chapters/ef6-c004/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">7月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u004" data-seq="4" data-unit="Check Your Steps 1 発信！わたしのニュースあれこれ" data-month="7月" data-former-period-range="25-26" data-allocated-periods="2" data-textbook-pages="pp.36〜37" data-learning-objective="自分のことを伝えるために，日常生活や最近の出来事について内容を整理したうえで考えや気持ちなどを発表する。" data-learning-activities="Let’s Sing / Small Talk / Let’s Chant / HOP / STEP / JUMP / Your Goal" data-key-phrases="【既習事項の復習】I like.... / My treasure is.... / It’s from.... / I (頻度)... (日常生活). / I went to.... / It was.... など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">4</span>
@@ -500,16 +488,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="4" data-chapter-id="ef6-c005" data-period="9〜10月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 4 Let’s see the world.</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c005/questions.html" data-published="false">問題</a>
-            <span class="count-meta">9〜10月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="4" data-chapter-id="ef6-c005" data-period="9〜10月" data-chapter-name="Unit 4 Let’s see the world." aria-label="Unit 4 Let’s see the world." data-chapter-question-target="chapters/ef6-c005/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">9〜10月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u005" data-seq="5" data-unit="Unit 4 Let’s see the world." data-month="9〜10月" data-former-period-range="27-34" data-allocated-periods="8" data-textbook-pages="pp.38〜45" data-learning-objective="行きたい国の魅力を伝えるために，行きたい国とそこでできることについて聞き取ったり伝え合ったりする。また，例文を参考に書くことができる。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch / Let’s Listen / Let’s Try / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【行きたい国】Let&#39;s go to.... / Where do you want to go? / I want to go to.... 【できること】You can see.... / You can eat.... / You can visit.... / It&#39;s.... 【その他】Anything else?" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">5</span>
@@ -521,16 +503,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="5" data-chapter-id="ef6-c006" data-period="10〜11月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 5 Where is it from?</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c006/questions.html" data-published="false">問題</a>
-            <span class="count-meta">10〜11月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="5" data-chapter-id="ef6-c006" data-period="10〜11月" data-chapter-name="Unit 5 Where is it from?" aria-label="Unit 5 Where is it from?" data-chapter-question-target="chapters/ef6-c006/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">10〜11月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u006" data-seq="6" data-unit="Unit 5 Where is it from?" data-month="10〜11月" data-former-period-range="35-42" data-allocated-periods="8" data-textbook-pages="pp.48〜57" data-learning-objective="自分たちと世界とのつながりを知るために，身の回りのものの生産国について聞き取ったり，グループで発表したりする。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch / Let’s Listen 1・2 / Let’s Try / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【ものの紹介】This is my.... 【どこから来たか】Where is it from? / It&#39;s from.... / My... is from (国). / (国) is in (地域). 【オリジナルサンドイッチ】Tell me about your sandwich. / My sandwich is a... sandwich." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">6</span>
@@ -542,16 +518,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="6" data-chapter-id="ef6-c007" data-period="11〜12月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 6 Save the animals.</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c007/questions.html" data-published="false">問題</a>
-            <span class="count-meta">11〜12月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="6" data-chapter-id="ef6-c007" data-period="11〜12月" data-chapter-name="Unit 6 Save the animals." aria-label="Unit 6 Save the animals." data-chapter-question-target="chapters/ef6-c007/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">11〜12月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u007" data-seq="7" data-unit="Unit 6 Save the animals." data-month="11〜12月" data-former-period-range="43-50" data-allocated-periods="8" data-textbook-pages="pp.60〜67" data-learning-objective="生き物への理解を深めるために，生き物が暮らす場所や直面する問題，生き物のためにできることについて聞き取ったり伝え合ったりする。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch / Let’s Listen / Let’s Try / Let’s Read / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【生き物】Let&#39;s save the.... / Where do... live? / ... live in.... 【抱える問題・できること】... is a big problem. / We can.... 【その他】I have an idea. / Nice idea!" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">7</span>
@@ -563,16 +533,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="7" data-chapter-id="ef6-c008" data-period="12月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Check Your Steps 2 始めよう！地球のためにできること</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c008/questions.html" data-published="false">問題</a>
-            <span class="count-meta">12月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="7" data-chapter-id="ef6-c008" data-period="12月" data-chapter-name="Check Your Steps 2 始めよう！地球のためにできること" aria-label="Check Your Steps 2 始めよう！地球のためにできること" data-chapter-question-target="chapters/ef6-c008/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">12月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u008" data-seq="8" data-unit="Check Your Steps 2 始めよう！地球のためにできること" data-month="12月" data-former-period-range="51-52" data-allocated-periods="2" data-textbook-pages="pp.70〜71" data-learning-objective="地球に対する自分の考えを伝えるために，生き物や地球が直面する問題や自分たちができることについて内容を整理したうえで発表する。" data-learning-activities="Let’s Sing / Small Talk / Let’s Chant / HOP / STEP / JUMP / Your Goal" data-key-phrases="【既習事項の復習】I want to go to.... / You can see [eat/visit].... / It’s.... / My... is from (国). / Let’s save.... / ... live in.... / We can.... など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">8</span>
@@ -584,16 +548,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="8" data-chapter-id="ef6-c009" data-period="1〜2月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 7 My Best Memory</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c009/questions.html" data-published="false">問題</a>
-            <span class="count-meta">1〜2月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="8" data-chapter-id="ef6-c009" data-period="1〜2月" data-chapter-name="Unit 7 My Best Memory" aria-label="Unit 7 My Best Memory" data-chapter-question-target="chapters/ef6-c009/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">1〜2月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u009" data-seq="9" data-unit="Unit 7 My Best Memory" data-month="1〜2月" data-former-period-range="53-60" data-allocated-periods="8" data-textbook-pages="pp.72〜79" data-learning-objective="お互いのことをよく知るために，小学校生活の一番の思い出について聞き取ったり紹介したりする。また，例文を参考に書くことができる。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch / Let’s Listen 1・2 / Let’s Try / Let’s Read / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【思い出】What&#39;s your best memory? / My best memory is.... 【したことや感想】What did you do? / We went to.... / We ate [saw].... / It was.... 【その他】How was...? / Nice talking to you." data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">9</span>
@@ -605,16 +563,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="9" data-chapter-id="ef6-c010" data-period="2〜3月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 8 My Future, My Dream</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c010/questions.html" data-published="false">問題</a>
-            <span class="count-meta">2〜3月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="9" data-chapter-id="ef6-c010" data-period="2〜3月" data-chapter-name="Unit 8 My Future, My Dream" aria-label="Unit 8 My Future, My Dream" data-chapter-question-target="chapters/ef6-c010/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">2〜3月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u010" data-seq="10" data-unit="Unit 8 My Future, My Dream" data-month="2〜3月" data-former-period-range="61-68" data-allocated-periods="8" data-textbook-pages="pp.82〜89" data-learning-objective="お互いの夢を応援するために，中学校でしたいことや将来の夢について聞き取ったり伝え合ったりする。また，例文を参考に書くことができる。" data-learning-activities="Sounds and Letters / Let’s Sing / Small Talk / Listen and Think / Let’s Chant / Let’s Watch / Let’s Listen 1・2 / Let’s Try / Let’s Read / Let’s Read and Write / Step 1・2 / Your Goal" data-key-phrases="【入りたい部活動】What club do you want to join? / I want to join.... 【将来の夢】What do you want to be? / I want to be a.... / I want to work [live/help].... 【その他】I like.... / I&#39;m good at.... / Good luck!" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">10</span>
@@ -626,16 +578,10 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="10" data-chapter-id="ef6-c011" data-period="3月">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Check Your Steps 3 卒業！今伝えたい、わたしの思い</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef6-c011/questions.html" data-published="false">問題</a>
-            <span class="count-meta">3月</span>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="10" data-chapter-id="ef6-c011" data-period="3月" data-chapter-name="Check Your Steps 3 卒業！今伝えたい、わたしの思い" aria-label="Check Your Steps 3 卒業！今伝えたい、わたしの思い" data-chapter-question-target="chapters/ef6-c011/questions.html">
         <div class="chapter-body">
+          <span class="count-meta" style="align-self: flex-end;">3月</span>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef6-u011" data-seq="11" data-unit="Check Your Steps 3 卒業！今伝えたい、わたしの思い" data-month="3月" data-former-period-range="69-70" data-allocated-periods="2" data-textbook-pages="pp.92〜93" data-learning-objective="卒業にあたっての自分の思いを伝えるために，小学校生活の思い出や将来の夢について内容を整理したうえで発表する。" data-learning-activities="Let’s Sing / Small Talk / Let’s Chant / HOP / STEP / JUMP / Your Goal" data-key-phrases="【既習事項の復習】My best memory is.... / We went to.... / We ate [saw].... / It was.... / I want to join.... / I want to be a.... / I want to work [live/help].... など" data-source-url="https://ten.tokyo-shoseki.co.jp/text/shou/eigo/data/r6_eigo_keikaku_6nen_20240131.pdf">
               <span class="lesson-num">11</span>
@@ -647,7 +593,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <nav class="problem-toolbar grade-navigation" aria-label="同じ科目の学年移動" style="margin-top: 24px;">
         <a class="problem-previous" href="../../grade-5/english/">← 小学5年の英語</a>
         <a class="problem-next" href="../../../junior-high/grade-1/english/">中学1年の英語 →</a>

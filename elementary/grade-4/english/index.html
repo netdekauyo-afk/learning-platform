@@ -89,7 +89,8 @@
     }
 
     /* Chapter */
-    details.chapter {
+    details.chapter,
+    .chapter-single {
       background: var(--color-surface);
       border: 2px solid var(--color-border);
       border-radius: 14px;
@@ -174,6 +175,23 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .chapter-single .chapter-body {
+      gap: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .chapter-single .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+
+    .chapter-body > .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
     /* Section */
@@ -406,24 +424,12 @@
     <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">小学校</a><span aria-hidden="true"> / </span><a href="../">4年生</a><span aria-hidden="true"> / </span><span aria-current="page">外国語活動</span></nav>
     <header class="page-header">
       <h1 class="page-title">小学4年 外国語活動 学習一覧</h1>
-      <div class="page-meta">
-        <div class="controls" style="margin-left: auto;">
-          <button type="button" class="control-link" id="open-all">すべて開く</button>
-          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
-        </div>
-      </div>
       <div class="curriculum-source-notes" aria-label="参照教材と資料">
         <p><strong>参照教材：</strong>文部科学省『Let's Try! 2』（小学4年外国語活動）</p>
       </div>
     </header>
     <main class="curriculum-list" id="curriculum-list">
-      <details class="chapter" open data-chapter-index="0" data-chapter-id="ef4-c001">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 1 Hello, world! 世界のいろいろなことばであいさつをしよう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c001/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      <section class="chapter chapter-single" data-chapter-index="0" data-chapter-id="ef4-c001" data-chapter-name="Unit 1 Hello, world! 世界のいろいろなことばであいさつをしよう" aria-label="Unit 1 Hello, world! 世界のいろいろなことばであいさつをしよう" data-chapter-question-target="chapters/ef4-c001/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u001" data-seq="1" data-unit="Unit 1 Hello, world! 世界のいろいろなことばであいさつをしよう" data-former-period-range="1-2" data-allocated-periods="2" data-textbook-pages="pp.2〜5" data-learning-objective="さまざまな挨拶の仕方があることに気付くとともに挨拶に慣れ親しみ，相手に配慮しながら友達と挨拶をして自分の好みなどを伝え合おうとする。" data-learning-activities="Let’s Watch and Think 1・2 / Let’s Listen 1・2 / Let’s Play / Activity" data-key-phrases="Hello. Good [morning / afternoon / night]. I like (strawberries). Goodbye. See you." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0401.pdf">
@@ -436,14 +442,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="1" data-chapter-id="ef4-c002">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 2 Let’s play cards. すきな遊びをつたえよう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c002/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="1" data-chapter-id="ef4-c002" data-chapter-name="Unit 2 Let’s play cards. すきな遊びをつたえよう" aria-label="Unit 2 Let’s play cards. すきな遊びをつたえよう" data-chapter-question-target="chapters/ef4-c002/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u002" data-seq="2" data-unit="Unit 2 Let’s play cards. すきな遊びをつたえよう" data-former-period-range="3-6" data-allocated-periods="4" data-textbook-pages="pp.6〜9" data-learning-objective="世界と日本の遊びの違いや天気の言い方に慣れ親しみ，好きな遊びについて尋ね合ったり，相手に配慮しながら友達を自分の好きな遊びに誘おうとする。" data-learning-activities="Let’s Chant / Let’s Watch and Think 1・2 / Let’s Listen 1・2・3 / Activity" data-key-phrases="How’s the weather? It’s [sunny / rainy / cloudy / snowy]. Let’s (play cards). Yes, let’s. Sorry. Stand up. / Sit down. / Stop. / Walk. / Jump. / Run. / Turn around." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0402.pdf">
@@ -456,14 +456,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="2" data-chapter-id="ef4-c003">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 3 I like Mondays. すきな曜日は何かな？</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c003/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="2" data-chapter-id="ef4-c003" data-chapter-name="Unit 3 I like Mondays. すきな曜日は何かな？" aria-label="Unit 3 I like Mondays. すきな曜日は何かな？" data-chapter-question-target="chapters/ef4-c003/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u003" data-seq="3" data-unit="Unit 3 I like Mondays. すきな曜日は何かな？" data-former-period-range="7-9" data-allocated-periods="3" data-textbook-pages="pp.11〜13" data-learning-objective="世界の同世代の生活との共通点に気付き，曜日の言い方に慣れ親しみ，相手に配慮しながら自分の好きな曜日を尋ねたり答えたりして伝え合おうとする。" data-learning-activities="Let’s Watch and Think 1・2 / Let’s Chant / Let’s Listen / Let’s Play / Activity" data-key-phrases="What day is it? It’s (Monday). Do you like (Mondays)? Yes, I do. / No, I don’t. I like (Mondays)." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0403.pdf">
@@ -476,14 +470,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="3" data-chapter-id="ef4-c004">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 4 What time is it? 今，何時？</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c004/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="3" data-chapter-id="ef4-c004" data-chapter-name="Unit 4 What time is it? 今，何時？" aria-label="Unit 4 What time is it? 今，何時？" data-chapter-question-target="chapters/ef4-c004/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u004" data-seq="4" data-unit="Unit 4 What time is it? 今，何時？" data-former-period-range="10-13" data-allocated-periods="4" data-textbook-pages="pp.14〜17" data-learning-objective="世界の国や地域によって時刻が異なることに気付くとともに，時刻や日課の言い方に慣れ親しみ，相手に配慮しながら自分の好きな時間について伝え合おうとする。" data-learning-activities="Let’s Watch and Think 1・2 / Let’s Chant / Let’s Listen / Activity" data-key-phrases="What time is it? It’s (8:30). It’s (“Homework Time”). How about you?" data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0404.pdf">
@@ -496,14 +484,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="4" data-chapter-id="ef4-c005">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 5 Do you have a pen? おすすめの文房具セットをつくろう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c005/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="4" data-chapter-id="ef4-c005" data-chapter-name="Unit 5 Do you have a pen? おすすめの文房具セットをつくろう" aria-label="Unit 5 Do you have a pen? おすすめの文房具セットをつくろう" data-chapter-question-target="chapters/ef4-c005/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u005" data-seq="5" data-unit="Unit 5 Do you have a pen? おすすめの文房具セットをつくろう" data-former-period-range="14-17" data-allocated-periods="4" data-textbook-pages="pp.18〜21" data-learning-objective="文房具など学校で使う物の言い方や持ち物を尋ねたり答えたりする表現に慣れ親しみ，相手に配慮しながらおすすめの文房具セットを作って伝え合おうとする。" data-learning-activities="Let’s Watch and Think 1・2 / Let’s Play 1・2 / Let’s Chant / Let’s Listen / Activity" data-key-phrases="Do you have (a pen)? Yes, I do. / No, I don’t. I [have / don’t have] (a pen). This is for you." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0405.pdf">
@@ -516,14 +498,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="5" data-chapter-id="ef4-c006">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 6 Alphabet アルファベットで文字遊びをしよう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c006/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="5" data-chapter-id="ef4-c006" data-chapter-name="Unit 6 Alphabet アルファベットで文字遊びをしよう" aria-label="Unit 6 Alphabet アルファベットで文字遊びをしよう" data-chapter-question-target="chapters/ef4-c006/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u006" data-seq="6" data-unit="Unit 6 Alphabet アルファベットで文字遊びをしよう" data-former-period-range="18-21" data-allocated-periods="4" data-textbook-pages="pp.22〜25" data-learning-objective="身の回りにある活字体の文字に気付き，小文字とその読み方に慣れ親しみ，相手に配慮しながらアルファベットの文字について尋ね合ったり伝え合おうとする。" data-learning-activities="Let’s Watch and Think / Let’s Sing / Let’s Chant / Let’s Play 1・2 / Let’s Listen / Activity 1・2" data-key-phrases="Look. What’s this? Hint, please. How many letters? I have (six). Do you have (a “b”)? Yes, I do. / No, I don’t. That’s right. Sorry. Try again." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0406.pdf">
@@ -536,14 +512,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="6" data-chapter-id="ef4-c007">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 7 What do you want? ほしいものは何かな？</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c007/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="6" data-chapter-id="ef4-c007" data-chapter-name="Unit 7 What do you want? ほしいものは何かな？" aria-label="Unit 7 What do you want? ほしいものは何かな？" data-chapter-question-target="chapters/ef4-c007/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u007" data-seq="7" data-unit="Unit 7 What do you want? ほしいものは何かな？" data-former-period-range="22-26" data-allocated-periods="5" data-textbook-pages="pp.26〜29" data-learning-objective="食材の言い方や欲しい物を尋ねたり要求したりする表現に慣れ親しみ，相手に配慮しながら自分のオリジナルメニュー（パフェやピザ）を紹介しようとする。" data-learning-activities="Let’s Watch and Think / Let’s Chant / Let’s Play / Activity 1・2 / Let’s Listen 1・2" data-key-phrases="What do you want? I want (potatoes), please. How many? (Two), please. Here you are. Thank you." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0407.pdf">
@@ -556,14 +526,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="7" data-chapter-id="ef4-c008">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 8 This is my favorite place. お気に入りの場所をしょうかいしよう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c008/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="7" data-chapter-id="ef4-c008" data-chapter-name="Unit 8 This is my favorite place. お気に入りの場所をしょうかいしよう" aria-label="Unit 8 This is my favorite place. お気に入りの場所をしょうかいしよう" data-chapter-question-target="chapters/ef4-c008/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u008" data-seq="8" data-unit="Unit 8 This is my favorite place. お気に入りの場所をしょうかいしよう" data-former-period-range="27-30" data-allocated-periods="4" data-textbook-pages="pp.30〜35" data-learning-objective="学校生活の違いに気付き，教科名・教室名の言い方や道案内に慣れ親しみ，相手に配慮しながら校内のお気に入りの場所に案内したり紹介しようとする。" data-learning-activities="Let’s Chant / Let’s Play 1・2 / Let’s Listen 1・2 / Let’s Watch and Think 1・2 / Activity" data-key-phrases="Go straight. Turn [right / left]. Stop. This is (the music room). This is my favorite place. Why? I like (music)." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0408.pdf">
@@ -576,14 +540,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="8" data-chapter-id="ef4-c009">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 9 This is my day. ぼく・わたしの一日</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef4-c009/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="8" data-chapter-id="ef4-c009" data-chapter-name="Unit 9 This is my day. ぼく・わたしの一日" aria-label="Unit 9 This is my day. ぼく・わたしの一日" data-chapter-question-target="chapters/ef4-c009/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef4-u009" data-seq="9" data-unit="Unit 9 This is my day. ぼく・わたしの一日" data-former-period-range="31-35" data-allocated-periods="5" data-textbook-pages="" data-learning-objective="日本語と英語の音声やリズムの違いに気付き，日課を表す表現に慣れ親しみ，相手に配慮しながら絵本などの短い話を聞いて反応したり大まかな内容をつかむ。" data-learning-activities="お話を聞こう / どのページかなクイズ / チャンツ / ジェスチャー / カード並べ / 好きなページの紹介 / Who am I? クイズ" data-key-phrases="I wake up (at 6:00). I have breakfast (at 7:00). I go to school. I go home." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0409.pdf">
@@ -596,7 +554,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <nav class="problem-toolbar grade-navigation" aria-label="同じ科目の学年移動" style="margin-top: 24px;">
         <a class="problem-previous" href="../../grade-3/english/">← 小学3年の外国語活動</a>
         <a class="problem-next" href="../../grade-5/english/">小学5年の英語 →</a>
