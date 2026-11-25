@@ -98,7 +98,7 @@ export function hasCheckedAnswer(part) {
   return submitted !== null && draft.trim() !== "" && !part.isDirty && draft.trim() === submitted.trim();
 }
 
-function prepareHint(section, prompt, inputId, headingId) {
+function prepareHint(prompt, inputId, inline) {
   const content = prompt.querySelector(".hint-content");
   if (!content) return;
   const button = document.createElement("button");
@@ -108,21 +108,19 @@ function prepareHint(section, prompt, inputId, headingId) {
   button.setAttribute("aria-controls", content.id);
   function setOpen(open) {
     content.hidden = !open;
+    if (inline) button.hidden = open;
     button.setAttribute("aria-expanded", String(open));
-    button.textContent = open ? "ヒントを隠す" : "ヒントを表示";
+    button.textContent = open && !inline ? "ヒントを隠す" : "ヒントを表示";
   }
   setOpen(false);
   button.addEventListener("click", () => setOpen(content.hidden));
-  // Place the hint after its part card, not inside the card's grid.
-  // Numbas attaches each .part in a separate .part-wrapper.
   const hintPanel = document.createElement("div");
-  hintPanel.className = "worksheet-hint";
+  hintPanel.className = inline ? "worksheet-hint continuous-inline-hint" : "worksheet-hint";
   hintPanel.append(button, content);
-  // The host mounts this outside the Numbas shadow DOM.
   return { panel: hintPanel, open: () => setOpen(true) };
 }
 
-function numericControl(part, section, answer, index) {
+function numericControl(part, section, answer, index, continuous) {
   const input = answer.querySelector("input.numberentry");
   input.inputMode = "decimal";
   input.maxLength = 128;
@@ -192,7 +190,8 @@ function numericControl(part, section, answer, index) {
     else if (key === ".") button.setAttribute("aria-label", "小数点");
     button.addEventListener("click", () => {
       if (pad.disabled) return;
-      let value = partAnswers(part).draft;
+      const draft = partAnswers(part).draft;
+      let value = draft;
       if (key === "消す") value = value.slice(0, -1);
       else if (key === "±") value = value.startsWith("-") ? value.slice(1) : "-" + value;
       else if (key === ".") {
@@ -201,12 +200,16 @@ function numericControl(part, section, answer, index) {
       } else {
         value = value.replace(/^(-?)0$/, "$1") + key;
       }
-      if (value.length <= input.maxLength) part.display.studentAnswer(value);
+      if (value.length <= input.maxLength) {
+        part.display.studentAnswer(value);
+        if (continuous && value !== draft) input.dispatchEvent(new Event("input", { bubbles: true }));
+      }
     });
     pad.append(button);
   }
   return {
     input,
+    isComposing: () => composing,
     guidance() {
       normalizeInput();
       part.display.studentAnswer(input.value);
@@ -251,7 +254,7 @@ function choiceControl(part, answer) {
   };
 }
 
-export async function prepareAnswerControl(part, index, stepHintHTML = '') {
+export async function prepareAnswerControl(part, index, stepHintHTML = '', continuous = false) {
   const display = part.display;
   const section = await display.html_promise;
   // An information step can have its own answer element before the main input.
@@ -260,7 +263,7 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
   const prompt = section.querySelector(".prompt");
   const choice = part.type === "1_n_2";
   if (choice || prompt.querySelector(".worksheet-text") || prompt.textContent.trim().length > 20) section.classList.add("written-question");
-  const control = choice ? choiceControl(part, answer) : numericControl(part, section, answer, index);
+  const control = choice ? choiceControl(part, answer) : numericControl(part, section, answer, index, continuous);
   const { input } = control;
   if (!input.id) input.id = part.full_path + "-first-option";
   const base = input.id + "-worksheet";
@@ -275,7 +278,7 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
     content.innerHTML = stepHintHTML;
     prompt.appendChild(content);
   }
-  const hint = prepareHint(section, prompt, base, heading.id);
+  const hint = prepareHint(prompt, base, continuous);
   const label = document.createElement(choice ? "span" : "label");
   label.className = "answer-label";
   label.textContent = choice ? "答えを1つ選ぶ" : "答え";
@@ -339,23 +342,28 @@ export async function prepareAnswerControl(part, index, stepHintHTML = '') {
     guidance = "";
     refresh();
   });
+  function showFeedback() {
+    showResult = true;
+    display.feedbackShown(false);
+    refresh();
+    if (["wrong", "partial"].includes(display.scoreFeedback.state())) hint?.open();
+  }
+  // The usual practice handler already grades a single choice as soon as it is selected.
+  if (continuous && choice) part.events.on("post-submit", showFeedback);
   return {
     form: input.form,
     lock: control.lock,
     solution: control.solution,
     hintPanel: hint?.panel ?? null,
     validate() {
+      // Enter can also trigger native form submission during IME composition.
+      if (continuous && control.isComposing?.()) return false;
       guidance = control.guidance();
       refresh();
       if (guidance) control.focus();
       return !guidance;
     },
-    showResult() {
-      showResult = true;
-      display.feedbackShown(false);
-      refresh();
-      if (["wrong", "partial"].includes(display.scoreFeedback.state())) hint?.open();
-    },
+    showResult: showFeedback,
   };
 }
 

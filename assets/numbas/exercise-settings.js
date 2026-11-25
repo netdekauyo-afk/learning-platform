@@ -6,6 +6,7 @@ export const exerciseSettings = Object.freeze({
     "junior-high/social": ["知識", "理解", "資料読解"],
   },
   supportDelayMs: 10000,
+  continuousAdvanceDelayMs: 1000,
   shuffleChoices: true,
   // 例外は教材ID、設問名、パート番号（1から）の順に指定する。
   // 例: "j2-l001": { "設問名": { "1": false } }

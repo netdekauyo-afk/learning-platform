@@ -732,3 +732,63 @@
   }
 }
 
+:host([data-exercise-mode="continuous"]) {
+  .continuous-inline-hint {
+    color: var(--color-text);
+    min-width: 0;
+    margin: 0;
+  }
+  .continuous-inline-hint:has(.hint-toggle[aria-expanded="true"]) {
+    border-inline-start: 2px solid var(--color-accent);
+    padding-inline-start: .75rem;
+  }
+  .continuous-inline-hint .hint-content {
+    margin: 0;
+    padding: 0;
+    color: var(--color-text);
+  }
+  .continuous-inline-hint .hint-content p { margin: 0; }
+  .continuous-inline-hint .hint-toggle {
+    min-height: 2.75rem;
+    margin: 0;
+    padding: .25rem 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    text-decoration: underline;
+    text-underline-offset: .2em;
+  }
+  .continuous-inline-hint .hint-toggle[hidden] { display: none; }
+  .classroom-arrow { color: var(--color-text); }
+  .classroom-arrow:disabled { color: var(--color-muted); }
+  @media (min-width: 700px) {
+    .type-numberentry .classroom-question-card {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+      justify-items: stretch;
+      align-items: start;
+      column-gap: 1.25rem;
+    }
+    .type-numberentry .classroom-question-card > :is(.prompt, .continuous-inline-hint) {
+      grid-column: 1 / -1;
+    }
+    .type-numberentry .classroom-question-card > .answer-row {
+      grid-area: 3 / 1;
+      align-self: end;
+    }
+    .type-numberentry .classroom-question-card > .number-pad {
+      grid-area: 3 / 2 / span 2;
+      margin: 0;
+      justify-self: end;
+    }
+    .type-numberentry .classroom-question-card > .check-answers {
+      grid-area: 4 / 1;
+      width: min(100%, 16rem);
+    }
+  }
+  @media (max-width: 500px) {
+    .classroom-card-part { --arrow-gutter: 2.25rem; }
+    .classroom-arrow { width: 2.25rem; }
+    .classroom-arrow span { width: .95rem; height: 1.15rem; }
+  }
+}
+

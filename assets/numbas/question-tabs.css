@@ -79,3 +79,44 @@
 .difficulty-picker { margin: 0 0 .5rem; }
 .difficulty-picker > summary { width: fit-content; cursor: pointer; }
 .difficulty-tabs.classroom-tabs { border-bottom: 0; }
+
+.site-shell:has(#numbas-host[data-exercise-mode="continuous"]) {
+  padding-block: clamp(24px, 4vw, 42px);
+  .breadcrumb { margin-bottom: 20px; }
+  .problem-toolbar { margin-bottom: 12px; }
+  .question-switcher { display: none; }
+}
+#numbas-host[data-exercise-mode="continuous"] #other-subject-link[slot="review-actions"] {
+  /* Preserve the footer spacing when the worksheet hint moves into the card. */
+  margin-top: 1.5875rem;
+}
+.continuous-progress {
+  display: grid;
+  gap: 9px;
+  margin: 0 0 20px;
+  color: var(--color-text);
+}
+.continuous-progress-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 6px 1rem;
+  align-items: baseline;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+.continuous-progress #question-progress { margin: 0; color: inherit; }
+.continuous-progress progress {
+  width: 100%;
+  height: 10px;
+  border: 0;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--color-surface);
+  accent-color: var(--color-accent);
+}
+.continuous-progress progress::-webkit-progress-bar { background: var(--color-surface); }
+.continuous-progress progress::-webkit-progress-value {
+  background: var(--color-accent);
+  border-radius: 999px;
+}

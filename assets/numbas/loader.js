@@ -1,4 +1,4 @@
-import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=20261124-chapter-practice";
+import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=continuous-1";
 import { createDifficultyTabs } from "./difficulty-tabs.js?v=shared-design-1";
 import { exerciseSettings, applyExerciseSettings } from "./exercise-settings.js?v=shared-design-1";
 import { initializeRecognitionRule, isRecognizedCorrect, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect } from "./question-progress.js?v=shared-design-1";
@@ -7,6 +7,10 @@ const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
 const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
+const stylesheetURLs = [
+  resource("numbas-runtime/numbas.css"),
+  new URL("./theme.css?v=continuous-1", import.meta.url).href,
+];
 
 // Load the shared home/list storage helper without delaying or changing Numbas.
 const studyProgressReady = import(new URL("../curriculum-page.js?v=fixed-parts-1", import.meta.url).href)
@@ -29,7 +33,7 @@ function preparePageFrame() {
   if (!host) return;
   const sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = new URL("./question-tabs.css?v=shared-design-1", import.meta.url).href;
+  sheet.href = new URL("./question-tabs.css?v=continuous-1", import.meta.url).href;
   document.head.append(sheet);
 
   const lesson = location.pathname.match(/\/lessons\/[^/]+-l(\d+)\/questions\.html$/);
@@ -534,6 +538,7 @@ async function installWorksheetControls(examElement, examData) {
   const question = examElement.exam?.questionList?.[0];
   const definedParts = examData?.question_groups?.[0]?.questions?.[0]?.parts;
   if (!question?.parts?.length || question.parts.length !== definedParts?.length) return;
+  const continuous = examElement.dataset.exerciseMode === "continuous";
 
   // Sites waits until Numbas has attached the part HTML before decorating it.
   await new Promise((resolve) => setTimeout(resolve, 0));
@@ -544,13 +549,17 @@ async function installWorksheetControls(examElement, examData) {
       const steps = definedParts[index].steps || [];
       const hintMarkup = steps.filter((step) => step.type === "information")
         .map((step) => step.prompt || "").filter(Boolean).join("");
-      controls.push(await prepareAnswerControl(part, index, hintMarkup));
+      const control = await prepareAnswerControl(part, index, hintMarkup, continuous);
+      controls.push(control);
       const section = await part.display.html_promise;
-      arrangeQuestionCard(part, question, section, section.querySelector(":scope > .prompt"));
+      const prompt = section.querySelector(":scope > .prompt");
+      arrangeQuestionCard(part, question, section, prompt);
+      if (continuous && control.hintPanel) prompt.after(control.hintPanel);
     }
 
     const form = controls[0]?.form;
     if (!form) throw new Error("Numbasの入力フォームが見つかりません。");
+    if (continuous) await installNumericAutoSubmit(examElement, question);
     submit = document.createElement("button");
     submit.type = "submit";
     submit.className = "check-answers";
@@ -574,15 +583,17 @@ async function installWorksheetControls(examElement, examData) {
       }
     });
 
-    // Keep the original light-DOM hint before the subject picker and credits.
+    // Worksheets without continuous practice keep the hint in the footer slot.
     const panels = controls.map((control) => control.hintPanel).filter(Boolean);
     if (panels.length) {
-      const external = document.createElement("section");
-      external.className = "worksheet-hints";
-      external.setAttribute("aria-label", "問題のヒント");
-      external.append(...panels);
-      external.slot = "review-actions";
-      examElement.prepend(external);
+      if (!continuous) {
+        const external = document.createElement("section");
+        external.className = "worksheet-hints";
+        external.setAttribute("aria-label", "問題のヒント");
+        external.append(...panels);
+        external.slot = "review-actions";
+        examElement.prepend(external);
+      }
       const hideNativeSteps = document.createElement("style");
       hideNativeSteps.textContent = ".stepsBtn, .steps.well { display: none !important; }";
       examElement.shadowRoot.append(hideNativeSteps);
@@ -784,7 +795,7 @@ async function installNumericAutoSubmit(examElement, question = examElement.exam
       if (composing || input.disabled || input.readOnly || !input.value.trim()) return;
       timer = setTimeout(() => {
         timer = undefined;
-        if (composing || !input.isConnected || input.disabled || input.readOnly ||
+        if (composing || !input.isConnected || input.disabled || input.readOnly || examElement.inert ||
             examElement.closest("[hidden]") || question.exam.currentQuestion !== question || part.locked ||
             part.submitting || !part.isDirty || !part.display.cleanStudentAnswer()) return;
         part.display.controls.submit();
@@ -806,6 +817,21 @@ async function installNumericAutoSubmit(examElement, question = examElement.exam
     });
   }
   await Promise.all(question.parts.map(bind));
+}
+
+let continuousStyles;
+function prepareContinuousStyles() {
+  // One set supplies every exam in the chapter, even if the preview disconnects.
+  return continuousStyles ??= Promise.all(stylesheetURLs.map(async (href) => {
+    const response = await fetch(href);
+    if (!response.ok) throw new Error("Numbasのスタイルを読み込めませんでした。");
+    const css = await response.text();
+    // Inline styles resolve font URLs relative to the page instead of the stylesheet.
+    return css.replaceAll("resources/iconfont/", resource("numbas-runtime/resources/iconfont/"));
+  })).catch((error) => {
+    continuousStyles = undefined;
+    throw error;
+  });
 }
 
 let runtimeReady;
@@ -844,7 +870,10 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   }
   applyExerciseSettings(examData);
 
+  const continuous = !lessonLayout && examHost.dataset.exerciseMode === "continuous";
+  const inlineStyles = continuous ? await prepareContinuousStyles() : null;
   const exam = document.createElement("numbas-exam");
+  if (continuous) exam.dataset.exerciseMode = "continuous";
   exam.toggleAttribute("data-main-question-set", Boolean(authored));
   const questionCount = examData.question_groups.reduce((sum, group) => sum + group.questions.length, 0);
   exam.toggleAttribute("data-classroom-navigation", Boolean(authored) || questionCount === 1);
@@ -893,18 +922,22 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   }, { once: true });
   examHost.replaceChildren(exam);
 
-  const styles = [
-    resource("numbas-runtime/numbas.css"),
-    new URL("./theme.css?v=shared-design-1", import.meta.url).href,
-  ];
-  await Promise.all(styles.map((href) => new Promise((resolve, reject) => {
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.href = href;
-    link.onload = resolve;
-    link.onerror = () => reject(new Error("Numbasのスタイルを読み込めませんでした。"));
-    exam.shadowRoot.appendChild(link);
-  })));
+  if (inlineStyles) {
+    for (const css of inlineStyles) {
+      const style = document.createElement("style");
+      style.textContent = css;
+      exam.shadowRoot.appendChild(style);
+    }
+  } else {
+    await Promise.all(stylesheetURLs.map((href) => new Promise((resolve, reject) => {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = href;
+      link.onload = resolve;
+      link.onerror = () => reject(new Error("Numbasのスタイルを読み込めませんでした。"));
+      exam.shadowRoot.appendChild(link);
+    })));
+  }
   await exam.load_exam();
 }
 
