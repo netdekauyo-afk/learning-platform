@@ -89,7 +89,8 @@
     }
 
     /* Chapter */
-    details.chapter {
+    details.chapter,
+    .chapter-single {
       background: var(--color-surface);
       border: 2px solid var(--color-border);
       border-radius: 14px;
@@ -174,6 +175,23 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .chapter-single .chapter-body {
+      gap: 0;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+
+    .chapter-single .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 0;
+    }
+
+    .chapter-body > .lesson-list {
+      margin-top: 0;
+      margin-bottom: 0;
     }
 
     /* Section */
@@ -406,24 +424,12 @@
     <nav class="breadcrumb" aria-label="現在の場所"><a href="../../../">Classroom</a><span aria-hidden="true"> / </span><a href="../../">小学校</a><span aria-hidden="true"> / </span><a href="../">3年生</a><span aria-hidden="true"> / </span><span aria-current="page">外国語活動</span></nav>
     <header class="page-header">
       <h1 class="page-title">小学3年 外国語活動 学習一覧</h1>
-      <div class="page-meta">
-        <div class="controls" style="margin-left: auto;">
-          <button type="button" class="control-link" id="open-all">すべて開く</button>
-          <button type="button" class="control-link" id="close-all">すべて閉じる</button>
-        </div>
-      </div>
       <div class="curriculum-source-notes" aria-label="参照教材と資料">
         <p><strong>参照教材：</strong>文部科学省『Let's Try! 1』（小学3年外国語活動）</p>
       </div>
     </header>
     <main class="curriculum-list" id="curriculum-list">
-      <details class="chapter" open data-chapter-index="0" data-chapter-id="ef3-c001">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 1 Hello! あいさつをして友だちになろう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c001/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      <section class="chapter chapter-single" data-chapter-index="0" data-chapter-id="ef3-c001" data-chapter-name="Unit 1 Hello! あいさつをして友だちになろう" aria-label="Unit 1 Hello! あいさつをして友だちになろう" data-chapter-question-target="chapters/ef3-c001/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u001" data-seq="1" data-unit="Unit 1 Hello! あいさつをして友だちになろう" data-former-period-range="1-2" data-allocated-periods="2" data-textbook-pages="pp.2〜5" data-learning-objective="世界にはさまざまな言語があることに気付くとともに，相手に伝わるように工夫しながら名前を言って挨拶を交わそうとする。" data-learning-activities="Let’s Watch and Think / Let’s Chant / Let’s Listen / Activity" data-key-phrases="Hello. Hi. I’m (Hinata). Goodbye. See you." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0301.pdf">
@@ -436,14 +442,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="1" data-chapter-id="ef3-c002">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 2 How are you? ごきげんいかが？</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c002/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="1" data-chapter-id="ef3-c002" data-chapter-name="Unit 2 How are you? ごきげんいかが？" aria-label="Unit 2 How are you? ごきげんいかが？" data-chapter-question-target="chapters/ef3-c002/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u002" data-seq="2" data-unit="Unit 2 How are you? ごきげんいかが？" data-former-period-range="3-4" data-allocated-periods="2" data-textbook-pages="pp.6〜9" data-learning-objective="表情やジェスチャーの大切さに気付き，表情やジェスチャーを付けて相手に伝わるように工夫しながら，感情や状態を尋ねたり答えたりして挨拶を交わす。" data-learning-activities="Let’s Watch and Think 1・2 / Let’s Listen / Let’s Sing 1・2 / Activity" data-key-phrases="How are you? I’m (happy)." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0302.pdf">
@@ -456,14 +456,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="2" data-chapter-id="ef3-c003">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 3 How many? 数えてあそぼう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c003/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="2" data-chapter-id="ef3-c003" data-chapter-name="Unit 3 How many? 数えてあそぼう" aria-label="Unit 3 How many? 数えてあそぼう" data-chapter-question-target="chapters/ef3-c003/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u003" data-seq="3" data-unit="Unit 3 How many? 数えてあそぼう" data-former-period-range="5-8" data-allocated-periods="4" data-textbook-pages="pp.10〜13" data-learning-objective="1〜20の数の数え方や多様な考え方に気付き，相手に伝わるように工夫しながら数を尋ねたり答えたりして伝え合う。" data-learning-activities="Let’s Play 1・2・3 / Let’s Sing / Let’s Watch and Think / Let’s Chant / Activity 1・2" data-key-phrases="How many (apples)? (Ten) (apples). Yes. That’s right. No. Sorry." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0303.pdf">
@@ -476,14 +470,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="3" data-chapter-id="ef3-c004">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 4 I like blue. すきなものをつたえよう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c004/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="3" data-chapter-id="ef3-c004" data-chapter-name="Unit 4 I like blue. すきなものをつたえよう" aria-label="Unit 4 I like blue. すきなものをつたえよう" data-chapter-question-target="chapters/ef3-c004/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u004" data-seq="4" data-unit="Unit 4 I like blue. すきなものをつたえよう" data-former-period-range="9-12" data-allocated-periods="4" data-textbook-pages="pp.14〜17" data-learning-objective="多様な考え方や日本語と英語の音声・リズムの違いに気付き，好きかどうかを尋ねたり答えたりしながら相手に伝わるように自分の好みを紹介する。" data-learning-activities="Let’s Watch and Think 1・2 / Let’s Listen 1・2・3 / Let’s Sing / Let’s Chant / Let’s Play / Activity 1・2" data-key-phrases="I like (blue). Do you like (blue)? Yes, I do. / No, I don’t. I don’t like (blue)." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0304.pdf">
@@ -496,14 +484,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="4" data-chapter-id="ef3-c005">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 5 What do you like? 何がすき？</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c005/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="4" data-chapter-id="ef3-c005" data-chapter-name="Unit 5 What do you like? 何がすき？" aria-label="Unit 5 What do you like? 何がすき？" data-chapter-question-target="chapters/ef3-c005/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u005" data-seq="5" data-unit="Unit 5 What do you like? 何がすき？" data-former-period-range="13-16" data-allocated-periods="4" data-textbook-pages="pp.18〜21" data-learning-objective="日本語と英語の音声の違いに気付くとともに身の回りの物の言い方を知り，相手に伝わるように工夫しながら何が好きかを尋ねたり答えたりして伝え合う。" data-learning-activities="Let’s Play / Let’s Chant / Let’s Listen / Let’s Watch and Think / Activity 1・2" data-key-phrases="What do you like? I like (tennis). What (sport) do you like? I like (soccer)." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0305.pdf">
@@ -516,14 +498,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="5" data-chapter-id="ef3-c006">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 6 ALPHABET アルファベットとなかよし</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c006/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="5" data-chapter-id="ef3-c006" data-chapter-name="Unit 6 ALPHABET アルファベットとなかよし" aria-label="Unit 6 ALPHABET アルファベットとなかよし" data-chapter-question-target="chapters/ef3-c006/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u006" data-seq="6" data-unit="Unit 6 ALPHABET アルファベットとなかよし" data-former-period-range="17-20" data-allocated-periods="4" data-textbook-pages="pp.22〜25" data-learning-objective="身の回りの表示からアルファベットの大文字とその読み方に慣れ親しみ，相手に伝わるように工夫しながら自分の姓名の頭文字を伝え合う。" data-learning-activities="Let’s Watch and Think / Let’s Sing / Let’s Play / Activity" data-key-phrases="(The “A” card), please. Here you are. Thank you. You’re welcome." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0306.pdf">
@@ -536,14 +512,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="6" data-chapter-id="ef3-c007">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 7 This is for you. カードをおくろう</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c007/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="6" data-chapter-id="ef3-c007" data-chapter-name="Unit 7 This is for you. カードをおくろう" aria-label="Unit 7 This is for you. カードをおくろう" data-chapter-question-target="chapters/ef3-c007/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u007" data-seq="7" data-unit="Unit 7 This is for you. カードをおくろう" data-former-period-range="21-25" data-allocated-periods="5" data-textbook-pages="pp.26〜29" data-learning-objective="色や形，欲しいものを尋ねたり答えたりする表現に慣れ親しみ，相手に伝わるように工夫しながら自分の作品を紹介する。" data-learning-activities="Let’s Play 1・2 / Let’s Watch and Think / Let’s Chant / Let’s Listen / Activity" data-key-phrases="What do you want? (A star), please. Here you are. This is for you. Thank you. You’re welcome." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0307.pdf">
@@ -556,14 +526,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="7" data-chapter-id="ef3-c008">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 8 What’s this? これなあに？</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c008/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="7" data-chapter-id="ef3-c008" data-chapter-name="Unit 8 What’s this? これなあに？" aria-label="Unit 8 What’s this? これなあに？" data-chapter-question-target="chapters/ef3-c008/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u008" data-seq="8" data-unit="Unit 8 What’s this? これなあに？" data-former-period-range="26-30" data-allocated-periods="5" data-textbook-pages="pp.31〜33" data-learning-objective="外来語と英語の違いに気付き，身の回りの物の言い方を知り，相手に伝わるように工夫しながらクイズを出したり答えたりして伝え合う。" data-learning-activities="Let’s Play 1・2 / Let’s Chant / Activity（ヒント・クイズ、漢字クイズ、足あとクイズ、クイズ大会）" data-key-phrases="What’s this? Hint, please. It’s (a fruit). It’s (green). It’s (a melon). That’s right." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0308.pdf">
@@ -576,14 +540,8 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" data-chapter-index="8" data-chapter-id="ef3-c009">
-        <summary class="chapter-summary">
-          <span class="chapter-name">Unit 9 Who are you? きみはだれ？</span>
-          <span class="chapter-actions">
-            <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/ef3-c009/questions.html" data-published="false">問題</a>
-          </span>
-        </summary>
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="8" data-chapter-id="ef3-c009" data-chapter-name="Unit 9 Who are you? きみはだれ？" aria-label="Unit 9 Who are you? きみはだれ？" data-chapter-question-target="chapters/ef3-c009/questions.html">
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="ef3-u009" data-seq="9" data-unit="Unit 9 Who are you? きみはだれ？" data-former-period-range="31-35" data-allocated-periods="5" data-textbook-pages="pp.34〜35" data-learning-objective="絵本などの短い話を聞いて大まかな内容をつかむとともに，誰かと尋ねたり答えたりする表現に慣れ親しみ，相手に伝わるように台詞をまねて言おうとする。" data-learning-activities="絵本の読み聞かせ / Who am I? クイズ / 歌 Head, Shoulders, Knees and Toes / Please Touch ゲーム / 場面カード並べ / 発表会" data-key-phrases="Are you (a dog)? Yes, I am. / No, I’m not. Who are you? I’m (a dog). Who am I? Hint, please." data-source-url="https://www.mext.go.jp/component/b_menu/shingi/toushin/__icsFiles/afieldfile/2018/08/22/1395223_0309.pdf">
@@ -596,7 +554,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <nav class="problem-toolbar grade-navigation" aria-label="同じ科目の学年移動" style="margin-top: 24px;">
         <a class="problem-next" href="../../grade-4/english/">小学4年の外国語活動 →</a>
       </nav>
