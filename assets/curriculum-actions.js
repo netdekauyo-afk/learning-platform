@@ -9,6 +9,10 @@
     ? { summary: "ようやく", video: "どうが", questions: "もんだい" }
     : { summary: "要約", video: "動画", questions: "問題" };
 
+  document.querySelectorAll('a[data-kind="section-questions"]').forEach(function (link) {
+    link.remove();
+  });
+
   document.querySelectorAll(".lesson-item[data-lesson-id]").forEach(function (row) {
     const title = row.querySelector('a.lesson-title-link[data-kind="summary"]');
     const actions = row.querySelector(".lesson-links");
@@ -32,7 +36,7 @@
   });
 
   if (isLowerElementary) {
-    document.querySelectorAll('.chapter-question-link[data-kind$="questions"], .section-link[data-kind$="questions"]').forEach(function (link) {
+    document.querySelectorAll('.chapter-question-link[data-kind$="questions"]').forEach(function (link) {
       if (link.textContent.trim() === "問題") link.textContent = labels.questions;
     });
   }
