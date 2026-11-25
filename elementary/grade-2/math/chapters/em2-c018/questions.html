@@ -10,13 +10,11 @@
     @font-face { font-family: "FontAwesome"; src: url("../../../../../assets/numbas/engine/numbas-runtime/resources/iconfont/fontawesome.woff") format("woff"); font-display: block; }
     #numbas-host, numbas-exam { display: block; min-width: 0; }
     #numbas-status { min-height: 1.5em; color: var(--color-muted); }
-    .question-switcher { display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; }
-    .question-switcher button:disabled { opacity: .5; }
   </style>
   <script src="../../../../../assets/numbas/math-config.js"></script>
   <script defer src="../../../../../assets/numbas/engine/mathjax/tex-svg.js"></script>
   <script defer src="../../../../../assets/numbas/engine/numbas-runtime/numbas.js"></script>
-  <script type="module" src="../../../../../assets/numbas/chapter-practice.js"></script>
+  <script type="module" src="../../../../../assets/numbas/chapter-practice.js?v=continuous-2"></script>
 </head>
 <body>
   <div class="site-shell">
@@ -32,11 +30,7 @@
       <h1>10 かけ算(1)</h1>
       <p id="question-progress" aria-live="polite"></p>
       <p id="numbas-status" role="status">もんだいを よみこんでいます。</p>
-      <div id="numbas-host" data-main-question-set data-exam-source="./em2-c018.exam"></div>
-      <div class="question-switcher" role="group" aria-label="もんだいの いどう">
-        <button id="question-previous" class="practice-reveal-button" type="button" disabled>まえの もんだい</button>
-        <button id="question-next" class="practice-reveal-button" type="button" disabled>つぎの もんだい</button>
-      </div>
+      <div id="numbas-host" data-main-question-set data-exercise-mode="continuous" data-exam-source="./em2-c018.exam"></div>
     </main>
   </div>
 </body>
