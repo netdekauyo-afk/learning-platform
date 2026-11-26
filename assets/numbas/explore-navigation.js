@@ -100,7 +100,10 @@ export function choiceRetryAttempt(question, parts, recognized, repeatCanCount) 
           batching = true;
           try { for (const branch of required) if (!branch.instance) open(branch, true); }
           finally { batching = false; }
-          question.setCurrentPart(required[0].instance);
+          // Numbas selects each part as it is created. Keep the marked main
+          // on screen until its reading time ends or the learner uses the arrow.
+          question.setCurrentPart(main);
+          question.events.trigger("classroom:required-parts-ready");
         }
       }
     }
@@ -243,11 +246,9 @@ export function exploreNavigation(examElement, question, parts, retry = null) {
       refresh();
     }, delay);
   }
-  function afterMark() {
-    if (main.score < main.marks) lastOptionalId = "";
-    refresh();
-    if (retry || !forward || !active(main) || main.resuming || question.exam.loading ||
-        question.exam.mode === "review" || main.score >= main.marks || !next()) return;
+  function startCountdown() {
+    if (!forward || !active(main) || main.resuming || question.exam.loading ||
+        question.exam.mode === "review" || (retry && document.hidden) || !next()) return;
     deadline = performance.now() + branchDelayMs;
     const tick = () => {
       const seconds = Math.max(1, Math.ceil((deadline - performance.now()) / 1000));
@@ -259,9 +260,17 @@ export function exploreNavigation(examElement, question, parts, retry = null) {
     countdownInterval = setInterval(tick, 200);
     navigationTimer = setTimeout(() => move(main, forward), branchDelayMs - transitionMs);
   }
+  if (retry) {
+    question.events.on("classroom:required-parts-ready", startCountdown);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) cancel(); });
+  }
   retry?.observe(refresh);
   main.events.on("pre-submit", cancel);
-  main.events.on("post-submit", afterMark);
+  main.events.on("post-submit", () => {
+    if (main.score < main.marks) lastOptionalId = "";
+    refresh();
+    if (!retry && main.score < main.marks) startCountdown();
+  });
   question.events.on("setCurrentPart", () => { cancel(); refresh(); });
   question.exam.events.on("changeQuestion", () => { if (!active(main)) cancel(); });
   window.addEventListener("pagehide", cancel);
