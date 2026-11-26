@@ -89,14 +89,16 @@
     }
 
     /* Chapter */
-    details.chapter {
+    details.chapter,
+    section.chapter-single {
       background: var(--color-surface);
       border: 2px solid var(--color-border);
       border-radius: 14px;
       overflow: hidden;
     }
 
-    summary.chapter-summary {
+    summary.chapter-summary,
+    .chapter-single > .chapter-summary {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -165,7 +167,8 @@
       transform: rotate(90deg);
     }
 
-    details.chapter[open] > summary.chapter-summary {
+    details.chapter[open] > summary.chapter-summary,
+    .chapter-single > .chapter-summary {
       border-bottom: 1px solid var(--color-border);
     }
 
@@ -174,6 +177,15 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .chapter-single > .chapter-summary {
+      cursor: default;
+      user-select: auto;
+    }
+
+    .chapter-single .chapter-name::before {
+      content: none;
     }
 
     /* Section */
@@ -357,7 +369,8 @@
         font-size: 1.5rem;
       }
 
-      summary.chapter-summary {
+      summary.chapter-summary,
+      .chapter-single > .chapter-summary {
         padding: 11px 12px;
       }
 
@@ -420,14 +433,14 @@
     </header>
 
     <main class="curriculum-list" id="curriculum-list">
-      <details class="chapter" open data-chapter-index="0" data-unit-id="e1-u001">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="0" data-unit-id="e1-u001" aria-label="Unit 0 あいさつと好きなものの表現">
+        <div class="chapter-summary">
           <span class="chapter-name">Unit 0 あいさつと好きなものの表現</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u001/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l001" data-seq="1">
@@ -440,15 +453,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="1" data-unit-id="e1-u002">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="1" data-unit-id="e1-u002" aria-label="Sounds and Letters 0">
+        <div class="chapter-summary">
           <span class="chapter-name">Sounds and Letters 0</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u002/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l002" data-seq="2">
@@ -461,15 +474,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="2" data-unit-id="e1-u003">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="2" data-unit-id="e1-u003" aria-label="Grammar for Communication 0">
+        <div class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 0</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u003/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l003" data-seq="3">
@@ -482,7 +495,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="3" data-unit-id="e1-u004">
         <summary class="chapter-summary">
           <span class="chapter-name">Unit 1 be動詞と一般動詞</span>
@@ -492,15 +505,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s001">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s001" data-kind="section-questions" data-target="sections/e1-s001/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s001 e1-s002 e1-s003">
             <li class="lesson-item" data-lesson-id="e1-l004" data-seq="4">
               <span class="lesson-num">4</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l004" data-kind="summary" data-target="lessons/e1-l004/summary.html" data-published="true">be動詞の肯定文（I am ～）と自己紹介</a>
@@ -517,17 +522,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l005" data-kind="questions" data-target="lessons/e1-l005/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s002">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s002" data-kind="section-questions" data-target="sections/e1-s002/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l006" data-seq="6">
               <span class="lesson-num">6</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l006" data-kind="summary" data-target="lessons/e1-l006/summary.html" data-published="true">一般動詞の疑問文（Do you ～?）と答え方</a>
@@ -544,17 +538,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l007" data-kind="questions" data-target="lessons/e1-l007/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s003">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P3</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s003" data-kind="section-questions" data-target="sections/e1-s003/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l008" data-seq="8">
               <span class="lesson-num">8</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l008" data-kind="summary" data-target="lessons/e1-l008/summary.html" data-published="true">be動詞の疑問文（Are you ～?）と答え方</a>
@@ -572,17 +555,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="4" data-unit-id="e1-u005">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="4" data-unit-id="e1-u005" aria-label="Sounds and Letters 1">
+        <div class="chapter-summary">
           <span class="chapter-name">Sounds and Letters 1</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u005/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l010" data-seq="10">
@@ -595,7 +577,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="5" data-unit-id="e1-u006">
         <summary class="chapter-summary">
           <span class="chapter-name">Unit 2 3人称のbe動詞・can・This / That</span>
@@ -605,15 +587,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s004">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s004" data-kind="section-questions" data-target="sections/e1-s004/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s004 e1-s005 e1-s006">
             <li class="lesson-item" data-lesson-id="e1-l011" data-seq="11">
               <span class="lesson-num">11</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l011" data-kind="summary" data-target="lessons/e1-l011/summary.html" data-published="true">3人称のbe動詞の肯定文（He / She is ～）</a>
@@ -630,17 +604,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l012" data-kind="questions" data-target="lessons/e1-l012/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s005">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s005" data-kind="section-questions" data-target="sections/e1-s005/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l013" data-seq="13">
               <span class="lesson-num">13</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l013" data-kind="summary" data-target="lessons/e1-l013/summary.html" data-published="true">助動詞canの肯定文（I can ～）とできることの表現</a>
@@ -657,17 +620,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l014" data-kind="questions" data-target="lessons/e1-l014/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s006">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P3</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s006" data-kind="section-questions" data-target="sections/e1-s006/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l015" data-seq="15">
               <span class="lesson-num">15</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l015" data-kind="summary" data-target="lessons/e1-l015/summary.html" data-published="true">This / Thatの肯定文と身近なものの紹介</a>
@@ -685,17 +637,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="6" data-unit-id="e1-u007">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="6" data-unit-id="e1-u007" aria-label="Sounds and Letters 2">
+        <div class="chapter-summary">
           <span class="chapter-name">Sounds and Letters 2</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u007/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l017" data-seq="17">
@@ -708,7 +659,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="7" data-unit-id="e1-u008">
         <summary class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 1</span>
@@ -747,15 +698,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s007">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s007" data-kind="section-questions" data-target="sections/e1-s007/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s007 e1-s008 e1-s009">
             <li class="lesson-item" data-lesson-id="e1-l020" data-seq="20">
               <span class="lesson-num">20</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l020" data-kind="summary" data-target="lessons/e1-l020/summary.html" data-published="true">疑問詞Whatを使った質問と答え方</a>
@@ -772,17 +715,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l021" data-kind="questions" data-target="lessons/e1-l021/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s008">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s008" data-kind="section-questions" data-target="sections/e1-s008/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l022" data-seq="22">
               <span class="lesson-num">22</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l022" data-kind="summary" data-target="lessons/e1-l022/summary.html" data-published="true">疑問詞Howを使った方法・様子のたずね方</a>
@@ -799,17 +731,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l023" data-kind="questions" data-target="lessons/e1-l023/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s009">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P3</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s009" data-kind="section-questions" data-target="sections/e1-s009/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l024" data-seq="24">
               <span class="lesson-num">24</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l024" data-kind="summary" data-target="lessons/e1-l024/summary.html" data-published="true">疑問詞Whereを使った場所のたずね方</a>
@@ -827,17 +748,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="9" data-unit-id="e1-u010">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="9" data-unit-id="e1-u010" aria-label="Sounds and Letters 3">
+        <div class="chapter-summary">
           <span class="chapter-name">Sounds and Letters 3</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u010/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l026" data-seq="26">
@@ -850,7 +770,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="10" data-unit-id="e1-u011">
         <summary class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 2</span>
@@ -889,15 +809,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s010">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s010" data-kind="section-questions" data-target="sections/e1-s010/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s010 e1-s011 e1-s012">
             <li class="lesson-item" data-lesson-id="e1-l029" data-seq="29">
               <span class="lesson-num">29</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l029" data-kind="summary" data-target="lessons/e1-l029/summary.html" data-published="true">数をたずねる表現（How many ～?）のしくみ</a>
@@ -914,17 +826,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l030" data-kind="questions" data-target="lessons/e1-l030/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s011">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s011" data-kind="section-questions" data-target="sections/e1-s011/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l031" data-seq="31">
               <span class="lesson-num">31</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l031" data-kind="summary" data-target="lessons/e1-l031/summary.html" data-published="true">時刻をたずねる表現（What time ～?）</a>
@@ -941,17 +842,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l032" data-kind="questions" data-target="lessons/e1-l032/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s012">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P3</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s012" data-kind="section-questions" data-target="sections/e1-s012/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l033" data-seq="33">
               <span class="lesson-num">33</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l033" data-kind="summary" data-target="lessons/e1-l033/summary.html" data-published="true">命令文（動詞の原形・Be ～）による指示と助言</a>
@@ -969,17 +859,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="12" data-unit-id="e1-u013">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="12" data-unit-id="e1-u013" aria-label="Sounds and Letters 4">
+        <div class="chapter-summary">
           <span class="chapter-name">Sounds and Letters 4</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u013/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l035" data-seq="35">
@@ -992,15 +881,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="13" data-unit-id="e1-u014">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="13" data-unit-id="e1-u014" aria-label="Grammar for Communication 3">
+        <div class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 3</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u014/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l036" data-seq="36">
@@ -1013,7 +902,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="14" data-unit-id="e1-u015">
         <summary class="chapter-summary">
           <span class="chapter-name">Stage Activity 1“All about Me” Poster</span>
@@ -1052,15 +941,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s013">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s013" data-kind="section-questions" data-target="sections/e1-s013/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s013 e1-s014 e1-s015 e1-s016">
             <li class="lesson-item" data-lesson-id="e1-l039" data-seq="39">
               <span class="lesson-num">39</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l039" data-kind="summary" data-target="lessons/e1-l039/summary.html" data-published="true">三人称単数現在形の肯定文と動詞の変化ルール</a>
@@ -1077,17 +958,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l040" data-kind="questions" data-target="lessons/e1-l040/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s014">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s014" data-kind="section-questions" data-target="sections/e1-s014/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l041" data-seq="41">
               <span class="lesson-num">41</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l041" data-kind="summary" data-target="lessons/e1-l041/summary.html" data-published="true">三人称単数現在形の疑問文（Does ～?）のしくみ</a>
@@ -1104,17 +974,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l042" data-kind="questions" data-target="lessons/e1-l042/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s015">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">RT</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s015" data-kind="section-questions" data-target="sections/e1-s015/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l043" data-seq="43">
               <span class="lesson-num">43</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l043" data-kind="summary" data-target="lessons/e1-l043/summary.html" data-published="true">三人称単数現在形の否定文（does not ～）のしくみ</a>
@@ -1131,17 +990,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l044" data-kind="questions" data-target="lessons/e1-l044/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s016">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">UA</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s016" data-kind="section-questions" data-target="sections/e1-s016/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l045" data-seq="45">
               <span class="lesson-num">45</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l045" data-kind="summary" data-target="lessons/e1-l045/summary.html" data-published="true">クラスメートの魅力を伝える友達紹介スピーチ</a>
@@ -1151,17 +999,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="16" data-unit-id="e1-u017">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="16" data-unit-id="e1-u017" aria-label="Real Life English 1コマーシャル">
+        <div class="chapter-summary">
           <span class="chapter-name">Real Life English 1コマーシャル</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u017/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l046" data-seq="46">
@@ -1174,15 +1021,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="17" data-unit-id="e1-u018">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="17" data-unit-id="e1-u018" aria-label="Grammar for Communication 4">
+        <div class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 4</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u018/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l047" data-seq="47">
@@ -1195,7 +1042,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="18" data-unit-id="e1-u019">
         <summary class="chapter-summary">
           <span class="chapter-name">Unit 6 人称・所有代名詞とWhose・Which</span>
@@ -1205,15 +1052,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s017">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s017" data-kind="section-questions" data-target="sections/e1-s017/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s017 e1-s018 e1-s019 e1-s020">
             <li class="lesson-item" data-lesson-id="e1-l048" data-seq="48">
               <span class="lesson-num">48</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l048" data-kind="summary" data-target="lessons/e1-l048/summary.html" data-published="true">人称代名詞の目的格（him / her / them等）のしくみ</a>
@@ -1230,17 +1069,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l049" data-kind="questions" data-target="lessons/e1-l049/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s018">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s018" data-kind="section-questions" data-target="sections/e1-s018/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l050" data-seq="50">
               <span class="lesson-num">50</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l050" data-kind="summary" data-target="lessons/e1-l050/summary.html" data-published="true">持ち主をたずねる疑問詞（Whose ～?）のしくみ</a>
@@ -1257,17 +1085,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l051" data-kind="questions" data-target="lessons/e1-l051/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s019">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">RT</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s019" data-kind="section-questions" data-target="sections/e1-s019/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l052" data-seq="52">
               <span class="lesson-num">52</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l052" data-kind="summary" data-target="lessons/e1-l052/summary.html" data-published="true">選択をたずねる疑問詞（Which ～, A or B?）のしくみ</a>
@@ -1284,17 +1101,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l053" data-kind="questions" data-target="lessons/e1-l053/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s020">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">UA</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s020" data-kind="section-questions" data-target="sections/e1-s020/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l054" data-seq="54">
               <span class="lesson-num">54</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l054" data-kind="summary" data-target="lessons/e1-l054/summary.html" data-published="true">日本の有名人・キャラクター紹介のやり取り活動</a>
@@ -1304,17 +1110,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="19" data-unit-id="e1-u020">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="19" data-unit-id="e1-u020" aria-label="Real Life English 2友達の家で">
+        <div class="chapter-summary">
           <span class="chapter-name">Real Life English 2友達の家で</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u020/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l055" data-seq="55">
@@ -1327,15 +1132,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="20" data-unit-id="e1-u021">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="20" data-unit-id="e1-u021" aria-label="Grammar for Communication 5">
+        <div class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 5</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u021/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l056" data-seq="56">
@@ -1348,7 +1153,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="21" data-unit-id="e1-u022">
         <summary class="chapter-summary">
           <span class="chapter-name">Unit 7 現在進行形と感嘆文</span>
@@ -1358,15 +1163,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s021">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s021" data-kind="section-questions" data-target="sections/e1-s021/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s021 e1-s022 e1-s023 e1-s024">
             <li class="lesson-item" data-lesson-id="e1-l057" data-seq="57">
               <span class="lesson-num">57</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l057" data-kind="summary" data-target="lessons/e1-l057/summary.html" data-published="true">現在進行形の肯定文（be動詞＋～ing）のしくみ</a>
@@ -1383,17 +1180,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l058" data-kind="questions" data-target="lessons/e1-l058/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s022">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s022" data-kind="section-questions" data-target="sections/e1-s022/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l059" data-seq="59">
               <span class="lesson-num">59</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l059" data-kind="summary" data-target="lessons/e1-l059/summary.html" data-published="true">現在進行形の疑問文（Are you ～ing?）と答え方</a>
@@ -1410,17 +1196,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l060" data-kind="questions" data-target="lessons/e1-l060/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s023">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">RT</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s023" data-kind="section-questions" data-target="sections/e1-s023/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l061" data-seq="61">
               <span class="lesson-num">61</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l061" data-kind="summary" data-target="lessons/e1-l061/summary.html" data-published="true">感嘆文（How ～! / What ～!）の形と意味</a>
@@ -1437,17 +1212,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l062" data-kind="questions" data-target="lessons/e1-l062/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s024">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">UA</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s024" data-kind="section-questions" data-target="sections/e1-s024/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l063" data-seq="63">
               <span class="lesson-num">63</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l063" data-kind="summary" data-target="lessons/e1-l063/summary.html" data-published="true">写真や動画を使った学校・町の実況報告</a>
@@ -1457,17 +1221,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="22" data-unit-id="e1-u023">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="22" data-unit-id="e1-u023" aria-label="Real Life English 3道案内">
+        <div class="chapter-summary">
           <span class="chapter-name">Real Life English 3道案内</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u023/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l064" data-seq="64">
@@ -1480,15 +1243,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="23" data-unit-id="e1-u024">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="23" data-unit-id="e1-u024" aria-label="Grammar for Communication 6">
+        <div class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 6</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u024/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l065" data-seq="65">
@@ -1501,7 +1264,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="24" data-unit-id="e1-u025">
         <summary class="chapter-summary">
           <span class="chapter-name">Unit 8 不定詞（名詞的用法）とlook＋形容詞</span>
@@ -1511,15 +1274,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s025">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s025" data-kind="section-questions" data-target="sections/e1-s025/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s025 e1-s026 e1-s027 e1-s028">
             <li class="lesson-item" data-lesson-id="e1-l066" data-seq="66">
               <span class="lesson-num">66</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l066" data-kind="summary" data-target="lessons/e1-l066/summary.html" data-published="true">不定詞の名詞的用法（want to / try to）のしくみ</a>
@@ -1536,17 +1291,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l067" data-kind="questions" data-target="lessons/e1-l067/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s026">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s026" data-kind="section-questions" data-target="sections/e1-s026/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l068" data-seq="68">
               <span class="lesson-num">68</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l068" data-kind="summary" data-target="lessons/e1-l068/summary.html" data-published="true">希望をたずねる表現（What do you want to ～?）のしくみ</a>
@@ -1563,17 +1307,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l069" data-kind="questions" data-target="lessons/e1-l069/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s027">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">RT</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s027" data-kind="section-questions" data-target="sections/e1-s027/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l070" data-seq="70">
               <span class="lesson-num">70</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l070" data-kind="summary" data-target="lessons/e1-l070/summary.html" data-published="true">look＋形容詞の表現と意味</a>
@@ -1590,17 +1323,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l071" data-kind="questions" data-target="lessons/e1-l071/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s028">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">UA</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s028" data-kind="section-questions" data-target="sections/e1-s028/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l072" data-seq="72">
               <span class="lesson-num">72</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l072" data-kind="summary" data-target="lessons/e1-l072/summary.html" data-published="true">世界や地域の課題に対する自分の思いの発表</a>
@@ -1610,17 +1332,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="25" data-unit-id="e1-u026">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="25" data-unit-id="e1-u026" aria-label="Real Life English 4レストラン">
+        <div class="chapter-summary">
           <span class="chapter-name">Real Life English 4レストラン</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u026/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l073" data-seq="73">
@@ -1633,7 +1354,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="26" data-unit-id="e1-u027">
         <summary class="chapter-summary">
           <span class="chapter-name">Stage Activity 2 My Hero</span>
@@ -1672,15 +1393,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s029">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s029" data-kind="section-questions" data-target="sections/e1-s029/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s029 e1-s030 e1-s031 e1-s032">
             <li class="lesson-item" data-lesson-id="e1-l076" data-seq="76">
               <span class="lesson-num">76</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l076" data-kind="summary" data-target="lessons/e1-l076/summary.html" data-published="true">一般動詞の過去形（規則動詞の肯定文）</a>
@@ -1697,17 +1410,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l077" data-kind="questions" data-target="lessons/e1-l077/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s030">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s030" data-kind="section-questions" data-target="sections/e1-s030/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l078" data-seq="78">
               <span class="lesson-num">78</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l078" data-kind="summary" data-target="lessons/e1-l078/summary.html" data-published="true">一般動詞の過去形の疑問文（Did you ～?）のしくみ</a>
@@ -1724,17 +1426,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l079" data-kind="questions" data-target="lessons/e1-l079/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s031">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">RT</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s031" data-kind="section-questions" data-target="sections/e1-s031/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l080" data-seq="80">
               <span class="lesson-num">80</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l080" data-kind="summary" data-target="lessons/e1-l080/summary.html" data-published="true">一般動詞の過去形の否定文（did not ～）のしくみ</a>
@@ -1751,17 +1442,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l081" data-kind="questions" data-target="lessons/e1-l081/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s032">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">UA</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s032" data-kind="section-questions" data-target="sections/e1-s032/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l082" data-seq="82">
               <span class="lesson-num">82</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l082" data-kind="summary" data-target="lessons/e1-l082/summary.html" data-published="true">冬休みの出来事を伝え合うコミュニケーション活動</a>
@@ -1771,17 +1451,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="28" data-unit-id="e1-u029">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="28" data-unit-id="e1-u029" aria-label="Real Life English 5旅先からの便り">
+        <div class="chapter-summary">
           <span class="chapter-name">Real Life English 5旅先からの便り</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u029/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l083" data-seq="83">
@@ -1794,15 +1473,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="29" data-unit-id="e1-u030">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="29" data-unit-id="e1-u030" aria-label="Grammar for Communication 7">
+        <div class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 7</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u030/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l084" data-seq="84">
@@ -1815,7 +1494,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="30" data-unit-id="e1-u031">
         <summary class="chapter-summary">
           <span class="chapter-name">Unit 10 be動詞の過去形・過去進行形・There is / are</span>
@@ -1825,15 +1504,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="e1-s033">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">扉P1</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s033" data-kind="section-questions" data-target="sections/e1-s033/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-ids="e1-s033 e1-s034 e1-s035 e1-s036">
             <li class="lesson-item" data-lesson-id="e1-l085" data-seq="85">
               <span class="lesson-num">85</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l085" data-kind="summary" data-target="lessons/e1-l085/summary.html" data-published="true">be動詞の過去形（was / were）の肯定文と否定文</a>
@@ -1850,17 +1521,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l086" data-kind="questions" data-target="lessons/e1-l086/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s034">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">P2</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s034" data-kind="section-questions" data-target="sections/e1-s034/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l087" data-seq="87">
               <span class="lesson-num">87</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l087" data-kind="summary" data-target="lessons/e1-l087/summary.html" data-published="true">過去進行形（was / were ＋ ～ing）のしくみ</a>
@@ -1877,17 +1537,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l088" data-kind="questions" data-target="lessons/e1-l088/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s035">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">RT</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s035" data-kind="section-questions" data-target="sections/e1-s035/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l089" data-seq="89">
               <span class="lesson-num">89</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l089" data-kind="summary" data-target="lessons/e1-l089/summary.html" data-published="true">There is / are ～ の肯定文・疑問文のしくみ</a>
@@ -1904,17 +1553,6 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l090" data-kind="questions" data-target="lessons/e1-l090/questions.html" data-published="false">問題</a>
               </span>
             </li>
-          </ol>
-        </details>
-        <details class="section" open data-section-id="e1-s036">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">UA</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="e1-s036" data-kind="section-questions" data-target="sections/e1-s036/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l091" data-seq="91">
               <span class="lesson-num">91</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="e1-l091" data-kind="summary" data-target="lessons/e1-l091/summary.html" data-published="true">一年の体験や感想をまとめる英語日記の作成</a>
@@ -1924,17 +1562,16 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="31" data-unit-id="e1-u032">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="31" data-unit-id="e1-u032" aria-label="Real Life English 6病院にて">
+        <div class="chapter-summary">
           <span class="chapter-name">Real Life English 6病院にて</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u032/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l092" data-seq="92">
@@ -1947,15 +1584,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="32" data-unit-id="e1-u033">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="32" data-unit-id="e1-u033" aria-label="Grammar for Communication 8">
+        <div class="chapter-summary">
           <span class="chapter-name">Grammar for Communication 8</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u033/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l093" data-seq="93">
@@ -1968,15 +1605,15 @@
             </li>
           </ol>
         </div>
-      </details>
-      <details class="chapter" open data-chapter-index="33" data-unit-id="e1-u034">
-        <summary class="chapter-summary">
+      </section>
+      <section class="chapter chapter-single" data-chapter-index="33" data-unit-id="e1-u034" aria-label="Learning Literature in English国語">
+        <div class="chapter-summary">
           <span class="chapter-name">Learning Literature in English国語</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/e1-u034/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="e1-l094" data-seq="94">
@@ -1989,7 +1626,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="34" data-unit-id="e1-u035">
         <summary class="chapter-summary">
           <span class="chapter-name">Stage Activity 3 My Favorite Event This Year</span>
