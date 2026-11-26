@@ -89,14 +89,16 @@
     }
 
     /* Chapter */
-    details.chapter {
+    details.chapter,
+    section.chapter-single {
       background: var(--color-surface);
       border: 2px solid var(--color-border);
       border-radius: 14px;
       overflow: hidden;
     }
 
-    summary.chapter-summary {
+    summary.chapter-summary,
+    .chapter-single > .chapter-summary {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -165,7 +167,8 @@
       transform: rotate(90deg);
     }
 
-    details.chapter[open] > summary.chapter-summary {
+    details.chapter[open] > summary.chapter-summary,
+    .chapter-single > .chapter-summary {
       border-bottom: 1px solid var(--color-border);
     }
 
@@ -174,6 +177,15 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .chapter-single > .chapter-summary {
+      cursor: default;
+      user-select: auto;
+    }
+
+    .chapter-single .chapter-name::before {
+      content: none;
     }
 
     /* Section */
@@ -357,7 +369,8 @@
         font-size: 1.5rem;
       }
 
-      summary.chapter-summary {
+      summary.chapter-summary,
+      .chapter-single > .chapter-summary {
         padding: 11px 12px;
       }
 
@@ -477,15 +490,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="soc3-h-s001">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">４節 日清・日露戦争と近代産業</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-h-s001" data-kind="section-questions" data-target="sections/soc3-h-s001/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">8回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-id="soc3-h-s001" data-original-section-name="４節 日清・日露戦争と近代産業">
             <li class="lesson-item" data-lesson-id="soc3-h-l001" data-seq="1" data-source-seq="84" data-source-topic="１欧米列強の侵略と条約改正" data-lesson-goal="欧米列強の帝国主義が進む中、陸奥宗光らによる領事裁判権撤廃など条約改正の過程を理解する" data-source-note="">
               <span class="lesson-num">1</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-h-l001" data-kind="summary" data-target="lessons/soc3-h-l001/summary.html" data-published="false">帝国主義の時代と条約改正への歩み（領事裁判権の撤廃）</a>
@@ -551,7 +556,6 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="1" data-chapter-id="soc3-h-c002">
@@ -708,7 +712,7 @@
               <span class="section-name">４節 第二次世界大戦と日本</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-h-s005" data-kind="section-questions" data-target="sections/soc3-h-s005/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">6回</span>
+            <span class="count-meta">4回</span>
           </summary>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-h-l022" data-seq="22" data-source-seq="105" data-source-topic="１第二次世界大戦の始まり" data-lesson-goal="ドイツのポーランド侵攻からヨーロッパ戦線の拡大、日独伊三国同盟と日ソ中立条約の締結を理解する" data-source-note="">
@@ -743,6 +747,9 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-h-l025" data-kind="questions" data-target="lessons/soc3-h-l025/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        </details>
+          <ol class="lesson-list" data-original-section-id="soc3-h-s005" data-original-section-name="４節 第二次世界大戦と日本">
             <li class="lesson-item" data-lesson-id="soc3-h-l026" data-seq="26" data-source-seq="109" data-source-topic="■まとめの活動" data-lesson-goal="くま手チャートを用いて、国際情勢・国内経済・政治の変化と戦争突入の経緯を整理する" data-source-note="">
               <span class="lesson-num">26</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-h-l026" data-kind="summary" data-target="lessons/soc3-h-l026/summary.html" data-published="false">6章「二度の世界大戦と日本」のまとめ（戦争への道の整理）</a>
@@ -760,7 +767,6 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="2" data-chapter-id="soc3-h-c003">
@@ -866,7 +872,7 @@
               <span class="section-name">３節 新たな時代の日本と世界</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-h-s008" data-kind="section-questions" data-target="sections/soc3-h-s008/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">6回</span>
+            <span class="count-meta">3回</span>
           </summary>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-h-l036" data-seq="36" data-source-seq="119" data-source-topic="１冷戦後の国際社会" data-lesson-goal="ソ連解体による冷戦終結と、EU統合・地域紛争・テロなど新たな国際社会の課題を理解する" data-source-note="">
@@ -893,6 +899,9 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-h-l038" data-kind="questions" data-target="lessons/soc3-h-l038/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        </details>
+          <ol class="lesson-list" data-original-section-id="soc3-h-s008" data-original-section-name="３節 新たな時代の日本と世界">
             <li class="lesson-item" data-lesson-id="soc3-h-l039" data-seq="39" data-source-seq="122" data-source-topic="■まとめの活動" data-lesson-goal="ピラミッドランキングを用いて、戦後日本が発展したきっかけや国際情勢との関わりを整理する" data-source-note="">
               <span class="lesson-num">39</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-h-l039" data-kind="summary" data-target="lessons/soc3-h-l039/summary.html" data-published="false">7章「現代の日本と私たち」のまとめ（戦後日本の成長要因）</a>
@@ -918,20 +927,19 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       </section>
       <section class="stream-group" id="civics" aria-labelledby="civics-heading">
         <h2 class="stream-heading" id="civics-heading">公民<span class="stream-count">96回</span></h2>
-      <details class="chapter" open data-chapter-index="3" data-chapter-id="soc3-c-c001">
-        <summary class="chapter-summary">
+      <section class="chapter chapter-single" data-chapter-index="3" data-chapter-id="soc3-c-c001" aria-label="公民的分野の学習の初めに">
+        <div class="chapter-summary">
           <span class="chapter-name">公民的分野の学習の初めに</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc3-c-c001/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l001" data-seq="1" data-source-seq="1" data-source-topic="■持続可能な社会の実現に向けて／■公民的分野の学習の初めに" data-lesson-goal="現代社会の課題や持続可能な社会について考え、地理・歴史とつながる公民学習の概要を把握する" data-source-note="">
@@ -944,7 +952,7 @@
             </li>
           </ol>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="4" data-chapter-id="soc3-c-c002">
         <summary class="chapter-summary">
           <span class="chapter-name">第１章 現代社会と私たち</span>
@@ -954,15 +962,7 @@
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="soc3-c-s001">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">１節 現代社会の特色と私たち</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s001" data-kind="section-questions" data-target="sections/soc3-c-s001/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">5回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-id="soc3-c-s001" data-original-section-name="１節 現代社会の特色と私たち">
             <li class="lesson-item" data-lesson-id="soc3-c-l002" data-seq="2" data-source-seq="2" data-source-topic="■導入の活動T市のまちの様子から現代社会をながめてみよう" data-lesson-goal="身のまわりのまちの様子からグローバル化・情報化・少子高齢化を読み取り整理する" data-source-note="">
               <span class="lesson-num">2</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l002" data-kind="summary" data-target="lessons/soc3-c-l002/summary.html" data-published="false">T市のまちの様子から探る現代社会の特色</a>
@@ -971,6 +971,16 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l002" data-kind="questions" data-target="lessons/soc3-c-l002/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        <details class="section" open data-section-id="soc3-c-s001">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節 現代社会の特色と私たち</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s001" data-kind="section-questions" data-target="sections/soc3-c-s001/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">4回</span>
+          </summary>
+          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l003" data-seq="3" data-source-seq="3" data-source-topic="１持続可能な社会に向けて" data-lesson-goal="持続可能性の意味を理解し、持続可能な社会の実現に必要な社会参画の態度を考察する" data-source-note="">
               <span class="lesson-num">3</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l003" data-kind="summary" data-target="lessons/soc3-c-l003/summary.html" data-published="false">持続可能な社会（SDGs）の考え方と社会参画</a>
@@ -1046,7 +1056,7 @@
               <span class="section-name">３節 現代社会の見方や考え方</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s003" data-kind="section-questions" data-target="sections/soc3-c-s003/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">5回</span>
+            <span class="count-meta">4回</span>
           </summary>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l010" data-seq="10" data-source-seq="10" data-source-topic="１社会集団の中で生きる私たち" data-lesson-goal="人間が複数の社会集団に属する社会的存在であることを理解し、対立と合意の意義を考察する" data-source-note="">
@@ -1081,6 +1091,9 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l013" data-kind="questions" data-target="lessons/soc3-c-l013/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        </details>
+          <ol class="lesson-list" data-original-section-id="soc3-c-s003" data-original-section-name="３節 現代社会の見方や考え方">
             <li class="lesson-item" data-lesson-id="soc3-c-l014" data-seq="14" data-source-seq="14" data-source-topic="■まとめの活動第１章の学習をまとめよう／■まとめの活動T市の新しい公園の使用ルールを考えよう" data-lesson-goal="対立と合意・効率と公正に着目し、T市の新しい公園の使用ルールを多面的に構想する" data-source-note="">
               <span class="lesson-num">14</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l014" data-kind="summary" data-target="lessons/soc3-c-l014/summary.html" data-published="false">1章「現代社会と私たち」のまとめ（公園の使用ルールづくり）</a>
@@ -1090,35 +1103,36 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="5" data-chapter-id="soc3-c-c003">
         <summary class="chapter-summary">
-          <span class="chapter-name">第２章 個人の尊重と日本国憲法</span>
+          <span class="chapter-name">第２章 人権と日本国憲法</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc3-c-c003/questions.html" data-published="false">問題</a>
             <span class="count-meta">17回</span>
           </span>
         </summary>
         <div class="chapter-body">
+          <ol class="lesson-list" data-original-section-id="soc3-c-s004" data-original-section-name="１節 人権と日本国憲法">
+            <li class="lesson-item" data-lesson-id="soc3-c-l015" data-seq="15" data-source-seq="15" data-source-topic="■章扉／■導入の活動ちがいのちがい" data-lesson-goal="9枚のカードの事例から文化や個性の多様性を整理し、人権学習への見通しをもつ" data-source-note="">
+              <span class="lesson-num">15</span>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l015" data-kind="summary" data-target="lessons/soc3-c-l015/summary.html" data-published="false">文化・個性の多様性と人権</a>
+              <span class="lesson-links">
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l015" data-kind="lesson" data-target="lessons/soc3-c-l015/lesson.html" data-published="false">授業</a>
+                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l015" data-kind="questions" data-target="lessons/soc3-c-l015/questions.html" data-published="false">問題</a>
+              </span>
+            </li>
+          </ol>
         <details class="section" open data-section-id="soc3-c-s004">
           <summary class="section-summary">
             <span class="section-heading">
               <span class="section-name">１節 人権と日本国憲法</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s004" data-kind="section-questions" data-target="sections/soc3-c-s004/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">6回</span>
+            <span class="count-meta">5回</span>
           </summary>
           <ol class="lesson-list">
-            <li class="lesson-item" data-lesson-id="soc3-c-l015" data-seq="15" data-source-seq="15" data-source-topic="■章扉／■導入の活動ちがいのちがい" data-lesson-goal="9枚のカードの事例から文化や個性の多様性を整理し、人権学習への見通しをもつ" data-source-note="">
-              <span class="lesson-num">15</span>
-              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l015" data-kind="summary" data-target="lessons/soc3-c-l015/summary.html" data-published="false">文化や個性の多様性と「ちがいのちがい」</a>
-              <span class="lesson-links">
-                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l015" data-kind="lesson" data-target="lessons/soc3-c-l015/lesson.html" data-published="false">授業</a>
-                <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l015" data-kind="questions" data-target="lessons/soc3-c-l015/questions.html" data-published="false">問題</a>
-              </span>
-            </li>
             <li class="lesson-item" data-lesson-id="soc3-c-l016" data-seq="16" data-source-seq="16" data-source-topic="１人権の歴史と憲法" data-lesson-goal="人の支配と法の支配の違いを比較し、立憲主義における人権と憲法の関係を理解する" data-source-note="">
               <span class="lesson-num">16</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l016" data-kind="summary" data-target="lessons/soc3-c-l016/summary.html" data-published="false">人権の歴史（権利章典・人権宣言）と法の支配</a>
@@ -1234,7 +1248,7 @@
               <span class="section-name">３節 これからの人権保障</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s006" data-kind="section-questions" data-target="sections/soc3-c-s006/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">4回</span>
+            <span class="count-meta">3回</span>
           </summary>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l028" data-seq="28" data-source-seq="28" data-source-topic="１新しい人権①産業や科学技術の発展と人間" data-lesson-goal="産業や科学技術の発展に伴う課題から認められてきた新しい人権の意義を理解する" data-source-note="">
@@ -1261,36 +1275,30 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l030" data-kind="questions" data-target="lessons/soc3-c-l030/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        </details>
+          <ol class="lesson-list" data-original-section-id="soc3-c-s006" data-original-section-name="３節 これからの人権保障">
             <li class="lesson-item" data-lesson-id="soc3-c-l031" data-seq="31" data-source-seq="31" data-source-topic="■まとめの活動第２章の学習をまとめよう／■まとめの活動ちがいのちがいを追究しよう" data-lesson-goal="個人の尊重と法の支配に着目し、多様性と人権保障について対話的に振り返りまとめる" data-source-note="">
               <span class="lesson-num">31</span>
-              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l031" data-kind="summary" data-target="lessons/soc3-c-l031/summary.html" data-published="false">2章「個人の尊重と日本国憲法」のまとめ（ちがいのちがいの追究）</a>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l031" data-kind="summary" data-target="lessons/soc3-c-l031/summary.html" data-published="false">2章「人権と日本国憲法」のまとめ（ちがいのちがいの追究）</a>
               <span class="lesson-links">
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l031" data-kind="lesson" data-target="lessons/soc3-c-l031/lesson.html" data-published="false">授業</a>
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l031" data-kind="questions" data-target="lessons/soc3-c-l031/questions.html" data-published="false">問題</a>
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="6" data-chapter-id="soc3-c-c004">
         <summary class="chapter-summary">
-          <span class="chapter-name">第３章 現代の民主政治と社会</span>
+          <span class="chapter-name">第３章 民主政治</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc3-c-c004/questions.html" data-published="false">問題</a>
             <span class="count-meta">23回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="soc3-c-s007">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">１節 現代の民主政治</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s007" data-kind="section-questions" data-target="sections/soc3-c-s007/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">7回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-id="soc3-c-s007" data-original-section-name="１節 現代の民主政治">
             <li class="lesson-item" data-lesson-id="soc3-c-l032" data-seq="32" data-source-seq="32" data-source-topic="■章扉／■導入の活動だれを市長に選ぶ？" data-lesson-goal="市長選の公約をマトリックスで整理し、民主政治における選択と合意形成への見通しをもつ" data-source-note="">
               <span class="lesson-num">32</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l032" data-kind="summary" data-target="lessons/soc3-c-l032/summary.html" data-published="false">架空の市長選挙から考える民主政治と公約の比較</a>
@@ -1299,6 +1307,16 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l032" data-kind="questions" data-target="lessons/soc3-c-l032/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        <details class="section" open data-section-id="soc3-c-s007">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節 現代の民主政治</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s007" data-kind="section-questions" data-target="sections/soc3-c-s007/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">6回</span>
+          </summary>
+          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l033" data-seq="33" data-source-seq="33" data-source-topic="１政治と民主主義" data-lesson-goal="民主主義の基本的な考え方と、合意形成のために私たちに求められる態度を理解する" data-source-note="">
               <span class="lesson-num">33</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l033" data-kind="summary" data-target="lessons/soc3-c-l033/summary.html" data-published="false">政治の役割と民主主義（直接民主制と間接民主制）</a>
@@ -1446,7 +1464,7 @@
               <span class="section-name">３節 地方自治と私たち</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s009" data-kind="section-questions" data-target="sections/soc3-c-s009/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">6回</span>
+            <span class="count-meta">5回</span>
           </summary>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l049" data-seq="49" data-source-seq="49" data-source-topic="１地方自治の考え方と役割" data-lesson-goal="地方自治が「民主主義の学校」と呼ばれる意義と、都道府県・市区町村の役割を理解する" data-source-note="">
@@ -1489,36 +1507,30 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l053" data-kind="questions" data-target="lessons/soc3-c-l053/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        </details>
+          <ol class="lesson-list" data-original-section-id="soc3-c-s009" data-original-section-name="３節 地方自治と私たち">
             <li class="lesson-item" data-lesson-id="soc3-c-l054" data-seq="54" data-source-seq="54" data-source-topic="■まとめの活動第３章の学習をまとめよう／■まとめの活動S市の議員になって条例を作ろう" data-lesson-goal="民主主義や効率と公正に着目し、市議会議員の立場で地域の課題解決の条例を構想する" data-source-note="">
               <span class="lesson-num">54</span>
-              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l054" data-kind="summary" data-target="lessons/soc3-c-l054/summary.html" data-published="false">3章「現代の民主政治と社会」のまとめ（S市の条例づくり）</a>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l054" data-kind="summary" data-target="lessons/soc3-c-l054/summary.html" data-published="false">3章「民主政治」のまとめ（S市の条例づくり）</a>
               <span class="lesson-links">
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l054" data-kind="lesson" data-target="lessons/soc3-c-l054/lesson.html" data-published="false">授業</a>
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l054" data-kind="questions" data-target="lessons/soc3-c-l054/questions.html" data-published="false">問題</a>
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="7" data-chapter-id="soc3-c-c005">
         <summary class="chapter-summary">
-          <span class="chapter-name">第４章 私たちの暮らしと経済</span>
+          <span class="chapter-name">第４章 経済</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc3-c-c005/questions.html" data-published="false">問題</a>
             <span class="count-meta">24回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="soc3-c-s010">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">１節 消費生活と経済</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s010" data-kind="section-questions" data-target="sections/soc3-c-s010/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">6回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-id="soc3-c-s010" data-original-section-name="１節 消費生活と経済">
             <li class="lesson-item" data-lesson-id="soc3-c-l055" data-seq="55" data-source-seq="55" data-source-topic="■章扉／■導入の活動コンビニエンスストアの経営者になってみよう" data-lesson-goal="コンビニの立地条件を整理しながら、消費・生産・流通など経済の仕組みへの見通しをもつ" data-source-note="">
               <span class="lesson-num">55</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l055" data-kind="summary" data-target="lessons/soc3-c-l055/summary.html" data-published="false">コンビニ経営者になって考える私たちの暮らしと経済</a>
@@ -1527,6 +1539,16 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l055" data-kind="questions" data-target="lessons/soc3-c-l055/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        <details class="section" open data-section-id="soc3-c-s010">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節 消費生活と経済</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s010" data-kind="section-questions" data-target="sections/soc3-c-s010/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l056" data-seq="56" data-source-seq="56" data-source-topic="１私たちの消費生活" data-lesson-goal="家計の仕組みと経済との関わりを理解し、計画的でより良い消費生活を送る条件を考察する" data-source-note="">
               <span class="lesson-num">56</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l056" data-kind="summary" data-target="lessons/soc3-c-l056/summary.html" data-published="false">家計の収入・支出と私たちの消費生活</a>
@@ -1728,7 +1750,7 @@
               <span class="section-name">５節 これからの経済と社会</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s014" data-kind="section-questions" data-target="sections/soc3-c-s014/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">3回</span>
+            <span class="count-meta">2回</span>
           </summary>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l076" data-seq="76" data-source-seq="76" data-source-topic="１公害の防止から循環型社会の形成へ" data-lesson-goal="環境基本法や3Rなど、環境保全と経済成長を両立させる循環型社会の取り組みを理解する" data-source-note="">
@@ -1747,36 +1769,30 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l077" data-kind="questions" data-target="lessons/soc3-c-l077/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        </details>
+          <ol class="lesson-list" data-original-section-id="soc3-c-s014" data-original-section-name="５節 これからの経済と社会">
             <li class="lesson-item" data-lesson-id="soc3-c-l078" data-seq="78" data-source-seq="78" data-source-topic="■まとめの活動第４章の学習をまとめよう／■まとめの活動コンビニエンスストアの新たなサービスを企画しよう" data-lesson-goal="経営者の視点と効率・公正の観点から、これからのコンビニの新しいあり方を構想・提案する" data-source-note="">
               <span class="lesson-num">78</span>
-              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l078" data-kind="summary" data-target="lessons/soc3-c-l078/summary.html" data-published="false">4章「私たちの暮らしと経済」のまとめ（コンビニの新戦略構想）</a>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l078" data-kind="summary" data-target="lessons/soc3-c-l078/summary.html" data-published="false">4章「経済」のまとめ（コンビニの新戦略構想）</a>
               <span class="lesson-links">
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l078" data-kind="lesson" data-target="lessons/soc3-c-l078/lesson.html" data-published="false">授業</a>
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l078" data-kind="questions" data-target="lessons/soc3-c-l078/questions.html" data-published="false">問題</a>
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="8" data-chapter-id="soc3-c-c006">
         <summary class="chapter-summary">
-          <span class="chapter-name">第５章 地球社会と私たち</span>
+          <span class="chapter-name">第５章 国際社会</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="chapter-questions" data-target="chapters/soc3-c-c006/questions.html" data-published="false">問題</a>
             <span class="count-meta">14回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-section-id="soc3-c-s015">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">１節 国際社会の仕組み</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s015" data-kind="section-questions" data-target="sections/soc3-c-s015/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">6回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-section-id="soc3-c-s015" data-original-section-name="１節 国際社会の仕組み">
             <li class="lesson-item" data-lesson-id="soc3-c-l079" data-seq="79" data-source-seq="79" data-source-topic="■章扉／■導入の活動SDGsから地球規模の課題についてとらえよう" data-lesson-goal="世界の諸課題をSDGsのゴールと関連づけて整理し、国際社会を学ぶ見通しをもつ" data-source-note="">
               <span class="lesson-num">79</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l079" data-kind="summary" data-target="lessons/soc3-c-l079/summary.html" data-published="false">SDGsから捉える地球規模の課題（国際社会への導入）</a>
@@ -1785,6 +1801,16 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l079" data-kind="questions" data-target="lessons/soc3-c-l079/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        <details class="section" open data-section-id="soc3-c-s015">
+          <summary class="section-summary">
+            <span class="section-heading">
+              <span class="section-name">１節 国際社会の仕組み</span>
+              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s015" data-kind="section-questions" data-target="sections/soc3-c-s015/questions.html" data-published="false">問題</a>
+            </span>
+            <span class="count-meta">5回</span>
+          </summary>
+          <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l080" data-seq="80" data-source-seq="80" data-source-topic="１国際社会における国家" data-lesson-goal="主権・領域・国民からなる主権国家の原則と、国家間の秩序を守る国際法の重要性を理解する" data-source-note="">
               <span class="lesson-num">80</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l080" data-kind="summary" data-target="lessons/soc3-c-l080/summary.html" data-published="false">国際社会における主権国家と国際法の役割</a>
@@ -1884,7 +1910,7 @@
               <span class="section-name">３節 これからの地球社会と日本</span>
               <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-section-id="soc3-c-s017" data-kind="section-questions" data-target="sections/soc3-c-s017/questions.html" data-published="false">問題</a>
             </span>
-            <span class="count-meta">3回</span>
+            <span class="count-meta">2回</span>
           </summary>
           <ol class="lesson-list">
             <li class="lesson-item" data-lesson-id="soc3-c-l090" data-seq="90" data-source-seq="90" data-source-topic="１世界と協力する日本" data-lesson-goal="途上国開発（ODA）や国連平和維持活動（PKO）・NGOの活動から日本の役割を考察する" data-source-note="">
@@ -1903,16 +1929,18 @@
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l091" data-kind="questions" data-target="lessons/soc3-c-l091/questions.html" data-published="false">問題</a>
               </span>
             </li>
+          </ol>
+        </details>
+          <ol class="lesson-list" data-original-section-id="soc3-c-s017" data-original-section-name="３節 これからの地球社会と日本">
             <li class="lesson-item" data-lesson-id="soc3-c-l092" data-seq="92" data-source-seq="92" data-source-topic="■まとめの活動第５章の学習をまとめよう／■まとめの活動はちみつの争い" data-lesson-goal="架空の国際問題の解決策を協調・持続可能性の観点から考え、日本の役割を考察する" data-source-note="">
               <span class="lesson-num">92</span>
-              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l092" data-kind="summary" data-target="lessons/soc3-c-l092/summary.html" data-published="false">5章「地球社会と私たち」のまとめ（架空の国際問題『はちみつの争い』）</a>
+              <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l092" data-kind="summary" data-target="lessons/soc3-c-l092/summary.html" data-published="false">5章「国際社会」のまとめ（架空の国際問題『はちみつの争い』）</a>
               <span class="lesson-links">
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l092" data-kind="lesson" data-target="lessons/soc3-c-l092/lesson.html" data-published="false">授業</a>
                 <a class="text-link action-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="soc3-c-l092" data-kind="questions" data-target="lessons/soc3-c-l092/questions.html" data-published="false">問題</a>
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="9" data-chapter-id="soc3-c-c007">
