@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l048 北海道地方の自然と地域の概観",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第48.0時限「北海道地方の自然と地域の概観」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "北海道地方の自然と地域の概観（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l048 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>北海道は、日本の都道府県の中で特別な位置を占めています。</p>",
+          "advice": "<p>答え：日本の国土面積の約2割を占め、都道府県の中で最も広い（北海道は日本の国土面積の約2割を占める、日本で最も広い都道府県です。その広さに対して人口は少なく、人口密度が低いことも特色です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l048-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：北海道の広さは、国土全体のどれくらいだったか思い出しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>北海道の面積について、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "日本の国土面積の約2割を占め、都道府県の中で最も広い",
+                "日本の国土面積の約1割を占め、都道府県の中で2番目に広い",
+                "日本の国土面積の約半分を占め、都道府県の中で最も広い",
+                "本州の面積とほぼ同じで、国土の約6割を占める"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "約1割ではなく約2割です。また、広さは2番目ではなく都道府県の中で最も広くなっています。",
+                "約2割が正しく、「約半分」という説明は大きすぎます。",
+                "北海道の面積は本州より小さく、国土の約2割です。約6割という説明は誤りです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "北海道地方の自然と地域の概観（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l048 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>北海道では、本州のような梅雨はほとんど見られません。</p>",
+          "advice": "<p>答え：北海道が本州より北に位置し、梅雨前線が届きにくいから（梅雨は、梅雨前線が日本列島付近に停滞することで起こります。北海道は本州より北の亜寒帯に位置し、梅雨前線が届きにくいため、梅雨の影響をほとんど受けません。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l048-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：梅雨をもたらす前線が、どこまで北上するかを考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>北海道で梅雨の影響をほとんど受けない理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "北海道が本州より北に位置し、梅雨前線が届きにくいから",
+                "北海道が海に囲まれた島だから",
+                "北海道には高い山脈が多く、前線をさえぎるから",
+                "北海道は人口が少なく、都市化が進んでいないから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "海に囲まれていることは梅雨の有無とは関係ありません。本州も海に囲まれていますが梅雨があります。",
+                "山脈の高さが理由ではありません。北海道の位置が北にあり、前線が届きにくいことが理由です。",
+                "人口や都市化は気候とは関係がありません。梅雨の有無は位置と前線の動きで決まります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "北海道地方の自然と地域の概観（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l048 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、北海道と本州の地点の気候の特色を比べたものです。</p><p><strong>資料　北海道と本州の気候の特色</strong>（教科書の記述をもとに作成）</p><table><thead><tr><th>項目</th><th>北海道</th><th>本州</th></tr></thead><tbody><tr><td>夏の気候</td><td>涼しく、過ごしやすい</td><td>暑くなる地域が多い</td></tr><tr><td>冬の気候</td><td>厳しい寒さで、雪が多い</td><td>地域によって差が大きい</td></tr><tr><td>梅雨</td><td>影響をほとんど受けない</td><td>梅雨の時期に雨が多い</td></tr></tbody></table>",
+          "advice": "<p>答え：夏は涼しく冬は厳しい寒さで、梅雨の影響をほとんど受けない（資料の表のとおり、北海道は夏は涼しく、冬は厳しい寒さと雪に見舞われ、梅雨の影響をほとんど受けません。亜寒帯（冷帯）に属する北海道の気候の特色です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l048-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：資料の表で、北海道の欄の3つの項目を本州と見比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れる、北海道の気候の特色として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "夏は涼しく冬は厳しい寒さで、梅雨の影響をほとんど受けない",
+                "夏は本州より暑く、冬も比較的温暖である",
+                "梅雨の時期に最も雨が多く、台風も頻繁に上陸する",
+                "一年を通して気温の変化が小さく、雪はほとんど降らない"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "夏は本州より涼しく、冬は厳しい寒さとなります。「暑くて温暖」という読み取りは逆です。",
+                "北海道は梅雨の影響をほとんど受けず、台風の影響も本州より少ないのが特色です。",
+                "北海道は夏と冬の気温差が大きく、冬には多くの雪が降ります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

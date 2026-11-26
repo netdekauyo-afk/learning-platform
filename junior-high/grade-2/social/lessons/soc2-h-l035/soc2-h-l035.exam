@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-h-l035 明治維新の三大改革（地租改正）と社会への影響",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（歴史） 第35.0時限「明治維新の三大改革（地租改正）と社会への影響」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "明治維新の三大改革（地租改正）と社会への影響（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l035 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>1873年に行われた地租改正では、地券を発行して土地の所有者を明らかにし、税の仕組みが大きく改められました。</p>",
+          "advice": "<p>答え：地価（地租改正では、税の基準が収穫高から地価に改められ、地価の3%を土地の所有者が現金で納める仕組みになりました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l035-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：土地そのものの値段をもとに、税額が決められるようになりました。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地租改正で、税額を決める基準となったものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地価",
+                "収穫高",
+                "人口",
+                "家の広さ"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "収穫高は、江戸時代に年貢を決める基準でした。地租改正で地価に改められました。",
+                "人口は税額の基準ではありません。基準となったのは土地の価格（地価）です。",
+                "家の広さは税額の基準ではありません。地租は土地にかかる税です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "明治維新の三大改革（地租改正）と社会への影響（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l035 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>地租改正によって、政府は国の運営に必要な資金を計画的に得られるようになりました。これは、税の納め方の仕組みが変わったことによるものです。</p>",
+          "advice": "<p>答え：税が地価を基準に現金で納められるため、豊作・凶作に左右されなくなったから（米による年貢は豊作・凶作で税収が変動しましたが、地租改正では地価を基準に現金で納めるため、政府は作柄に左右されない安定した税収を得られるようになりました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l035-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：米で納める場合と比べて、地価をもとに現金で納める仕組みの利点を考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地租改正によって政府の税収が安定した理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "税が地価を基準に現金で納められるため、豊作・凶作に左右されなくなったから",
+                "農民が以前より多くの米を作るようになったから",
+                "税率が毎年少しずつ引き上げられたから",
+                "外国からも税を集められるようになったから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "税収が安定したのは生産量が増えたからではなく、税の基準と納め方の仕組みが変わったからです。",
+                "税率は当初地価の3%と定められ、反対一揆を受けて1877年には2.5%へ引き下げられました。毎年引き上げられたのではありません。",
+                "地租は国内の土地所有者に課された税で、外国から集めるものではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "明治維新の三大改革（地租改正）と社会への影響（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l035 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、江戸時代の年貢と、地租改正後の地租を比べた表です。</p><p><strong>資料　年貢と地租の比較</strong>（教科書の記述をもとに作成）</p><table><thead><tr><th>項目</th><th>江戸時代の年貢</th><th>地租改正後の地租</th></tr></thead><tbody><tr><td>税の基準</td><td>収穫高</td><td>地価</td></tr><tr><td>納めるもの</td><td>米</td><td>現金</td></tr><tr><td>納める単位</td><td>村</td><td>土地の所有者（個人）</td></tr></tbody></table>",
+          "advice": "<p>答え：地租改正では、税の基準が収穫高から地価に変わり、土地の所有者が個人で現金で納めるようになった（表では、年貢は収穫高を基準に村単位で米で納められていましたが、地租改正後は、地価を基準に土地の所有者が個人で現金で納める仕組みに変わりました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l035-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「基準」「納めるもの」「納める単位」の3つの行を、それぞれ比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表を比べて読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地租改正では、税の基準が収穫高から地価に変わり、土地の所有者が個人で現金で納めるようになった",
+                "江戸時代の年貢も、地価を基準に現金で納められていた",
+                "地租改正の後も、税は村単位で米で納められていた",
+                "地租改正では、税の基準が人口に変わった"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "年貢は収穫高を基準に米で納められていました。地価基準・現金納は地租改正後の仕組みです。",
+                "地租改正後は、土地の所有者が個人で現金で納める仕組みに変わりました。村単位・米納は江戸時代の仕組みです。",
+                "地租改正で基準になったのは地価であり、人口ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

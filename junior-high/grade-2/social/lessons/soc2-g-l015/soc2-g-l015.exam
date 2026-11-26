@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l015 日本の交通網・情報通信網の特色と輸送手段",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第15.0時限「日本の交通網・情報通信網の特色と輸送手段」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "日本の交通網・情報通信網の特色と輸送手段（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l015 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本の国内輸送では、貨物と旅客で主に使われる輸送手段が異なります。</p>",
+          "advice": "<p>答え：自動車（トラック）（国内貨物輸送では、戸口から戸口へ直接運べる自動車（トラック）が、トン数ベースで約9割を占めています。船舶は、輸送距離をかけたトンキロで見ると大きな割合を占めます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l015-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：戸口から戸口へ直接運べる輸送手段が、身近な貨物の多くを担っていることを思い出しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の国内貨物輸送で、運んだ貨物の重さ（トン数）の割合が最も大きい輸送手段はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "自動車（トラック）",
+                "内航海運（船舶）",
+                "鉄道",
+                "航空機"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "内航海運は大量・長距離輸送で重要な役割を果たしますが、トン数ベースの割合は自動車が最も大きくなります。統計の見方（トン数かトンキロか）に注意しましょう。",
+                "鉄道は旅客輸送や一部の貨物で使われますが、国内貨物輸送のトン数では最大ではありません。",
+                "航空機は速い反面、運べる量が限られ費用も高いため、貨物輸送の割合は小さくなります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の交通網・情報通信網の特色と輸送手段（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l015 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>輸送手段にはそれぞれ特徴があり、運ぶものや距離、時間に応じて使い分けられています。</p>",
+          "advice": "<p>答え：一度に大量の貨物を、比較的安い費用で運ぶことができるから（船舶はスピードでは劣りますが、一度に大量の貨物を運ぶことができ、長距離輸送では費用を抑えられます。そのため、鉄鉱石や石油など重くてかさばる貨物の長距離輸送に適しています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l015-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：船舶の特徴を、速さではなく「一度に運べる量」と「費用」の面から考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>重くてかさばる貨物を長距離にわたって運ぶ場合に、船舶が選ばれる理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "一度に大量の貨物を、比較的安い費用で運ぶことができるから",
+                "すべての輸送手段の中で最も速く運ぶことができるから",
+                "荷主の戸口から届け先の戸口まで、直接運ぶことができるから",
+                "天候の影響をまったく受けずに運航できるから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "最も速いのは航空機です。船舶は速さではなく、大量輸送と費用の面で優れています。",
+                "戸口から戸口へ直接運べるのは自動車（トラック）の特徴です。船舶は港から先の輸送が別に必要です。",
+                "船舶は波や天候の影響を受けます。「まったく受けない」は誤りです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の交通網・情報通信網の特色と輸送手段（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l015 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、ある生徒が、運ぶものに応じて輸送手段を使い分けた例をまとめたものです。</p><p><strong>資料　運ぶものに応じた輸送手段の使い分け</strong>（学習用に作成した資料）</p><table><thead><tr><th>運ぶもの</th><th>距離</th><th>選んだ輸送手段</th></tr></thead><tbody><tr><td>生鮮食品（魚）</td><td>約300km</td><td>トラック（高速道路）</td></tr><tr><td>鉄鉱石</td><td>約1000km</td><td>船舶</td></tr><tr><td>小口の荷物（宅配便）</td><td>約50km</td><td>トラック</td></tr><tr><td>急ぐ医薬品</td><td>約800km</td><td>航空機</td></tr></tbody></table>",
+          "advice": "<p>答え：鉄鉱石は、一度に大量に運べる船舶が選ばれている（表では、重くて大量の鉄鉱石の長距離輸送に船舶が選ばれています。生鮮食品は鮮度が求められるため高速道路を使うトラック、急ぐ医薬品は航空機、小口の荷物はトラックというように、運ぶものの性質に応じた使い分けが読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l015-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：表の4つの行について、「運ぶもの」と「選んだ手段」が合っているかを1行ずつ確かめましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表の輸送手段の選択について、正しい説明はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "鉄鉱石は、一度に大量に運べる船舶が選ばれている",
+                "生鮮食品（魚）は、船舶で何日もかけて運ぶのが最も適している",
+                "航空機は、重い貨物を大量に運ぶのに最も適している",
+                "距離の短い輸送では、必ず航空機が使われる"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "表で生鮮食品（魚）に選ばれているのは、高速道路を使うトラックです。鮮度を保つため、時間のかかる船舶は適していません。",
+                "航空機は速い反面、運べる量が少なく費用も高いため、重い貨物の大量輸送には適していません。表でも急ぐ医薬品に使われています。",
+                "表では距離の短い小口の荷物にトラックが使われており、「必ず航空機」とは読み取れません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

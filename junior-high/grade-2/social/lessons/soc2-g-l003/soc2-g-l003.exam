@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l003 等高線と地形・土地利用の読み取り",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第3.0時限「等高線と地形・土地利用の読み取り」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "等高線と地形・土地利用の読み取り（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l003 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>等高線は、同じ標高の地点を結んだ線です。地形図の縮尺によって、等高線の間隔（何mごとに引くか）が決まっています。</p>",
+          "advice": "<p>答え：主曲線は10mごと、太く引かれる計曲線は50mごとに引かれる（2万5千分の1地形図では、主曲線は10mごと、計曲線は50mごとに引かれます。主曲線20mごと・計曲線100mごとは、5万分の1地形図の決まりです。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l003-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：5万分の1地形図の等高線の間隔と区別して思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>2万5千分の1地形図の等高線について、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "主曲線は10mごと、太く引かれる計曲線は50mごとに引かれる",
+                "主曲線は20mごと、太く引かれる計曲線は100mごとに引かれる",
+                "主曲線は5mごと、太く引かれる計曲線は25mごとに引かれる",
+                "主曲線は50mごと、太く引かれる計曲線は10mごとに引かれる"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "主曲線20mごと・計曲線100mごとは5万分の1地形図の決まりである。縮尺の小さい（広い範囲を表す）地図ほど、等高線の間隔は大きくなる。",
+                "5mごと・25mごとという等高線の間隔は、国土地理院の地形図では用いられていない。",
+                "主曲線と計曲線の間隔が逆になっている。細い主曲線のほうが小さい間隔（10mごと）で引かれ、太い計曲線は50mごとに引かれる。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "等高線と地形・土地利用の読み取り（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l003 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>扇状地は、川が山地から平地へ出る谷口に土砂が積もってできた地形です。</p>",
+          "advice": "<p>答え：扇状地は土砂が厚く積もって水はけがよく、水をあまり必要としない果樹の栽培に適しているから（扇状地は、川が運んできた砂や礫（れき）が厚く積もった地形で、水が地下にしみこみやすく水はけがよいのが特徴です。そのため、水田には向かず、水はけのよさを好む果樹園として利用されることが多くなります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l003-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：扇状地の地面がどのような状態か、水のしみこみ方に注目してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>扇状地が果樹園に利用されることが多いのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "扇状地は土砂が厚く積もって水はけがよく、水をあまり必要としない果樹の栽培に適しているから",
+                "扇状地は川の水があふれやすく、水田に十分な水を供給できるから",
+                "扇状地は標高が低く平らで、大きな建物を建てやすいから",
+                "扇状地は海に近く、船で果物を運び出しやすいから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "川の水があふれやすく水が豊富なのは、河口付近の低平な三角州の特徴である。扇状地はむしろ水が得にくい土地である。",
+                "標高が低く平らなのは三角州の特徴である。扇状地は谷口を頂点としてゆるやかに傾斜している。",
+                "扇状地は山地から平地へ出た内陸の地形であり、海に近いかどうかは果樹園に利用される理由ではない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "等高線と地形・土地利用の読み取り（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l003 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、地形図で見られる3つの地点A〜Cについて、等高線のようすと土地利用をまとめたものです。</p><p><strong>資料　3つの地点の等高線のようすと土地利用</strong>（学習用に作成した例）</p><table><thead><tr><th>地点</th><th>等高線のようす</th><th>土地利用</th></tr></thead><tbody><tr><td>A</td><td>標高が低く、等高線の間隔が広い</td><td>水田</td></tr><tr><td>B</td><td>等高線が扇形に広がっている</td><td>果樹園</td></tr><tr><td>C</td><td>等高線の間隔がせまい</td><td>森林</td></tr></tbody></table>",
+          "advice": "<p>答え：地点Bは、等高線が扇形に広がっていることから扇状地で、果樹園に利用されている（地点Bは等高線が扇形に広がり、果樹園に利用されていることから扇状地と判断できます。地点Aは標高が低く等高線の間隔が広い河口付近の土地で三角州、地点Cは等高線の間隔がせまい急な斜面です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l003-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：等高線の間隔の広さ・せまさと、地形の形を、地点ごとに土地利用と結びつけて読み取りましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地点Bは、等高線が扇形に広がっていることから扇状地で、果樹園に利用されている",
+                "地点Aは、等高線の間隔が広いことから急な斜面で、果樹園に利用されている",
+                "地点Cは、等高線の間隔がせまいことから三角州で、水田に利用されている",
+                "地点Bは、河口付近の低い土地であることから三角州で、水田に利用されている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "地点Aは標高が低く等高線の間隔が広い、ゆるやかな土地であり、急な斜面ではない。また土地利用は水田で、三角州の特徴と一致する。",
+                "等高線の間隔がせまい場所は急な斜面を表す。地点Cは斜面であり、河口付近の低平な三角州ではない。",
+                "地点Bの等高線は扇形に広がっており、これは谷口に土砂が積もった扇状地の形である。河口付近の三角州ではない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

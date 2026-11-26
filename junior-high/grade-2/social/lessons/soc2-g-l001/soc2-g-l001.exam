@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l001 地域調査の進め方と視点",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第1.0時限「地域調査の進め方と視点」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "地域調査の進め方と視点（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l001 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地域調査は、「テーマと問いの設定」「資料収集・野外観察」「地図・図表への整理と考察」「まとめと発表」の4つの段階で進めます。</p>",
+          "advice": "<p>答え：テーマと問いの設定 → 資料収集・野外観察 → 地図・図表への整理と考察 → まとめと発表（地域調査は①テーマと問いの設定→②資料収集・野外観察→③地図・図表への整理と考察→④まとめと発表の順で進めます。問いを決めてから調べ、整理してからまとめます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l001-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：調べる前に決めておくものと、調べたあとにすることを分けて考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地域調査の4つの段階を、正しい順番に並べたものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "テーマと問いの設定 → 資料収集・野外観察 → 地図・図表への整理と考察 → まとめと発表",
+                "資料収集・野外観察 → テーマと問いの設定 → まとめと発表 → 地図・図表への整理と考察",
+                "まとめと発表 → 地図・図表への整理と考察 → 資料収集・野外観察 → テーマと問いの設定",
+                "テーマと問いの設定 → まとめと発表 → 資料収集・野外観察 → 地図・図表への整理と考察"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "調べることが先に来ており、問いを決める前に資料を集めてしまう順番になっている。何を明らかにしたいのかが決まっていないと、集める資料も観察のポイントも定まらない。",
+                "まとめと発表が最初に来ており、順番が完全に逆になっている。調べも整理もしていない段階では、まとめる内容がない。",
+                "テーマを決めた直後にまとめと発表が来ており、資料収集や整理の段階があと回しになっている。調べていないことをまとめることはできない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地域調査の進め方と視点（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l001 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>地域調査では、ウェビングマップを使って調べたい主題を決めたあと、調べる前に「このような理由があるのではないか」という仮説を立てます。</p>",
+          "advice": "<p>答え：何を調べればよいかの見通しがもて、目的をもって調査を進められるから（仮説は答えの予想ではなく、調べる方向を決める見通しです。「このような理由があるのではないか」と考えておくことで、何を調べればよいかがはっきりし、目的をもって調査を進められます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l001-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：仮説は「答え」ではなく、調べるための「見通し」でしたね。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>ウェビングマップで主題を決めたあと、調べる前に仮説を立てる理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "何を調べればよいかの見通しがもて、目的をもって調査を進められるから",
+                "仮説が当たれば、調査をしなくてすむようになるから",
+                "仮説を立てると、調査の結果が必ず正しくなるから",
+                "先生が成績をつけやすくなるから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "仮説は答えそのものではなく、調べる方向を決めるための予想である。仮説が当たったかどうかは、調査をして確かめる必要がある。",
+                "仮説は予想であり、正しいとは限らない。調査の目的は、仮説が正しいかどうかを確かめることである。",
+                "仮説を立てる目的を、学習する側ではなく評価する側の都合と取り違えている。仮説は自分の調査の見通しのために立てるものである。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地域調査の進め方と視点（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l001 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>地域調査では、地域の疑問を、自然環境・人口や都市・産業・交通・防災・生活文化の6つの視点から調べます。資料は、生徒たちが考えた4つの地域の疑問と、それぞれの疑問を調べるときに使う視点（○）をまとめたものです。</p><p><strong>資料　地域の疑問と使う視点</strong>（学習用に作成した例）</p><table><thead><tr><th>地域の疑問</th><th>自然環境</th><th>人口や都市</th><th>産業</th><th>交通</th><th>防災</th><th>生活文化</th></tr></thead><tbody><tr><td>なぜ駅の前に商店が集まっているのか</td><td></td><td>○</td><td>○</td><td>○</td><td></td><td></td></tr><tr><td>なぜ川沿いに古い集落ができたのか</td><td>○</td><td></td><td></td><td>○</td><td></td><td>○</td></tr><tr><td>なぜ山あいの集落で高齢化が進んでいるのか</td><td></td><td>○</td><td>○</td><td></td><td></td><td>○</td></tr><tr><td>なぜ海沿いの地域で津波への備えが進められているのか</td><td>○</td><td></td><td></td><td></td><td>○</td><td>○</td></tr></tbody></table>",
+          "advice": "<p>答え：生活文化（視点ごとに○の数を数えると、生活文化は「川沿いの集落」「山あいの集落」「津波への備え」の3つの疑問で使われていて最も多く、自然環境・人口や都市・産業・交通は2つずつ、防災は1つです。表全体を読み比べて初めて分かる問題です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l001-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：それぞれの視点について、いくつの疑問に○がついているか、縦の列で数えて比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表の4つの疑問について、視点ごとに○の数を比べたとき、最も多くの疑問で使われている視点はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "生活文化",
+                "自然環境",
+                "人口や都市",
+                "産業"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "自然環境は「川沿いの集落」と「津波への備え」の2つの疑問で使われています。川や海に関わる行だけを見ると多く見えますが、最も多い視点ではありません。",
+                "人口や都市は「駅の前の商店」と「山あいの集落」の2つの疑問で使われていますが、最も多い視点ではありません。",
+                "産業は「駅の前の商店」と「山あいの集落」の2つの疑問で使われていますが、最も多い視点ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

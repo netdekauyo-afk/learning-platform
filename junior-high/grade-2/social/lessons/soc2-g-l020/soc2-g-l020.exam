@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l020 九州地方の自然を生かした生活や産業（温泉・畜産・促成栽培）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第20.0時限「九州地方の自然を生かした生活や産業（温泉・畜産・促成栽培）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "九州地方の自然を生かした生活や産業（温泉・畜産・促成栽培）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l020 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>九州地方では、火山や温暖な気候などの自然条件を生かした産業が発達しています。</p>",
+          "advice": "<p>答え：促成栽培（温暖な気候とビニールハウスを利用して野菜の生育を促し、早い時期に出荷する農業を促成栽培といいます。宮崎平野では、ピーマンやきゅうりなどの促成栽培が盛んです。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l020-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「出荷を早める」栽培か、「遅らせる」栽培かを区別しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>宮崎平野で、温暖な気候とビニールハウスを利用し、野菜を他の産地より早い時期に出荷する農業を何といいますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "促成栽培",
+                "抑制栽培",
+                "近郊農業",
+                "輪作"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "抑制栽培は、涼しい高地などで生育を遅らせ、夏場に出荷する栽培方法です。宮崎平野の早出しとは逆の方法です。",
+                "近郊農業は、大都市の近郊で野菜などを生産する農業です。出荷時期を早める栽培方法の名前ではありません。",
+                "輪作は、同じ畑で作物を順番に変えて栽培することです。出荷時期の調整とは関係ありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "九州地方の自然を生かした生活や産業（温泉・畜産・促成栽培）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l020 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>シラス台地は水はけがよいため、水田には不向きな土地とされてきました。</p>",
+          "advice": "<p>答え：水はけがよすぎて水田に水をためることが難しく、畑作や家畜の飼育に適していたから（シラス台地は水はけがよすぎるため、水田に水をためておくことが難しく、稲作には向きませんでした。その代わり、さつまいもや茶などの畑作や、肉用牛・豚・鶏などの畜産が発達しました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l020-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：稲作に必要な条件（水をためること）と、シラスの性質を結びつけて考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>シラス台地で、稲作ではなく畑作や畜産が盛んになった理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "水はけがよすぎて水田に水をためることが難しく、畑作や家畜の飼育に適していたから",
+                "気候が寒冷で、稲が育たないから",
+                "平らな土地がまったくなく、畑も作れないから",
+                "人口が多すぎて、農地が不足したから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "九州南部は温暖な気候であり、寒冷で稲が育たないという理由は当てはまりません。",
+                "シラス台地は平らな台地であり、畑作や畜産に利用されています。「土地がまったくない」は誤りです。",
+                "人口の多さが理由ではありません。土地の性質（水はけ）が理由です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "九州地方の自然を生かした生活や産業（温泉・畜産・促成栽培）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l020 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、九州地方の産業と、それぞれがどのような自然条件を生かしているかをまとめたものです。</p><p><strong>資料　九州地方の産業と自然条件</strong>（教科書の記述をもとに作成）</p><table><thead><tr><th>産業</th><th>地域</th><th>生かしている自然条件</th></tr></thead><tbody><tr><td>温泉観光</td><td>別府・由布院（大分県）</td><td>火山の恵み（温泉）</td></tr><tr><td>地熱発電</td><td>八丁原（大分県）</td><td>火山の恵み（地熱）</td></tr><tr><td>畜産・畑作</td><td>シラス台地（鹿児島県・宮崎県）</td><td>水はけのよい台地</td></tr><tr><td>促成栽培</td><td>宮崎平野</td><td>温暖な気候</td></tr><tr><td>観光業</td><td>沖縄県</td><td>温暖な気候とサンゴ礁の海</td></tr></tbody></table>",
+          "advice": "<p>答え：火山の恵みは、温泉観光と地熱発電の両方に生かされている（表では、別府・由布院の温泉観光と八丁原の地熱発電のどちらも、火山の恵みを生かした産業として示されています。促成栽培は温暖な気候、畜産はシラス台地、沖縄の観光はサンゴ礁の海を生かした産業です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l020-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：表の各行で、「産業」と「生かしている自然条件」の組み合わせを確かめましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "火山の恵みは、温泉観光と地熱発電の両方に生かされている",
+                "促成栽培は、火山の恵みを生かした農業である",
+                "シラス台地の畜産は、サンゴ礁の海を生かした産業である",
+                "沖縄の観光業は、温泉を主な資源としている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "表で促成栽培が生かしているのは、宮崎平野の温暖な気候です。火山の恵みではありません。",
+                "表でシラス台地の畜産が生かしているのは台地の土地条件です。サンゴ礁の海は沖縄の観光の資源です。",
+                "表で沖縄の観光の資源は、温暖な気候とサンゴ礁の海です。温泉が主な資源とは読み取れません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

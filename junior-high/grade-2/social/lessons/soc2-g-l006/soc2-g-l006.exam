@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l006 地域調査の結果の地図・グラフ化と発表",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第6.0時限「地域調査の結果の地図・グラフ化と発表」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "地域調査の結果の地図・グラフ化と発表（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l006 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地域調査の発表は、聞き手に分かりやすく伝わるように、決まった構成で組み立てます。</p>",
+          "advice": "<p>答え：テーマと問い → 調査方法 → わかった事実 → 考察と今後の課題（発表は「①テーマと問い→②調査方法→③わかった事実（資料提示）→④考察と今後の課題」の順で構成します。問いと方法を示してから事実を提示し、最後に考察を述べることで、聞き手が根拠を追いながら理解できます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l006-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：何を調べたのかが分からないと、事実や考察も伝わりません。最初に示すべきものから考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地域調査の発表の構成として、正しい順番はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "テーマと問い → 調査方法 → わかった事実 → 考察と今後の課題",
+                "わかった事実 → テーマと問い → 考察と今後の課題 → 調査方法",
+                "調査方法 → 考察と今後の課題 → テーマと問い → わかった事実",
+                "テーマと問い → 考察と今後の課題 → 調査方法 → わかった事実"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "事実から始まっており、テーマと問いがあと回しになっている。何を明らかにするための事実なのかが聞き手に伝わらない。",
+                "調査方法が最初に来ており、テーマと問いが示される前に考察まで進んでしまっている。順番が前後している。",
+                "事実を示す前に考察が来ている。考察は、提示された事実にもとづいて述べるものである。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地域調査の結果の地図・グラフ化と発表（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l006 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>地域調査のまとめでは、感想だけではなく、資料を根拠として示すことが求められます。</p>",
+          "advice": "<p>答え：自然環境や交通などとの関連を、事実にもとづいて説明でき、自分の考察が確かなものだと聞き手に示せるから（地図・統計・現地観察などの具体的な資料を根拠として示すことで、地域の特色が自然環境や交通・歴史とどう関連しているかを事実にもとづいて説明でき、考察に説得力が生まれます。感想だけでは、なぜそう言えるのかが聞き手に伝わりません。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l006-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「根拠がある考察」と「感想だけの発表」は、聞き手にとって何が違うか考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>発表で地図や統計などの資料を根拠として示す必要があるのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "自然環境や交通などとの関連を、事実にもとづいて説明でき、自分の考察が確かなものだと聞き手に示せるから",
+                "資料を多く載せれば、発表の制限時間を簡単にうめることができるから",
+                "資料を示せば、考察を自分の言葉で説明しなくてもよくなるから",
+                "根拠を示すことは、先生が成績をつけるためだけに必要な決まりだから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "資料を示す目的は時間をうめることではない。考察の根拠を聞き手に伝えるために示すものである。",
+                "資料は考察を支えるものであり、説明の代わりにはならない。資料を示したうえで、自分の言葉で関連を説明することが必要である。",
+                "根拠を示すのは評価のためだけの決まりではなく、考察を確かなものとして聞き手に伝えるための発表の基本である。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地域調査の結果の地図・グラフ化と発表（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l006 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、ある商店街で生徒が野外観察を行い、時間帯ごとの通行人の数を数えた結果をまとめたものです。</p><p><strong>資料　商店街の時間帯ごとの通行人の数</strong>（学習用に作成した例）</p><table><thead><tr><th>時間帯</th><th>通行人の数（人）</th></tr></thead><tbody><tr><td>9時</td><td>120</td></tr><tr><td>12時</td><td>260</td></tr><tr><td>15時</td><td>180</td></tr><tr><td>18時</td><td>340</td></tr></tbody></table>",
+          "advice": "<p>答え：18時が最も多く、9時のおよそ3倍である（通行人は18時の340人が最も多く、9時の120人のおよそ3倍（120×3＝360に近い）です。12時は260人で18時より少なく、15時の180人は9時より多くなっています。また、12時から15時には減っているので、増え続けているわけではありません。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l006-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：4つの時間帯の数値をすべて読み取り、大きさを比べたり、倍率を考えたりしてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "18時が最も多く、9時のおよそ3倍である",
+                "12時が最も多く、18時のおよそ2倍である",
+                "15時は9時よりも少ない",
+                "時間がたつにつれて、通行人は増え続けている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "12時は260人で、18時の340人より少ない。最も多いのは18時である。",
+                "15時は180人で、9時の120人より多い。数値を読み違えている。",
+                "12時の260人から15時は180人に減っているため、時間がたつにつれて増え続けているとはいえない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

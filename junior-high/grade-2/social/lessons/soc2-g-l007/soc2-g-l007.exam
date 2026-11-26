@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l007 日本の地域的特色の導入とイメージの整理",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第7.0時限「日本の地域的特色の導入とイメージの整理」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "日本の地域的特色の導入とイメージの整理（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l007 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>第2章では、日本全体の地域的特色を、いくつかの切り口（観点）から大きく捉えていきます。</p>",
+          "advice": "<p>答え：自然環境・人口・資源エネルギー・産業・交通通信（第2章では「自然環境」「人口」「資源・エネルギー」「産業」「交通・通信」の5つの切り口から、日本全体の地域的特色を捉えます。歴史や政治・宗教は、この章の切り口には含まれません。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l007-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：この章の学習で使う観点は、日本の「今の姿」を捉えるためのものでしたね。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の地域的特色を捉えるための5つの切り口の組み合わせとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "自然環境・人口・資源エネルギー・産業・交通通信",
+                "自然環境・人口・歴史・産業・交通通信",
+                "自然環境・政治・資源エネルギー・産業・文化",
+                "人口・資源エネルギー・産業・交通通信・宗教"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "「歴史」は5つの切り口に含まれない。歴史は歴史的分野で扱う観点であり、この章では自然環境・人口・資源エネルギー・産業・交通通信から捉える。",
+                "「政治」「文化」は5つの切り口に含まれない。また、人口が抜けている。",
+                "「宗教」は5つの切り口に含まれない。また、自然環境が抜けている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の地域的特色の導入とイメージの整理（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l007 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本の地域的特色を学ぶときは、日本の姿だけを見るのではなく、世界の国々と比較することも大切です。</p>",
+          "advice": "<p>答え：日本だけでは気づきにくい日本の強みや、少子高齢化・エネルギー自給率などの課題が明らかになるから（特色とは、他と比べることで浮かび上がるものです。世界と比較することで、日本の強みと、少子高齢化・自然災害の多さ・エネルギー自給率の低さといった課題が見えてきます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l007-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「比べる」ことで初めて見えてくるものは何か、考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の特色を世界と比較して学ぶとよいのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "日本だけでは気づきにくい日本の強みや、少子高齢化・エネルギー自給率などの課題が明らかになるから",
+                "世界の国々のほうが進んでいるので、日本の特色はすべて世界に合わせるべきだと分かるから",
+                "比較すると、日本の特色を覚える量が少なくてすむから",
+                "世界の平均と比べれば、日本の地域差を考えなくてもよくなるから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "比較の目的は、日本の特色を世界の姿に合わせることではない。強みも課題も含めて、日本の特色を正しく捉えることが目的である。",
+                "比較によって覚える量が減るわけではない。比較は、特色を捉えるための見方である。",
+                "世界との比較は、日本国内の地域差を捉えることと両立するものである。地域差を考えなくてよくなるわけではない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の地域的特色の導入とイメージの整理（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l007 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、生徒たちが日本について持っているイメージを、5つの切り口に分類したものです。</p><p><strong>資料　日本のイメージと5つの切り口への分類</strong>（学習用に作成した例）</p><table><thead><tr><th>生徒の発言（イメージ）</th><th>分類した切り口</th></tr></thead><tbody><tr><td>冬は日本海側で雪が多い</td><td>自然環境</td></tr><tr><td>大都市に人口が集中している</td><td>人口</td></tr><tr><td>米作りが盛んな地域がある</td><td>資源エネルギー</td></tr><tr><td>新幹線が各地を結んでいる</td><td>交通通信</td></tr></tbody></table>",
+          "advice": "<p>答え：米作りが盛んな地域があることを、「資源エネルギー」に分類した（米作りは農業、つまり「産業」についての特色であり、「資源エネルギー」（石油や電力などの資源・エネルギー）には分類しません。他の3つは、雪（自然環境）、人口集中（人口）、新幹線（交通通信）と正しく対応しています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l007-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：それぞれの発言が「何についての特色か」を考え、5つの切り口と照らし合わせてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料の中で、切り口への分類が適切でないものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "米作りが盛んな地域があることを、「資源エネルギー」に分類した",
+                "冬は日本海側で雪が多いことを、「自然環境」に分類した",
+                "大都市に人口が集中していることを、「人口」に分類した",
+                "新幹線が各地を結んでいることを、「交通通信」に分類した"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "雪が多いことは気候という自然環境の特色であり、「自然環境」への分類は適切である。",
+                "人口が大都市に集中していることは人口分布の特色であり、「人口」への分類は適切である。",
+                "新幹線は交通網の特色であり、「交通通信」への分類は適切である。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

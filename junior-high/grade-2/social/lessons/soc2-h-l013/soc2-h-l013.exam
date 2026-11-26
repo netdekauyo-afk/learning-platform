@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-h-l013 江戸時代の身分制度と農村・町人の暮らし",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（歴史） 第13.0時限「江戸時代の身分制度と農村・町人の暮らし」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "江戸時代の身分制度と農村・町人の暮らし（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l013 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>江戸時代の農村では、村全体で年貢を納める仕組みとともに、農民どうしが互いに責任を負う組織が作られました。</p>",
+          "advice": "<p>答え：五人組（五人組は、近隣の農民の家を5軒ほどで組にした組織で、年貢の納入や治安の維持を連帯責任で行わせるものでした。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l013-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「5軒ほどの農民の家を単位とした組織」という点が手がかりです。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>年貢の完納や犯罪の防止を連帯責任で行わせるため、農村につくられた近隣の組織を何といいますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "五人組",
+                "藩",
+                "寺子屋",
+                "株仲間"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "藩は大名の領地とその支配機構のことです。農村の近隣組織ではありません。",
+                "寺子屋は、町人や農民の子どもが読み書きなどを学んだ教育の場です。統治の組織ではありません。",
+                "株仲間は、都市の商人や職人が作った同業者組合です。農村の連帯責任の組織ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "江戸時代の身分制度と農村・町人の暮らし（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l013 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>江戸時代には身分が固定され、農村では五人組や村請制によって年貢の徴収が行われました。</p>",
+          "advice": "<p>答え：人口の大部分を占める百姓から年貢を確実に取り立て、一揆などを防いで支配を安定させるため（幕府や藩の財政は、人口の約8割を占める百姓が納める年貢に支えられていました。身分を固定し、村請制や五人組の連帯責任で年貢の完納と治安維持を行わせることで、支配を安定させようとしたのです。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l013-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：幕府の収入の中心は何だったか、そして身分を「固定する」ことが支配にとってどう役立つかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>幕府が身分を固定し、五人組や村請制によって農村を治めた目的として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "人口の大部分を占める百姓から年貢を確実に取り立て、一揆などを防いで支配を安定させるため",
+                "農民が自由に職業を選べるようにして、身分の移動を活発にするため",
+                "商工業を発展させることだけを目的としたため",
+                "武士の数を増やして、軍隊を強くするため"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "身分の固定は、職業選択の自由や身分の移動を認めるものではなく、逆にそれらを制限する仕組みです。",
+                "身分制度は社会全体の支配の仕組みであり、商工業の発展だけが目的ではありません。",
+                "身分制度の中心的な目的は年貢の確保と支配の安定で、武士を増やすことではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "江戸時代の身分制度と農村・町人の暮らし（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l013 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、江戸時代の主な身分とその役割をまとめた表です。</p><p><strong>資料　江戸時代の身分と役割</strong>（教科書の記述をもとに作成）</p><table><thead><tr><th>身分</th><th>役割・立場</th></tr></thead><tbody><tr><td>武士</td><td>支配身分。苗字を名乗り刀を差す特権（苗字・帯刀）をもった</td></tr><tr><td>百姓</td><td>農民・漁民など。人口の約8割を占め、年貢を負担した</td></tr><tr><td>町人</td><td>都市に住む商人・職人。商工業を担った</td></tr><tr><td>被差別身分</td><td>えた・ひにんなどと呼ばれ、居住地や職業・服装を厳しく制限された</td></tr></tbody></table>",
+          "advice": "<p>答え：人口の大部分を占める百姓が年貢を負担し、支配の中心である武士は特権をもっていた（表では、武士は支配身分で苗字・帯刀の特権をもち、百姓は人口の約8割を占めて年貢を負担したとされています。被差別身分の人々には、居住地や職業・服装への厳しい制限がありました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l013-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：表の「役割・立場」の列を身分ごとに読み比べ、だれが支配し、だれが年貢を負担したのかを確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "人口の大部分を占める百姓が年貢を負担し、支配の中心である武士は特権をもっていた",
+                "年貢を負担していたのは、主に町人であった",
+                "武士が、人口の大部分を占めていた",
+                "被差別身分の人々には、住む場所や職業についての制限がなかった"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "年貢を負担したのは主に百姓です。町人は商工業を担う身分でした。",
+                "人口の大部分（約8割）を占めていたのは百姓です。武士は支配身分ですが少数でした。",
+                "えた・ひにんと呼ばれた被差別身分の人々は、居住地や職業・服装を厳しく制限されていました。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

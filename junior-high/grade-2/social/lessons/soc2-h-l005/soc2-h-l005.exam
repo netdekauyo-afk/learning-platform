@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-h-l005 織田信長の全国統一事業（長篠の戦い・楽市楽座）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（歴史） 第5.0時限「織田信長の全国統一事業（長篠の戦い・楽市楽座）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "織田信長の全国統一事業（長篠の戦い・楽市楽座）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l005 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>織田信長は、鉄砲を活用した戦いで強大な戦国大名を次々と破り、全国統一を進めました。</p>",
+          "advice": "<p>答え：武田氏（1575年の長篠の戦いで、信長は大量の鉄砲と馬防柵を活用し、騎馬隊で知られた武田氏を破りました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l005-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：今川義元を破ったのは1560年の桶狭間の戦いでした。それとは別の戦いです。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>1575年の長篠の戦いで、織田信長が大量の鉄砲と馬防柵を活用して破った相手はどの氏ですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "武田氏",
+                "今川氏",
+                "上杉氏",
+                "毛利氏"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "今川氏は1560年の桶狭間の戦いで破った相手です。",
+                "上杉氏は越後の大名ですが、長篠の戦いの相手ではありません。",
+                "毛利氏は中国地方の大名ですが、長篠の戦いの相手ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "織田信長の全国統一事業（長篠の戦い・楽市楽座）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l005 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>信長は軍事面だけでなく、城下町の商業を活性化する経済政策も進めました。</p>",
+          "advice": "<p>答え：座の特権や関所の通行税が商業の妨げになっていたため、それらを取り除いて商業を発展させ、経済力を高めるため（座の独占的な特権や関所の通行税は、自由な商売や物流の妨げになっていました。信長は楽市・楽座で座の特権を廃止して税を免除し、関所を撤廃することで、城下町の商業を活性化し、統一事業を支える経済力を高めようとしました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l005-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：座の特権や関所があると、商売はどうなるか。逆に、それらをなくすとどうなるかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>信長が楽市・楽座や関所の撤廃を行った目的として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "座の特権や関所の通行税が商業の妨げになっていたため、それらを取り除いて商業を発展させ、経済力を高めるため",
+                "商人を城下町から追い出して、農業だけの経済にするため",
+                "仏教勢力への当てつけだけを目的とした政策だったため",
+                "農民から取る年貢を増やすことだけが目的だったため"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "楽市・楽座は商人を自由に活動させる政策であり、追い出すためのものではありません。",
+                "信長は仏教勢力と対立しましたが、楽市・楽座は商業を発展させるための経済政策です。",
+                "楽市・楽座は商業に関する政策であり、年貢を増やすことが目的ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "織田信長の全国統一事業（長篠の戦い・楽市楽座）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l005 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、織田信長の統一事業に関わる主なできごとを年表にまとめたものです。</p><p><strong>資料　織田信長の統一事業の年表</strong>（教科書の記述をもとに作成）</p><table><thead><tr><th>年</th><th>できごと</th></tr></thead><tbody><tr><td>1560年</td><td>桶狭間の戦いで今川義元を破る</td></tr><tr><td>1573年</td><td>足利義昭を追放し、室町幕府が滅亡する</td></tr><tr><td>1575年</td><td>長篠の戦いで武田氏を破る</td></tr><tr><td>1576年</td><td>琵琶湖畔に安土城を築く</td></tr><tr><td>1582年</td><td>本能寺の変で明智光秀に討たれる</td></tr></tbody></table>",
+          "advice": "<p>答え：室町幕府が滅亡したのは、長篠の戦いよりも前のことである（1573年に足利義昭の追放によって室町幕府が滅亡し、長篠の戦いは1575年なので、幕府の滅亡の方が前です。安土城は1576年で本能寺の変（1582年）より前、桶狭間の戦いは1560年で最も古く、長篠の戦いから本能寺の変までは7年です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l005-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：年表の年号を1つずつ比べ、できごとの前後関係を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>年表から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "室町幕府が滅亡したのは、長篠の戦いよりも前のことである",
+                "安土城が築かれたのは、本能寺の変の後のことである",
+                "桶狭間の戦いは、室町幕府の滅亡よりも後のことである",
+                "長篠の戦いから本能寺の変まで、20年以上の年月がたっている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "安土城が築かれたのは1576年、本能寺の変は1582年であり、安土城の方が前です。",
+                "桶狭間の戦いは1560年、室町幕府の滅亡は1573年であり、桶狭間の方が前です。",
+                "長篠の戦い（1575年）から本能寺の変（1582年）までは7年であり、20年以上ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

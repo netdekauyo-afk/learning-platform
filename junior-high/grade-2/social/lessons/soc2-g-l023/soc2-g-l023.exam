@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l023 中国・四国地方の自然と地域の概観",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第23.0時限「中国・四国地方の自然と地域の概観」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "中国・四国地方の自然と地域の概観（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l023 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>中国・四国地方は、山地を境として気候や暮らしの異なる3つの地域に分かれます。</p>",
+          "advice": "<p>答え：中国山地と四国山地（中国地方の中央部には中国山地、四国地方の中央部には四国山地が東西に連なり、この2つの山地を境に山陰・瀬戸内・南四国の3地域に分かれます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l023-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：中国地方と四国地方を分ける山地を、それぞれ思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>中国・四国地方を山陰・瀬戸内・南四国の3地域に分ける境となる山地の組み合わせはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "中国山地と四国山地",
+                "北上山地と阿武隈山地",
+                "飛騨山脈と木曽山脈",
+                "鈴鹿山脈と紀伊山地"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "北上山地と阿武隈山地は東北地方の山地で、中国・四国地方の区分には関係しません。",
+                "飛騨山脈と木曽山脈は中部地方の日本アルプスを構成する山脈です。",
+                "鈴鹿山脈と紀伊山地は近畿地方に関わる山地で、中国・四国地方の3地域の境ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "中国・四国地方の自然と地域の概観（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l023 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>瀬戸内地域では、農業用水などを確保するため、昔から多くのため池が造られてきました。</p>",
+          "advice": "<p>答え：中国山地と四国山地に挟まれて雨雲がさえぎられ、年間降水量が少ないから（瀬戸内地域は南北を中国山地と四国山地に挟まれ、季節風による雨雲がさえぎられるため、年間降水量が少なく水不足になりやすい気候です。そのため、雨水をためておくため池が多く造られました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l023-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：瀬戸内地域の降水量が少ないのはなぜだったか、山地の位置と関係づけて考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>瀬戸内地域にため池が多い理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "中国山地と四国山地に挟まれて雨雲がさえぎられ、年間降水量が少ないから",
+                "海に近いので、海水をためて農業に使うためであるから",
+                "冬の雪が多いので、雪どけ水をためておくためであるから",
+                "降水量が多すぎて、水を逃がす場所が必要だったから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "海水は塩分を含むため農業用水には使えません。ため池にためるのは雨水です。",
+                "冬に雪が多いのは山陰（日本海側）の特色で、瀬戸内地域の気候ではありません。",
+                "瀬戸内地域は降水量が少ないことが特色であり、「多すぎる」ためではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "中国・四国地方の自然と地域の概観（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l023 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、中国・四国地方の3地域について、気候の特色と人口のようすをまとめたものです。</p><p><strong>資料　中国・四国地方の3地域の特色</strong>（教科書の記述をもとに作成）</p><table><thead><tr><th>地域</th><th>気候の特色</th><th>人口のようす</th></tr></thead><tbody><tr><td>山陰</td><td>日本海側で、冬に雪が多い</td><td>人口は少なく、過疎化が進む地域がある</td></tr><tr><td>瀬戸内</td><td>年間降水量が少なく、温暖</td><td>平野部に人口が集中し、都市が発達している</td></tr><tr><td>南四国</td><td>太平洋側で、温暖で降水量が多い</td><td>山地が多く、人口は平野部に集まる</td></tr></tbody></table>",
+          "advice": "<p>答え：人口は、瀬戸内海に面した平野部に集中している（資料では、瀬戸内の行に「平野部に人口が集中し、都市が発達している」とあり、人口は瀬戸内海に面した平野部に集中しています。山間部や山陰では人口が少なく、過疎化が進む地域もあります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l023-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「人口のようす」の欄を3地域で見比べて、どこに人口が集まっているかを確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れる、人口分布と地域の特色の関係として正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "人口は、瀬戸内海に面した平野部に集中している",
+                "人口は、降水量の最も多い南四国に集中している",
+                "山陰は3地域の中で最も人口が多い",
+                "人口は山地の多い地域に集中している"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "南四国は降水量が多いものの、山地が多く人口は平野部に集まる程度で、最も集中しているのは瀬戸内側です。",
+                "山陰は人口が少なく、過疎化が進む地域があると資料に示されています。",
+                "山地の多い地域では人口は少なく、集中しているのは平野部です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

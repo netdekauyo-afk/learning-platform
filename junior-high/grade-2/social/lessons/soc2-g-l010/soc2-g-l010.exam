@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l010 地震・火山・洪水など日本のさまざまな自然災害",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第10.0時限「地震・火山・洪水など日本のさまざまな自然災害」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "地震・火山・洪水など日本のさまざまな自然災害（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l010 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本で起こる地震には、海のプレートの沈み込みによるものと、内陸の断層のずれによるものがあります。</p>",
+          "advice": "<p>答え：直下型地震（内陸の活断層がずれて起こる地震は直下型地震で、阪神・淡路大震災や熊本地震がその例です。海のプレートが沈み込む境界で起こるのは海溝型地震です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l010-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：阪神・淡路大震災や熊本地震が、どのタイプの地震だったかを思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>内陸の活断層がずれることで起こる地震を何といいますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "直下型地震",
+                "海溝型地震",
+                "火山性地震",
+                "余震"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "海溝型地震は、海のプレートが陸のプレートの下に沈み込む境界で起こる地震で、東日本大震災がその例である。活断層によるものではない。",
+                "火山性地震は、火山の噴火活動にともなって起こる地震を指す言葉であり、活断層のずれによる地震とは区別される。",
+                "余震は、大きな地震のあとに続いて起こる地震のことで、発生の仕組みによる分類ではない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地震・火山・洪水など日本のさまざまな自然災害（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l010 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本では、自然環境の特色だけでなく、人々の土地利用の変化も災害の被害に関わっています。</p>",
+          "advice": "<p>答え：住宅地が丘陵地や河川沿いの低地、埋立地など、もともと災害の危険がある場所にまで広がり、そこに住む人が増えたから（都市化によって住宅地が丘陵地や河川沿いの低地、埋立地へと広がったことで、土砂災害や洪水の危険がある場所に住む人が増え、被害が大きくなりやすくなりました。災害は自然環境の特色だけでなく、人間活動による土地利用の変化とも関わって発生します。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l010-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「災害が起こる場所」と「人が住む場所」の関係が、都市化でどう変わったか考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>都市化が進んで住宅地が広がると、洪水や土砂災害の被害が大きくなりやすいのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "住宅地が丘陵地や河川沿いの低地、埋立地など、もともと災害の危険がある場所にまで広がり、そこに住む人が増えたから",
+                "都市化が進むと、台風や集中豪雨そのものが発生しやすくなるから",
+                "都市の人口が増えると、川の水の量そのものが増えるから",
+                "住宅が増えると地盤が固くなり、地震のゆれが大きくなるから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "台風や集中豪雨は気象現象であり、都市化によって発生しやすくなるわけではない。都市化が変えるのは、被害を受ける人や建物の分布である。",
+                "川の水の量は降水量によって決まるもので、都市の人口によって増えるわけではない。",
+                "住宅が増えることと地盤の固さ・地震のゆれの大きさは、直接の因果関係にはない。被害拡大の理由は、危険な場所に住む人が増えたことである。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地震・火山・洪水など日本のさまざまな自然災害（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l010 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、日本で見られる自然災害の種類と、その主な原因をまとめた文章です。</p><p><strong>資料　日本の自然災害とその原因</strong>（教科書の記述をもとに作成）</p><p>プレートの境界に位置する日本では、海のプレートが陸のプレートの下に沈み込むことで起こる海溝型地震（東日本大震災など）が発生し、大きな津波が押し寄せることがある。また、内陸の活断層がずれる直下型地震（阪神・淡路大震災、熊本地震など）や、火山噴火による火砕流・降灰も起こりやすい。梅雨末期の集中豪雨（線状降水帯）や台風は、河川の氾濫（洪水）や、土石流・がけ崩れなどの土砂災害を引き起こす。冬には日本海側で豪雪による被害も発生する。</p>",
+          "advice": "<p>答え：土石流やがけ崩れ ― 梅雨末期の集中豪雨や台風による大雨（資料では、土石流・がけ崩れなどの土砂災害は、梅雨末期の集中豪雨（線状降水帯）や台風による河川の氾濫とともに挙げられています。津波は海溝型地震、火砕流は火山噴火、豪雪は冬の日本海側に関わる災害です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l010-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：災害の名前と原因を、文章の中で1つずつ照らし合わせてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料の内容と合っている組み合わせはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "土石流やがけ崩れ ― 梅雨末期の集中豪雨や台風による大雨",
+                "津波 ― 内陸の活断層のずれ",
+                "火砕流 ― 海のプレートの沈み込み",
+                "豪雪 ― 夏の南東の季節風"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "津波は、海のプレートが沈み込む境界で起こる海溝型地震によって発生する。内陸の活断層による直下型地震は、津波の原因としては挙げられていない。",
+                "火砕流は火山噴火にともなう現象である。海のプレートの沈み込みは、海溝型地震や津波の原因である。",
+                "豪雪は冬に日本海側で見られる災害である。夏の南東の季節風は、太平洋側に雨をもたらす風である。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

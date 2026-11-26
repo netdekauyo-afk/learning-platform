@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l009 季節風・海流・雨温図から見る日本の気候の特色",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第9.0時限「季節風・海流・雨温図から見る日本の気候の特色」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "季節風・海流・雨温図から見る日本の気候の特色（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l009 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本列島のまわりには、暖流と寒流が流れています。海流は沿岸の気候や漁業に影響を与えます。</p>",
+          "advice": "<p>答え：暖流：黒潮・対馬海流／寒流：親潮・リマン海流（暖流は黒潮（日本海流）と対馬海流、寒流は親潮（千島海流）とリマン海流です。黒潮と親潮がぶつかる東北沖は、豊かな漁場（潮目）になります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l009-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：黒潮は南から流れてくる海流でしたね。名前と流れの向きを結びつけて思い出しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本のまわりを流れる海流の組み合わせとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "暖流：黒潮・対馬海流／寒流：親潮・リマン海流",
+                "暖流：親潮・対馬海流／寒流：黒潮・リマン海流",
+                "暖流：黒潮・リマン海流／寒流：親潮・対馬海流",
+                "暖流：対馬海流・リマン海流／寒流：黒潮・親潮"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "親潮は寒流である。南から流れる黒潮が暖流、北から流れる親潮が寒流という組み合わせが正しい。",
+                "リマン海流は寒流、対馬海流は暖流である。2つの海流の分類が入れ替わっている。",
+                "黒潮は暖流である。暖流と寒流の組み合わせが大きく入れ替わっている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "季節風・海流・雨温図から見る日本の気候の特色（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l009 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本では、冬になると日本海側で大雪が降り、太平洋側では乾燥した晴天が続くことが多くなります。</p>",
+          "advice": "<p>答え：大陸からの北西の季節風が日本海を渡るときに水蒸気を含み、日本の山地にぶつかって雪を降らせるから（冬は大陸から北西の季節風が吹きます。この風は日本海を渡る間に水蒸気をたっぷり含み、日本列島の山地にぶつかって上昇し、日本海側に大雪を降らせます。山地をこえて太平洋側に吹きおろすときには、乾燥した風になります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l009-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：冬の季節風の向きと、日本海・山地の位置関係を思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>冬に日本海側で雪が多くなるのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "大陸からの北西の季節風が日本海を渡るときに水蒸気を含み、日本の山地にぶつかって雪を降らせるから",
+                "太平洋からの南東の季節風が、暖かい海の水蒸気を運んでくるから",
+                "黒潮が日本海に流れこみ、海水が蒸発しやすくなるから",
+                "日本海側は緯度が高く、気温が太平洋側よりずっと低いから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "南東の季節風は夏に太平洋から吹く風で、太平洋側に雨をもたらす。冬の日本海側の雪の原因ではない。",
+                "黒潮は太平洋側を流れる暖流である。日本海を流れるのは対馬海流であり、冬の雪の直接の原因は季節風と地形である。",
+                "日本海側と太平洋側はほぼ同じ緯度にあり、雪の多さの違いは緯度ではなく、季節風と山地の位置関係によるものである。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "季節風・海流・雨温図から見る日本の気候の特色（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l009 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、ある2つの地点A・Bについて、月ごとの降水量をまとめたものです。雨温図の読み取り方を使って考えましょう。</p><p><strong>資料　地点A・Bの月ごとの降水量（mm）</strong>（学習用に作成した例）</p><table><thead><tr><th>地点</th><th>1月</th><th>3月</th><th>5月</th><th>7月</th><th>9月</th><th>11月</th></tr></thead><tbody><tr><td>A</td><td>190</td><td>120</td><td>95</td><td>85</td><td>110</td><td>150</td></tr><tr><td>B</td><td>45</td><td>80</td><td>130</td><td>230</td><td>190</td><td>70</td></tr></tbody></table>",
+          "advice": "<p>答え：A：日本海側の気候／B：太平洋側の気候（地点Aは1月（冬）の降水量が190mmと多く、7月（夏）が85mmと少ないので、冬に降水が多い日本海側の気候です。地点Bは7月が230mmと多く、1月が45mmと少ないので、夏に降水が多い太平洋側の気候です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l009-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：雨温図では、降水量が多い季節に注目します。AとBで、冬（1月）と夏（7月）の降水量を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れるA・Bの気候の組み合わせとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "A：日本海側の気候／B：太平洋側の気候",
+                "A：太平洋側の気候／B：日本海側の気候",
+                "A：瀬戸内の気候／B：日本海側の気候",
+                "A：日本海側の気候／B：瀬戸内の気候"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "AとBの読み取りが逆になっている。冬に降水が多いのが日本海側、夏に降水が多いのが太平洋側である。",
+                "瀬戸内の気候は一年を通じて降水量が少ない気候である。Aは冬の降水量が190mmと多く、瀬戸内には当てはまらない。",
+                "Bは7月の降水量が230mmと多く、一年を通じて降水量が少ない瀬戸内の気候には当てはまらない。Bは太平洋側の気候である。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

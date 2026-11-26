@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l005 新旧地形図の比較と主題図",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第5.0時限「新旧地形図の比較と主題図」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "新旧地形図の比較と主題図（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l005 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地域調査では、地形図のほかに、特定のテーマを表したさまざまな地図を使います。</p>",
+          "advice": "<p>答え：人口密度や土地利用など、特定のテーマを色分けや記号で表した地図（主題図とは、人口密度・土地利用・商業施設の分布など、特定のテーマ（主題）を色分けや記号で表した地図です。ハザードマップも主題図の一種です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l005-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「主題」という言葉が表す意味に注目してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>主題図とはどのような地図ですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "人口密度や土地利用など、特定のテーマを色分けや記号で表した地図",
+                "等高線や地図記号で、地形や土地の様子をくまなく表した地図",
+                "上空から地上を撮影した写真を、そのまま地図代わりにしたもの",
+                "古い地形図と新しい地形図を重ね合わせて印刷した地図"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "等高線や地図記号で地形や土地の様子を表した地図は地形図である。主題図は1つのテーマに絞って表した地図である。",
+                "上空から撮影したものは空中写真である。空中写真は主題図とは別の資料である。",
+                "新旧の地形図を比べることは地域の変化を読み取る方法だが、重ねた地図そのものを主題図とはいわない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "新旧地形図の比較と主題図（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l005 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>新旧の地形図を比べて地域の変化を読み取るときは、まず2枚の地図の縮尺と方位をそろえ、川や駅など動かないものを目印にして見比べます。</p>",
+          "advice": "<p>答え：縮尺や方位がそろっていないと、同じ場所どうしを正しく対応させられず、変化したかどうかを判断できないから（縮尺が違えば同じ土地でも図上の大きさが変わり、方位がずれていれば場所の対応もずれてしまいます。基準をそろえ、川や駅など時代が変わっても動かない目印で位置を合わせることで、初めて「何が変化したか」を正しく読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l005-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：もし縮尺の違う2枚をそのまま比べたら、土地の広さや位置をどう判断してしまうか考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>このような準備が必要なのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "縮尺や方位がそろっていないと、同じ場所どうしを正しく対応させられず、変化したかどうかを判断できないから",
+                "縮尺の違う地図は、国土地理院が比べることを禁止しているから",
+                "古い地形図は方位が今と逆になっているため、そのままでは読めないから",
+                "目印になる川や駅は、新しい地形図にしか描かれていないから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "縮尺の違う地図を比べること自体は禁止されていない。ただし、そのままでは大きさや位置を正しく比べられないため、そろえる準備が必要なのである。",
+                "古い地形図でも、特別な記号がない限り上が北という決まりは同じである。方位が逆になっているわけではない。",
+                "川や駅は古い地形図にも描かれているからこそ、時代をこえた目印として使える。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "新旧地形図の比較と主題図（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l005 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、ある地域について、1960年代の地形図と現在の地形図を比べて土地利用の変化をまとめたものです。</p><p><strong>資料　ある地域の土地利用の変化（1960年代と現在）</strong>（学習用に作成した例）</p><table><thead><tr><th>項目</th><th>1960年代</th><th>現在</th></tr></thead><tbody><tr><td>水田</td><td>地域の大部分に広がっていた</td><td>川沿いの一部に残るだけになった</td></tr><tr><td>住宅地</td><td>駅の周辺に集まっていた</td><td>地域の北部一帯に広がった</td></tr><tr><td>工場</td><td>川沿いに数軒あった</td><td>川沿いに残っている</td></tr><tr><td>交通</td><td>鉄道と駅があった</td><td>鉄道と駅があり、新しい道路と橋ができた</td></tr></tbody></table>",
+          "advice": "<p>答え：水田が大きく減り、住宅地が広がった（資料では、水田は「地域の大部分」から「川沿いの一部」に減り、住宅地は「駅の周辺だけ」から「地域の北部一帯」に広がっています。工場は現在も残り、鉄道の駅も存続し、新しい道路と橋ができています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l005-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：項目ごとに、1960年代のようすと現在のようすを見比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れる変化として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "水田が大きく減り、住宅地が広がった",
+                "工場がなくなり、すべて住宅地に変わった",
+                "鉄道が廃止され、駅がなくなった",
+                "川が埋め立てられ、橋がなくなった"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "工場は現在も川沿いに残っており、なくなったわけではない。一部が住宅地に変わったという記述もない。",
+                "鉄道は現在も通っており、駅も残っている。さらに新しい道路が開通している。",
+                "川は現在も流れていて、新しい橋がかけられている。埋め立てられたという記述はない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

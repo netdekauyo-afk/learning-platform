@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l057 地域のこれからの提案と報告書・プレゼン発信",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第57.0時限「地域のこれからの提案と報告書・プレゼン発信」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "地域のこれからの提案と報告書・プレゼン発信（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l057 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地域のこれからに向けた提案は、報告書やプレゼン資料にまとめて発信します。</p>",
+          "advice": "<p>答え：地域の課題と問い → 地図・統計による現状分析 → 要因の考察 → 解決策の提案 → 期待される効果と自分たちの行動（報告書・プレゼンは、①地域の課題と問い、②地図・統計による現状分析、③要因の考察、④他地域との比較をふまえた解決策の提案、⑤期待される効果と自分たちの行動、という流れで構成します。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l057-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：調査の流れ（問いを立てる→調べる→考察する→提案する）と対応させて考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>提案をまとめる報告書・プレゼンの構成として、正しい順序はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地域の課題と問い → 地図・統計による現状分析 → 要因の考察 → 解決策の提案 → 期待される効果と自分たちの行動",
+                "解決策の提案 → 地域の課題と問い → 期待される効果と自分たちの行動 → 要因の考察 → 地図・統計による現状分析",
+                "地図・統計による現状分析 → 解決策の提案 → 地域の課題と問い → 期待される効果と自分たちの行動 → 要因の考察",
+                "期待される効果と自分たちの行動 → 要因の考察 → 解決策の提案 → 地域の課題と問い → 地図・統計による現状分析"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "解決策は、現状分析と要因の考察をふまえて提案するものであり、課題と問いより前に示す順序ではありません。",
+                "現状分析の前に、まず課題と問いを示すのが構成の出発点です。また解決策は要因の考察の後に提案します。",
+                "期待される効果と自分たちの行動は、提案の最後に示す部分です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地域のこれからの提案と報告書・プレゼン発信（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l057 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>提案を発表するとき、主張には地図や統計などの根拠を添えることが求められます。</p>",
+          "advice": "<p>答え：地域の現状を正しく理解してもらい、提案の必要性や効果に納得してもらうため（主題図やグラフ・写真などの客観的な根拠を示すことで、課題の現状や提案の必要性を聞き手と共有でき、実現可能な具体策とあわせて納得してもらうことにつながります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l057-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：聞き手である地域住民や自治体の立場になって、どんな発表なら納得できるかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>提案に客観的な根拠を添える必要がある理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地域の現状を正しく理解してもらい、提案の必要性や効果に納得してもらうため",
+                "資料の量が多ければ、提案の内容そのものは問われないから",
+                "根拠を添えれば、実現可能性を考える必要がなくなるから",
+                "発表の時間を長くして、聞き手を引きつけるため"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "資料は内容を裏付けるためのものであり、量が多ければよいわけではありません。",
+                "根拠を示すことと、費用や担い手などの実現可能性を考えることは、どちらも必要です。",
+                "根拠を添える目的は時間稼ぎではなく、主張を裏付けて聞き手の理解と納得を得ることです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地域のこれからの提案と報告書・プレゼン発信（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l057 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、あるグループのプレゼンのスライド構成をまとめたものです。</p><p><strong>資料　プレゼンのスライド構成</strong>（学習用に作成した例）</p><table><thead><tr><th>スライド</th><th>内容</th></tr></thead><tbody><tr><td>1</td><td>提案のタイトルと結論</td></tr><tr><td>2</td><td>空き家の分布図（主題図）</td></tr><tr><td>3</td><td>高齢化率の変化を表すグラフ</td></tr><tr><td>4</td><td>他地域の取り組み事例</td></tr><tr><td>5</td><td>解決策と自分たちの行動</td></tr></tbody></table>",
+          "advice": "<p>答え：現状分析の根拠として、分布図とグラフの両方が使われている（スライド2で空き家の分布図（主題図）、スライド3で高齢化率のグラフが示されており、現状分析に分布図とグラフの両方が使われています。解決策はスライド5で他地域の事例（スライド4）の後に示され、結論はスライド1で最初に示されています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l057-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：各スライドの内容と順序を、1枚ずつ確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>スライド構成から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "現状分析の根拠として、分布図とグラフの両方が使われている",
+                "解決策は、他地域の事例よりも前に示されている",
+                "統計資料は、このプレゼンでは使われていない",
+                "提案の結論は、プレゼンの最後に初めて示される構成になっている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "解決策はスライド5であり、他地域の事例のスライド4より後に示されています。",
+                "スライド3では高齢化率のグラフという統計資料が使われています。",
+                "スライド1で提案のタイトルと結論が最初に示される構成になっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l004 調査の手法（文献・野外調査）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第4.0時限「調査の手法（文献・野外調査）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "調査の手法（文献・野外調査）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l004 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>野外調査に出かける前には、調査の計画を立てるために地図を使った準備を行います。</p>",
+          "advice": "<p>答え：野外調査の前に、調査地域の地図に歩く経路や観察する地点、集合場所などを書き込んだ地図（ルートマップは、野外調査の前に作成するもので、調査地域の地図に歩く経路や観察地点、集合場所などを書き込んだ地図です。経路と観察ポイントを事前に決めておくことで、限られた時間で効率よく、安全に調査を進められます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l004-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「ルート」という言葉の意味と、いつ使う地図かを考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>ルートマップとはどのようなものですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "野外調査の前に、調査地域の地図に歩く経路や観察する地点、集合場所などを書き込んだ地図",
+                "野外調査の結果を、色分けや記号で表してまとめた地図",
+                "洪水や土砂災害の危険な場所と避難場所を示した地図",
+                "コンピュータで人口や土地利用の情報を重ねて表示した画面"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "調査結果を色分けや記号で表した地図は主題図である。ルートマップは調査の前に経路を決めるために作る。",
+                "災害の危険箇所と避難場所を示した地図はハザードマップである。ルートマップとは目的が異なる。",
+                "情報を重ねて表示するのはGIS（地理情報システム）の働きである。ルートマップは紙の地図などに経路を書き込んだものである。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "調査の手法（文献・野外調査）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l004 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>地域調査では、文献・統計調査だけでなく、野外観察や聞き取り調査も組み合わせて行います。</p>",
+          "advice": "<p>答え：統計や文献では分からない、現在の地域の様子や、人々の暮らしの実感・工夫を知ることができるから（国勢調査などの統計や文献からは、正確な数値や歴史的背景が分かります。しかし、現在の土地利用の様子や、資料には載っていない暮らしの実感や工夫は、現地を観察したり、地域の人に話を聞いたりしなければ分かりません。方法を組み合わせることで、地域を多面的に捉えられます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l004-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：それぞれの調査方法で「何が分かるか」「何が分からないか」を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>文献・統計調査だけでは不十分で、野外観察や聞き取り調査も必要なのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "統計や文献では分からない、現在の地域の様子や、人々の暮らしの実感・工夫を知ることができるから",
+                "野外観察や聞き取り調査のほうが、統計よりも正確な数値が得られるから",
+                "文献・統計調査は古い資料しかなく、地域調査では使えないから",
+                "調査の回数を増やせば、それだけで考察が深まるから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "正確な数値を得るのは統計調査の強みである。野外観察や聞き取りは数値の正確さではなく、数値では表せない様子や実感を知るための方法である。",
+                "文献・統計調査は地域調査の基本であり、数値や歴史的背景を知るために欠かせない。使えないというのは誤りである。",
+                "回数を増やすこと自体が目的ではない。それぞれの方法で得られる情報が異なるため、目的に応じて組み合わせることに意味がある。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "調査の手法（文献・野外調査）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l004 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、ある生徒が地域調査の計画を立てたときの、「調べたいこと」と「選んだ調査方法」の組み合わせをまとめたものです。</p><p><strong>資料　調べたいことと選んだ調査方法</strong>（学習用に作成した例）</p><table><thead><tr><th>調べたいこと</th><th>選んだ調査方法</th></tr></thead><tbody><tr><td>町の人口がどう変化してきたか</td><td>国勢調査の統計を年ごとに比べる</td></tr><tr><td>商店街のにぎわい</td><td>野外観察で時間帯ごとの人通りを数える</td></tr><tr><td>昔の町の様子</td><td>市町村史などの文献を調べる</td></tr><tr><td>住民が買い物で困っていること</td><td>国勢調査の人口統計だけを調べる</td></tr></tbody></table>",
+          "advice": "<p>答え：住民が買い物で困っていることを知りたいので、国勢調査の人口統計だけを調べる（「買い物で困っていること」のような人々の実感は、人口統計の数値だけでは分かりません。聞き取り調査などで直接声を聞く必要があります。他の3つは、調べたいことと方法が適切に対応しています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l004-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：調べたいことの内容と、その方法で本当に分かるかどうかを、1つずつ照らし合わせてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料の中で、調査方法の選び方が適切でないものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "住民が買い物で困っていることを知りたいので、国勢調査の人口統計だけを調べる",
+                "商店街のにぎわいを知りたいので、野外観察で時間帯ごとの人通りを数える",
+                "町の人口がどう変化してきたかを知りたいので、国勢調査の統計を年ごとに比べる",
+                "昔の町の様子を知りたいので、市町村史などの文献を調べる"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "商店街のにぎわいは、現地で人通りを観察することで捉えられる。野外観察の選び方は適切である。",
+                "人口の変化は、国勢調査の統計を年ごとに比べることで読み取れる。統計調査の選び方は適切である。",
+                "昔の様子は、市町村史などの文献に記録されている。文献調査の選び方は適切である。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-g-l002 地形図の縮尺・方位・地図記号",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（地理） 第2.0時限「地形図の縮尺・方位・地図記号」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "地形図の縮尺・方位・地図記号（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l002 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>国土地理院が発行する地形図には、2万5千分の1と5万分の1のものがあります。</p>",
+          "advice": "<p>答え：図上の1cmが実際の250mを表し、図上の4cmで実際の1kmになる（2万5千分の1の地形図では、図上の1cmは実際には1cm×25000＝25000cm＝250mを表します。したがって図上の4cmは250m×4＝1000m＝1kmになります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l002-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「2万5千分の1」は、実際の長さを25000分の1に縮めたという意味でしたね。1cmに25000をかけると何mになるか計算してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>2万5千分の1の地形図について、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "図上の1cmが実際の250mを表し、図上の4cmで実際の1kmになる",
+                "図上の1cmが実際の500mを表し、図上の2cmで実際の1kmになる",
+                "図上の1cmが実際の25mを表し、図上の40cmで実際の1kmになる",
+                "図上の1cmが実際の2500mを表し、図上の4cmで実際の10kmになる"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "これは5万分の1の地形図の数値である。5万分の1では図上の1cmが実際の500mになる。縮尺の分母の大きさと混同しやすいので注意したい。",
+                "実際の距離を10分の1に小さく見積もっている。25000cmは250mであり、25mではない。cmからmへの換算（100cm＝1m）で誤っている。",
+                "実際の距離を10倍に大きく見積もっている。図上の4cmは実際の1kmであり、10kmではない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地形図の縮尺・方位・地図記号（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l002 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>地形図で実際の距離を求めるときは、「図上の長さ（cm）×縮尺の分母」という計算を使います。</p>",
+          "advice": "<p>答え：縮尺とは実際の距離を分母分の1に縮めた割合なので、図上の長さに分母をかけると実際の長さに戻るから（縮尺25000分の1とは、実際の距離を25000分の1に縮めて図に表したという意味です。だから、図上の長さに分母の25000をかければ、縮める前の実際の長さに戻ります。計算式は暗記するものではなく、縮尺の意味そのものから導かれます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l002-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：縮尺の「分母」が何を意味していたかを思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この計算で実際の距離が求められるのはなぜですか。最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "縮尺とは実際の距離を分母分の1に縮めた割合なので、図上の長さに分母をかけると実際の長さに戻るから",
+                "分母の数字は、その地図が表す地域の広さを平方キロメートルで表したものだから",
+                "1cmに分母をかけると、どのような縮尺でも必ずキロメートルの単位になるから",
+                "国土地理院が、暗記しやすいように計算のしかたを決めただけだから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "分母は地域の面積を表す数字ではない。分母は「実際の距離を何分の1に縮めたか」を表す割合の数字である。",
+                "分母をかけただけでは単位はcmのままである。実際の距離はcmで求めたあと、100cm＝1m、1000m＝1kmと換算して表す。",
+                "計算のしかたは便宜的に決めたものではなく、縮尺という割合の意味から必然的に導かれるものである。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地形図の縮尺・方位・地図記号（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-g-l002 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、2万5千分の1の地形図の上で、ある生徒が駅から各地点までの図上の長さを定規で測った結果をまとめたものです。</p><p><strong>資料　地形図上で測った図上の長さ（2万5千分の1地形図）</strong>（学習用に作成した例）</p><table><thead><tr><th>区間</th><th>図上の長さ</th></tr></thead><tbody><tr><td>駅〜小学校</td><td>4cm</td></tr><tr><td>駅〜公園</td><td>6cm</td></tr><tr><td>駅〜神社</td><td>2cm</td></tr><tr><td>駅〜山頂</td><td>8cm</td></tr></tbody></table>",
+          "advice": "<p>答え：山頂（2万5千分の1では図上の1cmが実際の250mです。小学校は4cmで1000m、公園は6cmで1500m、神社は2cmで500m、山頂は8cmで2000mとなり、山頂が最も遠くなります。図上の長さを実際の距離に直して比べることが必要です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-g-l002-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：まず、それぞれの図上の長さに25000をかけて、実際の距離に直してから比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料をもとに実際の直線距離を比べたとき、駅から最も遠い地点はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "山頂",
+                "小学校",
+                "公園",
+                "神社"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "小学校までの図上の長さは4cmで、実際の距離は250m×4＝1000mである。山頂の8cm（2000m）より近い。",
+                "公園までの図上の長さは6cmで、実際の距離は250m×6＝1500mである。4つの中では2番目に遠い。",
+                "神社までの図上の長さは2cmで、実際の距離は250m×2＝500mであり、最も近い地点である。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

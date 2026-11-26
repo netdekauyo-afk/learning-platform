@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc2-h-l007 兵農分離（太閤検地・刀狩）と朝鮮侵略",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年社会（歴史） 第7.0時限「兵農分離（太閤検地・刀狩）と朝鮮侵略」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "兵農分離（太閤検地・刀狩）と朝鮮侵略（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l007 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>豊臣秀吉は、全国の土地と農民を支配する仕組みを整えるため、大規模な検地を行いました。</p>",
+          "advice": "<p>答え：全国で統一されたますとものさしを使い、田畑の面積や収穫量（石高）と耕作者を検地帳に記録した（太閤検地では、京ますなど全国で統一されたますとものさしを使い、田畑の面積・質・収穫量（石高）と耕作者を検地帳に記録して、年貢を確実に徴収する仕組みを整えました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l007-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「検地」は土地を調べる政策です。何を、どのように調べたかに注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>太閤検地の説明として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "全国で統一されたますとものさしを使い、田畑の面積や収穫量（石高）と耕作者を検地帳に記録した",
+                "農民から刀や鉄砲などの武器を取り上げ、農業に専念させた",
+                "全国の田畑をすべて幕府の直轄地として取り上げた",
+                "商人や豪商から資金を集めて、統一事業の費用にした"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "武器を取り上げたのは刀狩の説明です。検地と刀狩は別の政策なので、混同しないようにしましょう。",
+                "検地は土地の所有を取り上げる政策ではありません。耕作者を記録し、その耕作者に年貢を納めさせる仕組みです。",
+                "検地の目的は土地と収穫量を把握して年貢を確実に取ることで、商人から資金を集める政策ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "兵農分離（太閤検地・刀狩）と朝鮮侵略（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l007 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>太閤検地と刀狩という2つの政策によって、兵農分離が進んだといわれます。</p>",
+          "advice": "<p>答え：検地で耕作者と年貢が固定され、刀狩で農民が武器を失ったことで、戦う武士と耕す農民の役割がはっきり分かれたから（検地は耕作者を田畑に結びつけて年貢の責任者を固定し、刀狩は農民から武器を取り上げて一揆を防ぎ農業に専念させました。この2つによって、戦う武士と耕す農民の身分がはっきり分かれる兵農分離が進みました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l007-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「兵」と「農」が分かれるとは、だれが何をするかが固定されることです。それぞれの政策が何を固定したか考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>検地と刀狩によって兵農分離が進んだ理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "検地で耕作者と年貢が固定され、刀狩で農民が武器を失ったことで、戦う武士と耕す農民の役割がはっきり分かれたから",
+                "検地によって農民が豊かになり、武士と同じ身分になろうとしたから",
+                "刀狩によって武士が農業を始めるようになったから",
+                "検地の後、農民がみな城下町へ移り住んだから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "兵農分離は身分を近づける政策ではなく、武士と農民の身分をはっきり「分ける」政策です。",
+                "刀狩で武器を取り上げられたのは農民です。武士が農業を始めたわけではありません。",
+                "農民が城下町へ移り住んだのではなく、検地によって農民は土地に結びつけられました。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "兵農分離（太閤検地・刀狩）と朝鮮侵略（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc2-h-l007 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、兵農分離の政策と朝鮮侵略にかかわる出来事をまとめた年表です。</p><p><strong>資料　兵農分離と朝鮮侵略の年表</strong>（教科書の記述をもとに作成）</p><table><thead><tr><th>年</th><th>出来事</th></tr></thead><tbody><tr><td>1588年</td><td>刀狩令を出す</td></tr><tr><td>1590年</td><td>全国統一を完成させる</td></tr><tr><td>1592年</td><td>朝鮮へ出兵する（文禄の役）</td></tr><tr><td>1597年</td><td>再び朝鮮へ出兵する（慶長の役）</td></tr><tr><td>1598年</td><td>秀吉が死去し、日本の軍は朝鮮から撤兵する</td></tr></tbody></table>",
+          "advice": "<p>答え：朝鮮への出兵は2度行われたが、秀吉の死によって日本の軍は引き揚げた（年表では1592年（文禄の役）と1597年（慶長の役）の2度の出兵があり、1598年の秀吉の死で撤兵しています。出兵は全国統一（1590年）の後で、明の征服は達成されませんでした。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc2-h-l007-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：出兵の年と、全国統一・秀吉の死の年を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>年表から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "朝鮮への出兵は2度行われたが、秀吉の死によって日本の軍は引き揚げた",
+                "朝鮮への出兵は、全国統一が完成する前から始まっていた",
+                "1度目の出兵で、秀吉は明を征服するという目的を達成した",
+                "2度目の出兵は、秀吉の死後もそのまま続けられた"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "出兵が始まったのは1592年で、全国統一の完成（1590年）より後です。",
+                "朝鮮や明の抵抗に遭い、明の征服は達成されませんでした。年表の「秀吉の死で撤兵」からも読み取れます。",
+                "2度目の出兵の途中で秀吉が死去し、日本の軍は朝鮮から引き揚げました。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}
