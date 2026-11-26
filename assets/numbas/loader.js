@@ -1063,16 +1063,17 @@ async function boot() {
   if (!host || !host.dataset.examSource) throw new Error("問題の参照先が設定されていません。");
   preparePageFrame();
   const lessonMatch = location.pathname.match(/\/junior-high\/grade-1\/math\/lessons\/m1-l(\d{3})\/questions\.html$/);
-  const lessonLayout = Boolean(lessonMatch) || host.hasAttribute("data-difficulty-tabs");
+  const legacyMathLesson = Boolean(lessonMatch) || /\/junior-high\/grade-2\/math\/lessons\/m2-l\d{3}\/questions\.html$/.test(location.pathname);
+  const lessonLayout = legacyMathLesson || host.hasAttribute("data-difficulty-tabs");
   if (lessonMatch) prepareLessonNavigation(Number(lessonMatch[1]));
   if (host.hasAttribute("data-main-question-set")) return; // The type tabs boot the intact exam once.
   const runtime = prepareRuntime();
   const initialLoad = host.dataset.sequenceSource === host.dataset.examSource ? runtime : runtime.then(() => bootExam(host, status, "basic", lessonLayout));
 
   if (lessonLayout) {
-    // The old grade-one maths lessons each have a single basic question.
+    // The old grade-one and grade-two maths lessons each have a single basic question.
     // Keep the old basic history key, and do not expose the old difficulty files.
-    const singleQuestionLabel = lessonMatch ? exerciseSettings.questionTypesBySubject["junior-high/math"][0] : "";
+    const singleQuestionLabel = legacyMathLesson ? exerciseSettings.questionTypesBySubject["junior-high/math"][0] : "";
     createDifficultyTabs(host, status, async (examHost, examStatus, level) => {
       try {
         const response = await fetch(new URL(examHost.dataset.examSource, location.href));
