@@ -56,7 +56,6 @@
 [data-math-knowledge-map] [data-notice] { color: var(--color-muted); }
 
 [data-math-knowledge-map] .map-bar-row {
-  position: relative;
   display: grid;
   grid-template-columns: 7.5em minmax(0, 1fr);
   align-items: center;
@@ -65,6 +64,7 @@
 }
 [data-math-knowledge-map] .map-bar-row h2,
 [data-math-knowledge-map] .map-pillar h2 { margin: 0; font-size: 1.05rem; }
+[data-math-knowledge-map] .map-bar { position: relative; min-width: 0; }
 [data-math-knowledge-map] .map-track {
   display: grid;
   grid-auto-columns: minmax(0,1fr);
@@ -74,8 +74,18 @@
   overflow: clip;
 }
 [data-math-knowledge-map] .map-unit {
+  display: grid;
+  place-items: center;
   min-width: 0;
-  height: 44px;
+  min-height: 44px;
+  padding-block: .35rem;
+  color: var(--color-heading);
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
   background: var(--map-gray);
   border-inline-start: 1px solid var(--color-muted);
   touch-action: manipulation;
@@ -85,7 +95,7 @@
 [data-math-knowledge-map] .map-unit:focus-visible { outline-offset: -3px; }
 [data-math-knowledge-map] .map-tip {
   position: absolute;
-  bottom: 43px;
+  bottom: calc(100% - 1px);
   z-index: 2;
   max-width: 100%;
   width: max-content;

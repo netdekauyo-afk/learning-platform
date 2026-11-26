@@ -205,19 +205,22 @@ function barView(content, data) {
     track.setAttribute("aria-label", name);
     data.barUnits.forEach((unit, index) => {
       if (unit.domain !== id) return;
-      const slice = element("span", "map-unit");
+      const label = unit.name.replace(/^中[1-3]\s+/u, "");
+      const slice = element("span", "map-unit", label);
       slice.setAttribute("role", "img");
       slice.tabIndex = track.childElementCount ? -1 : 0;
       slice.dataset.unit = index;
       track.append(slice);
     });
-    row.append(track);
+    const bar = element("div", "map-bar");
+    bar.append(track);
+    row.append(bar);
     content.append(row);
   }
 }
 
 // The four tracks are read-only. A tooltip is transient and never changes the URL.
-function barTooltips(root, getModel) {
+function barTooltips(root) {
   let active, tip, touch;
   let keyboard = false;
   function hide() {
@@ -229,13 +232,13 @@ function barTooltips(root, getModel) {
     if (slice === active) return;
     hide();
     active = slice;
-    const row = slice.closest(".map-bar-row");
-    tip = element("span", "map-tip", getModel().data.barUnits[slice.dataset.unit].name);
+    const bar = slice.closest(".map-bar");
+    tip = element("span", "map-tip", slice.textContent);
     tip.setAttribute("aria-hidden", "true");
-    row.append(tip);
+    bar.append(tip);
     const rect = slice.getBoundingClientRect();
-    const center = rect.left - row.getBoundingClientRect().left + rect.width / 2;
-    tip.style.left = Math.max(0, Math.min(row.clientWidth - tip.offsetWidth, center - tip.offsetWidth / 2)) + "px";
+    const center = rect.left - bar.getBoundingClientRect().left + rect.width / 2;
+    tip.style.left = Math.max(0, Math.min(bar.clientWidth - tip.offsetWidth, center - tip.offsetWidth / 2)) + "px";
   }
   root.addEventListener("pointerover", event => {
     const slice = event.target.closest(".map-unit");
@@ -285,7 +288,7 @@ export function mountMap(root) {
   const content = root.querySelector("[data-map-content]");
   const notice = root.querySelector("[data-notice]");
   let model, request, route, mastery, lastCylinder = [], frame = 0;
-  const hideTip = barTooltips(root, () => model);
+  const hideTip = barTooltips(root);
   function note(text) {
     notice.hidden = !text;
     notice.textContent = text;
@@ -312,7 +315,7 @@ export function mountMap(root) {
       const unit = model.data.barUnits[slice.dataset.unit];
       const mastered = everyRequired(unit.knowledgeIds, mastery.isMastered);
       slice.dataset.mastered = mastered;
-      slice.setAttribute("aria-label", [model.data.nodes[unit.domain].name, unit.name, stateName(mastered)].join("・"));
+      slice.setAttribute("aria-label", [model.data.nodes[unit.domain].name, slice.textContent, stateName(mastered)].join("・"));
     }
     note(mastery.unreadable ? "一部の学習履歴を読み取れないため、達成状態を判定できない項目があります。" : "");
   }
