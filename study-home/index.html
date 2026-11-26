@@ -407,6 +407,13 @@
   let candidateVersion = 0;
   let candidateContext = null;
   let candidateObservers = [];
+  let candidateMovement = 0;
+  for (const event of ['wheel', 'touchstart', 'pointerdown']) {
+    window.addEventListener(event, () => { if (currentScreen === 'candidates' && flowSubject === 'math') candidateMovement++; }, { passive: true });
+  }
+  window.addEventListener('keydown', (event) => {
+    if (currentScreen === 'candidates' && flowSubject === 'math' && ['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) candidateMovement++;
+  });
   let selectionBySubject = {};
   let startModes = {};
   let draftLessons = {};
@@ -694,6 +701,7 @@
     const subject = flowSubject;
     const grade = gradeControl.value;
     const version = ++candidateVersion;
+    const movementAtStart = candidateMovement;
     candidateObservers.forEach((observer) => observer.disconnect());
     candidateObservers = [];
     candidateContext = null;
@@ -705,7 +713,19 @@
     try {
       const lessons = await getLessons(grade, subject);
       if (subject === 'math') {
-        await showMathCandidates(grade, lessons, version);
+        try { await showMathCandidates(grade, lessons, version, movementAtStart); }
+        catch (_) {
+          if (version !== candidateVersion || currentScreen !== 'candidates') return;
+          candidateStatus.textContent = '問題を表示できないため、授業名から選んでください。';
+          for (const lesson of lessons) {
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'choice-card';
+            button.textContent = `${lesson.number ? `第${lesson.number}時限 ` : ''}${lesson.title}`;
+            button.addEventListener('click', () => chooseLesson(lesson));
+            candidateList.appendChild(button);
+          }
+        }
         return;
       }
       const result = await rankedCandidates(grade, subject, lessons);
@@ -726,7 +746,7 @@
     }
   }
 
-  async function showMathCandidates(grade, lessons, version) {
+  async function showMathCandidates(grade, lessons, version, movementAtStart) {
     const helpers = await import('../assets/numbas/lesson-preview.js?v=20261127-preview');
     const today = globalThis.ClassroomCalendar?.today();
     let schedule = null;
@@ -759,8 +779,9 @@
 
     function pump() {
       while (running < 3 && queue.length) {
-        const { lesson, preview, card } = queue.shift();
-        if (version !== candidateVersion || !card.isConnected) continue;
+        const item = queue.shift();
+        const { lesson, preview, card } = item;
+        if (version !== candidateVersion || !card.isConnected) { item.resolve(); continue; }
         running++;
         const source = lesson.mainSource || (lesson.questions && /^[a-z0-9-]+$/i.test(lesson.id)
           ? new URL(`${lesson.id}.exam`, lesson.questions).href : null);
@@ -770,8 +791,17 @@
           if (version !== candidateVersion || !card.isConnected) return;
           if (!problem || !await helpers.renderRepresentativeProblem(preview, problem)) preview.textContent = '授業名から選べます。';
         })().catch(() => { if (version === candidateVersion && card.isConnected) preview.textContent = '授業名から選べます。'; })
-          .finally(() => { running--; pump(); });
+          .finally(() => { running--; item.resolve(); pump(); });
       }
+    }
+    function queuePreview(item) {
+      if (!item) return Promise.resolve();
+      if (!item.promise) {
+        item.promise = new Promise((resolve) => { item.resolve = resolve; });
+        queue.push(item);
+        pump();
+      }
+      return item.promise;
     }
 
     function makeCard(index) {
@@ -814,15 +844,21 @@
     }
     addRange(start, end, bottom);
 
-    let moved = false;
+    let moved = candidateMovement !== movementAtStart;
     const cancelCenter = () => { moved = true; };
     const gesture = new AbortController();
     for (const event of ['wheel', 'touchstart', 'pointerdown']) window.addEventListener(event, cancelCenter, { passive: true, signal: gesture.signal });
     window.addEventListener('keydown', (event) => {
       if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) cancelCenter();
     }, { signal: gesture.signal });
-    requestAnimationFrame(() => {
-      if (version !== candidateVersion || currentScreen !== 'candidates') { gesture.abort(); return; }
+    // Fill the few cards around the initial position before centring once.
+    // A slow request cannot hold the entire screen indefinitely.
+    const nearby = [plan.target];
+    for (let offset = 1; offset <= 3; offset++) nearby.push(plan.target - offset, plan.target + offset);
+    const ready = Promise.allSettled(nearby.map((index) => queuePreview(cards.get(index))));
+    Promise.race([ready, new Promise((resolve) => setTimeout(resolve, 3000))]).then(() => requestAnimationFrame(() => {
+      if (version !== candidateVersion) { gesture.abort(); return; }
+      if (currentScreen !== 'candidates') moved = true;
       if (!moved && plan.label) cards.get(plan.target)?.card.scrollIntoView({ block: 'center', behavior: 'instant' });
       gesture.abort();
       if (!('IntersectionObserver' in window)) {
@@ -835,9 +871,8 @@
           if (!entry.isIntersecting) continue;
           previewObserver.unobserve(entry.target);
           const item = [...cards.values()].find((value) => value.card === entry.target);
-          if (item) queue.push(item);
+          if (item) void queuePreview(item);
         }
-        pump();
       }, { rootMargin: '400px 0px' });
       candidateObservers.push(previewObserver);
       for (const { card } of cards.values()) previewObserver.observe(card);
@@ -846,8 +881,16 @@
           if (!entry.isIntersecting) continue;
           if (entry.target === top && start > 0) {
             const first = Math.max(0, start - batch);
+            const visibleAnchor = top.nextElementSibling;
+            const previousTop = visibleAnchor?.getBoundingClientRect().top;
             addRange(first, start - 1, top.nextSibling);
             start = first;
+            // Keep the same lesson in place as earlier cards are inserted.
+            // This is not a second jump to today's lesson.
+            if (visibleAnchor && Number.isFinite(previousTop)) {
+              const shift = visibleAnchor.getBoundingClientRect().top - previousTop;
+              if (shift) window.scrollBy({ top: shift, behavior: 'instant' });
+            }
           } else if (entry.target === bottom && end < plan.items.length - 1) {
             const last = Math.min(plan.items.length - 1, end + batch);
             addRange(end + 1, last, bottom);
@@ -858,7 +901,7 @@
       candidateObservers.push(edgeObserver);
       edgeObserver.observe(top);
       edgeObserver.observe(bottom);
-    });
+    }));
   }
 
   function chooseLesson(lesson) {
