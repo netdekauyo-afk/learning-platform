@@ -1,4 +1,4 @@
-import { examQuestions, questionIds, questionProgress, isRecognizedCorrect, initializeRecognitionRule, readExamSource, mainQuestionSet } from "./question-progress.js?v=shared-design-1";
+import { examQuestions, questionIds, questionProgress, isRecognizedCorrect, initializeRecognitionRule, readExamSource, mainQuestionSet, subjectQuestionTypes } from "./question-progress.js?v=shared-design-1";
 
 const prefix = "classroom:practice-history:v1:";
 const marks = Object.freeze({ single: "○", oneOfTwo: "◯", both: "◎" });
@@ -73,7 +73,8 @@ function prepareProgress(row) {
 // Some one-question lesson lists show a separate mark for each difficulty.
 // Keep the existing lesson-level history keys and mark appearance unchanged.
 function prepareDifficultyProgress() {
-  const levels = [
+  const singleQuestionLabel = /\/junior-high\/grade-1\/math(?:\/index\.html|\/)?$/.test(location.pathname) ? subjectQuestionTypes()[0] : "";
+  const levels = singleQuestionLabel ? [{ id: "basic", label: singleQuestionLabel }] : [
     { id: "basic", label: "基礎" },
     { id: "standard", label: "標準" },
     { id: "advanced", label: "発展" },

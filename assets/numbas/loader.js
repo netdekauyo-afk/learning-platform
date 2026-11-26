@@ -1,5 +1,5 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=continuous-1";
-import { createDifficultyTabs } from "./difficulty-tabs.js?v=shared-design-1";
+import { createDifficultyTabs } from "./difficulty-tabs.js?v=main-question-types-1";
 import { exerciseSettings, applyExerciseSettings } from "./exercise-settings.js?v=shared-design-1";
 import { initializeRecognitionRule, isRecognizedCorrect, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect, readExerciseText } from "./question-progress.js?v=continuous-3";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
@@ -1070,6 +1070,9 @@ async function boot() {
   const initialLoad = host.dataset.sequenceSource === host.dataset.examSource ? runtime : runtime.then(() => bootExam(host, status, "basic", lessonLayout));
 
   if (lessonLayout) {
+    // The old grade-one maths lessons each have a single basic question.
+    // Keep the old basic history key, and do not expose the old difficulty files.
+    const singleQuestionLabel = lessonMatch ? exerciseSettings.questionTypesBySubject["junior-high/math"][0] : "";
     createDifficultyTabs(host, status, async (examHost, examStatus, level) => {
       try {
         const response = await fetch(new URL(examHost.dataset.examSource, location.href));
@@ -1084,7 +1087,7 @@ async function boot() {
         console.error(error);
         examStatus.textContent = "問題を表示できませんでした。";
       }
-    }, (level) => isRecognizedCorrect(readPracticeHistory(practiceHistoryKey(level)), null, recognitionStartedAt));
+    }, (level) => isRecognizedCorrect(readPracticeHistory(practiceHistoryKey(level)), null, recognitionStartedAt), { singleQuestionLabel });
   }
   await initialLoad;
 }

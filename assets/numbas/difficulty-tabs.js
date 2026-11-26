@@ -1,25 +1,27 @@
 /* The lesson keeps each loaded exam in its own panel, so switching tabs does
    not discard an in-progress answer. Difficulty files sit beside the basic one. */
-export function createDifficultyTabs(basicHost, basicStatus, loadExam, recognized) {
-  const levels = [
+export function createDifficultyTabs(basicHost, basicStatus, loadExam, recognized, { singleQuestionLabel = "" } = {}) {
+  // A legacy single-question lesson can use the common type-tab appearance
+  // without changing its lesson-level basic history or opening other exams.
+  const levels = singleQuestionLabel ? [{ id: "basic", label: singleQuestionLabel, suffix: "" }] : [
     { id: "basic", label: "基礎", suffix: "" },
     { id: "standard", label: "標準", suffix: "-s" },
     { id: "advanced", label: "発展", suffix: "-a" },
   ];
   const parent = basicHost.parentNode;
   const tablist = document.createElement("div");
-  tablist.className = "difficulty-tabs";
+  tablist.className = singleQuestionLabel ? "question-type-tabs" : "difficulty-tabs";
   tablist.setAttribute("role", "tablist");
-  tablist.setAttribute("aria-label", "問題の難易度");
+  tablist.setAttribute("aria-label", singleQuestionLabel ? "基本問題の種類" : "問題の難易度");
   let disclosure;
-  if (basicHost.dataset.sequenceSource) {
+  if (basicHost.dataset.sequenceSource && !singleQuestionLabel) {
     disclosure = document.createElement("details");
     disclosure.className = "difficulty-picker";
     const summary = document.createElement("summary");
     summary.textContent = "難易度";
     disclosure.append(summary, tablist);
   } else {
-    tablist.classList.add("classroom-tabs");
+    if (!singleQuestionLabel) tablist.classList.add("classroom-tabs");
     parent.insertBefore(tablist, basicStatus);
   }
 
