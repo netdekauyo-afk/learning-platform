@@ -6,20 +6,57 @@
   <meta name="theme-color" content="#151515">
   <title>中学校・数学 | Classroom</title>
   <link rel="stylesheet" href="../../assets/style.css">
-
 </head>
 <body>
   <div class="site-shell">
-    <nav class="breadcrumb" aria-label="現在の場所"><a href="../../">Classroom</a><span aria-hidden="true"> / </span><a href="../">中学校</a><span aria-hidden="true"> / </span><span aria-current="page">数学</span></nav>
+    <nav class="breadcrumb" aria-label="現在の場所"><a href="../../">Classroom</a><span aria-hidden="true"> / </span><a href="../">中学校</a><span aria-hidden="true"> / </span><span id="math-crumb" aria-current="page">数学</span><a id="math-home" href="./" hidden>数学</a></nav>
     <main>
-      <h1>数学</h1>
-      <p class="hint">学年を選ぶ</p>
-      <nav class="choices" aria-label="学年を選ぶ">
-        <a class="choice-card" href="../grade-1/math/">1年生<span aria-hidden="true">›</span></a>
-        <a class="choice-card" href="../grade-2/math/">2年生<span aria-hidden="true">›</span></a>
-        <a class="choice-card" href="../grade-3/math/">3年生<span aria-hidden="true">›</span></a>
-      </nav>
+      <section id="grade-selection">
+        <h1>数学</h1>
+        <p class="hint">学年を選ぶ</p>
+        <nav class="choices" aria-label="学年を選ぶ">
+          <a class="choice-card" href="../grade-1/math/">1年生<span aria-hidden="true">›</span></a>
+          <a class="choice-card" href="../grade-2/math/">2年生<span aria-hidden="true">›</span></a>
+          <a class="choice-card" href="../grade-3/math/">3年生<span aria-hidden="true">›</span></a>
+        </nav>
+        <p><a class="choice-card" id="map-entry" href="#map-bar">数学の達成度<span aria-hidden="true">›</span></a></p>
+      </section>
+      <section data-math-knowledge-map data-source="../../assets/math-knowledge-map.json" hidden>
+        <h1 tabindex="-1">数学の達成度</h1>
+        <div class="map-toolbar">
+          <div class="map-modes" role="group" aria-label="表示切替">
+            <button type="button" data-mode="bar" aria-pressed="true">横棒</button>
+            <button type="button" data-mode="cylinder" aria-pressed="false">円柱</button>
+          </div>
+          <ul class="map-legend" aria-label="習得状態">
+            <li><i aria-hidden="true"></i>未習得</li>
+            <li><i data-mastered="true" aria-hidden="true"></i>習得済み</li>
+          </ul>
+        </div>
+        <p data-notice role="status" hidden></p>
+        <div data-map-content></div>
+      </section>
     </main>
   </div>
+  <script type="module">
+    const region = document.querySelector("[data-math-knowledge-map]");
+    let started;
+    function openWhenRequested() {
+      if (!location.hash.startsWith("#map-") || started) return;
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = "../../assets/math-knowledge-map.css";
+      document.head.append(css);
+      started = import("../../assets/math-knowledge-map.js").then(module => module.mountMap(region)).catch(() => {
+        started = null;
+        region.hidden = false;
+        const notice = region.querySelector("[data-notice]");
+        notice.hidden = false;
+        notice.textContent = "達成度のデータを読み込めませんでした。";
+      });
+    }
+    window.addEventListener("hashchange", openWhenRequested);
+    openWhenRequested();
+  </script>
 </body>
 </html>

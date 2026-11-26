@@ -1,0 +1,180 @@
+[data-math-knowledge-map] {
+  --map-gray: #43505e;
+  --map-blue: #255d90;
+  container-type: inline-size;
+}
+
+[data-math-knowledge-map] [hidden] { display: none; }
+[data-math-knowledge-map] h1 { margin-block-end: 1rem; }
+[data-math-knowledge-map] h2,
+[data-math-knowledge-map] h3 { color: var(--color-heading); line-height: 1.4; }
+[data-math-knowledge-map] a { color: var(--color-accent); text-underline-offset: .2em; }
+[data-math-knowledge-map] button { font: inherit; color: var(--color-heading); }
+[data-math-knowledge-map] :focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; }
+
+[data-math-knowledge-map] .map-toolbar,
+[data-math-knowledge-map] .map-modes,
+[data-math-knowledge-map] .map-legend,
+[data-math-knowledge-map] .map-back {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+[data-math-knowledge-map] .map-toolbar {
+  justify-content: space-between;
+  gap: .8rem 1rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1.5rem;
+}
+[data-math-knowledge-map] .map-modes button,
+[data-math-knowledge-map] .map-back button {
+  min-height: 44px;
+  padding: .5rem 1.15rem;
+  border: 1px solid var(--color-border);
+  border-radius: .55rem;
+  background: var(--color-surface);
+  cursor: pointer;
+}
+[data-math-knowledge-map] .map-modes button[aria-pressed="true"] {
+  background: var(--color-surface-hover);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 -3px var(--color-accent);
+  font-weight: 700;
+}
+[data-math-knowledge-map] .map-back { margin: 0 0 1rem; }
+[data-math-knowledge-map] .map-back button:hover,
+[data-math-knowledge-map] .map-modes button:hover { border-color: var(--color-accent); }
+[data-math-knowledge-map] .map-legend { gap: 1rem; margin: 0; padding: 0; list-style: none; }
+[data-math-knowledge-map] .map-legend li { display: flex; align-items: center; gap: .4rem; }
+[data-math-knowledge-map] .map-legend i {
+  display: inline-block; width: 1rem; height: 1rem; border: 1px solid var(--color-muted); border-radius: .22rem;
+  background: var(--map-gray);
+}
+[data-math-knowledge-map] .map-legend i[data-mastered="true"] { background: var(--map-blue); }
+[data-math-knowledge-map] [data-notice] { color: var(--color-muted); }
+
+[data-math-knowledge-map] .map-bar-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7.5em minmax(0, 1fr);
+  align-items: center;
+  gap: .6rem 1rem;
+  margin: 1.25rem 0;
+}
+[data-math-knowledge-map] .map-bar-row h2,
+[data-math-knowledge-map] .map-pillar h2 { margin: 0; font-size: 1.05rem; }
+[data-math-knowledge-map] .map-track {
+  display: grid;
+  grid-auto-columns: minmax(0,1fr);
+  grid-auto-flow: column;
+  border: 1px solid var(--color-muted);
+  border-radius: .5rem;
+  overflow: clip;
+}
+[data-math-knowledge-map] .map-unit {
+  min-width: 0;
+  height: 44px;
+  background: var(--map-gray);
+  border-inline-start: 1px solid var(--color-muted);
+  touch-action: manipulation;
+}
+[data-math-knowledge-map] .map-unit:first-child { border: 0; }
+[data-math-knowledge-map] .map-unit[data-mastered="true"] { background: var(--map-blue); }
+[data-math-knowledge-map] .map-unit:focus-visible { outline-offset: -3px; }
+[data-math-knowledge-map] .map-tip {
+  position: absolute;
+  bottom: 43px;
+  z-index: 2;
+  max-width: 100%;
+  width: max-content;
+  padding: .45rem .7rem;
+  border: 1px solid var(--color-border-hover);
+  border-radius: .45rem;
+  background: var(--color-bg);
+  box-shadow: 0 3px 12px #0005;
+  font-size: .94rem;
+  overflow-wrap: anywhere;
+}
+
+[data-math-knowledge-map] .map-pillars {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: max-content 1fr;
+  gap: 1.35rem .85rem;
+}
+[data-math-knowledge-map] .map-pillar {
+  display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  gap: .75rem;
+  min-width: 0;
+}
+[data-math-knowledge-map] .map-pillar h2 { text-align: center; }
+[data-math-knowledge-map] .map-stack {
+  display: grid;
+  grid-template-rows: repeat(var(--slices), minmax(max-content, 1fr));
+  min-height: 360px;
+  border: 1px solid var(--color-muted);
+  border-radius: 50% / 10px;
+  overflow: clip;
+}
+[data-math-knowledge-map] .map-stack.map-single {
+  max-width: 24rem;
+  min-height: 0;
+  margin-inline: auto;
+}
+[data-math-knowledge-map] .map-band {
+  --face: var(--map-gray);
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  border: 0;
+  min-height: 48px;
+  padding: .78rem .65rem .55rem;
+  background: linear-gradient(90deg,#0004,transparent 17%,transparent 83%,#0004), var(--face);
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-weight: 600;
+  text-align: center;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+[data-math-knowledge-map] .map-band:first-child { padding-top: 1.05rem; }
+[data-math-knowledge-map] .map-band[data-mastered="true"] { --face: var(--map-blue); }
+[data-math-knowledge-map] .map-band span { z-index: 1; }
+[data-math-knowledge-map] .map-band svg {
+  position: absolute; inset-inline: 0; width: 100%; height: 12px; pointer-events: none; overflow: hidden;
+}
+[data-math-knowledge-map] .map-cap { top: 0; }
+[data-math-knowledge-map] .map-seam { bottom: 0; }
+[data-math-knowledge-map] .map-band:focus-visible { z-index: 2; outline: 3px solid white; outline-offset: -4px; }
+@media (hover: hover) {
+  [data-math-knowledge-map] .map-band:hover { box-shadow: inset 0 0 0 2px var(--color-muted); }
+}
+[data-math-knowledge-map] .map-path { margin: 0 0 .9rem; overflow-wrap: anywhere; font-size: 1.1rem; }
+[data-math-knowledge-map] .map-materials { list-style: none; margin: 0; padding: 0; }
+[data-math-knowledge-map] .map-materials li {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  gap: 0 1rem; padding: .55rem 0; border-bottom: 1px solid var(--color-border);
+}
+[data-math-knowledge-map] .map-links { display: flex; align-items: center; flex-wrap: wrap; gap: .75rem; }
+[data-math-knowledge-map] .map-links a,
+[data-math-knowledge-map] .map-cross a { display: inline-flex; align-items: center; min-height: 44px; }
+[data-math-knowledge-map] .map-cross { padding-inline-start: 1.3rem; }
+@container (max-width: 699px) {
+  [data-math-knowledge-map] .map-pillars { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  [data-math-knowledge-map] .map-bar-row { grid-template-columns: 1fr; }
+}
+@container (max-width: 319px) {
+  [data-math-knowledge-map] .map-pillars { grid-template-columns: 1fr; }
+}
+@media (forced-colors: active) {
+  [data-math-knowledge-map] :is(.map-unit,.map-band,.map-legend i) { border: 1px solid CanvasText; }
+  [data-math-knowledge-map] [data-mastered="true"] { border: 4px double Highlight; }
+  [data-math-knowledge-map] .map-band:focus-visible { outline-color: Highlight; }
+}
