@@ -1,3 +1,5 @@
+@import url("../responsive-layout.css");
+
 :is(.question-type-tabs, .classroom-tabs) {
   display: flex;
   gap: .4rem;
@@ -121,15 +123,8 @@
   border-radius: 999px;
 }
 
-/* Size only question pages. Keep browser zoom and the user's default font size. */
-html:has(.site-shell #numbas-host) {
-  font-size: calc(100% + clamp(0px, min(calc((100vw - 640px) / 60), calc((100svh - 660px) / 40)), .5rem));
-}
-.site-shell:has(#numbas-host) { width: min(100% - 32px, 47.5rem); }
 @media (min-width: 700px) {
   :is(.site-shell:has(#numbas-host), .site-shell:has(#numbas-host[data-exercise-mode="continuous"])) {
-    padding-block: clamp(1rem, 3svh, 2rem);
-    .breadcrumb { margin-bottom: clamp(.75rem, 2svh, 1.5rem); }
     .problem-toolbar { margin-bottom: .75rem; }
     main > h1 { margin-bottom: .75rem; }
   }
