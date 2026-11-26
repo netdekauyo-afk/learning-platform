@@ -10,7 +10,7 @@ const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
 const stylesheetURLs = [
   resource("numbas-runtime/numbas.css"),
-  new URL("./theme.css?v=continuous-feedback-1", import.meta.url).href,
+  new URL("./theme.css?v=responsive-question-1", import.meta.url).href,
 ];
 
 // Load the shared home/list storage helper without delaying or changing Numbas.
@@ -34,7 +34,7 @@ function preparePageFrame() {
   if (!host) return;
   const sheet = document.createElement("link");
   sheet.rel = "stylesheet";
-  sheet.href = new URL("./question-tabs.css?v=continuous-1", import.meta.url).href;
+  sheet.href = new URL("./question-tabs.css?v=responsive-question-1", import.meta.url).href;
   document.head.append(sheet);
 
   const lesson = location.pathname.match(/\/lessons\/[^/]+-l(\d+)\/questions\.html$/);

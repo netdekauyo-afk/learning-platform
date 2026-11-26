@@ -1,5 +1,7 @@
 /* The Numbas runtime is a single shared dependency. Classroom colors come from ../style.css. */
 .numbas-container {
+  /* Keep Numbas' native --text-size setting and scale the base with the question page. */
+  --base-text-size: 1.125rem;
   --exam-height: auto;
   --sheet: var(--color-surface);
   --edge: var(--color-border);
