@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import { choiceRetryAttempt, nextOptionalBranch, requiredBranches } from "../assets/numbas/explore-navigation.js";
 
 // The definition order, branch order and numeric ID order all differ.
@@ -36,7 +37,7 @@ test("今回の誤答だけを固定ID順に生成し、誤答順や同じ分岐
   assert.deepEqual(requiredBranches([s1, { ...s1 }, s2], parts, [mistake(s1), mistake(s2)]), [s1, s2]);
 });
 
-test("再挑戦で正解したら補助を先に生成し、正解した主問題を表示したまま待機を始める", (t) => {
+function retryQuestion(t) {
   const storage = new Map();
   for (const [name, value] of Object.entries({
     location: new URL("https://example.test/questions.html"), window: new EventTarget(),
@@ -60,8 +61,11 @@ test("再挑戦で正解したら補助を先に生成し、正解した主問�
     events: events(), nextParts: branches, getScope: () => ({ getVariable: () => undefined }),
     availableNextParts() { return this.score ? branches : [branches[this.marking_values.interpreted_answer]]; },
     makeNextPart(branch) {
-      branch.instance = { index: branch.index };
+      branch.instance = { index: branch.index, type: "1_n_2", marks: 1, shuffleAnswers: [0, 1, 2],
+        previousPart: this, events: events() };
+      question.parts.push(branch.instance);
       question.setCurrentPart(branch.instance); // Native Explore selects every newly created part.
+      question.events.trigger("addExtraPart", branch.instance);
     },
   };
   const question = {
@@ -72,15 +76,20 @@ test("再挑戦で正解したら補助を先に生成し、正解した主問�
   const whenReady = [];
   question.events.on("classroom:required-parts-ready", () => whenReady.push(question.currentPart));
   attempt.connect();
-  function submit(choice, score) {
-    Object.assign(main, { answered: true, score, credit: score, ticks: [0, 1, 2].map((i) => [i === choice]),
+  function submit(part, choice, score) {
+    Object.assign(part, { answered: true, score, credit: score, ticks: [0, 1, 2].map((i) => [i === choice]),
       marking_values: { interpreted_answer: choice } });
-    main.events.trigger("post-submit");
+    part.events.trigger("post-submit");
   }
-  submit(0, 0);
-  submit(1, 0);
+  return { storage, branches, main, question, attempt, whenReady, submit };
+}
+
+test("再挑戦で正解したら補助を先に生成し、正解した主問題を表示したまま待機を始める", (t) => {
+  const { storage, branches, main, question, attempt, whenReady, submit } = retryQuestion(t);
+  submit(main, 0, 0);
+  submit(main, 1, 0);
   assert.deepEqual(whenReady, []);
-  submit(2, 1);
+  submit(main, 2, 1);
   assert.ok(branches.every((branch) => branch.instance));
   assert.equal(question.currentPart, main);
   assert.deepEqual(whenReady, [main]);
@@ -88,4 +97,49 @@ test("再挑戦で正解したら補助を先に生成し、正解した主問�
   const saved = JSON.parse([...storage.values()][0]);
   assert.equal(saved.current, parent);
   assert.deepEqual(saved.visited, []);
+});
+
+test("補助の誤答はその補助の挑戦にだけ残り、親と別の補助の状態を変えない", (t) => {
+  const { branches, main, question, attempt, whenReady, submit } = retryQuestion(t);
+  submit(main, 0, 0);
+  submit(main, 2, 1);
+  const required = branches[0].instance;
+  attempt.open(branches[1]);
+  const optional = branches[1].instance;
+  submit(required, 1, 0);
+  // An open support from an older release has only its last marked answer.
+  delete attempt.card(required).mistakes;
+  assert.equal(attempt.hasMistake(required, 1), true);
+  submit(required, 0, 0);
+  submit(required, 0, 0);
+  assert.deepEqual(attempt.card(required).mistakes, [{ choice: 1 }, { choice: 0 }]);
+  assert.equal(attempt.hasMistake(optional, 0), false);
+  submit(required, 2, 1);
+  submit(optional, 2, 0);
+  submit(optional, 1, 1);
+  // Explicitly answering an unused choice after completion restarts only this support.
+  submit(optional, 0, 0);
+  assert.deepEqual(attempt.card(optional).mistakes, [{ choice: 0 }]);
+  assert.equal(attempt.hasMistake(required, 0), true);
+  assert.deepEqual(attempt.mistakes, [{ choice: 0, supportId: parts[s2.index].customName }]);
+  assert.deepEqual(whenReady, [main]);
+  assert.equal(question.parts.length, 3);
+  assert.equal(main.score, 1);
+});
+
+test("第9時限の補助9問は、正解を含まない誤答別の説明を持つ", async () => {
+  const url = new URL("../junior-high/grade-1/math/lessons/m1-l009/m1-l009.exam", import.meta.url);
+  const raw = await readFile(url, "utf8");
+  const exam = JSON.parse(raw.slice(raw.indexOf("\n") + 1));
+  const supports = exam.question_groups.flatMap((group) => group.questions.flatMap((q) => q.parts.slice(1)));
+  assert.equal(supports.length, 9);
+  for (const part of supports) {
+    const answer = part.choices[part.matrix.indexOf(1)];
+    const wrong = part.distractors.filter((_, i) => part.matrix[i] === 0);
+    assert.equal(new Set(wrong).size, 2, part.customName);
+    for (const message of wrong) {
+      assert.ok(message.startsWith("誤答です。") && message.length > "誤答です。".length, part.customName);
+      assert.ok(!message.includes("正解は") && !message.includes(answer), part.customName);
+    }
+  }
 });

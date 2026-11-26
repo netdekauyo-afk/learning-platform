@@ -48,6 +48,16 @@ export function choiceRetryAttempt(question, parts, recognized, repeatCanCount) 
     if (!Array.isArray(state.cards[id]?.order)) state.cards[id] = { order: part.shuffleAnswers.slice() };
     return state.cards[id];
   }
+  function mistakes(part) {
+    if (part === main) return state.mistakes;
+    const snapshot = card(part);
+    if (!Array.isArray(snapshot.mistakes)) {
+      // Earlier support snapshots saved only the most recent answer.
+      const answer = snapshot.answer;
+      snapshot.mistakes = answer && answer.score < part.marks ? [{ choice: answer.choice }] : [];
+    }
+    return snapshot.mistakes;
+  }
   function branchId(branch) { return parts[branch.index].customName; }
   function open(branch, remedial) {
     const existing = main.nextParts.find((edge) => edge.index === branch.index && edge.instance);
@@ -85,26 +95,34 @@ export function choiceRetryAttempt(question, parts, recognized, repeatCanCount) 
     const choice = part.ticks.findIndex((row) => row[0]);
     if (choice < 0) return;
     const snapshot = card(part);
+    const missed = mistakes(part);
+    if (part !== main && snapshot.answer?.score >= part.marks && snapshot.answer.choice !== choice) {
+      missed.length = 0;
+    }
     snapshot.answer = { choice, score: part.score, credit: part.credit };
     if (part === main) {
       // Retain the marked radio answer used by the authored availability conditions.
       snapshot.answer.interpreted = Numbas.jme.unwrapValue(part.marking_values.interpreted_answer);
-      if (part.score < part.marks) {
-        const available = part.availableNextParts();
-        if (!state.mistakes.some((item) => item.choice === choice)) {
-          state.mistakes.push({ choice, supportId: available.length === 1 ? branchId(available[0]) : null });
+    }
+    if (part.score < part.marks) {
+      if (!missed.some((item) => item.choice === choice)) {
+        const mistake = { choice };
+        if (part === main) {
+          const available = main.availableNextParts();
+          mistake.supportId = available.length === 1 ? branchId(available[0]) : null;
         }
-      } else {
-        const required = requiredBranches(main.nextParts, parts, state.mistakes);
-        if (required.length && !required.every((branch) => branch.instance)) {
-          batching = true;
-          try { for (const branch of required) if (!branch.instance) open(branch, true); }
-          finally { batching = false; }
-          // Numbas selects each part as it is created. Keep the marked main
-          // on screen until its reading time ends or the learner uses the arrow.
-          question.setCurrentPart(main);
-          question.events.trigger("classroom:required-parts-ready");
-        }
+        missed.push(mistake);
+      }
+    } else if (part === main) {
+      const required = requiredBranches(main.nextParts, parts, missed);
+      if (required.length && !required.every((branch) => branch.instance)) {
+        batching = true;
+        try { for (const branch of required) if (!branch.instance) open(branch, true); }
+        finally { batching = false; }
+        // Numbas selects each part as it is created. Keep the marked main
+        // on screen until its reading time ends or the learner uses the arrow.
+        question.setCurrentPart(main);
+        question.events.trigger("classroom:required-parts-ready");
       }
     }
     save();
@@ -186,6 +204,7 @@ export function choiceRetryAttempt(question, parts, recognized, repeatCanCount) 
   return {
     get round() { return state.round; }, get guarded() { return guarded; },
     get mistakes() { return state.mistakes; }, card, start, next, connect,
+    hasMistake(part, choice) { return mistakes(part).some((item) => item.choice === choice); },
     observe(fn) { observers.add(fn); },
     open(branch) { open(branch, state.mistakes.some((item) => item.supportId === branchId(branch))); },
     canCountAgain: repeatCanCount, recognized,

@@ -205,7 +205,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
   const explore = question.partsMode === "explore";
   const authoredControls = set && hasAuthoredExploreControls(question);
   const primaryPart = question.parts[0];
-  const continuous = examElement.dataset.exerciseMode === "continuous";
+  const continuous = examElement.dataset?.exerciseMode === "continuous";
   const showsAnswerOnCard = (part) => (set || part.answered) && part.type === "1_n_2" && part.settings.displayType === "radiogroup" &&
     (!continuous || part.score >= part.marks);
   // Keep auxiliary answers out of the existing main-question progress history.
@@ -359,7 +359,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
           part.stagedAnswer.some((row) => Array.isArray(row) && row[0] === true);
         if (selected) part.submit();
       });
-      if (retry && !support) return;
+      if (retry) return;
       void part.display?.html_promise?.then((section) => {
         if (!examHost.contains(examElement)) return;
         bindSelectedChoiceRetry(section, () =>
@@ -650,7 +650,7 @@ function resultHeading(correct) {
 }
 
 // Display the answer and explanation already supplied by the running exam.
-function addMarkedResult(part, question, answer, retryMain, hideWrongAnswer = false) {
+function addMarkedResult(part, question, answer, retry, hideWrongAnswer = false) {
   const output = document.createElement("div");
   output.setAttribute("data-classroom-result", "");
   output.setAttribute("aria-live", "polite");
@@ -659,7 +659,7 @@ function addMarkedResult(part, question, answer, retryMain, hideWrongAnswer = fa
     const correct = part.score >= part.marks;
     output.replaceChildren(resultHeading(correct));
     if (hideWrongAnswer && !correct) return;
-    if (retryMain && !correct) {
+    if (retry && !correct) {
       const choice = part.ticks.findIndex((row) => row[0]);
       const text = part.settings.distractors[choice]?.[0];
       if (text) { output.innerHTML = text; formatExploreResult(output, false); }
@@ -700,35 +700,36 @@ function arrangeRetryChoices(part, section, answer, feedback, retry) {
     feedback.innerHTML = part.settings.distractors[snapshot.answer.choice][0];
     formatExploreResult(feedback, part.score >= part.marks);
   }
-  if (part.previousPart) return;
+  const isMain = !part.previousPart;
   section.classList.add("classroom-choice-retry");
-  const again = document.createElement("button");
-  again.type = "button";
-  again.className = "classroom-retry-button";
-  again.textContent = "正解済みの問題です。もう一度解きますか？";
-  section.querySelector(".classroom-question-card").prepend(again);
-  const mistaken = (index) => retry.mistakes.some((item) => item.choice === index);
+  const again = isMain ? document.createElement("button") : null;
+  if (again) {
+    again.type = "button";
+    again.className = "classroom-retry-button";
+    again.textContent = "正解済みの問題です。もう一度解きますか？";
+    section.querySelector(".classroom-question-card").prepend(again);
+    again.addEventListener("click", () => { retry.start(); inputs.find((input) => !input.disabled)?.focus(); });
+  }
   function paint() {
     const complete = part.answered && part.score >= part.marks;
-    again.hidden = !retry.guarded;
+    if (again) again.hidden = !retry.guarded;
     section.classList.toggle("classroom-awaiting-correct", !complete);
-    const certified = complete && retry.recognized();
+    const guarded = isMain && (retry.guarded || (complete && retry.recognized()));
     for (const input of inputs) {
-      const wrong = mistaken(Number(input.value));
+      const wrong = retry.hasMistake(part, Number(input.value));
       input.closest("li").classList.toggle("classroom-choice-mistake", wrong);
-      input.disabled = retry.guarded || wrong || certified || part.locked;
+      input.disabled = guarded || wrong || part.locked;
     }
     if (!part.answered) feedback.replaceChildren();
   }
-  again.addEventListener("click", () => { retry.start(); inputs.find((input) => !input.disabled)?.focus(); });
   menu.addEventListener("click", (event) => {
     const input = event.target.closest("label")?.querySelector("input.choice");
     if (!input) return;
     const index = Number(input.value);
-    if (input.disabled || retry.guarded || mistaken(index)) {
+    if (input.disabled || (isMain && retry.guarded) || retry.hasMistake(part, index)) {
       event.preventDefault();
       event.stopImmediatePropagation();
-    } else if (part.answered && part.score >= part.marks) {
+    } else if (isMain && part.answered && part.score >= part.marks) {
       // A completed, as-yet uncertified answer can be retried; opening the
       // card or clicking the already selected answer during a wait is passive.
       event.preventDefault();
@@ -738,7 +739,8 @@ function arrangeRetryChoices(part, section, answer, feedback, retry) {
       queueMicrotask(() => part.display.studentAnswer(String(index)));
     }
   }, true);
-  retry.observe(paint);
+  if (isMain) retry.observe(paint);
+  else part.events.on("post-submit", paint);
   paint();
 }
 
@@ -749,7 +751,7 @@ function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry
     attachArrow?.(part, section, authoredResult);
     return;
   }
-  if (question.partsMode === "explore" && !part.previousPart) {
+  if (question.partsMode === "explore" && (!part.previousPart || retry)) {
     for (const legend of answer.querySelectorAll("fieldset:has(.radiogroup) > legend.sr-only")) {
       legend.parentElement.setAttribute("aria-label", "回答の選択肢");
       legend.setAttribute("aria-hidden", "true");
@@ -769,7 +771,7 @@ function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry
   const keypad = section.querySelector(":scope > :is(.number-pad-panel, .number-pad)");
   if (keypad) card.append(keypad);
 
-  const feedback = authoredResult || addMarkedResult(part, question, answer, retry && !part.previousPart, continuous);
+  const feedback = authoredResult || addMarkedResult(part, question, answer, retry, continuous);
   const paragraph = feedback.parentElement;
   card.after(feedback);
   if (paragraph?.matches("p:empty")) paragraph.remove();
@@ -780,7 +782,7 @@ function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry
   }
   if (part.type === "1_n_2") {
     const markExpected = () => {
-      const show = part.answered && (!retry || part.previousPart || part.score >= part.marks) &&
+      const show = part.answered && (!retry || part.score >= part.marks) &&
         (!continuous || part.score >= part.marks);
       const expected = show ? String(part.display.correctAnswer()) : null;
       for (const input of answer.querySelectorAll(".radiogroup input[type=radio]")) {
@@ -969,7 +971,7 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   let examData = authored?.examData;
   let exploreNavigation, choiceRetryAttempt;
   if (authored) {
-    ({ exploreNavigation, choiceRetryAttempt } = await import("./explore-navigation.js?v=shared-design-1"));
+    ({ exploreNavigation, choiceRetryAttempt } = await import("./explore-navigation.js?v=support-retry-1"));
     await prepareRuntime();
   } else {
     const response = await fetch(new URL(examHost.dataset.examSource, location.href));
