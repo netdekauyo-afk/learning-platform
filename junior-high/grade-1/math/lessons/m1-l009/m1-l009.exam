@@ -83,7 +83,8 @@
             "1章 数の世界をひろげよう［正負の数］",
             "２ 加法と減法",
             "level:basic",
-            "m1-l009-M1"
+            "m1-l009-M1",
+            "classroom:retry-by-choice"
           ],
           "metadata": {
             "licence": "None specified",
@@ -112,10 +113,10 @@
                 0
               ],
               "distractors": [
-                "誤答です。選んだ答えは「① 0 → ＋4」。正解は「② −2 → ＋2」です。2回目も、数直線の0から出発した。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。",
+                "誤答です。2本目は、1本目の矢印が着いたところから引きます。2本の矢印がつながる位置を確かめましょう。",
                 "正解です。−2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。",
-                "誤答です。選んだ答えは「③ −2 → ＋1」。正解は「② −2 → ＋2」です。立っている−2を1歩目に数えたため、実際には3目盛りしか進んでいない。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。",
-                "誤答です。選んだ答えは「④ −2 → −6」。正解は「② −2 → ＋2」です。＋4を左へ4目盛り進む動きとして読んだ。 −2から右へ進むと、1歩目が−1、2歩目が0、3歩目が＋1、4歩目が＋2。"
+                "誤答です。今立っている目盛りは出発点です。隣の目盛りに移ったところを1歩目として数えましょう。",
+                "誤答です。2本目の矢印は、どちらに向けましたか。正の数をたすときに進む向きを確かめましょう。"
               ],
               "displayType": "radiogroup",
               "displayColumns": 1,
@@ -136,7 +137,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -152,7 +153,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -168,7 +169,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -301,7 +302,7 @@
             }
           ],
           "preamble": {
-            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n\n        if (parent || correct || question.currentPart !== part || question.classroomHandlesBranchNavigation) return;\n        const available = part.availableNextParts();\n        if (available.length === 1) {\n            const next = available[0];\n            if (next.instance) question.setCurrentPart(next.instance);\n            else part.makeNextPart(next);\n        }\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
+            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
             "css": ""
           },
           "variablesTest": {
@@ -349,7 +350,8 @@
             "1章 数の世界をひろげよう［正負の数］",
             "２ 加法と減法",
             "level:basic",
-            "m1-l009-M2"
+            "m1-l009-M2",
+            "classroom:retry-by-choice"
           ],
           "metadata": {
             "licence": "None specified",
@@ -378,9 +380,9 @@
                 1
               ],
               "distractors": [
-                "誤答です。選んだ答えは「① （＋4）＋（＋6）＝＋10」。正解は「④ （＋4）＋（−6）＝−2」です。西へ歩いた6 mも正の数で記録し、2回とも東へ進む式にした。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。",
-                "誤答です。選んだ答えは「② （−4）＋（＋6）＝＋2」。正解は「④ （＋4）＋（−6）＝−2」です。東を負、西を正として、両方の符号を逆にした。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。",
-                "誤答です。選んだ答えは「③ （−6）＋（＋4）＝−2」。正解は「④ （＋4）＋（−6）＝−2」です。到着位置は合っている。この記録を順にたどると、最初に西へ6 m歩くことになる。 東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。",
+                "誤答です。2回目に歩いたのは西向きです。距離を書き込む前に、その向きを表す符号を確かめましょう。",
+                "誤答です。東と西に付けた符号が、問題文の約束に合っているか、1回目から順に確かめましょう。",
+                "誤答です。式の最初の数は、最初に歩いた移動を表します。式を左から読み、歩いた順と比べましょう。",
                 "正解です。東へ4 m進んだあと、西へ4 m戻ると出発点。さらに西へ2 m進むので、最後の位置は−2 m。"
               ],
               "displayType": "radiogroup",
@@ -402,7 +404,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -418,7 +420,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -434,7 +436,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -567,7 +569,7 @@
             }
           ],
           "preamble": {
-            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n\n        if (parent || correct || question.currentPart !== part || question.classroomHandlesBranchNavigation) return;\n        const available = part.availableNextParts();\n        if (available.length === 1) {\n            const next = available[0];\n            if (next.instance) question.setCurrentPart(next.instance);\n            else part.makeNextPart(next);\n        }\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
+            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
             "css": ""
           },
           "variablesTest": {
@@ -615,7 +617,8 @@
             "1章 数の世界をひろげよう［正負の数］",
             "２ 加法と減法",
             "level:basic",
-            "m1-l009-M3"
+            "m1-l009-M3",
+            "classroom:retry-by-choice"
           ],
           "metadata": {
             "licence": "None specified",
@@ -644,10 +647,10 @@
                 0
               ],
               "distractors": [
-                "誤答です。選んだ答えは「① 西へ2 m → 東へ2 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは4 m、最後の位置は0 m。出発点に戻ることだけを確かめ、道のりの条件を見落とした。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。",
-                "誤答です。選んだ答えは「② 西へ3 m → 西へ3 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは6 m、最後の位置は−6 m。同じ長さを2回歩けば戻れると考え、2回とも西向きであることを見落とした。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。",
+                "誤答です。出発点に戻れるかに加えて、道のりの条件も確かめましょう。行きと帰りの長さを合わせるとどうなりますか。",
+                "誤答です。2回の移動を矢印で描きましょう。2本目の矢印は、出発点に近づく向きですか。",
                 "正解です。歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。",
-                "誤答です。選んだ答えは「④ 西へ2 m → 東へ4 m」。正解は「③ 西へ3 m → 東へ3 m」です。歩いた道のりは6 m、最後の位置は＋2 m。途中で向きを変えれば戻れると考えた。この指示では出発点を東へ2 m通り越す。 歩いた道のりは6 m、最後の位置は0 m。行きの3 mを帰りにちょうどたどり直す。歩いた道のりには行きも帰りも入る。"
+                "誤答です。途中で折り返したあと、行きと同じだけ戻れていますか。2本の矢印の長さを比べましょう。"
               ],
               "displayType": "radiogroup",
               "displayColumns": 1,
@@ -668,7 +671,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -684,7 +687,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -700,7 +703,7 @@
                   "variableReplacements": [
                     {
                       "variable": "from_wrong",
-                      "definition": "credit < 1"
+                      "definition": "from_wrong or credit < 1"
                     }
                   ],
                   "lockAfterLeaving": false,
@@ -833,7 +836,7 @@
             }
           ],
           "preamble": {
-            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n\n        if (parent || correct || question.currentPart !== part || question.classroomHandlesBranchNavigation) return;\n        const available = part.availableNextParts();\n        if (available.length === 1) {\n            const next = available[0];\n            if (next.instance) question.setCurrentPart(next.instance);\n            else part.makeNextPart(next);\n        }\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
+            "js": "// Keep the authored part ID even when Explore gives a visited part a button label or a new path.\nfunction definitionId(part) {\n    return part.json?.customName || part.xml?.getAttribute('customname') || part.xml?.getAttribute('customName');\n}\n\n// The host can consume these independent submissions without treating an optional part as progress.\n// The exam does not write to Classroom's recognition or persistent history.\nquestion.classroomAttempts = [];\nquestion.events.on('addExtraPart', function (part) {\n    const id = definitionId(part);\n    const parent = part.previousPart;\n    const fromWrong = Boolean(parent && part.getScope().getVariable('from_wrong').value);\n    let newSelection = false;\n    let lastChoice = -1;\n\n    // Let an embedding host submit first when it already implements immediate marking.\n    part.events.on('storeAnswer', function () {\n        if (!part.stagedAnswer?.some(row => row[0]) || part.resuming || question.exam.loading) return;\n        newSelection = true;\n        queueMicrotask(function () {\n            if (part.isDirty && !part.locked && !part.submitting) part.submit();\n        });\n    });\n\n    if (fromWrong) {\n        part.display?.html_promise.then(function () { part.openSteps(); });\n    }\n\n    part.events.on('post-submit', function () {\n        if (!part.answered || part.resuming || question.exam.loading || question.exam.mode === 'review') return;\n        const choice = part.ticks.findIndex(row => row[0]);\n        if (choice < 0 || (!newSelection && choice === lastChoice)) return;\n        newSelection = false;\n        lastChoice = choice;\n        const correct = part.score === part.marks;\n        question.classroomAttempts.push({\n            lessonId: 'm1-l009', questionId: id, parentId: parent ? definitionId(parent) : null,\n            role: parent ? 'supplement' : 'main', route: parent ? (fromWrong ? 'wrong' : 'optional') : 'main',\n            choiceIndex: choice, kind: correct ? 'correct' : 'wrong',\n            score: part.score, maximum: part.marks, at: new Date().toISOString()\n        });\n\n        // Mirror the authored Numbas feedback in the prompt so the embedded theme exposes it.\n        part.display?.html_promise.then(function (section) {\n            const output = section.querySelector('[data-classroom-result]');\n            if (output) output.innerHTML = part.settings.distractors[choice][0];\n        });\n    });\n});\n\n// The embedded theme has a native question menu, but omits its return button.\nquestion.signals.on('HTMLAttached', function () {\n    question.display.html_promise.then(function (article) {\n        const back = article.querySelector('[data-classroom-menu]');\n        if (back) back.addEventListener('click', function () { question.exam.showMenu(); });\n    });\n});\n",
             "css": ""
           },
           "variablesTest": {

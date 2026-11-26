@@ -551,7 +551,8 @@
   box-shadow: inset 0 0 0 1px var(--color-success);
 }
 .student.answer[feedback-state="correct"] .radiogroup li.checked.correct label::after,
-.student.answer[feedback-state="wrong"] .radiogroup :is(li.checked, li.classroom-expected) label::after {
+.student.answer[feedback-state="wrong"] .radiogroup :is(li.checked, li.classroom-expected) label::after,
+.classroom-choice-retry .student.answer .radiogroup li.classroom-choice-mistake label::after {
   content: "✓";
   display: inline-flex;
   flex: 0 0 auto;
@@ -678,10 +679,12 @@
   .classroom-choice-part:has([data-classroom-result]:not(:empty)) .student.answer::after { content: none; }
   .student.answer[feedback-state="wrong"] > .feedback-icon,
   .student.answer[feedback-state="wrong"] > .feedback-icon + .sr-only { display: none; }
-  .student.answer[feedback-state="wrong"] .radiogroup li.checked label {
+  .student.answer[feedback-state="wrong"] .radiogroup li.checked label,
+  .classroom-choice-retry .student.answer .radiogroup li.classroom-choice-mistake label {
     border-color: var(--color-progress-marker); box-shadow: inset 0 0 0 1px var(--color-progress-marker);
   }
-  .student.answer[feedback-state="wrong"] .radiogroup li.checked label::after {
+  .student.answer[feedback-state="wrong"] .radiogroup li.checked label::after,
+  .classroom-choice-retry .student.answer .radiogroup li.classroom-choice-mistake label::after {
     content: "☓"; color: var(--color-progress-marker); border-color: currentColor;
   }
   .classroom-result-heading { display: flex; align-items: baseline; gap: .4em; color: #fff; font-weight: 700; }
@@ -792,3 +795,21 @@
   }
 }
 
+
+/* A tagged lesson keeps every missed choice visible during this attempt. */
+.classroom-choice-retry .classroom-retry-button {
+  justify-self: start;
+  min-height: 2.75rem;
+  padding: .5rem .95rem;
+  border: 1px solid var(--color-accent);
+  border-radius: .42rem;
+  background: var(--color-surface);
+  color: var(--color-heading);
+  font: inherit;
+  font-weight: 650;
+  cursor: pointer;
+}
+.classroom-retry-button[hidden],
+.classroom-awaiting-correct > .correct.answer { display: none !important; }
+
+.classroom-choice-retry .radiogroup label:has(input:disabled) { cursor: default; }
