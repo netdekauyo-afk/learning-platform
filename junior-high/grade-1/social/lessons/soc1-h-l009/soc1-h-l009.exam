@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-h-l009 人類の出現と進化・石器と土器の発明",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（歴史） 第9時限「人類の出現と進化・石器と土器の発明」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "人類の出現と進化・石器と土器の発明（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l009 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>人類は、長い年月をかけて進化してきました。</p>",
+          "advice": "<p>答え：猿人 → 原人 → 新人（人類は、約700万年前にアフリカで現れた猿人から、火や言葉を使う原人へ、そして現生人類の直接の祖先である新人（ホモ・サピエンス）へと進化しました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l009-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：二足歩行を始めた最も古い人類から、現在の私たちに近い人類へという順序で考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>人類の進化の順序として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "猿人 → 原人 → 新人",
+                "原人 → 猿人 → 新人",
+                "新人 → 原人 → 猿人",
+                "猿人 → 新人 → 原人"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "最初に現れたのは二足歩行する猿人であり、原人はその後に現れました。順序が逆になっています。",
+                "新人（ホモ・サピエンス）は最も後に現れた人類です。順序を逆に捉えています。",
+                "火や言葉を使う原人は、現生人類の直接の祖先である新人より前に現れました。新人と原人の順序が逆になっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "人類の出現と進化・石器と土器の発明（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l009 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>新石器時代になると、人々は一定の場所に住み続ける定住生活を送るようになりました。</p>",
+          "advice": "<p>答え：農耕と牧畜を始めたことで、食料を自分たちで生産し、蓄えることができるようになったから（約1万年前に氷河期が終わって温暖化する中で、人々は磨製石器や土器を使い、農耕と牧畜を始めました。食料を自分たちで生産し蓄えられるようになったため、食料を求めて移動する必要が減り、定住生活が可能になったのです。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l009-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：移動しながら食料を探す生活と、食料を生産する生活との違いを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>新石器時代に、人々が定住生活を送るようになった理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "農耕と牧畜を始めたことで、食料を自分たちで生産し、蓄えることができるようになったから",
+                "磨製石器を作ったことで、狩りが上手くなったから",
+                "氷河期が終わって獲物がいなくなり、移動できなくなったから",
+                "土器を作ったことだけが、定住の理由であるから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "磨製石器の発達は暮らしを助けましたが、狩りに頼る生活では獲物を求める移動は続きます。定住の決め手を石器の改良だけに帰してしまう誤解です。",
+                "氷河期が終わって温暖化したことは農耕が始まる環境の変化でしたが、獲物がいなくなったわけではありません。",
+                "土器は食料の保存や調理に役立ちましたが、それだけでは定住は成り立ちません。食料そのものを生産できるようになったことが決め手です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "人類の出現と進化・石器と土器の発明（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l009 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、旧石器時代と新石器時代の暮らしを比べた表です。</p><p><strong>資料　旧石器時代と新石器時代の暮らし</strong></p><table><thead><tr><th></th><th>旧石器時代</th><th>新石器時代</th></tr></thead><tbody><tr><td>石器</td><td>打製石器</td><td>磨製石器</td></tr><tr><td>食料の得方</td><td>狩猟・採集</td><td>農耕・牧畜を始める</td></tr><tr><td>道具</td><td>石器</td><td>石器・土器</td></tr><tr><td>住まい</td><td>食料を求めて移動しながら暮らす</td><td>一定の場所に集落をつくって住む</td></tr></tbody></table>",
+          "advice": "<p>答え：新石器時代には、食料を生産するようになり、生活の場も定住へと変化した（表を比べると、旧石器時代は狩猟・採集で食料を自然から得て移動しながら暮らしていましたが、新石器時代には農耕・牧畜で食料を生産するようになり、集落をつくって定住するようになりました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l009-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：2つの時代の「食料の得方」と「住まい」の欄を見比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "新石器時代には、食料を生産するようになり、生活の場も定住へと変化した",
+                "旧石器時代にも、農耕が行われていた",
+                "土器は、旧石器時代から使われていた",
+                "新石器時代の人々は、打製石器だけを使っていた"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "表では、旧石器時代の食料の得方は狩猟・採集であり、農耕は新石器時代に始まります。",
+                "表では、土器が使われるのは新石器時代です。旧石器時代の道具は石器だけです。",
+                "表では、新石器時代の石器は磨製石器です。打製石器は旧石器時代のものです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

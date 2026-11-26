@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-g-l009 世界の中での日本の位置（緯度・経度と正距方位図法）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（地理） 第9時限「世界の中での日本の位置（緯度・経度と正距方位図法）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "世界の中での日本の位置（緯度・経度と正距方位図法）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l009 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>世界地図の図法には、それぞれ正しく表せる内容が異なります。</p>",
+          "advice": "<p>答え：中心点からすべての地点への距離と方位が正しく表される（正距方位図法は、地図の中心点からすべての地点への距離と方位が正しく表される図法です。面積が正しいのはモルワイデ図法、方位角が正しいのはメルカトル図法です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l009-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「距」は距離、「方位」は方角を表す言葉です。図法の名前そのものに特色が表れています。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>正距方位図法の特色として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "中心点からすべての地点への距離と方位が正しく表される",
+                "陸地の面積が正しく表される",
+                "緯線と経線が直角に交わり、航海に便利な方位角が正しく表される",
+                "大陸の形が、地球儀の上とまったく同じに表される"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "面積が正しく表されるのはモルワイデ図法（正積図法）であり、正距方位図法の特色と混同している。",
+                "緯線と経線が直角に交わり方位角が正しいのはメルカトル図法の特色であり、図法どうしの特色を取り違えている。",
+                "球面を平面に表す以上、形のゆがみは避けられない。正距方位図法でも中心から離れるほど形はゆがむことの理解が不足している。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界の中での日本の位置（緯度・経度と正距方位図法）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l009 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>東京を中心に描いた正距方位図法の地図は、日本と世界の位置関係を調べるときに使われます。</p>",
+          "advice": "<p>答え：日本から見た世界各地の方位と、各地までの距離（東京を中心にした正距方位図法の地図では、中心である東京（日本）から世界各地への方位と距離が正しく表されます。そのため、日本と世界各地との位置関係を読み取るのに適しています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l009-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：正距方位図法で距離と方位が正しいのは、「どこから」見た場合だったかを思い出しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>東京を中心とした正距方位図法の地図で読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "日本から見た世界各地の方位と、各地までの距離",
+                "世界各地の面積の正しさ",
+                "各国の陸地の形の正しさ",
+                "日本以外の2つの地点どうしの距離"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "面積の正しさは正距方位図法では読み取れない。面積を比べるにはモルワイデ図法を使うという、図法の使い分けができていない。",
+                "正距方位図法では中心から離れるほど陸地の形がゆがむため、形の正しさは読み取れないことを理解していない。",
+                "距離が正しく表されるのは中心点（この場合は東京）からの距離だけであり、中心を経由しない2地点どうしの距離まで正しいと思い込んでいる。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界の中での日本の位置（緯度・経度と正距方位図法）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l009 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成（距離は概数）"
+          },
+          "statement": "<p>資料は、東京を中心とした正距方位図法の地図から、世界各地の都市について方位と距離を読み取ったものです。</p><p><strong>資料　東京からの方位と距離</strong>（東京を中心とした正距方位図法の地図から読み取ったもの）</p><table><thead><tr><th>都市</th><th>東京からの方位</th><th>東京からの距離（およそ）</th></tr></thead><tbody><tr><td>ニューヨーク</td><td>北東</td><td>約1万800km</td></tr><tr><td>ロンドン</td><td>北西</td><td>約9600km</td></tr><tr><td>シドニー</td><td>南</td><td>約7800km</td></tr><tr><td>サンパウロ</td><td>南東</td><td>約1万8500km</td></tr></tbody></table>",
+          "advice": "<p>答え：東京から最も遠いのはサンパウロで、東京の南東の方位にある（資料では、サンパウロまでの距離が約1万8500kmと最も遠く、方位は南東です。日本のほぼ裏側にあたる地域であり、正距方位図法の地図だからこそ、こうした方位と距離の関係が正しく読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l009-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：距離の数値が最も大きい都市と、その方位の欄を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "東京から最も遠いのはサンパウロで、東京の南東の方位にある",
+                "東京から最も近い都市は、ロンドンである",
+                "ニューヨークは、東京の南西の方位にある",
+                "シドニーは、東京の北の方位にある"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "ロンドンまでの距離は約9600kmで、シドニー（約7800km）のほうが近い。距離の数値を正しく読み取れていない。",
+                "ニューヨークは東京の北東の方位であり、方位の読み取りを誤っている。",
+                "シドニーはオーストラリアの都市で、東京の南の方位にある。南北の方位を取り違えている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

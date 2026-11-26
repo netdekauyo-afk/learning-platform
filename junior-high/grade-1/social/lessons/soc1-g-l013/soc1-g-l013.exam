@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-g-l013 日本の47都道府県・県庁所在地と7地方区分",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（地理） 第13時限「日本の47都道府県・県庁所在地と7地方区分」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "日本の47都道府県・県庁所在地と7地方区分（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l013 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>都道府県の名前や地名には、昔の国の名前が関係しているものがあります。</p>",
+          "advice": "<p>答え：旧国名（明治時代より前の日本は「国（令制国）」に区分されており、その国の名前を旧国名といいます。都道府県の境界は、昔の国の境界と重なっているところが多くあります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l013-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：都道府県が置かれる前に使われていた、全国の区分の名前でしたね。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>明治時代より前の日本で、全国を区分していた「武蔵国」「相模国」「讃岐国」のような国の名前を、現在では何と呼びますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "旧国名",
+                "地方名",
+                "藩の名前",
+                "郡の名前"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "地方名は北海道・東北・関東などの7地方区分の呼び方で、昔の国そのものを指す言葉ではない。区分の単位を取り違えている。",
+                "藩は江戸時代に大名が治めた領地の単位で、国とは別の区分である。時代の区分制度を混同している。",
+                "郡は国の中をさらに分けた小さな区分で、国そのものの名前ではない。区分の大小関係を取り違えている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の47都道府県・県庁所在地と7地方区分（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l013 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>現在の都道府県の境界は、昔の国の境界と重なっているところが多く見られます。</p>",
+          "advice": "<p>答え：明治時代に都道府県を置くとき、もともとあった国のまとまりが土台にされたから（都道府県は、明治時代にそれまでの国のまとまりを土台として置かれたため、境界が昔の国と重なるところが多く残りました。旧国名が現在の地名などに残っているのも、そのためです。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l013-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：都道府県が置かれたとき、それまでのまとまりがどう扱われたかを考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>都道府県の境界と昔の国の境界が重なるところが多いのはなぜですか。最も適切なものを選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "明治時代に都道府県を置くとき、もともとあった国のまとまりが土台にされたから",
+                "都道府県の境界に合わせて、昔の国の境界が後から引き直されたから",
+                "川や山地の位置が、都道府県の境界に合わせて変化したから",
+                "全国どこでも偶然に一致しただけで、理由はないから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "時代の前後関係が逆である。国の区分のほうが先にあり、都道府県は後から置かれた。",
+                "地形は人間の決めた境界に合わせて変わるものではない。因果関係が逆になっている。",
+                "境界の一致には歴史的な理由がある。「偶然」で片づけており、制度の成り立ちを捉えていない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の47都道府県・県庁所在地と7地方区分（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l013 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 教科書の記述をもとに作成"
+          },
+          "statement": "<p>資料は、旧国名と現在の都道府県、現在に残る地名や名産品との関係をまとめたものです。</p><p><strong>資料　旧国名と現在の都道府県・残る名前</strong></p><table><thead><tr><th>旧国名</th><th>現在の都道府県</th><th>現在に残る名前の例</th></tr></thead><tbody><tr><td>武蔵国</td><td>東京都・埼玉県・神奈川県の一部</td><td>武蔵野、武蔵小杉</td></tr><tr><td>相模国</td><td>神奈川県</td><td>相模原、相模湾</td></tr><tr><td>讃岐国</td><td>香川県</td><td>さぬきうどん</td></tr><tr><td>薩摩国</td><td>鹿児島県</td><td>薩摩いも</td></tr></tbody></table>",
+          "advice": "<p>答え：旧国名は、現在の都道府県の範囲だけでなく、地名や食べ物の名前にも残っている（資料では、武蔵国が東京都・埼玉県・神奈川県に分かれていること、讃岐国の「さぬきうどん」や薩摩国の「薩摩いも」のように、旧国名が地名や食べ物の名前にも残っていることが読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l013-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：1つの旧国名が、現在のいくつの都道府県に分かれているかにも注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "旧国名は、現在の都道府県の範囲だけでなく、地名や食べ物の名前にも残っている",
+                "旧国名と現在の都道府県は、すべて1対1で完全に対応している",
+                "旧国名が現在に残っているのは、関東地方だけである",
+                "讃岐国は、現在の鹿児島県にあたる"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "武蔵国の行を見ると、現在の3都県に分かれており、1対1ではない。表の一部だけを見て全体を判断している。",
+                "讃岐国（香川県）や薩摩国（鹿児島県）の例が表にあるため、関東だけとはいえない。表の後半の行を読み落としている。",
+                "讃岐国は現在の香川県、鹿児島県は薩摩国である。表の行を取り違えている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

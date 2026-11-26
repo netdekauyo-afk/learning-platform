@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-h-l006 身近な地域の歴史のテーマ設定と調査・考察",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（歴史） 第6時限「身近な地域の歴史のテーマ設定と調査・考察」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "身近な地域の歴史のテーマ設定と調査・考察（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l006 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>身近な地域の歴史の調査は、決まった手順に沿って進めます。</p>",
+          "advice": "<p>答え：テーマと問いを設定する → 資料を集める → 整理して考察する（調査は、まずテーマと問いを設定し、それに沿って資料を集め、最後に集めた資料を整理して考察する順に進めます。問いが先にあることで、集めるべき資料がはっきりします。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l006-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：まず「何を・なぜ調べるのか」を決めることが出発点でしたね。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>身近な地域の歴史を調査する進め方として、正しい順序はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "テーマと問いを設定する → 資料を集める → 整理して考察する",
+                "資料を集める → テーマと問いを設定する → 整理して考察する",
+                "整理して考察する → 資料を集める → テーマと問いを設定する",
+                "テーマと問いを設定する → 整理して考察する → 資料を集める"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "資料を集めてからテーマを決める順序です。問いがないまま集めると、関係のない資料ばかり集まってしまいます。",
+                "考察から始める順序です。資料も問いもない段階では、根拠のある考察はできません。",
+                "資料を集める前に考察をしてしまう順序です。考察は、集めた資料をもとに行うものです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "身近な地域の歴史のテーマ設定と調査・考察（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l006 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>地域の歴史を調べるテーマと問いの立て方について考えます。</p>",
+          "advice": "<p>答え：調べる対象や集める資料が定まり、調査を深められるから（テーマが広すぎると資料が膨大になり、まとまらなくなります。「なぜこの場所に宿場町ができたのか」のように具体的な問いを立てると、調べる対象や集める資料が定まり、調査を深めることができます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l006-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：テーマが広すぎる場合に、資料集めやまとめの段階で何が起きるかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地域の歴史を調べるとき、「わたしたちの町の歴史」のような広いテーマではなく、「なぜこの場所に宿場町ができたのか」のように具体的な問いを立てることが大切なのはなぜですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "調べる対象や集める資料が定まり、調査を深められるから",
+                "問いは短くすればするほど、内容が深くなるから",
+                "具体的な問いにすると、資料を集めなくて済むから",
+                "問いを立てれば、答えがすぐに分かるようになるから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "大切なのは問いの長さではなく、対象を絞って具体的にすることです。短いだけでは漠然とした問いになってしまいます。",
+                "問いを立てても資料集めは必要です。むしろ、問いに沿って必要な資料を集めることが調査の中心です。",
+                "問いは答えそのものではなく、調べる方向を示すものです。答えは資料を集めて考察することで得られます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "身近な地域の歴史のテーマ設定と調査・考察（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l006 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、調べたい内容ごとに役立つ資料をまとめた表です。</p><p><strong>資料　調べたい内容と役立つ資料</strong></p><table><thead><tr><th>調べたい内容</th><th>役立つ資料</th></tr></thead><tbody><tr><td>江戸時代の村の様子</td><td>古文書、市町村史</td></tr><tr><td>昔の町並みや道の変化</td><td>古地図と現在の地図</td></tr><tr><td>祭りの由来</td><td>神社の記録、地域の人への聞き取り</td></tr><tr><td>出土した土器</td><td>博物館の展示、発掘調査の報告書</td></tr></tbody></table>",
+          "advice": "<p>答え：古地図と市町村史（昔の街道の位置や使われ方を調べるには、当時の様子を示す古地図と、地域の歴史をまとめた市町村史が役立ちます。調べたい内容に合った資料を選ぶことが大切です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l006-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：調べたい内容と、それぞれの資料で分かることを対応させて考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>ある生徒は、「自分の町に残る古い街道が、いつごろ、どのように使われていたか」を調べたいと考えています。資料から考えて、特に役立つ資料の組み合わせとして最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "古地図と市町村史",
+                "出土した土器の報告書と、祭りの由来を書いた記録",
+                "現在の地図だけ",
+                "地域の人への聞き取りだけ"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "土器の報告書は古代の暮らしを調べる資料であり、祭りの記録は行事の由来を調べる資料です。街道の利用の様子を調べる目的とは合いません。",
+                "現在の地図だけでは、昔の街道の位置や使われ方を知ることはできません。昔の様子を示す資料が必要です。",
+                "聞き取りは言い伝えの確認には役立ちますが、古い時代の事実は、古地図や市町村史などの記録で裏づける必要があります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

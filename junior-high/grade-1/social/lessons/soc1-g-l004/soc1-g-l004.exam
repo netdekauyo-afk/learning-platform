@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-g-l004 世界のさまざまな国々と国境線の違い",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（地理） 第4時限「世界のさまざまな国々と国境線の違い」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "世界のさまざまな国々と国境線の違い（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l004 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>世界の国々は、周囲の陸地や海との関係によって呼び方が異なります。</p>",
+          "advice": "<p>答え：内陸国（周囲を陸地に囲まれ、海に面していない国を内陸国といい、スイスやモンゴルがその例です。領土が島から成る国は島国といいます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l004-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：スイスやモンゴルがその例として挙げられていました。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>周囲を陸地に囲まれ、海に面していない国を何といいますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "内陸国",
+                "島国",
+                "半島国",
+                "大陸国"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "島国は領土が島から成る国（日本、イギリスなど）で、海に面していない内陸国とは正反対の概念であり、混同している。",
+                "陸地に囲まれているイメージから「半島国」という言葉があると思い込んでいる。半島は三方を海に囲まれた陸地であり、国の分類の用語ではない。",
+                "大きな陸地の中にあるイメージから「大陸国」と判断しているが、そのような分類の用語はない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界のさまざまな国々と国境線の違い（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l004 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>アフリカ大陸の国境線を地図で見ると、直線的に引かれたものが多く見られます。</p>",
+          "advice": "<p>答え：ヨーロッパ諸国が植民地を分割した際、現地住民の分布を無視して緯線や経線に沿って線を引いたから（アフリカの直線的な国境は、19世紀後半以降にヨーロッパ諸国が植民地として分割した際、現地住民の分布を無視して緯線や経線で引いたものです。自然的国境とは異なる、人為的国境の代表例です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l004-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：19世紀後半以降のアフリカをめぐる歴史が背景にありました。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>アフリカ大陸に直線的な国境線が多く見られる理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "ヨーロッパ諸国が植民地を分割した際、現地住民の分布を無視して緯線や経線に沿って線を引いたから",
+                "アフリカには山脈や川がほとんど存在しないから",
+                "アフリカの国々が話し合い、公平になるよう直線で分けたから",
+                "地図を作るときに、直線のほうが描きやすかったから"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "ナイル川のような大河や山脈はアフリカにも存在する。自然地形がないのではなく、自然地形を無視して引かれたことが要点であり、知識が不足している。",
+                "国境が現地の人々の合意で決められたという誤解。実際は植民地支配側が一方的に引いたものである。",
+                "国境線の形を作図上の都合で説明してしまう誤解。直線国境の背景には植民地分割という歴史がある。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界のさまざまな国々と国境線の違い（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l004 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 総務省統計局「世界の統計2026」表2-4「人口・面積」をもとに作成（数値は概数） https://www.stat.go.jp/data/sekai/index.html"
+          },
+          "statement": "<p>資料は、世界の3つの国について、面積と国の形や位置の特徴をまとめたものです。</p><p><strong>資料　世界の国々の面積と特徴</strong></p><table><thead><tr><th>国名</th><th>面積（およそ）</th><th>形や位置の特徴</th></tr></thead><tbody><tr><td>ロシア</td><td>約1710万km²</td><td>ユーラシア大陸に広がる、世界で最も面積の大きい国</td></tr><tr><td>チリ</td><td>約76万km²</td><td>南アメリカ大陸の西岸に沿って南北に細長い国</td></tr><tr><td>バチカン市国</td><td>約0.4km²</td><td>イタリアの首都ローマの中にある、世界で最も面積の小さい国</td></tr></tbody></table>",
+          "advice": "<p>答え：国の面積や形は国によって大きく異なり、非常に小さい国もある（資料からは、ロシアのように非常に大きい国、チリのように細長い国、バチカン市国のように1km²に満たない小さい国があり、国の面積や形が多様であることが読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l004-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：3つの国の面積の違いと、それぞれの位置の特徴に注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料から読み取れることとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "国の面積や形は国によって大きく異なり、非常に小さい国もある",
+                "面積の小さい国は、すべて島国である",
+                "南北に細長い国は、世界にチリだけである",
+                "バチカン市国は、イタリアとは別の大陸にある"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "バチカン市国はイタリアのローマの中にある内陸の小さい国であり、「小さい国＝島国」と決めつけて資料を読めていない。",
+                "資料に挙がっていない国について「だけ」と断定してしまう読み過ぎ。資料から分かる範囲を超えて判断している。",
+                "「ローマの中にある」という記述を見落とし、位置関係を正しく読み取れていない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

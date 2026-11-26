@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0D1622">
-  <title>世界の国・日本の都道府県クイズと学習の見通し・問題 | Classroom</title>
+  <title>第2時限 世界の国・日本の都道府県クイズと学習の見通し・問題 | Classroom</title>
   <link rel="stylesheet" href="../../../../../assets/style.css?v=20261121-lesson-navigation">
   <style>
     @font-face {
@@ -14,12 +14,15 @@
     }
     #numbas-host, numbas-exam { display: block; min-width: 0; }
     #numbas-status { min-height: 1.5em; color: var(--color-muted); }
+    .question-summary-link { word-break: keep-all; overflow-wrap: anywhere; word-spacing: .2em; }
+    [data-main-question-set] > .practice-panel[hidden] { display: none; }
     .question-switcher { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 18px; }
     .question-switcher button:disabled { opacity: .5; cursor: default; }
   </style>
   <script src="../../../../../assets/numbas/math-config.js"></script>
   <script defer src="../../../../../assets/numbas/engine/mathjax/tex-svg.js"></script>
   <script defer src="../../../../../assets/numbas/engine/numbas-runtime/numbas.js"></script>
+  <script type="module" src="../../../../../assets/numbas/question-sequence.js?v=ordered-support-1"></script>
 </head>
 <body>
   <div class="site-shell">
@@ -33,19 +36,18 @@
     <nav class="problem-toolbar lesson-navigation" aria-label="問題ページの移動">
       <a class="problem-previous" href="../soc1-g-l001/questions.html">前の問題へ</a>
       <a class="problem-list" href="../../">学習一覧に戻る</a>
-      <span class="problem-next problem-next-pending" aria-label="次の時限の問題は準備中">次の問題へ</span>
+      <a class="problem-next" href="../soc1-g-l003/questions.html">次の問題へ</a>
     </nav>
     <main>
-      <h1>世界の国・日本の都道府県クイズと学習の見通し</h1>
+      <h1><a class="question-summary-link" href="./summary.html">第2時限 世界の国・日本の都道府県クイズと学習の見通し</a></h1>
       <p id="question-progress" aria-live="polite"></p>
       <p id="numbas-status" role="status">問題を読み込んでいます。</p>
-      <div id="numbas-host" data-difficulty-tabs data-sequence-source="./soc1-g-l002.exam?v=20261124-social"></div>
+      <div id="numbas-host" data-main-question-set data-sequence-source="./soc1-g-l002.exam?v=20261126-social-fixed"></div>
       <div id="question-switcher" class="question-switcher" role="group" aria-label="この時限の設問の移動">
         <button id="question-previous" class="practice-reveal-button" type="button" disabled>前の設問へ</button>
         <button id="question-next" class="practice-reveal-button" type="button" disabled>次の設問へ</button>
       </div>
     </main>
   </div>
-  <script type="module" src="../../../../../assets/numbas/question-sequence.js?v=20261124-question-types"></script>
 </body>
 </html>

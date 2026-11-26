@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-h-l029 文献・古地図・地域の資料を集めて調べる",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（歴史） 第29時限「文献・古地図・地域の資料を集めて調べる」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "文献・古地図・地域の資料を集めて調べる（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l029 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地域の歴史を調べる資料源には、さまざまな種類があります。</p>",
+          "advice": "<p>答え：市町村史（市町村史は、市町村がその地域の歴史を調査してまとめた歴史書で、地域の歴史を調べる基本的な資料源です。広報誌は自治体が現在の行事やお知らせを伝えるもので、古文書は昔の文書そのもの、碑文は石碑などに刻まれた文を指します。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l029-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：市や町や村という自治体が作る、その土地の歴史書です。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>市町村が、その地域の歴史をまとめて編集した歴史書を何といいますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "市町村史",
+                "広報誌",
+                "古文書",
+                "碑文"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "広報誌との混同。広報誌は現在の行政のお知らせが中心で、地域の歴史をまとめた書物ではない。",
+                "古文書との混同。古文書は昔に書かれた文書そのものであり、市町村が編集した歴史書とは異なる。",
+                "碑文との混同。碑文は石碑に刻まれた文章で、編集された歴史書ではない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "文献・古地図・地域の資料を集めて調べる（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l029 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>地域の歴史の情報収集では、文献だけでなく、地域の人への聞き取り調査も行われます。</p>",
+          "advice": "<p>答え：文献に残っていない昔の暮らしの様子や体験を、直接聞いて記録できること（聞き取り調査では、文献に残されていない昔の暮らしの様子や、その時代を生きた人の体験を直接聞いて記録できます。ただし記憶にはあいまいな点もあるため、他の資料と照らし合わせ、出典（だれに聞いたか）も記録する必要があります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l029-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：文献や資料には残されていない情報とは、どのようなものでしょうか。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>聞き取り調査を行う意義として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "文献に残っていない昔の暮らしの様子や体験を、直接聞いて記録できること",
+                "聞き取りで得た情報は、文献よりも常に正確であること",
+                "聞き取りをすれば、出典を記録する必要がなくなること",
+                "聞き取りは短時間で終わるので、調査計画を立てなくてよいこと"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "聞き取り情報の正確さを過大に評価した誤解。記憶は年月とともにあいまいになることがあり、文献との照合が必要である。",
+                "出典記録の要否の誤解。聞き取りでも、だれに・いつ聞いたかを記録しなければ根拠として使えない。",
+                "調査計画の要否の誤解。聞き取りには事前の連絡や質問の準備が必要で、計画なしに行うものではない。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "文献・古地図・地域の資料を集めて調べる（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l029 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、調べたい内容と、それに合った資料源・調べ方を対応させた表です。</p><p><strong>資料　調べたい内容と資料源・調べ方の対応</strong></p><table><thead><tr><th>調べたい内容</th><th>資料源・調べ方</th></tr></thead><tbody><tr><td>江戸時代の村の範囲や土地の様子</td><td>古地図</td></tr><tr><td>昔の商店街のにぎわいの様子</td><td>地域の人への聞き取り調査</td></tr><tr><td>町の人口の変化</td><td>市町村史・広報誌</td></tr><tr><td>地域に残る古い道具や文書</td><td>郷土資料館・博物館の資料</td></tr></tbody></table>",
+          "advice": "<p>答え：商店街で長く店を開いている人に聞き取り調査を行う（昔の商店街のにぎわいの様子は、文献には残りにくい情報です。表の対応どおり、長く店を開いている人への聞き取り調査で、当時の様子を直接聞いて記録するのが適切です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l029-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：表の中で「商店街」に関わる行を探し、その調べ方を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>「昔の商店街のにぎわいの様子」を調べる方法として、資料の対応から選べる最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "商店街で長く店を開いている人に聞き取り調査を行う",
+                "古地図で商店街の土地の形を調べる",
+                "市町村史で町の人口の変化を調べる",
+                "広報誌で今月の商店街のイベントを調べる"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "古地図で分かるのは土地や通りの形であり、人々のにぎわいの様子そのものは読み取れないという点の見落とし。",
+                "市町村史の人口の変化からは、にぎわいの具体的な様子までは分からない。調べたい内容と資料源の対応を取り違えている。",
+                "広報誌は現在の行事を知らせるもので、昔の様子を調べる資料にはならないという点の取り違え。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

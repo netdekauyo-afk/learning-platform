@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-g-l005 世界の国々の面積・人口と主な国の位置",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（地理） 第5時限「世界の国々の面積・人口と主な国の位置」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "世界の国々の面積・人口と主な国の位置（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l005 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>世界の国々の名称は、それぞれが位置する大陸・州と結び付けて覚えることが大切です。</p>",
+          "advice": "<p>答え：ブラジル（ブラジルは南アメリカ大陸にある、南アメリカ州最大の国です。オーストラリアはオセアニア州、エジプトはアフリカ州、インドはアジア州に位置します。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l005-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：それぞれの国が、どの大陸にあるかを思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>次の国のうち、南アメリカ州に位置する国はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "ブラジル",
+                "オーストラリア",
+                "エジプト",
+                "インド"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "オーストラリアは大陸名と国名が同じで、位置を州と結び付けて覚えられていない。オセアニア州の国である。",
+                "エジプトはアフリカ大陸北部の国であり、大陸・州の対応を混同している。",
+                "インドはアジア州（南アジア）の国であり、南アメリカ州と取り違えている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界の国々の面積・人口と主な国の位置（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l005 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>世界の国々について、面積の順位と人口の順位を比べると、国によって順位の入れ替わりが見られます。</p>",
+          "advice": "<p>答え：面積が大きい国が、必ずしも人口が多いとは限らない（カナダやオーストラリアのように、面積が非常に大きくても人口は比較的少ない国があります。面積の順位と人口の順位は一致しないことが多く、混同しないことが大切です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l005-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：カナダやオーストラリアの面積と人口の関係を思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>面積と人口の順位の比較から言えることとして、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "面積が大きい国が、必ずしも人口が多いとは限らない",
+                "人口が多い国は、必ず面積も大きい",
+                "面積の順位と人口の順位は、どの国でも一致する",
+                "人口の少ない国は、すべて面積も小さい"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "面積と人口が比例するという思い込み。人口の多いインドや中国が面積でも最上位とは限らないことと矛盾する。",
+                "面積と人口の順位を混同しやすいという、この授業の注意点そのものの誤解。",
+                "バチカン市国のような例外的な小国だけを見て全体を判断しており、面積が大きく人口の少ない国の存在を見落としている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "世界の国々の面積・人口と主な国の位置（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "地理",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-g-l005 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 総務省統計局「世界の統計2026」表2-4「人口・面積」をもとに作成（数値は概数） https://www.stat.go.jp/data/sekai/index.html"
+          },
+          "statement": "<p>資料は、世界の3つの国について、位置する州・面積・人口をまとめたものです。</p><p><strong>資料　世界の国々の州・面積・人口</strong></p><table><thead><tr><th>国名</th><th>州</th><th>面積（およそ）</th><th>人口（およそ）</th></tr></thead><tbody><tr><td>オーストラリア</td><td>オセアニア州</td><td>約769万km²</td><td>約2700万人</td></tr><tr><td>ケニア</td><td>アフリカ州</td><td>約59万km²</td><td>約5600万人</td></tr><tr><td>サンマリノ</td><td>ヨーロッパ州</td><td>約61km²</td><td>約3万人</td></tr></tbody></table>",
+          "advice": "<p>答え：サンマリノは、面積・人口ともに3か国の中で最も小さい（サンマリノは面積約61km²・人口約3万人で、面積・人口ともに3か国の中で最も小さい国です。このように、統計資料では大きい国だけでなく小さい国にも目を向けて比べます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-g-l005-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：面積と人口の両方について、3か国を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>資料の3か国について正しく述べたものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "サンマリノは、面積・人口ともに3か国の中で最も小さい",
+                "ケニアは、オセアニア州に位置している",
+                "オーストラリアは、人口が3か国の中で最も少ない",
+                "面積が最も大きいのは、ケニアである"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "ケニアはアフリカ州の国であり、資料の州の欄を正しく読み取れていない。",
+                "オーストラリアの人口は約2700万人で、サンマリノよりはるかに多い。数値の比較を誤っている。",
+                "面積が最も大きいのはオーストラリア（約769万km²）であり、数値の読み取りを誤っている。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc1-h-l007 身近な地域の歴史の年表まとめと発表",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学1年社会（歴史） 第7時限「身近な地域の歴史の年表まとめと発表」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "身近な地域の歴史の年表まとめと発表（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l007 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地域の歴史の調査結果は、決まった構成に沿って発表すると伝わりやすくなります。</p>",
+          "advice": "<p>答え：問い → 調べた事実 → わかったこと（考察）（発表では、まず問いを示し、次に調べた事実を写真や古地図などの資料とともに示し、最後にそこから分かったこと（考察）を述べる順に構成します。根拠を示してから結論を述べることで説得力が生まれます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l007-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：聞く人が「何を調べたのか」から「何が分かったのか」へ、話の流れを追える順序でしたね。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地域の歴史の調査結果を発表するときの構成として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "問い → 調べた事実 → わかったこと（考察）",
+                "わかったこと（考察） → 問い → 調べた事実",
+                "調べた事実だけを年代の順に並べる",
+                "感想 → 調べた事実 → 問い"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "結論である考察から始めると、聞く人は何についての話か分かりません。発表の構成の順序を取り違えています。",
+                "事実を並べるだけでは、なぜ調べたのかや、何が分かったのかが伝わりません。問いと考察が欠けています。",
+                "感想から始め、問いを最後に述べる構成では、調査の目的と結論のつながりが伝わりません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "身近な地域の歴史の年表まとめと発表（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l007 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>調べた地域の歴史をまとめるとき、地域の出来事だけを並べるのではなく、日本の歴史の年表と並べて整理する方法があります。</p>",
+          "advice": "<p>答え：地域の出来事が、日本のどの時代・出来事と関わって起きたのか、背景やつながりが理解しやすくなること（地域の出来事を日本の歴史と並べると、国の大きな動きが地域にどう影響したかが見えてきます。単なる出来事の羅列ではなく、背景やつながりを捉えることが、年表に整理する利点です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l007-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：地域の出来事が「なぜその時期に起きたのか」という背景に注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地域の出来事を日本の歴史の年表と並べて整理する利点として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地域の出来事が、日本のどの時代・出来事と関わって起きたのか、背景やつながりが理解しやすくなること",
+                "地域の出来事の年代を、暗記しやすくなること",
+                "日本の出来事と並べることで、地域の出来事が本当にあったことだと証明されること",
+                "地域の歴史は、日本の歴史と関わりがないものだと確認できること"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "暗記しやすさは、年表に並べる目的ではありません。出来事のつながりを捉えるという目的への理解が不足しています。",
+                "日本の歴史と並べることは、地域の出来事の真偽を証明する作業ではありません。年表の役割を取り違えています。",
+                "並べて整理する目的は、関わりがないことを確かめるためではなく、むしろ関わりや背景を見つけるためです。目的を逆に捉えています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "身近な地域の歴史の年表まとめと発表（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "歴史",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc1-h-l007 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>資料は、地域の歴史の発表を準備している生徒のメモです。</p><p><strong>資料　ある生徒の発表準備メモ</strong></p><p>①古地図をコピーして使うが、出典（出どころ）をメモしていない。</p><p>②地域の出来事を年表にしたが、日本の出来事とは並べていない。</p><p>③問いと考察を順に並べた構成にした。</p>",
+          "advice": "<p>答え：①出典を明記する ／ ②日本の歴史の年表と並べて、つながりを示す（引用した資料の出典を明記すると、発表の信頼性と説得力が高まります。また、地域の出来事を日本の歴史と並べることで、背景やつながりを示すことができます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc1-h-l007-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：資料の信頼性と、地域と国のつながりという2つの点から考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>メモの①と②について、発表をよりよいものにするための改善点として、正しい組み合わせはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "①出典を明記する ／ ②日本の歴史の年表と並べて、つながりを示す",
+                "①出典は伏せておく ／ ②地域の出来事だけに絞って並べる",
+                "①古地図は使わないようにする ／ ②年表は作らないようにする",
+                "①出典を明記する ／ ②日本の出来事だけを発表する"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "出典を伏せると資料の信頼性が伝わりません。また、地域の出来事だけでは国の動きとのつながりが見えなくなります。",
+                "古地図や年表は、発表を分かりやすくする大切な資料です。使わないことが改善にはなりません。",
+                "地域の歴史の発表では、調べた地域の出来事が中心です。日本の出来事だけを発表するのでは目的が異なります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}
