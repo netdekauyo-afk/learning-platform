@@ -832,12 +832,35 @@ function prepareContinuousStyles() {
   });
 }
 
-let runtimeReady;
+async function prepareXsltProcessor() {
+  if (typeof window.xsltPolyfillReady !== "function") {
+    try {
+      new window.XSLTProcessor();
+      return;
+    } catch {
+      // Some browsers expose the native constructor even when it is disabled.
+    }
+
+    await new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.charset = "utf-8";
+      script.src = resource("xslt-polyfill.min.js");
+      script.onload = resolve;
+      script.onerror = () => reject(new Error("XSLTの互換スクリプトを読み込めませんでした。"));
+      document.head.append(script);
+    });
+  }
+  // The script exposes the constructor before its WebAssembly is ready.
+  await window.xsltPolyfillReady();
+}
+
 export async function prepareRuntime({ retryResources = false } = {}) {
-  return runtimeReady ??= loadRuntime(retryResources);
+  // Versioned loader imports in the same document share one initialization.
+  return window.classroomNumbasRuntimeReady ??= loadRuntime(retryResources);
 }
 
 async function loadRuntime(retryResources) {
+  await prepareXsltProcessor();
   const html = await readExerciseText(resource("template.html"), "Numbasの画面テンプレートを取得できませんでした。",
     { retry: retryResources });
   const templateHost = document.createElement("div");
