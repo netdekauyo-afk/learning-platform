@@ -687,7 +687,7 @@ function arrangeRetryChoices(part, section, answer, feedback, retry) {
   const again = document.createElement("button");
   again.type = "button";
   again.className = "classroom-retry-button";
-  again.textContent = "もう一度解きますか？";
+  again.textContent = "正解済みの問題です。もう一度解きますか？";
   section.querySelector(".classroom-question-card").prepend(again);
   const mistaken = (index) => retry.mistakes.some((item) => item.choice === index);
   function paint() {
