@@ -1,8 +1,11 @@
 // Classroom全体の問題設定。選択肢の並び替えはNumbasの機能を使う。
+const mathQuestionTypes = Object.freeze(["確認", "文章題", "使い分け"]);
+
 export const exerciseSettings = Object.freeze({
   // 学校段階・科目ごとの種類名。教材側で付けた種類名を優先する。
   questionTypesBySubject: {
-    "junior-high/math": ["確認", "文章題", "使い分け"],
+    "elementary/math": mathQuestionTypes,
+    "junior-high/math": mathQuestionTypes,
     "junior-high/social": ["知識", "理解", "資料読解"],
   },
   supportDelayMs: 10000,
