@@ -1,6 +1,6 @@
 import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./worksheet-controls.js?v=continuous-1";
 import { createDifficultyTabs } from "./difficulty-tabs.js?v=main-question-types-1";
-import { exerciseSettings, applyExerciseSettings } from "./exercise-settings.js?v=shared-design-1";
+import { exerciseSettings, applyExerciseSettings } from "./exercise-settings.js?v=continuous-feedback-1";
 import { initializeRecognitionRule, isRecognizedCorrect, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect, readExerciseText } from "./question-progress.js?v=continuous-3";
 import { createLessonPassTracker, lessonHistoryKey } from "./lesson-pass.js";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
@@ -10,7 +10,7 @@ const engine = new URL("./engine/", import.meta.url);
 const resource = (path) => new URL(path, engine).href;
 const stylesheetURLs = [
   resource("numbas-runtime/numbas.css"),
-  new URL("./theme.css?v=continuous-1", import.meta.url).href,
+  new URL("./theme.css?v=continuous-feedback-1", import.meta.url).href,
 ];
 
 // Load the shared home/list storage helper without delaying or changing Numbas.
@@ -205,7 +205,9 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
   const explore = question.partsMode === "explore";
   const authoredControls = set && hasAuthoredExploreControls(question);
   const primaryPart = question.parts[0];
-  const showsAnswerOnCard = (part) => (set || part.answered) && part.type === "1_n_2" && part.settings.displayType === "radiogroup";
+  const continuous = examElement.dataset.exerciseMode === "continuous";
+  const showsAnswerOnCard = (part) => (set || part.answered) && part.type === "1_n_2" && part.settings.displayType === "radiogroup" &&
+    (!continuous || part.score >= part.marks);
   // Keep auxiliary answers out of the existing main-question progress history.
   const supportHistoryKey = historyKey + ":support";
   let activeQuestionIds = [];
@@ -569,7 +571,7 @@ async function installWorksheetControls(examElement, examData) {
       controls.push(control);
       const section = await part.display.html_promise;
       const prompt = section.querySelector(":scope > .prompt");
-      arrangeQuestionCard(part, question, section, prompt);
+      arrangeQuestionCard(part, question, section, prompt, undefined, undefined, continuous);
       if (continuous && control.hintPanel) prompt.after(control.hintPanel);
     }
 
@@ -648,7 +650,7 @@ function resultHeading(correct) {
 }
 
 // Display the answer and explanation already supplied by the running exam.
-function addMarkedResult(part, question, answer, retryMain) {
+function addMarkedResult(part, question, answer, retryMain, hideWrongAnswer = false) {
   const output = document.createElement("div");
   output.setAttribute("data-classroom-result", "");
   output.setAttribute("aria-live", "polite");
@@ -656,6 +658,7 @@ function addMarkedResult(part, question, answer, retryMain) {
     if (!part.answered || part.isDirty) return;
     const correct = part.score >= part.marks;
     output.replaceChildren(resultHeading(correct));
+    if (hideWrongAnswer && !correct) return;
     if (retryMain && !correct) {
       const choice = part.ticks.findIndex((row) => row[0]);
       const text = part.settings.distractors[choice]?.[0];
@@ -739,7 +742,7 @@ function arrangeRetryChoices(part, section, answer, feedback, retry) {
   paint();
 }
 
-function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry) {
+function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry, continuous = false) {
   const answer = section.querySelector(":scope > .student.answer");
   const authoredResult = prompt?.querySelector("[data-classroom-result]");
   if (!prompt || !answer || !["1_n_2", "numberentry"].includes(part.type)) {
@@ -766,7 +769,7 @@ function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry
   const keypad = section.querySelector(":scope > :is(.number-pad-panel, .number-pad)");
   if (keypad) card.append(keypad);
 
-  const feedback = authoredResult || addMarkedResult(part, question, answer, retry && !part.previousPart);
+  const feedback = authoredResult || addMarkedResult(part, question, answer, retry && !part.previousPart, continuous);
   const paragraph = feedback.parentElement;
   card.after(feedback);
   if (paragraph?.matches("p:empty")) paragraph.remove();
@@ -777,7 +780,8 @@ function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry
   }
   if (part.type === "1_n_2") {
     const markExpected = () => {
-      const show = part.answered && (!retry || part.previousPart || part.score >= part.marks);
+      const show = part.answered && (!retry || part.previousPart || part.score >= part.marks) &&
+        (!continuous || part.score >= part.marks);
       const expected = show ? String(part.display.correctAnswer()) : null;
       for (const input of answer.querySelectorAll(".radiogroup input[type=radio]")) {
         input.closest("li").classList.toggle("classroom-expected", show && input.value === expected);
@@ -857,9 +861,11 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
 }
 
 /* Submit a valid numeric answer after typing stops, using the same Numbas
-   submission path as Enter. Existing blur and manual submissions remain active. */
+   submission path as Enter. Continuous practice uses its own longer delay. */
 async function installNumericAutoSubmit(examElement, question = examElement.exam?.questionList?.[0]) {
   if (!question) return;
+  const continuous = examElement.dataset.exerciseMode === "continuous";
+  const delay = continuous ? exerciseSettings.continuousNumericSubmitDelayMs : 2000;
   async function bind(part) {
     if (part.type !== "numberentry") return;
     const section = await part.display.html_promise;
@@ -881,7 +887,7 @@ async function installNumericAutoSubmit(examElement, question = examElement.exam
             examElement.closest("[hidden]") || question.exam.currentQuestion !== question || part.locked ||
             part.submitting || !part.isDirty || !part.display.cleanStudentAnswer()) return;
         part.display.controls.submit();
-      }, 2000);
+      }, delay);
     };
 
     input.addEventListener("input", (event) => {
@@ -890,7 +896,7 @@ async function installNumericAutoSubmit(examElement, question = examElement.exam
     });
     input.addEventListener("compositionstart", () => { composing = true; cancel(); });
     input.addEventListener("compositionend", () => { composing = false; schedule(); });
-    input.addEventListener("blur", cancel);
+    if (!continuous) input.addEventListener("blur", cancel);
     part.events.on("post-submit", cancel);
   }
   if (question.partsMode === "explore") {
@@ -978,6 +984,12 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
   }
 
   const continuous = !lessonLayout && examHost.dataset.exerciseMode === "continuous";
+  if (continuous) {
+    // Disable native focus-out submission and automatic answer disclosure only
+    // on the runtime copy; keep original question definitions and IDs intact.
+    examData.navigation = { ...examData.navigation, autoSubmit: false };
+    examData.feedback = { ...examData.feedback, showexpectedanswerswhen: "never", showpartfeedbackmessageswhen: "never" };
+  }
   const inlineStyles = continuous ? await prepareContinuousStyles() : null;
   const exam = document.createElement("numbas-exam");
   if (continuous) exam.dataset.exerciseMode = "continuous";

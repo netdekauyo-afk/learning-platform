@@ -736,6 +736,8 @@
 }
 
 :host([data-exercise-mode="continuous"]) {
+  /* The explicit Classroom answer-review control remains available. */
+  .correct.answer, .adviceDisplay, .feedbackMessages { display: none !important; }
   .continuous-inline-hint {
     color: var(--color-text);
     min-width: 0;

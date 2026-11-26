@@ -92,7 +92,7 @@ try {
   const urls = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
     JSON.stringify({ ...data, question_groups: [{ ...group, questionNames: [""], variable_overrides: [], questions: [question] }] })
   ], { type: "application/json" })));
-  const { prepareRuntime, bootExam } = await import("./loader.js?v=continuous-3");
+  const { prepareRuntime, bootExam } = await import("./loader.js?v=continuous-feedback-1");
   await prepareRuntime({ retryResources: continuous });
   const progress = continuous ? mountProgress(questions, show) : null;
   const correctIds = new Set();
