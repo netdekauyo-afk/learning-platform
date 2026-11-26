@@ -3,6 +3,7 @@
 [data-math-knowledge-map] {
   --map-gray: #43505e;
   --map-blue: #255d90;
+  --map-orange: #914b20;
   container-type: inline-size;
 }
 
@@ -55,6 +56,7 @@
   background: var(--map-gray);
 }
 [data-math-knowledge-map] .map-legend i[data-mastered="true"] { background: var(--map-blue); }
+[data-math-knowledge-map] .map-legend i[data-inferred] { background: var(--map-orange); }
 [data-math-knowledge-map] [data-notice] { color: var(--color-muted); }
 
 [data-math-knowledge-map] .map-bar-row {
@@ -94,6 +96,7 @@
 }
 [data-math-knowledge-map] .map-unit:first-child { border: 0; }
 [data-math-knowledge-map] .map-unit[data-mastered="true"] { background: var(--map-blue); }
+[data-math-knowledge-map] .map-unit[data-inferred] { background: var(--map-orange); }
 [data-math-knowledge-map] .map-unit:focus-visible { outline-offset: -3px; }
 [data-math-knowledge-map] .map-tip {
   position: absolute;
@@ -158,6 +161,7 @@
 }
 [data-math-knowledge-map] .map-band:first-child { padding-top: 1.05rem; }
 [data-math-knowledge-map] .map-band[data-mastered="true"] { --face: var(--map-blue); }
+[data-math-knowledge-map] .map-band[data-inferred] { --face: var(--map-orange); }
 [data-math-knowledge-map] .map-band span { z-index: 1; }
 [data-math-knowledge-map] .map-band svg {
   position: absolute; inset-inline: 0; width: 100%; height: .75rem; pointer-events: none; overflow: hidden;
@@ -186,7 +190,10 @@
   [data-math-knowledge-map] .map-pillars { grid-template-columns: 1fr; }
 }
 @media (forced-colors: active) {
-  [data-math-knowledge-map] :is(.map-unit,.map-band,.map-legend i) { border: 1px solid CanvasText; }
-  [data-math-knowledge-map] [data-mastered="true"] { border: 4px double Highlight; }
+  [data-math-knowledge-map] :is(.map-unit,.map-band,.map-legend i) {
+    border: 1px solid CanvasText;
+    &[data-mastered="true"] { border: 4px double Highlight; }
+    &[data-inferred] { border: 2px dashed CanvasText; }
+  }
   [data-math-knowledge-map] .map-band:focus-visible { outline-color: Highlight; }
 }

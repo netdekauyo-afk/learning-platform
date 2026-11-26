@@ -2,11 +2,17 @@ import { readLessonPass } from "./numbas/lesson-pass.js";
 
 const difficultySlots = ["basic", "standard", "advanced"].map(level => ({ level, questionId: null }));
 const everyRequired = (items, predicate) => items.length > 0 && items.every(predicate);
-const stateName = mastered => mastered ? "習得済み" : "未習得";
+const MASTERED = "習得済み";
+const INFERRED = "推定習得済み";
+const UNMASTERED = "未習得";
 
-// The snapshot contains teaching references as well as assessed lessons. Only
-// requiredLessons was exported from confirmed small-item rows with the exact marker.
-function curriculum(data, base) {
+function groupState(states) {
+  if (everyRequired(states, state => state === MASTERED)) return MASTERED;
+  if (everyRequired(states, state => state === MASTERED || state === INFERRED)) return INFERRED;
+  return UNMASTERED;
+}
+
+export function createKnowledgeMastery(data) {
   const children = new Map();
   for (const [id, node] of Object.entries(data.nodes)) {
     if (node.parentId) {
@@ -14,6 +20,52 @@ function curriculum(data, base) {
       children.get(node.parentId).push(id);
     }
   }
+  const requiredBefore = new Map();
+  for (const [source, target, strength] of data.prerequisites) {
+    if (strength !== "必須") continue;
+    if (!requiredBefore.has(target)) requiredBefore.set(target, []);
+    requiredBefore.get(target).push(source);
+  }
+
+  function aggregateHierarchy(terminalStates) {
+    const states = new Map(terminalStates);
+    function stateOf(id) {
+      if (!states.has(id)) states.set(id, groupState((children.get(id) || []).map(stateOf)));
+      return states.get(id);
+    }
+    for (const id of Object.keys(data.nodes)) stateOf(id);
+    return states;
+  }
+
+  return function assess(passedLessons) {
+    const terminalStates = new Map();
+    for (const [id, lessons] of Object.entries(data.requiredLessons)) {
+      if (data.nodes[id].level === "小項目" && everyRequired(lessons, lesson => passedLessons.has(lesson))) {
+        terminalStates.set(id, MASTERED);
+      }
+    }
+    // A fully mastered parent can also be the target of a required edge.
+    const pending = [];
+    for (const [id, state] of aggregateHierarchy(terminalStates)) {
+      if (state === MASTERED) pending.push(id);
+    }
+    const visited = new Set(pending);
+    while (pending.length) {
+      const target = pending.pop();
+      for (const source of requiredBefore.get(target) || []) {
+        if (visited.has(source)) continue;
+        visited.add(source);
+        pending.push(source);
+        // Walk through parents, but always display groups using their actual children.
+        if (!children.has(source)) terminalStates.set(source, INFERRED);
+      }
+    }
+    return aggregateHierarchy(terminalStates);
+  };
+}
+
+function curriculum(data, base) {
+  const assess = createKnowledgeMastery(data);
   const descriptors = new Map();
   for (const id of new Set(Object.values(data.requiredLessons).flat())) {
     const lesson = data.lessons[id];
@@ -29,17 +81,7 @@ function curriculum(data, base) {
       if (current === true) passed.add(id);
       if (current === null) unreadable = true;
     }
-    const mastered = new Map();
-    function isMastered(id) {
-      if (!mastered.has(id)) {
-        const value = data.nodes[id].level === "小項目"
-          ? everyRequired(data.requiredLessons[id] || [], lesson => passed.has(lesson))
-          : everyRequired(children.get(id) || [], isMastered);
-        mastered.set(id, value);
-      }
-      return mastered.get(id);
-    }
-    return { isMastered, unreadable };
+    return { states: assess(passed), unreadable };
   }
   function pathTo(id) {
     const path = [];
@@ -306,16 +348,18 @@ export function mountMap(root) {
     return request;
   }
   function paint() {
+    function setState(item, state, label) {
+      item.dataset.mastered = state === MASTERED;
+      item.toggleAttribute("data-inferred", state === INFERRED);
+      item.setAttribute("aria-label", label + "・" + state);
+    }
     for (const band of content.querySelectorAll("[data-node]")) {
-      const mastered = mastery.isMastered(band.dataset.node);
-      band.dataset.mastered = mastered;
-      band.setAttribute("aria-label", band.title + "・" + stateName(mastered));
+      setState(band, mastery.states.get(band.dataset.node), band.title);
     }
     for (const slice of content.querySelectorAll("[data-unit]")) {
       const unit = model.data.barUnits[slice.dataset.unit];
-      const mastered = everyRequired(unit.knowledgeIds, mastery.isMastered);
-      slice.dataset.mastered = mastered;
-      slice.setAttribute("aria-label", [model.data.nodes[unit.domain].name, slice.textContent, stateName(mastered)].join("・"));
+      const state = groupState(unit.knowledgeIds.map(id => mastery.states.get(id)));
+      setState(slice, state, model.data.nodes[unit.domain].name + "・" + slice.textContent);
     }
     note(mastery.unreadable ? "一部の学習履歴を読み取れないため、達成状態を判定できない項目があります。" : "");
   }
