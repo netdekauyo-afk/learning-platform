@@ -97,7 +97,13 @@ let mathJaxReady;
 async function loadMathJax() {
   if (!mathJaxReady) {
     mathJaxReady = new Promise((resolve, reject) => {
-      globalThis.MathJax = { startup: { typeset: false }, tex: { inlineMath: [["\\(", "\\)"], ["$", "$"]] } };
+      globalThis.MathJax = {
+        startup: { typeset: false },
+        tex: { inlineMath: [["\\(", "\\)"], ["$", "$"]] },
+        // This site's bundled renderer does not include the speech worker.
+        // Keep the normal question-page configuration untouched.
+        options: { enableSpeech: false, enableBraille: false, menuOptions: { settings: { enrich: false, speech: false, braille: false } } },
+      };
       const script = document.createElement("script");
       script.src = new URL("./engine/mathjax/tex-svg.js", import.meta.url).href;
       script.onload = () => Promise.resolve(globalThis.MathJax?.startup?.promise).then(resolve, reject);
@@ -130,12 +136,17 @@ export async function renderRepresentativeProblem(target, problem) {
   if (containsMath) container.style.visibility = "hidden";
   target.replaceChildren(container);
   if (containsMath) {
+    let timer;
     try {
       await loadMathJax();
-      await globalThis.MathJax.typesetPromise([container]);
-      if (container.querySelector("mjx-merror, [data-mml-node='merror']")) throw new Error("Invalid math");
+      await Promise.race([
+        globalThis.MathJax.typesetPromise([container]),
+        new Promise((_, reject) => { timer = setTimeout(() => reject(new Error("Math rendering timed out")), 8000); }),
+      ]);
+      if (!container.querySelector("mjx-container svg") || container.querySelector("mjx-merror, [data-mml-node='merror']")) throw new Error("Invalid math");
       container.style.removeProperty("visibility");
     } catch (_) { target.replaceChildren(); return false; }
+    finally { clearTimeout(timer); }
   }
   return true;
 }
