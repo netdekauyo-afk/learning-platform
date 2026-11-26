@@ -46,6 +46,19 @@
     .home-screen .choice-card { width: 100%; font: inherit; font-weight: 700; text-align: left; cursor: pointer; }
     .screen-back { margin-top: 20px; }
     .candidate-more { display: inline-block; margin-top: 18px; color: var(--color-heading); text-underline-offset: 3px; }
+    .candidate-math { display: grid; gap: 14px; }
+    .candidate-lesson { min-width: 0; padding: 16px; border: 1px solid var(--color-border); border-radius: 12px; background: var(--color-surface); }
+    .candidate-lesson.is-scheduled { border-color: var(--color-accent); }
+    .candidate-number { margin: 0 0 4px; color: var(--color-heading); font-weight: 700; }
+    .candidate-title { margin: 0 0 12px; color: var(--color-text); font-size: .9rem; font-weight: 400; line-height: 1.5; }
+    .candidate-timing { display: inline-block; margin-left: 8px; font-size: .8rem; font-weight: 400; }
+    .candidate-preview { min-height: 6em; overflow-wrap: anywhere; color: var(--color-heading); line-height: 1.65; }
+    .candidate-preview p { margin: 0 0 .55em; }
+    .candidate-preview table { max-width: 100%; }
+    .candidate-options { margin: .4em 0 1em; padding-left: 1.45em; }
+    .candidate-options li + li { margin-top: .2em; }
+    .candidate-select { width: 100%; min-height: 48px; margin-top: 12px; }
+    .candidate-edge { height: 1px; }
     .settings-help { margin: 6px 0 0; font-size: 0.92rem; }
     .settings-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
     .settings-actions .save { border-color: var(--color-accent); }
@@ -392,6 +405,8 @@
   let loadVersion = 0;
   let navigationVersion = 0;
   let candidateVersion = 0;
+  let candidateContext = null;
+  let candidateObservers = [];
   let selectionBySubject = {};
   let startModes = {};
   let draftLessons = {};
@@ -458,6 +473,9 @@
             const doc = new DOMParser().parseFromString(await response.text(), 'text/html');
             return [...doc.querySelectorAll('.lesson-item[data-lesson-id]')].map((row) => {
               const title = row.querySelector('.lesson-title-link[data-kind="summary"]');
+              const questions = safeTarget(row.querySelector('[data-kind="questions"]'), base);
+              const authored = row.dataset.mainQuestionSet ? new URL(row.dataset.mainQuestionSet, base) : null;
+              const mainSource = authored && authored.origin === base.origin && authored.pathname.startsWith(base.pathname) ? authored.href : null;
               return {
                 id: row.dataset.lessonId,
                 title: title?.textContent.trim() || row.dataset.lessonId,
@@ -465,7 +483,8 @@
                 month: row.dataset.month || ((row.dataset.semester || '').match(/(\d{1,2})月/) || [])[0] || '',
                 summary: safeTarget(title, base),
                 lesson: safeTarget(row.querySelector('[data-kind="lesson"]'), base),
-                questions: safeTarget(row.querySelector('[data-kind="questions"]'), base)
+                questions,
+                mainSource
               };
             });
           })();
@@ -594,7 +613,7 @@
     if (history.state?.classroomHome?.from === screen) history.back();
     else navigate(screen);
   }
-  function renderScreen(screen) {
+  function renderScreen(screen, fromHistory = false) {
     if (!Object.prototype.hasOwnProperty.call(screens, screen)) screen = 'subject';
     currentScreen = screen;
     navigationVersion++;
@@ -602,7 +621,8 @@
     homeActions.hidden = screen === 'grade';
     gradeControlRow.hidden = screen === 'grade';
     gradeControl.disabled = screen === 'grade';
-    if (screen === 'candidates') void showCandidates();
+    const reusableCandidates = fromHistory && candidateContext?.grade === gradeControl.value && candidateContext.subject === flowSubject;
+    if (screen === 'candidates' && !reusableCandidates) void showCandidates();
     if (screen === 'destination') void showDestination();
     if (screen === 'today') void showToday();
     if (screen === 'progress') void showProgress();
@@ -616,7 +636,7 @@
       if (grades.has(state.grade) && state.grade !== gradeControl.value) updateGrade(state.grade);
       flowSubject = state.subject || null;
       chosenLessonId = state.lessonId || null;
-      renderScreen(state.screen);
+      renderScreen(state.screen, true);
     } else {
       renderScreen(grades.has(readStorage(gradeKey)) ? 'subject' : 'grade');
     }
@@ -674,12 +694,20 @@
     const subject = flowSubject;
     const grade = gradeControl.value;
     const version = ++candidateVersion;
+    candidateObservers.forEach((observer) => observer.disconnect());
+    candidateObservers = [];
+    candidateContext = null;
+    candidateList.classList.remove('candidate-math');
     candidateList.replaceChildren();
     candidateStatus.textContent = '授業を読み込んでいます。';
     if (!subject || !hasSubject(grade, subject)) { candidateStatus.textContent = '科目を選び直してください。'; return; }
     candidateMore.href = subjectUrl(grade, subject).href;
     try {
       const lessons = await getLessons(grade, subject);
+      if (subject === 'math') {
+        await showMathCandidates(grade, lessons, version);
+        return;
+      }
       const result = await rankedCandidates(grade, subject, lessons);
       if (version !== candidateVersion || currentScreen !== 'candidates' || grade !== gradeControl.value || subject !== flowSubject) return;
       candidateStatus.textContent = result.lessons.length ? result.status : 'この科目の授業はまだありません。';
@@ -696,6 +724,141 @@
     } catch (_) {
       if (version === candidateVersion && currentScreen === 'candidates') candidateStatus.textContent = '授業を読み込めませんでした。授業一覧から選んでください。';
     }
+  }
+
+  async function showMathCandidates(grade, lessons, version) {
+    const helpers = await import('../assets/numbas/lesson-preview.js?v=20261127-preview');
+    const today = globalThis.ClassroomCalendar?.today();
+    let schedule = null;
+    if (today) {
+      try { schedule = await courseDateNumbers(today.schoolYear, grade, 'math'); }
+      catch (_) { /* The existing list remains usable without calendar data. */ }
+    }
+    if (version !== candidateVersion || currentScreen !== 'candidates' || grade !== gradeControl.value || flowSubject !== 'math') return;
+    const plan = helpers.planCandidateWindow(lessons, schedule, today);
+    candidateStatus.textContent = plan.items.length ? plan.status : 'この科目の授業はまだありません。';
+    candidateList.classList.add('candidate-math');
+    candidateContext = { grade, subject: 'math' };
+    if (!plan.items.length) return;
+
+    const top = document.createElement('div');
+    const bottom = document.createElement('div');
+    top.className = bottom.className = 'candidate-edge';
+    top.setAttribute('aria-hidden', 'true');
+    bottom.setAttribute('aria-hidden', 'true');
+    candidateList.append(top, bottom);
+    const cards = new Map();
+    const queue = [];
+    let running = 0;
+    let previewObserver;
+    let edgeObserver;
+    let start = plan.start;
+    let end = plan.end;
+    // A batch is a loading detail, not a limit on the number of lessons.
+    const batch = Math.max(8, Math.ceil((end - start + 1) / 2));
+
+    function pump() {
+      while (running < 3 && queue.length) {
+        const { lesson, preview, card } = queue.shift();
+        if (version !== candidateVersion || !card.isConnected) continue;
+        running++;
+        const source = lesson.mainSource || (lesson.questions && /^[a-z0-9-]+$/i.test(lesson.id)
+          ? new URL(`${lesson.id}.exam`, lesson.questions).href : null);
+        (async () => {
+          if (!source) { preview.textContent = '問題は準備中です。'; return; }
+          const problem = await helpers.readRepresentativeProblem(source, Boolean(lesson.mainSource));
+          if (version !== candidateVersion || !card.isConnected) return;
+          if (!problem || !await helpers.renderRepresentativeProblem(preview, problem)) preview.textContent = '授業名から選べます。';
+        })().catch(() => { if (version === candidateVersion && card.isConnected) preview.textContent = '授業名から選べます。'; })
+          .finally(() => { running--; pump(); });
+      }
+    }
+
+    function makeCard(index) {
+      const { lesson } = plan.items[index];
+      const card = document.createElement('article');
+      card.className = 'candidate-lesson';
+      card.dataset.lessonId = lesson.id;
+      if (index === plan.target && plan.label) { card.classList.add('is-scheduled'); card.dataset.scheduled = 'true'; }
+      const number = document.createElement('p');
+      number.className = 'candidate-number';
+      number.textContent = lesson.number ? `第${lesson.number}時限` : '';
+      if (index === plan.target && plan.label) {
+        const label = document.createElement('span');
+        label.className = 'candidate-timing';
+        label.textContent = plan.label;
+        number.append(label);
+      }
+      const title = document.createElement('h2');
+      title.className = 'candidate-title';
+      title.textContent = lesson.title;
+      const preview = document.createElement('div');
+      preview.className = 'candidate-preview';
+      preview.textContent = lesson.questions ? '問題を読み込んでいます。' : '問題は準備中です。';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'home-button candidate-select';
+      button.textContent = 'この授業から始める';
+      button.setAttribute('aria-label', `${lesson.number ? `第${lesson.number}時限 ` : ''}${lesson.title}から始める`);
+      if (lesson.id === chosenLessonId) button.setAttribute('aria-current', 'true');
+      button.addEventListener('click', () => chooseLesson(lesson));
+      card.append(number, title, preview, button);
+      cards.set(index, { card, lesson, preview });
+      return card;
+    }
+    function addRange(first, last, before) {
+      const fragment = document.createDocumentFragment();
+      for (let index = first; index <= last; index++) fragment.append(makeCard(index));
+      candidateList.insertBefore(fragment, before);
+      if (previewObserver) for (let index = first; index <= last; index++) previewObserver.observe(cards.get(index).card);
+    }
+    addRange(start, end, bottom);
+
+    let moved = false;
+    const cancelCenter = () => { moved = true; };
+    const gesture = new AbortController();
+    for (const event of ['wheel', 'touchstart', 'pointerdown']) window.addEventListener(event, cancelCenter, { passive: true, signal: gesture.signal });
+    window.addEventListener('keydown', (event) => {
+      if (['ArrowUp', 'ArrowDown', 'PageUp', 'PageDown', 'Home', 'End', ' '].includes(event.key)) cancelCenter();
+    }, { signal: gesture.signal });
+    requestAnimationFrame(() => {
+      if (version !== candidateVersion || currentScreen !== 'candidates') { gesture.abort(); return; }
+      if (!moved && plan.label) cards.get(plan.target)?.card.scrollIntoView({ block: 'center', behavior: 'instant' });
+      gesture.abort();
+      if (!('IntersectionObserver' in window)) {
+        // Older browsers still allow every lesson to be chosen by title.
+        for (const { preview } of cards.values()) preview.textContent = '授業名から選べます。';
+        return;
+      }
+      previewObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          previewObserver.unobserve(entry.target);
+          const item = [...cards.values()].find((value) => value.card === entry.target);
+          if (item) queue.push(item);
+        }
+        pump();
+      }, { rootMargin: '400px 0px' });
+      candidateObservers.push(previewObserver);
+      for (const { card } of cards.values()) previewObserver.observe(card);
+      edgeObserver = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          if (entry.target === top && start > 0) {
+            const first = Math.max(0, start - batch);
+            addRange(first, start - 1, top.nextSibling);
+            start = first;
+          } else if (entry.target === bottom && end < plan.items.length - 1) {
+            const last = Math.min(plan.items.length - 1, end + batch);
+            addRange(end + 1, last, bottom);
+            end = last;
+          }
+        }
+      }, { rootMargin: '150px 0px' });
+      candidateObservers.push(edgeObserver);
+      edgeObserver.observe(top);
+      edgeObserver.observe(bottom);
+    });
   }
 
   function chooseLesson(lesson) {
