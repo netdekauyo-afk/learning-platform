@@ -89,14 +89,16 @@
     }
 
     /* Chapter */
-    details.chapter {
+    details.chapter,
+    section.chapter-single {
       background: var(--color-surface);
       border: 2px solid var(--color-border);
       border-radius: 14px;
       overflow: hidden;
     }
 
-    summary.chapter-summary {
+    summary.chapter-summary,
+    .chapter-single > .chapter-summary {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -165,7 +167,8 @@
       transform: rotate(90deg);
     }
 
-    details.chapter[open] > summary.chapter-summary {
+    details.chapter[open] > summary.chapter-summary,
+    .chapter-single > .chapter-summary {
       border-bottom: 1px solid var(--color-border);
     }
 
@@ -174,6 +177,15 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+    }
+
+    .chapter-single > .chapter-summary {
+      cursor: default;
+      user-select: auto;
+    }
+
+    .chapter-single .chapter-name::before {
+      content: none;
     }
 
     /* Section */
@@ -363,7 +375,8 @@
         font-size: 1.5rem;
       }
 
-      summary.chapter-summary {
+      summary.chapter-summary,
+      .chapter-single > .chapter-summary {
         padding: 11px 12px;
       }
 
@@ -428,22 +441,14 @@
     <main class="curriculum-list" id="curriculum-list">
       <details class="chapter" open data-chapter-index="0" data-unit-id="j1-u001">
         <summary class="chapter-summary">
-          <span class="chapter-name">扉の詩</span>
+          <span class="chapter-name">詩「朝のリレー」</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u001/questions.html" data-published="false">問題</a>
             <span class="count-meta">2回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-material-id="j1-m001">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">朝のリレー</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m001" data-kind="material-questions" data-target="materials/j1-m001/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">2回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m001" data-original-material-name="朝のリレー">
             <li class="lesson-item" data-lesson-id="j1-l001" data-progress-exam="lessons/j1-l001/j1-l001.exam?v=20261122-question-history" data-seq="1" data-month="4月" data-source-material="朝のリレー（1-2時）" data-learning-goal="詩を情景を思い浮かべながら音読し、朝が地球をめぐる広がりを味わう">
               <span class="lesson-num">1</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l001" data-kind="summary" data-target="lessons/j1-l001/summary.html" data-published="true">「朝のリレー」の音読と世界の情景の想像</a>
@@ -461,27 +466,18 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="1" data-unit-id="j1-u002">
         <summary class="chapter-summary">
-          <span class="chapter-name">言葉に出会うために</span>
+          <span class="chapter-name">国語の学び方・ノートと辞典</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u002/questions.html" data-published="false">問題</a>
             <span class="count-meta">3回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-material-id="j1-m002">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">言葉に出会うために</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m002" data-kind="material-questions" data-target="materials/j1-m002/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m002" data-original-material-name="言葉に出会うために">
             <li class="lesson-item" data-lesson-id="j1-l003" data-progress-exam="lessons/j1-l003/j1-l003.exam?v=20261123-japanese" data-seq="3" data-month="4月" data-source-material="言葉に出会うために（1時）" data-learning-goal="中学校国語で学ぶ内容を見通し、声に出して読む楽しさに触れる">
               <span class="lesson-num">3</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l003" data-kind="summary" data-target="lessons/j1-l003/summary.html" data-published="true">中学校国語の学習の見通しと「声を届ける・野原はうたう」</a>
@@ -491,16 +487,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m003">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">書き留める</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m003" data-kind="material-questions" data-target="materials/j1-m003/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m003" data-original-material-name="書き留める">
             <li class="lesson-item" data-lesson-id="j1-l004" data-progress-exam="lessons/j1-l004/j1-l004.exam?v=20261123-japanese" data-seq="4" data-month="4月" data-source-material="書き留める（2-3時）" data-learning-goal="小学校のノートを振り返り、考えを整理して書き留める工夫を理解する">
               <span class="lesson-num">4</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l004" data-kind="summary" data-target="lessons/j1-l004/summary.html" data-published="true">学習を支えるノートの工夫（「書き留める」）</a>
@@ -510,16 +497,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m004">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">言葉を調べる</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m004" data-kind="material-questions" data-target="materials/j1-m004/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m004" data-original-material-name="言葉を調べる">
             <li class="lesson-item" data-lesson-id="j1-l005" data-progress-exam="lessons/j1-l005/j1-l005.exam?v=20261123-japanese" data-seq="5" data-month="4月" data-source-material="言葉を調べる（2-3時）" data-learning-goal="目的に応じた辞典・事典の引き方を確かめ、語彙を広げる習慣をつける">
               <span class="lesson-num">5</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l005" data-kind="summary" data-target="lessons/j1-l005/summary.html" data-published="true">国語辞典・漢和辞典を活用した「言葉を調べる」方法</a>
@@ -529,12 +507,11 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="2" data-unit-id="j1-u003">
         <summary class="chapter-summary">
-          <span class="chapter-name">１学びをひらく</span>
+          <span class="chapter-name">1 はじまりの風・スピーチ</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u003/questions.html" data-published="false">問題</a>
             <span class="count-meta">11回</span>
@@ -584,15 +561,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m006">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">［聞く］情報を聞き取り、要点を伝える</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m006" data-kind="material-questions" data-target="materials/j1-m006/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m006" data-original-material-name="［聞く］情報を聞き取り、要点を伝える">
             <li class="lesson-item" data-lesson-id="j1-l010" data-progress-exam="lessons/j1-l010/j1-l010.exam?v=20261123-japanese" data-seq="10" data-month="5月" data-source-material="［聞く］情報を聞き取り、要点を伝える（1時）" data-learning-goal="目的に応じて大切な情報を聞き取り、メモを活用して要点を伝える">
               <span class="lesson-num">10</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l010" data-kind="summary" data-target="lessons/j1-l010/summary.html" data-published="true">情報を的確に聞き取り要点を伝える聞き方</a>
@@ -602,16 +571,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m007">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">言葉１ 音声の仕組みや働き</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m007" data-kind="material-questions" data-target="materials/j1-m007/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m007" data-original-material-name="言葉１ 音声の仕組みや働き">
             <li class="lesson-item" data-lesson-id="j1-l011" data-progress-exam="lessons/j1-l011/j1-l011.exam?v=20261123-japanese" data-seq="11" data-month="5月" data-source-material="言葉１ 音声の仕組みや働き（1時）" data-learning-goal="母音・子音や発音の仕組みを理解し、音声の働きに関心をもつ">
               <span class="lesson-num">11</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l011" data-kind="summary" data-target="lessons/j1-l011/summary.html" data-published="true">母音と子音から理解する日本語の音声の仕組み</a>
@@ -621,7 +581,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m008">
           <summary class="section-summary">
             <span class="section-heading">
@@ -665,15 +624,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m009">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">漢字１ 漢字の組み立てと部首</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m009" data-kind="material-questions" data-target="materials/j1-m009/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m009" data-original-material-name="漢字１ 漢字の組み立てと部首">
             <li class="lesson-item" data-lesson-id="j1-l016" data-progress-exam="lessons/j1-l016/j1-l016.exam?v=20261123-japanese" data-seq="16" data-month="5月" data-source-material="漢字１ 漢字の組み立てと部首（1時）" data-learning-goal="漢字の構造と部首の意味を理解し、漢字の学習に役立てる">
               <span class="lesson-num">16</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l016" data-kind="summary" data-target="lessons/j1-l016/summary.html" data-published="true">漢字の組み立てと偏旁冠脚の働き</a>
@@ -683,12 +634,11 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="3" data-unit-id="j1-u004">
         <summary class="chapter-summary">
-          <span class="chapter-name">２新しい視点で</span>
+          <span class="chapter-name">2 説明文の読解・情報整理</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u004/questions.html" data-published="false">問題</a>
             <span class="count-meta">11回</span>
@@ -757,15 +707,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m012">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">情報整理のレッスン 比較・分類</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m012" data-kind="material-questions" data-target="materials/j1-m012/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m012" data-original-material-name="情報整理のレッスン 比較・分類">
             <li class="lesson-item" data-lesson-id="j1-l022" data-progress-exam="lessons/j1-l022/j1-l022.exam?v=20261123-japanese" data-seq="22" data-month="6月" data-source-material="情報整理のレッスン 比較・分類（1時）" data-learning-goal="情報を観点ごとに比較・分類する手順を理解し、整理に生かす">
               <span class="lesson-num">22</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l022" data-kind="summary" data-target="lessons/j1-l022/summary.html" data-published="true">目的に応じた情報の比較と分類の方法</a>
@@ -775,7 +717,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m013">
           <summary class="section-summary">
             <span class="section-heading">
@@ -819,15 +760,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m014">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">言葉２ 指示する語句と接続する語句</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m014" data-kind="material-questions" data-target="materials/j1-m014/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m014" data-original-material-name="言葉２ 指示する語句と接続する語句">
             <li class="lesson-item" data-lesson-id="j1-l027" data-progress-exam="lessons/j1-l027/j1-l027.exam?v=20261123-japanese" data-seq="27" data-month="6月" data-source-material="言葉２ 指示する語句と接続する語句（1時）" data-learning-goal="指示語と接続語の役割を理解し、文と文のつながりを的確に捉える">
               <span class="lesson-num">27</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l027" data-kind="summary" data-target="lessons/j1-l027/summary.html" data-published="true">指示する語句と接続する語句の働きと使い分け</a>
@@ -837,12 +770,11 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="4" data-unit-id="j1-u005">
         <summary class="chapter-summary">
-          <span class="chapter-name">３言葉に立ち止まる</span>
+          <span class="chapter-name">3 詩と表現技法</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u005/questions.html" data-published="false">問題</a>
             <span class="count-meta">8回</span>
@@ -884,15 +816,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m016">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">言葉３ さまざまな表現技法</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m016" data-kind="material-questions" data-target="materials/j1-m016/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m016" data-original-material-name="言葉３ さまざまな表現技法">
             <li class="lesson-item" data-lesson-id="j1-l031" data-progress-exam="lessons/j1-l031/j1-l031.exam?v=20261123-japanese" data-seq="31" data-month="6月" data-source-material="言葉３ さまざまな表現技法（1時）" data-learning-goal="表現技法の種類と印象の違いを理解し、読解や表現に生かす">
               <span class="lesson-num">31</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l031" data-kind="summary" data-target="lessons/j1-l031/summary.html" data-published="true">比喩・反復・倒置などさまざまな表現技法の効果</a>
@@ -902,7 +826,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m017">
           <summary class="section-summary">
             <span class="section-heading">
@@ -930,15 +853,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m018">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">文法１ 言葉の単位</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m018" data-kind="material-questions" data-target="materials/j1-m018/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m018" data-original-material-name="文法１ 言葉の単位">
             <li class="lesson-item" data-lesson-id="j1-l034" data-progress-exam="lessons/j1-l034/j1-l034.exam?v=20261123-japanese" data-seq="34" data-month="6月" data-source-material="文法１ 言葉の単位（1時）" data-learning-goal="例文の音読を手がかりに、言葉の五つの単位と区切り方を理解する">
               <span class="lesson-num">34</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l034" data-kind="summary" data-target="lessons/j1-l034/summary.html" data-published="true">文章・段落・文・文節・単語という「言葉の単位」</a>
@@ -948,16 +863,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m019">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">語彙を豊かに 心情を表す言葉</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m019" data-kind="material-questions" data-target="materials/j1-m019/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m019" data-original-material-name="語彙を豊かに 心情を表す言葉">
             <li class="lesson-item" data-lesson-id="j1-l035" data-progress-exam="lessons/j1-l035/j1-l035.exam?v=20261123-japanese" data-seq="35" data-month="7月" data-source-material="語彙を豊かに 心情を表す言葉（1時）" data-learning-goal="気持ちを表す多様な語句を集め、場面に応じた的確な表現を選ぶ">
               <span class="lesson-num">35</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l035" data-kind="summary" data-target="lessons/j1-l035/summary.html" data-published="true">心情を的確に表す語彙の拡充と表現の幅</a>
@@ -967,27 +873,18 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="5" data-unit-id="j1-u006">
         <summary class="chapter-summary">
-          <span class="chapter-name">情報×SDGs</span>
+          <span class="chapter-name">SDGsの情報収集と著作権</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u006/questions.html" data-published="false">問題</a>
             <span class="count-meta">3回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-material-id="j1-m020">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">情報収集の達人になろう・著作権</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m020" data-kind="material-questions" data-target="materials/j1-m020/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">3回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m020" data-original-material-name="情報収集の達人になろう・著作権">
             <li class="lesson-item" data-lesson-id="j1-l036" data-progress-exam="lessons/j1-l036/j1-l036.exam?v=20261123-japanese" data-seq="36" data-month="7月" data-source-material="情報収集の達人になろう・著作権（1-2時）" data-learning-goal="SDGsの17の目標を手がかりに、調べるテーマと問いを設定する">
               <span class="lesson-num">36</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l036" data-kind="summary" data-target="lessons/j1-l036/summary.html" data-published="true">SDGsの目標から見つける調査テーマの設定</a>
@@ -1013,27 +910,18 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="6" data-unit-id="j1-u007">
         <summary class="chapter-summary">
-          <span class="chapter-name">いつも本はそばに</span>
+          <span class="chapter-name">読書を楽しむ・本の中の中学生</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u007/questions.html" data-published="false">問題</a>
             <span class="count-meta">2回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-material-id="j1-m021">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">読書を楽しむ</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m021" data-kind="material-questions" data-target="materials/j1-m021/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m021" data-original-material-name="読書を楽しむ">
             <li class="lesson-item" data-lesson-id="j1-l039" data-progress-exam="lessons/j1-l039/j1-l039.exam?v=20261123-japanese" data-seq="39" data-month="7月" data-source-material="読書を楽しむ（1時）" data-learning-goal="目的に合った読書活動を選び、本と主体的に関わる方法を知る">
               <span class="lesson-num">39</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l039" data-kind="summary" data-target="lessons/j1-l039/summary.html" data-published="true">ポップ作り・読書会・読書記録で広げる読書の楽しみ方</a>
@@ -1043,16 +931,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m022">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">本の中の中学生</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m022" data-kind="material-questions" data-target="materials/j1-m022/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m022" data-original-material-name="本の中の中学生">
             <li class="lesson-item" data-lesson-id="j1-l040" data-progress-exam="lessons/j1-l040/j1-l040.exam?v=20261123-japanese" data-seq="40" data-month="7月" data-source-material="本の中の中学生（1時）" data-learning-goal="同世代が登場する作品を読み、自分の悩みや思いと重ねて味わう">
               <span class="lesson-num">40</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l040" data-kind="summary" data-target="lessons/j1-l040/summary.html" data-published="true">「本の中の中学生」の読書と共感する人物との出会い</a>
@@ -1062,12 +941,11 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="7" data-unit-id="j1-u008">
         <summary class="chapter-summary">
-          <span class="chapter-name">４心の動き</span>
+          <span class="chapter-name">4 大人になれなかった弟たちに……・星の花が降るころに</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u008/questions.html" data-published="false">問題</a>
             <span class="count-meta">17回</span>
@@ -1203,15 +1081,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m026">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">［推敲］読み手の立場に立つ</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m026" data-kind="material-questions" data-target="materials/j1-m026/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m026" data-original-material-name="［推敲］読み手の立場に立つ">
             <li class="lesson-item" data-lesson-id="j1-l053" data-progress-exam="lessons/j1-l053/j1-l053.exam?v=20261123-japanese" data-seq="53" data-month="9月" data-source-material="［推敲］読み手の立場に立つ（1時）" data-learning-goal="不足情報や曖昧な表現を読み手の視点で点検し、より良く書き改める">
               <span class="lesson-num">53</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l053" data-kind="summary" data-target="lessons/j1-l053/summary.html" data-published="true">読み手の立場に立って見直す案内文の推敲</a>
@@ -1221,16 +1091,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m027">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">言葉４ 方言と共通語</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m027" data-kind="material-questions" data-target="materials/j1-m027/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m027" data-original-material-name="言葉４ 方言と共通語">
             <li class="lesson-item" data-lesson-id="j1-l054" data-progress-exam="lessons/j1-l054/j1-l054.exam?v=20261123-japanese" data-seq="54" data-month="9月" data-source-material="言葉４ 方言と共通語（1時）" data-learning-goal="語句・表現・発音の違いから、方言と共通語それぞれの働きを理解する">
               <span class="lesson-num">54</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l054" data-kind="summary" data-target="lessons/j1-l054/summary.html" data-published="true">方言と共通語の違いと地域文化としての価値</a>
@@ -1240,7 +1101,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m028">
           <summary class="section-summary">
             <span class="section-heading">
@@ -1268,15 +1128,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m029">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">漢字２ 漢字の音訓</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m029" data-kind="material-questions" data-target="materials/j1-m029/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m029" data-original-material-name="漢字２ 漢字の音訓">
             <li class="lesson-item" data-lesson-id="j1-l057" data-progress-exam="lessons/j1-l057/j1-l057.exam?v=20261123-japanese" data-seq="57" data-month="10月" data-source-material="漢字２ 漢字の音訓（1時）" data-learning-goal="音訓の成り立ちや複数の読みをもつ漢字の性質を理解し、練習する">
               <span class="lesson-num">57</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l057" data-kind="summary" data-target="lessons/j1-l057/summary.html" data-published="true">漢字の音読みと訓読みの歴史・性質と辞典活用</a>
@@ -1286,12 +1138,11 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="8" data-unit-id="j1-u009">
         <summary class="chapter-summary">
-          <span class="chapter-name">５筋道を立てて</span>
+          <span class="chapter-name">5 「言葉」をもつ鳥、シジュウカラ・報告レポート</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u009/questions.html" data-published="false">問題</a>
             <span class="count-meta">15回</span>
@@ -1349,15 +1200,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m031">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">思考のレッスン１ 意見と根拠</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m031" data-kind="material-questions" data-target="materials/j1-m031/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m031" data-original-material-name="思考のレッスン１ 意見と根拠">
             <li class="lesson-item" data-lesson-id="j1-l063" data-progress-exam="lessons/j1-l063/j1-l063.exam?v=20261123-japanese" data-seq="63" data-month="10月" data-source-material="思考のレッスン１ 意見と根拠（1時）" data-learning-goal="意見と根拠を区別し、主張にふさわしい根拠の条件を考える">
               <span class="lesson-num">63</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l063" data-kind="summary" data-target="lessons/j1-l063/summary.html" data-published="true">主張を支える「意見と根拠」の適切な関係</a>
@@ -1367,7 +1210,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m032">
           <summary class="section-summary">
             <span class="section-heading">
@@ -1419,15 +1261,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m033">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">漢字に親しもう３</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m033" data-kind="material-questions" data-target="materials/j1-m033/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m033" data-original-material-name="漢字に親しもう３">
             <li class="lesson-item" data-lesson-id="j1-l069" data-progress-exam="lessons/j1-l069/j1-l069.exam?v=20261123-japanese" data-seq="69" data-month="11月" data-source-material="漢字に親しもう３（1時）" data-learning-goal="既習および新出漢字の読み書きを練習し、語彙として定着させる">
               <span class="lesson-num">69</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l069" data-kind="summary" data-target="lessons/j1-l069/summary.html" data-published="true">新出漢字の定着と漢和辞典を用いた練習問題</a>
@@ -1437,7 +1271,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m034">
           <summary class="section-summary">
             <span class="section-heading">
@@ -1465,15 +1298,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m035">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">聴きひたる 大阿蘇</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m035" data-kind="material-questions" data-target="materials/j1-m035/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m035" data-original-material-name="聴きひたる 大阿蘇">
             <li class="lesson-item" data-lesson-id="j1-l072" data-progress-exam="lessons/j1-l072/j1-l072.exam?v=20261123-japanese" data-seq="72" data-month="11月" data-source-material="聴きひたる 大阿蘇（1時）" data-learning-goal="朗読を聴いて反復や言葉の響きから雄大な情景を味わう">
               <span class="lesson-num">72</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l072" data-kind="summary" data-target="lessons/j1-l072/summary.html" data-published="true">朗読音声で味わう詩「大阿蘇」の響きとリズム</a>
@@ -1483,27 +1308,18 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <details class="chapter" open data-chapter-index="9" data-unit-id="j1-u010">
         <summary class="chapter-summary">
-          <span class="chapter-name">６いにしえの心にふれる</span>
+          <span class="chapter-name">6 竹取物語・故事成語</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u010/questions.html" data-published="false">問題</a>
             <span class="count-meta">8回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-material-id="j1-m036">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">古典の世界・いろは歌</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m036" data-kind="material-questions" data-target="materials/j1-m036/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m036" data-original-material-name="古典の世界・いろは歌">
             <li class="lesson-item" data-lesson-id="j1-l073" data-progress-exam="lessons/j1-l073/j1-l073.exam?v=20261123-japanese" data-seq="73" data-month="11月" data-source-material="古典の世界・いろは歌（1時）" data-learning-goal="古典の多様なジャンルを知り、いろは歌をリズムよく音読する">
               <span class="lesson-num">73</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l073" data-kind="summary" data-target="lessons/j1-l073/summary.html" data-published="true">3年間の「古典の世界」への入口と「いろは歌」の音読</a>
@@ -1513,7 +1329,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m037">
           <summary class="section-summary">
             <span class="section-heading">
@@ -1596,7 +1411,7 @@
       </details>
       <details class="chapter" open data-chapter-index="10" data-unit-id="j1-u011">
         <summary class="chapter-summary">
-          <span class="chapter-name">７価値を見いだす</span>
+          <span class="chapter-name">7 「不便」の価値・話し合い</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u011/questions.html" data-published="false">問題</a>
             <span class="count-meta">11回</span>
@@ -1646,15 +1461,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m040">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">思考のレッスン２ 原因と結果</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m040" data-kind="material-questions" data-target="materials/j1-m040/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m040" data-original-material-name="思考のレッスン２ 原因と結果">
             <li class="lesson-item" data-lesson-id="j1-l085" data-progress-exam="lessons/j1-l085/j1-l085.exam?v=20261123-japanese" data-seq="85" data-month="12月" data-source-material="思考のレッスン２ 原因と結果（1時）" data-learning-goal="原因と結果を表す表現に着目し、出来事の因果関係を正確に整理する">
               <span class="lesson-num">85</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l085" data-kind="summary" data-target="lessons/j1-l085/summary.html" data-published="true">文章から見抜く「原因と結果」の論理的なつながり</a>
@@ -1664,16 +1471,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m041">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">漢字に親しもう４</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m041" data-kind="material-questions" data-target="materials/j1-m041/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m041" data-original-material-name="漢字に親しもう４">
             <li class="lesson-item" data-lesson-id="j1-l086" data-progress-exam="lessons/j1-l086/j1-l086.exam?v=20261123-japanese" data-seq="86" data-month="12月" data-source-material="漢字に親しもう４（1時）" data-learning-goal="新出漢字や既習漢字の読み書きを復習し、正しく運用する力を高める">
               <span class="lesson-num">86</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l086" data-kind="summary" data-target="lessons/j1-l086/summary.html" data-published="true">2学期までの新出漢字の総確認と定着演習</a>
@@ -1683,16 +1481,7 @@
               </span>
             </li>
           </ol>
-        </details>
-        <details class="section" open data-material-id="j1-m042">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">［話し合い（進行）］進め方について考えよう</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m042" data-kind="material-questions" data-target="materials/j1-m042/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m042" data-original-material-name="［話し合い（進行）］進め方について考えよう">
             <li class="lesson-item" data-lesson-id="j1-l087" data-progress-exam="lessons/j1-l087/j1-l087.exam?v=20261123-japanese" data-seq="87" data-month="12月" data-source-material="［話し合い（進行）］進め方について考えよう（1時）" data-learning-goal="話し合いの映像を分析し、議論を円滑に進める工夫を理解する">
               <span class="lesson-num">87</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l087" data-kind="summary" data-target="lessons/j1-l087/summary.html" data-published="true">動画視聴から学ぶ話し合いの進め方と司会の役割</a>
@@ -1702,7 +1491,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m043">
           <summary class="section-summary">
             <span class="section-heading">
@@ -1748,24 +1536,16 @@
         </details>
         </div>
       </details>
-      <details class="chapter" open data-chapter-index="11" data-unit-id="j1-u012">
-        <summary class="chapter-summary">
-          <span class="chapter-name">いつも本はそばに</span>
+      <section class="chapter chapter-single" data-chapter-index="11" data-unit-id="j1-u012" aria-label="読書：研究の現場にようこそ">
+        <div class="chapter-summary">
+          <span class="chapter-name">読書：研究の現場にようこそ</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u012/questions.html" data-published="false">問題</a>
             <span class="count-meta">1回</span>
           </span>
-        </summary>
+        </div>
         <div class="chapter-body">
-        <details class="section" open data-material-id="j1-m044">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">研究の現場にようこそ</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m044" data-kind="material-questions" data-target="materials/j1-m044/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m044" data-original-material-name="研究の現場にようこそ">
             <li class="lesson-item" data-lesson-id="j1-l092" data-progress-exam="lessons/j1-l092/j1-l092.exam?v=20261123-japanese" data-seq="92" data-month="12月" data-source-material="研究の現場にようこそ（1時）" data-learning-goal="研究者の記録を読み、探究の面白さや関連読書への関心を広げる">
               <span class="lesson-num">92</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l092" data-kind="summary" data-target="lessons/j1-l092/summary.html" data-published="true">「研究の現場にようこそ」で触れる科学ノンフィクションの魅力</a>
@@ -1775,12 +1555,11 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
-      </details>
+      </section>
       <details class="chapter" open data-chapter-index="12" data-unit-id="j1-u013">
         <summary class="chapter-summary">
-          <span class="chapter-name">８自分を見つめる</span>
+          <span class="chapter-name">8 少年の日の思い出・随筆</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u013/questions.html" data-published="false">問題</a>
             <span class="count-meta">25回</span>
@@ -1975,15 +1754,7 @@
             </li>
           </ol>
         </details>
-        <details class="section" open data-material-id="j1-m049">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">漢字３ 漢字の成り立ち</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m049" data-kind="material-questions" data-target="materials/j1-m049/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">1回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m049" data-original-material-name="漢字３ 漢字の成り立ち">
             <li class="lesson-item" data-lesson-id="j1-l111" data-progress-exam="lessons/j1-l111/j1-l111.exam?v=20261123-japanese" data-seq="111" data-month="2月" data-source-material="漢字３ 漢字の成り立ち（1時）" data-learning-goal="六書の考え方や四つの成り立ち、国字の特徴を用例とともに理解する">
               <span class="lesson-num">111</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l111" data-kind="summary" data-target="lessons/j1-l111/summary.html" data-published="true">象形・指事・会意・形声から学ぶ漢字の成り立ちと国字</a>
@@ -1993,7 +1764,6 @@
               </span>
             </li>
           </ol>
-        </details>
         <details class="section" open data-material-id="j1-m050">
           <summary class="section-summary">
             <span class="section-heading">
@@ -2068,22 +1838,14 @@
       </details>
       <details class="chapter" open data-chapter-index="13" data-unit-id="j1-u014">
         <summary class="chapter-summary">
-          <span class="chapter-name">学びを深める</span>
+          <span class="chapter-name">国語の力試し</span>
           <span class="chapter-actions">
             <a class="chapter-question-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-kind="unit-questions" data-target="units/j1-u014/questions.html" data-published="false">問題</a>
             <span class="count-meta">3回</span>
           </span>
         </summary>
         <div class="chapter-body">
-        <details class="section" open data-material-id="j1-m052">
-          <summary class="section-summary">
-            <span class="section-heading">
-              <span class="section-name">国語の力試し</span>
-              <a class="text-link section-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-material-id="j1-m052" data-kind="material-questions" data-target="materials/j1-m052/questions.html" data-published="false">問題</a>
-            </span>
-            <span class="count-meta">3回</span>
-          </summary>
-          <ol class="lesson-list">
+          <ol class="lesson-list" data-original-material-id="j1-m052" data-original-material-name="国語の力試し">
             <li class="lesson-item" data-lesson-id="j1-l118" data-progress-exam="lessons/j1-l118/j1-l118.exam?v=20261123-japanese" data-seq="118" data-month="3月" data-source-material="国語の力試し（1時）" data-learning-goal="読む・書く・話す聞くの総合問題に取り組み、採点基準で自己採点する">
               <span class="lesson-num">118</span>
               <a class="text-link lesson-title-link is-unpublished" role="link" tabindex="0" aria-disabled="true" data-lesson-id="j1-l118" data-kind="summary" data-target="lessons/j1-l118/summary.html" data-published="true">1年間の総合力を測る「国語の力試し」基本演習と自己採点</a>
@@ -2109,7 +1871,6 @@
               </span>
             </li>
           </ol>
-        </details>
         </div>
       </details>
       <nav class="problem-toolbar grade-navigation" aria-label="同じ科目の学年移動" style="margin-top: 24px;">
