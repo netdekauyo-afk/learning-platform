@@ -31,6 +31,8 @@ test('図・実行時変数・前提となる表が必要な問題は授業名�
   assert.equal(representativeProblem(data('<p>{x} + 1</p>', { x: {} })), null);
   assert.equal(representativeProblem(data('<p>この表の合計を求める。</p>')), null);
   assert.equal(representativeProblem(data('<p data-jme-visible="x">問題</p>')), null);
+  assert.equal(representativeProblem(data('<p>問題</p><span hidden>正解は 2</span>')), null);
+  assert.equal(representativeProblem(data('<p>このデータの平均を求めなさい。</p>')), null);
 });
 
 test('日付表を進行順に並べ、今日を含む前後の授業範囲を選ぶ', () => {

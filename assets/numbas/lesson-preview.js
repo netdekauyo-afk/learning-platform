@@ -2,7 +2,7 @@ import { examQuestions, mainQuestionSet, readExamSource } from "./question-progr
 
 // A preview is deliberately less capable than Numbas: when its content needs
 // evaluation or a missing diagram, the lesson title is safer than a guess.
-const unsupportedMarkup = /<(?:img|svg|canvas|math|audio|video|iframe|object|embed|script|style|form|input|button|select|textarea|var)\b|\bdata-jme-|\bdata-parent-result\s*=|\\(?:var|simplify)\s*\{|\{\{/i;
+const unsupportedMarkup = /<(?:img|svg|canvas|math|audio|video|iframe|object|embed|script|style|form|input|button|select|textarea|var)\b|\bdata-jme-|\bdata-parent-result\s*=|\bhidden(?:\s|=|\/?>)|\baria-hidden\s*=\s*["']?true|(?:display\s*:\s*none|visibility\s*:\s*hidden)|\\(?:var|simplify|href|url|require|style|class|cssId)\s*\{|\{\{/i;
 const missingContext = /(?:この|上の|下の|右の|左の|次の)(?:図|表|グラフ|資料|絵)|度数分布表|累積度数/;
 
 export function representativeProblem(exam, authoredMainSet = false) {
@@ -18,7 +18,8 @@ export function representativeProblem(exam, authoredMainSet = false) {
     const choices = part.type === "1_n_2" ? part.choices : [];
     if (!Array.isArray(choices) || (part.type === "1_n_2" && !choices.length) || choices.some((choice) => typeof choice !== "string")) return null;
     const fragments = [part.prompt, ...choices];
-    if (fragments.some((value) => unsupportedMarkup.test(value)) || missingContext.test(part.prompt)) return null;
+    const plainPrompt = part.prompt.replace(/<[^>]*>/g, "").trim();
+    if (fragments.some((value) => unsupportedMarkup.test(value)) || missingContext.test(plainPrompt) || /^(?:この|その|それ|以上の)/.test(plainPrompt)) return null;
     const variableNames = new Set([...Object.keys(exam.variables || {}), ...Object.keys(first.variables || {})]);
     for (const value of fragments) {
       for (const match of value.matchAll(/\{([^{}]+)\}/g)) {

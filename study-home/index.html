@@ -481,7 +481,7 @@
             return [...doc.querySelectorAll('.lesson-item[data-lesson-id]')].map((row) => {
               const title = row.querySelector('.lesson-title-link[data-kind="summary"]');
               const questions = safeTarget(row.querySelector('[data-kind="questions"]'), base);
-              const authored = row.dataset.mainQuestionSet ? new URL(row.dataset.mainQuestionSet, base) : null;
+              const authored = subject === 'math' && row.dataset.mainQuestionSet ? new URL(row.dataset.mainQuestionSet, base) : null;
               const mainSource = authored && authored.origin === base.origin && authored.pathname.startsWith(base.pathname) ? authored.href : null;
               return {
                 id: row.dataset.lessonId,
@@ -859,11 +859,24 @@
     Promise.race([ready, new Promise((resolve) => setTimeout(resolve, 3000))]).then(() => requestAnimationFrame(() => {
       if (version !== candidateVersion) { gesture.abort(); return; }
       if (currentScreen !== 'candidates') moved = true;
+      const hasObserver = 'IntersectionObserver' in window;
+      if (!hasObserver) {
+        if (start > 0) { addRange(0, start - 1, top.nextSibling); start = 0; }
+        if (end < plan.items.length - 1) { addRange(end + 1, plan.items.length - 1, bottom); end = plan.items.length - 1; }
+      }
       if (!moved && plan.label) cards.get(plan.target)?.card.scrollIntoView({ block: 'center', behavior: 'instant' });
       gesture.abort();
-      if (!('IntersectionObserver' in window)) {
-        // Older browsers still allow every lesson to be chosen by title.
-        for (const { preview } of cards.values()) preview.textContent = '授業名から選べます。';
+      if (!hasObserver) {
+        const loadVisible = () => {
+          if (version !== candidateVersion || currentScreen !== 'candidates') return;
+          for (const item of cards.values()) {
+            const rect = item.card.getBoundingClientRect();
+            if (rect.bottom >= -400 && rect.top <= innerHeight + 400) void queuePreview(item);
+          }
+        };
+        window.addEventListener('scroll', loadVisible, { passive: true });
+        candidateObservers.push({ disconnect: () => window.removeEventListener('scroll', loadVisible) });
+        loadVisible();
         return;
       }
       previewObserver = new IntersectionObserver((entries) => {
