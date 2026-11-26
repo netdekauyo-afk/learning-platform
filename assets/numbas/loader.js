@@ -166,7 +166,7 @@ function hasAuthoredExploreControls(question) {
 }
 
 async function installPracticeReview(examElement, examHost, historyKey, level, {
-  set = null, main = null, question = examElement.exam?.questionList?.[0]
+  set = null, main = null, question = examElement.exam?.questionList?.[0], retry = null
 } = {}) {
   if (!question?.parts?.length) return;
   // Some lesson pages replace the card in place. Capture its identity now,
@@ -261,7 +261,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
         answer = label.content.textContent.trim();
       }
       if (!answer.trim()) return;
-      const signature = JSON.stringify([part.path, answer, score, maximum]);
+      const signature = JSON.stringify([part.path, answer, score, maximum, retry?.round]);
       const kind = score >= maximum ? "correct" : "wrong";
       if (lastSubmission.get(part) === signature && !(score >= maximum && repeatCanCount()) &&
           (!set || support || latestGradedKind(readPracticeHistory(historyKey), questionId) === kind)) return;
@@ -342,6 +342,7 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
           part.stagedAnswer.some((row) => Array.isArray(row) && row[0] === true);
         if (selected) part.submit();
       });
+      if (retry && !support) return;
       void part.display?.html_promise?.then((section) => {
         if (!examHost.contains(examElement)) return;
         bindSelectedChoiceRetry(section, () =>
@@ -632,7 +633,7 @@ function resultHeading(correct) {
 }
 
 // Display the answer and explanation already supplied by the running exam.
-function addMarkedResult(part, question, answer) {
+function addMarkedResult(part, question, answer, retryMain) {
   const output = document.createElement("div");
   output.setAttribute("data-classroom-result", "");
   output.setAttribute("aria-live", "polite");
@@ -640,6 +641,12 @@ function addMarkedResult(part, question, answer) {
     if (!part.answered || part.isDirty) return;
     const correct = part.score >= part.marks;
     output.replaceChildren(resultHeading(correct));
+    if (retryMain && !correct) {
+      const choice = part.ticks.findIndex((row) => row[0]);
+      const text = part.settings.distractors[choice]?.[0];
+      if (text) { output.innerHTML = text; formatExploreResult(output, false); }
+      return;
+    }
     const advice = question.parts.length === 1 && question.display.hasAdvice() &&
       question.display.html.querySelector(".adviceDisplay");
     if (advice?.textContent.trim()) {
@@ -660,7 +667,64 @@ function addMarkedResult(part, question, answer) {
   return output;
 }
 
-function arrangeQuestionCard(part, question, section, prompt, attachArrow) {
+function arrangeRetryChoices(part, section, answer, feedback, retry) {
+  const snapshot = retry.card(part);
+  const menu = answer.querySelector(".radiogroup");
+  const inputs = [...menu.querySelectorAll("input.choice")];
+  const rows = new Map(inputs.map((input) => [Number(input.value), input.closest("li")]));
+  // Numbas chooses the initial order. A reload of this particular attempt
+  // preserves it and moves the original, bound list items (never their labels).
+  if (snapshot.order.length === rows.size && snapshot.order.every((index) => rows.has(index))) {
+    part.shuffleAnswers = snapshot.order.slice();
+    for (const index of snapshot.order) menu.append(rows.get(index));
+  }
+  if (snapshot.answer && part.answered) {
+    feedback.innerHTML = part.settings.distractors[snapshot.answer.choice][0];
+    formatExploreResult(feedback, part.score >= part.marks);
+  }
+  if (part.previousPart) return;
+  section.classList.add("classroom-choice-retry");
+  const again = document.createElement("button");
+  again.type = "button";
+  again.className = "classroom-retry-button";
+  again.textContent = "もう一度解きますか？";
+  section.querySelector(".classroom-question-card").prepend(again);
+  const mistaken = (index) => retry.mistakes.some((item) => item.choice === index);
+  function paint() {
+    const complete = part.answered && part.score >= part.marks;
+    again.hidden = !retry.guarded;
+    section.classList.toggle("classroom-awaiting-correct", !complete);
+    const certified = complete && retry.recognized();
+    for (const input of inputs) {
+      const wrong = mistaken(Number(input.value));
+      input.closest("li").classList.toggle("classroom-choice-mistake", wrong);
+      input.disabled = retry.guarded || wrong || certified || part.locked;
+    }
+    if (!part.answered) feedback.replaceChildren();
+  }
+  again.addEventListener("click", () => { retry.start(); inputs.find((input) => !input.disabled)?.focus(); });
+  menu.addEventListener("click", (event) => {
+    const input = event.target.closest("label")?.querySelector("input.choice");
+    if (!input) return;
+    const index = Number(input.value);
+    if (input.disabled || retry.guarded || mistaken(index)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    } else if (part.answered && part.score >= part.marks) {
+      // A completed, as-yet uncertified answer can be retried; opening the
+      // card or clicking the already selected answer during a wait is passive.
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (retry.recognized() || (index === retry.card(part).answer?.choice && !retry.canCountAgain())) return;
+      retry.start();
+      queueMicrotask(() => part.display.studentAnswer(String(index)));
+    }
+  }, true);
+  retry.observe(paint);
+  paint();
+}
+
+function arrangeQuestionCard(part, question, section, prompt, attachArrow, retry) {
   const answer = section.querySelector(":scope > .student.answer");
   const authoredResult = prompt?.querySelector("[data-classroom-result]");
   if (!prompt || !answer || !["1_n_2", "numberentry"].includes(part.type)) {
@@ -687,7 +751,7 @@ function arrangeQuestionCard(part, question, section, prompt, attachArrow) {
   const keypad = section.querySelector(":scope > :is(.number-pad-panel, .number-pad)");
   if (keypad) card.append(keypad);
 
-  const feedback = authoredResult || addMarkedResult(part, question, answer);
+  const feedback = authoredResult || addMarkedResult(part, question, answer, retry && !part.previousPart);
   const paragraph = feedback.parentElement;
   card.after(feedback);
   if (paragraph?.matches("p:empty")) paragraph.remove();
@@ -698,19 +762,22 @@ function arrangeQuestionCard(part, question, section, prompt, attachArrow) {
   }
   if (part.type === "1_n_2") {
     const markExpected = () => {
-      const expected = String(part.display.correctAnswer());
+      const show = part.answered && (!retry || part.previousPart || part.score >= part.marks);
+      const expected = show ? String(part.display.correctAnswer()) : null;
       for (const input of answer.querySelectorAll(".radiogroup input[type=radio]")) {
-        input.closest("li").classList.toggle("classroom-expected", part.answered && input.value === expected);
+        input.closest("li").classList.toggle("classroom-expected", show && input.value === expected);
       }
     };
-    part.events.on("post-submit", markExpected);
+    if (retry && !part.previousPart) retry.observe(markExpected);
+    else part.events.on("post-submit", markExpected);
     markExpected();
+    if (retry) arrangeRetryChoices(part, section, answer, feedback, retry);
   }
   attachArrow?.(part, section, feedback);
 }
 
 /* Reuse the native hint and its open state in both lesson layouts. */
-async function installLessonHints(examElement, question = examElement.exam?.questionList?.[0], authored = false, attachArrow = null) {
+async function installLessonHints(examElement, question = examElement.exam?.questionList?.[0], authored = false, attachArrow = null, retry = null) {
   if (!question) return;
   const classroomExplore = examElement.hasAttribute("data-main-question-set");
   const decorated = new WeakSet();
@@ -724,7 +791,7 @@ async function installLessonHints(examElement, question = examElement.exam?.ques
     if (part.type === "1_n_2" || prompt?.querySelector(".worksheet-text") || prompt?.textContent.trim().length > 20) {
       section.classList.add("written-question");
     }
-    arrangeQuestionCard(part, question, section, prompt, attachArrow);
+    arrangeQuestionCard(part, question, section, prompt, attachArrow, retry);
     const button = section.querySelector(":scope > .stepsBtn");
     const content = section.querySelector(":scope > .steps.well");
     if (!button || !content) return;
@@ -856,9 +923,9 @@ async function loadRuntime(retryResources) {
 
 export async function bootExam(examHost, examStatus, level, lessonLayout, authored = null) {
   let examData = authored?.examData;
-  let exploreNavigation;
+  let exploreNavigation, choiceRetryAttempt;
   if (authored) {
-    ({ exploreNavigation } = await import("./explore-navigation.js?v=shared-design-1"));
+    ({ exploreNavigation, choiceRetryAttempt } = await import("./explore-navigation.js?v=shared-design-1"));
     await prepareRuntime();
   } else {
     const response = await fetch(new URL(examHost.dataset.examSource, location.href));
@@ -892,17 +959,27 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
       footer.after(reviewSlot);
     }
     if (authored) {
+      const retryIds = new Set(lessonLayout && examHost.dataset.exerciseMode !== "continuous" ?
+        examData.question_groups.flatMap((group) => group.questions)
+          .filter((q) => q.tags?.includes("classroom:retry-by-choice") && q.partsMode === "explore" &&
+            q.parts.every((part) => part.type === "1_n_2" && part.displayType === "radiogroup"))
+          .map((q) => q.parts[0].customName) : []);
       for (const question of exam.exam.questionList) {
         const main = authored.set.mains.find((item) => item.id === definitionId(question.parts[0]));
         if (!main) {
           examStatus.textContent = "動作中の主問題と教材の固定IDが一致しません。";
           continue;
         }
-        void installPracticeReview(exam, examHost, practiceHistoryKey(level), level, { set: authored.set, main, question })
+        const historyKey = practiceHistoryKey(level);
+        const retry = retryIds.has(main.id) ? choiceRetryAttempt(question, main.parts,
+          () => isRecognizedCorrect(readPracticeHistory(historyKey), main.id, recognitionStartedAt),
+          () => canRecordRepeatedCorrect(readPracticeHistory(historyKey), main.id, recognitionStartedAt)) : null;
+        void installPracticeReview(exam, examHost, historyKey, level, { set: authored.set, main, question, retry })
           .catch((error) => { console.error(error); examStatus.textContent = "学習履歴を準備できませんでした。"; });
         void installNumericAutoSubmit(exam, question).catch((error) => console.error("数値入力の準備に失敗しました。", error));
-        void installLessonHints(exam, question, hasAuthoredExploreControls(question), main.parts[0].nextParts?.length ? exploreNavigation(exam, question, main.parts) : null)
+        void installLessonHints(exam, question, hasAuthoredExploreControls(question), main.parts[0].nextParts?.length ? exploreNavigation(exam, question, main.parts, retry) : null, retry)
           .catch((error) => console.error("ヒントの準備に失敗しました。", error));
+        retry?.connect();
       }
       return;
     }
