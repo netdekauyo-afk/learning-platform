@@ -1,9 +1,9 @@
 // Numbas version: finer_feedback_settings
 {
-  "name": "em2-l155 もうすぐ 3年生②（長さ・かさ・時間・形）",
+  "name": "em2-l155 長さ・かさ・時間・形の ふくしゅう",
   "metadata": {
     "licence": "None specified",
-    "description": "小学2年算数 第155回「もうすぐ 3年生②（長さ・かさ・時間・形）」の確認問題（主問題3問）"
+    "description": "小学2年算数 第155回「長さ・かさ・時間・形の ふくしゅう」の確認問題（主問題3問）"
   },
   "extensions": [],
   "custom_part_types": [],
@@ -73,8 +73,8 @@
             "licence": "None specified",
             "description": ""
           },
-          "statement": "<p>長さの たんいを たしかめましょう。</p>",
-          "advice": "<p>答え：300cm（1m＝100cmなので、3mは 100cmが 3つ分で 300cmに なります）</p>",
+          "statement": "<p>長さと かさの たんいを たしかめましょう。</p>",
+          "advice": "<p>答え：300cmと 10dL（1m＝100cmなので 3m＝300cm、1L＝10dLです）</p>",
           "rulesets": {},
           "parts": [
             {
@@ -91,7 +91,7 @@
               "customMarkingAlgorithm": "",
               "extendBaseMarkingAlgorithm": true,
               "unitTests": [],
-              "prompt": "<p>3mは 何cmですか。</p>",
+              "prompt": "<p>3mは 何cmですか。また、1Lは 何dLですか。</p>",
               "stepsPenalty": 0,
               "steps": [
                 {
@@ -108,7 +108,7 @@
                   "customMarkingAlgorithm": "",
                   "extendBaseMarkingAlgorithm": true,
                   "unitTests": [],
-                  "prompt": "<p>ヒント：1mは 何cmだったか 思いうかべましょう。</p>"
+                  "prompt": "<p>ヒント：1mは 何cm、1Lは 何dLだったか 思いうかべましょう。</p>"
                 }
               ],
               "minMarks": 0,
@@ -120,10 +120,10 @@
               "displayColumns": 1,
               "showCellAnswerState": true,
               "choices": [
-                "30cm",
-                "300cm",
-                "3000cm",
-                "103cm"
+                "30cmと 10dL",
+                "300cmと 10dL",
+                "300cmと 100dL",
+                "3000cmと 1dL"
               ],
               "matrix": [
                 0,
@@ -187,8 +187,8 @@
             "licence": "None specified",
             "description": ""
           },
-          "statement": "<p>1L 入る 水とうに、水が 4dL 入っています。</p>",
-          "advice": "<p>答え：6dL（1L＝10dLなので、あと 入るのは 10－4＝6dLに なります）</p>",
+          "statement": "<p>9時20分から 9時50分まで 本を よみました。</p>",
+          "advice": "<p>答え：30分（50－20＝30で、30分間です）</p>",
           "rulesets": {},
           "parts": [
             {
@@ -205,7 +205,7 @@
               "customMarkingAlgorithm": "",
               "extendBaseMarkingAlgorithm": true,
               "unitTests": [],
-              "prompt": "<p>いっぱいに するには、あと 何dL 入りますか。</p>",
+              "prompt": "<p>何分間 よみましたか。</p>",
               "stepsPenalty": 0,
               "steps": [
                 {
@@ -222,7 +222,7 @@
                   "customMarkingAlgorithm": "",
                   "extendBaseMarkingAlgorithm": true,
                   "unitTests": [],
-                  "prompt": "<p>ヒント：1Lは 何dLか 思いうかべて、入っている 分を ひきましょう。</p>"
+                  "prompt": "<p>ヒント：9時20分から 9時50分まで、何分 すすんだか 考えましょう。</p>"
                 }
               ],
               "minMarks": 0,
@@ -234,15 +234,15 @@
               "displayColumns": 1,
               "showCellAnswerState": true,
               "choices": [
-                "4dL",
-                "14dL",
-                "6dL",
-                "5dL"
+                "20分",
+                "30分",
+                "40分",
+                "50分"
               ],
               "matrix": [
                 0,
-                0,
                 1,
+                0,
                 0
               ],
               "distractors": [
@@ -301,8 +301,8 @@
             "licence": "None specified",
             "description": ""
           },
-          "statement": "<p>45mmの 長さを、cmと mmで あらわしましょう。</p>",
-          "advice": "<p>答え：4cm5mm（45mmは 10mmが 4つと 5mmなので、4cm5mmに なります）</p>",
+          "statement": "<p>4つの かどが すべて 直角で、4つの へんの 長さが すべて 同じ 形が あります。</p>",
+          "advice": "<p>答え：正方形（4つの かどが 直角で、4つの へんの 長さが 同じ 形です）</p>",
           "rulesets": {},
           "parts": [
             {
@@ -319,7 +319,7 @@
               "customMarkingAlgorithm": "",
               "extendBaseMarkingAlgorithm": true,
               "unitTests": [],
-              "prompt": "<p>ただしい あらわしかたは どれですか。</p>",
+              "prompt": "<p>この 形を 何と いいますか。</p>",
               "stepsPenalty": 0,
               "steps": [
                 {
@@ -336,7 +336,7 @@
                   "customMarkingAlgorithm": "",
                   "extendBaseMarkingAlgorithm": true,
                   "unitTests": [],
-                  "prompt": "<p>ヒント：10mmが 1cmです。45mmの 中に 10mmが いくつ あるか 考えましょう。</p>"
+                  "prompt": "<p>ヒント：へんが 4つあり、どの へんも 同じ 長さです。かどの 形にも 注目しましょう。</p>"
                 }
               ],
               "minMarks": 0,
@@ -348,16 +348,16 @@
               "displayColumns": 1,
               "showCellAnswerState": true,
               "choices": [
-                "5cm4mm",
-                "45cm",
-                "4cm50mm",
-                "4cm5mm"
+                "三角形",
+                "円",
+                "正方形",
+                "直角三角形"
               ],
               "matrix": [
                 0,
                 0,
-                0,
-                1
+                1,
+                0
               ],
               "distractors": [
                 "",

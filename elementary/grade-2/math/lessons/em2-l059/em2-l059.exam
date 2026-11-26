@@ -1,9 +1,9 @@
 // Numbas version: finer_feedback_settings
 {
-  "name": "em2-l059 算数のじゆうけんきゅう（せんろをつくろう）",
+  "name": "em2-l059 せんろを つくろう",
   "metadata": {
     "licence": "None specified",
-    "description": "小学2年算数 第59回「算数のじゆうけんきゅう（せんろをつくろう）」の確認問題（主問題2問）"
+    "description": "小学2年算数 第59回「せんろを つくろう」の確認問題（主問題2問）"
   },
   "extensions": [],
   "custom_part_types": [],
@@ -73,8 +73,8 @@
             "licence": "None specified",
             "description": ""
           },
-          "statement": "<p>せんろを つくるのに、直線レールを 6本、カーブレールを 6本 つかいました。</p>",
-          "advice": "<p>答え：6＋6＝12本（直線レール 6本と カーブレール 6本を あわせるので、6＋6＝12で 12本に なります）</p>",
+          "statement": "<p>4まいの カーブの レールで、ぐるっと 1しゅう できる せんろを つくります。</p><p>上の だん：╭　□<br/>下の だん：╰　╯</p>",
+          "advice": "<p>答え：╮（左と 下に つながる）。左の レールと 下の レールに つながるので、ぐるっと 1しゅう できます。</p>",
           "rulesets": {},
           "parts": [
             {
@@ -91,7 +91,7 @@
               "customMarkingAlgorithm": "",
               "extendBaseMarkingAlgorithm": true,
               "unitTests": [],
-              "prompt": "<p>レールは ぜんぶで 何本ですか。しきと 答えを えらびましょう。</p>",
+              "prompt": "<p>右上の □に 入る レールは どれですか。</p>",
               "stepsPenalty": 0,
               "steps": [
                 {
@@ -108,7 +108,7 @@
                   "customMarkingAlgorithm": "",
                   "extendBaseMarkingAlgorithm": true,
                   "unitTests": [],
-                  "prompt": "<p>ヒント：2つの 数の レールを あわせるので、たし算を つかいます。</p>"
+                  "prompt": "<p>ヒント：□の 左に ある レールと、□の 下に ある レールの 両方に つながる むきを 考えましょう。</p>"
                 }
               ],
               "minMarks": 0,
@@ -120,15 +120,15 @@
               "displayColumns": 1,
               "showCellAnswerState": true,
               "choices": [
-                "6－6＝0本",
-                "6＋6＝11本",
-                "6＋6＝12本",
-                "6＋6＝13本"
+                "╮（左と 下に つながる）",
+                "╭（右と 下に つながる）",
+                "│（上と 下に つながる）",
+                "╯（上と 左に つながる）"
               ],
               "matrix": [
-                0,
-                0,
                 1,
+                0,
+                0,
                 0
               ],
               "distractors": [
@@ -187,8 +187,8 @@
             "licence": "None specified",
             "description": ""
           },
-          "statement": "<p>せんろづくりの レールが 15本 あります。9本 つかいました。</p>",
-          "advice": "<p>答え：15－9＝6本（15本から つかった 9本を ひくので、15－9＝6で のこりは 6本に なります）</p>",
+          "statement": "<p>4まいの カーブの レールで つくった わっかの せんろが あります。まっすぐな レールを 足して、横に ながい わっかに します。</p>",
+          "advice": "<p>答え：上と 下に、同じ 長さの 横むきの レールを 足す。上と 下を 同じ 長さだけ のばせば、両はしの カーブが つながり、1しゅう できます。</p>",
           "rulesets": {},
           "parts": [
             {
@@ -205,7 +205,7 @@
               "customMarkingAlgorithm": "",
               "extendBaseMarkingAlgorithm": true,
               "unitTests": [],
-              "prompt": "<p>のこりは 何本ですか。しきと 答えを えらびましょう。</p>",
+              "prompt": "<p>どんな つなぎ方を すれば、ぐるっと 回れる せんろに なりますか。</p>",
               "stepsPenalty": 0,
               "steps": [
                 {
@@ -222,7 +222,7 @@
                   "customMarkingAlgorithm": "",
                   "extendBaseMarkingAlgorithm": true,
                   "unitTests": [],
-                  "prompt": "<p>ヒント：つかった ぶんだけ へるので、ひき算を つかいます。</p>"
+                  "prompt": "<p>ヒント：上の せんろと 下の せんろの 長さが そろう ように 考えましょう。</p>"
                 }
               ],
               "minMarks": 0,
@@ -234,10 +234,10 @@
               "displayColumns": 1,
               "showCellAnswerState": true,
               "choices": [
-                "15＋9＝24本",
-                "15－9＝6本",
-                "15－9＝5本",
-                "15－9＝7本"
+                "上だけに 横むきの レールを 足す。",
+                "上と 下に、同じ 長さの 横むきの レールを 足す。",
+                "下だけに 横むきの レールを 足す。",
+                "上と 下に、ちがう 長さの 横むきの レールを 足す。"
               ],
               "matrix": [
                 0,
