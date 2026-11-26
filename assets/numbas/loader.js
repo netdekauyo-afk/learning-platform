@@ -2,6 +2,7 @@ import { prepareAnswerControl, hasCheckedAnswer, setExerciseLanguage } from "./w
 import { createDifficultyTabs } from "./difficulty-tabs.js?v=main-question-types-1";
 import { exerciseSettings, applyExerciseSettings } from "./exercise-settings.js?v=shared-design-1";
 import { initializeRecognitionRule, isRecognizedCorrect, canRecordRepeatedCorrect, bindSelectedChoiceRetry, latestGradedKind, definitionId, allMainAnswersCorrect, readExerciseText } from "./question-progress.js?v=continuous-3";
+import { createLessonPassTracker, lessonHistoryKey } from "./lesson-pass.js";
 /* One source of Numbas bootstrapping for all Classroom exercise pages. */
 const host = document.querySelector("#numbas-host");
 const status = document.querySelector("#numbas-status");
@@ -103,13 +104,23 @@ function queueStudyAdvance(context, ids, source, mainSetReady) {
 // Start the rule before any answer or reveal can be added to the history.
 const recognitionStartedAt = initializeRecognitionRule();
 
+let lessonPassTracker = null;
+function connectLessonPass(context, ids = null) {
+  if (!context || lessonPassTracker) return;
+  const slots = ids ? ids.map((questionId) => ({ level: "basic", questionId })) :
+    ["basic", "standard", "advanced"].map((level) => ({ level, questionId: null }));
+  lessonPassTracker = createLessonPassTracker({ lessonId: context.lessonId, pathname: location.pathname, slots },
+    { recognitionStartedAt });
+  if (lessonPassTracker) {
+    void lessonPassTracker.restore();
+    window.addEventListener("pageshow", lessonPassTracker.restore);
+  }
+}
+
 /* A non-locking answer view and a local practice history. The original .exam files
    and the Numbas score calculation are deliberately left unchanged. */
-const practiceHistoryPrefix = "classroom:practice-history:v1:";
-
 function practiceHistoryKey(level = "basic", pathname = location.pathname) {
-  const base = practiceHistoryPrefix + pathname;
-  return level === "basic" ? base : base + ":" + level;
+  return lessonHistoryKey(pathname, level);
 }
 
 function readPracticeHistory(key) {
@@ -126,9 +137,9 @@ function appendPracticeHistory(key, entry) {
     const history = readPracticeHistory(key);
     history.push({ ...entry, at: new Date().toISOString() });
     localStorage.setItem(key, JSON.stringify(history));
-    return true;
+    return history;
   } catch {
-    return false;
+    return null;
   }
 }
 
@@ -218,11 +229,15 @@ async function installPracticeReview(examElement, examHost, historyKey, level, {
         parentId: support ? questionId : null, role: support ? "supplement" : "main",
         route: support ? routes.get(part) : "main" };
     } else if (questionId) entry = { ...entry, questionId };
-    if (!appendPracticeHistory(key, entry)) {
+    const tracker = support ? null : lessonPassTracker;
+    const before = tracker?.capture();
+    const records = appendPracticeHistory(key, entry);
+    if (!records) {
       messageElement.textContent = "このブラウザでは学習履歴を保存できません。";
       messageElement.hidden = false;
       return false;
     }
+    if (tracker) void tracker.afterSave(before, { key, level, records });
     refresh();
     examHost.dispatchEvent(new CustomEvent("classroom:history-changed", { bubbles: true }));
     return true;
@@ -957,6 +972,10 @@ export async function bootExam(examHost, examStatus, level, lessonLayout, author
     examData = JSON.parse(raw.replace(/^\s*\/\/[^\n]*\r?\n/, ""));
   }
   applyExerciseSettings(examData);
+  if (authored && lessonLayout && level === "basic") {
+    const context = lessonContext();
+    if (context?.lessonId === authored.set.lessonId) connectLessonPass(context, authored.set.ids);
+  }
 
   const continuous = !lessonLayout && examHost.dataset.exerciseMode === "continuous";
   const inlineStyles = continuous ? await prepareContinuousStyles() : null;
@@ -1073,6 +1092,7 @@ async function boot() {
     // The old grade-one maths lessons each have a single basic question.
     // Keep the old basic history key, and do not expose the old difficulty files.
     const singleQuestionLabel = lessonMatch ? exerciseSettings.questionTypesBySubject["junior-high/math"][0] : "";
+    if (!singleQuestionLabel && !host.dataset.sequenceSource) connectLessonPass(lessonContext());
     createDifficultyTabs(host, status, async (examHost, examStatus, level) => {
       try {
         const response = await fetch(new URL(examHost.dataset.examSource, location.href));
