@@ -139,12 +139,13 @@ export async function renderRepresentativeProblem(target, problem) {
   if (containsMath) {
     let timer;
     try {
-      await loadMathJax();
       await Promise.race([
-        globalThis.MathJax.typesetPromise([container]),
+        (async () => { await loadMathJax(); await globalThis.MathJax.typesetPromise([container]); })(),
         new Promise((_, reject) => { timer = setTimeout(() => reject(new Error("Math rendering timed out")), 8000); }),
       ]);
-      if (!container.querySelector("mjx-container svg") || container.querySelector("mjx-merror, [data-mml-node='merror']")) throw new Error("Invalid math");
+      // MathJax's noundefined package may render an unknown command as red
+      // mtext instead of an merror; neither is a trustworthy preview.
+      if (!container.querySelector("mjx-container svg") || container.querySelector("mjx-merror, [data-mml-node='merror'], [data-mml-node='mtext'][fill='red']")) throw new Error("Invalid math");
       container.style.removeProperty("visibility");
     } catch (_) { target.replaceChildren(); return false; }
     finally { clearTimeout(timer); }
