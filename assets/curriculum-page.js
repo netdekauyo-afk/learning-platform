@@ -328,7 +328,9 @@
     });
     if (summaryReturnKey) {
       link.addEventListener("click", function (event) {
-        if (link.dataset.kind === "summary" && link.dataset.published === "true" &&
+        const rememberReturn = link.dataset.kind === "summary" ||
+          (options.rememberQuestionReturn !== undefined && link.dataset.kind === "questions");
+        if (rememberReturn && link.dataset.published === "true" &&
             !event.defaultPrevented && event.button === 0 &&
             !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
           rememberSummaryReturn();
