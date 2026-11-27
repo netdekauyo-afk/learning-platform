@@ -1,0 +1,162 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "m2-c004 平行と合同",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学2年数学・第4章の章別問題。試作1問。"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true,
+    "navigatemode": "menu",
+    "autoSubmit": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": false,
+    "messages": [],
+    "advice": "",
+    "intro": "",
+    "showactualmarkwhen": "always",
+    "showtotalmarkwhen": "always",
+    "showanswerstatewhen": "always",
+    "showpartfeedbackmessageswhen": "always"
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "平行と合同",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        "M1 正六角形と平行線"
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "M1 正六角形と平行線",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "4章 平行と合同",
+            "m2-c004-M1",
+            "ability:補助線",
+            "ability:使い分け"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "出典：2019年度 帝塚山高校 数学 大問3(3)。原問題の図形条件を保ち、図を再作図。選択肢・誤答フィードバックを追加。"
+          },
+          "statement": "",
+          "advice": "<p>角 <em>y</em> の頂点を通り、直線ℓ・mに平行な補助線を引きます。</p><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 -33 342 393\" width=\"342\" height=\"393\" style=\"display:block;max-width:100%;height:auto;margin:0.6em auto;\" role=\"img\" aria-label=\"解説図。上の六角形の左上の辺を延長し、交点を通る平行な補助線を引いた。上の角は35度、下の角は45度。\">\n<g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n<path d=\"M 31 26 H 319 M 31 330 H 319\"/>\n<polygon points=\"137.000,26.000 217.661,63.613 225.418,152.274 152.514,203.323 71.852,165.710 64.095,77.048\"/><polygon points=\"145.000,330.000 82.067,267.067 105.102,181.100 191.070,158.065 254.002,220.998 230.967,306.965\"/>\n<path d=\"M 137.000 26.000 L 203.351 -20.460 M 31 168.805 H 319\" stroke-width=\"1.3\" stroke-dasharray=\"5 4\"/>\n<path d=\"M 166.489 5.351 A 36 36 0 0 1 173.000 26.000 M 179.000 26.000 A 42 42 0 0 1 175.065 43.750 M 106.000 330.000 A 39 39 0 0 1 117.423 302.423\" stroke-width=\"1.3\"/>\n<path d=\"M 201.810 168.805 L 228.023 150.451 A 32 32 0 0 1 233.810 168.805 Z M 201.810 168.805 L 233.810 168.805 A 32 32 0 0 1 224.437 191.432 Z\" fill=\"currentColor\" fill-opacity=\"0.09\" stroke=\"none\"/>\n<path d=\"M 228.023 150.451 A 32 32 0 0 1 233.810 168.805 M 233.810 168.805 A 32 32 0 0 1 224.437 191.432\" stroke-width=\"1.5\"/>\n</g>\n<g fill=\"currentColor\" font-family=\"sans-serif\" font-size=\"17\">\n<text x=\"15\" y=\"31\">ℓ</text><text x=\"11\" y=\"335\">m</text>\n<text x=\"180\" y=\"16\">35°</text><text x=\"185\" y=\"47\">25°</text><text x=\"57\" y=\"316\">45°</text>\n<text x=\"241.81\" y=\"158.80\">35°</text><text x=\"241.81\" y=\"191.80\">45°</text>\n</g></svg><p>正六角形の外角は60°。上の正六角形の左上の辺を延長すると、直線ℓとの角は60°−25°＝35°です。左上の辺と右下の辺は平行なので、補助線の上側も35°になります。</p><p>下の正六角形の向かい合う辺は平行なので、補助線の下側は45°です。</p><p><strong><em>y</em> ＝ (60°−25°)＋45°＝80°</strong></p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "m2-c004-M1",
+              "prompt": "<p>図において、ℓ ∥ m で、2つの正六角形が交わっています。角 <em>y</em> の大きさを求めなさい。</p><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 342 360\" width=\"342\" height=\"360\" style=\"display:block;max-width:100%;height:auto;margin:0.6em auto;\" role=\"img\" aria-label=\"平行な直線ℓとm、および2つの正六角形。指定された角は25度、45度、y。\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path d=\"M 31 26 H 319 M 31 330 H 319\"/><polygon points=\"137.000,26.000 217.661,63.613 225.418,152.274 152.514,203.323 71.852,165.710 64.095,77.048\"/><polygon points=\"145.000,330.000 82.067,267.067 105.102,181.100 191.070,158.065 254.002,220.998 230.967,306.965\"/><path d=\"M 179.000 26.000 A 42 42 0 0 1 175.065 43.750\"/><path d=\"M 106.000 330.000 A 39 39 0 0 1 117.423 302.423\"/><path d=\"M 220.650 155.613 A 23 23 0 0 1 218.073 185.069\"/></g><g fill=\"currentColor\" font-family=\"sans-serif\" font-size=\"18\"><text x=\"15\" y=\"31\">ℓ</text><text x=\"11\" y=\"335\">m</text><text x=\"185\" y=\"47\">25°</text><text x=\"57\" y=\"316\">45°</text><text x=\"234.81\" y=\"176.81\" font-style=\"italic\">y</text></g></svg>",
+              "marks": 1,
+              "choices": [
+                "70°",
+                "80°",
+                "100°",
+                "110°"
+              ],
+              "matrix": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "distractors": [
+                "平行な補助線を引き、正六角形の外角60°と与えられた角を使って、交点の上下の角を分けて求めましょう。",
+                "<p>正解です。</p><p>角 <em>y</em> の頂点を通り、直線ℓ・mに平行な補助線を引きます。</p><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 -33 342 393\" width=\"342\" height=\"393\" style=\"display:block;max-width:100%;height:auto;margin:0.6em auto;\" role=\"img\" aria-label=\"解説図。上の六角形の左上の辺を延長し、交点を通る平行な補助線を引いた。上の角は35度、下の角は45度。\">\n<g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linejoin=\"round\" stroke-linecap=\"round\">\n<path d=\"M 31 26 H 319 M 31 330 H 319\"/>\n<polygon points=\"137.000,26.000 217.661,63.613 225.418,152.274 152.514,203.323 71.852,165.710 64.095,77.048\"/><polygon points=\"145.000,330.000 82.067,267.067 105.102,181.100 191.070,158.065 254.002,220.998 230.967,306.965\"/>\n<path d=\"M 137.000 26.000 L 203.351 -20.460 M 31 168.805 H 319\" stroke-width=\"1.3\" stroke-dasharray=\"5 4\"/>\n<path d=\"M 166.489 5.351 A 36 36 0 0 1 173.000 26.000 M 179.000 26.000 A 42 42 0 0 1 175.065 43.750 M 106.000 330.000 A 39 39 0 0 1 117.423 302.423\" stroke-width=\"1.3\"/>\n<path d=\"M 201.810 168.805 L 228.023 150.451 A 32 32 0 0 1 233.810 168.805 Z M 201.810 168.805 L 233.810 168.805 A 32 32 0 0 1 224.437 191.432 Z\" fill=\"currentColor\" fill-opacity=\"0.09\" stroke=\"none\"/>\n<path d=\"M 228.023 150.451 A 32 32 0 0 1 233.810 168.805 M 233.810 168.805 A 32 32 0 0 1 224.437 191.432\" stroke-width=\"1.5\"/>\n</g>\n<g fill=\"currentColor\" font-family=\"sans-serif\" font-size=\"17\">\n<text x=\"15\" y=\"31\">ℓ</text><text x=\"11\" y=\"335\">m</text>\n<text x=\"180\" y=\"16\">35°</text><text x=\"185\" y=\"47\">25°</text><text x=\"57\" y=\"316\">45°</text>\n<text x=\"241.81\" y=\"158.80\">35°</text><text x=\"241.81\" y=\"191.80\">45°</text>\n</g></svg><p>正六角形の外角は60°。上の正六角形の左上の辺を延長すると、直線ℓとの角は60°−25°＝35°です。左上の辺と右下の辺は平行なので、補助線の上側も35°になります。</p><p>下の正六角形の向かい合う辺は平行なので、補助線の下側は45°です。</p><p><strong><em>y</em> ＝ (60°−25°)＋45°＝80°</strong></p>",
+                "交点の右側の角を求めます。角の位置と、補助線の上下で求めた角を確認しましょう。",
+                "正六角形の内角と外角を区別し、交点を通る平行線を基準に角を求めましょう。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": false,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": false,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": false,
+              "stepsPenalty": 0,
+              "steps": [],
+              "nextParts": [],
+              "exploreObjective": "章別問題"
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 1,
+          "objectives": [
+            {
+              "name": "章別問題",
+              "limit": 1
+            }
+          ],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": [],
+          "customName": "M1 正六角形と平行線",
+          "objectiveVisibility": "when-active",
+          "penaltyVisibility": "when-active"
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": false,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

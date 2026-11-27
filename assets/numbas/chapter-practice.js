@@ -1,4 +1,4 @@
-import { examQuestions, questionIds, readExamSource } from "./question-progress.js?v=continuous-3";
+import { examQuestions, questionIds, readExamSource, mainQuestionSet } from "./question-progress.js?v=continuous-3";
 import { exerciseSettings } from "./exercise-settings.js?v=continuous-1";
 
 const host = document.getElementById("numbas-host");
@@ -87,7 +87,12 @@ try {
       !["numberentry", "1_n_2"].includes(question.parts[0].type))) {
     throw new Error("連続練習には数値入力か単一選択の問題を1問ずつ指定してください。");
   }
-  const ids = await questionIds(questions);
+  const chapterId = host.dataset.chapterFixedIds;
+  const fixedSet = chapterId ? mainQuestionSet(data) : null;
+  if (fixedSet && fixedSet.lessonId !== chapterId) {
+    throw new Error("章IDが教材と一致しません。");
+  }
+  const ids = fixedSet ? fixedSet.ids : await questionIds(questions);
   if (new Set(ids).size !== ids.length) throw new Error("問題の識別が重複しています。");
   const urls = questions.map(({ group, question }) => URL.createObjectURL(new Blob([
     JSON.stringify({ ...data, question_groups: [{ ...group, questionNames: [""], variable_overrides: [], questions: [question] }] })
