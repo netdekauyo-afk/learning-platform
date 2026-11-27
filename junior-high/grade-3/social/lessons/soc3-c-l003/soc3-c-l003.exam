@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l003 持続可能な社会（SDGs）の考え方と社会参画",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第3.0時限「持続可能な社会（SDGs）の考え方と社会参画」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "持続可能な社会（SDGs）の考え方と社会参画（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l003 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>2015年に国連で採択されたSDGs（持続可能な開発目標）は、貧困や飢餓、ジェンダー平等、気候変動など17の目標から成り立っています。</p>",
+          "advice": "<p>答え：将来の世代のニーズを損なうことなく、現在の世代のニーズも満たせる社会（SDGsは2030年を達成期限とし、環境・経済・社会のバランスを保ちながら、現在と未来の世代が共に生きられる社会を目指しています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l003-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「現在の世代」と「将来の世代」の関係に注目して選んでみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>SDGsが掲げる「持続可能な社会」の説明として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "将来の世代のニーズを損なうことなく、現在の世代のニーズも満たせる社会",
+                "環境を守るために現在の経済活動をすべて停止し、消費をなくした社会",
+                "先進国だけが豊かさを維持し、開発途上国への支援を段階的に減らす社会",
+                "科学技術の発展のみを優先し、資源の消費量を毎年増やし続ける社会"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "経済活動をすべて停止するのではなく、環境・経済・社会の3つの側面をバランスよく両立させることが求められます。",
+                "SDGsは「誰一人取り残さない」を理念としており、先進国と開発途上国の双方が協力して課題解決を目指すものです。",
+                "資源を無制限に消費し続けると将来の世代の生活が損なわれるため、持続可能性の考え方とは反対になります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "持続可能な社会（SDGs）の考え方と社会参画（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l003 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>気候変動や人権問題、地域社会の活性化など、持続可能な社会に向けた課題は多岐にわたります。</p>",
+          "advice": "<p>答え：市民の消費行動やボランティア、投票などの選択が、企業の取組や政治の方向性を動かす力になるから。（環境に配慮した商品を選ぶことや選挙での投票など、一人ひとりの行動の積み重ねが社会を変える原動力になります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l003-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：市民の消費行動やボランティア、投票などが社会にどのような影響を与えるか考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>持続可能な社会を実現するために、政府や企業だけでなく、市民一人ひとりの「社会参画」が必要とされる理由として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "市民の消費行動やボランティア、投票などの選択が、企業の取組や政治の方向性を動かす力になるから。",
+                "政府や企業は法律や利益にとらわれるため、環境や福祉の問題には一切取り組めないから。",
+                "市民が社会課題に参画すれば、国や自治体が予算を使って対策を行う必要がなくなるから。",
+                "すべての市民が同じ職業に就いて同じ行動をとることで、社会の無駄を完全になくせるから。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "政府や企業も法整備や技術開発など重要な役割を担っており、一切取り組めないわけではありません。",
+                "市民の参画があっても、インフラ整備や制度設計など国・自治体の公的な取り組みは引き続き不可欠です。",
+                "多様な立場や職業の市民がそれぞれの場面で工夫し参加することに意義があり、全員が同じ行動をとるわけではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "持続可能な社会（SDGs）の考え方と社会参画（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l003 / 問題番号: Q3 / 種類: 資料読解"
+          },
+          "statement": "<p>次の表は、消費者庁が実施した「消費者意識基本調査」における、SDGsやエシカル消費（環境や社会に配慮した消費）に関する年齢層別の意識と、取り組んでいない理由をまとめたものです。</p><table><thead><tr><th>調査項目</th><th>10歳代後半</th><th>20歳代</th><th>全体</th></tr></thead><tbody><tr><td>興味があり、現在取り組んでいる</td><td>12.1%</td><td>10.5%</td><td>12.7%</td></tr><tr><td>興味はあるが、現在取り組んでいない</td><td>43.3%</td><td>39.7%</td><td>35.0%</td></tr><tr><td>興味がある（計）</td><td>55.4%</td><td>50.2%</td><td>47.7%</td></tr><tr><td>取り組んでいない理由「参加方法が分からない」</td><td>56.7%</td><td>56.8%</td><td>―</td></tr><tr><td>取り組んでいない理由「商品やサービスが身近にない」</td><td>44.2%</td><td>35.8%</td><td>―</td></tr></tbody></table><p>出典：消費者庁「令和4年版消費者白書（消費者意識基本調査）」</p>",
+          "advice": "<p>答え：全体より興味を持つ人の割合は高いものの実践している人は約1割にとどまり、具体的な参加方法が分からないことが大きな壁になっている。（表より、10歳代後半・20歳代は興味の計が5割を超えて全体より高い一方、実践者は約1割であり、半数以上が参加方法の分からなさを理由に挙げています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l003-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「興味がある（計）」と「現在取り組んでいる」の割合、さらに取り組んでいない理由の割合を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れる若者（10歳代後半・20歳代）の傾向と課題として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "全体より興味を持つ人の割合は高いものの実践している人は約1割にとどまり、具体的な参加方法が分からないことが大きな壁になっている。",
+                "10歳代後半と20歳代は、全体の平均と比べてSDGsやエシカル消費への興味が低く、すでに取り組んでいる人の割合も半分以下である。",
+                "興味はあるが取り組んでいない人にとって、最大の理由は「商品やサービスが身近にない」ことであり、参加方法は広く知られている。",
+                "10歳代後半は学校教育の影響で過半数がすでに取り組んでおり、今後の課題は20歳代以上の興味を高めることだけである。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "「興味がある（計）」は10歳代後半55.4%、20歳代50.2%で、全体の47.7%より高く、実践率（12.1%、10.5%）も全体の12.7%の半分以下ではありません。",
+                "取り組んでいない理由として最も高いのは「参加方法が分からない」（56.7%、56.8%）であり、「身近にない」（44.2%、35.8%）を上回っています。",
+                "10歳代後半で「興味があり、現在取り組んでいる」のは12.1%であり、過半数が取り組んでいるわけではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

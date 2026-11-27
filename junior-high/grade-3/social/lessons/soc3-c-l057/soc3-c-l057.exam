@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l057 契約の意味と消費生活における自由・責任",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第57.0時限「契約の意味と消費生活における自由・責任」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "契約の意味と消費生活における自由・責任（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l057 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>私たちがコンビニで商品を買ったり、電車に乗ったり、スマートフォンのアプリの利用規約に同意したりする日常の行動は、すべて法的な「契約」にあたります。</p>",
+          "advice": "<p>答え：当事者どうしの申し込みと承諾の意思が合致すれば、口約束でも成立し、原則として一方的には取り消せない。（契約自由の原則のもと、当事者の意思が合致した時点で法的な約束が成立し、双方に約束を守る義務と責任が生じます。なお、未成年者が親権者の同意なく結んだ契約は原則取り消せる未成年者取消権がありますが、18歳で成人になると利用できなくなります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l057-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：契約書やハンコがなくても、日々の買い物やネット上の操作で約束が成り立つ場面を思い出してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>契約が法的に成立するための条件と効力に関する説明として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "当事者どうしの申し込みと承諾の意思が合致すれば、口約束でも成立し、原則として一方的には取り消せない。",
+                "契約書を作成して双方の署名や押印を交わさなければ、法的な約束として効力をもたない。",
+                "商品を受け取って代金をすべて支払い終えた時点で初めて成立し、支払前であれば自由に白紙に戻せる。",
+                "インターネット通販の「注文確定」ボタンを押しただけでは仮予約にすぎず、商品到着後に契約が成立する。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "書面は後のトラブルを防ぐ証拠として重要ですが、民法上は書面や押印がなくても法的な約束は成立します。",
+                "代金の支払いや商品の引き渡しは契約成立後の義務の実行であり、約束の成立自体はそれより前の段階です。",
+                "画面上の注文確定ボタンや利用規約への同意は申し込みや承諾にあたり、その時点で法的な効力が生じます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "契約の意味と消費生活における自由・責任（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l057 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>市場経済では、消費者がどの商品を買い、どの商品を買わないかという選択が、企業の生産活動や社会のあり方に大きな影響を与えます。</p>",
+          "advice": "<p>答え：価格の安さだけでなく環境や人権への配慮も踏まえて選ぶことが、企業の持続可能な生産を促すことにつながる。（消費者の購買行動が経済の方向を左右するという消費者主権の視点に立つと、効率よく安く買うことだけでなく、環境保全や公正な取引に配慮した商品を選ぶことが、社会全体のよりよい生産活動を支える責任につながります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l057-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：消費者の行動が企業の行動を左右する仕組みと、環境や社会への影響との関係を考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>このような「消費者主権」の考え方から、消費者が商品を選ぶ際に意識すべきこととして、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "価格の安さだけでなく環境や人権への配慮も踏まえて選ぶことが、企業の持続可能な生産を促すことにつながる。",
+                "どの商品を作るかは企業側がすべて決めるため、消費者が購入先を変えても社会全体の生産のあり方は変わらない。",
+                "消費者は常に最も安い商品を選び続けることで、企業に品質向上や環境対策のコストを削減させるべきである。",
+                "消費者が買い物を控えて節約を徹底することが、企業の新しい技術開発や生産拡大を最も直接的に後押しする。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "消費者の選択が企業の売れ行きや方針を左右するため、消費者の判断は生産のあり方を変える力をもっています。",
+                "安さだけを追求すると、企業が環境保全や労働環境の改善に必要なコストを削らざるを得なくなる恐れがあります。",
+                "必要な消費まで極端に控えるのではなく、どのような価値をもつ商品を選ぶかという質的な選択が企業の行動を変えます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "契約の意味と消費生活における自由・責任（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l057 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 独立行政法人国民生活センター「18歳・19歳の消費生活相談の状況－2025年度－」 / 出典URL: https://www.kokusen.go.jp/news/data/n-20260527_2.html"
+          },
+          "statement": "<p>次の表は、2022年4月の成年年齢引下げ（20歳から18歳へ）の前後における、契約当事者が18歳・19歳の消費生活相談件数の推移をまとめたものです。</p><table><thead><tr><th>年度</th><th>2021年度</th><th>2022年度</th><th>2023年度</th><th>2024年度</th><th>2025年度</th></tr></thead><tbody><tr><td>相談件数（件）</td><td>8,536</td><td>10,027</td><td>9,788</td><td>9,082</td><td>10,250</td></tr></tbody></table><p>出典：独立行政法人国民生活センター「18歳・19歳の消費生活相談の状況－2025年度－」（2026年5月公表）</p>",
+          "advice": "<p>答え：成年年齢が引き下げられた2022年度に相談件数が1万件を超え、2025年度は2021年度以降で最多となっており、18歳から未成年者取消権が使えなくなる契約への注意が必要である。（表より、2021年度の8,536件から2022年度に10,027件へ急増し、2025年度は10,250件で最多となっています。18歳から親の同意なしで契約できる自由を得る一方、未成年者取消権がなくなり自ら契約の責任を負うため、契約内容をよく確認する力が求められます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l057-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：2021年度から2022年度にかけての変化と、2025年度の件数、そして18歳・19歳の法的な立場の変化を結びつけてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表と制度の仕組みから読み取れることとして、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "成年年齢が引き下げられた2022年度に相談件数が1万件を超え、2025年度は2021年度以降で最多となっており、18歳から未成年者取消権が使えなくなる契約への注意が必要である。",
+                "成年年齢が引き下げられた2022年度以降は相談件数が毎年連続して減少し続けており、18歳・19歳の消費者トラブルはほぼ解消に向かっている。",
+                "2025年度の相談件数は2021年度より減少しているため、18歳で成人になっても親の同意なしの契約を無条件で取り消せる仕組みが十分に機能している。",
+                "2022年度に相談件数が増えたのは、18歳・19歳が契約を結ぶこと自体が法律で禁止され、違反の届け出が急増したためである。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "2023・2024年度はいったん減少したものの、2025年度は10,250件と再び増加して2021年度以降で最多となっています。",
+                "2025年度（10,250件）は2021年度（8,536件）より約1,700件多く、また18歳以上は成人となるため未成年者取消権は使えません。",
+                "18歳・19歳は成人として単独で有効な契約を結べるようになったのであり、契約自体が禁止されたわけではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

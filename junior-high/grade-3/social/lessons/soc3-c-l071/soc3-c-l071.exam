@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l071 グローバル経済と円高・円安（外国為替相場）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第71.0時限「グローバル経済と円高・円安（外国為替相場）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "グローバル経済と円高・円安（外国為替相場）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l071 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>外国との貿易や旅行などでは、異なる国の通貨を交換するための比率（外国為替相場）が日々変化しています。</p>",
+          "advice": "<p>答え：円安 － 輸出に有利で輸入に不利（1ドルを買うのに必要な円が増えた＝円の価値が下がった＝円安です。海外で日本製品を安く売りやすくなるため輸出に有利な一方、食料やエネルギーなどの輸入品は値上がりします。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l071-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：1ドルを手に入れるために必要な円が「120円から150円へ増えた」ことは、円の価値が上がったことと下がったことのどちらかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>外国為替相場が「1ドル＝120円」から「1ドル＝150円」へ変化したときの呼び方と、日本の輸出・輸入への影響の組み合わせとして正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "円安 － 輸出に有利で輸入に不利",
+                "円高 － 輸出に有利で輸入に不利",
+                "円安 － 輸入に有利で輸出に不利",
+                "円高 － 輸入に有利で輸出に不利"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "数字が120から150へ大きくなると円高と誤解しやすいですが、1ドルを買うのにより多くの円が必要になるため、円の価値は下がっています。",
+                "円の価値が下がると、海外から同じドルの商品を買うのに必要な円が増えて輸入品が高くなるため、輸入には不利になります。",
+                "1ドル＝120円から150円への変化は円の価値が下がる動きであり、輸入に有利・輸出に不利になるのは逆の動きのときです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "グローバル経済と円高・円安（外国為替相場）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l071 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>現代の経済では、モノの貿易だけでなく、企業が国境を越えて工場を置いたり、お金（資本）が国と国の間を移動したりするグローバル化が進んでいます。</p>",
+          "advice": "<p>答え：各国が得意な分野に特化する国際分業が進み、世界各地の部品を組み合わせて製品をつくることや、海外の景気変動が日本へ波及することが増えている。（世界の経済は互いに強く結びついており、海外の出来事が日本の暮らしや雇用にも影響を与えます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l071-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：製品の部品づくりや、ある国で起きた経済の変化が他国へどう伝わるかを考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>貿易や金融のグローバル化が進んだ現代の経済の特徴として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "各国が得意な分野に特化する国際分業が進み、世界各地の部品を組み合わせて製品をつくることや、海外の景気変動が日本へ波及することが増えている。",
+                "すべての国が国内だけで部品から完成品まで一貫して生産するようになり、国際貿易の規模は縮小している。",
+                "企業が海外に工場を移転させることは禁止され、資金の移動は国内の銀行間に限られている。",
+                "為替レートが世界中で固定されているため、円高や円安によって企業の業績が左右されることはなくなった。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "国際分業が進むことで、多くの国や地域にまたがるサプライチェーン（供給網）が形成され、国際貿易は拡大してきました。",
+                "多国籍企業の展開や国境を越えた投資など、企業活動や金融のつながりは年々深まっています。",
+                "主要国は市場の需要と供給によって為替レートが動く変動相場制をとっており、為替の変動が企業業績に大きく影響します。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "グローバル経済と円高・円安（外国為替相場）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l071 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 三菱UFJリサーチ&コンサルティング「外国為替相場情報（2025年末及び年間平均）」 / 出典URL: https://www.murc-kawasesouba.jp/fx/year_average.php"
+          },
+          "statement": "<p>次の表は、2025年における米ドルとユーロの対円為替相場（銀行が顧客に外貨を売る際などに用いるTTSレート）について、年間平均と年末の値をまとめたものです。</p><table><thead><tr><th>通貨</th><th>2025年 年間平均（1通貨単位あたり）</th><th>2025年末（1通貨単位あたり）</th></tr></thead><tbody><tr><td>米ドル（USD）</td><td>150.71円</td><td>157.56円</td></tr><tr><td>ユーロ（EUR）</td><td>170.50円</td><td>185.83円</td></tr></tbody></table><p>出典：三菱UFJリサーチ&コンサルティング「前年の年末・年間平均 2025」をもとに作成。</p>",
+          "advice": "<p>答え：米ドル・ユーロのいずれに対しても年間平均より年末のほうが円安になっており、1,000ユーロの商品を輸入する場合の円での支払額は年間平均より約1万5千円高くなる。（185,830円－170,500円＝15,330円高くなります。数値が増えるほど円安であり、輸入コストが上昇することが表から計算できます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l071-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：米ドルもユーロも、年間平均に比べて年末の円の数字が大きくなっているか小さくなっているかを確認し、1,000ドルや1,000ユーロの商品を輸入するときの円での支払額を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表の数値から読み取れる2025年の年間平均から年末にかけての為替相場の動きと、その影響として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "米ドル・ユーロのいずれに対しても年間平均より年末のほうが円安になっており、1,000ユーロの商品を輸入する場合の円での支払額は年間平均より約1万5千円高くなる。",
+                "米ドルに対しては円安になったが、ユーロに対しては年間平均より年末のほうが円高になった。",
+                "米ドル・ユーロのいずれに対しても年間平均より年末のほうが円高になっており、海外からの輸入品は安くなる。",
+                "100ドルの商品を輸入する場合、年間平均と年末を比べると支払額はほぼ同じで差は100円未満である。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "ユーロは170.50円から185.83円へ円の数値が増えており、米ドルと同じく円安方向に動いています。",
+                "両通貨とも1単位あたりに必要な円の金額が増えているため、円の価値が下がる円安の動きです。",
+                "100ドルを輸入する場合、15,071円（年間平均）から15,756円（年末）へと約685円の差が生じます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

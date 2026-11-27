@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l081 日本の領土をめぐる問題（北方領土・竹島・尖閣諸島）の現状",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第81.0時限「日本の領土をめぐる問題（北方領土・竹島・尖閣諸島）の現状」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "日本の領土をめぐる問題（北方領土・竹島・尖閣諸島）の現状（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l081 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本は周囲を海に囲まれた海洋国家であり、国際法上のルールに基づいて領海や排他的経済水域（EEZ）が定められています。</p>",
+          "advice": "<p>答え：領海：12海里、排他的経済水域：200海里（領海（12海里）とその上空である領空には主権が及び、排他的経済水域（200海里）では水産資源や海底の鉱物資源を開発する権利などが認められます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l081-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：沿岸国の主権が及ぶ海は12、漁業資源や鉱物資源の権利が認められる水域は200です。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>国連海洋法条約に基づき、原則として海岸の基線から領海と排他的経済水域（EEZ）が設定される距離の組み合わせとして正しいものを選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "領海：12海里、排他的経済水域：200海里",
+                "領海：24海里、排他的経済水域：100海里",
+                "領海：200海里、排他的経済水域：12海里",
+                "領海：12海里、排他的経済水域：300海里"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "24海里までは接続水域とされ、領海は12海里、排他的経済水域は200海里です。",
+                "領海と排他的経済水域の数値が逆になっています。",
+                "排他的経済水域は基線から300海里ではなく200海里までと定められています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の領土をめぐる問題（北方領土・竹島・尖閣諸島）の現状（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l081 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本をめぐる北方領土・竹島・尖閣諸島の3つの問題には、それぞれ異なる歴史的経緯と現在の状況があります。</p>",
+          "advice": "<p>答え：北方領土は第二次世界大戦末期にソ連が占領しロシアが引き継いでおり、尖閣諸島は1970年代以降に中国が領有権を主張し始めた（3つの島々はそれぞれ経緯や現状が異なるため、歴史的経緯と日本政府の立場を正確に区別して理解することが大切です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l081-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：各地域を現在だれが支配・占拠しているのか、またいつ頃から相手国が主張するようになったのかを整理しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>北方領土・竹島・尖閣諸島について、現在の状況と相手国が主張し始めた経緯の説明として最も適切なものを選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "北方領土は第二次世界大戦末期にソ連が占領しロシアが引き継いでおり、尖閣諸島は1970年代以降に中国が領有権を主張し始めた",
+                "北方領土・竹島・尖閣諸島の3つとも、現在日本政府が有効に支配しており、他国による占拠は一切起きていない",
+                "竹島は1970年代に石油資源の可能性が指摘されてから韓国が主張を始め、現在も国際司法裁判所で審理が続いている",
+                "尖閣諸島は第二次世界大戦末期に中国が占領し、現在も中国政府が実効支配を続けている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "現在日本が有効に支配しているのは尖閣諸島であり、北方領土はロシア、竹島は韓国が不法占拠しています。",
+                "1970年代に石油資源の可能性が指摘されてから中国が主張し始めたのは尖閣諸島であり、竹島は戦後に韓国が一方的に海洋主権宣言を行って取り込みました。また、韓国はICJへの付託に応じていません。",
+                "尖閣諸島は沖縄県に属する日本固有の領土であり、日本が有効に支配しています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "日本の領土をめぐる問題（北方領土・竹島・尖閣諸島）の現状（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l081 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 外務省「日本の領土をめぐる情勢：日本の領土Q&A」 / 出典URL: https://www.mofa.go.jp/mofaj/territory/page1w_000013.html"
+          },
+          "statement": "<p>次の表は、外務省「日本の領土Q&amp;A」に示された、北方領土・竹島・尖閣諸島に対する日本政府の基本的立場をまとめたものです。</p><table border=\"1\" cellpadding=\"6\" cellspacing=\"0\"><thead><tr><th>対象</th><th>日本政府の立場（要旨）</th></tr></thead><tbody><tr><td>北方領土<br>（択捉・国後・色丹・歯舞群島）</td><td>北方四島の帰属に関する問題を解決してロシアとの平和条約を早期に締結するという一貫した方針を堅持。日本への帰属が確認されるのであれば、実際の返還の時期・態様については柔軟に対応する考え。</td></tr><tr><td>竹島<br>（島根県）</td><td>歴史的にも国際法上も日本固有の領土であるが、韓国が一方的に取り込み不法占拠している。平和国家としてこの問題の平和的解決を目指している。</td></tr><tr><td>尖閣諸島<br>（沖縄県）</td><td>歴史的にも国際法上も日本固有の領土であり、現に我が国が有効に支配している。解決しなければならない領有権の問題はそもそも存在しない。</td></tr></tbody></table><p>出典：外務省「日本の領土をめぐる情勢：日本の領土Q&amp;A」</p>",
+          "advice": "<p>答え：北方領土と竹島については解決すべき問題として返還や平和的解決を目指している一方、尖閣諸島については領有権の問題はそもそも存在しないとしている（北方領土は平和条約の締結、竹島は国際法に基づく平和的解決（ICJへの付託提案など）、尖閣諸島は有効支配の維持という立場の違いを正確に押さえましょう。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l081-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「領土問題（解決すべき領有権の問題）」として扱われているものと、そうでないものに注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる、3つの島々に対する日本政府の立場の違いとして正しいものを選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "北方領土と竹島については解決すべき問題として返還や平和的解決を目指している一方、尖閣諸島については領有権の問題はそもそも存在しないとしている",
+                "北方領土・竹島・尖閣諸島のすべてについて、すでに平和条約を締結して帰属の問題を解決済みとしている",
+                "竹島については日本が現在有効に支配しているため、解決すべき領有権の問題は存在しないとしている",
+                "北方領土については、四島のうち歯舞群島と色丹島の二島のみを日本固有の領土として返還を求めている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "北方領土についてはロシアとの平和条約がまだ締結されておらず、竹島についても不法占拠が続いており解決済みではありません。",
+                "現在日本が有効に支配し、領有権の問題はそもそも存在しないとしているのは竹島ではなく尖閣諸島です。",
+                "資料には「北方四島（択捉島、国後島、色丹島、歯舞群島）の帰属に関する問題を解決して」とあり、二島のみではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

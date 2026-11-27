@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l018 国民主権の仕組みと象徴天皇・憲法改正",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第18.0時限「国民主権の仕組みと象徴天皇・憲法改正」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "国民主権の仕組みと象徴天皇・憲法改正（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l018 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本国憲法のもとで、天皇は「日本国の象徴であり日本国民統合の象徴」と定められています。</p>",
+          "advice": "<p>答え：内閣の助言と承認にもとづき、国会の指名した内閣総理大臣の任命や法律の公布など、憲法に定められた国事行為のみを行う。（第3条・第4条により、天皇は国政に関する権能をもたず、すべての国事行為について内閣が責任を負います。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l018-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：天皇は国政に関する権能をもたず、政治上の責任を誰が負うのかを確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本国憲法における天皇の行為（国事行為）に関する説明として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "内閣の助言と承認にもとづき、国会の指名した内閣総理大臣の任命や法律の公布など、憲法に定められた国事行為のみを行う。",
+                "国会の議決を経た法律案の内容を審査し、不適切と判断した法律については公布を拒否する権限をもつ。",
+                "国の代表として外国と条約を直接交渉して締結したり、自らの判断で衆議院を解散したりすることができる。",
+                "内閣総理大臣や最高裁判所長官を自らの意思で選び、直接任命する政治上の権限をもっている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "天皇に法律の公布を拒否する権限はなく、内閣の助言と承認により公布を行います（第7条）。",
+                "条約の締結は内閣の職務（第73条）であり、衆議院の解散も内閣の助言と承認による形式的な国事行為です。",
+                "内閣総理大臣は国会が指名し（第67条）、最高裁判所長官は内閣が指名します（第6条）。天皇が独自に選ぶのではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "国民主権の仕組みと象徴天皇・憲法改正（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l018 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本国憲法第96条は、憲法改正の手続きについて「各議院の総議員の三分の二以上の賛成で、国会が、これを発議し、国民に提案してその承認を経なければならない」と定めています。</p>",
+          "advice": "<p>答え：国の最高法規である憲法が時の政府や議会の都合で安易に変えられないようにし、国民の最終的な判断で基本原理を守るため。（「出席議員」ではなく「総議員の3分の2以上」での発議と「国民投票の過半数」を必要とすることで、主権者である国民の慎重な合意を担保しています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l018-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：憲法が国の最高法規であり、国民の権利や国の基本原理を守る役割をもっていることを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>通常の法律の改正（出席議員の過半数）と比べて、憲法改正の手続きがこのように厳しい要件（硬性憲法）になっている理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "国の最高法規である憲法が時の政府や議会の都合で安易に変えられないようにし、国民の最終的な判断で基本原理を守るため。",
+                "憲法を改正するときは国民全員の100%の賛成が必要であるため、国会での議論をできるだけ短く済ませるため。",
+                "国会議員が憲法の内容をほとんど理解していないため、特別な専門家だけで改正案を決める仕組みにするため。",
+                "一度制定した憲法はどのような時代になっても一字一句変えてはならないという原則を徹底するため。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "国民投票で必要なのは「有効投票の過半数の賛成」であり、全員の100%の賛成ではありません。",
+                "発議を行うのは国会であり、国民の代表である議員の3分の2以上の賛成という高い合意を求める仕組みです。",
+                "第96条は時代や社会の要請に応じて憲法を改正する手続きを定めており、一切変更を禁じているわけではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "国民主権の仕組みと象徴天皇・憲法改正（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l018 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 総務省「国政選挙の年代別投票率の推移について」 / 出典URL: https://www.soumu.go.jp/senkyo/senkyo_s/news/sonota/nendaibetu/index.html"
+          },
+          "statement": "<p>次の表は、総務省が公表した国政選挙における年代別投票率（抽出調査）のデータです。</p><table><thead><tr><th>選挙名（実施時期）</th><th>10歳代</th><th>20歳代</th><th>30歳代</th><th>全年代平均</th></tr></thead><tbody><tr><td>第27回参議院議員通常選挙（令和7年7月）</td><td>45.29%</td><td>47.30%</td><td>56.52%</td><td>58.51%</td></tr><tr><td>第51回衆議院議員総選挙（令和8年2月）</td><td>43.45%</td><td>39.01%</td><td>50.89%</td><td>56.26%</td></tr></tbody></table><p>出典：総務省「国政選挙の年代別投票率の推移について」をもとに作成</p>",
+          "advice": "<p>答え：両選挙とも10歳代・20歳代の投票率は全年代平均を10ポイント以上下回っており、若い世代の意見や関心が政治に反映されにくくなる課題がある。（国民主権のもとでは、一票を投じることで政治に意見を反映させることができ、若年層の投票率向上と主権者教育が重要な課題となっています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l018-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：10歳代・20歳代・30歳代それぞれの投票率と全年代平均を比べ、若い世代の投票状況が政治にどう影響するか考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる国政選挙の投票率の特徴と、国民主権の観点から考えられる課題として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "両選挙とも10歳代・20歳代の投票率は全年代平均を10ポイント以上下回っており、若い世代の意見や関心が政治に反映されにくくなる課題がある。",
+                "第51回衆議院議員総選挙では10歳代の投票率が全年代平均を上回っており、若年層の政治参加が他の世代より進んでいる。",
+                "第27回参議院議員通常選挙から第51回衆議院議員総選挙にかけて、10歳代から30歳代までのすべての年代で投票率が上昇している。",
+                "20歳代の投票率は両選挙とも50%を超えており、30歳代よりも高い水準で推移している。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "第51回衆院選では10歳代が43.45%で全年代平均の56.26%を下回っており、上回ってはいません。",
+                "第27回参院選から第51回衆院選にかけて、10歳代（45.29%→43.45%）、20歳代（47.30%→39.01%）、30歳代（56.52%→50.89%）のいずれも低下しています。",
+                "20歳代は両選挙とも50%未満（47.30%、39.01%）であり、30歳代（56.52%、50.89%）よりも低い水準です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

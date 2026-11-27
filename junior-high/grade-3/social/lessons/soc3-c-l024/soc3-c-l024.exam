@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l024 社会権（生存権・教育を受ける権利・勤労権・労働基本権）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第24.0時限「社会権（生存権・教育を受ける権利・勤労権・労働基本権）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "社会権（生存権・教育を受ける権利・勤労権・労働基本権）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l024 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本国憲法第28条では、立場の弱い労働者が使用者と対等な立場で労働条件を交渉できるようにするための権利（労働基本権・労働三権）が保障されている。</p>",
+          "advice": "<p>答え：団結権・団体交渉権・団体行動権（憲法第28条は、労働組合を結成する団結権、使用者と労働条件を交渉する団体交渉権、ストライキなどの争議行為を行う団体行動権〔争議権〕の3つを保障しています。労働基準法・労働組合法・労働関係調整法の「労働三法」と区別して覚えましょう。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l024-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「労働組合をつくる権利」「使用者と話し合う権利」「ストライキなどを行う権利」の3つです。法律の名称と混同しないようにしましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本国憲法が保障する「労働三権」の組み合わせとして正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "団結権・団体交渉権・団体行動権",
+                "団結権・団体交渉権・労働基準法",
+                "労働組合法・労働基準法・労働関係調整法",
+                "勤労の権利・団結権・団体交渉権"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "労働基準法は労働条件の最低基準を定めた法律（労働三法の1つ）であり、憲法が定める3つの権利そのものではありません。",
+                "これらは労働者を保護するための3つの法律（労働三法）の組み合わせであり、憲法第28条の3つの権利とは異なります。",
+                "勤労の権利は憲法第27条に規定された権利であり、第28条の労働基本権を構成する3つの権利の1つではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "社会権（生存権・教育を受ける権利・勤労権・労働基本権）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l024 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>18〜19世紀の市民革命を経て成立した近代憲法は、国が個人の活動に干渉しない「自由権」を中心としていた。しかし、20世紀に入ると、日本国憲法をはじめ多くの国の憲法で「社会権」が保障されるようになった。</p>",
+          "advice": "<p>答え：貧富の差や労働条件の悪化を是正し、国が積極的に支援して実質的な自由と人間らしい生活を保障するため（資本主義の発達によって貧困・失業・過酷な労働などの問題が深刻化し、自由権だけでは弱者が人間らしく生きることが難しくなりました。そこで「公正」の視点から、国が積極的に人々の生活を支える社会権が設けられました。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l024-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：資本主義が発達して経済活動の自由が広がった結果、貧富の差や失業などの問題が深刻化したことを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>自由権に加えて社会権が憲法で保障されるようになった背景と目的として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "貧富の差や労働条件の悪化を是正し、国が積極的に支援して実質的な自由と人間らしい生活を保障するため",
+                "経済活動への国の関与を完全になくし、市場の自由な競争によって社会全体の効率を高めるため",
+                "国民が政治に参加する機会を広げ、代表者を選挙で選ぶ仕組みを確立するため",
+                "犯罪や災害から個人の生命を守るため、警察や消防などの公権力の権限を強化するため"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "市場の自由な競争に任せるだけでは格差や失業が拡大したため、国が積極的に介入・支援する仕組みが必要になりました。",
+                "国民が代表者を選んで政治に参加する仕組みに関わるのは参政権であり、社会権の目的とは異なります。",
+                "公権力の権限を強化するのではなく、経済的・社会的な弱者を支えて公正な社会を実現することが目的です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "社会権（生存権・教育を受ける権利・勤労権・労働基本権）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l024 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 日本労働組合総連合会「『令和7年（2025年）労働組合基礎調査』の結果に対する談話」（厚生労働省調査） / 出典URL: https://www.jtuc-rengo.or.jp/news/article_detail.php?id=1387"
+          },
+          "statement": "<p>次の表は、厚生労働省「令和7年（2025年）労働組合基礎調査」（2025年6月30日現在）における労働組合員数と推定組織率（雇用者数に占める労働組合員数の割合）の状況をまとめたものである。</p><table><thead><tr><th>区分</th><th>労働組合員数</th><th>推定組織率</th></tr></thead><tbody><tr><td>全体</td><td>992.7万人（前年比＋1.5万人）</td><td>16.0％（前年比－0.1ポイント）</td></tr><tr><td>うちパートタイム労働者</td><td>149.4万人（過去最高）</td><td>8.8％（前年と同率）</td></tr><tr><td>民営企業（1,000人以上）</td><td>―</td><td>38.7％</td></tr><tr><td>民営企業（100～999人）</td><td>―</td><td>9.9％</td></tr><tr><td>民営企業（99人以下）</td><td>―</td><td>0.7％</td></tr></tbody></table><p class=\"source\">出典：日本労働組合総連合会「『令和7年（2025年）労働組合基礎調査』の結果に対する談話」（厚生労働省「令和7年労働組合基礎調査」にもとづく）</p>",
+          "advice": "<p>答え：パートタイム労働者の組合員数は過去最高だが、中小企業やパートタイム労働者の推定組織率は低く、多くの労働者が労働組合に守られていない（表から、パートタイム労働者の組織率は8.8％、99人以下の中小企業では0.7％にとどまっており、憲法で労働基本権が保障されていても、現場で団結権や団体交渉権が十分に活かされていない労働者が多いことがわかります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l024-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：全体の組合員数の増減と推定組織率の増減、および企業規模別の組織率の差に注目して読み取りましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる日本の労働組合の現状と課題として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "パートタイム労働者の組合員数は過去最高だが、中小企業やパートタイム労働者の推定組織率は低く、多くの労働者が労働組合に守られていない",
+                "全体の労働組合員数が前年より増加しているため、雇用者に占める推定組織率も上昇傾向にある",
+                "企業規模が大きいほど推定組織率は低くなっており、大企業での労働組合の組織化が課題となっている",
+                "パートタイム労働者の推定組織率は全体の推定組織率を上回っており、非正規雇用の組織化が十分に進んでいる"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "組合員数は前年比＋1.5万人と増加していますが、推定組織率は－0.1ポイントの16.0％と低下しています。",
+                "1,000人以上が38.7％、100～999人が9.9％、99人以下が0.7％であり、規模が小さいほど組織率が低くなっています。",
+                "パートタイム労働者の推定組織率は8.8％であり、全体の16.0％を大きく下回っています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

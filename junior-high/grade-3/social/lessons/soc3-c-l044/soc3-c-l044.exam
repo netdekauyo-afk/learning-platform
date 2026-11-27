@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l044 裁判所の仕組みと司法権の独立・三審制",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第44.0時限「裁判所の仕組みと司法権の独立・三審制」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "裁判所の仕組みと司法権の独立・三審制（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l044 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>裁判では、誤った判決（誤判）を防いで人々の人権を守るため、原則として3回まで裁判を受けられる三審制がとられています。</p>",
+          "advice": "<p>答え：1審→2審：控訴 ／ 2審→3審：上告（第一審の判決に不服がある場合を控訴、第二審の判決に不服がある場合を上告といい、原則として最高裁判所が終審となります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l044-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：1審→2審は「控」の字を使い、2審→3審は「上」の字を使います。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>三審制において、第一審の判決に不服がある場合に上級の裁判所へ訴えることと、さらに第二審の判決に不服がある場合に訴えることを、それぞれ何といいますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "1審→2審：控訴 ／ 2審→3審：上告",
+                "1審→2審：上告 ／ 2審→3審：控訴",
+                "1審→2審：起訴 ／ 2審→3審：控訴",
+                "1審→2審：抗告 ／ 2審→3審：上訴"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "1審→2審と2審→3審の用語が逆になっています。",
+                "起訴は検察官が刑事事件について裁判所に審理を求める手続きのことです。",
+                "上訴は控訴や上告などをまとめた総称であり、抗告は判決以外の決定・命令に対する不服申立てを指します。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "裁判所の仕組みと司法権の独立・三審制（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l044 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本国憲法第76条は、「すべて裁判官は、その良心に従ひ独立してその職権を行ひ、この憲法及び法律にのみ拘束される」と定めています。</p>",
+          "advice": "<p>答え：他の機関の干渉を受けず公正に裁判を行い、法律や国の処分が憲法に違反していないかを最終的に判断する違憲審査権をもつから。（司法権の独立により権力からの圧力を防ぎ、違憲審査権によって憲法と国民の人権を守るため、最高裁判所は「憲法の番人」と呼ばれます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l044-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：国会や内閣からの影響を受けない理由と、最高裁判所がもつ特別な権限（憲法第81条）を結びつけましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>裁判所が「司法権の独立」を保障され、さらに最高裁判所が「憲法の番人」と呼ばれている理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "他の機関の干渉を受けず公正に裁判を行い、法律や国の処分が憲法に違反していないかを最終的に判断する違憲審査権をもつから。",
+                "国会がつくった法律の内容を、選挙の結果に応じて毎年つくり直す権限を裁判所がもっているから。",
+                "内閣総理大臣の命令に従って裁判官が判決を下すことで、国の行政を円滑に進めるため。",
+                "裁判官はすべて国民の直接選挙で選ばれるため、政党の主張をそのまま判決に反映させることができるから。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "法律をつくるのは唯一の立法機関である国会であり、裁判所が法律をつくり直すことはありません。",
+                "裁判官は内閣総理大臣や国会の命令を受けることはなく、憲法と法律のみに従って判断します。",
+                "裁判官は直接選挙ではなく、内閣の指名・任命などで選ばれます（最高裁裁判官は任命後に国民審査を受けます）。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "裁判所の仕組みと司法権の独立・三審制（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l044 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 裁判所「下級裁判所」 / 出典URL: https://www.courts.go.jp/about/sosiki/kakyusaibansyo/index.html"
+          },
+          "statement": "<p>次の表は、裁判所の公式情報に基づく日本の裁判所の種類・数・主な役割の一覧です。</p><table><thead><tr><th>裁判所の種類</th><th>全国の本庁数（支部等）</th><th>主な役割・扱う事件の例</th></tr></thead><tbody><tr><td>最高裁判所</td><td>1か所</td><td>終審裁判所（上告事件など）</td></tr><tr><td>高等裁判所</td><td>8か所（支部6か所）</td><td>主に地方・家庭・簡易裁判所の判決に対する控訴事件</td></tr><tr><td>地方裁判所</td><td>50か所（支部203か所）</td><td>原則的な第一審裁判所（簡易裁判所の管轄を除く民事・刑事の第一審）</td></tr><tr><td>家庭裁判所</td><td>50か所（支部203か所・出張所77か所）</td><td>家事事件（離婚・相続など）や少年事件</td></tr><tr><td>簡易裁判所</td><td>438か所</td><td>民事：請求額140万円以下の事件／刑事：罰金以下の刑や比較的軽い罪の第一審</td></tr></tbody></table><p>出典：裁判所「下級裁判所」</p>",
+          "advice": "<p>答え：第一審：地方裁判所 ／ 第二審（控訴審）：高等裁判所（請求額が140万円を超える民事事件は地方裁判所が第一審となり、その判決に対する控訴は全国8か所などにある高等裁判所で審理されます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l044-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：請求額が140万円を超えているため、まずどの裁判所が第一審になるかを表から確認し、その次の控訴先を選びましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表をもとに、ある人が「300万円の損害賠償を求める民事裁判」を起こし、第一審の判決に不服があって控訴した場合の裁判所の組み合わせとして、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "第一審：地方裁判所 ／ 第二審（控訴審）：高等裁判所",
+                "第一審：簡易裁判所 ／ 第二審（控訴審）：地方裁判所",
+                "第一審：簡易裁判所 ／ 第二審（控訴審）：高等裁判所",
+                "第一審：家庭裁判所 ／ 第二審（控訴審）：最高裁判所"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "請求額が300万円（140万円超）であるため、簡易裁判所ではなく地方裁判所が第一審になります。",
+                "第一審が簡易裁判所ではなく地方裁判所となります。",
+                "家庭裁判所は家事事件や少年事件を扱う裁判所であり、一般的な300万円の損害賠償請求の第一審は地方裁判所です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

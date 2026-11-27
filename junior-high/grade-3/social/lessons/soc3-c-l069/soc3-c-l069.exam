@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l069 銀行の役割とキャッシュレス・新しい金融サービス",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第69.0時限「銀行の役割とキャッシュレス・新しい金融サービス」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "銀行の役割とキャッシュレス・新しい金融サービス（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l069 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>銀行は経済の血液を循環させる役割を担っており、大きく分けて3つの業務（三大業務）を行っています。</p>",
+          "advice": "<p>答え：為替業務（銀行は預金・貸出（融資）・為替（決済）の三大業務を通じて、お金の循環と安全な取引を支えています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l069-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：預金・貸出と並ぶ3つ目の業務の名称です。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>銀行の三大業務のうち、遠隔地との取引などで現金を直接持ち運ばずに口座間の振り込みや送金を行う業務を何といいますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "為替業務",
+                "預金業務",
+                "貸出業務",
+                "株式発行業務"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "預金業務は、家計や企業からお金を預かり利子をつけて管理する業務のことです。",
+                "貸出（融資）業務は、預かったお金を資金が必要な企業や個人に貸し出して利子を得る業務のことです。",
+                "株式を発行して資金を集めるのは一般の株式会社が行うことであり、銀行の三大業務の名称ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "銀行の役割とキャッシュレス・新しい金融サービス（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l069 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>近年、QRコード決済や電子マネー、ネットバンキングなどのキャッシュレス決済や、金融とITを組み合わせたフィンテック（FinTech）が急速に広がっています。</p>",
+          "advice": "<p>答え：利点：現金を持ち歩く手間が減り取引の記録が残りやすい ／ 課題：不正利用などのセキュリティ対策や災害時の停電への備えが必要になる。（利便性や効率化が高まる一方で、サイバー攻撃への対策や非常時の決済手段の確保が求められています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l069-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：支払いの手軽さや管理のしやすさという利点の一方で、情報技術に頼る仕組みならではの弱点を考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>キャッシュレス決済やフィンテックの広がりがもたらす利点と課題の組み合わせとして、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "利点：現金を持ち歩く手間が減り取引の記録が残りやすい ／ 課題：不正利用などのセキュリティ対策や災害時の停電への備えが必要になる。",
+                "利点：銀行を介さずすべての人が自由に通貨を発行できる ／ 課題：紙幣の印刷コストが急増して銀行の収入が減る。",
+                "利点：災害時の停電中でも通信を使わず確実に決済できる ／ 課題：現金よりも支払いに長い時間がかかるようになる。",
+                "利点：預金したお金に利子が一切つかなくなる ／ 課題：店舗で現金を使うことが法律で禁止される。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "通貨（日本銀行券）を発行できるのは日本銀行だけであり、キャッシュレス決済で個人が自由に通貨を発行できるわけではありません。",
+                "停電や通信障害が起きると電子決済が使えなくなるおそれがある点が、まさにキャッシュレス社会の課題です。",
+                "キャッシュレス決済の普及によって現金の使用が法律で禁止されたわけではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "銀行の役割とキャッシュレス・新しい金融サービス（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l069 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 経済産業省「2025年のキャッシュレス決済比率を算出しました」 / 出典URL: https://www.meti.go.jp/press/2025/03/20260331006/20260331006.html"
+          },
+          "statement": "<p>次の表は、経済産業省が発表した日本のキャッシュレス決済比率・決済額の推移と、2025年の決済手段別の内訳をまとめたものです。</p><table><thead><tr><th>年</th><th>キャッシュレス決済比率</th><th>決済額合計</th><th>2025年の手段別内訳（決済額に占める割合）</th></tr></thead><tbody><tr><td>2023年</td><td>39.3%</td><td>126.7兆円</td><td rowspan=\"3\">クレジットカード：82.7%（134.6兆円）<br>コード決済：10.2%（16.6兆円）<br>電子マネー：3.7%（6.0兆円）<br>デビットカード：3.4%（5.5兆円）</td></tr><tr><td>2024年</td><td>42.8%</td><td>141.0兆円</td></tr><tr><td>2025年</td><td>58.0%</td><td>162.7兆円</td></tr></tbody></table><p>出典：経済産業省「2023年〜2025年のキャッシュレス決済比率を算出しました」をもとに作成。</p>",
+          "advice": "<p>答え：決済比率は2023年から2025年にかけて約19ポイント上昇して5割を超え、2025年の決済額の内訳ではクレジットカードが8割以上を占めている。（コード決済も1割に達して存在感を高めていますが、金額ベースでは依然としてクレジットカードが中心であることがデータから読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l069-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：2023年から2025年にかけての決済比率と決済額の変化、そして2025年の内訳で最も大きな割合を占める手段に注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表の数値から読み取れる日本のキャッシュレス決済の現状として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "決済比率は2023年から2025年にかけて約19ポイント上昇して5割を超え、2025年の決済額の内訳ではクレジットカードが8割以上を占めている。",
+                "2025年の決済額の内訳では、スマートフォンなどを使うコード決済が過半数を占めて最も多くなっている。",
+                "2023年から2025年にかけて決済比率は上昇したが、決済額の合計は120兆円台のまま横ばいであった。",
+                "2025年の電子マネーとデビットカードの決済額を合計すると、コード決済の決済額を上回っている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "コード決済の割合は10.2%であり、最も多いのは82.7%を占めるクレジットカードです。",
+                "決済額の合計は2023年の126.7兆円から2025年の162.7兆円へと36兆円増加しており、横ばいではありません。",
+                "電子マネー（6.0兆円）とデビットカード（5.5兆円）の合計は11.5兆円であり、コード決済（16.6兆円）を下回っています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

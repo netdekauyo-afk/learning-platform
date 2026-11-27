@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l026 18歳成人と法律（18歳でできること・20歳でできること）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第26.0時限「18歳成人と法律（18歳でできること・20歳でできること）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "18歳成人と法律（18歳でできること・20歳でできること）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l026 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>2022年4月の民法改正によって成年年齢が20歳から18歳に引き下げられ、18歳でできることが増えた一方、健康面や依存症対策などの理由から20歳になるまで引き続き禁止されていることもある。</p>",
+          "advice": "<p>答え：クレジットカードの作成や賃貸住宅の契約（18歳で成人になると、親権者の同意なしで携帯電話やローン、賃貸住宅、クレジットカードなどの契約を結ぶことができるほか、10年有効のパスポートの取得や結婚〔男女とも18歳〕も可能になります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l026-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：健康への影響やギャンブル依存症の防止、大きな責任を伴う運転免許などは、引き続き20歳以上とされています。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>成年年齢の引き下げ後、18歳になった時点で親の同意なしにできるようになったものとして正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "クレジットカードの作成や賃貸住宅の契約",
+                "公営競技（競馬・競輪など）の投票券の購入",
+                "飲酒や喫煙",
+                "大型自動車運転免許の取得"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "公営競技の投票券の購入は、ギャンブル依存症対策などの観点から引き続き20歳以上とされています。",
+                "飲酒や喫煙は、健康への影響や非行防止の観点から、民法改正後も20歳未満は禁止されています。",
+                "大型・中型自動車免許の取得年齢は、引き続き20歳以上（大型は21歳以上等）と定められています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "18歳成人と法律（18歳でできること・20歳でできること）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l026 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>成年年齢が18歳に引き下げられたことで、18歳・19歳の人が悪質な事業者にだまされて高額な契約を結んでしまう消費者トラブルが懸念されている。</p>",
+          "advice": "<p>答え：「未成年者取消権」が使えなくなり、原則として契約に自分で責任を負わなければならなくなるため（未成年者が親の同意なしに結んだ契約を取り消せる「未成年者取消権」は18歳で成人になると使えなくなります。そのため、契約内容をよく確認し、安易に契約しない判断力が求められます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l026-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：未成年者が親の同意なく結んだ契約を後から取り消せる特別な権利が、成人になるとどうなるかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>18歳で成人になることに伴い、契約トラブルに巻き込まれたときの影響が大きくなる法的な理由として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "「未成年者取消権」が使えなくなり、原則として契約に自分で責任を負わなければならなくなるため",
+                "18歳になると消費生活センターなどの公的な相談窓口を利用できなくなるため",
+                "クーリング・オフ制度の対象年齢が20歳以上に限定されているため",
+                "18歳以上の契約には法律が適用されず、すべて当事者間の口約束だけで決まるため"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "消費生活センターは年齢にかかわらず誰でも相談できる公的機関です。",
+                "クーリング・オフ制度は成人であっても特定商取引法などの要件を満たせば利用できます。",
+                "成人であっても民法や消費者契約法などの法律が適用されます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "18歳成人と法律（18歳でできること・20歳でできること）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l026 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 独立行政法人国民生活センター「18歳・19歳の消費生活相談の状況－2025年度－」 / 出典URL: https://www.kokusen.go.jp/news/data/n-20260527_2.html"
+          },
+          "statement": "<p>次の表は、全国の消費生活センター等に寄せられた、契約当事者が18歳・19歳の消費生活相談件数（PIO-NET登録分）の推移である。</p><table><thead><tr><th>年度</th><th>2021年度</th><th>2022年度</th><th>2023年度</th><th>2024年度</th><th>2025年度</th></tr></thead><tbody><tr><td>相談件数</td><td>8,536件</td><td>10,027件</td><td>9,788件</td><td>9,082件</td><td>10,250件</td></tr></tbody></table><p>※2022年4月1日に成年年齢が18歳へ引き下げられた。相談内容は、依然として「美（び）」（脱毛エステ、医療サービス等）や「金（かね）」（副業等）に関するものが多い。</p><p class=\"source\">出典：独立行政法人国民生活センター「18歳・19歳の消費生活相談の状況－2025年度－」（2026年5月27日公表）</p>",
+          "advice": "<p>答え：成年年齢が引き下げられた2022年度に相談件数が1万件を超え、2025年度には2021年度以降で最多となった（2021年度の8,536件から2022年度に10,027件へ増加し、2025年度には10,250件に達しています。18歳・19歳が自ら契約できる環境でトラブルが続いている実態が読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l026-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：成年年齢引き下げ前（2021年度）と引き下げ後（2022年度〜2025年度）の件数の変化を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる18歳・19歳の消費生活相談の状況として、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "成年年齢が引き下げられた2022年度に相談件数が1万件を超え、2025年度には2021年度以降で最多となった",
+                "2022年度に相談件数が急増した後は毎年減少し続けており、2025年度は2021年度を下回っている",
+                "成年年齢引き下げの影響は一時的であり、2023年度以降は毎年8,000件台で安定している",
+                "2025年度の相談件数は2021年度の2倍以上に増えており、相談内容も美容や副業から完全に変化している"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "2023・2024年度はやや減少しましたが、2025年度に10,250件と再び増加して2021年度以降で最多となっています。",
+                "2022年度以降もすべて9,000件〜1万件台で推移しており、8,000件台には戻っていません。",
+                "2025年度（10,250件）は2021年度（8,536件）の約1.2倍であり、2倍以上ではありません。また相談内容にも大きな変化はないとされています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

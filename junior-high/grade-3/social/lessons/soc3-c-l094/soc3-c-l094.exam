@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l094 持続可能な社会を実現するための探究テーマ設定と調査",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第94.0時限「持続可能な社会を実現するための探究テーマ設定と調査」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "持続可能な社会を実現するための探究テーマ設定と調査（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l094 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>探究テーマを設定したら、具体的な「探究の問い」を立て、政府統計や自治体の計画、法律、先行事例などから客観的な根拠を集めて調査します。</p>",
+          "advice": "<p>答え：公的機関や研究機関など誰が発信した情報か（出典）、いつ調査されたデータか、複数の情報源と矛盾がないかを確認する。（事実と意見を区別し、信頼できる根拠にもとづいて課題を分析することが探究の基本です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l094-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「誰が」「いつ」発信した情報か、他の情報源と照らし合わせて矛盾がないかを確かめます。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>社会課題の調査で情報を集めるとき、情報の信頼性を確かめるための確認ポイントとして最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "公的機関や研究機関など誰が発信した情報か（出典）、いつ調査されたデータか、複数の情報源と矛盾がないかを確認する。",
+                "SNSで多くの人に共有・拡散されている情報であれば、出典や調査時期が不明でも信頼できるデータとして採用する。",
+                "自分の立てた仮説や意見と一致する個人のブログ記事だけを集め、公的統計は難しいため参考にしない。",
+                "調査された年が古くても、図やグラフが大きく見やすい資料であれば最新の状況を表すデータとしてそのまま使う。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "SNSで多く拡散されていても、誤情報や古い情報が含まれている場合があるため、必ず一次情報や出典を確認する必要があります。",
+                "個人のブログは意見や偏りが含まれることが多いため、政府統計などの客観的なデータとあわせて確認することが基本です。",
+                "社会状況は変化するため、いつのデータかを確認し、できる限り新しい統計や複数の資料で裏づける必要があります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "持続可能な社会を実現するための探究テーマ設定と調査（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l094 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>ある生徒は「プラスチック製レジ袋の有料化をもっと拡大すべきだ」というテーマで調査を始め、有料化に賛成する団体の資料だけを集めようとしています。</p>",
+          "advice": "<p>答え：異なる立場の人にとっての負担や問題点を知ることで、反論にも答えられるより現実的で公正な解決策を考えられるから。（多様な立場や課題点も踏まえて検討することで、提言の納得感と実現可能性が高まります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l094-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：反対意見を知ることで、自分の提案のどのような点が見えてくるか考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>説得力のある探究を行うために、自分の考えに賛成する資料だけでなく、反対意見や課題点もあわせて調べるべき理由として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "異なる立場の人にとっての負担や問題点を知ることで、反論にも答えられるより現実的で公正な解決策を考えられるから。",
+                "賛成意見と反対意見を半分ずつ並べることで、自分の意見や結論を一切書かずにレポートを終わらせることができるから。",
+                "反対意見の資料に書かれているデータはすべて誤りであることを証明し、相手を言い負かすため。",
+                "調査に時間をかければかけるほど、テーマを途中で別のものに変更しやすくなるから。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "両方の意見を調べるのは結論を出さないためではなく、多角的に検討したうえで説得力のある自分の結論・提言を導くためです。",
+                "反対意見にも合理的な根拠（例：衛生面や利便性、代替品の環境負荷など）がある場合が多く、相手を言い負かすことが目的ではありません。",
+                "反対意見を調べるのはテーマを変えるためではなく、探究の問いに対する考察を深めるためです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "持続可能な社会を実現するための探究テーマ設定と調査（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l094 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 環境省「2024年度の我が国の温室効果ガス排出量及び吸収量について」 / 出典URL: https://www.env.go.jp/press/press_04043.html"
+          },
+          "statement": "<p>次の表は、環境省が公表した「2024年度の我が国の温室効果ガス排出量及び吸収量について」（2026年4月14日発表）の主な内容です。</p><table><thead><tr><th>項目</th><th>2024年度の実績（CO2換算）</th><th>比較・主な要因など</th></tr></thead><tbody><tr><td>温室効果ガス排出・吸収量</td><td>約9億9,400万トン</td><td>2023年度比1.9%減、2013年度比28.7%減（初の10億トン未満）</td></tr><tr><td>排出量減少の主な要因</td><td>製造業の生産量減少によるエネルギー消費減、電源の脱炭素化</td><td>電源構成に占める再生可能エネルギーと原子力の合計割合が3割超</td></tr><tr><td>代替フロン等4ガス排出量</td><td>約3,220万トン</td><td>2023年比4.8%（約160万トン）減少</td></tr><tr><td>森林等の吸収源対策による吸収量</td><td>約5,230万トン</td><td>2023年度（約5,390万トン）よりやや減少。うちブルーカーボン約32万トン</td></tr></tbody></table><p>出典：環境省「2024年度の我が国の温室効果ガス排出量及び吸収量について」（報道発表資料）をもとに作成</p>",
+          "advice": "<p>答え：排出・吸収量は2013年度比で28.7%減少し初めて10億トンを下回ったが、工場の生産減の影響も含まれるため、経済活動と脱炭素をどう両立させるかが探究の問いになる。（統計を正確に読み取ることで、「生産を減らすのではなく技術やエネルギー転換でどう削減するか」といった具体的な問いが立てられます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l094-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：2013年度比や2023年度比の変化、減少の要因、吸収量の変化などを正確に読み取りましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から正確に読み取れる事実と、それにもとづく「探究の問い」の立て方として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "排出・吸収量は2013年度比で28.7%減少し初めて10億トンを下回ったが、工場の生産減の影響も含まれるため、経済活動と脱炭素をどう両立させるかが探究の問いになる。",
+                "2024年度の排出・吸収量は増加に転じており、その最大の理由は再生可能エネルギーの割合が減ったことにある。",
+                "森林等の吸収源による吸収量は2023年度から大幅に増加しており、今後は排出量を減らさなくても吸収量だけで目標を達成できる。",
+                "代替フロン等4ガスの排出量は年々急増しており、2024年は前年比で約5割増えたことがわかる。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "排出・吸収量は2023年度比1.9%減、2013年度比28.7%減と減少しており、電源の脱炭素化（再エネと原子力の合計が3割超）が進んでいます。",
+                "森林等の吸収量は2023年度の約5,390万トンから2024年度は約5,230万トンへとやや減少しています。",
+                "代替フロン等4ガスの排出量は2023年比で4.8%「減少」しており、増加ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

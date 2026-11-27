@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l039 国会の地位（国権の最高機関・唯一の立法機関）と二院制",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第39.0時限「国会の地位（国権の最高機関・唯一の立法機関）と二院制」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "国会の地位（国権の最高機関・唯一の立法機関）と二院制（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l039 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>日本国憲法第41条は、国会を「国権の最高機関」であり、国の「唯一の立法機関」であると定めています。</p>",
+          "advice": "<p>答え：衆議院：任期4年（解散あり） ／ 参議院：任期6年（解散なし）（衆議院は任期4年で解散があり、参議院は任期6年で解散がなく3年ごとに半数が改選されます。これにより、国民の最新の意思の反映と慎重な審議の両立を図っています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l039-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：衆議院の方が任期が短く、解散によって国民の意思を問い直す仕組みがあります。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の国会を構成する衆議院と参議院について、議員の任期と解散の有無の正しい組み合わせはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "衆議院：任期4年（解散あり） ／ 参議院：任期6年（解散なし）",
+                "衆議院：任期6年（解散なし） ／ 参議院：任期4年（解散あり）",
+                "衆議院：任期4年（解散なし） ／ 参議院：任期6年（解散あり）",
+                "衆議院：任期3年（解散あり） ／ 参議院：任期6年（3年ごとに全員改選）"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "衆議院と参議院の任期・解散の有無が逆になっています。",
+                "解散があるのは衆議院であり、参議院には解散がありません。",
+                "衆議院の任期は4年であり、参議院は6年で3年ごとに「半数」が改選されます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "国会の地位（国権の最高機関・唯一の立法機関）と二院制（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l039 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本国憲法では、国権の最高機関である国会が衆議院と参議院の二つの議院から成る二院制を採用しています。</p>",
+          "advice": "<p>答え：国民の代表機関として国政の中心に置かれ、異なる角度から慎重に審議して誤りを防ぐため。（国民主権のもと、国民に最も近い代表機関である国会を最高機関とし、任期や選挙方法が異なる二院で議論を重ねることで、一院の行き過ぎを防ぎ慎重な決定を行っています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l039-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：主権者である国民との関係と、1つの議院だけで決める場合と比べたメリットを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>国会が国民から直接選挙された代表者で組織され、「国権の最高機関」かつ二院制をとっている理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "国民の代表機関として国政の中心に置かれ、異なる角度から慎重に審議して誤りを防ぐため。",
+                "内閣の命令をそのまま法律にする機関であり、手続きを2回繰り返して時間を稼ぐため。",
+                "裁判所の判決を取り消す権限をもち、司法権を国会のもとに置くため。",
+                "衆議院が地方の代表、参議院が都道府県の知事の代表として地域の予算を配分するため。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "国会は唯一の立法機関であり、内閣の命令をそのまま法律にする機関ではありません。",
+                "三権分立のもとで司法権は裁判所に属しており、国会が裁判所の判決を取り消すことはできません。",
+                "参議院議員も国民の直接選挙で選ばれており、都道府県知事の代表ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "国会の地位（国権の最高機関・唯一の立法機関）と二院制（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l039 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 衆議院「国会会期一覧」 / 出典URL: https://www.shugiin.go.jp/internet/itdb_annai.nsf/html/statics/shiryo/kaiki.htm"
+          },
+          "statement": "<p>次の表は、衆議院の資料に基づく2024年〜2025年の国会の召集記録です。</p><table><thead><tr><th>回次・種類</th><th>会期</th><th>主な出来事</th></tr></thead><tbody><tr><td>第213回（常会）</td><td>2024年1月26日〜6月23日</td><td>150日間の会期で予算や多くの法案を審議</td></tr><tr><td>第214回（臨時会）</td><td>2024年10月1日〜10月9日</td><td>10月9日に衆議院が解散され閉会</td></tr><tr><td>第215回（特別会）</td><td>2024年11月11日〜11月14日</td><td>10月27日の総選挙後に召集</td></tr><tr><td>第217回（常会）</td><td>2025年1月24日〜6月22日</td><td>翌年の通常国会として150日間開催</td></tr></tbody></table><p>出典：衆議院「国会会期一覧」</p>",
+          "advice": "<p>答え：常会は毎年1月に150日間の会期で召集され、特別会は衆議院の解散に伴う総選挙の後に召集されている。（資料のとおり、第213回・第217回の常会は毎年1月から150日間開かれ、第214回の解散と総選挙の後には第215回の特別会が召集されています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l039-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「常会（通常国会）」「臨時会（臨時国会）」「特別会（特別国会）」が開かれた時期やきっかけを比べましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる国会の種類の違いとして、適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "常会は毎年1月に150日間の会期で召集され、特別会は衆議院の解散に伴う総選挙の後に召集されている。",
+                "常会は衆議院が解散された直後に開かれ、会期は10日間程度と決まっている。",
+                "特別会は毎年1回必ず1月に召集され、国の新年度予算を審議するため150日間開かれる。",
+                "臨時会は総選挙が行われた後にのみ召集される会議であり、解散を行うことはできない。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "毎年1月に150日間開かれるのは常会（通常国会）であり、第214回のように解散が行われるのは臨時会です。",
+                "毎年1月に150日間開かれて予算などを審議するのは常会（通常国会）です。",
+                "総選挙後に召集されるのは特別会（第215回）であり、臨時会は必要に応じて開かれ、第214回では解散も行われています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

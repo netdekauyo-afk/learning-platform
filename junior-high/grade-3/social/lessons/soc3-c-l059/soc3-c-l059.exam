@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l059 18歳からの契約と多様な支払い方法（クレジット・電子マネー）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第59.0時限「18歳からの契約と多様な支払い方法（クレジット・電子マネー）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "18歳からの契約と多様な支払い方法（クレジット・電子マネー）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l059 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>キャッシュレス決済の普及にともない、現金以外のさまざまな支払い方法が利用されています。</p>",
+          "advice": "<p>答え：前払い：プリペイド型電子マネー ／ 即時払い：デビットカード ／ 後払い：クレジットカード（交通系ICカードなどのプリペイド型電子マネーは事前に入金した範囲で使う「前払い」、デビットカードは支払いと同時に預金口座から引き落とされる「即時払い」、クレジットカードはカード会社が代金を立て替え、後から利用者が支払う「後払い」です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l059-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：事前にチャージするか、その場で口座から引き落とされるか、信販会社が立て替えてあとから支払うかを整理しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>支払いのタイミングによるキャッシュレス決済の分類として、正しい組み合わせを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "前払い：プリペイド型電子マネー ／ 即時払い：デビットカード ／ 後払い：クレジットカード",
+                "前払い：デビットカード ／ 即時払い：クレジットカード ／ 後払い：プリペイド型電子マネー",
+                "前払い：クレジットカード ／ 即時払い：プリペイド型電子マネー ／ 後払い：デビットカード",
+                "前払い：プリペイド型電子マネー ／ 即時払い：クレジットカード ／ 後払い：デビットカード"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "デビットカードは利用と同時に銀行口座から引き落とされる即時払いであり、クレジットカードは後払いです。",
+                "クレジットカードは代金が立て替えられる後払いであり、プリペイド型は事前チャージによる前払いです。",
+                "クレジットカードとデビットカードの支払いタイミングが逆になっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "18歳からの契約と多様な支払い方法（クレジット・電子マネー）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l059 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>18歳になると親の同意なしでクレジットカードを作れるようになりますが、利用方法によっては「多重債務」に陥る危険が指摘されています。</p>",
+          "advice": "<p>答え：毎月の支払額が抑えられて使いすぎに気づきにくい一方、高い手数料がかかって返済が長引き、複数の借り入れが重なる恐れがあるから。（信用＝クレジットは、言い換えれば一時的な借金です。毎月の負担を軽く見せるリボ払いなどは高い手数料によって総支払額が膨らみやすく、支払い計画を立てずに使うと多重債務につながる危険があります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l059-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：手元の現金が減らない感覚と、支払いが先延ばしになることで発生する追加の費用に注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>クレジットカードの「リボ払い」や「分割払い」を利用する際に特に注意が必要な理由として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "毎月の支払額が抑えられて使いすぎに気づきにくい一方、高い手数料がかかって返済が長引き、複数の借り入れが重なる恐れがあるから。",
+                "購入と同時に銀行口座から全額が引き落とされるため、残高不足になるとその場で売買契約がすべて無効になるから。",
+                "利用するたびに事前に現金をチャージする必要があり、チャージした金額を別の商品購入に使い回すことができないから。",
+                "信販会社が立て替えた代金には手数料が一切かからないため、収入に見合わない高額な買い物でも返済義務が免除されるから。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "購入と同時に口座から引き落とされるのはデビットカードの特徴であり、残高不足で契約が無効になる仕組みでもありません。",
+                "事前チャージが必要なのはプリペイド型電子マネーであり、後払いのクレジットカードの仕組みとは異なります。",
+                "一括払いを除く分割払いやリボ払いには通常高い手数料がかかり、立て替えられた代金は必ず返済する義務があります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "18歳からの契約と多様な支払い方法（クレジット・電子マネー）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l059 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 経済産業省「2025年のキャッシュレス決済比率を算出しました」 / 出典URL: https://www.meti.go.jp/press/2025/03/20260331006/20260331006.html"
+          },
+          "statement": "<p>次の表は、2024年と2025年における日本のキャッシュレス決済額とその手段別内訳を示したものです。なお、2025年のキャッシュレス決済比率は58.0％となりました。</p><table><thead><tr><th>決済手段</th><th>2024年 決済額（構成比）</th><th>2025年 決済額（構成比）</th></tr></thead><tbody><tr><td>クレジットカード</td><td>116.9兆円（82.9％）</td><td>134.6兆円（82.7％）</td></tr><tr><td>コード決済</td><td>13.5兆円（9.6％）</td><td>16.6兆円（10.2％）</td></tr><tr><td>電子マネー</td><td>6.2兆円（4.4％）</td><td>6.0兆円（3.7％）</td></tr><tr><td>デビットカード</td><td>4.4兆円（3.1％）</td><td>5.5兆円（3.4％）</td></tr><tr><td>合計</td><td>141.0兆円（100.0％）</td><td>162.7兆円（100.0％）</td></tr></tbody></table><p>出典：経済産業省「2024年のキャッシュレス決済比率を算出しました」「2025年のキャッシュレス決済比率を算出しました」（2025年3月・2026年3月公表）</p>",
+          "advice": "<p>答え：決済額の合計は2024年から2025年にかけて20兆円以上増加しており、後払いの仕組みであるクレジットカードが全体の8割以上を占めて最大となっている。（表より、合計は141.0兆円から162.7兆円へ21.7兆円増え、クレジットカードは構成比がわずかに下がったものの82.7％と圧倒的多数を占めています。キャッシュレス決済が主流になるほど、後払いの管理や決済手段の使い分けが重要になります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l059-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：決済額の合計や構成比の変化、そして最も大きな割合を占める決済手段の特徴を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れる日本のキャッシュレス決済の特徴として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "決済額の合計は2024年から2025年にかけて20兆円以上増加しており、後払いの仕組みであるクレジットカードが全体の8割以上を占めて最大となっている。",
+                "2025年はコード決済と電子マネーの合計額がクレジットカードの決済額を上回り、コード決済が最大の決済手段となった。",
+                "2024年から2025年にかけて4つの決済手段すべてで決済額が増加しており、特に電子マネーの構成比が大きく上昇した。",
+                "即時払いであるデビットカードは2025年に構成比が10％を超え、コード決済に次ぐ第2位の規模となっている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "2025年のコード決済（16.6兆円）と電子マネー（6.0兆円）を合わせても22.6兆円で、クレジットカード（134.6兆円）を大きく下回っています。",
+                "電子マネーは2024年の6.2兆円（4.4％）から2025年の6.0兆円（3.7％）へと決済額・構成比ともに減少しています。",
+                "2025年に構成比が10％を超えたのはコード決済（10.2％）であり、デビットカードは3.4％で4つの中で最も小さい割合です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

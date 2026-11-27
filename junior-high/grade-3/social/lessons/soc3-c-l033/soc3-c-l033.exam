@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l033 政治の役割と民主主義（直接民主制と間接民主制）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第33.0時限「政治の役割と民主主義（直接民主制と間接民主制）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "政治の役割と民主主義（直接民主制と間接民主制）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l033 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>現代の日本の国政は、国民が選挙で選んだ代表者（国会議員）が議会で話し合って決定する「間接民主制（議会制民主主義）」を基本としているが、重要な場面では国民が直接判断する「直接民主制」の要素も取り入れられている。</p>",
+          "advice": "<p>答え：憲法改正の国民投票・最高裁判所裁判官の国民審査・地方自治の住民投票（基本は間接民主制ですが、憲法改正や最高裁裁判官の信任、地方自治体の重要事項や直接請求などでは直接民主制で補う構造になっています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l033-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：国民や住民が「代表者を選ぶ」のではなく、「ある事柄や人物への賛否を直接投票・請求する」仕組みを選びましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の国政や地方自治において、直接民主制の要素が取り入れられている制度の組み合わせとして正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "憲法改正の国民投票・最高裁判所裁判官の国民審査・地方自治の住民投票",
+                "衆議院議員総選挙・参議院議員通常選挙・都道府県知事選挙",
+                "内閣総理大臣の指名・最高裁判所長官の指名・憲法改正の国民投票",
+                "政党交付金の配分・衆議院議員総選挙・最高裁判所裁判官の国民審査"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "衆議院・参議院・知事の選挙はいずれも代表者を選ぶ仕組みであり、間接民主制にあたります。",
+                "内閣総理大臣の指名は国会（代表者）が行い、最高裁判所長官の指名は内閣が行うため、直接民主制ではありません。",
+                "政党交付金の配分や衆議院議員総選挙は直接民主制の仕組みではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "政治の役割と民主主義（直接民主制と間接民主制）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l033 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>民主主義では、多様な意見の対立を調整して合意を形成するために、最終的には「多数決」で決定することが多い。</p>",
+          "advice": "<p>答え：十分な話し合いを尽くしたうえで多数決を行い、決定後も少数意見に耳を傾けて反対意見を言える雰囲気を守る（多数決は「数の力で少数派を押し切る」ものではなく、対立を調整し、議論を尽くしたうえでの決定方法として機能します。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l033-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：数の多い側が常に絶対正しいとみなしてよいか、決定の過程で少数意見にどう向き合うべきかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>民主主義における多数決と合意形成のあり方について、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "十分な話し合いを尽くしたうえで多数決を行い、決定後も少数意見に耳を傾けて反対意見を言える雰囲気を守る",
+                "話し合いに時間をかけるのは非効率であるため、意見が対立したらすぐに多数決を行って結論を出す",
+                "多数決で決まったことは多数派の利益のみを反映すればよく、少数派の意見を配慮する必要はない",
+                "全員が完全に同じ意見になるまで何年でも決定を先送りし、多数決は一切使わないようにする"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "十分な議論を省いて数だけで押し切ることは「数の暴力」となり、民主的な合意形成とはいえません。",
+                "少数意見にも耳を傾け、必要に応じて配慮や修正を行うことが民主主義の大切な態度です。",
+                "全員一致のみを求めると社会全体の決定ができなくなるため、十分な議論のうえで多数決を用いることが必要です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "政治の役割と民主主義（直接民主制と間接民主制）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l033 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 総務省自治行政局「住民投票の実施状況①」 / 出典URL: https://www.soumu.go.jp/main_content/000087297.pdf"
+          },
+          "statement": "<p>次の表は、総務省がまとめた地方自治体における「住民投票の実施状況」（1982年7月～2010年10月）および「地方自治法に基づく直接請求による解散・解職（リコール）投票の状況」（過去約30年間）を整理したものである。</p><table><thead><tr><th>住民投票の種類</th><th>実施件数</th><th>主な内訳・結果</th></tr></thead><tbody><tr><td>住民投票（解散・解職を除く）</td><td>467件</td><td>条例によるもの：400件 ／ 法律に基づくもの：53件 ／ 要綱等：14件（うち市町村合併に係るもの：445件）</td></tr><tr><td>地方自治法に基づく議会の解散投票</td><td>53件</td><td>成立：46件 ／ 不成立：7件</td></tr><tr><td>地方自治法に基づく議員の解職投票</td><td>41件</td><td>成立：39件 ／ 不成立：2件</td></tr><tr><td>地方自治法に基づく長（首長）の解職投票</td><td>40件</td><td>成立：23件 ／ 不成立：17件</td></tr></tbody></table><p class=\"source\">出典：総務省自治行政局「住民投票の実施状況①」（会計検査院『会計検査研究 No.45』引用データ）</p>",
+          "advice": "<p>答え：住民投票（解散・解職を除く）の多くは自治体の条例に基づいて市町村合併をテーマに実施され、解散・解職投票では議会や議員の解職が高い割合で成立している（地方自治では、間接民主制である議会や首長の決定を住民投票や直接請求（リコール）で補い、住民の意思を直接反映させる仕組みが実際に機能していることがわかります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l033-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：住民投票（解散・解職を除く）の根拠やテーマの内訳と、解散・解職投票の成立件数を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の地方自治における直接民主制の活用について、この表から読み取れることとして最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "住民投票（解散・解職を除く）の多くは自治体の条例に基づいて市町村合併をテーマに実施され、解散・解職投票では議会や議員の解職が高い割合で成立している",
+                "住民投票（解散・解職を除く）はすべて国の法律に基づいて実施されており、条例による住民投票は行われていない",
+                "議会の解散や議員の解職の投票はほとんど成立しておらず、長の解職投票のほうが成立割合が高い",
+                "地方自治法に基づく解散・解職の投票件数は、市町村合併に係る住民投票の件数を大きく上回っている"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "467件のうち400件が条例によるものであり、法律に基づくものは53件です。",
+                "議会の解散（53件中46件成立＝約87％）や議員の解職（41件中39件成立＝約95％）のほうが、長の解職（40件中23件成立＝約57.5％）より成立割合が高いです。",
+                "解散・解職の投票は合計134件であり、市町村合併に係る住民投票（445件）より少ないです。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

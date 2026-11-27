@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l051 地方公共団体の課題（地方財政と地方分権）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第51.0時限「地方公共団体の課題（地方財政と地方分権）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "地方公共団体の課題（地方財政と地方分権）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l051 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地方公共団体の主な収入には、住民税や固定資産税などの<strong>地方税</strong>のほか、国から配分される<strong>地方交付税交付金</strong>や<strong>国庫支出金</strong>、自治体の借金である<strong>地方債</strong>があります。</p>",
+          "advice": "<p>答え：使い道が自由：地方交付税交付金 ／ 使い道が限定：国庫支出金（地方交付税交付金は自治体間の財政力格差を是正するため使い道が自由な一般財源として配分され、国庫支出金は特定の事業に使い道が限られます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l051-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：自治体間の財政格差をなくすための財源と、道路や福祉など特定の目的で国が補助する財源を区別しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>国から地方公共団体へ配分されるお金のうち、「使い道が自由なもの」と「特定の事業のために使い道が限定されているもの」の正しい組み合わせを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "使い道が自由：地方交付税交付金 ／ 使い道が限定：国庫支出金",
+                "使い道が自由：国庫支出金 ／ 使い道が限定：地方交付税交付金",
+                "使い道が自由：地方債 ／ 使い道が限定：地方交付税交付金",
+                "使い道が自由：地方交付税交付金 ／ 使い道が限定：地方税"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "国庫支出金と地方交付税交付金の性質が逆になっています。",
+                "地方債は特定の事業などのために借り入れるお金であり、国から配分される交付金ではありません。",
+                "地方税は自治体が独自に徴収する自主財源であり、使い道を自由に決められる一般財源です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地方公共団体の課題（地方財政と地方分権）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l051 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本の地方財政は、自主財源である地方税の割合が低く国からの財源に頼る構造が続いてきたため、「<strong>三割自治</strong>」とも呼ばれてきました。そこで、近年は<strong>地方分権</strong>が進められています。</p>",
+          "advice": "<p>答え：地域のことは地域住民に近い自治体が責任をもって決め、実情に合った行政を行うため。（地方分権一括法などの改革により、国の関与を減らして地方の権限と財源を広げ、地域の課題に効率的かつ公正に対応することが目指されています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l051-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：国が一律に決める場合と、地域が自分たちで決める場合のどちらが地域の課題に適しているか考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>国の権限や財源を地方公共団体へ移す地方分権が進められている主な理由として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地域のことは地域住民に近い自治体が責任をもって決め、実情に合った行政を行うため。",
+                "地方公共団体が独自の軍隊や外交権をもち、国から完全に独立するため。",
+                "全国すべての市区町村で税収を完全に同じ金額にし、地方税を廃止するため。",
+                "国の借金を増やさずに、すべての公共事業を民間企業だけに任せるため。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "防衛や外交は国の役割であり、地方分権は自治体が国から独立して国家になることではありません。",
+                "地方税を廃止するのではなく、むしろ地域の自主財源を充実させることが地方分権の課題です。",
+                "民間企業との連携はありますが、すべての公共事業を民間だけに任せるための仕組みではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "地方公共団体の課題（地方財政と地方分権）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l051 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 総務省「令和6年度地方公共団体普通会計決算の概要」 / 出典URL: https://www.soumu.go.jp/main_content/001042793.pdf"
+          },
+          "statement": "<p>次の表は、総務省「令和6年度地方公共団体普通会計決算の概要」における地方公共団体の歳入純計決算額（令和6年度）の主な内訳です。</p><table><thead><tr><th>歳入区分</th><th>決算額（億円）</th><th>構成比（%）</th><th>前年度比増減率（%）</th></tr></thead><tbody><tr><td>地方税</td><td>462,691</td><td>38.5</td><td>+3.7</td></tr><tr><td>地方譲与税</td><td>30,962</td><td>2.6</td><td>+11.6</td></tr><tr><td>地方特例交付金等</td><td>11,332</td><td>0.9</td><td>+422.5</td></tr><tr><td>地方交付税</td><td>199,346</td><td>16.6</td><td>+4.9</td></tr><tr><td>（うち一般財源 小計）</td><td>（704,332）</td><td>（58.6）</td><td>（+5.7）</td></tr><tr><td>国庫支出金</td><td>201,862</td><td>16.8</td><td>-4.4</td></tr><tr><td>地方債</td><td>88,506</td><td>7.4</td><td>+2.4</td></tr><tr><td>その他（繰入金・繰越金など）</td><td>207,792</td><td>17.3</td><td>+2.3</td></tr><tr><td><strong>歳入合計</strong></td><td><strong>1,202,491</strong></td><td><strong>100.0</strong></td><td><strong>+3.0</strong></td></tr></tbody></table><p>※表示単位未満の四捨五入により内訳の合計と一致しない場合があります。<br>出典：総務省「令和6年度地方公共団体普通会計決算の概要」</p>",
+          "advice": "<p>答え：地方税は歳入の中で最大の38.5%を占めるが、一般財源全体では6割に満たない。（地方税は38.5%と約4割にとどまり、地方交付税などを合わせた一般財源は58.6%で、国庫支出金などの特定財源や地方債に頼る側面も残っています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l051-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：地方税の割合や、国庫支出金と地方交付税の金額・増減率を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れる令和6年度の地方公共団体の歳入の特徴として、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地方税は歳入の中で最大の38.5%を占めるが、一般財源全体では6割に満たない。",
+                "国庫支出金は前年度より増加しており、地方交付税の2倍以上の金額になっている。",
+                "地方債は歳入の20%以上を占めており、地方交付税より金額が大きい。",
+                "地方税と地方交付税の合計は、歳入合計の約70%に達している。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "国庫支出金は前年度比-4.4%と減少しており、金額も地方交付税とほぼ同規模です。",
+                "地方債は歳入の7.4%であり、地方交付税の16.6%より小さくなっています。",
+                "地方税38.5%と地方交付税16.6%を合わせると55.1%であり、70%には達していません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

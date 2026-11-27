@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l062 企業の種類（私企業・公企業・大企業・中小企業）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第62.0時限「企業の種類（私企業・公企業・大企業・中小企業）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "企業の種類（私企業・公企業・大企業・中小企業）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l062 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>企業は、誰が出資してどのような目的で経営するかによって、大きく「私企業」と「公企業」に分けられます。</p>",
+          "advice": "<p>答え：国や地方公共団体が出資して経営し、公営水道や公営交通など公共性の高い事業を担っている。（採算が取りにくくても国民や住民の生活に不可欠なインフラなどは、効率だけでなく公正や公共の福祉の観点から国や地方公共団体が出資する公企業が担うことがあります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l062-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：水道や公営交通のように、利益が出にくくても住民の生活に欠かせない事業を誰が担っているかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>公企業の特徴と具体例に関する説明として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "国や地方公共団体が出資して経営し、公営水道や公営交通など公共性の高い事業を担っている。",
+                "民間の個人や株主が出資して経営し、自由な競争の中で最大限の利潤を追求することを目的としている。",
+                "すべての公企業は株式会社の形態をとっており、証券取引所で一般の投資家が自由に株式を売買できる。",
+                "従業員数が300人以下の企業を公企業といい、それを超える規模の企業をすべて私企業という。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "民間の出資で利潤を追求するのは「私企業」の説明です。",
+                "公営水道や公営交通などの公企業は株式会社ではないものも多く、一般投資家が自由に株式を売買できるわけではありません。",
+                "従業員数や資本金による区分は「大企業」と「中小企業」の区別であり、私企業・公企業の区別ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "企業の種類（私企業・公企業・大企業・中小企業）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l062 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本経済では、全従業員数の約7割を中小企業が占めており、大企業への部品供給や地域経済を支える重要な役割を果たしています。</p>",
+          "advice": "<p>答え：役割：高度な専門技術で部品供給や地域の雇用を支える ／ 課題：大企業との賃金格差や経営者の高齢化による後継者不足が深刻になりやすい。（中小企業は日本のものづくりや地域社会の土台を支えていますが、価格交渉力の弱さや後継者不足などの課題もあり、取引の公正化や事業承継・起業の支援が求められています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l062-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：ものづくりの現場での大企業との関わりや、近年ニュースでも取り上げられる人手・後継ぎの問題を思い出しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の産業において中小企業が果たしている役割と、中小企業が抱えやすい課題の組み合わせとして、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "役割：高度な専門技術で部品供給や地域の雇用を支える ／ 課題：大企業との賃金格差や経営者の高齢化による後継者不足が深刻になりやすい。",
+                "役割：国や自治体の予算で赤字の公共事業を独占的に引き受ける ／ 課題：企業数が少なすぎて国内の取引先を見つけにくい。",
+                "役割：株式市場から巨額の資金を集めて海外の巨大企業を買収する ／ 課題：従業員が多すぎて社内の意思決定に時間がかかる。",
+                "役割：法律で定められた最低賃金を下回る水準で雇用を吸収する ／ 課題：景気変動の影響をまったく受けず経営が変化しない。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "中小企業は私企業であり、企業数も日本の99％以上を占めて非常に多く存在します。",
+                "証券取引所に上場して巨額の資金を集めるのは主に大企業の特徴です。",
+                "中小企業であっても最低賃金法を守る義務があり、また資金力が限られるため景気変動の影響を受けやすいのが課題です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "企業の種類（私企業・公企業・大企業・中小企業）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l062 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 中小企業庁「中小企業・小規模事業者の数(2021年6月時点)の集計結果を公表します」 / 出典URL: https://www.chusho.meti.go.jp/koukai/chousa/chu_kigyocnt/2023/231213chukigyocnt.html"
+          },
+          "statement": "<p>次の表は、中小企業庁が総務省・経済産業省の調査をもとに集計した、日本の規模別企業数と構成比の推移です（会社以外の法人および農林漁業は除く）。</p><table><thead><tr><th>区分</th><th>2014年 企業数［構成比］</th><th>2016年 企業数［構成比］</th><th>2021年 企業数［構成比］</th></tr></thead><tbody><tr><td>中小企業</td><td>380.9万者［99.7％］</td><td>357.8万者［99.7％］</td><td>336.5万者［99.7％］</td></tr><tr><td>うち小規模事業者</td><td>325.2万者［85.1％］</td><td>304.8万者［84.9％］</td><td>285.3万者［84.5％］</td></tr><tr><td>大企業</td><td>1万1,110者［0.3％］</td><td>1万1,157者［0.3％］</td><td>1万364者［0.3％］</td></tr><tr><td>合計</td><td>382.0万者</td><td>358.9万者</td><td>337.5万者</td></tr></tbody></table><p>出典：中小企業庁「中小企業・小規模事業者の数(2021年6月時点)の集計結果を公表します」（2023年12月公表）</p>",
+          "advice": "<p>答え：日本の企業数の99.7％を中小企業（うち全企業の8割以上が小規模事業者）が占めているが、2014年から2021年にかけて企業総数は一貫して減少している。（日本の企業の大半は中小・小規模事業者ですが、少子高齢化や後継者不足などを背景に事業者の数が減少しており、地域の雇用や技術を守る取り組みや新たな起業の重要性が高まっています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l062-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：大企業と中小企業の割合の差、中小企業のうち小規模事業者が占める割合、そして2014年から2021年までの企業数の増減を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れる日本の企業構成の特徴と変化として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "日本の企業数の99.7％を中小企業（うち全企業の8割以上が小規模事業者）が占めているが、2014年から2021年にかけて企業総数は一貫して減少している。",
+                "2014年から2021年にかけて大企業の構成比は急速に上昇し、2021年には日本の企業数の約15％を大企業が占めるようになった。",
+                "小規模事業者の数は2014年から2021年にかけて増加傾向にあり、中小企業全体の企業数もそれに伴って増加している。",
+                "大企業の数は2014年から2021年まで毎年増え続けており、2021年には2014年より1,000者以上多くなっている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "大企業の構成比は2014年・2016年・2021年いずれも0.3％であり、15％ではありません。",
+                "小規模事業者は325.2万者→304.8万者→285.3万者と減少しており、中小企業全体も減少しています。",
+                "大企業は2016年の1万1,157者から2021年には1万364者へと減少しており、2014年（1万1,110者）よりも少なくなっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

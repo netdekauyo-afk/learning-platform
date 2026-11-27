@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l022 共生社会とインクルージョン（ジェンダー・障がい者等）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第22.0時限「共生社会とインクルージョン（ジェンダー・障がい者等）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "共生社会とインクルージョン（ジェンダー・障がい者等）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l022 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>障害のある人や高齢者、子育て中の人など、すべての人が地域や社会の中で共に生きられる「共生社会（インクルージョン）」の実現に向けた取り組みが進められています。</p>",
+          "advice": "<p>答え：バリアフリーはすでにある物理的・社会的な障壁を取り除くことであり、ユニバーサルデザインは最初から年齢や障害の有無にかかわらず誰でも使いやすい設計にすることである。（障害者差別解消法における「合理的配慮」とあわせて、すべての人が包摂される社会づくりが進められています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l022-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「すでにある障壁を取り除く」のか、「最初から誰でも使いやすいように設計する」のかに注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>「バリアフリー」と「ユニバーサルデザイン」の違いについての説明として、正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "バリアフリーはすでにある物理的・社会的な障壁を取り除くことであり、ユニバーサルデザインは最初から年齢や障害の有無にかかわらず誰でも使いやすい設計にすることである。",
+                "バリアフリーは高齢者だけを対象とした設備のことであり、ユニバーサルデザインは障害のある人だけを対象とした特別な設備のことである。",
+                "バリアフリーは最初からすべての人向けに製品を設計することであり、ユニバーサルデザインは後からスロープや手すりを取り付けることである。",
+                "バリアフリーは建物や道路などの物理的な工夫のみを指し、ユニバーサルデザインは人々の心の持ち方や意識の改革のみを指す。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "ユニバーサルデザインは特定の人だけを対象とするのではなく、最初から「すべての人」が使いやすいことを目指す考え方です。",
+                "「最初から誰でも使いやすい設計」と「すでにある障壁を取り除くこと」の説明が逆になっています。",
+                "バリアフリーには制度や心の障壁を取り除く意味も含まれ、ユニバーサルデザインは製品・建物・情報など具体的な設計の考え方です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "共生社会とインクルージョン（ジェンダー・障がい者等）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l022 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>社会の中でつくられた「男性は仕事、女性は家庭」といった固定的な役割分担意識をジェンダーといいます。日本では男女雇用機会均等法や男女共同参画社会基本法が制定されています。</p>",
+          "advice": "<p>答え：長時間労働が当たり前の職場環境や家事・育児の偏りが残っていると、法律で機会を均等にしても実質的に両立や昇進が難しくなるから。（法律上の平等だけでなく、固定的なジェンダー観の見直しや、男女ともに育児休業などを取りやすい労働環境の整備が不可欠です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l022-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：法律で差別を禁止しても、長時間労働や固定的な役割分担意識が残っていると何が起きるかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>性別にかかわらず誰もが能力を発揮できる男女共同参画社会を実現するために、法律の整備とあわせて「働き方改革」などが必要とされる理由として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "長時間労働が当たり前の職場環境や家事・育児の偏りが残っていると、法律で機会を均等にしても実質的に両立や昇進が難しくなるから。",
+                "法律で男女の賃金格差が完全に解消されたため、これからは女性だけが仕事と家庭を両立できる制度を作ればよいから。",
+                "男女共同参画社会とは、男性が家事や育児をすべて担当し、女性がすべての管理職を担うように入れ替える社会のことだから。",
+                "男女雇用機会均等法は公務員のみに適用される法律であり、民間企業の労働環境を変えるには別の対策が必要だから。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "女性だけでなく男性も含めて仕事と生活の調和（ワーク・ライフ・バランス）を図ることが、男女共同参画の重要な柱です。",
+                "役割を固定的に入れ替えるのではなく、性別にかかわらず一人ひとりが希望に応じて活躍できる社会を目指しています。",
+                "男女雇用機会均等法は民間企業にも適用される法律であり、雇用の場での性別による差別を禁止しています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "共生社会とインクルージョン（ジェンダー・障がい者等）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l022 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 厚生労働省「令和7年 障害者雇用状況の集計結果」 / 出典URL: https://www.mhlw.go.jp/stf/newpage_67490.html"
+          },
+          "statement": "<p>次の表は、厚生労働省が公表した「令和7年（2025年）障害者雇用状況の集計結果」（毎年6月1日現在）の主な数値です。</p><table><thead><tr><th>区分</th><th>法定雇用率</th><th>雇用障害者数</th><th>実雇用率</th><th>備考</th></tr></thead><tbody><tr><td>民間企業</td><td>2.5%</td><td>70万4,610.0人</td><td>2.41%</td><td>雇用数・実雇用率とも過去最高。達成企業の割合は46.0%</td></tr><tr><td>国</td><td>2.8%</td><td>1万595.5人</td><td>3.04%</td><td>法定雇用率を上回る</td></tr><tr><td>都道府県</td><td>2.8%</td><td>1万1,375.0人</td><td>3.03%</td><td>法定雇用率を上回る</td></tr><tr><td>市町村</td><td>2.8%</td><td>3万9,142.0人</td><td>2.69%</td><td>法定雇用率を下回る</td></tr><tr><td>都道府県等の教育委員会</td><td>2.7%</td><td>1万8,550.5人</td><td>2.31%</td><td>法定雇用率を下回る</td></tr></tbody></table><p>出典：厚生労働省「令和7年 障害者雇用状況の集計結果」（令和7年12月19日公表）をもとに作成</p>",
+          "advice": "<p>答え：民間企業の雇用障害者数は70万人を超え過去最高となったが、実雇用率（2.41%）は法定雇用率（2.5%）に達しておらず、達成企業も半数未満である。（障害者雇用の数は年々増えていますが、法定雇用率の達成や職場での合理的配慮の充実など、引き続き取り組みが求められています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l022-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：民間企業の雇用数の推移（過去最高）と、実雇用率・法定雇用率の比較、達成企業の割合などを正確に読み取りましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる日本の障害者雇用の現状と課題として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "民間企業の雇用障害者数は70万人を超え過去最高となったが、実雇用率（2.41%）は法定雇用率（2.5%）に達しておらず、達成企業も半数未満である。",
+                "国や都道府県、市町村、教育委員会などの公的機関は、すべて法定雇用率を上回る実雇用率を達成している。",
+                "民間企業の実雇用率は2.41%であり、国（3.04%）や都道府県（3.03%）よりも高い水準にある。",
+                "民間企業で法定雇用率を達成している企業の割合は8割を超えており、雇用拡大の課題はほぼ解消されている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "国（3.04%）と都道府県（3.03%）は法定雇用率（2.8%）を上回っていますが、市町村（2.69%）と教育委員会（2.31%）は下回っています。",
+                "民間企業の実雇用率（2.41%）は、国（3.04%）や都道府県（3.03%）よりも低い水準です。",
+                "民間企業における法定雇用率達成企業の割合は46.0%であり、8割どころか半数未満にとどまっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

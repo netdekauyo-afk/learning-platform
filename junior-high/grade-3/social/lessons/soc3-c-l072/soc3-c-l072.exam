@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l072 私たちの生活と財政・税金の種類（直接税と間接税・累進課税）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第72.0時限「私たちの生活と財政・税金の種類（直接税と間接税・累進課税）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "私たちの生活と財政・税金の種類（直接税と間接税・累進課税）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l072 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>国や地方公共団体は、道路や学校、警察・消防、社会保障などの公共サービスを提供するために、さまざまな税金を集めています。</p>",
+          "advice": "<p>答え：消費税・酒税・たばこ税（消費者が商品価格に上乗せして負担し、事業者が納める消費税や酒税・たばこ税などが間接税です。一方、所得税・法人税・相続税・住民税などは直接税です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l072-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：商品を買うときに消費者が負担し、お店などがまとめて国や自治体に納める税金を選びましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>税金を納める人（納税者）と、実際に税金を負担する人（担税者）が異なる「間接税」にあたる税金の組み合わせはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "消費税・酒税・たばこ税",
+                "所得税・法人税・消費税",
+                "所得税・相続税・住民税",
+                "法人税・固定資産税・たばこ税"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "所得税や法人税は、稼いだ個人や企業自身が納めて負担する直接税です。",
+                "所得税・相続税・住民税は、いずれも納税者と担税者が同じ直接税の代表例です。",
+                "法人税や固定資産税は直接税であり、間接税だけの組み合わせではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "私たちの生活と財政・税金の種類（直接税と間接税・累進課税）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l072 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>日本の税制では、所得税や相続税に「累進課税」が採用されている一方、消費税はすべての人に同じ税率が課されます。</p>",
+          "advice": "<p>答え：累進課税は所得が高い人ほど高い税率を課して所得の再分配に役立ち、消費税は低所得者ほど所得に占める税負担の割合が重くなりやすい。（税の種類によって特徴が異なるため、組み合わせのバランスが議論されます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l072-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：所得が高い人ほど税率が高くなる仕組みが格差にどう作用するか、また所得に対する割合で見たときの消費税の負担感を考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>累進課税が果たしている役割と、消費税がもつ負担の特徴（逆進性）についての説明として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "累進課税は所得が高い人ほど高い税率を課して所得の再分配に役立ち、消費税は低所得者ほど所得に占める税負担の割合が重くなりやすい。",
+                "累進課税は所得に関わらず全員から一定額を集める仕組みであり、消費税は高所得者ほど税率が高くなる仕組みである。",
+                "累進課税は企業のみに適用される制度であり、消費税は生活必需品だけでなく個人の給与収入にも直接課される。",
+                "累進課税によって貧富の差は拡大し、消費税の導入によって低所得者の税負担は完全にゼロになる。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "累進課税と消費税の性質が逆に説明されています。累進課税は高所得者ほど税率が高くなり、消費税は一律の税率（軽減税率対象を除く）です。",
+                "累進課税は個人の所得税や相続税に適用され、消費税は商品の購入やサービスの利用に対して課されます。",
+                "累進課税は貧富の差を縮める（所得再分配）働きがあり、消費税は所得の少ない人にも一律にかかるため負担がゼロにはなりません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "私たちの生活と財政・税金の種類（直接税と間接税・累進課税）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l072 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 財務省「令和8年度一般会計予算 歳出・歳入の構成」 / 出典URL: https://www.mof.go.jp/tax_policy/summary/condition/a02.htm"
+          },
+          "statement": "<p>次の表は、財務省が公表した令和8年度一般会計予算における歳入（122兆3,450億円程度）のうち、租税及び印紙収入（税収）などの主な内訳をまとめたものです。</p><table><thead><tr><th>歳入の項目</th><th>金額（億円）</th><th>歳入全体に占める割合（％）</th></tr></thead><tbody><tr><td>租税及び印紙収入（計）</td><td>837,350</td><td>68.5%</td></tr><tr><td>　うち 消費税</td><td>266,880</td><td>21.8%</td></tr><tr><td>　うち 所得税</td><td>253,250</td><td>20.7%</td></tr><tr><td>　うち 法人税</td><td>206,960</td><td>16.9%</td></tr><tr><td>　うち 相続税</td><td>38,180</td><td>3.1%</td></tr><tr><td>公債金（国の借金）</td><td>295,840</td><td>24.2%</td></tr></tbody></table><p>出典：財務省「令和8年度一般会計予算 歳出・歳入の構成」をもとに作成。</p>",
+          "advice": "<p>答え：消費税・所得税・法人税の3つだけで歳入全体の約6割を占めており、税目別では消費税が最も大きく、次いで所得税、法人税の順となっている。（21.8%＋20.7%＋16.9%＝59.4%と歳入の約6割を基幹3税が支えていることが表から読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l072-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：消費税・所得税・法人税の3つの合計が歳入全体に占める割合や、消費税と直接税（所得税・法人税・相続税）の比較を計算してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>表の数値から読み取れる令和8年度の国の税収と歳入の特徴として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "消費税・所得税・法人税の3つだけで歳入全体の約6割を占めており、税目別では消費税が最も大きく、次いで所得税、法人税の順となっている。",
+                "国の税収の中で最も金額が大きいのは法人税であり、所得税と消費税を合わせた金額を上回っている。",
+                "租税及び印紙収入の合計は歳入全体の5割を下回っており、公債金のほうが税収よりも多くなっている。",
+                "直接税である所得税と法人税を合計しても、間接税である消費税の金額より小さい。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "最も金額が大きいのは消費税（26兆6,880億円）であり、法人税（20兆6,960億円）は3番目です。",
+                "租税及び印紙収入は歳入全体の68.5%を占めており、公債金（24.2%）を大きく上回っています。",
+                "所得税（25兆3,250億円）と法人税（20兆6,960億円）を合計すると46兆210億円となり、消費税（26兆6,880億円）を大きく上回ります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

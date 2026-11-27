@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l002 T市のまちの様子から探る現代社会の特色",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第2.0時限「T市のまちの様子から探る現代社会の特色」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "T市のまちの様子から探る現代社会の特色（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l002 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>現代の日本のまちを歩くと、多言語の案内表示、スマートフォン決済の普及、駅や商業施設のバリアフリー化など、さまざまな変化が見られます。</p>",
+          "advice": "<p>答え：グローバル化・情報化・少子高齢化（外国人住民や輸入品の増加はグローバル化、スマホ決済やネット通販の普及は情報化、バリアフリー設備や高齢者施設の増加は少子高齢化をそれぞれ表しています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l002-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：外国人住民や輸入品の増加、ICTやSNSの普及、65歳以上の人口割合の上昇がそれぞれ何にあたるか整理してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>このような身近なまちの変化の背景にあり、現代の日本社会を大きく動かしている3つの代表的な潮流の組み合わせとして正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "グローバル化・情報化・少子高齢化",
+                "工業化・都市化・地方分権化",
+                "自由化・民営化・高度経済成長",
+                "核家族化・サービス化・脱炭素化"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "工業化や都市化は高度経済成長期にも大きく進んだ変化であり、現代社会の3つの代表的な潮流をまとめた組み合わせとは異なります。",
+                "自由化や民営化は経済政策に関する動きであり、多言語表示やバリアフリー化といったまち全体の変化を包括する3つの潮流ではありません。",
+                "核家族化や脱炭素化は現代の重要な変化の一部ですが、授業で現代社会の出発点として整理する3つの大きな潮流の組み合わせではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "T市のまちの様子から探る現代社会の特色（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l002 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>現代社会の大きな変化は、私たちの暮らしを便利で豊かなものにする一方で、これまでにない新しい課題も生み出しています。</p>",
+          "advice": "<p>答え：生活が便利になる利点と、新たに生じる社会課題の両面から関連づけて捉える。（現代社会の変化にはメリットとデメリットの両面があり、互いに関係し合っているため、両面から多角的に考えることが公民学習の基本です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l002-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「便利になった」「困ったことが増えた」のどちらか一方だけで判断してよいか考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>現代社会の特色である3つの大きな変化について、公民の学習で最も重視される捉え方として適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "生活が便利になる利点と、新たに生じる社会課題の両面から関連づけて捉える。",
+                "変化によって生じた便利な面だけを取り上げ、地域経済の活性化に活用する。",
+                "新しい社会課題を防ぐために、変化そのものを止めて以前の暮らしへ戻す。",
+                "3つの変化はそれぞれ無関係に起きているため、分野ごとに切り離して考える。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "便利な面だけに注目すると、情報格差や孤立、文化の摩擦といった新たな社会課題を見落としてしまいます。",
+                "社会の変化を完全に止めて過去に戻すことは現実的ではなく、変化の中で課題をどう解決するかを考えることが求められます。",
+                "たとえば少子高齢化による人手不足を補うために外国人労働者が増えたりAIが活用されたりするなど、3つの変化は互いに深く関連しています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "T市のまちの様子から探る現代社会の特色（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l002 / 問題番号: Q3 / 種類: 資料読解"
+          },
+          "statement": "<p>次の表は、日本における現代社会の3つの変化に関する公的統計の推移をまとめたものです。</p><table><thead><tr><th>項目</th><th>2015年</th><th>最新年（2024〜2025年）</th><th>変化量</th></tr></thead><tbody><tr><td>在留外国人数（年末）</td><td>約223万人</td><td>約413万人（2025年）</td><td>＋約190万人（約1.85倍）</td></tr><tr><td>世帯のスマートフォン保有割合</td><td>72.0%</td><td>91.8%（2025年）</td><td>＋19.8ポイント</td></tr><tr><td>65歳以上人口の割合（高齢化率）</td><td>26.6%</td><td>29.3%（2024年）</td><td>＋2.7ポイント</td></tr></tbody></table><p>出典：出入国在留管理庁「在留外国人統計」、総務省「通信利用動向調査」、内閣府「令和7年版高齢社会白書」（総務省「国勢調査」「人口推計」）</p>",
+          "advice": "<p>答え：3つの指標はいずれも増加・上昇しており、とくに在留外国人数は約10年間で1.8倍以上に増えている。（表の3項目すべてが2015年から増加・上昇しており、グローバル化・情報化・少子高齢化が同時に進展していることがデータからも確認できます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l002-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：2015年と最新年の数値や変化量を項目ごとに比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れることとして、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "3つの指標はいずれも増加・上昇しており、とくに在留外国人数は約10年間で1.8倍以上に増えている。",
+                "世帯のスマートフォン保有割合は2015年時点ですでに9割を超えており、その後の変化は小さい。",
+                "65歳以上人口の割合は2015年から2024年にかけて減少傾向にあり、高齢化は落ち着いている。",
+                "在留外国人数の増加率は、世帯のスマートフォン保有割合の上昇ポイントよりも小さい。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "2015年時点の世帯のスマートフォン保有割合は72.0%であり、9割を超えているのは2025年時点です。",
+                "65歳以上人口の割合は26.6%から29.3%へ2.7ポイント上昇しており、減少はしていません。",
+                "在留外国人数は約1.85倍（約85%増）となっており、大きく増加していることが表から読み取れます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

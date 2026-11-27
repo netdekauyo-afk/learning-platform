@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l006 少子高齢化の進行と人口ピラミッド・社会の課題",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第6.0時限「少子高齢化の進行と人口ピラミッド・社会の課題」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "少子高齢化の進行と人口ピラミッド・社会の課題（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l006 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>人口ピラミッドは、男女別・年齢別の人口構成を表したグラフで、国の少子化や高齢化の進み具合を読み取ることができます。</p>",
+          "advice": "<p>答え：「富士山型」から「つぼ型」へ変化し、21%超は「超高齢社会」と呼ばれる。（日本は7%超の高齢化社会、14%超の高齢社会を経て、現在は約29%に達する超高齢社会となっています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l006-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：高齢化率7%超・14%超・21%超の3段階の名称と、若い世代が少なく高齢者が多いグラフの形を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>日本の人口ピラミッドの形の変化と、総人口に占める65歳以上人口の割合（高齢化率）が21%を超えた社会の呼び方の組み合わせとして正しいものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "「富士山型」から「つぼ型」へ変化し、21%超は「超高齢社会」と呼ばれる。",
+                "「つぼ型」から「富士山型」へ変化し、21%超は「高齢社会」と呼ばれる。",
+                "「釣鐘型」から「星型」へ変化し、21%超は「高齢化社会」と呼ばれる。",
+                "「富士山型」から「ピラミッド型」へ変化し、21%超は「超高齢社会」と呼ばれる。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "かつての日本が子どもが多く高齢者が少ない「富士山型」、現在が少子高齢化の進んだ「つぼ型」であり、14%超が高齢社会です。",
+                "高齢化社会は7%超を指し、21%超の呼び方とは異なります。",
+                "「富士山型」と「ピラミッド型」は同じような形を指しており、現在の日本の少子高齢化を表す形は「つぼ型」です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "少子高齢化の進行と人口ピラミッド・社会の課題（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l006 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>少子高齢化と同時に、一人暮らしの単身世帯が増えるなど家族の形も多様化しています。</p>",
+          "advice": "<p>答え：現役世代の負担増や労働力不足、高齢者の孤立に対応するため、子育て支援や多様な人が働きやすい環境整備、地域の支え合いが求められている。（人口構造や家族の変化に合わせて、社会保障と働き方・地域の仕組みを見直す必要があります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l006-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：社会保障費や労働力の問題に加えて、単身世帯の増加による地域のつながりへの影響も考えてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>少子高齢化と家族の多様化が進む日本社会で生じている課題と、その対策の方向性として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "現役世代の負担増や労働力不足、高齢者の孤立に対応するため、子育て支援や多様な人が働きやすい環境整備、地域の支え合いが求められている。",
+                "単身世帯が増えると家族間の問題が減るため、地域社会での見守りや福祉サービスの整備は縮小していくべきである。",
+                "生産年齢人口が減少し社会保障費が増えるため、年金や医療・介護の公的制度をすべて廃止して個人の貯蓄だけで対応すべきである。",
+                "労働力不足を解消するために、高齢者や女性は家庭に専念し、AIやロボットの導入は制限することが望ましい。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "単身世帯の増加は高齢者の孤立や介護の担い手不足を招きやすく、むしろ地域ぐるみの支え合いが重要になっています。",
+                "公的制度をすべて廃止すると病気や老後の生活が支えられなくなるため、制度を持続可能にする工夫が求められます。",
+                "高齢者・女性・外国人が働きやすい環境づくりやAI・ロボットの活用が、労働力不足への対策として進められています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "少子高齢化の進行と人口ピラミッド・社会の課題（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l006 / 問題番号: Q3 / 種類: 資料読解"
+          },
+          "statement": "<p>次の表は、日本の年齢区分別人口と、65歳以上の高齢者1人に対する現役世代（15〜64歳）の人数（推移・将来推計）をまとめたものです。</p><table><thead><tr><th>年齢区分（令和6年10月1日現在）</th><th>人口</th><th>総人口に占める割合</th></tr></thead><tbody><tr><td>15歳未満人口</td><td>1,383万人</td><td>11.2%</td></tr><tr><td>15〜64歳人口（生産年齢人口）</td><td>7,373万人</td><td>59.5%</td></tr><tr><td>65歳以上人口（うち65〜74歳／75歳以上）</td><td>3,624万人（1,547万人／2,078万人）</td><td>29.3%（12.5%／16.8%）</td></tr><tr><td>総人口</td><td>1億2,380万人</td><td>100.0%</td></tr></tbody></table><table><thead><tr><th>年次</th><th>昭和25（1950）年</th><th>令和6（2024）年</th><th>令和52（2070）年（推計）</th></tr></thead><tbody><tr><td>65歳以上の者1人に対する15〜64歳の人数</td><td>12.1人</td><td>2.0人</td><td>1.3人</td></tr></tbody></table><p>出典：内閣府「令和7年版高齢社会白書」（原資料：総務省「人口推計」、国立社会保障・人口問題研究所「日本の将来推計人口」）</p>",
+          "advice": "<p>答え：令和6年時点で75歳以上人口は65〜74歳人口を上回っており、今後は高齢者1人を支える現役世代の人数が2.0人から1.3人へとさらに減る見込みである。（後期高齢者の増加と現役世代比率の低下により、社会保障制度の維持が大きな課題となっています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l006-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：65歳以上人口の内訳（65〜74歳と75歳以上）や、15〜64歳の人数との比率の変化を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れることとして、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "令和6年時点で75歳以上人口は65〜74歳人口を上回っており、今後は高齢者1人を支える現役世代の人数が2.0人から1.3人へとさらに減る見込みである。",
+                "令和6年時点で15歳未満人口の割合は65歳以上人口の割合を上回っており、将来の生産年齢人口は増加する見込みである。",
+                "65歳以上人口のうち、65〜74歳人口の方が75歳以上人口よりも約500万人多く、医療や介護の需要は減少傾向にある。",
+                "昭和25年から令和6年にかけて、高齢者1人に対する現役世代の人数は約2倍に増えている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "令和6年の15歳未満人口は11.2%、65歳以上人口は29.3%であり、65歳以上人口の方がはるかに大きくなっています。",
+                "表を見ると、75歳以上人口（2,078万人・16.8%）の方が65〜74歳人口（1,547万人・12.5%）より約531万人多くなっています。",
+                "昭和25年の12.1人から令和6年の2.0人へ大幅に減少しており、現役世代の負担が重くなっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

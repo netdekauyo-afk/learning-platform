@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l067 価格の働きと独占・寡占・公正取引委員会",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第67.0時限「価格の働きと独占・寡占・公正取引委員会」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "価格の働きと独占・寡占・公正取引委員会（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l067 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>市場経済では自由な競争によって価格が決まるのが基本ですが、特定の企業に市場の力が集中すると競争がゆがめられることがあります。</p>",
+          "advice": "<p>答え：寡占 ／ カルテル ／ 公正取引委員会（市場に1社しかない状態が「独占」、少数の大企業が大部分を占める状態が「寡占」です。競争が弱まった寡占市場では、企業間で価格や生産量を協定する「カルテル」が起きやすいため、独占禁止法に基づき公正取引委員会が監視・摘発を行っています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l067-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「1社だけ」と「少数の大企業」の言葉の違い、価格協定の名称、独立機関の名称をセットで確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>少数の大企業が市場の大部分を占める状態と、そうした市場で企業どうしが話し合って価格をつり上げる違反行為、さらにそれを監視・摘発する国の機関の組み合わせとして、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "寡占 ／ カルテル ／ 公正取引委員会",
+                "独占 ／ カルテル ／ 消費者庁",
+                "寡占 ／ クーリング・オフ ／ 公正取引委員会",
+                "独占 ／ 有限責任 ／ 国民生活センター"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "少数の大企業が市場を占めるのは「独占（1社）」ではなく「寡占」であり、監視・摘発する機関は公正取引委員会です。",
+                "クーリング・オフは消費者保護の契約解除制度であり、企業間の価格協定ではありません。",
+                "「独占」は1社支配のことであり、有限責任は株式会社の株主の責任、国民生活センターは消費生活相談の中核機関です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "価格の働きと独占・寡占・公正取引委員会（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l067 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>市場経済において価格は、単にモノの値段を示すだけでなく、社会全体の「資源配分」を導く重要な働きをもっています。</p>",
+          "advice": "<p>答え：本来は価格の上下を通じて必要な分野へ資源が振り向けられるが、独占・寡占では競争が働かず価格が高止まりするため、効率的な資源配分と消費者の利益が損なわれる。（価格の変動が「いま何が求められているか」を知らせる信号となり、市場経済の効率性を支えています。競争が失われて独占・寡占価格になると、効率と公正の両方が損なわれます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l067-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：価格が上がった分野に人手や資金が集まる仕組みと、競争がないときに価格がどうなるかを結びつけましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>価格による資源配分の働きと、独占や寡占がその働きをゆがめてしまう理由の説明として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "本来は価格の上下を通じて必要な分野へ資源が振り向けられるが、独占・寡占では競争が働かず価格が高止まりするため、効率的な資源配分と消費者の利益が損なわれる。",
+                "本来は政府がすべての商品の価格を固定して資源を配分するが、独占・寡占企業は政府の命令を無視して必ず赤字になるまで値下げを行うから。",
+                "本来は価格が下がった分野ほど労働力や資本が大量に集まるが、独占・寡占になると商品の生産量が増えすぎて資源が無駄になるから。",
+                "独占・寡占市場では常に価格が0円に近づくため、企業が新しい技術開発や設備投資に資源を振り向けられなくなるから。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "市場経済では原則として政府が価格を固定するのではなく、価格の自由な変動によって資源が配分されます。また独占・寡占では価格が高止まりしやすくなります。",
+                "価格が上がった分野ほど利益を見込んで労働力や資本が集まり、価格が下がった分野からは資源が他の分野へ移ります。",
+                "独占・寡占では競争相手が少ないため、価格が下がりにくく高い水準（独占・寡占価格）になりやすいのが問題です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "価格の働きと独占・寡占・公正取引委員会（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l067 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 公正取引委員会「令和7年度における独占禁止法違反事件の処理状況について」 / 出典URL: https://www.jftc.go.jp/houdou/pressrelease/2026/jun/260608_kanki.html"
+          },
+          "statement": "<p>次の表は、公正取引委員会が公表した「令和7年度における独占禁止法違反事件の処理状況」から、排除措置命令（違反行為を差し止める命令）の内訳と、事業者が自ら違反を報告すると課徴金が減免される「課徴金減免制度」の申請件数の推移をまとめたものです。</p><table><thead><tr><th>令和7年度 排除措置命令（計11件）の内訳</th><th>件数</th><th>課徴金減免申請件数の推移</th><th>件数</th></tr></thead><tbody><tr><td>価格カルテル</td><td>7件</td><td>令和3年度</td><td>52件</td></tr><tr><td>入札談合</td><td>2件</td><td>令和4年度</td><td>22件</td></tr><tr><td>不公正な取引方法</td><td>2件</td><td>令和5年度</td><td>156件</td></tr><tr><td>（参考）課徴金納付命令の総額</td><td>95億5,373万円（延べ36名）</td><td>令和6年度</td><td>109件</td></tr><tr><td>―</td><td>―</td><td>令和7年度</td><td>182件</td></tr></tbody></table><p>出典：公正取引委員会「(令和8年6月8日)令和7年度における独占禁止法違反事件の処理状況について」（2026年6月公表）</p>",
+          "advice": "<p>答え：令和7年度の排除措置命令では価格カルテルが半数以上を占めており、また自ら違反を報告する課徴金減免申請は令和5年度以降100件を超える高い水準で推移している。（表より、11件中7件が価格カルテルであり、企業間の価格協定に対する監視が続いています。また、違反の自主報告で課徴金を減免する制度が事件の早期発見やカルテルの抑止に活用されていることが読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l067-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：排除措置命令11件の中で最も多い行為の種類と、令和5年度以降の課徴金減免申請件数の変化を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる公正取引委員会の活動と違反事件の傾向として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "令和7年度の排除措置命令では価格カルテルが半数以上を占めており、また自ら違反を報告する課徴金減免申請は令和5年度以降100件を超える高い水準で推移している。",
+                "令和7年度の排除措置命令は入札談合が最も多く、価格カルテルは1件も摘発されていない。",
+                "課徴金減免申請件数は令和3年度から令和7年度にかけて毎年一貫して減少し続けており、令和7年度は過去5年間で最少となった。",
+                "公正取引委員会は違反企業に注意を行うだけで、金銭的なペナルティ（課徴金）を命じる権限はもっていない。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "令和7年度の排除措置命令11件のうち、価格カルテルが7件で最も多く、入札談合は2件です。",
+                "令和4年度の22件から令和5年度に156件へ急増し、令和7年度は182件と5年間で最多となっています。",
+                "表にもある通り、令和7年度には延べ36名に対して総額95億5,373万円の課徴金納付命令を行っています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

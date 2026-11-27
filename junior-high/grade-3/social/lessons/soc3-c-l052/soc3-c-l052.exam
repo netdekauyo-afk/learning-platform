@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l052 住民参加の拡大（直接請求権・住民投票・NPO）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第52.0時限「住民参加の拡大（直接請求権・住民投票・NPO）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "住民参加の拡大（直接請求権・住民投票・NPO）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l052 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>地方自治では、選挙で代表を選ぶだけでなく、住民が一定数以上の署名を集めて地方政治に直接働きかける<strong>直接請求権</strong>が認められています。</p>",
+          "advice": "<p>答え：条例の制定・改廃：有権者の50分の1以上・首長 ／ 首長の解職：有権者の3分の1以上・選挙管理委員会（条例の制定・改廃や事務の監査は50分の1以上、議会の解散や議員・首長の解職は3分の1以上の署名が必要です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l052-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：ルールを作る請求と、代表者を辞めさせる重い請求では、必要な署名の割合が異なります。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>直接請求権における「条例の制定・改廃の請求」と「首長の解職（リコール）の請求」について、必要な署名数と請求先の正しい組み合わせを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "条例の制定・改廃：有権者の50分の1以上・首長 ／ 首長の解職：有権者の3分の1以上・選挙管理委員会",
+                "条例の制定・改廃：有権者の3分の1以上・議会 ／ 首長の解職：有権者の50分の1以上・首長",
+                "条例の制定・改廃：有権者の50分の1以上・選挙管理委員会 ／ 首長の解職：有権者の3分の1以上・監査委員",
+                "条例の制定・改廃：有権者の3分の1以上・首長 ／ 首長の解職：有権者の50分の1以上・選挙管理委員会"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "署名数の割合（50分の1と3分の1）と請求先が入れ替わっています。",
+                "条例の制定・改廃は首長に請求し、監査委員は事務の監査請求の請求先です。",
+                "50分の1以上と3分の1以上の署名数の組み合わせが逆になっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "住民参加の拡大（直接請求権・住民投票・NPO）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l052 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>住民投票や<strong>NPO（非営利組織）</strong>の活動、行政の不正や問題点を住民の立場から監視するオンブズマン制度など、住民参加の仕組みが広がっています。</p>",
+          "advice": "<p>答え：地域の重要な課題に住民の意思を直接反映し、行政と協力して多様な課題を解決できるから。（住民投票で特定の争点への民意を直接確かめたり、NPOが福祉・環境・子育てなどの分野で機動的に活動したりすることで、よりきめ細かな地域づくりが可能になります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l052-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：選挙のときだけでは伝えきれない住民の意見や、行政だけでは手が届きにくい課題を考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>地方議会などの間接民主制に加えて、住民投票やNPOの活動が重視される理由として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地域の重要な課題に住民の意思を直接反映し、行政と協力して多様な課題を解決できるから。",
+                "選挙を行う費用を節約し、地方議会をなくして住民投票だけで政治を決めるため。",
+                "NPOは営利を目的として大きな利益を上げ、住民の税金をすべて肩代わりするため。",
+                "住民投票の結果には法律を上回る効力があり、憲法も簡単に変えられるため。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "住民投票やNPOは地方議会をなくすものではなく、間接民主制を補う仕組みです。",
+                "NPOは「非営利組織」であり、利益を分配することを目的とせず社会課題の解決に取り組みます。",
+                "住民投票は地域の課題について住民の意思を問うものであり、憲法や法律を上回る効力はありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "住民参加の拡大（直接請求権・住民投票・NPO）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l052 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 内閣府NPOホームページ「認証数(活動分野別)」 / 出典URL: https://www.npo-homepage.go.jp/about/toukei-info/ninshou-bunyabetsu"
+          },
+          "statement": "<p>次の表は、内閣府「NPOホームページ」に掲載されている特定非営利活動法人（NPO法人）の活動分野別認証数（2026年9月30日現在、全48,737法人の定款から集計・複数回答）の主な抜粋です。</p><table><thead><tr><th>活動の種類（主な分野）</th><th>認証法人数</th></tr></thead><tbody><tr><td>保健、医療又は福祉の増進を図る活動</td><td>28,335</td></tr><tr><td>社会教育の推進を図る活動</td><td>24,961</td></tr><tr><td>子どもの健全育成を図る活動</td><td>24,779</td></tr><tr><td>まちづくりの推進を図る活動</td><td>22,673</td></tr><tr><td>学術、文化、芸術又はスポーツの振興を図る活動</td><td>18,551</td></tr><tr><td>環境の保全を図る活動</td><td>12,976</td></tr><tr><td>職業能力の開発又は雇用機会の拡充を支援する活動</td><td>12,742</td></tr><tr><td>地域安全活動</td><td>6,481</td></tr><tr><td>災害救援活動</td><td>4,542</td></tr><tr><td>消費者の保護を図る活動</td><td>2,682</td></tr></tbody></table><p>※1つの法人が複数の活動分野を定款に記載している場合があるため、各分野の合計は48,737法人にはなりません。<br>出典：内閣府NPOホームページ「認証数(活動分野別)」（2026年9月30日現在）</p>",
+          "advice": "<p>答え：「保健、医療又は福祉」の分野が最も多く、全体の過半数の法人が定款に掲げている。（48,737法人のうち28,335法人が「保健、医療又は福祉」を掲げており、高齢化や子育て支援など暮らしに密着した福祉・教育・まちづくり分野での活動が特に多いことがわかります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l052-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：全48,737法人のうち、過半数を超えている分野や上位の分野を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れる日本のNPO法人の活動分野の傾向として、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "「保健、医療又は福祉」の分野が最も多く、全体の過半数の法人が定款に掲げている。",
+                "「環境の保全」を行う法人は、全NPO法人の半数以上を占めている。",
+                "「災害救援活動」を行う法人数は、「まちづくりの推進」を行う法人数より多い。",
+                "各法人は定款に1つの活動分野しか記載できないため、すべての分野の合計は48,737になる。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "「環境の保全」の法人数は12,976であり、全48,737法人の約4分の1にとどまります。",
+                "「災害救援活動」は4,542法人で、「まちづくりの推進」の22,673法人より少なくなっています。",
+                "注記にある通り、1つの法人が複数の活動分野を記載できるため、合計は全法人数を上回ります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

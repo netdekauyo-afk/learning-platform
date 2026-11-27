@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l095 課題解決に向けた構想と他者との意見交換・議論",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第95.0時限「課題解決に向けた構想と他者との意見交換・議論」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "課題解決に向けた構想と他者との意見交換・議論（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l095 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>調査結果をもとに課題解決の構想（提案）を練るときには、その提案が社会にとって本当に望ましいものかをいくつかの観点から点検する必要があります。</p>",
+          "advice": "<p>答え：人権の尊重（憲法にかなっているか）、効率と公正のバランス、持続可能性（この3つの観点で点検し、「誰の利益になり、誰にどんな負担がかかるか」を具体化することで現実味のある提案になります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l095-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：個人の権利、手間や負担の配分、そして将来にわたって続けられるかという3つの視点を確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>社会課題の解決策を構想するときに点検すべき3つの観点の組み合わせとして、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "人権の尊重（憲法にかなっているか）、効率と公正のバランス、持続可能性",
+                "多数決での賛成数、提案の新しさ、SNSでの話題性",
+                "政府予算の削減額のみ、伝統の維持、特定の企業の利益",
+                "個人の好みの優先、手続きの省略、短期的な成果のみ"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "話題性や多数決の賛成数だけでなく、少数派の人権や持続可能性を点検することが不可欠です。",
+                "予算削減や特定企業の利益だけを見ると、弱者への配慮（公正）や全体の利益が損なわれるおそれがあります。",
+                "手続きを省略したり短期的な成果だけを求めたりすると、合意形成や持続可能性が損なわれます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "課題解決に向けた構想と他者との意見交換・議論（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l095 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>クラスやグループで課題解決の提案について議論すると、自分とは異なる立場の人から疑問や反論が出されることがあります。</p>",
+          "advice": "<p>答え：自分では気づかなかった問題点や別の立場への影響を知り、より公正で実現可能性の高い提案へと改善できること。（多様な視点からの意見交換が、納得度の高い合意とより良い提言につながります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l095-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：反対意見を「攻撃」と受け止めるのではなく、自分の案を磨き上げるための材料として捉えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>議論の中で、異なる立場の人から批判的な質問や反論を受けることの価値として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "自分では気づかなかった問題点や別の立場への影響を知り、より公正で実現可能性の高い提案へと改善できること。",
+                "相手の意見の弱点を見つけて論破することで、自分の最初の案を一字も変えずに通すことができること。",
+                "意見が対立した時点で議論を打ち切り、最初から多数決だけで決めたほうがよいと判断できること。",
+                "他者の意見を聞くことで、自分の意見や提案をすべて取り下げて他の人の案に完全に乗り換えること。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "議論の目的は相手を論破することではなく、対話を通じてより良い合意案を生み出すことです。",
+                "対立が生じたときこそ、互いの根拠や立場を整理し、創造的な解決策を探る機会になります。",
+                "批判的な質問を受けたからといって自分の案をすべて捨てるのではなく、指摘を生かして修正・改善することが大切です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "課題解決に向けた構想と他者との意見交換・議論（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l095 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 内閣府「社会意識に関する世論調査（令和7年10月調査）」 / 出典URL: https://survey.gov-online.go.jp/living/202512/r07/r07-shakai/"
+          },
+          "statement": "<p>次の表は、内閣府が実施した「社会意識に関する世論調査（令和7年10月調査）」における「社会への貢献意識」と「役立ちたいと思っている内容（複数回答、上位項目）」の結果です。</p><table><thead><tr><th>質問項目</th><th>回答内容</th><th>回答割合</th></tr></thead><tbody><tr><td rowspan=\"2\">日頃、社会の一員として、何か社会のために役立ちたいと思っているか</td><td>思っている</td><td>61.6%</td></tr><tr><td>あまり考えていない</td><td>36.8%</td></tr><tr><td rowspan=\"4\">役立ちたいと思っている内容<br>（「思っている」と答えた1,067人・複数回答）</td><td>自分の職業を通して</td><td>44.4%</td></tr><tr><td>自然・環境保護に関する活動（環境美化、リサイクルなど）</td><td>34.5%</td></tr><tr><td>社会福祉に関する活動（高齢者・障害者・こどもへの支援など）</td><td>31.6%</td></tr><tr><td>自主防災活動や災害援助活動</td><td>22.9%</td></tr></tbody></table><p>出典：内閣府「社会意識に関する世論調査（令和7年10月調査）」をもとに作成</p>",
+          "advice": "<p>答え：約6割が社会のために役立ちたいと考えており、特別な活動だけでなく自分の職業や環境保護、社会福祉など多様な形で貢献しようとしている。（持続可能な社会の形成者として、仕事や身近な活動など自分に合った形で社会に関わる構想を練ることが大切です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l095-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「役立ちたいと思っている」人の全体の割合と、具体的な方法として挙げられた上位項目の特徴に注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この調査結果から読み取れる国民の社会貢献意識の特徴として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "約6割が社会のために役立ちたいと考えており、特別な活動だけでなく自分の職業や環境保護、社会福祉など多様な形で貢献しようとしている。",
+                "社会のために役立ちたいと考えている人は3割台にとどまっており、過半数の人はあまり考えていない。",
+                "役立ちたいと思っている人のうち、最も多くの人が挙げた方法は「自主防災活動や災害援助活動」である。",
+                "「自分の職業を通して」役立ちたいと考える人はごく少数であり、ボランティア活動のみが社会貢献と捉えられている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "「思っている」が61.6%、「あまり考えていない」が36.8%であり、過半数（約6割）が役立ちたいと考えています。",
+                "最も高いのは「自分の職業を通して」（44.4%）であり、「自主防災活動や災害援助活動」は22.9%です。",
+                "「自分の職業を通して」が44.4%と最も高く、仕事を通じた貢献も重視されていることがわかります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

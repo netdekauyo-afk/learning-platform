@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l066 市場経済の仕組みと需要・供給による価格の決定",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第66.0時限「市場経済の仕組みと需要・供給による価格の決定」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "市場経済の仕組みと需要・供給による価格の決定（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l066 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>市場経済では、商品を買いたい量（需要量）と売りたい量（供給量）の関係によって価格が決まります。</p>",
+          "advice": "<p>答え：一般に価格が上がると需要量は減り供給量は増え、需要量と供給量が一致したところで決まる価格を均衡価格という。（市場では、需要＞供給なら価格が上昇し、供給＞需要なら価格が下落することで、自動的に均衡価格へと調整される仕組みが働いています。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l066-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：商品の値段が上がると買う人と売る人はそれぞれどう動くか、また両者が一致したときの価格を何というかを確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>市場における需要量・供給量と価格の関係についての説明として、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "一般に価格が上がると需要量は減り供給量は増え、需要量と供給量が一致したところで決まる価格を均衡価格という。",
+                "一般に価格が上がると需要量は増え供給量は減り、需要量と供給量が一致したところで決まる価格を独占価格という。",
+                "一般に価格が下がると需要量も供給量もともに増え、売り手が自由に決めた価格を均衡価格という。",
+                "グラフで表すと需要曲線は右上がり、供給曲線は右下がりになり、両者が交わる点が均衡価格となる。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "価格が上がると買いたい人（需要量）は減り、売りたい人（供給量）は増えます。また独占価格は競争がない市場で設定される高い価格です。",
+                "価格が下がると需要量は増えますが、利益が減るため供給量は減ります。また均衡価格は需給の一致によって決まります。",
+                "グラフでは価格が下がるほど需要量が増えるため需要曲線は「右下がり」、価格が上がるほど供給量が増えるため供給曲線は「右上がり」になります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "市場経済の仕組みと需要・供給による価格の決定（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l066 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>人々の欲求に対して資源や商品の量には限りがあることを「希少性」といい、市場での価格はものの希少さを映し出す目安にもなっています。</p>",
+          "advice": "<p>答え：供給量が減って希少性が高まり、元の価格のままでは需要量が供給量を上回る品不足が生じるため、均衡価格は上昇する。（限られた資源や商品に対して欲しい人が多いほど希少性が高くなり、価格が上がることで「本当に必要な人」に行き渡りやすくなるとともに、生産者には増産する動機が生まれます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l066-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：供給が減ることで同じ価格のもとでは「買いたい量」と「売りたい量」のどちらが多くなるか、そして希少性がどう変化するか考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>ある地域で不作により野菜の収穫量が大幅に減った場合、市場で起きる変化と価格の動きの説明として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "供給量が減って希少性が高まり、元の価格のままでは需要量が供給量を上回る品不足が生じるため、均衡価格は上昇する。",
+                "供給量が減ると買いたい人も同時に同じだけ減るため、品不足は起きず、価格は元の水準のまままったく動かない。",
+                "供給量が減ると生産者は在庫を早く売り切ろうとして値下げ競争を始めるため、均衡価格は大きく下落する。",
+                "供給量が減った分だけ消費者の需要曲線が右に大きく移動するため、需要量が増えて価格はさらに下がり続ける。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "必要な食材などの需要は急には減らないため、供給が減れば同じ価格では品不足（超過需要）が生じ、価格が上がります。",
+                "品不足の状態では高くても買いたい人が現れるため、価格は下落ではなく上昇します。",
+                "不作で移動するのは供給曲線（左へ移動）であり、需要が増えて価格が下がるわけではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "市場経済の仕組みと需要・供給による価格の決定（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l066 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>次の表は、ある商品Xについて、価格ごとの1日あたりの需要量と供給量の関係を示したものです。</p><table><thead><tr><th>1個あたりの価格</th><th>需要量（買いたい量）</th><th>供給量（売りたい量）</th></tr></thead><tbody><tr><td>200円</td><td>500個</td><td>100個</td></tr><tr><td>300円</td><td>400個</td><td>200個</td></tr><tr><td>400円</td><td>300個</td><td>300個</td></tr><tr><td>500円</td><td>200個</td><td>400個</td></tr><tr><td>600円</td><td>100個</td><td>500個</td></tr></tbody></table><p>出典：学習用に作成した資料</p>",
+          "advice": "<p>答え：需要量が供給量を200個上回って品不足となるため、価格は均衡価格である400円に向かって上昇する。（価格が300円のとき、買いたい量400個に対して売りたい量は200個しかなく、200個の超過需要＝品不足が発生します。そのため買いたい人どうしの競争によって価格が上がり、両者が300個で一致する均衡価格400円で落ち着きます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l066-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：300円の行の「需要量」と「供給量」を比べて何個余るか不足するかを計算し、需要量と供給量が等しくなる価格を探しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表をもとに、商品Xの価格が現在「300円」であるときの市場の状態と、その後の価格の動きとして、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "需要量が供給量を200個上回って品不足となるため、価格は均衡価格である400円に向かって上昇する。",
+                "供給量が需要量を200個上回って売れ残りが生じるため、価格は均衡価格である200円に向かって下落する。",
+                "需要量と供給量がともに400個で一致しているため、300円が均衡価格となり価格は変化しない。",
+                "需要量が供給量を400個上回って品不足となるため、価格は600円まで上昇して均衡する。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "300円のときは需要量400個に対して供給量200個なので、売れ残りではなく200個の不足となります。",
+                "300円のときは需要量400個・供給量200個で一致していません。一致するのは400円（各300個）のときです。",
+                "不足分は400−200＝200個であり、需給が一致する均衡価格は600円ではなく400円です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

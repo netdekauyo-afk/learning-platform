@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l045 裁判の種類（民事裁判・刑事裁判）と被疑者・被告人の人権",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第45.0時限「裁判の種類（民事裁判・刑事裁判）と被疑者・被告人の人権」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "裁判の種類（民事裁判・刑事裁判）と被疑者・被告人の人権（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l045 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>裁判には大きく分けて民事裁判と刑事裁判があり、当事者の呼び方もそれぞれ異なります。</p>",
+          "advice": "<p>答え：民事裁判：被告 ／ 刑事裁判：被告人（民事裁判では訴えた側を原告・訴えられた側を被告と呼び、刑事裁判では起訴前を被疑者・起訴後を被告人と呼びます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l045-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「人」という字がつくかどうか、また「被疑者」と「被告人」の区別に注意しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>民事裁判で「訴えられた側」と、刑事裁判で検察官に「起訴された側」を、それぞれ何と呼びますか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "民事裁判：被告 ／ 刑事裁判：被告人",
+                "民事裁判：原告 ／ 刑事裁判：被疑者",
+                "民事裁判：被告人 ／ 刑事裁判：被告",
+                "民事裁判：被告 ／ 刑事裁判：被疑者"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "原告は民事裁判で「訴えた側」、被疑者は刑事事件で起訴される前の容疑者のことです。",
+                "民事裁判が「被告」、刑事裁判が「被告人」であり、呼び方が逆になっています。",
+                "被疑者は起訴される前の呼び方であり、検察官によって起訴された後は「被告人」と呼ばれます。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "裁判の種類（民事裁判・刑事裁判）と被疑者・被告人の人権（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l045 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>無実の人が誤って有罪とされる「冤罪（えんざい）」を防ぐため、日本国憲法では被疑者や被告人の人権が手厚く保障されています。</p>",
+          "advice": "<p>答え：強制や長時間の取り調べによる虚偽の自白を防ぎ、国家権力による冤罪から個人の人権を守るため。（国家権力による捜査や裁判では個人の立場が弱くなりやすいため、推定無罪の原則や黙秘権、自白法則などによって冤罪を防いでいます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l045-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：警察や検察官の取り調べにおける無理な自白の強要や、国家権力による人権侵害をどう防ぐかを考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>刑事裁判において、「有罪が確定するまでは無罪とみなす（推定無罪の原則）」や「本人の自白だけを唯一の証拠として有罪にできない」と定められている最大の理由は何ですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "強制や長時間の取り調べによる虚偽の自白を防ぎ、国家権力による冤罪から個人の人権を守るため。",
+                "犯罪の疑いをかけられた人が、裁判を開かずに話し合い（示談）だけで刑罰を決められるようにするため。",
+                "すべての刑事裁判を短時間で終わらせ、裁判官や検察官の負担を減らすことを最優先にするため。",
+                "被告人が法廷で黙秘権を使った場合には、ただちに有罪とみなして手続きを簡略化するため。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "刑罰の有無や重さを決めるのは公開の刑事裁判であり、当事者の話し合いだけで刑罰を決めることはできません。",
+                "人権保障のルールは手続きを急ぐためではなく、慎重で公正な判断によって誤判や冤罪を防ぐためのものです。",
+                "黙秘権は憲法で保障された権利であり、黙秘したことを理由に有罪とみなすことは許されません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "裁判の種類（民事裁判・刑事裁判）と被疑者・被告人の人権（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l045 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 政府広報オンライン「裁判員制度ー裁判所から『名簿記載通知』が届いたら。」 / 出典URL: https://www.gov-online.go.jp/article/200810/entry-9113.html"
+          },
+          "statement": "<p>次の表は、政府広報オンラインに掲載された、市民が刑事裁判に参加する「裁判員制度」に関するデータです。</p><table><thead><tr><th>項目</th><th>数値・内容</th></tr></thead><tbody><tr><td>令和8（2026）年分の裁判員候補者名簿登録者数</td><td>全国で19万5,900人（有権者の約500人に1人）</td></tr><tr><td>参加前の意識（令和7年度経験者アンケート）</td><td>「（積極的に）やってみたい」と回答：38.4％</td></tr><tr><td>参加後の感想（令和7年度経験者アンケート）</td><td>「非常によい経験と感じた」または「よい経験と感じた」：97.4％</td></tr></tbody></table><p>出典：政府広報オンライン「裁判員制度ー裁判所から『名簿記載通知』が届いたら。」</p>",
+          "advice": "<p>答え：参加前はやってみたいと答えた人が4割未満だったが、実際に参加した人の97％以上がよい経験と感じており、市民の司法参加への理解が深まっている。（重大な刑事裁判に国民の視点を取り入れる裁判員制度は、参加前の不安や消極さがあっても、経験者の多くが意義を実感していることがデータから読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l045-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：参加前（38.4％）と参加後（97.4％）の意識の大きな変化に注目して読み取りましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる裁判員制度の現状と意義として、適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "参加前はやってみたいと答えた人が4割未満だったが、実際に参加した人の97％以上がよい経験と感じており、市民の司法参加への理解が深まっている。",
+                "裁判員候補者名簿には全国の有権者全員が毎年登録されており、誰でも必ず年に1回は裁判員として法廷に立つ。",
+                "参加前から約97％の人が積極的にやってみたいと希望しているため、抽選ではなく希望者だけで裁判員を選んでいる。",
+                "実際に裁判員を経験した人のうち半数以上が、参加後に否定的な感想をもっており、制度の見直しが求められている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "名簿に登録されるのは有権者の中からくじで選ばれた約500人に1人（19万5,900人）であり、有権者全員ではありません。",
+                "参加前に「（積極的に）やってみたい」と答えた人は38.4％であり、97.4％は参加後のよい経験だったという感想の割合です。",
+                "参加後に「非常によい経験」「よい経験」と回答した割合が97.4％に達しており、大半が肯定的に評価しています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

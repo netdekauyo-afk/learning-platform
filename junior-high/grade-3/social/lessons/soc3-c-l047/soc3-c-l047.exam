@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l047 模擬裁判チャレンジ（法に基づく論理的判断と表現）",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第47.0時限「模擬裁判チャレンジ（法に基づく論理的判断と表現）」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "模擬裁判チャレンジ（法に基づく論理的判断と表現）（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l047 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>刑事裁判では、有罪と確定するまでは被告人は罪を犯していないものとして扱われる<strong>推定無罪</strong>の考え方がとられています。</p>",
+          "advice": "<p>答え：証拠が不十分であれば、無罪の判決を下さなければならない。（刑事裁判では「疑わしきは被告人の利益に」の原則に基づき、検察官が合理的な疑いを超えた証明を行えない場合は無罪となります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l047-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「疑わしきは被告人の利益に」という原則に基づいた判断を考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>刑事裁判において、検察官が被告人の有罪を十分に証明できなかった場合、裁判所はどのような判決を下さなければならないか、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "証拠が不十分であれば、無罪の判決を下さなければならない。",
+                "犯人である可能性が少しでもある場合は、軽い有罪判決を下す。",
+                "証拠がそろうまで判決を保留し、別の裁判官に判断をゆだねる。",
+                "被告人が自分の無実を完全に証明できない限り、有罪判決を下す。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "可能性が少しあるだけでは合理的な疑いが残るため、有罪にすることは許されません。",
+                "審理を尽くしても証明が不十分な場合は、判断を先送りせず結論を出す必要があります。",
+                "有罪を証明する責任は検察官側にあり、被告人が自ら無実を証明する義務はありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "模擬裁判チャレンジ（法に基づく論理的判断と表現）（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l047 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>模擬裁判の評議では、検察官・弁護人の主張を聞いたうえで、裁判官や裁判員役の生徒が意見を出し合い、合意に向けて話し合います。</p>",
+          "advice": "<p>答え：思い込みによる誤った判決を防ぎ、被告人の人権を保障するため。（「怪しい気がする」といった印象ではなく客観的な証拠が何を証明しているかを論理的に検討することで、えん罪を防ぎ公正な裁判を実現できます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l047-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：無実の人が誤って罰せられないようにするための「公正さ」に注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>模擬裁判や実際の裁判の評議において、印象や感情ではなく「客観的な証拠」に基づいて論理的に判断することが重視される理由として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "思い込みによる誤った判決を防ぎ、被告人の人権を保障するため。",
+                "検察官と弁護人のどちらの話が面白いかで勝敗を決めるため。",
+                "裁判官の意見を必ず優先させ、評議を短時間で終わらせるため。",
+                "被害者の感情だけを最優先にして、厳しい刑罰を科すため。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "裁判は弁論の巧みさや面白さを競う場ではなく、事実と法に基づいて公正に判断する場です。",
+                "評議では裁判官だけでなく裁判員も対等な立場で意見を述べ、十分に議論することが求められます。",
+                "被害者の気持ちに配慮することも大切ですが、それだけで有罪や刑罰を決めると適正な裁判になりません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "模擬裁判チャレンジ（法に基づく論理的判断と表現）（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l047 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 学習用に作成した資料"
+          },
+          "statement": "<p>次の表は、模擬裁判で扱う架空の「夜間の商店ガラス損壊事件」について、提出された証拠と検証結果を整理したものです（学習用に作成した資料）。</p><table><thead><tr><th>証拠の種類</th><th>検察側の主張</th><th>弁護側の反論・客観的検証結果</th></tr></thead><tbody><tr><td>防犯カメラ映像</td><td>事件時刻に店の前を通る人物が被告人に似ている。</td><td>映像が暗く不鮮明で、顔や服装の特定はできない。</td></tr><tr><td>目撃証言</td><td>「被告人と同じ色の服の人が走っていた」との証言がある。</td><td>約40m離れた暗い場所からの目撃で、人違いの可能性がある。</td></tr><tr><td>店のドアの指紋</td><td>事件当日に割れたドア付近から被告人の指紋が出た。</td><td>被告人は事件前日にもこの店を客として利用していた。</td></tr><tr><td>被告人の供述</td><td>「事件時刻は自宅で寝ていた」と無罪を主張している。</td><td>一人暮らしのため、在宅を証明する第三者の証言はない。</td></tr></tbody></table><p>出典：学習用に作成した資料</p>",
+          "advice": "<p>答え：どの証拠も犯行と直接結びつく決定的な証明とはいえず、無罪と判断する。（映像や目撃証言は人物を特定できず、指紋も前日の来店で説明がつくため、合理的な疑いが残り無罪と判断します。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l047-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：それぞれの証拠が「被告人が犯人であること」を確実に証明しているかを1つずつ確認しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料をもとに「疑わしきは被告人の利益に」の原則に従って判断するとき、最も適切な結論を1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "どの証拠も犯行と直接結びつく決定的な証明とはいえず、無罪と判断する。",
+                "被告人が自宅で寝ていた証拠がないため、有罪と判断する。",
+                "事件当日に被告人の指紋が出ているため、他の証拠がなくても有罪と判断する。",
+                "映像と目撃証言の2つがそろっているため、有罪と判断する。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "被告人がアリバイを証明できなくても、有罪の証明責任は検察側にあるため有罪の根拠にはなりません。",
+                "前日にも来店していた事実があるため、ドアの指紋だけでは事件当日の犯行を証明したことになりません。",
+                "映像は不鮮明で人物特定ができず、目撃証言も遠方の暗がりからのもので確実性を欠いています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

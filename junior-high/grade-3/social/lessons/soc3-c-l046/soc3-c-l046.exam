@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l046 司法制度改革と裁判員制度・取り調べの可視化",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第46.0時限「司法制度改革と裁判員制度・取り調べの可視化」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "司法制度改革と裁判員制度・取り調べの可視化（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l046 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>司法を国民にとってより身近でわかりやすいものにするため、2009年から<strong>裁判員制度</strong>が始まりました。選挙権をもつ国民の中からくじで選ばれた裁判員は、プロの裁判官と協力して判決などを決めます。</p>",
+          "advice": "<p>答え：地方裁判所の第一審の重大な刑事裁判で、裁判官3名と裁判員6名が参加する。（殺人や強盗致傷などの重大な刑事事件について、地方裁判所の第一審に原則として裁判官3名と裁判員6名が参加し、有罪・無罪と刑の重さを一緒に判断します。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l046-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：重大な事件の最初の審理が対象で、市民の参加人数はプロの倍になります。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>原則として裁判員制度が適用される裁判の種類と、審理に参加する裁判官・裁判員の人数として正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地方裁判所の第一審の重大な刑事裁判で、裁判官3名と裁判員6名が参加する。",
+                "地方裁判所の第一審の民事裁判で、裁判官3名と裁判員6名が参加する。",
+                "地方裁判所の第一審の重大な刑事裁判で、裁判官6名と裁判員3名が参加する。",
+                "高等裁判所の控訴審の重大な刑事裁判で、裁判官3名と裁判員6名が参加する。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "賠償金や契約などをめぐる民事裁判は対象外であり、対象となるのは人の命に関わるなどの重大な刑事事件です。",
+                "参加する人数は、国民の感覚をより広く反映させるため、市民側の人数がプロの人数を上回る構成になっています。",
+                "審理が行われるのは地方裁判所の最初の審理に限られており、やり直しの裁判である控訴審には適用されません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "司法制度改革と裁判員制度・取り調べの可視化（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l046 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>司法制度改革では、裁判員制度の導入に加えて、法テラス（日本司法支援センター）の設立や、裁判員裁判対象事件などにおける<strong>取り調べの可視化</strong>（録音・録画の義務化）も進められました。</p>",
+          "advice": "<p>答え：強引な取り調べによる虚偽の自白を防ぎ、えん罪を防止するため。（取り調べの全過程を録音・録画することで、自白が強制されたものでないかを法廷で客観的に検証できるようになり、適正手続の保障とえん罪防止につながります。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l046-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：密室で行われていた取り調べの様子を後から客観的に確認できるようにする理由を考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>取り調べの可視化が義務づけられた主な目的として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "強引な取り調べによる虚偽の自白を防ぎ、えん罪を防止するため。",
+                "裁判員が法廷に出席しなくても、映像だけで判決を出せるようにするため。",
+                "警察や検察が容疑者を逮捕する際、裁判所の令状を不要にするため。",
+                "すべての刑事裁判を非公開で行い、被告人のプライバシーを守るため。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "裁判員は実際の法廷に出席して直接審理に立ち会う必要があり、映像だけで判決を出すための仕組みではありません。",
+                "逮捕には原則として裁判官が発する令状が必要であり、取り調べの録音・録画によって令状が不要になることはありません。",
+                "裁判は原則として公開の法廷で行われることが憲法で定められており、裁判を非公開にするための制度ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "司法制度改革と裁判員制度・取り調べの可視化（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l046 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 最高裁判所「令和7年における裁判員裁判の実施状況等に関する資料」 / 出典URL: https://www.courts.go.jp/saibanin/vc-files/saibanin/R7-103.pdf"
+          },
+          "statement": "<p>次の表は、最高裁判所が公表した「令和7年における裁判員裁判の実施状況等に関する資料」の一部です。</p><table><thead><tr><th>項目</th><th>令和7年（2025年）の実績</th></tr></thead><tbody><tr><td>選定された裁判員候補者の数</td><td>97,958人</td></tr><tr><td>辞退が認められた裁判員候補者の数（割合）</td><td>66,254人（67.6%）</td></tr><tr><td>選任手続期日への裁判員候補者の出席率</td><td>67.1%</td></tr><tr><td>選任された裁判員の数（補充裁判員を除く）</td><td>4,691人</td></tr><tr><td>平均職務従事日数</td><td>8.0日</td></tr><tr><td>平均開廷回数</td><td>5.3回</td></tr><tr><td>平均審理期間</td><td>14.0月</td></tr><tr><td>平均評議時間</td><td>852.0分</td></tr></tbody></table><p>出典：最高裁判所「令和7年における裁判員裁判の実施状況等に関する資料」</p>",
+          "advice": "<p>答え：候補者の約3分の2で辞退が認められており、参加しやすい環境づくりが課題である。（辞退が認められた候補者の割合は67.6%と約3分の2にのぼっており、仕事や育児・介護などとの両立を含め、国民が参加しやすい環境を整えることが課題といえます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l046-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：辞退が認められた割合と、実際に裁判員に選ばれた人の職務従事日数に注目しましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れる裁判員裁判の現状と課題について、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "候補者の約3分の2で辞退が認められており、参加しやすい環境づくりが課題である。",
+                "候補者に選ばれた人のうち、約9割が実際に裁判員として選任されている。",
+                "裁判員の平均職務従事日数は平均審理期間と同じ14日を超えている。",
+                "裁判員の平均開廷回数は10回以上であり、評議時間は約1時間にとどまっている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "候補者97,958人のうち実際に選任された裁判員は4,691人であり、9割には遠く及びません。",
+                "平均審理期間は14.0月ですが、裁判員が裁判所に出席する平均職務従事日数は8.0日です。",
+                "表によると、平均開廷回数は5.3回、平均評議時間は852.0分（14時間以上）となっています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

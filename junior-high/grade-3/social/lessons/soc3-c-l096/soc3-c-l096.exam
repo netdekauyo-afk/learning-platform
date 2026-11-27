@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l096 持続可能な社会への提言発表と中学校社会科の総まとめ",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第96.0時限「持続可能な社会への提言発表と中学校社会科の総まとめ」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "持続可能な社会への提言発表と中学校社会科の総まとめ（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l096 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>探究活動の成果をまとめて提言レポートを作成し、発表するときには、読み手や聞き手に根拠と主張が明確に伝わる構成とルールが求められます。</p>",
+          "advice": "<p>答え：①探究課題→②課題設定の理由→③研究の方法→④考察→⑤参考資料 ／ 資料の出典を明示し、事実と意見を区別する。（正しい構成とルールに沿ってまとめることで、説得力のある提言発表ができます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l096-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「何を調べるか」→「なぜ選んだか」→「どう調べたか」→「何がわかり何を提言するか」→「何を使ったか」の順です。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>探究レポートの「五つの構成」の正しい順序と、作成にあたって守るべき約束事の組み合わせはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "①探究課題→②課題設定の理由→③研究の方法→④考察→⑤参考資料 ／ 資料の出典を明示し、事実と意見を区別する。",
+                "①考察→②参考資料→③探究課題→④研究の方法→⑤課題設定の理由 ／ 自分の意見だけを中心に書き、出典は省略する。",
+                "①課題設定の理由→②参考資料→③考察→④探究課題→⑤研究の方法 ／ 事実と自分の意見を混ぜてわかりやすく書く。",
+                "①探究課題→②研究の方法→③参考資料→④課題設定の理由→⑤考察 ／ インターネットの匿名記事をそのまま引用する。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "最初に結論（考察）や参考資料が来るのではなく、課題と理由、研究の方法を示してから考察と参考資料をまとめます。出典の明示も必須です。",
+                "事実と意見が混ざると、どこまでが客観的データでどこからが自分の考えかが伝わらなくなるため、明確に区別します。",
+                "構成の順序が入れ替わっており、また出典の信頼性が確認できない匿名記事をそのまま根拠にすることは適切ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "持続可能な社会への提言発表と中学校社会科の総まとめ（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l096 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>中学校の社会科では、1・2年から3年生にかけて「地理的分野」「歴史的分野」「公民的分野」の3つの分野を学んできました。</p>",
+          "advice": "<p>答え：地域と世界のつながりや歴史の教訓をふまえ、人権と民主主義を尊重しながら、対話と協力によって課題解決に主体的に参画する。（地理・歴史・公民の3つの見方・考え方を結びつけ、より良い日本と地球社会の形成者として歩んでいきましょう。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l096-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：地理（空間・地域）、歴史（時間・推移）、公民（仕組み・合意形成）の3つの見方をどう組み合わせるか考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>これから18歳成人・主権者として社会の出来事を読み解き判断していくうえで、社会科の3分野の学びを総合して生かす姿勢として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "地域と世界のつながりや歴史の教訓をふまえ、人権と民主主義を尊重しながら、対話と協力によって課題解決に主体的に参画する。",
+                "テストが終わったら3分野の知識は使わなくなるため、成人後は自分の身の回りのことだけに関心をもっていればよい。",
+                "地域の問題は地理、過去の出来事は歴史、選挙は公民というように、社会のできごとを必ず1つの分野だけに切り分けて考える。",
+                "社会の仕組みやルールは政治家や専門家がすべて決めるものなので、一般の主権者が意見を述べたり投票したりする必要はない。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "社会科で学んだ3つの視点は、ニュースを読み解き、主権者として投票や地域参加をする際の一生の道具になります。",
+                "現実の社会問題は地域性（地理）、経緯（歴史）、制度や合意形成（公民）が重なり合っているため、総合して捉えることが重要です。",
+                "国民主権のもとでは、政治の最終的な決定権と責任は国民にあり、一人ひとりの主権者としての参画が社会を動かします。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "持続可能な社会への提言発表と中学校社会科の総まとめ（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l096 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 内閣府「社会意識に関する世論調査（令和7年10月調査）」 / 出典URL: https://survey.gov-online.go.jp/living/202512/r07/r07-shakai/"
+          },
+          "statement": "<p>次の表は、内閣府「社会意識に関する世論調査（令和7年10月調査）」における「国の政策への民意の反映程度」と「どうすればよりよく反映されるようになると思うか」（n=1,675）の回答結果です。</p><table><thead><tr><th>質問項目</th><th>回答内容</th><th>回答割合</th></tr></thead><tbody><tr><td rowspan=\"2\">国の政策に国民の考えや意見がどの程度反映されていると思うか</td><td>反映されている（かなり＋ある程度）</td><td>26.4%</td></tr><tr><td>反映されていない（あまり＋ほとんど）</td><td>71.3%</td></tr><tr><td rowspan=\"6\">どうすればよりよく反映されるようになると思うか<br>（1つ選択、上位6項目）</td><td>政治家が国民の声をよく聞く</td><td>28.1%</td></tr><tr><td>国民が国の政策に関心を持つ</td><td>18.5%</td></tr><tr><td>国民が選挙のときに自覚して投票する</td><td>15.3%</td></tr><tr><td>政府が世論をよく聞く</td><td>14.5%</td></tr><tr><td>国民が参加できる場をひろげる</td><td>9.7%</td></tr><tr><td>マスコミが国民の意見をよく伝える</td><td>4.1%</td></tr></tbody></table><p>出典：内閣府「社会意識に関する世論調査（令和7年10月調査）」をもとに作成</p>",
+          "advice": "<p>答え：約7割が民意は「反映されていない」と感じており、政治家や政府が声を聞くことに加え、国民が政策に関心をもち自覚して投票することも重要視されている。（民主主義をより良く機能させるには、政治への関心と主権者としての主体的な投票・参加が欠かせません。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l096-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「反映されていない」と感じている人の割合と、改善方法として政治家・政府側の努力以外に国民自身の役割がどう挙げられているかを見ましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる、国の政策への民意の反映をめぐる国民の意識として最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "約7割が民意は「反映されていない」と感じており、政治家や政府が声を聞くことに加え、国民が政策に関心をもち自覚して投票することも重要視されている。",
+                "過半数の人が国の政策に国民の意見が「反映されている」と評価しており、選挙や政治参加の仕組みに大きな課題はないと考えている。",
+                "民意を反映させる方法として最も割合が高いのは「マスコミが国民の意見をよく伝える」であり、約3割を占めている。",
+                "民意を反映させるために国民側ができること（関心を持つ・自覚して投票する）を挙げた人は、合計しても1割未満にとどまっている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "「反映されていない」が71.3%と約7割にのぼり、「反映されている」は26.4%にとどまっています。",
+                "最も割合が高いのは「政治家が国民の声をよく聞く」（28.1%）であり、「マスコミが国民の意見をよく伝える」は4.1%です。",
+                "「国民が国の政策に関心を持つ」（18.5%）と「国民が選挙のときに自覚して投票する」（15.3%）を合わせると3割を超えています。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l013 状況に応じた決まりの見直しと改善",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第13.0時限「状況に応じた決まりの見直しと改善」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "状況に応じた決まりの見直しと改善（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l013 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>社会の変化や技術の発達にともない、これまで当たり前とされてきた決まりやルールが、現在の実情に合わなくなることがあります。決まりを見直す際には、二つの大切な観点が用いられます。</p>",
+          "advice": "<p>答え：効率とは手間や費用をかけすぎずに目的を達成できることであり、公正とは利益や負担が一部に偏らず弱い立場の人にも配慮されていることである。（ルールは守るだけの固定されたものではなく、目的に照らして「効率」と「公正」の両面から絶えず点検し改善していくことが大切です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l013-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「効率」は目的達成までの手間や費用に、「公正」は利益や負担の配分や弱者への配慮に注目します。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>決まりを見直すときの「効率」と「公正」の観点についての説明として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "効率とは手間や費用をかけすぎずに目的を達成できることであり、公正とは利益や負担が一部に偏らず弱い立場の人にも配慮されていることである。",
+                "効率とは全員が同じ意見に賛成して決まりをすぐ決めることであり、公正とは全員にまったく同じ負担や義務を課すことである。",
+                "効率とは一度決めたルールを長く変更せずに使い続けることであり、公正とは多数決で過半数の賛成を得てルールを決定することである。",
+                "効率とはルールに違反した人への罰則を厳しくすることであり、公正とはすべての人の希望を例外なくルールに盛り込むことである。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "全員が同じ意見になる必要はなく、また条件が異なる人すべてに同じ負担を課すことが必ずしも公平とは限りません。",
+                "状況の変化に合わなくなったルールを固定し続けることは合理的ではなく、多数決だけで少数派への配慮を欠くと不公平が生じます。",
+                "罰則の厳しさは目的達成の手間や費用とは別の問題であり、相反するすべての希望をそのまま盛り込むことは現実的ではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "状況に応じた決まりの見直しと改善（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l013 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>ある中学校では、10年前に作られた「夏でも防寒着やネッククーラーの着用を禁止し、指定の制服のみを着用する」という校則を見直すことになりました。猛暑日の増加により熱中症の危険が高まっているためです。</p>",
+          "advice": "<p>答え：安全や健康を守るという本来の目的に照らし、生徒や保護者などの意見も聴きながら、暑さ対策と節度ある学校生活を両立できる新たな基準を合意する。（規則が本来の目的を果たせなくなったときは、根拠にもとづき多様な立場の意見を聴いて合意形成を図ることが民主主義の基本です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l013-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：ルールが作られた本来の目的と、現在の状況や関係者の立場の違いを整理して考えましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この校則を見直す話し合いにおいて、公民で学ぶ見方・考え方にもとづく最も適切な進め方はどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "安全や健康を守るという本来の目的に照らし、生徒や保護者などの意見も聴きながら、暑さ対策と節度ある学校生活を両立できる新たな基準を合意する。",
+                "10年前の先輩たちも守ってきた伝統的な校則であるため、気候が変わっても特例を認めず、これまで通りの運用を徹底する。",
+                "健康面の不安を訴える生徒が一部にいるため、服装に関するきまりをすべて廃止して、各自の判断に完全に任せることにする。",
+                "話し合いに時間がかかると効率が悪いため、生徒や保護者への説明や意見聴取は行わず、教員会議の多数決だけで新しい決まりを決定する。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "環境や社会状況が変化し、元のルールでは安全を守る目的を果たせなくなっている場合は、根拠をもとに見直す必要があります。",
+                "すべてのきまりをなくすと、学校生活の秩序や安全性など別の面で不都合や不公平が生じるおそれがあります。",
+                "決まりの当事者である生徒や保護者の意見を聴かずに進めると、納得感が得られず合意形成が難しくなります。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "状況に応じた決まりの見直しと改善（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l013 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 文部科学省「公立中学校・高等学校における『校則等の見直し状況調査』の結果」（2025年7月） / 出典URL: https://www.mext.go.jp/content/20250702-mxt_jidou01-000043523_1.pdf"
+          },
+          "statement": "<p>次の表は、文部科学省が全国の公立中学校（回答数399校のうち校則を制定している395校など）を対象に実施した校則等の見直し状況調査の結果の一部です。</p><table><thead><tr><th>調査項目（対象校数）</th><th>回答区分</th><th>割合</th></tr></thead><tbody><tr><td rowspan=\"3\">令和元年度以降の校則等の制定・変更<br>（395校）</td><td>すでに制定又は変更した</td><td>92.2%</td></tr><tr><td>令和7年度以降に予定がある</td><td>3.3%</td></tr><tr><td>実施しておらず予定もない</td><td>4.6%</td></tr><tr><td rowspan=\"3\">校則等の制定・変更手続きの定めと公表<br>（395校）</td><td>手続きを定め、公表している</td><td>47.3%</td></tr><tr><td>手続きを定めているが、公表していない</td><td>23.5%</td></tr><tr><td>手続きを定めていない</td><td>29.1%</td></tr><tr><td rowspan=\"3\">見直し時の生徒からの意見聴取<br>（制定・変更した364校のうち生徒または保護者から聴取した325校）</td><td>全ての生徒から意見を聴取する機会を設けた</td><td>68.6%</td></tr><tr><td>一部の生徒（生徒会等）から機会を設けた</td><td>29.8%</td></tr><tr><td>生徒からは機会を設けていない</td><td>1.5%</td></tr></tbody></table><p>出典：文部科学省「公立中学校・高等学校における『校則等の見直し状況調査』の結果」（2025年7月）をもとに作成</p>",
+          "advice": "<p>答え：9割以上の学校が令和元年度以降に校則を見直しているが、見直しの手続きを定めて公表している学校は半数未満にとどまっている。（すでに制定・変更した学校は92.2%と高い一方、手続きを定めて公表している学校は47.3%であり、ルール見直しの過程の透明化が課題といえます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l013-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：9割以上の学校が見直しを実施している一方で、「手続きの定めと公表」や「意見聴取の対象」の割合に注目してみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この資料から読み取れる公立中学校の校則見直しの現状と課題として、最も適切なものはどれですか。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "9割以上の学校が令和元年度以降に校則を見直しているが、見直しの手続きを定めて公表している学校は半数未満にとどまっている。",
+                "令和元年度以降に校則を見直した学校は半数程度であり、今後見直しを予定している学校もほとんど見られない。",
+                "校則を見直した学校のうち、手続きを定めている学校はすべて、その内容を生徒や保護者に公表している。",
+                "見直し時に意見を聴取した学校では、生徒会などの一部だけでなく、すべての学校で全生徒から意見を聴取している。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "表によると「すでに制定又は変更した」は92.2%であり、半数程度ではなく9割以上にのぼります。",
+                "「手続きを定めているが、公表していない」が23.5%あり、定めている学校すべてが公表しているわけではありません。",
+                "「一部の生徒（生徒会等）から機会を設けた」が29.8%、「機会を設けていない」が1.5%あり、全校で全生徒から聴取しているわけではありません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}

@@ -1,0 +1,371 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "soc3-c-l056 家計の収入・支出と私たちの消費生活",
+  "metadata": {
+    "licence": "None specified",
+    "description": "中学3年社会（公民） 第56.0時限「家計の収入・支出と私たちの消費生活」の宿題用確認問題"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": true,
+    "messages": [],
+    "advice": "",
+    "intro": ""
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "問題",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        ""
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "家計の収入・支出と私たちの消費生活（知識）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "知識",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l056 / 問題番号: Q1 / 種類: 知識"
+          },
+          "statement": "<p>家庭の経済の営みを<strong>家計</strong>といいます。家計の収入（実収入）には賃金や利子・配当などがあり、支出には食料や住居などの<strong>消費支出</strong>と、税金や社会保険料などの<strong>非消費支出</strong>があります。</p>",
+          "advice": "<p>答え：可処分所得（実収入から自分の意思では減らせない義務的な支出である非消費支出を差し引いた「手取り収入」のことで、消費や貯蓄に回すことができます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l056-M1",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：「処分（自由に使う）できる所得」という意味の経済用語です。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>家計の収入から非消費支出（税金や社会保険料）を差し引いた、家計が自由に消費や貯蓄に使うことができる所得を何というか、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "可処分所得",
+                "国民所得",
+                "名目所得",
+                "経常収入"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "国民所得は、一国の国民全体が1年間に新たに生み出した所得の合計を指すマクロ経済の指標です。",
+                "名目所得は、物価の変動を考慮しないそのままの金額で表した所得のことです。",
+                "経常収入は、給与や年金など毎月・毎年のように規則的かつ継続的に入ってくる収入を指します。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "家計の収入・支出と私たちの消費生活（理解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "理解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l056 / 問題番号: Q2 / 種類: 理解"
+          },
+          "statement": "<p>計画的な家計管理では、収入と支出のバランスを考えて将来のために貯蓄を行うとともに、日々の買い物では環境や人権に配慮した<strong>エシカル消費（倫理的消費）</strong>の考え方も広がっています。</p>",
+          "advice": "<p>答え：発展途上国の生産者に適正な対価が支払われるフェアトレード商品や、地産地消の食品を選ぶ。（エシカル消費は、環境保全や人権尊重、地域活性化など社会への影響を考えて商品を選ぶ消費行動です。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l056-M2",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：価格の安さだけでなく、地球環境や生産者の人権、地域社会への影響を意識した買い物を選びましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>エシカル消費の具体例として、最も適切なものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "発展途上国の生産者に適正な対価が支払われるフェアトレード商品や、地産地消の食品を選ぶ。",
+                "使えるかどうかわからない商品でも、タイムセールで安ければ迷わず大量に購入する。",
+                "流行遅れにならないよう、まだ使える衣類や家電を毎年新しいものに買い替える。",
+                "買い物に出かける手間を省くため、送料がかかっても毎日1品ずつ別々に宅配で注文する。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "必要以上の衝動買いや大量購入は、食品ロスや廃棄物の増加につながりやすく計画的ではありません。",
+                "まだ使えるものをすぐに捨てて買い替える行動は、資源の浪費につながり環境への配慮に欠けます。",
+                "配送回数をむやみに増やすことは二酸化炭素の排出増につながり、環境に配慮した消費とはいえません。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        },
+        {
+          "name": "家計の収入・支出と私たちの消費生活（資料読解）",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "公民",
+            "資料読解",
+            "level:basic"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "授業ID: soc3-c-l056 / 問題番号: Q3 / 種類: 資料読解 / 資料出典: 総務省統計局「家計調査報告〔家計収支編〕2025年（令和7年）平均結果の概要」 / 出典URL: https://www.stat.go.jp/data/kakei/sokuhou/tsuki/pdf/fies_gaikyo2025.pdf"
+          },
+          "statement": "<p>次の表は、総務省統計局「家計調査報告〔家計収支編〕2025年（令和7年）平均結果の概要」における「二人以上の世帯のうち勤労者世帯」の1か月平均の家計収支（世帯主の年齢階級別）です。</p><table><thead><tr><th>項目</th><th>平均</th><th>40歳未満</th><th>40〜49歳</th><th>50〜59歳</th><th>60歳以上</th></tr></thead><tbody><tr><td>実収入（円）</td><td>653,901</td><td>645,562</td><td>713,746</td><td>718,283</td><td>520,432</td></tr><tr><td>非消費支出（円）</td><td>121,493</td><td>104,025</td><td>135,013</td><td>148,418</td><td>87,702</td></tr><tr><td>可処分所得（円）</td><td>532,408</td><td>541,537</td><td>578,733</td><td>569,865</td><td>432,730</td></tr><tr><td>消費支出（円）</td><td>346,297</td><td>301,216</td><td>353,622</td><td>374,940</td><td>335,910</td></tr><tr><td>黒字（円）</td><td>186,111</td><td>240,321</td><td>225,111</td><td>194,925</td><td>96,820</td></tr><tr><td>平均消費性向（%）</td><td>65.0</td><td>55.6</td><td>61.1</td><td>65.8</td><td>77.6</td></tr><tr><td>黒字率（%）</td><td>35.0</td><td>44.4</td><td>38.9</td><td>34.2</td><td>22.4</td></tr></tbody></table><p>※黒字＝可処分所得−消費支出、平均消費性向＝消費支出÷可処分所得×100、黒字率＝黒字÷可処分所得×100。<br>出典：総務省統計局「家計調査報告〔家計収支編〕2025年（令和7年）平均結果の概要」</p>",
+          "advice": "<p>答え：60歳以上の世帯は実収入が最も低く、可処分所得に占める消費支出の割合（平均消費性向）が最も高い。（60歳以上は実収入520,432円、平均消費性向77.6%と消費の割合が高く、黒字率は22.4%と最も低くなっていることが読み取れます。）</p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "soc3-c-l056-M3",
+              "marks": 1,
+              "showCorrectAnswer": true,
+              "showFeedbackIcon": true,
+              "stepsPenalty": 0,
+              "steps": [
+                {
+                  "type": "information",
+                  "useCustomName": false,
+                  "customName": "",
+                  "marks": 0,
+                  "showCorrectAnswer": true,
+                  "showFeedbackIcon": true,
+                  "scripts": {},
+                  "variableReplacements": [],
+                  "variableReplacementStrategy": "originalfirst",
+                  "adaptiveMarkingPenalty": 0,
+                  "customMarkingAlgorithm": "",
+                  "extendBaseMarkingAlgorithm": true,
+                  "unitTests": [],
+                  "prompt": "<p>ヒント：年齢階級ごとに実収入・可処分所得・平均消費性向・黒字率を比べてみましょう。</p>"
+                }
+              ],
+              "scripts": {},
+              "variableReplacements": [],
+              "variableReplacementStrategy": "originalfirst",
+              "adaptiveMarkingPenalty": 0,
+              "customMarkingAlgorithm": "",
+              "extendBaseMarkingAlgorithm": true,
+              "unitTests": [],
+              "prompt": "<p>この表から読み取れる勤労者世帯の家計収支の特徴として、正しいものを1つ選びなさい。</p>",
+              "minMarks": 0,
+              "maxMarks": 1,
+              "shuffleChoices": true,
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "showCellAnswerState": true,
+              "choices": [
+                "60歳以上の世帯は実収入が最も低く、可処分所得に占める消費支出の割合（平均消費性向）が最も高い。",
+                "50〜59歳の世帯は実収入が最も高いが、非消費支出が最も少なく黒字率も最も高い。",
+                "40歳未満の世帯は可処分所得が平均より低く、黒字額もすべての年代の中で最も少ない。",
+                "平均では実収入の約半分が非消費支出として差し引かれており、可処分所得は30万円台になっている。"
+              ],
+              "matrix": [
+                1,
+                0,
+                0,
+                0
+              ],
+              "distractors": [
+                "",
+                "50〜59歳の世帯は実収入（718,283円）が最も高いものの、非消費支出（148,418円）も最大で、黒字率が最も高いのは40歳未満（44.4%）です。",
+                "40歳未満の世帯は可処分所得（541,537円）も黒字額（240,321円）も平均を上回っており、黒字額は全年代で最大です。",
+                "平均の実収入653,901円に対する非消費支出は121,493円（約18.6%）であり、可処分所得は532,408円です。"
+              ]
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 0,
+          "objectives": [],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": []
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": true,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}
