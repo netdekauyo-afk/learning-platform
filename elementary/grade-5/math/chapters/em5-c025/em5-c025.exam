@@ -1,0 +1,162 @@
+// Numbas version: finer_feedback_settings
+{
+  "name": "em5-c025 14 円と正多角形",
+  "metadata": {
+    "licence": "None specified",
+    "description": "小学5年算数・第14章「円と正多角形」の章別問題。正六角形と平行線の角度を求める。"
+  },
+  "extensions": [],
+  "custom_part_types": [],
+  "resources": [],
+  "navigation": {
+    "allowregen": false,
+    "showfrontpage": false,
+    "preventleave": false,
+    "typeendtoleave": false,
+    "startpassword": "",
+    "allowsteps": true,
+    "showresultspage": "oncompletion",
+    "onleave": {
+      "action": "none",
+      "message": ""
+    },
+    "reverse": true,
+    "browse": true,
+    "enterreviewmode": true,
+    "navigatemode": "menu",
+    "autoSubmit": true
+  },
+  "timing": {
+    "allowPause": false,
+    "timeout": {
+      "action": "none",
+      "message": ""
+    },
+    "timedwarning": {
+      "action": "none",
+      "message": ""
+    }
+  },
+  "feedback": {
+    "showactualmark": true,
+    "showtotalmark": true,
+    "showanswerstate": true,
+    "allowrevealanswer": false,
+    "messages": [],
+    "advice": "",
+    "intro": "",
+    "showactualmarkwhen": "always",
+    "showtotalmarkwhen": "always",
+    "showanswerstatewhen": "always",
+    "showpartfeedbackmessageswhen": "always"
+  },
+  "duration": 0,
+  "question_groups": [
+    {
+      "name": "14 円と正多角形",
+      "pickingStrategy": "all-ordered",
+      "pickQuestions": 0,
+      "questionNames": [
+        "M1 正六角形と平行線"
+      ],
+      "variable_overrides": [],
+      "questions": [
+        {
+          "name": "M1 正六角形と平行線",
+          "extensions": [],
+          "custom_part_types": [],
+          "variable_groups": [],
+          "variables": {},
+          "ungrouped_variables": [],
+          "tags": [
+            "14 円と正多角形",
+            "em5-c025-M1",
+            "ability:補助線",
+            "ability:組み合わせ"
+          ],
+          "metadata": {
+            "licence": "None specified",
+            "description": "正六角形を中心から正三角形に分ける性質（第127回）を利用した、小学生向けのオリジナル応用問題。"
+          },
+          "statement": "",
+          "advice": "<p>正六角形の中心と6つの頂点を結ぶと、6つの正三角形ができます。</p><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 250\" width=\"340\" height=\"250\" style=\"display:block;max-width:100%;height:auto;margin:0.6em auto;\" role=\"img\" aria-label=\"正六角形の中心から頂点を結んで6つの正三角形に分ける。上の左と下の右の角は40度。\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path d=\"M24 34 H316 M24 211.265 H316\"/><polygon points=\"145,34 229.572,64.782 245.201,153.415 176.257,211.265 91.684,180.484 76.056,91.851\"/><path d=\"M 190 34 A 45 45 0 0 1 187.286 49.391 M 201.536 190.053 A 33 33 0 0 1 209.257 211.265\" stroke-width=\"1.2\"/><path d=\"M 160.628 122.633 L 145 34 M 160.628 122.633 L 229.572 64.782 M 160.628 122.633 L 245.201 153.415 M 160.628 122.633 L 176.257 211.265 M 160.628 122.633 L 91.684 180.484 M 160.628 122.633 L 76.056 91.851\" stroke-dasharray=\"5 4\" stroke-width=\"1.35\" stroke=\"#5E97C8\"/><path d=\"M 118.188 56.498 A 35 35 0 0 1 110 34 M 165.673 41.524 A 22 22 0 0 1 148.82 55.666 M 148.82 55.666 A 22 22 0 0 1 128.147 48.141\" stroke-width=\"1.2\"/></g><g fill=\"currentColor\" font-family=\"sans-serif\" text-anchor=\"middle\"><text x=\"215\" y=\"49\" font-size=\"17\">20°</text><text x=\"237\" y=\"201\" font-size=\"17\">40°</text><text x=\"93\" y=\"57\" font-size=\"17\">40°</text><text x=\"175\" y=\"76\" font-size=\"17\">60°</text><text x=\"126\" y=\"79\" font-size=\"17\">60°</text></g></svg><p>正六角形の1つの角は60°＋60°＝120°です。上の直線の下にある3つの角の和は180°なので、左の角は180°−120°−20°＝40°です。</p><p>正六角形の向かい合う辺は平行です。上下の直線も平行なので、上の左の角と下の右の角は同じ大きさです。</p><p><strong>180°−(60°＋60°)−20°＝40°</strong></p>",
+          "rulesets": {},
+          "parts": [
+            {
+              "type": "1_n_2",
+              "useCustomName": true,
+              "customName": "em5-c025-M1",
+              "prompt": "<p>上下の2本の直線は平行です。図の六角形は正六角形です。</p><p>角アの大きさは何度ですか？</p><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 250\" width=\"340\" height=\"250\" style=\"display:block;max-width:100%;height:auto;margin:0.6em auto;\" role=\"img\" aria-label=\"上下の直線に頂点が接する正六角形。上の右の角は20度、下の右の角がア。\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path d=\"M24 34 H316 M24 211.265 H316\"/><polygon points=\"145,34 229.572,64.782 245.201,153.415 176.257,211.265 91.684,180.484 76.056,91.851\"/><path d=\"M 190 34 A 45 45 0 0 1 187.286 49.391 M 201.536 190.053 A 33 33 0 0 1 209.257 211.265\" stroke-width=\"1.2\"/></g><g fill=\"currentColor\" font-family=\"sans-serif\" text-anchor=\"middle\"><text x=\"215\" y=\"49\" font-size=\"17\">20°</text><text x=\"237\" y=\"201\" font-size=\"17\">ア</text></g></svg>",
+              "marks": 1,
+              "choices": [
+                "20°",
+                "40°",
+                "60°",
+                "80°"
+              ],
+              "matrix": [
+                0,
+                1,
+                0,
+                0
+              ],
+              "distractors": [
+                "正六角形の角を中心から2つに分けて考えましょう。",
+                "<p>正解です。</p><p>正六角形の中心と6つの頂点を結ぶと、6つの正三角形ができます。</p><svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 250\" width=\"340\" height=\"250\" style=\"display:block;max-width:100%;height:auto;margin:0.6em auto;\" role=\"img\" aria-label=\"正六角形の中心から頂点を結んで6つの正三角形に分ける。上の左と下の右の角は40度。\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"round\" stroke-linecap=\"round\"><path d=\"M24 34 H316 M24 211.265 H316\"/><polygon points=\"145,34 229.572,64.782 245.201,153.415 176.257,211.265 91.684,180.484 76.056,91.851\"/><path d=\"M 190 34 A 45 45 0 0 1 187.286 49.391 M 201.536 190.053 A 33 33 0 0 1 209.257 211.265\" stroke-width=\"1.2\"/><path d=\"M 160.628 122.633 L 145 34 M 160.628 122.633 L 229.572 64.782 M 160.628 122.633 L 245.201 153.415 M 160.628 122.633 L 176.257 211.265 M 160.628 122.633 L 91.684 180.484 M 160.628 122.633 L 76.056 91.851\" stroke-dasharray=\"5 4\" stroke-width=\"1.35\" stroke=\"#5E97C8\"/><path d=\"M 118.188 56.498 A 35 35 0 0 1 110 34 M 165.673 41.524 A 22 22 0 0 1 148.82 55.666 M 148.82 55.666 A 22 22 0 0 1 128.147 48.141\" stroke-width=\"1.2\"/></g><g fill=\"currentColor\" font-family=\"sans-serif\" text-anchor=\"middle\"><text x=\"215\" y=\"49\" font-size=\"17\">20°</text><text x=\"237\" y=\"201\" font-size=\"17\">40°</text><text x=\"93\" y=\"57\" font-size=\"17\">40°</text><text x=\"175\" y=\"76\" font-size=\"17\">60°</text><text x=\"126\" y=\"79\" font-size=\"17\">60°</text></g></svg><p>正六角形の1つの角は60°＋60°＝120°です。上の直線の下にある3つの角の和は180°なので、左の角は180°−120°−20°＝40°です。</p><p>正六角形の向かい合う辺は平行です。上下の直線も平行なので、上の左の角と下の右の角は同じ大きさです。</p><p><strong>180°−(60°＋60°)−20°＝40°</strong></p>",
+                "正六角形の1つの角は、正三角形の角2つ分です。",
+                "上の直線の下にある3つの角の和を考えましょう。"
+              ],
+              "displayType": "radiogroup",
+              "displayColumns": 1,
+              "shuffleChoices": false,
+              "minAnswers": 1,
+              "maxAnswers": 1,
+              "showCorrectAnswer": false,
+              "showFeedbackIcon": true,
+              "showCellAnswerState": false,
+              "stepsPenalty": 0,
+              "steps": [],
+              "nextParts": [],
+              "exploreObjective": "章別問題"
+            }
+          ],
+          "preamble": {
+            "js": "",
+            "css": ""
+          },
+          "variablesTest": {
+            "condition": "",
+            "maxRuns": 100
+          },
+          "partsMode": "explore",
+          "maxMarks": 1,
+          "objectives": [
+            {
+              "name": "章別問題",
+              "limit": 1
+            }
+          ],
+          "penalties": [],
+          "showObjectivesNames": "when-active",
+          "showPenaltiesNames": "when-active",
+          "builtin_constants": {
+            "e": true,
+            "pi,π": true,
+            "i": true
+          },
+          "constants": [],
+          "customName": "M1 正六角形と平行線",
+          "objectiveVisibility": "when-active",
+          "penaltyVisibility": "when-active"
+        }
+      ]
+    }
+  ],
+  "functions": {},
+  "variables": {},
+  "showstudentname": false,
+  "showquestiongroupnames": false,
+  "percentPass": 0,
+  "contributors": [],
+  "allowPrinting": true
+}
